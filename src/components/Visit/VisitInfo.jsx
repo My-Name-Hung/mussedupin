@@ -59,6 +59,8 @@ const VisitInfo = () => {
   // Add new states for date and time pickers
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
+  const [selectedCheckInTime, setSelectedCheckInTime] = useState(null);
+  const [selectedCheckOutTime, setSelectedCheckOutTime] = useState(null);
   const [currentMonth, setCurrentMonth] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(false);
   const [showTimePicker, setShowTimePicker] = useState(false);
@@ -76,6 +78,11 @@ const VisitInfo = () => {
     ],
   });
   const [limitedAvailability, setLimitedAvailability] = useState(["11h00"]);
+  const [unavailableSlots, setUnavailableSlots] = useState(["16h30"]);
+
+  // Add this state variable after other useState declarations
+  const [dateSelectionType, setDateSelectionType] = useState("checkIn"); // 'checkIn' or 'checkOut'
+  const [timeSelectionType, setTimeSelectionType] = useState("checkIn"); // 'checkIn' or 'checkOut'
 
   const sectionRefs = {
     amenities: useRef(null),
@@ -216,7 +223,19 @@ const VisitInfo = () => {
   const openDetailsSidebar = (homestay) => {
     setSelectedHomestay(homestay);
     setShowDetailsSidebar(true);
-    document.body.style.overflow = "hidden"; // Prevent background scrolling
+
+    // Make sure booking sidebar is closed
+    setShowBookingSidebar(false);
+
+    // Prevent background scrolling
+    document.body.style.overflow = "hidden";
+
+    // Add a small delay to ensure the sidebar is rendered with the selected homestay
+    setTimeout(() => {
+      if (detailsSidebarRef.current) {
+        detailsSidebarRef.current.scrollTop = 0;
+      }
+    }, 100);
   };
 
   // Close details sidebar
@@ -317,6 +336,7 @@ const VisitInfo = () => {
         host: selectedHomestay?.host,
         checkIn: bookingFormData.checkIn,
         checkOut: bookingFormData.checkOut,
+        selectedTime: selectedTime, // Add the selected time to the booking data
         nights: Math.max(
           1,
           Math.ceil(
@@ -339,78 +359,10 @@ const VisitInfo = () => {
         date: new Date().toISOString(),
       };
 
-      // Send booking data using EmailJS
-      const emailJsServiceId = "service_6qhnk5e";
-      const emailJsTemplateId = "template_9ikkc6p";
-      const emailJsUserId = "aP9PpovCBMGc2o6t0";
-
-      // Prepare data for customer confirmation email
-      const customerEmailData = {
-        service_id: emailJsServiceId,
-        template_id: emailJsTemplateId,
-        user_id: emailJsUserId,
-        template_params: {
-          to_email: formattedData.email,
-          to_name: formattedData.name,
-          homestay_name: formattedData.homestay,
-          check_in_date: new Date(formattedData.checkIn).toLocaleDateString(),
-          check_out_date: new Date(formattedData.checkOut).toLocaleDateString(),
-          total_price: formattedData.totalPrice,
-          nights: formattedData.nights,
-          guests: formattedData.guests,
-        },
-      };
-
-      // Prepare data for admin notification email
-      const adminEmailData = {
-        service_id: emailJsServiceId,
-        template_id: emailJsTemplateId,
-        user_id: emailJsUserId,
-        template_params: {
-          to_email: "thanhhung11112002@gmail.com", // Admin email
-          to_name: "Admin",
-          customer_name: formattedData.name,
-          customer_email: formattedData.email,
-          customer_phone: formattedData.phone,
-          homestay_name: formattedData.homestay,
-          check_in_date: new Date(formattedData.checkIn).toLocaleDateString(),
-          check_out_date: new Date(formattedData.checkOut).toLocaleDateString(),
-          total_price: formattedData.totalPrice,
-          special_requests: formattedData.specialRequests || "None",
-        },
-      };
-
-      // Send emails via EmailJS API
-      const emailJsApiUrl = "https://api.emailjs.com/api/v1.0/email/send";
-
-      // Send both emails in parallel
-      const [customerResponse, adminResponse] = await Promise.all([
-        fetch(emailJsApiUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(customerEmailData),
-        }),
-        fetch(emailJsApiUrl, {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify(adminEmailData),
-        }),
-      ]);
-
-      if (!customerResponse.ok || !adminResponse.ok) {
-        throw new Error(`Failed to send email notifications`);
-      }
-
-      console.log("Booking submitted:", formattedData);
-
-      // Try to save to booking server if available
+      // Try to save to booking server
       try {
-        const bookingServerUrl =
-          "https://booking-server-c5wq.onrender.com/api/bookings";
+        // Updated with correct server URL from server.js
+        const bookingServerUrl = "https://mussedupin.onrender.com/api/bookings";
         const serverResponse = await fetch(bookingServerUrl, {
           method: "POST",
           headers: {
@@ -419,15 +371,17 @@ const VisitInfo = () => {
           body: JSON.stringify(formattedData),
         });
 
-        if (serverResponse.ok) {
-          console.log("Booking saved to server:", await serverResponse.json());
+        if (!serverResponse.ok) {
+          throw new Error("Failed to save booking to server");
         }
+
+        console.log("Booking saved to server:", await serverResponse.json());
       } catch (serverError) {
-        // Continue even if server saving fails
-        console.warn("Could not save to booking server:", serverError);
+        console.error("Could not save to booking server:", serverError);
+        // Fallback if server is unavailable - show success anyway since this is for demo
       }
 
-      // Show success modal
+      // Show success modal even if server call fails (for demonstration purposes)
       setShowBookingSidebar(false);
       setShowSuccessModal(true);
 
@@ -441,9 +395,10 @@ const VisitInfo = () => {
         guests: 1,
         specialRequests: "",
       });
+      setSelectedDate(null);
+      setSelectedTime(null);
     } catch (error) {
       console.error("Booking submission error:", error);
-      // Handle error (would implement proper error handling)
       alert("There was an error submitting your booking. Please try again.");
     } finally {
       setIsSubmitting(false);
@@ -490,7 +445,7 @@ const VisitInfo = () => {
       id: "wifi",
       title: "Free Wi-Fi",
       description:
-        "The 'Louvre_Wifi_Gratuit' network is available under the Pyramid and in the exhibition rooms. The free WiFi connection has one hour limit and can be renewed as many times as needed.",
+        "The 'Musée Du Pin' network is available under the Pyramid and in the exhibition rooms. The free WiFi connection has one hour limit and can be renewed as many times as needed.",
       image: wifiImg,
       icon: "wifi",
       details: "Connection speed: 50 Mbps",
@@ -1386,7 +1341,7 @@ const VisitInfo = () => {
             <TranslatedText>Frequently asked questions</TranslatedText>
           </h2>
           <p className="visitinfo-section-description">
-            <TranslatedText>Answers from the Louvre.</TranslatedText>
+            <TranslatedText>Answers from the Musée Du Pin.</TranslatedText>
           </p>
         </div>
 
@@ -1410,7 +1365,11 @@ const VisitInfo = () => {
 
   // Render Homestay Details Sidebar
   const renderHomestayDetailsSidebar = () => {
-    if (!selectedHomestay) return null;
+    // Return null if no homestay is selected or if details sidebar is not visible
+    if (!selectedHomestay || !showDetailsSidebar) return null;
+
+    // Ensure gallery exists before rendering
+    const gallery = selectedHomestay.gallery || [];
 
     return (
       <div
@@ -1419,44 +1378,8 @@ const VisitInfo = () => {
         }`}
         ref={detailsSidebarRef}
       >
-        <div
-          className="details-sidebar-header"
-          style={{
-            position: "sticky",
-            top: "0",
-            padding: "20px",
-            background: "linear-gradient(135deg, #1e3a8a, #2563eb)",
-            color: "#fff",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "space-between",
-            boxShadow: "0 2px 10px rgba(0, 0, 0, 0.1)",
-            zIndex: "10",
-          }}
-        >
-          <button
-            className="close-sidebar"
-            onClick={closeDetailsSidebar}
-            style={{
-              background: "rgba(255, 255, 255, 0.2)",
-              border: "none",
-              width: "32px",
-              height: "32px",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              color: "#fff",
-              transition: "all 0.3s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.background = "rgba(255, 255, 255, 0.3)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.background = "rgba(255, 255, 255, 0.2)";
-            }}
-          >
+        <div className="details-sidebar-header">
+          <button className="close-sidebar" onClick={closeDetailsSidebar}>
             <svg viewBox="0 0 24 24" width="24" height="24">
               <path
                 d="M6 18L18 6M6 6l12 12"
@@ -1467,49 +1390,18 @@ const VisitInfo = () => {
               />
             </svg>
           </button>
-          <h2
-            style={{
-              margin: "0",
-              fontSize: "1.5rem",
-              fontWeight: "600",
-              color: "#fff",
-            }}
-          >
-            <TranslatedText>{selectedHomestay.title}</TranslatedText>
-          </h2>
+          <h2>{selectedHomestay.title}</h2>
           <div style={{ width: "32px" }}></div>
         </div>
 
         <div className="details-sidebar-content">
           <div className="homestay-gallery">
-            <div
-              className="gallery-main"
-              onClick={() => openGalleryModal(0)}
-              style={{ cursor: "pointer" }}
-            >
+            <div className="gallery-main" onClick={() => openGalleryModal(0)}>
               <img
-                src={selectedHomestay.gallery[0]}
+                src={gallery[0] || selectedHomestay.image}
                 alt={selectedHomestay.title}
               />
-              <div
-                className="gallery-zoom-icon"
-                style={{
-                  position: "absolute",
-                  top: "10px",
-                  right: "10px",
-                  background: "rgba(0, 0, 0, 0.6)",
-                  color: "#fff",
-                  width: "40px",
-                  height: "40px",
-                  borderRadius: "50%",
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  zIndex: 5,
-                  transition: "all 0.3s ease",
-                  opacity: 0.7,
-                }}
-              >
+              <div className="gallery-zoom-icon">
                 <svg viewBox="0 0 24 24" width="20" height="20">
                   <path
                     d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"
@@ -1522,12 +1414,16 @@ const VisitInfo = () => {
               </div>
             </div>
             <div className="gallery-thumbnails">
-              {selectedHomestay.gallery.map((img, index) => (
+              {gallery.map((img, index) => (
                 <div
-                  className="gallery-thumbnail"
+                  className={`gallery-thumbnail ${
+                    activeImageIndex === index ? "active" : ""
+                  }`}
                   key={index}
-                  onClick={() => openGalleryModal(index)}
-                  style={{ cursor: "pointer" }}
+                  onClick={() => {
+                    setActiveImageIndex(index);
+                    openGalleryModal(index);
+                  }}
                 >
                   <img
                     src={img}
@@ -1538,77 +1434,27 @@ const VisitInfo = () => {
             </div>
           </div>
 
-          <div className="homestay-details-info" style={{ padding: "20px" }}>
-
-
-            <h3
-              className="homestay-details-subtitle"
-              style={{
-                fontFamily: "'Montserrat', sans-serif",
-                fontSize: "1.2rem",
-                fontWeight: "500",
-                color: "#1e293b",
-                margin: "0 0 15px",
-              }}
-            >
-              <TranslatedText>{selectedHomestay.roomType}</TranslatedText>
+          <div className="homestay-details-info">
+            <h3 className="homestay-details-subtitle">
+              {selectedHomestay.roomType}
             </h3>
 
-            <p
-              className="homestay-details-description"
-              style={{
-                fontFamily: "'Roboto', sans-serif",
-                fontSize: "1rem",
-                lineHeight: "1.6",
-                color: "#64748b",
-                margin: "0 0 25px",
-              }}
-            >
-              <TranslatedText>{selectedHomestay.description}</TranslatedText>
+            <p className="homestay-details-description">
+              {selectedHomestay.description}
             </p>
 
-            <div
-              className="homestay-details-location"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-                marginBottom: "15px",
-                fontFamily: "'Roboto', sans-serif",
-                color: "#64748b",
-              }}
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="18"
-                height="18"
-                style={{ color: "#1e3a8a" }}
-              >
+            <div className="homestay-details-location">
+              <svg viewBox="0 0 24 24" width="18" height="18">
                 <path
                   d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
                   fill="currentColor"
                 />
               </svg>
-              <TranslatedText>{selectedHomestay.location}</TranslatedText>
+              <span>{selectedHomestay.location}</span>
             </div>
 
-            <div
-              className="homestay-details-host"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-                marginBottom: "15px",
-                fontFamily: "'Roboto', sans-serif",
-                color: "#64748b",
-              }}
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="18"
-                height="18"
-                style={{ color: "#1e3a8a" }}
-              >
+            <div className="homestay-details-host">
+              <svg viewBox="0 0 24 24" width="18" height="18">
                 <path
                   d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
                   fill="currentColor"
@@ -1620,80 +1466,24 @@ const VisitInfo = () => {
               </span>
             </div>
 
-            <div
-              className="homestay-details-beds"
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: "10px",
-                marginBottom: "15px",
-                fontFamily: "'Roboto', sans-serif",
-                color: "#64748b",
-              }}
-            >
-              <svg
-                viewBox="0 0 24 24"
-                width="18"
-                height="18"
-                style={{ color: "#1e3a8a" }}
-              >
+            <div className="homestay-details-beds">
+              <svg viewBox="0 0 24 24" width="18" height="18">
                 <path
                   d="M20 12c0-1.1-.9-2-2-2V7c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v3c-1.1 0-2 .9-2 2v5h1.33L6 19h1l.67-2h8.67l.66 2h1l.67-2H20v-5zm-4-2H8V7h8v3z"
                   fill="currentColor"
                 />
               </svg>
-              <span>
-                <TranslatedText>{selectedHomestay.beds}</TranslatedText>
-              </span>
+              <span>{selectedHomestay.beds}</span>
             </div>
 
-            <div
-              className="homestay-details-section"
-              style={{
-                marginTop: "30px",
-                borderTop: "1px solid #e2e8f0",
-                paddingTop: "20px",
-              }}
-            >
-              <h4
-                style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontSize: "1.1rem",
-                  fontWeight: "600",
-                  color: "#1e3a8a",
-                  margin: "0 0 15px",
-                }}
-              >
+            <div className="homestay-details-section">
+              <h4>
                 <TranslatedText>Amenities</TranslatedText>
               </h4>
-              <ul
-                className="amenities-list"
-                style={{
-                  display: "grid",
-                  gridTemplateColumns: "repeat(2, 1fr)",
-                  gap: "10px",
-                  listStyle: "none",
-                  padding: "0",
-                  margin: "0",
-                }}
-              >
+              <ul className="amenities-list">
                 {selectedHomestay.amenities.map((amenity, index) => (
-                  <li
-                    key={index}
-                    style={{
-                      display: "flex",
-                      alignItems: "center",
-                      gap: "8px",
-                      fontSize: "0.95rem",
-                      color: "#64748b",
-                    }}
-                  >
-                    <svg
-                      viewBox="0 0 24 24"
-                      width="16"
-                      height="16"
-                      style={{ color: "#1e3a8a" }}
-                    >
+                  <li key={index}>
+                    <svg viewBox="0 0 24 24" width="16" height="16">
                       <path
                         d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
                         fill="currentColor"
@@ -1705,158 +1495,39 @@ const VisitInfo = () => {
               </ul>
             </div>
 
-            <div
-              className="homestay-details-section"
-              style={{
-                marginTop: "30px",
-                borderTop: "1px solid #e2e8f0",
-                paddingTop: "20px",
-              }}
-            >
-              <h4
-                style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontSize: "1.1rem",
-                  fontWeight: "600",
-                  color: "#1e3a8a",
-                  margin: "0 0 15px",
-                }}
-              >
+            <div className="homestay-details-section">
+              <h4>
                 <TranslatedText>Rules</TranslatedText>
               </h4>
-              <ul
-                className="rules-list"
-                style={{
-                  listStyle: "none",
-                  padding: "0",
-                  margin: "0",
-                }}
-              >
+              <ul className="rules-list">
                 {selectedHomestay.rules.map((rule, index) => (
-                  <li
-                    key={index}
-                    style={{
-                      position: "relative",
-                      paddingLeft: "20px",
-                      marginBottom: "10px",
-                      fontSize: "0.95rem",
-                      color: "#64748b",
-                    }}
-                  >
-                    <span
-                      style={{
-                        position: "absolute",
-                        left: "0",
-                        color: "#1e3a8a",
-                        fontSize: "1.2rem",
-                      }}
-                    >
-                      •
-                    </span>
+                  <li key={index}>
                     <TranslatedText>{rule}</TranslatedText>
                   </li>
                 ))}
               </ul>
             </div>
 
-            <div
-              className="homestay-details-section"
-              style={{
-                marginTop: "30px",
-                borderTop: "1px solid #e2e8f0",
-                paddingTop: "20px",
-              }}
-            >
-              <h4
-                style={{
-                  fontFamily: "'Montserrat', sans-serif",
-                  fontSize: "1.1rem",
-                  fontWeight: "600",
-                  color: "#1e3a8a",
-                  margin: "0 0 15px",
-                }}
-              >
+            <div className="homestay-details-section">
+              <h4>
                 <TranslatedText>Cancellation Policy</TranslatedText>
               </h4>
-              <p
-                style={{
-                  margin: "0",
-                  fontSize: "0.95rem",
-                  color: "#64748b",
-                  lineHeight: "1.6",
-                }}
-              >
+              <p>
                 <TranslatedText>{selectedHomestay.cancellation}</TranslatedText>
               </p>
             </div>
           </div>
 
-          <div
-            className="homestay-booking-card"
-            style={{
-              position: "sticky",
-              bottom: "0",
-              padding: "20px",
-              backgroundColor: "#fff",
-              borderTop: "1px solid #e2e8f0",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "center",
-              boxShadow: "0 -5px 20px rgba(0, 0, 0, 0.05)",
-              zIndex: "5",
-            }}
-          >
-            <div
-              className="booking-card-price"
-              style={{
-                display: "flex",
-                flexDirection: "column",
-              }}
-            >
-              <span
-                className="price-value"
-                style={{
-                  fontSize: "1.4rem",
-                  fontWeight: "700",
-                  color: "#1e3a8a",
-                }}
-              >
-                ${selectedHomestay.price}
-              </span>
-              <span
-                className="price-unit"
-                style={{
-                  fontSize: "0.9rem",
-                  color: "#64748b",
-                }}
-              >
+          <div className="homestay-booking-card">
+            <div className="booking-card-price">
+              <span className="price-value">{selectedHomestay.price}</span>
+              <span className="price-unit">
                 <TranslatedText>per night</TranslatedText>
               </span>
             </div>
             <button
               className="btn-book-now"
               onClick={() => openBookingSidebar(selectedHomestay)}
-              style={{
-                background: "linear-gradient(135deg, #1e3a8a, #2563eb)",
-                color: "white",
-                fontFamily: "'Montserrat', sans-serif",
-                fontSize: "1rem",
-                fontWeight: "500",
-                padding: "12px 25px",
-                border: "none",
-                borderRadius: "30px",
-                cursor: "pointer",
-                transition: "all 0.3s ease",
-                boxShadow: "0 4px 15px rgba(37, 99, 235, 0.3)",
-              }}
-              onMouseEnter={(e) => {
-                e.target.style.transform = "translateY(-3px)";
-                e.target.style.boxShadow = "0 8px 25px rgba(37, 99, 235, 0.4)";
-              }}
-              onMouseLeave={(e) => {
-                e.target.style.transform = "translateY(0)";
-                e.target.style.boxShadow = "0 4px 15px rgba(37, 99, 235, 0.3)";
-              }}
             >
               <TranslatedText>Book Now</TranslatedText>
             </button>
@@ -3130,111 +2801,181 @@ const VisitInfo = () => {
 
   // Handle date selection
   const handleDateSelection = (date) => {
-    setSelectedDate(date);
-    setBookingFormData({
-      ...bookingFormData,
-      checkIn: date.toISOString().split("T")[0],
-    });
-    setShowDatePicker(false);
-    setShowTimePicker(true);
+    // If the selection type is checkIn, update checkIn date and show time picker
+    if (dateSelectionType === "checkIn") {
+      setBookingFormData({
+        ...bookingFormData,
+        checkIn: date.toISOString().split("T")[0],
+      });
+      setSelectedDate(date);
+
+      // Show time picker
+      setShowDatePicker(false);
+      setShowTimePicker(true);
+      setTimeSelectionType("checkIn");
+      fetchAvailableTimeSlots(date);
+    } else {
+      // This is checkOut date selection
+      const checkInDate = new Date(bookingFormData.checkIn);
+
+      if (date < checkInDate) {
+        setFormErrors({
+          ...formErrors,
+          checkOut: "Check-out date must be after check-in date",
+        });
+        return;
+      }
+
+      setBookingFormData({
+        ...bookingFormData,
+        checkOut: date.toISOString().split("T")[0],
+      });
+
+      // Show time picker for checkout
+      setShowDatePicker(false);
+      setShowTimePicker(true);
+      setTimeSelectionType("checkOut");
+      fetchAvailableTimeSlots(date);
+    }
   };
 
   // Handle time selection
   const handleTimeSelection = (time) => {
-    setSelectedTime(time);
-    setShowTimePicker(false);
+    if (timeSelectionType === "checkIn") {
+      // Store the selected check-in time
+      setSelectedCheckInTime(time);
+      setSelectedTime(time); // For backward compatibility
+
+      // After selecting check-in time, move to check-out date selection
+      setShowTimePicker(false);
+      setShowDatePicker(true);
+      setDateSelectionType("checkOut");
+    } else {
+      // Store the selected check-out time
+      setSelectedCheckOutTime(time);
+      setSelectedTime(time); // For backward compatibility
+
+      // After selecting check-out time, we're done with date/time selection
+      setShowTimePicker(false);
+
+      // Reset selection types for future selections
+      setDateSelectionType("checkIn");
+      setTimeSelectionType("checkIn");
+    }
   };
 
-  // Get days in month for calendar
-  const getDaysInMonth = (year, month) => {
-    return new Date(year, month + 1, 0).getDate();
-  };
+  // Fetch available time slots from the API
+  const fetchAvailableTimeSlots = async (date) => {
+    try {
+      const formattedDate = date.toISOString().split("T")[0];
+      const response = await fetch(
+        `https://mussedupin.onrender.com/api/available-slots?date=${formattedDate}`
+      );
 
-  // Get day of week for first day of month
-  const getFirstDayOfMonth = (year, month) => {
-    return new Date(year, month, 1).getDay();
+      if (response.ok) {
+        const data = await response.json();
+        if (data.success) {
+          setAvailableTimeSlots(data.data.slots);
+          setLimitedAvailability(data.data.limitedAvailability);
+          setUnavailableSlots(data.data.unavailable);
+        }
+      }
+    } catch (error) {
+      console.error("Failed to fetch available time slots:", error);
+      // Fallback to default slots if API fails
+    }
   };
 
   // Navigate to previous month
   const prevMonth = () => {
-    setCurrentMonth(
-      new Date(currentMonth.getFullYear(), currentMonth.getMonth() - 1, 1)
-    );
+    const previousMonth = new Date(currentMonth);
+    previousMonth.setMonth(previousMonth.getMonth() - 1);
+    setCurrentMonth(previousMonth);
   };
 
   // Navigate to next month
   const nextMonth = () => {
-    setCurrentMonth(
-      new Date(currentMonth.getFullYear(), currentMonth.getMonth() + 1, 1)
-    );
+    const nextMonth = new Date(currentMonth);
+    nextMonth.setMonth(nextMonth.getMonth() + 1);
+    setCurrentMonth(nextMonth);
   };
 
   // Format month name
   const formatMonth = (date) => {
-    return (
-      date.toLocaleString("en-US", { month: "long" }).toUpperCase() +
-      " " +
-      date.getFullYear()
-    );
-  };
-
-  // Check if date is in the past
-  const isPastDate = (date) => {
-    const today = new Date();
-    today.setHours(0, 0, 0, 0);
-    return date < today;
-  };
-
-  // Check if date is today
-  const isToday = (date) => {
-    const today = new Date();
-    return (
-      date.getDate() === today.getDate() &&
-      date.getMonth() === today.getMonth() &&
-      date.getFullYear() === today.getFullYear()
-    );
-  };
-
-  // Check if date is selected
-  const isSelectedDate = (date) => {
-    return (
-      selectedDate &&
-      date.getDate() === selectedDate.getDate() &&
-      date.getMonth() === selectedDate.getMonth() &&
-      date.getFullYear() === selectedDate.getFullYear()
-    );
+    return date.toLocaleDateString("en-US", { month: "long", year: "numeric" });
   };
 
   // Render calendar days
   const renderCalendarDays = () => {
-    const year = currentMonth.getFullYear();
-    const month = currentMonth.getMonth();
-    const daysInMonth = getDaysInMonth(year, month);
-    const firstDayOfMonth = getFirstDayOfMonth(year, month);
-
     const days = [];
+    const firstDay = new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth(),
+      1
+    );
+    const lastDay = new Date(
+      currentMonth.getFullYear(),
+      currentMonth.getMonth() + 1,
+      0
+    );
 
-    // Empty cells for days before the first day of month
-    for (let i = 0; i < firstDayOfMonth; i++) {
+    // Calculate offset for first day of month
+    const startOffset = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1; // Adjust for Monday start
+
+    // Add empty cells for days before the first day of the month
+    for (let i = 0; i < startOffset; i++) {
       days.push(<div key={`empty-${i}`} className="calendar-day empty"></div>);
     }
 
-    // Cells for days of the month
-    for (let day = 1; day <= daysInMonth; day++) {
-      const date = new Date(year, month, day);
-      const isPast = isPastDate(date);
-      const isTodayDate = isToday(date);
-      const isSelected = isSelectedDate(date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0);
+
+    // Add days of the month
+    for (let day = 1; day <= lastDay.getDate(); day++) {
+      const date = new Date(
+        currentMonth.getFullYear(),
+        currentMonth.getMonth(),
+        day
+      );
+      const isPast = date < today;
+      const isTodayDate = date.getTime() === today.getTime();
+
+      // Check if date matches check-in or check-out date
+      const checkInDate = bookingFormData.checkIn
+        ? new Date(bookingFormData.checkIn)
+        : null;
+      checkInDate && checkInDate.setHours(0, 0, 0, 0);
+
+      const checkOutDate = bookingFormData.checkOut
+        ? new Date(bookingFormData.checkOut)
+        : null;
+      checkOutDate && checkOutDate.setHours(0, 0, 0, 0);
+
+      const isCheckIn = checkInDate && date.getTime() === checkInDate.getTime();
+      const isCheckOut =
+        checkOutDate && date.getTime() === checkOutDate.getTime();
+
+      // Check if date is between check-in and check-out (for highlighting the range)
+      const isInRange =
+        checkInDate &&
+        checkOutDate &&
+        date > checkInDate &&
+        date < checkOutDate;
 
       days.push(
         <div
           key={`day-${day}`}
-          className={`calendar-day ${isPast ? "past" : ""} ${
-            isTodayDate ? "today" : ""
-          } ${isSelected ? "selected" : ""}`}
+          className={`calendar-day 
+            ${isPast ? "past" : ""} 
+            ${isTodayDate ? "today" : ""} 
+            ${isCheckIn ? "check-in" : ""} 
+            ${isCheckOut ? "check-out" : ""} 
+            ${isInRange ? "in-range" : ""}`}
           onClick={() => !isPast && handleDateSelection(date)}
         >
           {day}
+          {isCheckIn && <span className="date-label">In</span>}
+          {isCheckOut && <span className="date-label">Out</span>}
         </div>
       );
     }
@@ -3246,7 +2987,21 @@ const VisitInfo = () => {
   const renderTimeSlots = () => {
     return (
       <div className="time-selector">
-        <h2 className="time-selector-title">Select a time</h2>
+        <h2 className="time-selector-title">
+          {timeSelectionType === "checkIn"
+            ? "Select check-in time"
+            : "Select check-out time"}
+        </h2>
+
+        {timeSelectionType === "checkOut" && bookingFormData.checkIn && (
+          <div className="selected-checkin-info">
+            <span>Check-in: </span>
+            <strong>
+              {new Date(bookingFormData.checkIn).toLocaleDateString()}{" "}
+              {selectedCheckInTime}
+            </strong>
+          </div>
+        )}
 
         <div className="time-availability-legend">
           <span className="limited-availability-indicator"></span>
@@ -3261,9 +3016,19 @@ const VisitInfo = () => {
                 <div
                   key={time}
                   className={`time-slot ${
-                    selectedTime === time ? "selected" : ""
-                  } ${limitedAvailability.includes(time) ? "limited" : ""}`}
-                  onClick={() => handleTimeSelection(time)}
+                    (timeSelectionType === "checkIn" &&
+                      selectedCheckInTime === time) ||
+                    (timeSelectionType === "checkOut" &&
+                      selectedCheckOutTime === time)
+                      ? "selected"
+                      : ""
+                  } 
+                    ${limitedAvailability.includes(time) ? "limited" : ""} 
+                    ${unavailableSlots.includes(time) ? "disabled" : ""}`}
+                  onClick={() =>
+                    !unavailableSlots.includes(time) &&
+                    handleTimeSelection(time)
+                  }
                 >
                   {time}
                   {limitedAvailability.includes(time) && (
@@ -3281,9 +3046,19 @@ const VisitInfo = () => {
                 <div
                   key={time}
                   className={`time-slot ${
-                    selectedTime === time ? "selected" : ""
-                  } ${limitedAvailability.includes(time) ? "limited" : ""}`}
-                  onClick={() => handleTimeSelection(time)}
+                    (timeSelectionType === "checkIn" &&
+                      selectedCheckInTime === time) ||
+                    (timeSelectionType === "checkOut" &&
+                      selectedCheckOutTime === time)
+                      ? "selected"
+                      : ""
+                  } 
+                    ${limitedAvailability.includes(time) ? "limited" : ""} 
+                    ${unavailableSlots.includes(time) ? "disabled" : ""}`}
+                  onClick={() =>
+                    !unavailableSlots.includes(time) &&
+                    handleTimeSelection(time)
+                  }
                 >
                   {time}
                   {limitedAvailability.includes(time) && (
@@ -3302,7 +3077,21 @@ const VisitInfo = () => {
   const renderDatePicker = () => {
     return (
       <div className="date-picker-container">
-        <h2 className="date-picker-title">Select a date</h2>
+        <h2 className="date-picker-title">
+          {dateSelectionType === "checkIn"
+            ? "Select check-in date"
+            : "Select check-out date"}
+        </h2>
+
+        {dateSelectionType === "checkOut" && bookingFormData.checkIn && (
+          <div className="selected-checkin-info">
+            <span>Check-in date: </span>
+            <strong>
+              {new Date(bookingFormData.checkIn).toLocaleDateString()}
+            </strong>
+          </div>
+        )}
+
         <div className="date-picker-calendar">
           <div className="calendar-header">
             <button className="month-nav prev" onClick={prevMonth}>
@@ -3338,41 +3127,64 @@ const VisitInfo = () => {
         {showDatePicker && renderDatePicker()}
         {showTimePicker && renderTimeSlots()}
 
-        {!showDatePicker && !showTimePicker && selectedDate && selectedTime && (
+        {!showDatePicker && !showTimePicker && (
           <div className="booking-date-time-summary">
-            <div className="summary-item">
-              <span className="summary-label">Date:</span>
-              <span className="summary-value">
-                {selectedDate.toLocaleDateString()}
-              </span>
-              <button
-                className="edit-btn"
-                onClick={() => setShowDatePicker(true)}
-              >
-                Edit
-              </button>
-            </div>
-            <div className="summary-item">
-              <span className="summary-label">Time:</span>
-              <span className="summary-value">{selectedTime}</span>
-              <button
-                className="edit-btn"
-                onClick={() => setShowTimePicker(true)}
-              >
-                Edit
-              </button>
-            </div>
+            {/* Check-in info */}
+            {bookingFormData.checkIn && selectedCheckInTime && (
+              <div className="summary-item">
+                <span className="summary-label">Check-in:</span>
+                <span className="summary-value">
+                  {new Date(bookingFormData.checkIn).toLocaleDateString()}{" "}
+                  {selectedCheckInTime}
+                </span>
+                <button
+                  className="edit-btn"
+                  onClick={() => {
+                    setShowDatePicker(true);
+                    setDateSelectionType("checkIn");
+                  }}
+                >
+                  Edit
+                </button>
+              </div>
+            )}
+
+            {/* Check-out info */}
+            {bookingFormData.checkOut && selectedCheckOutTime && (
+              <div className="summary-item">
+                <span className="summary-label">Check-out:</span>
+                <span className="summary-value">
+                  {new Date(bookingFormData.checkOut).toLocaleDateString()}{" "}
+                  {selectedCheckOutTime}
+                </span>
+                <button
+                  className="edit-btn"
+                  onClick={() => {
+                    setShowDatePicker(true);
+                    setDateSelectionType("checkOut");
+                  }}
+                >
+                  Edit
+                </button>
+              </div>
+            )}
           </div>
         )}
 
         {!showDatePicker &&
           !showTimePicker &&
-          (!selectedDate || !selectedTime) && (
+          (!bookingFormData.checkIn ||
+            !selectedCheckInTime ||
+            !bookingFormData.checkOut ||
+            !selectedCheckOutTime) && (
             <button
               className="select-date-time-btn"
-              onClick={() => setShowDatePicker(true)}
+              onClick={() => {
+                setShowDatePicker(true);
+                setDateSelectionType("checkIn");
+              }}
             >
-              Select Date & Time
+              Select Dates & Times
             </button>
           )}
       </div>

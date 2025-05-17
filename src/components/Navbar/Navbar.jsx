@@ -1518,12 +1518,12 @@ const Navbar = () => {
                     <TranslatedText>Homestay</TranslatedText>
                   </Link>
                   <Link
-                    to="/faq"
+                    to="/visit-info#faq"
                     className="dropdown-link"
                     onClick={(e) => {
                       e.preventDefault();
                       setShowVisitDropdown(false);
-                      navigate("/faq");
+                      navigate("/visit-info#faq");
                     }}
                   >
                     <TranslatedText>FAQ</TranslatedText>

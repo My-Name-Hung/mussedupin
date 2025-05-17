@@ -89,7 +89,7 @@ const sendCustomerEmail = (bookingData) => {
 const sendAdminEmail = (bookingData) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: process.env.EMAIL_USER, // Gửi cho chính bạn (admin)
+    to: "h3481905@gmail.com", // Gửi cho chính bạn (admin)
     subject: "Có đặt phòng mới tại Bảo tàng Nghệ thuật",
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e6e6e6; border-radius: 10px;">

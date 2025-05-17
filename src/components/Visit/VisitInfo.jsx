@@ -26,6 +26,9 @@ import room2 from "../../assets/home/collections/Masterpieces.jpg";
 import room3 from "../../assets/home/collections/portrait.jpg";
 import room4 from "../../assets/home/collections/TheMetAu.jpg";
 
+// Import react icons if not already imported
+import { FaHome, FaInfoCircle, FaBed, FaQuestion } from 'react-icons/fa';
+
 const VisitInfo = () => {
   const location = useLocation();
   const [activeSection, setActiveSection] = useState("amenities");
@@ -712,6 +715,52 @@ const VisitInfo = () => {
     </div>
   );
 
+  // Vietnamese translations
+  const translations = {
+    en: {
+      amenities: "Visitor Amenities",
+      homestay: "Homestay Options",
+      faq: "FAQ",
+      comfortAndConvenience: "Comfort and convenience",
+      amenitiesDescription: "The museum offers a range of services to ensure optimal visiting conditions. Staff members are at hand throughout the museum to provide up-to-date information on the museum and its activities.",
+      experienceLocalLiving: "Experience local living near the museum",
+      homestayDescription: "Immerse yourself in the local culture with our carefully selected homestay options near the museum. Experience authentic hospitality in these artfully designed spaces.",
+      frequentlyAskedQuestions: "Frequently asked questions",
+      answersFromMuseum: "Answers from the Musée Du Pin.",
+      didntFindAnswer: "Didn't find your answer?",
+      contactSupport: "Contact our support team for more information.",
+      contactUs: "Contact Us",
+      bookYourStay: "Book Your Stay",
+      selectDates: "Select Dates & Times",
+      perNight: "per night"
+    },
+    vi: {
+      amenities: "Tiện ích cho khách",
+      homestay: "Lựa chọn lưu trú",
+      faq: "Câu hỏi thường gặp",
+      comfortAndConvenience: "Thoải mái và tiện lợi",
+      amenitiesDescription: "Bảo tàng cung cấp nhiều dịch vụ để đảm bảo trải nghiệm tham quan tối ưu. Nhân viên luôn sẵn sàng trong suốt bảo tàng để cung cấp thông tin cập nhật về bảo tàng và các hoạt động.",
+      experienceLocalLiving: "Trải nghiệm cuộc sống địa phương gần bảo tàng",
+      homestayDescription: "Hòa mình vào văn hóa địa phương với các lựa chọn lưu trú được chọn lọc kỹ lưỡng gần bảo tàng. Trải nghiệm sự hiếu khách chân thành trong không gian được thiết kế nghệ thuật.",
+      frequentlyAskedQuestions: "Câu hỏi thường gặp",
+      answersFromMuseum: "Câu trả lời từ Musée Du Pin.",
+      didntFindAnswer: "Không tìm thấy câu trả lời?",
+      contactSupport: "Liên hệ đội ngũ hỗ trợ để biết thêm thông tin.",
+      contactUs: "Liên hệ chúng tôi",
+      bookYourStay: "Đặt phòng ngay",
+      selectDates: "Chọn ngày & giờ",
+      perNight: "mỗi đêm"
+    }
+  };
+
+  // Current language - in a real app, this would be managed by a language context or state
+  const currentLang = "vi"; // Default to Vietnamese as per your request
+
+  // Get translation function
+  const t = (key) => {
+    return translations[currentLang][key] || key;
+  };
+
   // Render Navigation Bar
   const renderNavigationBar = () => (
     <div
@@ -736,7 +785,7 @@ const VisitInfo = () => {
               onClick={() => handleNavClick("amenities")}
               className="visitinfo-nav-button"
             >
-              <TranslatedText>Visitor Amenities</TranslatedText>
+              {t('amenities')}
             </button>
             <span className="visitinfo-nav-indicator"></span>
           </li>
@@ -749,7 +798,7 @@ const VisitInfo = () => {
               onClick={() => handleNavClick("homestay")}
               className="visitinfo-nav-button"
             >
-              <TranslatedText>Homestay Options</TranslatedText>
+              {t('homestay')}
             </button>
             <span className="visitinfo-nav-indicator"></span>
           </li>
@@ -762,7 +811,7 @@ const VisitInfo = () => {
               onClick={() => handleNavClick("faq")}
               className="visitinfo-nav-button"
             >
-              <TranslatedText>FAQ</TranslatedText>
+              {t('faq')}
             </button>
             <span className="visitinfo-nav-indicator"></span>
           </li>
@@ -785,6 +834,9 @@ const VisitInfo = () => {
         overflow: "hidden",
       }}
     >
+      {/* Add artistic element for mobile view */}
+      {isMobile && <div className="mobile-section-badge">AMENITIES</div>}
+      
       {/* Decorative elements */}
       <div
         style={{
@@ -852,7 +904,7 @@ const VisitInfo = () => {
               textShadow: "0 2px 10px rgba(0,0,0,0.3)",
             }}
           >
-            <TranslatedText>Comfort and convenience</TranslatedText>
+            {t('comfortAndConvenience')}
             <span
               style={{
                 position: "absolute",
@@ -875,11 +927,7 @@ const VisitInfo = () => {
               fontWeight: "300",
             }}
           >
-            <TranslatedText>
-              The museum offers a range of services to ensure optimal visiting
-              conditions. Staff members are at hand throughout the museum to
-              provide up-to-date information on the museum and its activities.
-            </TranslatedText>
+            {t('amenitiesDescription')}
           </p>
         </div>
 
@@ -1141,6 +1189,10 @@ const VisitInfo = () => {
         overflow: "hidden",
       }}
     >
+      {/* Add artistic element for mobile view */}
+      {isMobile && <div className="homebanner-artwork"></div>}
+      {isMobile && <div className="mobile-section-badge">HOMESTAY</div>}
+      
       <div
         style={{
           position: "absolute",
@@ -1189,9 +1241,7 @@ const VisitInfo = () => {
               marginBottom: "30px",
             }}
           >
-            <TranslatedText>
-              Experience local living near the museum
-            </TranslatedText>
+            {t('experienceLocalLiving')}
             <span className="title-accent"></span>
           </h2>
           <p
@@ -1204,11 +1254,7 @@ const VisitInfo = () => {
               fontWeight: "300",
             }}
           >
-            <TranslatedText>
-              Immerse yourself in the local culture with our carefully selected
-              homestay options near the museum. Experience authentic hospitality
-              in these artfully designed spaces.
-            </TranslatedText>
+            {t('homestayDescription')}
           </p>
         </div>
 
@@ -1335,31 +1381,64 @@ const VisitInfo = () => {
       id="faq"
       ref={sectionRefs.faq}
     >
+      {/* Add artistic element for mobile view */}
+      {isMobile && <div className="mobile-section-badge">FAQ</div>}
+      
       <div className="decorative-circle large"></div>
       <div className="decorative-circle medium"></div>
-      <div className="visitinfo-section-container">
-        <div className="visitinfo-section-header">
-          <h2 className="visitinfo-section-title">
-            <TranslatedText>Frequently asked questions</TranslatedText>
+
+      <div className="faq-container">
+        <div className="faq-header">
+          <h2 className="faq-title">
+            {t('frequentlyAskedQuestions')}
           </h2>
-          <p className="visitinfo-section-description">
-            <TranslatedText>Answers from the Musée Du Pin.</TranslatedText>
+          <p className="faq-subtitle">
+            {t('answersFromMuseum')}
           </p>
         </div>
 
-        <div className="faq-accordion">
+        <div className="faq-list">
           {faqData.map((faq, index) => (
-            <div className="faq-item" key={index}>
-              <details className="faq-details">
-                <summary className="faq-question">
+            <div
+              className="faq-item"
+              key={index}
+              onClick={(e) => {
+                // Toggle active class on click
+                e.currentTarget.classList.toggle("active");
+              }}
+              style={{ "--animation-order": index }}
+            >
+              <div className="faq-highlight"></div>
+              <div className="faq-question">
+                <span>
                   <TranslatedText>{faq.question}</TranslatedText>
-                </summary>
-                <div className="faq-answer">
-                  <TranslatedText>{faq.answer}</TranslatedText>
-                </div>
-              </details>
+                </span>
+              </div>
+              <div className="faq-answer">
+                <TranslatedText>{faq.answer}</TranslatedText>
+              </div>
             </div>
           ))}
+        </div>
+
+        <div className="faq-footer">
+          <h3 className="faq-footer-title">
+            <TranslatedText>Didn't find your answer?</TranslatedText>
+          </h3>
+          <p className="faq-footer-text">
+            <TranslatedText>
+              Contact our support team for more information.
+            </TranslatedText>
+          </p>
+          <button className="contact-btn">
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path
+                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
+                fill="currentColor"
+              />
+            </svg>
+            <TranslatedText>Contact Us</TranslatedText>
+          </button>
         </div>
       </div>
     </section>
@@ -2640,24 +2719,34 @@ const VisitInfo = () => {
 
   // Handle date selection
   const handleDateSelection = (date) => {
-    // If the selection type is checkIn, update checkIn date and show time picker
+    // Create a date without timezone issues by setting it at noon
+    const localDate = new Date(date);
+    localDate.setHours(12, 0, 0, 0);
+
+    // Format date as YYYY-MM-DD ensuring we use local date
+    const formattedDate = `${localDate.getFullYear()}-${String(
+      localDate.getMonth() + 1
+    ).padStart(2, "0")}-${String(localDate.getDate()).padStart(2, "0")}`;
+
     if (dateSelectionType === "checkIn") {
       setBookingFormData({
         ...bookingFormData,
-        checkIn: date.toISOString().split("T")[0],
+        checkIn: formattedDate,
       });
-      setSelectedDate(date);
+      setSelectedDate(localDate);
 
       // Show time picker
       setShowDatePicker(false);
       setShowTimePicker(true);
       setTimeSelectionType("checkIn");
-      fetchAvailableTimeSlots(date);
+      fetchAvailableTimeSlots(localDate);
     } else {
       // This is checkOut date selection
-      const checkInDate = new Date(bookingFormData.checkIn);
+      const checkInDate = bookingFormData.checkIn
+        ? new Date(bookingFormData.checkIn)
+        : null;
 
-      if (date < checkInDate) {
+      if (checkInDate && localDate < checkInDate) {
         setFormErrors({
           ...formErrors,
           checkOut: "Check-out date must be after check-in date",
@@ -2667,14 +2756,14 @@ const VisitInfo = () => {
 
       setBookingFormData({
         ...bookingFormData,
-        checkOut: date.toISOString().split("T")[0],
+        checkOut: formattedDate,
       });
 
       // Show time picker for checkout
       setShowDatePicker(false);
       setShowTimePicker(true);
       setTimeSelectionType("checkOut");
-      fetchAvailableTimeSlots(date);
+      fetchAvailableTimeSlots(localDate);
     }
   };
 
@@ -2759,7 +2848,7 @@ const VisitInfo = () => {
     );
 
     // Calculate offset for first day of month
-    const startOffset = firstDay.getDay() === 0 ? 6 : firstDay.getDay(); // Adjust for Monday start
+    const startOffset = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1; // Adjust for Monday start
 
     // Add empty cells for days before the first day of the month
     for (let i = 0; i < startOffset; i++) {

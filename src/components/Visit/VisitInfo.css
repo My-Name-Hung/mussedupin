@@ -2320,3 +2320,595 @@
   height: 100%;
   background: linear-gradient(to top, rgba(219, 234, 254, 0.5), transparent);
 }
+
+/* Mobile Responsive Improvements */
+@media (max-width: 768px) {
+  .visitinfo-hero {
+    height: 50vh;
+  }
+
+  .visitinfo-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .visitinfo-hero-subtitle {
+    font-size: 1.2rem;
+  }
+
+  .visitinfo-section-title {
+    font-size: 2rem;
+  }
+
+  .visitinfo-section {
+    padding: 60px 0;
+  }
+
+  .faq-title {
+    font-size: 2.2rem;
+  }
+
+  /* Hide horizontal nav on mobile and replace with bottom navbar */
+  .visitinfo-nav-container {
+    display: none;
+  }
+
+  /* Mobile Bottom Navigation */
+  .mobile-bottom-navbar {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg, #0f172a, #1e3a8a);
+    box-shadow: 0 -5px 25px rgba(0, 0, 0, 0.15);
+    z-index: 100;
+    transition: all 0.3s ease;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    overflow: hidden;
+  }
+
+  .mobile-nav-list {
+    display: flex;
+    width: 100%;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .mobile-nav-item {
+    flex: 1;
+    text-align: center;
+  }
+
+  .mobile-nav-button {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 12px 5px;
+    color: rgba(255, 255, 255, 0.7);
+    background: transparent;
+    border: none;
+    font-size: 0.8rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-nav-icon {
+    margin-bottom: 5px;
+    font-size: 1.3rem;
+    transition: all 0.3s ease;
+  }
+
+  .mobile-nav-item.active .mobile-nav-button {
+    color: #ffffff;
+  }
+
+  .mobile-nav-item.active .mobile-nav-icon {
+    transform: translateY(-5px);
+    color: #60a5fa;
+    text-shadow: 0 0 10px rgba(96, 165, 250, 0.5);
+  }
+
+  /* Add padding to the bottom of the page to account for the fixed navbar */
+  .visitinfo-page {
+    padding-bottom: 70px;
+  }
+}
+
+/* Enhanced Date Picker Styles */
+.date-picker-container {
+  width: 100%;
+  max-width: 100%;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.date-picker-title {
+  padding: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0f172a;
+  text-align: center;
+  margin: 0;
+  border-bottom: 1px solid #f1f5f9;
+  background: linear-gradient(to right, #f8fafc, #f1f5f9);
+}
+
+.date-picker-calendar {
+  padding: 20px;
+}
+
+.calendar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.month-nav {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  background: #f1f5f9;
+  border: 1px solid #e2e8f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.2rem;
+  color: #64748b;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+}
+
+.month-nav:hover {
+  background: #e0e7ff;
+  color: #1e3a8a;
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.current-month {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #0f172a;
+  background: linear-gradient(90deg, #1e3a8a, #2563eb);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.calendar-weekdays {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.weekday {
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #64748b;
+  padding: 10px 0;
+  border-radius: 10px;
+  background: rgba(241, 245, 249, 0.5);
+}
+
+.calendar-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.calendar-day {
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  color: #0f172a;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  border: 1px solid transparent;
+}
+
+.calendar-day:hover:not(.empty):not(.past) {
+  background: #e0e7ff;
+  color: #1e3a8a;
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border-color: #a5b4fc;
+}
+
+.calendar-day.empty {
+  cursor: default;
+}
+
+.calendar-day.past {
+  color: #cbd5e1;
+  cursor: not-allowed;
+}
+
+.calendar-day.today {
+  font-weight: 700;
+  border: 2px solid #3b82f6;
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(59, 130, 246, 0.2);
+}
+
+.calendar-day.selected {
+  background: #2563eb;
+  color: white;
+  font-weight: 600;
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+}
+
+.calendar-day.check-in {
+  background: linear-gradient(135deg, #4ade80, #22c55e);
+  color: #ffffff;
+  font-weight: bold;
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(74, 222, 128, 0.3);
+}
+
+.calendar-day.check-out {
+  background: linear-gradient(135deg, #f87171, #ef4444);
+  color: #ffffff;
+  font-weight: bold;
+  transform: scale(1.1);
+  box-shadow: 0 5px 15px rgba(248, 113, 113, 0.3);
+}
+
+.calendar-day.in-range {
+  background: #e0f2fe;
+  color: #0c4a6e;
+  border: 1px solid #bae6fd;
+}
+
+.date-label {
+  position: absolute;
+  bottom: -5px;
+  right: 50%;
+  transform: translateX(50%);
+  background: rgba(0, 0, 0, 0.6);
+  color: white;
+  font-size: 8px;
+  padding: 2px 4px;
+  border-radius: 3px;
+  letter-spacing: 0.5px;
+  z-index: 2;
+}
+
+.selected-checkin-info {
+  background: linear-gradient(to right, #f0fdf4, #dcfce7);
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  font-size: 0.95rem;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border-left: 4px solid #4ade80;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* Time Selector Improvements */
+.time-selector {
+  width: 100%;
+  max-width: 100%;
+  background: #ffffff;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.time-selector-title {
+  padding: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #0f172a;
+  text-align: center;
+  margin: 0;
+  border-bottom: 1px solid #f1f5f9;
+  background: linear-gradient(to right, #f8fafc, #f1f5f9);
+}
+
+.time-slots-container {
+  padding: 20px;
+}
+
+.time-period {
+  margin-bottom: 30px;
+  padding: 15px;
+  background: rgba(241, 245, 249, 0.4);
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.time-period-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px dashed #e2e8f0;
+}
+
+.time-slots {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+
+.time-slot {
+  position: relative;
+  height: 55px;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  color: #0f172a;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.03);
+}
+
+.time-slot:hover {
+  background: #f8fafc;
+  border-color: #bae6fd;
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.08);
+}
+
+.time-slot.selected {
+  background: linear-gradient(135deg, #2563eb, #3b82f6);
+  color: white;
+  border-color: #2563eb;
+  font-weight: 600;
+  box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3);
+  transform: translateY(-3px);
+}
+
+.time-slot.limited {
+  border-color: #fb923c;
+  background: linear-gradient(to bottom, white, #fff7ed);
+}
+
+.time-slot.disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  background: #f1f5f9;
+}
+
+.limited-indicator {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #fb923c;
+  box-shadow: 0 0 0 2px rgba(251, 146, 60, 0.2);
+  animation: pulse 2s infinite;
+}
+
+.time-availability-legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.time-availability-legend span {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  color: #64748b;
+}
+
+.limited-availability-indicator {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: #fb923c;
+  display: inline-block;
+}
+
+/* Responsive improvements for Date and Time picker on mobile */
+@media (max-width: 768px) {
+  .time-slots {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .calendar-day {
+    height: 40px;
+    font-size: 0.9rem;
+  }
+
+  .weekday {
+    font-size: 0.7rem;
+    padding: 8px 0;
+  }
+
+  .current-month {
+    font-size: 1.1rem;
+  }
+
+  .month-nav {
+    width: 38px;
+    height: 38px;
+    font-size: 1rem;
+  }
+
+  .date-picker-title,
+  .time-selector-title {
+    font-size: 1.3rem;
+    padding: 15px;
+  }
+
+  .calendar-days-grid,
+  .calendar-weekdays {
+    gap: 5px;
+  }
+
+  .selected-checkin-info {
+    padding: 12px;
+    font-size: 0.85rem;
+  }
+
+  .time-slot {
+    height: 48px;
+    font-size: 0.9rem;
+  }
+
+  .time-period-title {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .time-slots {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+  }
+
+  .calendar-day {
+    height: 35px;
+    font-size: 0.8rem;
+  }
+
+  .weekday {
+    font-size: 0.65rem;
+    padding: 6px 0;
+  }
+
+  .current-month {
+    font-size: 1rem;
+  }
+
+  .month-nav {
+    width: 34px;
+    height: 34px;
+  }
+
+  .date-picker-title,
+  .time-selector-title {
+    font-size: 1.1rem;
+    padding: 12px;
+  }
+}
+
+/* Adding artistic elements to mobile view */
+.mobile-view .amenity-card {
+  transform: none !important;
+  width: 100% !important;
+  margin: 10px 0 !important;
+  padding: 20px !important;
+  border-radius: 15px !important;
+}
+
+.mobile-view .amenity-card-title {
+  font-size: 1.1rem !important;
+}
+
+.mobile-view .amenity-card-description {
+  font-size: 0.9rem !important;
+}
+
+.mobile-view .homestay-card.modern {
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08) !important;
+}
+
+.mobile-view .homebanner-artwork {
+  position: absolute;
+  width: 80%;
+  height: 300px;
+  top: -120px;
+  right: -100px;
+  background: linear-gradient(
+    135deg,
+    rgba(219, 234, 254, 0.2),
+    rgba(30, 58, 138, 0.08)
+  );
+  border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  animation: floatAnimation 8s ease-in-out infinite alternate;
+  z-index: 0;
+}
+
+@keyframes floatAnimation {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+  }
+  50% {
+    transform: translateY(-15px) rotate(5deg);
+    border-radius: 50% 50% 70% 30% / 40% 40% 60% 60%;
+  }
+  100% {
+    transform: translateY(0) rotate(0deg);
+    border-radius: 30% 70% 50% 50% / 30% 30% 70% 70%;
+  }
+}
+
+.mobile-view .mobile-section-badge {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: #60a5fa;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  z-index: 2;
+  background: rgba(15, 23, 42, 0.05);
+  padding: 6px 12px;
+  border-radius: 20px;
+}
+
+/* Mobile bottom nav indicator */
+.mobile-nav-indicator {
+  position: absolute;
+  top: -3px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 45px;
+  height: 3px;
+  background: #60a5fa;
+  border-radius: 3px;
+  transition: all 0.3s ease;
+  opacity: 0;
+}
+
+.mobile-nav-item.active .mobile-nav-indicator {
+  opacity: 1;
+}

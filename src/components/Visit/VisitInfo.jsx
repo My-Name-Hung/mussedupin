@@ -57,7 +57,7 @@ const VisitInfo = () => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   // Add new states for date and time pickers
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [_selectedDate, setSelectedDate] = useState(null);
   const [selectedTime, setSelectedTime] = useState(null);
   const [selectedCheckInTime, setSelectedCheckInTime] = useState(null);
   const [selectedCheckOutTime, setSelectedCheckOutTime] = useState(null);
@@ -1335,6 +1335,8 @@ const VisitInfo = () => {
       id="faq"
       ref={sectionRefs.faq}
     >
+      <div className="decorative-circle large"></div>
+      <div className="decorative-circle medium"></div>
       <div className="visitinfo-section-container">
         <div className="visitinfo-section-header">
           <h2 className="visitinfo-section-title">
@@ -2568,50 +2570,8 @@ const VisitInfo = () => {
       <div
         className={`gallery-modal ${showGalleryModal ? "open" : ""}`}
         ref={galleryModalRef}
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          width: "100%",
-          height: "100%",
-          background: "rgba(0, 0, 0, 0.9)",
-          zIndex: 2000,
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          flexDirection: "column",
-          padding: "20px",
-          transition: "opacity 0.3s ease",
-        }}
       >
-        <button
-          className="gallery-close-btn"
-          onClick={closeGalleryModal}
-          style={{
-            position: "absolute",
-            top: "20px",
-            right: "20px",
-            background: "none",
-            border: "none",
-            color: "#fff",
-            fontSize: "1.5rem",
-            cursor: "pointer",
-            zIndex: 2010,
-            width: "40px",
-            height: "40px",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            borderRadius: "50%",
-            transition: "background 0.3s ease",
-          }}
-          onMouseEnter={(e) => {
-            e.target.style.background = "rgba(255, 255, 255, 0.1)";
-          }}
-          onMouseLeave={(e) => {
-            e.target.style.background = "none";
-          }}
-        >
+        <button className="gallery-close-btn" onClick={closeGalleryModal}>
           <svg viewBox="0 0 24 24" width="24" height="24">
             <path
               d="M6 18L18 6M6 6l12 12"
@@ -2623,47 +2583,8 @@ const VisitInfo = () => {
           </svg>
         </button>
 
-        <div
-          className="gallery-image-container"
-          style={{
-            position: "relative",
-            width: "100%",
-            height: "80%",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-        >
-          <button
-            className="gallery-nav-btn prev"
-            onClick={prevImage}
-            style={{
-              position: "absolute",
-              left: "15px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              background: "rgba(0, 0, 0, 0.5)",
-              border: "none",
-              color: "#fff",
-              width: "50px",
-              height: "50px",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              zIndex: 2005,
-              transition: "background 0.3s ease, transform 0.2s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.background = "rgba(0, 0, 0, 0.7)";
-              e.target.style.transform = "translateY(-50%) scale(1.1)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.background = "rgba(0, 0, 0, 0.5)";
-              e.target.style.transform = "translateY(-50%) scale(1)";
-            }}
-          >
+        <div className="gallery-image-container">
+          <button className="gallery-nav-btn prev" onClick={prevImage}>
             <svg viewBox="0 0 24 24" width="24" height="24">
               <path
                 d="M15 18l-6-6 6-6"
@@ -2678,45 +2599,9 @@ const VisitInfo = () => {
           <img
             src={selectedHomestay.gallery[activeImageIndex]}
             alt={`${selectedHomestay.title} - image ${activeImageIndex + 1}`}
-            style={{
-              maxWidth: "90%",
-              maxHeight: "90%",
-              objectFit: "contain",
-              boxShadow: "0 5px 25px rgba(0, 0, 0, 0.2)",
-              borderRadius: "5px",
-            }}
           />
 
-          <button
-            className="gallery-nav-btn next"
-            onClick={nextImage}
-            style={{
-              position: "absolute",
-              right: "15px",
-              top: "50%",
-              transform: "translateY(-50%)",
-              background: "rgba(0, 0, 0, 0.5)",
-              border: "none",
-              color: "#fff",
-              width: "50px",
-              height: "50px",
-              borderRadius: "50%",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              cursor: "pointer",
-              zIndex: 2005,
-              transition: "background 0.3s ease, transform 0.2s ease",
-            }}
-            onMouseEnter={(e) => {
-              e.target.style.background = "rgba(0, 0, 0, 0.7)";
-              e.target.style.transform = "translateY(-50%) scale(1.1)";
-            }}
-            onMouseLeave={(e) => {
-              e.target.style.background = "rgba(0, 0, 0, 0.5)";
-              e.target.style.transform = "translateY(-50%) scale(1)";
-            }}
-          >
+          <button className="gallery-nav-btn next" onClick={nextImage}>
             <svg viewBox="0 0 24 24" width="24" height="24">
               <path
                 d="M9 18l6-6-6-6"
@@ -2729,17 +2614,7 @@ const VisitInfo = () => {
           </button>
         </div>
 
-        <div
-          className="gallery-thumbnails-row"
-          style={{
-            display: "flex",
-            gap: "10px",
-            marginTop: "20px",
-            overflowX: "auto",
-            padding: "10px 0",
-            maxWidth: "90%",
-          }}
-        >
+        <div className="gallery-thumbnails-row">
           {selectedHomestay.gallery.map((img, idx) => (
             <div
               key={idx}
@@ -2747,52 +2622,16 @@ const VisitInfo = () => {
                 activeImageIndex === idx ? "active" : ""
               }`}
               onClick={() => setActiveImageIndex(idx)}
-              style={{
-                width: "80px",
-                height: "60px",
-                borderRadius: "4px",
-                overflow: "hidden",
-                cursor: "pointer",
-                opacity: activeImageIndex === idx ? 1 : 0.6,
-                border:
-                  activeImageIndex === idx
-                    ? "2px solid #00695c"
-                    : "2px solid transparent",
-                transition: "all 0.3s ease",
-                flexShrink: 0,
-              }}
-              onMouseEnter={(e) => {
-                if (activeImageIndex !== idx) {
-                  e.target.style.opacity = 0.8;
-                }
-              }}
-              onMouseLeave={(e) => {
-                if (activeImageIndex !== idx) {
-                  e.target.style.opacity = 0.6;
-                }
-              }}
             >
               <img
                 src={img}
                 alt={`${selectedHomestay.title} - thumbnail ${idx + 1}`}
-                style={{
-                  width: "100%",
-                  height: "100%",
-                  objectFit: "cover",
-                }}
               />
             </div>
           ))}
         </div>
 
-        <div
-          className="gallery-counter"
-          style={{
-            color: "#fff",
-            fontSize: "0.9rem",
-            marginTop: "15px",
-          }}
-        >
+        <div className="gallery-counter">
           {activeImageIndex + 1} / {selectedHomestay.gallery.length}
         </div>
       </div>
@@ -2920,7 +2759,7 @@ const VisitInfo = () => {
     );
 
     // Calculate offset for first day of month
-    const startOffset = firstDay.getDay() === 0 ? 6 : firstDay.getDay() - 1; // Adjust for Monday start
+    const startOffset = firstDay.getDay() === 0 ? 6 : firstDay.getDay(); // Adjust for Monday start
 
     // Add empty cells for days before the first day of the month
     for (let i = 0; i < startOffset; i++) {

@@ -14,7 +14,7 @@ app.use(bodyParser.json());
 
 app.use(
   cors({
-    origin: ["http://localhost:5173", "https://baotangnghethuat.com"],
+    origin: ["http://localhost:5173", "https://museedupin.netlify.app"],
   })
 );
 

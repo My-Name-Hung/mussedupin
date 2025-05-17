@@ -1,0 +1,58 @@
+/**
+ * Vietnamese language specific styles
+ * 
+ * This file contains styles that are applied only when the language is set to Vietnamese
+ * It overrides LouvreSerif font with more suitable Vietnamese fonts
+ */
+
+/* LouvreSerif overrides for Vietnamese language */
+:root[lang="vi"] [style*='font-family: "LouvreSerif"'],
+:root[lang="vi"] [style*="font-family: LouvreSerif"],
+:root[lang="vi"] [style*="font-family:'LouvreSerif'"],
+:root[lang="vi"] [style*="font-family:LouvreSerif"] {
+  font-family: "Cormorant Garamond", "Crimson Text", serif !important;
+}
+
+/* Target all elements with LouvreSerif in CSS classes */
+:root[lang="vi"] .hero-title,
+:root[lang="vi"] .section-title,
+:root[lang="vi"] .collection-title,
+:root[lang="vi"] .highlight-title,
+:root[lang="vi"] .dupin-title,
+:root[lang="vi"] .delve-title,
+:root[lang="vi"] .explore-title,
+:root[lang="vi"] [class*="title"] {
+  font-family: "Cormorant Garamond", "Crimson Text", serif !important;
+}
+
+/* Target components-specific LouvreSerif usages */
+:root[lang="vi"] [class*="Hero_title"],
+:root[lang="vi"] [class*="Highlights_title"],
+:root[lang="vi"] [class*="Collections_title"],
+:root[lang="vi"] [class*="DuPin_title"],
+:root[lang="vi"] [class*="DelveInto_title"],
+:root[lang="vi"] [class*="ExplorePage_title"] {
+  font-family: "Cormorant Garamond", "Crimson Text", serif !important;
+}
+
+/* Typography adjustments for Vietnamese */
+:root[lang="vi"] h1,
+:root[lang="vi"] h2,
+:root[lang="vi"] h3,
+:root[lang="vi"] h4,
+:root[lang="vi"] h5 {
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+
+/* Vietnamese specific headlines, better spacing for diacritics */
+:root[lang="vi"] .translated-text {
+  line-height: 1.5;
+}
+
+/* Specific adjustments for titles with diacritics */
+:root[lang="vi"] .hero-title,
+:root[lang="vi"] .section-title {
+  line-height: 1.3;
+  letter-spacing: 0.01em;
+}

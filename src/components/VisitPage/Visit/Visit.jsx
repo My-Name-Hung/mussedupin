@@ -1,10 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import TranslatedText from "../TranslatedText";
+import TranslatedText from "../../TranslatedText";
 import "./Visit.css";
 
 // Hero section background image
-import heroImage from "../../assets/home/collections/louvre-sunset.jpg";
+import heroImage from "../../../assets/home/collections/louvre-sunset.jpg";
 
 const Visit = () => {
   const location = useLocation();
@@ -34,6 +34,8 @@ const Visit = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [touchStartX, setTouchStartX] = useState(0);
   const horizontalNavRef = useRef(null);
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const lastScrollTop = useRef(0);
 
   // Handle hash links when component mounts
   useEffect(() => {
@@ -63,47 +65,44 @@ const Visit = () => {
 
   const { statusText, statusClass } = getCurrentDayTimeInfo();
 
-  // Handle horizontal nav menu sticky behavior
-  useEffect(() => {
-    const handleScroll = () => {
-      if (heroRef.current && navRef.current) {
-        const heroBottom = heroRef.current.getBoundingClientRect().bottom;
-        const navHeight = navRef.current.offsetHeight;
+  // Enhanced handleScroll to track scroll direction for hiding navbar
+  const handleScroll = useCallback(() => {
+    const st = window.pageYOffset || document.documentElement.scrollTop;
+    setIsScrollingDown(st > lastScrollTop.current && st > 200);
+    lastScrollTop.current = st <= 0 ? 0 : st;
 
-        if (heroBottom <= navHeight) {
-          setIsNavSticky(true);
-        } else {
-          setIsNavSticky(false);
-        }
+    // Original scroll handling logic
+    if (heroRef.current && navRef.current) {
+      const heroBottom = heroRef.current.getBoundingClientRect().bottom;
+      const navHeight = navRef.current.offsetHeight;
+
+      if (heroBottom <= navHeight) {
+        setIsNavSticky(true);
+      } else {
+        setIsNavSticky(false);
       }
+    }
 
-      // Determine which section is in view
-      let currentSection = "hours";
-      const scrollPosition = window.scrollY + (isMobile ? 80 : 100); // Smaller offset for mobile
+    // Determine which section is in view
+    let currentSection = "hours";
+    const scrollPosition = window.scrollY + (isMobile ? 80 : 100); // Smaller offset for mobile
 
-      // Check sections in reverse order (from bottom to top)
-      if (
-        sectionRefs.membership.current &&
-        scrollPosition >=
-          sectionRefs.membership.current.offsetTop - (isMobile ? 120 : 150)
-      ) {
-        currentSection = "membership";
-      } else if (
-        sectionRefs.tickets.current &&
-        scrollPosition >=
-          sectionRefs.tickets.current.offsetTop - (isMobile ? 120 : 150)
-      ) {
-        currentSection = "tickets";
-      }
+    // Check sections in reverse order (from bottom to top)
+    if (
+      sectionRefs.membership.current &&
+      scrollPosition >=
+        sectionRefs.membership.current.offsetTop - (isMobile ? 120 : 150)
+    ) {
+      currentSection = "membership";
+    } else if (
+      sectionRefs.tickets.current &&
+      scrollPosition >=
+        sectionRefs.tickets.current.offsetTop - (isMobile ? 120 : 150)
+    ) {
+      currentSection = "tickets";
+    }
 
-      setActiveSection(currentSection);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    // Initialize on mount
-    handleScroll();
-
-    return () => window.removeEventListener("scroll", handleScroll);
+    setActiveSection(currentSection);
   }, [isMobile]);
 
   // Check if device is mobile
@@ -642,6 +641,181 @@ const Visit = () => {
     </div>
   );
 
+  // Add ripple effect for better touch feedback
+  const createRippleEffect = (event) => {
+    const button = event.currentTarget;
+    const ripple = document.createElement("span");
+
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+
+    ripple.style.width = ripple.style.height = `${size}px`;
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    ripple.className = "ripple-circle";
+
+    button.appendChild(ripple);
+
+    setTimeout(() => {
+      ripple.remove();
+    }, 800);
+  };
+
+  // Add a bottom navbar for mobile
+  const renderBottomNavbar = () => {
+    if (!isMobile) return null;
+
+    return (
+      <nav className={`mobile-bottom-nav ${isScrollingDown ? "hidden" : ""}`}>
+        <ul className="mobile-nav-list">
+          <li
+            className={`mobile-button-item ${
+              activeSection === "hours" ? "active" : ""
+            }`}
+          >
+            <button
+              className="mobile-nav-button ripple-effect"
+              onClick={(e) => {
+                createRippleEffect(e);
+                handleNavClick("hours");
+              }}
+            >
+              <span className="mobile-nav-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <circle cx="12" cy="12" r="10"></circle>
+                  <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+              </span>
+              <span className="mobile-nav-label">
+                <TranslatedText>When to visit</TranslatedText>
+              </span>
+            </button>
+          </li>
+          <li
+            className={`mobile-button-item ${
+              activeSection === "tickets" ? "active" : ""
+            }`}
+          >
+            <button
+              className="mobile-nav-button ripple-effect"
+              onClick={(e) => {
+                createRippleEffect(e);
+                handleNavClick("tickets");
+              }}
+            >
+              <span className="mobile-nav-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
+                  <line x1="1" y1="10" x2="23" y2="10"></line>
+                </svg>
+              </span>
+              <span className="mobile-nav-label">
+                <TranslatedText>Tickets</TranslatedText>
+              </span>
+            </button>
+          </li>
+          <li
+            className={`mobile-button-item ${
+              activeSection === "membership" ? "active" : ""
+            }`}
+          >
+            <button
+              className="mobile-nav-button ripple-effect"
+              onClick={(e) => {
+                createRippleEffect(e);
+                handleNavClick("membership");
+              }}
+            >
+              <span className="mobile-nav-icon">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
+                  <circle cx="9" cy="7" r="4"></circle>
+                  <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                  <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+                </svg>
+              </span>
+              <span className="mobile-nav-label">
+                <TranslatedText>Memberships</TranslatedText>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    );
+  };
+
+  // Update the renderMobileScrollTop function to avoid duplication with App.jsx's ScrollToTopButton
+  const renderMobileScrollTop = () => {
+    // Don't render if we're not on mobile or not scrolled enough
+    if (!isMobile || !isScrolling) return null;
+
+    // Check if we're rendering inside the App component where ScrollToTopButton is already used
+    const isStandaloneMode = !document.querySelector(".app");
+
+    // Only render in standalone mode
+    if (!isStandaloneMode) return null;
+
+    return (
+      <button
+        className={`mobile-scroll-top visible`}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        aria-label="Scroll to top"
+      >
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <path
+            d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+    );
+  };
+
+  // Update useEffect to use our enhanced scroll handler
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    // Initial check
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll]);
+
   // return updated component with enhanced mobile support
   return (
     <div
@@ -1039,20 +1213,10 @@ const Visit = () => {
       </div>
 
       {/* Mobile scroll to top button */}
-      {isMobile && (
-        <button
-          className={`mobile-scroll-top ${isScrolling ? "visible" : ""}`}
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          aria-label="Scroll to top"
-        >
-          <svg viewBox="0 0 24 24" width="24" height="24">
-            <path
-              d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"
-              fill="#00695c"
-            />
-          </svg>
-        </button>
-      )}
+      {renderMobileScrollTop()}
+
+      {/* Mobile Bottom Navigation */}
+      {renderBottomNavbar()}
     </div>
   );
 };

@@ -4,12 +4,15 @@ import "./App.css";
 import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
+import PrepareVisit from "./components/VisitPage/PrepareVisit/PrepareVisit";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollToTopButton from "./components/ScrollToTopButton/ScrollToTopButton";
 import TranslatedText from "./components/TranslatedText";
-import Visit from "./components/Visit/Visit";
-import VisitInfo from "./components/Visit/VisitInfo";
+import Visit from "./components/VisitPage/Visit/Visit";
+import VisitInfo from "./components/VisitPage/Visit/VisitInfo";
 import "./index.css";
+import ExhibitionDetail from "./components/Exhibitions/ExhibitionDetail";
+import Exhibitions from "./components/Exhibitions/Exhibitions";
 import LegalNotice from "./pages/Footer/LegalNotice/LegalNotice";
 import DuPinPlus from "./pages/Home/DuPinPlus/DuPinPlus";
 import ExplorePage from "./pages/Home/ExplorePage/ExplorePage";
@@ -74,20 +77,6 @@ const VisitPage = () => (
   </div>
 );
 
-// Trang Triển lãm và Sự kiện
-const ExhibitionsPage = () => (
-  <div className="page-container">
-    <h1>
-      <TranslatedText>EXHIBITIONS AND EVENTS</TranslatedText>
-    </h1>
-    <p>
-      <TranslatedText>
-        This is the Exhibitions and Events page content
-      </TranslatedText>
-    </p>
-  </div>
-);
-
 // Trang Vé
 const TicketsPage = () => (
   <div className="page-container">
@@ -123,13 +112,24 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/visit" element={<Visit />} />
             <Route path="/visit-info" element={<VisitInfo />} />
-            <Route path="/exhibitions" element={<ExhibitionsPage />} />
+            <Route path="/prepare-visit" element={<PrepareVisit />} />
+            <Route path="/exhibitions" element={<Exhibitions />} />
             <Route path="/explore" element={<ExplorePage />} />
             <Route path="/tickets" element={<TicketsPage />} />
             <Route path="/boutique" element={<BoutiquePage />} />
             <Route path="/dupinplus" element={<DuPinPlus />} />
             <Route path="/legal-notice" element={<LegalNotice />} />
             <Route path="/search-results" element={<SearchResults />} />
+            <Route
+              path="/exhibition-details/:id"
+              element={<ExhibitionDetail />}
+            />
+            <Route
+              path="/guided-tour-details/:id"
+              element={<ExhibitionDetail />}
+            />
+            <Route path="/past-exhibitions" element={<NotFound />} />
+            <Route path="/past-guided-tours" element={<NotFound />} />
             <Route path="/not-found" element={<NotFound />} />
             <Route path="*" element={<NotFound />} />
           </Routes>

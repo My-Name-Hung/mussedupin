@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import ANewLook from "../../../assets/home/highlights/ANewLook.jpg";
 import beauties from "../../../assets/home/highlights/beautes.jpg";
 import couture from "../../../assets/home/highlights/couture.jpg";
@@ -21,7 +22,7 @@ const highlightsData = [
     image: mamluks,
     alt: "Golden decorated vessel from Mamluk period",
     tag: "Exhibition",
-    link: "/exhibitions/mamluks",
+    link: "/exhibition-details/mamluks",
     featured: true,
   },
   {
@@ -32,7 +33,7 @@ const highlightsData = [
     image: couture,
     alt: "Fashion exhibit featuring historical and contemporary pieces",
     tag: "Exhibition",
-    link: "/exhibitions/couture",
+    link: "/exhibition-details/couture",
     featured: false,
   },
   {
@@ -43,7 +44,7 @@ const highlightsData = [
     image: ANewLook,
     alt: "Religious painting by Cimabue",
     tag: "Exhibition",
-    link: "/exhibitions/cimabue",
+    link: "/exhibition-details/cimabue",
     featured: false,
   },
   {
@@ -54,7 +55,7 @@ const highlightsData = [
     image: themetau,
     alt: "Ancient Near Eastern artifact",
     tag: "Exhibition",
-    link: "/exhibitions/met-au-dupin",
+    link: "/exhibition-details/met-au-dupin",
     featured: false,
   },
   {
@@ -65,7 +66,7 @@ const highlightsData = [
     image: nature,
     alt: "Naturalistic art from the Court of Rudolf II",
     tag: "Exhibition",
-    link: "/exhibitions/experience-nature",
+    link: "/exhibition-details/experience-nature",
     featured: false,
   },
   {
@@ -76,7 +77,7 @@ const highlightsData = [
     image: masterpieces,
     alt: "Mona Lisa painting",
     tag: "Visitor trail",
-    link: "/visitor-trails/masterpieces",
+    link: "/guided-tour-details/masterpieces",
     featured: false,
   },
   {
@@ -87,7 +88,7 @@ const highlightsData = [
     image: beauties,
     alt: "Beauty exhibition poster",
     tag: "Guided tours",
-    link: "/visitor-trails/beautes",
+    link: "/guided-tour-details/beautes",
     featured: false,
   },
   {
@@ -98,7 +99,7 @@ const highlightsData = [
     image: portrait,
     alt: "Portrait of King Charles I by Anthony van Dyck",
     tag: "News",
-    link: "/news/portrait-king-charles",
+    link: "/exhibition-details/portrait-king-charles",
     featured: false,
   },
 ];
@@ -181,12 +182,7 @@ const Highlights = ({ onVisible, onHidden }) => {
                   <TranslatedText>{item.tag}</TranslatedText>
                 </span>
               </div>
-              <a
-                href={item.link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-link-wrapper"
-              >
+              <Link to={item.link} className="card-link-wrapper">
                 <div className="card-image-container">
                   <img src={item.image} alt={item.alt} className="card-image" />
                 </div>
@@ -200,7 +196,7 @@ const Highlights = ({ onVisible, onHidden }) => {
                     <TranslatedText>{item.description}</TranslatedText>
                   </p>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         ))}
@@ -223,12 +219,7 @@ const Highlights = ({ onVisible, onHidden }) => {
                   <TranslatedText>{highlightsData[0].tag}</TranslatedText>
                 </span>
               </div>
-              <a
-                href={highlightsData[0].link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-link-wrapper"
-              >
+              <Link to={highlightsData[0].link} className="card-link-wrapper">
                 <div className="card-image-container">
                   <img
                     src={highlightsData[0].image}
@@ -248,7 +239,7 @@ const Highlights = ({ onVisible, onHidden }) => {
                     </TranslatedText>
                   </p>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -265,12 +256,7 @@ const Highlights = ({ onVisible, onHidden }) => {
                   <TranslatedText>{highlightsData[1].tag}</TranslatedText>
                 </span>
               </div>
-              <a
-                href={highlightsData[1].link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-link-wrapper"
-              >
+              <Link to={highlightsData[1].link} className="card-link-wrapper">
                 <div className="card-image-container">
                   <img
                     src={highlightsData[1].image}
@@ -290,7 +276,7 @@ const Highlights = ({ onVisible, onHidden }) => {
                     </TranslatedText>
                   </p>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -312,12 +298,7 @@ const Highlights = ({ onVisible, onHidden }) => {
                     <TranslatedText>{highlightsData[2].tag}</TranslatedText>
                   </span>
                 </div>
-                <a
-                  href={highlightsData[2].link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="card-link-wrapper"
-                >
+                <Link to={highlightsData[2].link} className="card-link-wrapper">
                   <div className="card-image-container">
                     <img
                       src={highlightsData[2].image}
@@ -339,7 +320,7 @@ const Highlights = ({ onVisible, onHidden }) => {
                       </TranslatedText>
                     </p>
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
 
@@ -356,12 +337,7 @@ const Highlights = ({ onVisible, onHidden }) => {
                     <TranslatedText>{highlightsData[3].tag}</TranslatedText>
                   </span>
                 </div>
-                <a
-                  href={highlightsData[3].link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="card-link-wrapper"
-                >
+                <Link to={highlightsData[3].link} className="card-link-wrapper">
                   <div className="card-image-container">
                     <img
                       src={highlightsData[3].image}
@@ -383,7 +359,7 @@ const Highlights = ({ onVisible, onHidden }) => {
                       </TranslatedText>
                     </p>
                   </div>
-                </a>
+                </Link>
               </div>
             </div>
           </div>
@@ -401,12 +377,7 @@ const Highlights = ({ onVisible, onHidden }) => {
                   <TranslatedText>{highlightsData[4].tag}</TranslatedText>
                 </span>
               </div>
-              <a
-                href={highlightsData[4].link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-link-wrapper"
-              >
+              <Link to={highlightsData[4].link} className="card-link-wrapper">
                 <div className="card-image-container">
                   <img
                     src={highlightsData[4].image}
@@ -426,7 +397,7 @@ const Highlights = ({ onVisible, onHidden }) => {
                     </TranslatedText>
                   </p>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>
@@ -446,12 +417,7 @@ const Highlights = ({ onVisible, onHidden }) => {
                   <TranslatedText>{highlightsData[5].tag}</TranslatedText>
                 </span>
               </div>
-              <a
-                href={highlightsData[5].link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-link-wrapper"
-              >
+              <Link to={highlightsData[5].link} className="card-link-wrapper">
                 <div className="card-image-container">
                   <img
                     src={highlightsData[5].image}
@@ -471,7 +437,7 @@ const Highlights = ({ onVisible, onHidden }) => {
                     </TranslatedText>
                   </p>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -488,12 +454,7 @@ const Highlights = ({ onVisible, onHidden }) => {
                   <TranslatedText>{highlightsData[6].tag}</TranslatedText>
                 </span>
               </div>
-              <a
-                href={highlightsData[6].link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-link-wrapper"
-              >
+              <Link to={highlightsData[6].link} className="card-link-wrapper">
                 <div className="card-image-container">
                   <img
                     src={highlightsData[6].image}
@@ -513,7 +474,7 @@ const Highlights = ({ onVisible, onHidden }) => {
                     </TranslatedText>
                   </p>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
 
@@ -530,12 +491,7 @@ const Highlights = ({ onVisible, onHidden }) => {
                   <TranslatedText>{highlightsData[7].tag}</TranslatedText>
                 </span>
               </div>
-              <a
-                href={highlightsData[7].link}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="card-link-wrapper"
-              >
+              <Link to={highlightsData[7].link} className="card-link-wrapper">
                 <div className="card-image-container">
                   <img
                     src={highlightsData[7].image}
@@ -555,7 +511,7 @@ const Highlights = ({ onVisible, onHidden }) => {
                     </TranslatedText>
                   </p>
                 </div>
-              </a>
+              </Link>
             </div>
           </div>
         </div>

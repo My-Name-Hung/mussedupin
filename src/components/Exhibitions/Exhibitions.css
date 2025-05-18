@@ -1,0 +1,769 @@
+/* Exhibitions Page Styles */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
+
+/* LouvreSerif font */
+@font-face {
+  font-family: "LouvreSerif";
+  src: url("../../components/assets/fonts/louvreserif/400/latin.woff2")
+    format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Main Page Container */
+.exhibitions-page {
+  width: 100%;
+  background-color: #ffffff;
+  overflow: hidden;
+}
+
+/* Hero Section with darker background and more dramatic overlay */
+.exhibitions-hero {
+  position: relative;
+  width: 100%;
+  height: 70vh;
+  min-height: 400px;
+  max-height: 800px;
+  overflow: hidden;
+  margin-bottom: 40px;
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+}
+
+.exhibitions-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.5) 100%
+  );
+  z-index: 1;
+}
+
+.exhibitions-hero-overlay img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  opacity: 0.8; /* Slightly dim the image to make the text more readable */
+  filter: brightness(0.7); /* Darken the image */
+}
+
+.exhibitions-hero-content {
+  position: relative;
+  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  text-align: left;
+  color: #fff;
+  padding: 0 20px;
+  z-index: 2;
+  max-width: 1200px;
+  width: 100%;
+  margin-left: 10%;
+  margin-top: 10%;
+  animation: fadeSlideUp 1.2s ease;
+}
+
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.exhibitions-hero-title {
+  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-size: 72px;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  position: relative;
+  display: inline-block;
+}
+
+.exhibitions-hero-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 100px;
+  height: 4px;
+  background-color: #fff;
+  animation: lineExpand 1.5s ease forwards;
+  animation-delay: 0.5s;
+  transform-origin: left;
+}
+
+@keyframes lineExpand {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100px;
+  }
+}
+
+.exhibitions-hero-subtitle {
+  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-size: 24px;
+  font-weight: 400;
+  line-height: 1.4;
+  max-width: 600px;
+  margin: 0;
+}
+
+/* Tabs Navigation */
+.exhibitions-tabs-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  margin-bottom: 60px;
+  padding: 0 20px;
+  position: relative;
+}
+
+.exhibitions-tabs-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 20px;
+  right: 20px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(0, 0, 0, 0.1) 20%,
+    rgba(0, 0, 0, 0.1) 80%,
+    transparent 100%
+  );
+}
+
+.exhibitions-tabs {
+  display: flex;
+  width: 100%;
+  position: relative;
+}
+
+.tab-button {
+  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-size: 20px;
+  font-weight: 500;
+  color: #555;
+  padding: 18px 40px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-button::before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #333;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.tab-button:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.tab-button.active {
+  color: #000;
+  font-weight: 600;
+}
+
+.tab-button.active::before {
+  transform: scaleX(1);
+  transform-origin: left;
+  background-color: #000;
+}
+
+/* Main Content Container */
+.exhibitions-container {
+  width: 100%;
+  max-width: 1240px;
+  margin: 0 auto;
+  padding: 0 20px 100px;
+}
+
+/* Featured Exhibition */
+.featured-exhibition {
+  margin-bottom: 80px;
+  position: relative;
+}
+
+.featured-exhibition::before {
+  content: "";
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background-color: #000;
+}
+
+.featured-card {
+  display: grid;
+  grid-template-columns: 1fr;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  border-radius: 8px;
+  overflow: hidden;
+  transform: translateZ(0);
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.featured-card:hover {
+  transform: translateY(-10px);
+}
+
+@media (min-width: 820px) {
+  .featured-card {
+    grid-template-columns: 1.3fr 1fr;
+  }
+}
+
+/* Exhibition Cards Common Styles */
+.exhibition-card-wrapper {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s ease, transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+  margin-bottom: 40px;
+}
+
+.exhibition-card-wrapper.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.exhibition-card {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.5s ease,
+    transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.exhibition-card:hover {
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+  transform: translateY(-8px);
+}
+
+/* Card link wrapper */
+.card-link-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  text-decoration: none;
+  color: inherit;
+}
+
+.featured-card .card-link-wrapper {
+  flex-direction: row;
+}
+
+.card-tag {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  z-index: 2;
+  background-color: #34515e;
+  color: #fff;
+  padding: 8px 15px;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  border-radius: 30px;
+  letter-spacing: 1px;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  transform: translateY(0);
+  transition: transform 0.3s ease;
+}
+
+.exhibition-card:hover .card-tag {
+  transform: translateY(-5px);
+}
+
+/* Enhanced Card Styles for better image display */
+.card-image-container {
+  position: relative;
+  width: 100%;
+  height: 300px;
+  overflow: hidden;
+  background-color: #f5f5f5;
+}
+
+.featured-card .card-image-container {
+  height: 550px;
+}
+
+.card-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.9s cubic-bezier(0.23, 1, 0.32, 1), filter 0.7s ease;
+}
+
+.exhibition-card:hover .card-image {
+  transform: scale(1.05);
+  filter: brightness(1.05);
+}
+
+.card-content {
+  padding: 30px 25px;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  position: relative;
+  z-index: 1;
+  transition: background-color 0.3s ease;
+}
+
+.featured-card .card-content {
+  padding: 40px 35px;
+}
+
+.card-title {
+  font-family: "Playfair Display", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
+  font-size: 28px;
+  font-weight: 600;
+  margin: 0 0 10px;
+  line-height: 1.2;
+  color: #000;
+  letter-spacing: -0.01em;
+  position: relative;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+.featured-card .card-title {
+  font-size: 38px;
+  line-height: 1.1;
+  margin-bottom: 15px;
+}
+
+.card-subtitle {
+  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-size: 18px;
+  font-weight: 400;
+  margin: 0 0 20px;
+  line-height: 1.4;
+  color: #555;
+  font-style: italic;
+}
+
+.featured-card .card-subtitle {
+  font-size: 22px;
+  margin-bottom: 25px;
+}
+
+.exhibition-card:hover .card-title {
+  transform: translateX(5px);
+}
+
+.card-description {
+  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.7;
+  color: #444;
+  margin: 0 0 25px;
+  flex-grow: 1;
+}
+
+.featured-card .card-description {
+  font-size: 18px;
+  line-height: 1.8;
+}
+
+.card-footer {
+  margin-top: auto;
+  font-family: "Roboto", Arial, sans-serif;
+  display: flex;
+  align-items: center;
+}
+
+.card-date {
+  font-size: 15px;
+  color: #666;
+  font-weight: 500;
+  position: relative;
+  padding-left: 20px;
+}
+
+.card-date::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 12px;
+  height: 2px;
+  background-color: #666;
+}
+
+.featured-card .card-date {
+  font-size: 16px;
+}
+
+/* Exhibition Grid - Artistic Asymmetrical Layout */
+.exhibitions-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 40px;
+  position: relative;
+}
+
+/* See Past Link */
+.see-past-link {
+  text-align: right;
+  margin-top: 60px;
+  padding-top: 30px;
+  position: relative;
+}
+
+.see-past-link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100px;
+  height: 1px;
+  background-color: #ddd;
+}
+
+.see-past-link a {
+  font-family: "Playfair Display", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
+  font-size: 18px;
+  color: #000;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  transition: all 0.3s ease;
+  position: relative;
+  padding-bottom: 5px;
+}
+
+.see-past-link a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background-color: #000;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.see-past-link a:hover {
+  color: #333;
+}
+
+.see-past-link a:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.arrow-icon {
+  margin-left: 8px;
+  font-size: 20px;
+  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.see-past-link a:hover .arrow-icon {
+  transform: translateX(8px);
+}
+
+/* Media Queries */
+@media (min-width: 576px) {
+  .exhibitions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 768px) {
+  .exhibitions-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .exhibitions-hero-title {
+    font-size: 82px;
+  }
+
+  .exhibitions-hero-subtitle {
+    font-size: 28px;
+  }
+}
+
+@media (min-width: 992px) {
+  .exhibitions-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .featured-card .card-content {
+    padding: 50px 40px;
+  }
+}
+
+@media (max-width: 819px) {
+  .featured-card .card-link-wrapper {
+    flex-direction: column;
+  }
+
+  .card-title {
+    font-size: 24px;
+  }
+
+  .featured-card .card-title {
+    font-size: 30px;
+  }
+
+  .card-subtitle {
+    font-size: 17px;
+  }
+
+  .featured-card .card-subtitle {
+    font-size: 19px;
+  }
+
+  .exhibitions-hero-title {
+    font-size: 50px;
+  }
+
+  .exhibitions-hero-subtitle {
+    font-size: 20px;
+  }
+
+  .exhibitions-hero {
+    height: 60vh;
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+  }
+}
+
+@media (max-width: 575px) {
+  .tab-button {
+    font-size: 16px;
+    padding: 14px 20px;
+  }
+
+  .exhibitions-hero {
+    min-height: 400px;
+    clip-path: polygon(0 0, 100% 0, 100% 94%, 0 100%);
+  }
+
+  .exhibitions-hero-content {
+    text-align: center;
+    margin-left: 0;
+  }
+
+  .exhibitions-hero-title {
+    font-size: 38px;
+  }
+
+  .exhibitions-hero-title::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .exhibitions-hero-subtitle {
+    font-size: 18px;
+    margin: 0 auto;
+  }
+
+  .card-image-container {
+    height: 280px;
+  }
+
+  .featured-card .card-image-container {
+    height: 350px;
+  }
+
+  .card-content {
+    padding: 25px 20px;
+  }
+
+  .featured-card .card-content {
+    padding: 30px 20px;
+  }
+}
+
+/* Improved asymmetrical grid layout */
+@media (min-width: 1200px) {
+  /* Asymmetrical artistic grid layout */
+  .exhibitions-grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: minmax(180px, auto);
+    gap: 30px;
+  }
+
+  /* Make first item wider and larger to showcase the image better */
+  .exhibitions-grid .exhibition-card-wrapper:nth-child(1) {
+    grid-column: span 6;
+    grid-row: span 2;
+    transform: translateY(0);
+  }
+
+  .exhibitions-grid .exhibition-card-wrapper:nth-child(2) {
+    grid-column: 7 / span 6;
+    grid-row: span 1;
+  }
+
+  .exhibitions-grid .exhibition-card-wrapper:nth-child(3) {
+    grid-column: 7 / span 6;
+    grid-row: span 1;
+    transform: translateY(20px);
+  }
+
+  .exhibitions-grid .exhibition-card-wrapper:nth-child(4) {
+    grid-column: span 8;
+    grid-row: span 1;
+    transform: translateY(-20px);
+  }
+
+  .exhibitions-grid .exhibition-card-wrapper:nth-child(5) {
+    grid-column: 9 / span 4;
+    grid-row: span 2;
+  }
+
+  .exhibitions-grid .exhibition-card-wrapper:nth-child(6) {
+    grid-column: span 8;
+    grid-row: span 1;
+  }
+
+  /* Increase height for better image display on larger screens */
+  .exhibitions-grid
+    .exhibition-card-wrapper:nth-child(1)
+    .card-image-container {
+    height: 450px;
+  }
+
+  .exhibitions-grid
+    .exhibition-card-wrapper:nth-child(5)
+    .card-image-container {
+    height: 380px;
+  }
+
+  /* Featured Card Improvements */
+  .featured-card {
+    grid-template-columns: 1.5fr 1fr;
+    gap: 0;
+  }
+
+  .featured-card .card-image-container {
+    height: 600px;
+  }
+}
+
+/* Additional Animation for Tab Switching */
+.tab-button.active {
+  position: relative;
+  overflow: hidden;
+}
+
+.tab-button.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: #000;
+  animation: tabActivate 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes tabActivate {
+  0% {
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+  100% {
+    transform: scaleX(1);
+    transform-origin: left;
+  }
+}
+
+/* Exhibition card hover effects */
+.exhibition-card::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.03), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  pointer-events: none;
+}
+
+.exhibition-card:hover::after {
+  opacity: 1;
+}
+
+/* Enhanced animations for card visibility */
+@keyframes fadeInStaggered {
+  0% {
+    opacity: 0;
+    transform: translateY(40px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.exhibitions-grid .exhibition-card-wrapper:nth-child(1).visible {
+  animation: fadeInStaggered 0.8s 0.1s forwards cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.exhibitions-grid .exhibition-card-wrapper:nth-child(2).visible {
+  animation: fadeInStaggered 0.8s 0.2s forwards cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.exhibitions-grid .exhibition-card-wrapper:nth-child(3).visible {
+  animation: fadeInStaggered 0.8s 0.3s forwards cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.exhibitions-grid .exhibition-card-wrapper:nth-child(4).visible {
+  animation: fadeInStaggered 0.8s 0.4s forwards cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.exhibitions-grid .exhibition-card-wrapper:nth-child(5).visible {
+  animation: fadeInStaggered 0.8s 0.5s forwards cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.exhibitions-grid .exhibition-card-wrapper:nth-child(6).visible {
+  animation: fadeInStaggered 0.8s 0.6s forwards cubic-bezier(0.23, 1, 0.32, 1);
+}

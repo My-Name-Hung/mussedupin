@@ -205,7 +205,10 @@ const Hero = () => {
               <TicketIcon />
               {translations.bookTicket || "Book a ticket"}
             </Link>
-            <Link to="/visit" className="info-panel-button btn-secondary">
+            <Link
+              to="/prepare-visit"
+              className="info-panel-button btn-secondary"
+            >
               <InfoIcon />
               {translations.prepareVisit || "Prepare your visit"}
             </Link>

@@ -1,33 +1,32 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import TranslatedText from "../TranslatedText";
+import TranslatedText from "../../TranslatedText";
 import "./VisitInfo.css";
 
 // Images - we'll import placeholder images from assets
-import informationDeskImg from "../../assets/home/collections/ANewLook.jpg";
-import cloakroomImg from "../../assets/home/collections/beautes.jpg";
-import equipmentImg from "../../assets/home/collections/couture.jpg";
-import heroImage from "../../assets/home/collections/louvre-sunset.jpg";
-import babySpaceImg from "../../assets/home/collections/mamluks.jpg";
-import wifiImg from "../../assets/home/collections/Masterpieces.jpg";
-import toiletsImg from "../../assets/home/collections/Nature.jpg";
-import parkingImg from "../../assets/home/collections/portrait.jpg";
-import lostFoundImg from "../../assets/home/collections/TheMetAu.jpg";
+import informationDeskImg from "../../../assets/home/collections/ANewLook.jpg";
+import cloakroomImg from "../../../assets/home/collections/beautes.jpg";
+import equipmentImg from "../../../assets/home/collections/couture.jpg";
+import heroImage from "../../../assets/home/collections/louvre-sunset.jpg";
+import babySpaceImg from "../../../assets/home/collections/mamluks.jpg";
+import wifiImg from "../../../assets/home/collections/Masterpieces.jpg";
+import toiletsImg from "../../../assets/home/collections/Nature.jpg";
+import parkingImg from "../../../assets/home/collections/portrait.jpg";
+import lostFoundImg from "../../../assets/home/collections/TheMetAu.jpg";
 
 // Homestay images
-import modernImg from "../../assets/home/collections/ANewLook.jpg";
-import luxuryImg from "../../assets/home/collections/couture.jpg";
-import budgetImg from "../../assets/home/collections/mamluks.jpg";
-import traditionalImg from "../../assets/home/collections/Nature.jpg";
+import modernImg from "../../../assets/home/collections/ANewLook.jpg";
+import luxuryImg from "../../../assets/home/collections/couture.jpg";
+import budgetImg from "../../../assets/home/collections/mamluks.jpg";
+import traditionalImg from "../../../assets/home/collections/Nature.jpg";
 
 // Additional homestay images for galleries
-import room1 from "../../assets/home/collections/beautes.jpg";
-import room2 from "../../assets/home/collections/Masterpieces.jpg";
-import room3 from "../../assets/home/collections/portrait.jpg";
-import room4 from "../../assets/home/collections/TheMetAu.jpg";
+import room1 from "../../../assets/home/collections/beautes.jpg";
+import room2 from "../../../assets/home/collections/Masterpieces.jpg";
+import room3 from "../../../assets/home/collections/portrait.jpg";
+import room4 from "../../../assets/home/collections/TheMetAu.jpg";
 
-// Import react icons if not already imported
-import { FaHome, FaInfoCircle, FaBed, FaQuestion } from 'react-icons/fa';
+import { FaBaby, FaCar, FaSearch } from "react-icons/fa";
 
 const VisitInfo = () => {
   const location = useLocation();
@@ -55,6 +54,7 @@ const VisitInfo = () => {
   const [formErrors, setFormErrors] = useState({});
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [showSuccessModal, setShowSuccessModal] = useState(false);
+  const [successBookingData, setSuccessBookingData] = useState(null);
   // Add new state variables for gallery
   const [showGalleryModal, setShowGalleryModal] = useState(false);
   const [activeImageIndex, setActiveImageIndex] = useState(0);
@@ -86,6 +86,12 @@ const VisitInfo = () => {
   // Add this state variable after other useState declarations
   const [dateSelectionType, setDateSelectionType] = useState("checkIn"); // 'checkIn' or 'checkOut'
   const [timeSelectionType, setTimeSelectionType] = useState("checkIn"); // 'checkIn' or 'checkOut'
+
+  // FAQ state
+  const [activeFaq, setActiveFaq] = useState(null);
+
+  // Add the missing state variable for showScrollButton at the top with other state variables
+  const [showScrollButton, setShowScrollButton] = useState(false);
 
   const sectionRefs = {
     amenities: useRef(null),
@@ -198,15 +204,13 @@ const VisitInfo = () => {
     setActiveCategory(category);
   };
 
-  // Handle navigation click
-  const handleNavClick = (section) => {
-    setActiveSection(section);
-    sectionRefs[section].current?.scrollIntoView({ behavior: "smooth" });
-
-    // Update URL with hash without reloading page
-    const url = new URL(window.location);
-    url.hash = section;
-    window.history.pushState({}, "", url);
+  // Scroll to section with URL hash update
+  const scrollToSection = (sectionId) => {
+    const section = sectionRefs[sectionId];
+    if (section && section.current) {
+      section.current.scrollIntoView({ behavior: "smooth" });
+      window.history.pushState(null, "", `#${sectionId}`);
+    }
   };
 
   // Handle touch events for horizontal nav scrolling on mobile
@@ -217,9 +221,17 @@ const VisitInfo = () => {
   const handleNavTouchMove = (e) => {
     if (!horizontalNavRef.current) return;
 
-    const touchDiff = touchStartX - e.touches[0].clientX;
-    horizontalNavRef.current.scrollLeft += touchDiff;
-    setTouchStartX(e.touches[0].clientX);
+    const touchX = e.touches[0].clientX;
+    const diff = touchStartX - touchX;
+    const scrollLeft = horizontalNavRef.current.scrollLeft;
+
+    if (diff > 5) {
+      // Scrolling right
+      setNavScrolled(true);
+    } else if (diff < -5 && scrollLeft === 0) {
+      // Scrolling left and at the beginning
+      setNavScrolled(false);
+    }
   };
 
   // Open details sidebar for a homestay
@@ -361,6 +373,9 @@ const VisitInfo = () => {
         ...bookingFormData,
         date: new Date().toISOString(),
       };
+
+      // Save the booking data before reset
+      setSuccessBookingData(formattedData);
 
       // Try to save to booking server
       try {
@@ -715,110 +730,170 @@ const VisitInfo = () => {
     </div>
   );
 
-  // Vietnamese translations
-  const translations = {
-    en: {
-      amenities: "Visitor Amenities",
-      homestay: "Homestay Options",
-      faq: "FAQ",
-      comfortAndConvenience: "Comfort and convenience",
-      amenitiesDescription: "The museum offers a range of services to ensure optimal visiting conditions. Staff members are at hand throughout the museum to provide up-to-date information on the museum and its activities.",
-      experienceLocalLiving: "Experience local living near the museum",
-      homestayDescription: "Immerse yourself in the local culture with our carefully selected homestay options near the museum. Experience authentic hospitality in these artfully designed spaces.",
-      frequentlyAskedQuestions: "Frequently asked questions",
-      answersFromMuseum: "Answers from the Musée Du Pin.",
-      didntFindAnswer: "Didn't find your answer?",
-      contactSupport: "Contact our support team for more information.",
-      contactUs: "Contact Us",
-      bookYourStay: "Book Your Stay",
-      selectDates: "Select Dates & Times",
-      perNight: "per night"
-    },
-    vi: {
-      amenities: "Tiện ích cho khách",
-      homestay: "Lựa chọn lưu trú",
-      faq: "Câu hỏi thường gặp",
-      comfortAndConvenience: "Thoải mái và tiện lợi",
-      amenitiesDescription: "Bảo tàng cung cấp nhiều dịch vụ để đảm bảo trải nghiệm tham quan tối ưu. Nhân viên luôn sẵn sàng trong suốt bảo tàng để cung cấp thông tin cập nhật về bảo tàng và các hoạt động.",
-      experienceLocalLiving: "Trải nghiệm cuộc sống địa phương gần bảo tàng",
-      homestayDescription: "Hòa mình vào văn hóa địa phương với các lựa chọn lưu trú được chọn lọc kỹ lưỡng gần bảo tàng. Trải nghiệm sự hiếu khách chân thành trong không gian được thiết kế nghệ thuật.",
-      frequentlyAskedQuestions: "Câu hỏi thường gặp",
-      answersFromMuseum: "Câu trả lời từ Musée Du Pin.",
-      didntFindAnswer: "Không tìm thấy câu trả lời?",
-      contactSupport: "Liên hệ đội ngũ hỗ trợ để biết thêm thông tin.",
-      contactUs: "Liên hệ chúng tôi",
-      bookYourStay: "Đặt phòng ngay",
-      selectDates: "Chọn ngày & giờ",
-      perNight: "mỗi đêm"
-    }
-  };
-
-  // Current language - in a real app, this would be managed by a language context or state
-  const currentLang = "vi"; // Default to Vietnamese as per your request
-
-  // Get translation function
-  const t = (key) => {
-    return translations[currentLang][key] || key;
-  };
-
   // Render Navigation Bar
   const renderNavigationBar = () => (
-    <div
-      className={`visitinfo-nav-container ${isNavSticky ? "sticky" : ""} ${
-        navScrolled ? "scrolled-right" : ""
-      }`}
-      ref={(el) => {
-        navRef.current = el;
-        horizontalNavRef.current = el;
-      }}
-      onTouchStart={handleNavTouchStart}
-      onTouchMove={handleNavTouchMove}
-    >
-      <div className="visitinfo-nav">
-        <ul className="visitinfo-nav-list">
+    <>
+      <div
+        className={`visitinfo-nav-container ${isNavSticky ? "sticky" : ""} ${
+          navScrolled ? "scrolled-right" : ""
+        }`}
+        ref={(el) => {
+          navRef.current = el;
+          horizontalNavRef.current = el;
+        }}
+        onTouchStart={handleNavTouchStart}
+        onTouchMove={handleNavTouchMove}
+      >
+        <div className="visitinfo-nav">
+          <ul className="visitinfo-nav-list">
+            <li
+              className={`visitinfo-nav-item ${
+                activeSection === "amenities" ? "active" : ""
+              }`}
+            >
+              <button
+                onClick={() => scrollToSection("amenities")}
+                className="visitinfo-nav-button"
+              >
+                <TranslatedText>Visitor Amenities</TranslatedText>
+              </button>
+              <span className="visitinfo-nav-indicator"></span>
+            </li>
+            <li
+              className={`visitinfo-nav-item ${
+                activeSection === "homestay" ? "active" : ""
+              }`}
+            >
+              <button
+                onClick={() => scrollToSection("homestay")}
+                className="visitinfo-nav-button"
+              >
+                <TranslatedText>Homestay Options</TranslatedText>
+              </button>
+              <span className="visitinfo-nav-indicator"></span>
+            </li>
+            <li
+              className={`visitinfo-nav-item ${
+                activeSection === "faq" ? "active" : ""
+              }`}
+            >
+              <button
+                onClick={() => scrollToSection("faq")}
+                className="visitinfo-nav-button"
+              >
+                <TranslatedText>FAQ</TranslatedText>
+              </button>
+              <span className="visitinfo-nav-indicator"></span>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      {/* Mobile Bottom Navigation */}
+      <div className={`mobile-bottom-nav ${isNavSticky ? "hidden" : ""}`}>
+        <ul className="mobile-nav-list">
           <li
-            className={`visitinfo-nav-item ${
+            className={`mobile-button-item ${
               activeSection === "amenities" ? "active" : ""
             }`}
           >
             <button
-              onClick={() => handleNavClick("amenities")}
-              className="visitinfo-nav-button"
+              onClick={() => scrollToSection("amenities")}
+              className="mobile-nav-button ripple-effect"
+              onTouchStart={createRippleEffect}
             >
-              {t('amenities')}
+              <div className="mobile-nav-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                >
+                  <path d="M12 2C7.584 2 4 5.584 4 10c0 4.414 3.584 8 8 8s8-3.586 8-8c0-4.416-3.584-8-8-8zm0 12c-2.207 0-4-1.793-4-4s1.793-4 4-4 4 1.793 4 4-1.793 4-4 4zm0-5c-.553 0-1 .447-1 1s.447 1 1 1 1-.447 1-1-.447-1-1-1zm2.5 9H9.5V19h5v-1zm-2.5 4c-5.514 0-10-4.486-10-10S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z" />
+                </svg>
+              </div>
+              <span className="mobile-nav-label">
+                <TranslatedText>Amenities</TranslatedText>
+              </span>
             </button>
-            <span className="visitinfo-nav-indicator"></span>
           </li>
           <li
-            className={`visitinfo-nav-item ${
+            className={`mobile-button-item ${
               activeSection === "homestay" ? "active" : ""
             }`}
           >
             <button
-              onClick={() => handleNavClick("homestay")}
-              className="visitinfo-nav-button"
+              onClick={() => scrollToSection("homestay")}
+              className="mobile-nav-button ripple-effect"
+              onTouchStart={createRippleEffect}
             >
-              {t('homestay')}
+              <div className="mobile-nav-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                >
+                  <path d="M12 2.617L1 12h3v9h7v-6h2v6h7v-9h3L12 2.617zm-7 9.6V19H3v-8.447L12 2.619l9 7.934V19h-2v-6.766h-6v6.763h-3v-6.763H5v-.017z" />
+                </svg>
+              </div>
+              <span className="mobile-nav-label">
+                <TranslatedText>Homestay</TranslatedText>
+              </span>
             </button>
-            <span className="visitinfo-nav-indicator"></span>
           </li>
           <li
-            className={`visitinfo-nav-item ${
+            className={`mobile-button-item ${
               activeSection === "faq" ? "active" : ""
             }`}
           >
             <button
-              onClick={() => handleNavClick("faq")}
-              className="visitinfo-nav-button"
+              onClick={() => scrollToSection("faq")}
+              className="mobile-nav-button ripple-effect"
+              onTouchStart={createRippleEffect}
             >
-              {t('faq')}
+              <div className="mobile-nav-icon">
+                <svg
+                  viewBox="0 0 24 24"
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                >
+                  <path d="M10 19h4v-4h-4v4zm0-6h4v-4h-4v4zm0-6h4V3h-4v4zm6 12h4v-4h-4v4zm0-6h4v-4h-4v4zm0-6h4V3h-4v4zm-12 12h4v-4H4v4zm0-6h4v-4H4v4zm0-6h4V3H4v4z" />
+                </svg>
+              </div>
+              <span className="mobile-nav-label">
+                <TranslatedText>FAQ</TranslatedText>
+              </span>
             </button>
-            <span className="visitinfo-nav-indicator"></span>
           </li>
         </ul>
       </div>
-    </div>
+    </>
   );
+
+  // Function to create ripple effect on touch
+  const createRippleEffect = (event) => {
+    const button = event.currentTarget;
+    const ripple = document.createElement("span");
+
+    const rect = button.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+
+    const x = event.clientX - rect.left - size / 2;
+    const y = event.clientY - rect.top - size / 2;
+
+    ripple.style.width = ripple.style.height = `${size}px`;
+    ripple.style.left = `${x}px`;
+    ripple.style.top = `${y}px`;
+    ripple.className = "ripple-circle";
+
+    button.appendChild(ripple);
+
+    setTimeout(() => {
+      ripple.remove();
+    }, 800);
+  };
 
   // Render Amenities Section
   const renderAmenitiesSection = () => (
@@ -830,46 +905,23 @@ const VisitInfo = () => {
         background: "linear-gradient(135deg, #0f0f0f, #1a1a1a, #212121)",
         color: "#fff",
         position: "relative",
-        padding: "120px 0 100px",
+        padding: isMobile ? "60px 0 50px" : "120px 0 100px",
         overflow: "hidden",
       }}
     >
-      {/* Add artistic element for mobile view */}
-      {isMobile && <div className="mobile-section-badge">AMENITIES</div>}
-      
       {/* Decorative elements */}
+      <div className="decorative-lines"></div>
+      <div className="decorative-circle large"></div>
+      <div className="decorative-circle medium"></div>
+      <div className="decorative-dots-pattern"></div>
+
       <div
         style={{
           position: "absolute",
-          bottom: "-50px",
-          right: "-50px",
-          width: "300px",
-          height: "300px",
-          borderRadius: "50%",
-          background:
-            "radial-gradient(circle, rgba(0,209,178,0.05) 0%, rgba(0,209,178,0) 70%)",
-          zIndex: "1",
-        }}
-      ></div>
-      <div
-        style={{
-          position: "absolute",
-          top: "30%",
-          left: "-100px",
-          width: "200px",
-          height: "200px",
-          borderRadius: "50%",
-          border: "1px solid rgba(0,209,178,0.1)",
-          zIndex: "1",
-        }}
-      ></div>
-      <div
-        style={{
-          position: "absolute",
-          top: "60px",
-          left: "60px",
+          top: isMobile ? "30px" : "60px",
+          left: isMobile ? "30px" : "60px",
           fontFamily: "'Montserrat', sans-serif",
-          fontSize: "1rem",
+          fontSize: isMobile ? "0.8rem" : "1rem",
           fontWeight: "600",
           color: "#ff4081",
           letterSpacing: "2px",
@@ -887,288 +939,127 @@ const VisitInfo = () => {
         <div
           className="visitinfo-section-header"
           style={{
-            textAlign: "left",
+            textAlign: isMobile ? "center" : "left",
             maxWidth: "800px",
-            marginBottom: "60px",
+            marginBottom: isMobile ? "40px" : "60px",
           }}
         >
           <h2
             className="visitinfo-section-title"
             style={{
               color: "#ffffff",
-              fontSize: "2.5rem",
-              fontWeight: "400",
-              marginBottom: "25px",
+              fontSize: isMobile ? "1.8rem" : "3rem",
+              fontWeight: "600",
+              marginBottom: isMobile ? "15px" : "25px",
               position: "relative",
               paddingBottom: "15px",
               textShadow: "0 2px 10px rgba(0,0,0,0.3)",
+              transition: "transform 0.5s ease",
             }}
           >
-            {t('comfortAndConvenience')}
+            <TranslatedText>Comfort and convenience</TranslatedText>
             <span
               style={{
                 position: "absolute",
                 bottom: "0",
-                left: "0",
+                left: isMobile ? "50%" : "0",
+                transform: isMobile ? "translateX(-50%)" : "none",
                 width: "80px",
-                height: "2px",
+                height: "3px",
                 background:
                   "linear-gradient(to right, #00d1b2, rgba(0,209,178,0.5))",
                 borderRadius: "3px",
+                transition: "width 0.3s ease",
               }}
+              className="title-underline"
             ></span>
           </h2>
           <p
             className="visitinfo-section-description"
             style={{
               color: "#cccccc",
-              fontSize: "1.1rem",
+              fontSize: isMobile ? "0.95rem" : "1.1rem",
               lineHeight: "1.7",
               fontWeight: "300",
+              maxWidth: "700px",
+              opacity: "0.9",
+              transition: "opacity 0.5s ease",
             }}
           >
-            {t('amenitiesDescription')}
+            <TranslatedText>
+              The museum offers a range of services to ensure optimal visiting
+              conditions. Staff members are at hand throughout the museum to
+              provide up-to-date information on the museum and its activities.
+            </TranslatedText>
           </p>
         </div>
 
-        <div
-          className="amenities-grid"
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            margin: "50px -15px 20px",
-            position: "relative",
-          }}
-        >
+        <div className="amenities-container">
           {amenitiesData.map((amenity, index) => (
             <div
-              className="amenity-card"
+              className={`amenity-card desktop-enhanced ${
+                index % 3 === 0 ? "wide" : ""
+              }`}
               key={amenity.id}
               style={{
-                background: "linear-gradient(135deg, #252525, #2a2a2a)",
-                color: "#ffffff",
-                borderLeft: `3px solid ${
-                  index % 3 === 0
-                    ? "#00d1b2"
-                    : index % 3 === 1
-                    ? "#00a896"
-                    : "#00d1c2"
-                }`,
-                margin: "15px",
-                width: `calc(${
-                  index % 5 === 0
-                    ? "65%"
-                    : index % 5 === 1
-                    ? "35%"
-                    : index % 5 === 2
-                    ? "45%"
-                    : index % 5 === 3
-                    ? "55%"
-                    : "50%"
-                } - 30px)`,
-                transform: `translateY(${
+                animationDelay: `${index * 0.1}s`,
+                background: `linear-gradient(135deg, ${
                   index % 4 === 0
-                    ? "-15px"
+                    ? "#1E2A3B, #152231"
                     : index % 4 === 1
-                    ? "15px"
+                    ? "#2A1E3B, #231522"
                     : index % 4 === 2
-                    ? "0"
-                    : "-8px"
+                    ? "#3B1E2A, #311522"
+                    : "#1E3B2A, #152315"
                 })`,
-                padding: "30px 35px",
-                borderRadius: "4px",
-                boxShadow: "0 10px 25px rgba(0, 0, 0, 0.25)",
-                display: "flex",
-                transition: "all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275)",
-                position: "relative",
-                overflow: "hidden",
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.transform = `translateY(${
+                borderLeft: `3px solid ${
                   index % 4 === 0
-                    ? "-20px"
+                    ? "#00d1b2"
                     : index % 4 === 1
-                    ? "10px"
+                    ? "#7c4dff"
                     : index % 4 === 2
-                    ? "-5px"
-                    : "-13px"
-                })`;
-                e.currentTarget.style.boxShadow =
-                  "0 15px 35px rgba(0, 0, 0, 0.3)";
-
-                // Add icon animation on hover
-                const icon =
-                  e.currentTarget.querySelector(".amenity-card-icon");
-                if (icon) {
-                  icon.style.transform = "scale(1.1)";
-                  icon.style.filter =
-                    "drop-shadow(0 0 8px rgba(0, 209, 178, 0.5))";
-                }
-
-                // Add pulse animation to SVG group
-                const svgGroup = e.currentTarget.querySelector("svg g");
-                if (svgGroup) {
-                  svgGroup.style.animation = "pulse 1.5s infinite";
-                  // Apply the filter effect
-                  const filterNum = (index % 8) + 1;
-                  svgGroup.style.filter = `url(#glow${filterNum})`;
-                }
-
-                // Animate the background circle
-                const bgCircle = e.currentTarget.querySelector(
-                  ".amenity-icon-container > div:last-child"
-                );
-                if (bgCircle) {
-                  bgCircle.style.transform = "scale(1.2)";
-                  bgCircle.style.background = `radial-gradient(circle, rgba(0,209,178,0.12) 0%, rgba(0,209,178,0) 70%)`;
-                }
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.transform = `translateY(${
-                  index % 4 === 0
-                    ? "-15px"
-                    : index % 4 === 1
-                    ? "15px"
-                    : index % 4 === 2
-                    ? "0"
-                    : "-8px"
-                })`;
-                e.currentTarget.style.boxShadow =
-                  "0 10px 25px rgba(0, 0, 0, 0.25)";
-
-                // Reset icon animation
-                const icon =
-                  e.currentTarget.querySelector(".amenity-card-icon");
-                if (icon) {
-                  icon.style.transform = "scale(1)";
-                  icon.style.filter = "none";
-                }
-
-                // Reset SVG group animation
-                const svgGroup = e.currentTarget.querySelector("svg g");
-                if (svgGroup) {
-                  svgGroup.style.animation = "none";
-                  svgGroup.style.filter = "none";
-                }
-
-                // Reset background circle
-                const bgCircle = e.currentTarget.querySelector(
-                  ".amenity-icon-container > div:last-child"
-                );
-                if (bgCircle) {
-                  bgCircle.style.transform = "scale(1)";
-                  bgCircle.style.background = `radial-gradient(circle, rgba(0,209,178,0.08) 0%, rgba(0,209,178,0) 70%)`;
-                }
+                    ? "#ff4081"
+                    : "#00e676"
+                }`,
               }}
             >
-              <div
-                className="amenity-icon-container"
-                style={{
-                  display: "flex",
-                  alignItems: "flex-start",
-                  justifyContent: "center",
-                  marginRight: "25px",
-                  flexShrink: "0",
-                  position: "relative",
-                }}
-              >
-                <div
-                  className="amenity-card-icon"
-                  style={{
-                    width: "48px",
-                    height: "48px",
-                    display: "flex",
-                    alignItems: "center",
-                    justifyContent: "center",
-                    position: "relative",
-                    zIndex: "2",
-                    transition: "all 0.3s ease",
-                    filter: "drop-shadow(0 0 3px rgba(0, 209, 178, 0.2))",
-                  }}
-                >
-                  {renderIcon(amenity.icon)}
+              <div className="amenity-content-wrapper">
+                <div className="amenity-icon-container">
+                  <div
+                    className="amenity-icon"
+                    style={{
+                      color:
+                        index % 4 === 0
+                          ? "#00d1b2"
+                          : index % 4 === 1
+                          ? "#7c4dff"
+                          : index % 4 === 2
+                          ? "#ff4081"
+                          : "#00e676",
+                    }}
+                  >
+                    {renderIcon(amenity.icon)}
+                  </div>
+                  <div className="amenity-icon-backdrop"></div>
                 </div>
-                <div
-                  style={{
-                    position: "absolute",
-                    width: "70px",
-                    height: "70px",
-                    borderRadius: "50%",
-                    background:
-                      "radial-gradient(circle, rgba(0,209,178,0.08) 0%, rgba(0,209,178,0) 70%)",
-                    top: "-10px",
-                    left: "-10px",
-                    zIndex: "1",
-                    transition: "all 0.5s ease",
-                  }}
-                ></div>
-              </div>
-              <div
-                className="amenity-card-content"
-                style={{
-                  flex: "1",
-                  display: "flex",
-                  flexDirection: "column",
-                  position: "relative",
-                  zIndex: "2",
-                }}
-              >
-                <h3
-                  className="amenity-card-title"
-                  style={{
-                    color: "#00d1b2",
-                    fontSize: "1.2rem",
-                    fontWeight: "600",
-                    margin: "0 0 14px",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.5px",
-                  }}
-                >
-                  <TranslatedText>{amenity.title}</TranslatedText>
-                </h3>
-                <p
-                  className="amenity-card-description"
-                  style={{
-                    color: "#ffffff",
-                    fontSize: "0.95rem",
-                    lineHeight: "1.6",
-                    flex: "1",
-                    margin: "0 0 18px",
-                  }}
-                >
-                  <TranslatedText>{amenity.description}</TranslatedText>
-                </p>
-                <div
-                  className="amenity-card-details"
-                  style={{
-                    color: "#aaaaaa",
-                    borderTop: "1px dashed rgba(255,255,255,0.1)",
-                    paddingTop: "12px",
-                    fontSize: "0.85rem",
-                    fontStyle: "italic",
-                  }}
-                >
-                  <TranslatedText>{amenity.details}</TranslatedText>
+                <div className="amenity-card-content">
+                  <h3 className="amenity-title">
+                    <TranslatedText>{amenity.title}</TranslatedText>
+                  </h3>
+                  <p className="amenity-description">
+                    <TranslatedText>{amenity.description}</TranslatedText>
+                  </p>
+                  <div className="amenity-card-details">
+                    <TranslatedText>{amenity.details}</TranslatedText>
+                  </div>
                 </div>
               </div>
-              <div
-                style={{
-                  position: "absolute",
-                  bottom: "-50px",
-                  right: "-50px",
-                  width: "100px",
-                  height: "100px",
-                  borderRadius: "50%",
-                  background: `radial-gradient(circle, rgba(${
-                    index % 3 === 0
-                      ? "0,209,178"
-                      : index % 3 === 1
-                      ? "0,168,150"
-                      : "0,209,194"
-                  },0.03) 0%, rgba(0,209,178,0) 70%)`,
-                  zIndex: "1",
-                }}
-              ></div>
+              <div className="amenity-card-decorations">
+                <div className="decoration-circle"></div>
+                <div className="decoration-line"></div>
+                <div className="decoration-dots"></div>
+              </div>
+              <div className="amenity-card-shine"></div>
             </div>
           ))}
         </div>
@@ -1189,10 +1080,6 @@ const VisitInfo = () => {
         overflow: "hidden",
       }}
     >
-      {/* Add artistic element for mobile view */}
-      {isMobile && <div className="homebanner-artwork"></div>}
-      {isMobile && <div className="mobile-section-badge">HOMESTAY</div>}
-      
       <div
         style={{
           position: "absolute",
@@ -1241,7 +1128,9 @@ const VisitInfo = () => {
               marginBottom: "30px",
             }}
           >
-            {t('experienceLocalLiving')}
+            <TranslatedText>
+              Experience local living near the museum
+            </TranslatedText>
             <span className="title-accent"></span>
           </h2>
           <p
@@ -1254,7 +1143,11 @@ const VisitInfo = () => {
               fontWeight: "300",
             }}
           >
-            {t('homestayDescription')}
+            <TranslatedText>
+              Immerse yourself in the local culture with our carefully selected
+              homestay options near the museum. Experience authentic hospitality
+              in these artfully designed spaces.
+            </TranslatedText>
           </p>
         </div>
 
@@ -1381,41 +1274,36 @@ const VisitInfo = () => {
       id="faq"
       ref={sectionRefs.faq}
     >
-      {/* Add artistic element for mobile view */}
-      {isMobile && <div className="mobile-section-badge">FAQ</div>}
-      
       <div className="decorative-circle large"></div>
       <div className="decorative-circle medium"></div>
 
       <div className="faq-container">
         <div className="faq-header">
           <h2 className="faq-title">
-            {t('frequentlyAskedQuestions')}
+            <TranslatedText>Frequently asked questions</TranslatedText>
           </h2>
           <p className="faq-subtitle">
-            {t('answersFromMuseum')}
+            <TranslatedText>Answers from the Musée Du Pin.</TranslatedText>
           </p>
         </div>
 
         <div className="faq-list">
           {faqData.map((faq, index) => (
             <div
-              className="faq-item"
+              className={`faq-item ${activeFaq === index ? "active" : ""}`}
               key={index}
-              onClick={(e) => {
-                // Toggle active class on click
-                e.currentTarget.classList.toggle("active");
-              }}
               style={{ "--animation-order": index }}
             >
               <div className="faq-highlight"></div>
-              <div className="faq-question">
+              <div className="faq-question" onClick={() => toggleFaq(index)}>
                 <span>
                   <TranslatedText>{faq.question}</TranslatedText>
                 </span>
               </div>
               <div className="faq-answer">
-                <TranslatedText>{faq.answer}</TranslatedText>
+                <p>
+                  <TranslatedText>{faq.answer}</TranslatedText>
+                </p>
               </div>
             </div>
           ))}
@@ -1433,14 +1321,16 @@ const VisitInfo = () => {
           <button className="contact-btn">
             <svg viewBox="0 0 24 24" width="18" height="18">
               <path
-                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
                 fill="currentColor"
+                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
               />
             </svg>
             <TranslatedText>Contact Us</TranslatedText>
           </button>
         </div>
       </div>
+
+      {renderMobileScrollTop()}
     </section>
   );
 
@@ -1868,28 +1758,10 @@ const VisitInfo = () => {
 
   // Render Success Modal
   const renderSuccessModal = () => {
-    // Calculate the total price for the booking
-    const calculateTotalPrice = () => {
-      if (
-        !selectedHomestay ||
-        !bookingFormData.checkIn ||
-        !bookingFormData.checkOut
-      )
-        return 0;
+    if (!successBookingData || !showSuccessModal) return null;
 
-      const nights = Math.max(
-        1,
-        Math.ceil(
-          (new Date(bookingFormData.checkOut) -
-            new Date(bookingFormData.checkIn)) /
-            (1000 * 60 * 60 * 24)
-        )
-      );
-
-      return selectedHomestay.price * nights;
-    };
-
-    const totalPrice = calculateTotalPrice();
+    // Use the saved data from successBookingData instead of recalculating
+    const totalPrice = successBookingData.totalPrice || 0;
 
     return (
       <div
@@ -2043,7 +1915,7 @@ const VisitInfo = () => {
                 />
               </svg>
               <span>
-                <TranslatedText>Host</TranslatedText>: {selectedHomestay?.host}
+                <TranslatedText>Host</TranslatedText>: {successBookingData.host}
               </span>
             </div>
 
@@ -2069,56 +1941,45 @@ const VisitInfo = () => {
                 />
               </svg>
               <span>
-                <TranslatedText>{selectedHomestay?.location}</TranslatedText>
+                <TranslatedText>{successBookingData.location}</TranslatedText>
               </span>
             </div>
 
-            {bookingFormData.checkIn && bookingFormData.checkOut && (
-              <div
-                className="success-detail-item"
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  margin: "0 0 15px",
-                  color: "#475569",
-                  fontSize: "1rem",
-                }}
+            <div
+              className="success-detail-item"
+              style={{
+                display: "flex",
+                alignItems: "center",
+                margin: "0 0 15px",
+                color: "#475569",
+                fontSize: "1rem",
+              }}
+            >
+              <svg
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                style={{ marginRight: "10px", color: "#2563eb" }}
               >
-                <svg
-                  viewBox="0 0 24 24"
-                  width="18"
-                  height="18"
-                  style={{ marginRight: "10px", color: "#2563eb" }}
+                <path
+                  d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7v-5z"
+                  fill="currentColor"
+                />
+              </svg>
+              <span>
+                {new Date(successBookingData.checkIn).toLocaleDateString()} -{" "}
+                {new Date(successBookingData.checkOut).toLocaleDateString()}
+                <span
+                  style={{
+                    marginLeft: "5px",
+                    color: "#94a3b8",
+                    fontWeight: "500",
+                  }}
                 >
-                  <path
-                    d="M19 3h-1V1h-2v2H8V1H6v2H5c-1.11 0-1.99.9-1.99 2L3 19c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm0 16H5V8h14v11zM7 10h5v5H7v-5z"
-                    fill="currentColor"
-                  />
-                </svg>
-                <span>
-                  {new Date(bookingFormData.checkIn).toLocaleDateString()} -{" "}
-                  {new Date(bookingFormData.checkOut).toLocaleDateString()}
-                  <span
-                    style={{
-                      marginLeft: "5px",
-                      color: "#94a3b8",
-                      fontWeight: "500",
-                    }}
-                  >
-                    (
-                    {Math.max(
-                      1,
-                      Math.ceil(
-                        (new Date(bookingFormData.checkOut) -
-                          new Date(bookingFormData.checkIn)) /
-                          (1000 * 60 * 60 * 24)
-                      )
-                    )}{" "}
-                    nights)
-                  </span>
+                  ({successBookingData.nights} nights)
                 </span>
-              </div>
-            )}
+              </span>
+            </div>
 
             <div
               className="success-detail-item"
@@ -2143,7 +2004,10 @@ const VisitInfo = () => {
                 />
               </svg>
               <span>
-                <TranslatedText>Total</TranslatedText>: ${totalPrice}
+                <TranslatedText>Total</TranslatedText>:{" "}
+                <span style={{ fontWeight: "700", color: "#1e3a8a" }}>
+                  ${totalPrice}
+                </span>
               </span>
             </div>
           </div>
@@ -2182,371 +2046,128 @@ const VisitInfo = () => {
   // Helper function to render icons
   const renderIcon = (icon) => {
     const commonAttributes = {
+      width: isMobile ? "30" : "32",
+      height: isMobile ? "30" : "32",
+      fill: "none",
+      stroke: "#00d1b2",
       strokeWidth: "1.5",
       strokeLinecap: "round",
       strokeLinejoin: "round",
-      style: { transition: "all 0.3s ease" },
     };
 
     switch (icon) {
       case "info":
         return (
-          <svg viewBox="0 0 24 24" width="32" height="32">
-            <defs>
-              <linearGradient
-                id="infoGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" stopColor="#36D1DC" />
-                <stop offset="100%" stopColor="#5B86E5" />
-              </linearGradient>
-              <filter id="glow1">
-                <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
-                <feMerge>
-                  <feMergeNode in="coloredBlur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-            <circle
-              cx="12"
-              cy="12"
-              r="10"
-              fill="none"
-              stroke="url(#infoGradient)"
-              {...commonAttributes}
-            />
-            <line
-              x1="12"
-              y1="16"
-              x2="12"
-              y2="12"
-              stroke="url(#infoGradient)"
-              strokeWidth="1.8"
-              {...commonAttributes}
-            />
-            <circle cx="12" cy="8" r="1.2" fill="url(#infoGradient)" />
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            {...commonAttributes}
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="16" x2="12" y2="12"></line>
+            <line x1="12" y1="8" x2="12.01" y2="8"></line>
           </svg>
         );
       case "hanger":
         return (
-          <svg viewBox="0 0 24 24" width="32" height="32">
-            <defs>
-              <linearGradient
-                id="hangerGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" stopColor="#FF9966" />
-                <stop offset="100%" stopColor="#FF5E62" />
-              </linearGradient>
-              <filter id="glow2">
-                <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
-                <feMerge>
-                  <feMergeNode in="coloredBlur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-            <g>
-              <circle
-                cx="12"
-                cy="4"
-                r="2"
-                fill="none"
-                stroke="url(#hangerGradient)"
-                {...commonAttributes}
-              />
-              <path
-                d="M12 6v2l-7 7h14l-7-7V6"
-                fill="none"
-                stroke="url(#hangerGradient)"
-                {...commonAttributes}
-              />
-              <line
-                x1="4"
-                y1="20"
-                x2="20"
-                y2="20"
-                stroke="url(#hangerGradient)"
-                {...commonAttributes}
-              />
-            </g>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            {...commonAttributes}
+          >
+            <path d="M12 4a2 2 0 1 0 0 4 2 2 0 0 0 0-4z"></path>
+            <path d="M12 8v3l-8 9h16l-8-9V8"></path>
           </svg>
         );
       case "stroller":
         return (
-          <svg viewBox="0 0 24 24" width="32" height="32">
-            <defs>
-              <linearGradient
-                id="strollerGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" stopColor="#A770EF" />
-                <stop offset="50%" stopColor="#CF8BF3" />
-                <stop offset="100%" stopColor="#FDB99B" />
-              </linearGradient>
-              <filter id="glow3">
-                <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
-                <feMerge>
-                  <feMergeNode in="coloredBlur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-            <g>
-              <circle
-                cx="8"
-                cy="18"
-                r="2"
-                fill="none"
-                stroke="url(#strollerGradient)"
-                {...commonAttributes}
-              />
-              <circle
-                cx="16"
-                cy="18"
-                r="2"
-                fill="none"
-                stroke="url(#strollerGradient)"
-                {...commonAttributes}
-              />
-              <path
-                d="M8 12h8l-3-6H8"
-                fill="none"
-                stroke="url(#strollerGradient)"
-                {...commonAttributes}
-              />
-              <circle cx="9" cy="4" r="1.2" fill="url(#strollerGradient)" />
-            </g>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            {...commonAttributes}
+          >
+            <circle cx="8" cy="18" r="2"></circle>
+            <circle cx="16" cy="18" r="2"></circle>
+            <path d="M8 18h8l4-12H8"></path>
+            <path d="M6 10h12"></path>
           </svg>
         );
       case "wifi":
         return (
-          <svg viewBox="0 0 24 24" width="32" height="32">
-            <defs>
-              <linearGradient
-                id="wifiGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" stopColor="#43C6AC" />
-                <stop offset="100%" stopColor="#00b3e6" />
-              </linearGradient>
-              <filter id="glow4">
-                <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
-                <feMerge>
-                  <feMergeNode in="coloredBlur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-            <g>
-              <path
-                d="M5 12.55a11 11 0 0 1 14.08 0"
-                fill="none"
-                stroke="url(#wifiGradient)"
-                {...commonAttributes}
-              />
-              <path
-                d="M1.42 9a16 16 0 0 1 21.16 0"
-                fill="none"
-                stroke="url(#wifiGradient)"
-                {...commonAttributes}
-              />
-              <path
-                d="M8.53 16.11a6 6 0 0 1 6.95 0"
-                fill="none"
-                stroke="url(#wifiGradient)"
-                {...commonAttributes}
-              />
-              <circle cx="12" cy="20" r="1.2" fill="url(#wifiGradient)" />
-            </g>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            {...commonAttributes}
+          >
+            <path d="M5 12.55a11 11 0 0 1 14.08 0"></path>
+            <path d="M1.42 9a16 16 0 0 1 21.16 0"></path>
+            <path d="M8.53 16.11a6 6 0 0 1 6.95 0"></path>
+            <line x1="12" y1="20" x2="12.01" y2="20"></line>
           </svg>
         );
       case "toilet":
         return (
-          <svg viewBox="0 0 24 24" width="32" height="32">
-            <defs>
-              <linearGradient
-                id="toiletGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" stopColor="#6a11cb" />
-                <stop offset="100%" stopColor="#2575fc" />
-              </linearGradient>
-              <filter id="glow5">
-                <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
-                <feMerge>
-                  <feMergeNode in="coloredBlur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-            <g>
-              <path
-                d="M6 8h12v4a6 6 0 0 1-6 6v0a6 6 0 0 1-6-6V8z"
-                fill="none"
-                stroke="url(#toiletGradient)"
-                {...commonAttributes}
-              />
-              <path
-                d="M6 4h12v4H6z"
-                fill="none"
-                stroke="url(#toiletGradient)"
-                {...commonAttributes}
-              />
-              <line
-                x1="12"
-                y1="18"
-                x2="12"
-                y2="22"
-                stroke="url(#toiletGradient)"
-                {...commonAttributes}
-              />
-            </g>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            {...commonAttributes}
+          >
+            <path d="M6 4h12v4H6z"></path>
+            <path d="M6 8h12v8a4 4 0 0 1-4 4h-4a4 4 0 0 1-4-4V8z"></path>
+            <path d="M10 8v8"></path>
+            <path d="M14 8v8"></path>
           </svg>
         );
       case "parking":
-        return (
-          <svg viewBox="0 0 24 24" width="32" height="32">
-            <defs>
-              <linearGradient
-                id="parkingGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" stopColor="#fc4a1a" />
-                <stop offset="100%" stopColor="#f7b733" />
-              </linearGradient>
-              <filter id="glow6">
-                <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
-                <feMerge>
-                  <feMergeNode in="coloredBlur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-            <g>
-              <rect
-                x="4"
-                y="4"
-                width="16"
-                height="16"
-                rx="2"
-                fill="none"
-                stroke="url(#parkingGradient)"
-                {...commonAttributes}
-              />
-              <path
-                d="M9 16V8h4a2 2 0 0 1 0 4H9"
-                fill="none"
-                stroke="url(#parkingGradient)"
-                {...commonAttributes}
-              />
-            </g>
-          </svg>
-        );
+        return <FaCar size={isMobile ? 28 : 32} color="currentColor" />;
       case "help":
+        return <FaSearch size={isMobile ? 28 : 32} color="currentColor" />;
+      case "baby":
+        return <FaBaby size={isMobile ? 28 : 32} color="currentColor" />;
+      case "amenities":
         return (
-          <svg viewBox="0 0 24 24" width="32" height="32">
-            <defs>
-              <linearGradient
-                id="helpGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" stopColor="#00c9ff" />
-                <stop offset="100%" stopColor="#92fe9d" />
-              </linearGradient>
-              <filter id="glow7">
-                <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
-                <feMerge>
-                  <feMergeNode in="coloredBlur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-            <g>
-              <path
-                d="M10 9a3 3 0 1 1 4 2.83V14"
-                fill="none"
-                stroke="url(#helpGradient)"
-                {...commonAttributes}
-              />
-              <circle
-                cx="12"
-                cy="12"
-                r="10"
-                fill="none"
-                stroke="url(#helpGradient)"
-                {...commonAttributes}
-              />
-              <circle cx="12" cy="17" r="1.2" fill="url(#helpGradient)" />
-            </g>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+            <polyline points="9 22 9 12 15 12 15 22"></polyline>
           </svg>
         );
-      case "baby":
+      case "homestay":
         return (
-          <svg viewBox="0 0 24 24" width="32" height="32">
-            <defs>
-              <linearGradient
-                id="babyGradient"
-                x1="0%"
-                y1="0%"
-                x2="100%"
-                y2="100%"
-              >
-                <stop offset="0%" stopColor="#ff758c" />
-                <stop offset="100%" stopColor="#ff7eb3" />
-              </linearGradient>
-              <filter id="glow8">
-                <feGaussianBlur stdDeviation="2.5" result="coloredBlur" />
-                <feMerge>
-                  <feMergeNode in="coloredBlur" />
-                  <feMergeNode in="SourceGraphic" />
-                </feMerge>
-              </filter>
-            </defs>
-            <g>
-              <circle
-                cx="12"
-                cy="6"
-                r="3.5"
-                fill="none"
-                stroke="url(#babyGradient)"
-                {...commonAttributes}
-              />
-              <path
-                d="M7 14h10l-5 7-5-7z"
-                fill="none"
-                stroke="url(#babyGradient)"
-                {...commonAttributes}
-              />
-              <path
-                d="M8 10h8"
-                stroke="url(#babyGradient)"
-                strokeWidth="1.5"
-                {...commonAttributes}
-              />
-            </g>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <path d="M20 9v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V9" />
+            <path d="M9 22V12h6v10M2 10.6L12 2l10 8.6" />
+          </svg>
+        );
+      case "faq":
+        return (
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <circle cx="12" cy="12" r="10"></circle>
+            <path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path>
+            <line x1="12" y1="17" x2="12.01" y2="17"></line>
           </svg>
         );
       default:
@@ -3119,6 +2740,150 @@ const VisitInfo = () => {
     );
   };
 
+  // Add scroll to top button for mobile
+  const renderMobileScrollTop = () => {
+    // Don't render if we're not on mobile, not scrolled enough, or not in standalone mode
+    if (!isMobile || !showScrollButton) return null;
+
+    // Check if we're rendering inside the App component where ScrollToTopButton is already used
+    const isStandaloneMode = !document.querySelector(".app");
+
+    // Only render in standalone mode
+    if (!isStandaloneMode) return null;
+
+    return (
+      <button
+        className={`mobile-scroll-top visible`}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        aria-label="Scroll to top"
+      >
+        <svg viewBox="0 0 24 24" width="24" height="24">
+          <path
+            d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"
+            fill="currentColor"
+          />
+        </svg>
+      </button>
+    );
+  };
+
+  // Toggle FAQ item
+  const toggleFaq = (index) => {
+    setActiveFaq(activeFaq === index ? null : index);
+  };
+
+  // Add improved bottom navbar implementation with icons
+  const renderBottomNavbar = () => {
+    if (!isMobile) return null;
+
+    return (
+      <nav className={`mobile-bottom-nav ${isScrollingDown ? "hidden" : ""}`}>
+        <ul className="mobile-nav-list">
+          <li
+            className={`mobile-button-item ${
+              activeSection === "amenities" ? "active" : ""
+            }`}
+          >
+            <button
+              className="mobile-nav-button ripple-effect"
+              onClick={(e) => {
+                createRippleEffect(e);
+                scrollToSection("amenities");
+              }}
+            >
+              <span className="mobile-nav-icon">{renderIcon("amenities")}</span>
+              <span className="mobile-nav-label">
+                <TranslatedText>Amenities</TranslatedText>
+              </span>
+            </button>
+          </li>
+          <li
+            className={`mobile-button-item ${
+              activeSection === "homestay" ? "active" : ""
+            }`}
+          >
+            <button
+              className="mobile-nav-button ripple-effect"
+              onClick={(e) => {
+                createRippleEffect(e);
+                scrollToSection("homestay");
+              }}
+            >
+              <span className="mobile-nav-icon">{renderIcon("homestay")}</span>
+              <span className="mobile-nav-label">
+                <TranslatedText>Homestay</TranslatedText>
+              </span>
+            </button>
+          </li>
+          <li
+            className={`mobile-button-item ${
+              activeSection === "faq" ? "active" : ""
+            }`}
+          >
+            <button
+              className="mobile-nav-button ripple-effect"
+              onClick={(e) => {
+                createRippleEffect(e);
+                scrollToSection("faq");
+              }}
+            >
+              <span className="mobile-nav-icon">{renderIcon("faq")}</span>
+              <span className="mobile-nav-label">
+                <TranslatedText>FAQ</TranslatedText>
+              </span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    );
+  };
+
+  // Add tracking for scroll direction for hiding navbar on scroll down
+  const [isScrollingDown, setIsScrollingDown] = useState(false);
+  const lastScrollTop = useRef(0);
+
+  // Enhance handleScroll to track scroll direction for hiding navbar
+  const handleScroll = () => {
+    const st = window.pageYOffset || document.documentElement.scrollTop;
+    setIsScrollingDown(st > lastScrollTop.current && st > 200);
+    lastScrollTop.current = st <= 0 ? 0 : st;
+
+    // Existing scroll logic from before
+    const scrollPosition = window.scrollY;
+
+    if (scrollPosition > 300) {
+      setShowScrollButton(true);
+    } else {
+      setShowScrollButton(false);
+    }
+
+    // Check which section is in view
+    const sectionsToCheck = ["amenities", "homestay", "faq"];
+
+    for (const sectionId of sectionsToCheck) {
+      const section = sectionRefs[sectionId]?.current;
+      if (section) {
+        const rect = section.getBoundingClientRect();
+        if (rect.top <= 150 && rect.bottom >= 150) {
+          setActiveSection(sectionId);
+          break;
+        }
+      }
+    }
+  };
+
+  // Add the scroll event listener to use our handleScroll function
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    // Initial check
+    handleScroll();
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, []);
+
   return (
     <div className={`visitinfo-page ${isMobile ? "mobile-view" : ""}`}>
       {/* Hero Section */}
@@ -3149,20 +2914,10 @@ const VisitInfo = () => {
       {renderGalleryModal()}
 
       {/* Scroll to top button for mobile */}
-      {isMobile && (
-        <button
-          className="mobile-scroll-top"
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          aria-label="Scroll to top"
-        >
-          <svg viewBox="0 0 24 24" width="24" height="24">
-            <path
-              d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"
-              fill="#00695c"
-            />
-          </svg>
-        </button>
-      )}
+      {renderMobileScrollTop()}
+
+      {/* Mobile Bottom Navigation */}
+      {renderBottomNavbar()}
     </div>
   );
 };

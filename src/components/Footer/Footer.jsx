@@ -1,6 +1,6 @@
 import React from "react";
+import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { Link } from "react-router-dom";
-import { FaFacebook, FaInstagram, FaYoutube, FaLinkedin } from "react-icons/fa";
 import logoImage from "../../assets/Logo/icon.jpg";
 import TranslatedText from "../TranslatedText";
 import "./Footer.css";
@@ -18,9 +18,7 @@ const Footer = () => {
             <ul className="footer-links">
               <li>
                 <Link to="/about">
-                  <TranslatedText>
-                    The Musée Du Pin in VietNam
-                  </TranslatedText>
+                  <TranslatedText>The Musée Du Pin in VietNam</TranslatedText>
                 </Link>
               </li>
               <li>
@@ -55,21 +53,6 @@ const Footer = () => {
               <li>
                 <Link to="/collections">
                   <TranslatedText>Collection</TranslatedText>
-                </Link>
-              </li>
-              <li>
-                <Link to="/corpus">
-                  <TranslatedText>Corpus</TranslatedText>
-                </Link>
-              </li>
-              <li>
-                <Link to="/donate">
-                  <TranslatedText>Donate</TranslatedText>
-                </Link>
-              </li>
-              <li>
-                <Link to="/press">
-                  <TranslatedText>Press</TranslatedText>
                 </Link>
               </li>
             </ul>
@@ -116,7 +99,7 @@ const Footer = () => {
             </h3>
             <div className="social-icons">
               <a
-                href="https://facebook.com"
+                href="https://www.facebook.com/BaoTangThongDalat"
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Facebook"

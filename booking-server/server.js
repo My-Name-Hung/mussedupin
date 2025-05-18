@@ -43,7 +43,7 @@ const sendCustomerEmail = (bookingData) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
     to: bookingData.email,
-    subject: "Xác nhận đặt phòng tại Bảo tàng Nghệ thuật",
+    subject: "Xác nhận đặt phòng tại Bảo tàng Thông (Musée Du Pin)",
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e6e6e6; border-radius: 10px;">
         <div style="background: linear-gradient(135deg, #1e3a8a, #2563eb); padding: 20px; text-align: center; color: white; border-radius: 10px 10px 0 0;">
@@ -51,7 +51,7 @@ const sendCustomerEmail = (bookingData) => {
         </div>
         <div style="padding: 20px;">
           <p>Xin chào <strong>${bookingData.name}</strong>,</p>
-          <p>Cảm ơn bạn đã đặt phòng tại Bảo tàng Nghệ thuật. Dưới đây là thông tin đặt phòng của bạn:</p>
+          <p>Cảm ơn bạn đã đặt phòng tại Bảo tàng Thông (Musée Du Pin). Dưới đây là thông tin đặt phòng của bạn:</p>
           
           <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
             <h3 style="color: #1e3a8a; margin-top: 0;">Chi tiết đặt phòng</h3>
@@ -70,13 +70,13 @@ const sendCustomerEmail = (bookingData) => {
             <p><strong>Tổng giá tiền:</strong> $${bookingData.totalPrice}</p>
           </div>
           
-          <p>Chúng tôi rất mong được đón tiếp bạn tại homestay của chúng tôi.</p>
+          <p>Chúng tôi rất mong được đón tiếp bạn tại homestay của Bảo tàng Thông (Musée Du Pin).</p>
           <p>Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi qua email này.</p>
           
-          <p style="margin-top: 30px;">Trân trọng,<br>Đội ngũ Bảo tàng Nghệ thuật</p>
+          <p style="margin-top: 30px;">Trân trọng,<br>Đội ngũ Bảo tàng Thông (Musée Du Pin)</p>
         </div>
         <div style="background-color: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #64748b; border-radius: 0 0 10px 10px;">
-          © 2023 Bảo tàng Nghệ thuật. Tất cả các quyền được bảo lưu.
+          © 2023 Bảo tàng Thông (Musée Du Pin). Tất cả các quyền được bảo lưu.
         </div>
       </div>
     `,
@@ -89,8 +89,8 @@ const sendCustomerEmail = (bookingData) => {
 const sendAdminEmail = (bookingData) => {
   const mailOptions = {
     from: process.env.EMAIL_USER,
-    to: "h3481905@gmail.com", // Gửi cho chính bạn (admin)
-    subject: "Có đặt phòng mới tại Bảo tàng Nghệ thuật",
+    to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
+    subject: "Có đặt phòng mới tại Bảo tàng Thông (Musée Du Pin)",
     html: `
       <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e6e6e6; border-radius: 10px;">
         <div style="background: linear-gradient(135deg, #1e3a8a, #2563eb); padding: 20px; text-align: center; color: white; border-radius: 10px 10px 0 0;">

@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/Logo/icon.jpg";
+import logo from "../../assets/Logo/logo-icon.jpg";
 import ExhibitionsAnother from "../../assets/Navbar/Exhibitions another-artwork.jpg";
 import Exhibitions from "../../assets/Navbar/Exhibitions-artwork.jpg";
 import artworkImg from "../../assets/Navbar/louvre-artwork.jpg";
@@ -383,7 +383,7 @@ const searchData = [
     description: "Expert-led tours through the collections",
     category: "Exhibitions",
     image: ExhibitionsAnother,
-    path: "/guided-tours",
+    path: "/exhibitions#guided-tours",
   },
   {
     id: 12,
@@ -399,7 +399,7 @@ const searchData = [
     description: "Discover lesser-known treasures",
     category: "Exhibitions",
     image: ExhibitionsAnother,
-    path: "/another-louvre",
+    path: "/exhibitions#guided-tours",
   },
 
   // Collections sections
@@ -728,11 +728,11 @@ const Navbar = () => {
       case "EXHIBITIONS":
         items = [
           { title: "Exhibitions", path: "/exhibitions" },
-          { title: "Guided tours", path: "/guided-tours" },
+          { title: "Guided tours", path: "/exhibitions?tab=guided-tours" },
         ];
         featured = {
           title: "Another Musée Du Pin",
-          path: "/another-louvre",
+          path: "/exhibitions#guided-tours",
           image: ExhibitionsAnother,
           description:
             "Enjoy a visit away from the crowds and discover the lesser-known treasures",
@@ -1073,43 +1073,10 @@ const Navbar = () => {
 
   return (
     <header className="navbar-container">
-      {/* Mobile Navbar */}
+      {/* Desktop Navbar */}
       <div className="navbar-top">
-        <div
-          className="mobile-menu-toggle"
-          onClick={() => setShowMobileMenu(true)}
-          aria-label="Open menu"
-        >
-          <img
-            src={logo}
-            alt="Musée Du Pin Logo"
-            className="mobile-logo-image"
-          />
-        </div>
-
-        <div className="mobile-logo" onClick={() => setShowMobileMenu(true)}>
-          {/* <img
-            src={logo}
-            alt="Musée Du Pin Logo"
-            className="mobile-logo-image"
-          /> */}
-        </div>
-
-        <div className="right-section">
-          <Link to="/tickets" className="btn btn-filled">
-            <TicketIcon />
-            <span className="mobile-ticket-text">Tickets</span>
-          </Link>
-        </div>
-
-        {/* Desktop Navbar - Left Section */}
+        {/* Left section with search and language */}
         <div className="left-section">
-          <div className="logo-container">
-            <Link to="/">
-              <img className="logo" src={logo} alt="Museum Logo" />
-            </Link>
-          </div>
-
           <div
             className="search-container"
             onClick={() => setShowSearchBox(true)}
@@ -1148,6 +1115,13 @@ const Navbar = () => {
           </div>
         </div>
 
+        {/* Center section with logo */}
+        <div className="logo-container">
+          <Link to="/">
+            <img className="logo" src={logo} alt="Museum Logo" />
+          </Link>
+        </div>
+
         {/* Desktop Navbar - Right Section */}
         <div className="desktop-right-section">
           <div className="buttons-container">
@@ -1167,6 +1141,31 @@ const Navbar = () => {
           >
             <MenuIcon />
           </div>
+        </div>
+
+        {/* Mobile elements */}
+        {/* <div
+          className="mobile-menu-toggle"
+          onClick={() => setShowMobileMenu(true)}
+          aria-label="Open menu"
+        >
+
+        </div> */}
+
+        <div className="mobile-logo" onClick={() => setShowMobileMenu(true)}>
+          <img
+            src={logo}
+            alt="Musée Du Pin Logo"
+            className="mobile-logo-image"
+          />
+          <span className="museum-name-mobile">Musée Du Pin</span>
+        </div>
+
+        <div className="right-section">
+          <Link to="/tickets" className="btn btn-filled">
+            <TicketIcon />
+            <span className="mobile-ticket-text">Tickets</span>
+          </Link>
         </div>
       </div>
 
@@ -1610,7 +1609,7 @@ const Navbar = () => {
                     type="button"
                     className="nav-button"
                     onClick={() => {
-                      navigate("/guided-tours");
+                      navigate("/exhibitions?tab=guided-tours");
                       setShowExhibitionsDropdown(false);
                     }}
                   >
@@ -1631,7 +1630,7 @@ const Navbar = () => {
                     type="button"
                     className="exhibition-feature-title nav-button"
                     onClick={() => {
-                      navigate("/another-louvre");
+                      navigate("/exhibitions#guided-tours");
                       setShowExhibitionsDropdown(false);
                     }}
                   >
@@ -1670,7 +1669,7 @@ const Navbar = () => {
                     type="button"
                     className="exhibition-feature-title nav-button"
                     onClick={() => {
-                      navigate("/louvre-couture");
+                      navigate("/exhibitions");
                       setShowExhibitionsDropdown(false);
                     }}
                   >
@@ -1828,7 +1827,7 @@ const Navbar = () => {
                     className="exhibition-feature-title nav-button"
                     onClick={() => {
                       setShowExploreDropdown(false);
-                      directNavigate("/arc-de-triomphe");
+                      directNavigate("/dupinplus");
                     }}
                   >
                     <TranslatedText>

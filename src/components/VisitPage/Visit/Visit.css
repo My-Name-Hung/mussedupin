@@ -1744,3 +1744,185 @@
   gap: 15px; /* Reduced from 20px */
   margin-top: 15px; /* Reduced from 25px */
 }
+
+/* VisitInfo.css */
+
+/* Add scoping to avoid conflicts with Navbar.css */
+.visit-page * {
+  box-sizing: border-box;
+}
+
+.visit-page .mobile-bottom-nav {
+  display: none;
+}
+
+/* Enhanced Mobile Bottom Navigation */
+@media (max-width: 768px) {
+  .visit-page .mobile-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to right, #1e293b, #0f172a);
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    padding: 12px 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    justify-content: space-around;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .visit-page .mobile-button-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 33.333%;
+    position: relative;
+  }
+
+  .visit-page .mobile-nav-button {
+    background: transparent;
+    border: none;
+    padding: 12px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    cursor: pointer;
+    color: rgba(255, 255, 255, 0.6);
+    transition: color 0.3s ease, transform 0.2s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .visit-page .mobile-button-item.active .mobile-nav-button {
+    color: #ffffff;
+  }
+
+  .visit-page .mobile-nav-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 5px;
+    height: 24px;
+  }
+
+  .visit-page .mobile-nav-icon svg {
+    width: 24px;
+    height: 24px;
+    display: block;
+  }
+
+  .visit-page .mobile-nav-label {
+    font-size: 12px;
+    font-weight: 500;
+    text-align: center;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 100%;
+    padding: 0 5px;
+  }
+
+  /* Glow effect for active nav item */
+  .visit-page .mobile-button-item.active .mobile-nav-icon {
+    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+  }
+
+  /* Make sure bottom padding is adjusted for the navbar */
+  .visit-page {
+    padding-bottom: 80px;
+  }
+
+  /* Adjust the scroll top button position for mobile */
+  .visit-page .mobile-scroll-top {
+    bottom: 80px;
+  }
+}
+
+/* Prevent duplicate scroll-to-top button by scoping the styles */
+.visit-page .mobile-scroll-top {
+  position: fixed;
+  bottom: 80px; /* Positioned above the bottom nav */
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 99;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+.visit-page .mobile-scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Add ripple effect for better touch feedback */
+.visit-page .ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.visit-page .ripple-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(0);
+  animation: ripple-animation 0.8s ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* Base styles for Visit component to avoid conflicts with Navbar */
+.visit-page .visit-nav-container {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  overflow-x: auto;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 5px 0;
+  transition: all 0.3s ease;
+}
+
+/* Rest of the CSS (unchanged but now scoped to avoid conflicts) */
+
+/* Update class names to match the changes in JSX files */
+.visit-page .mobile-button-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 33.333%;
+  position: relative;
+}
+
+.visit-page .mobile-button-item.active .mobile-nav-button {
+  color: #ffffff;
+}
+
+/* Glow effect for active nav item */
+.visit-page .mobile-button-item.active .mobile-nav-icon {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+}

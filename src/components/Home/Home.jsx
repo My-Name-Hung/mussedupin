@@ -112,7 +112,7 @@ function Home() {
               <a href="/tickets" className="prepare-visit-button">
                 <TicketIcon />
               </a>
-              <a href="/visit" className="prepare-visit-button">
+              <a href="/prepare-visit" className="prepare-visit-button">
                 <BoutiqueIcon />
               </a>
             </div>

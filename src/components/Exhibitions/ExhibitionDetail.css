@@ -1,0 +1,755 @@
+/* Exhibition Detail Page Styles */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
+
+/* Main layout with dramatic aesthetic */
+.exhibition-detail-page {
+  width: 100%;
+  background-color: #fff;
+  overflow-x: hidden;
+}
+
+/* Loading and Error States */
+.exhibition-detail-loading,
+.exhibition-detail-error {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 70vh;
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.loading-spinner {
+  border: 4px solid rgba(0, 0, 0, 0.05);
+  border-radius: 50%;
+  border-top: 4px solid #345164;
+  width: 40px;
+  height: 40px;
+  animation: spin 1s linear infinite;
+  margin-bottom: 24px;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Dramatic Hero Section */
+.exhibition-detail-hero {
+  position: relative;
+  width: 100%;
+  height: 85vh;
+  min-height: 480px;
+  max-height: 900px;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+}
+
+.exhibition-detail-hero-image {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.exhibition-detail-hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  filter: brightness(0.85) contrast(1.1);
+  transition: transform 10s ease;
+}
+
+.exhibition-detail-hero:hover .exhibition-detail-hero-image img {
+  transform: scale(1.05);
+}
+
+.exhibition-detail-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.4) 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  z-index: 2;
+}
+
+.exhibition-detail-hero-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 3rem 10% 6rem;
+  color: #fff;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.exhibition-detail-tag {
+  display: inline-block;
+  padding: 8px 16px;
+  background-color: #e4d7c8;
+  color: #345164;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  margin-bottom: 1.5rem;
+  text-transform: uppercase;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.2s forwards;
+}
+
+.exhibition-detail-title {
+  font-family: "Playfair Display", serif;
+  font-size: 4rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  line-height: 1.1;
+  max-width: 90%;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.4s forwards;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.exhibition-detail-subtitle {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  margin-top: 0;
+  margin-bottom: 1rem;
+  max-width: 80%;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.6s forwards;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+/* Main Content with asymmetrical layout */
+.exhibition-detail-content {
+  position: relative;
+  padding: 4rem 5%;
+  background: #fff;
+  color: #333;
+  overflow: hidden;
+}
+
+/* Decorative elements for artistic layout */
+.exhibition-detail-content::before {
+  content: "";
+  position: absolute;
+  top: 15%;
+  right: -5%;
+  width: 400px;
+  height: 400px;
+  background-color: rgba(228, 215, 200, 0.1);
+  border-radius: 35% 65% 65% 35% / 35% 35% 65% 65%;
+  z-index: -1;
+}
+
+.exhibition-detail-content::after {
+  content: "";
+  position: absolute;
+  bottom: 10%;
+  left: -5%;
+  width: 300px;
+  height: 300px;
+  background-color: rgba(52, 81, 100, 0.05);
+  border-radius: 60% 40% 30% 70% / 50% 60% 40% 50%;
+  z-index: -1;
+}
+
+/* Info Grid with asymmetrical layout */
+.exhibition-detail-info {
+  display: grid;
+  grid-template-columns: minmax(280px, 1fr) minmax(500px, 2.5fr);
+  grid-gap: 5rem;
+  margin-bottom: 6rem;
+  position: relative;
+}
+
+.exhibition-detail-meta {
+  position: relative;
+  background-color: #f9f7f5;
+  padding: 2.5rem;
+  color: #333;
+  border-radius: 12px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  align-self: flex-start;
+  transform: translateY(50px);
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.2s forwards;
+}
+
+/* Artistic accent for meta box */
+.exhibition-detail-meta::before {
+  content: "";
+  position: absolute;
+  top: -15px;
+  right: -15px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background-color: rgba(228, 215, 200, 0.6);
+  z-index: -1;
+}
+
+.meta-item {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding-bottom: 1.5rem;
+  transition: transform 0.4s ease;
+}
+
+.meta-item:hover {
+  transform: translateX(8px);
+}
+
+.meta-item:last-of-type {
+  border-bottom: none;
+}
+
+.meta-item h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 0.7rem;
+  color: #345164;
+}
+
+.meta-item p {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  margin: 0;
+  color: #333;
+}
+
+.meta-button {
+  margin-top: 1.5rem;
+}
+
+.cta-button {
+  display: inline-block;
+  background-color: #345164;
+  color: #fff;
+  padding: 14px 28px;
+  border-radius: 50px;
+  font-weight: 500;
+  text-decoration: none;
+  text-align: center;
+  transition: all 0.4s ease;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(52, 81, 100, 0.2);
+  position: relative;
+  overflow: hidden;
+  z-index: 1;
+}
+
+.cta-button::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  z-index: -1;
+}
+
+.cta-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(52, 81, 100, 0.3);
+}
+
+.cta-button:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+/* Description area with artistic layout */
+.exhibition-detail-description {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  position: relative;
+  transform: translateY(50px);
+  opacity: 0;
+  animation: fadeUp 0.8s ease 0.4s forwards;
+}
+
+.exhibition-detail-description p {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.15rem;
+  line-height: 1.7;
+  margin: 0;
+  color: #333;
+}
+
+.exhibition-detail-description p:first-of-type {
+  font-size: 1.4rem;
+  font-weight: 500;
+  color: #345164;
+  position: relative;
+  padding-left: 1.5rem;
+  border-left: 3px solid #e4d7c8;
+}
+
+.exhibition-detail-description p:first-of-type::first-letter {
+  font-family: "Playfair Display", serif;
+  float: left;
+  font-size: 4rem;
+  line-height: 0.8;
+  padding-right: 0.8rem;
+  color: #345164;
+}
+
+.exhibition-detail-curators,
+.exhibition-detail-highlights {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.exhibition-detail-curators h3,
+.exhibition-detail-highlights h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.6rem;
+  margin-bottom: 1.5rem;
+  color: #345164;
+  position: relative;
+  display: inline-block;
+}
+
+.exhibition-detail-curators h3::after,
+.exhibition-detail-highlights h3::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 40%;
+  height: 2px;
+  background-color: #e4d7c8;
+}
+
+.exhibition-detail-curators ul,
+.exhibition-detail-highlights ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.exhibition-detail-curators li,
+.exhibition-detail-highlights li {
+  position: relative;
+  padding-left: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-size: 1.05rem;
+  transition: transform 0.3s ease;
+}
+
+.exhibition-detail-curators li:hover,
+.exhibition-detail-highlights li:hover {
+  transform: translateX(5px);
+}
+
+.exhibition-detail-curators li::before,
+.exhibition-detail-highlights li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 10px;
+  width: 8px;
+  height: 8px;
+  border-radius: 0;
+  background-color: #e4d7c8;
+  transform: rotate(45deg);
+}
+
+/* Related Items with staggered animation */
+.related-items {
+  margin-top: 6rem;
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+  position: relative;
+  /* Hiển thị mặc định với opacity thấp để dễ nhìn */
+  opacity: 0.3;
+}
+
+.related-items.visible {
+  opacity: 1;
+  transform: translateY(0);
+  animation: fadeInRelated 0.8s ease forwards;
+}
+
+@keyframes fadeInRelated {
+  0% {
+    opacity: 0.3;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.related-items::before {
+  content: "";
+  position: absolute;
+  top: -30px;
+  left: 0;
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(to right, #345164, transparent);
+}
+
+.related-items h2 {
+  font-family: "Roboto", serif;
+  font-size: 2.2rem;
+  margin-bottom: 2.5rem;
+  color: #345164;
+  position: relative;
+  display: inline-block;
+}
+
+.related-items h2::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -12px;
+  width: 40%;
+  height: 3px;
+  background-color: #e4d7c8;
+}
+
+.related-items-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-gap: 2.5rem;
+}
+
+.related-item-card {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+  transition: all 0.5s ease;
+  transform-origin: center;
+  background-color: #fff;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: fadeInCard 0.8s ease forwards;
+  animation-delay: calc(var(--card-index, 0) * 0.1s);
+}
+
+.related-item-card:hover {
+  transform: translateY(-12px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.related-item-card a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.related-item-image {
+  height: 240px;
+  overflow: hidden;
+  position: relative;
+}
+
+.related-item-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.5), transparent);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.related-item-card:hover .related-item-image::after {
+  opacity: 1;
+}
+
+.related-item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 0.8s ease;
+}
+
+.related-item-card:hover .related-item-image img {
+  transform: scale(1.1);
+}
+
+.related-item-content {
+  padding: 1.8rem;
+  position: relative;
+  background: #fff;
+}
+
+.related-item-content::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 5px;
+  height: 0;
+  background-color: #e4d7c8;
+  transition: height 0.5s ease;
+}
+
+.related-item-card:hover .related-item-content::before {
+  height: 100%;
+}
+
+.related-item-content h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+  margin-top: 0;
+  margin-bottom: 0.7rem;
+  color: #345164;
+  transition: color 0.3s ease, transform 0.3s ease;
+  padding-left: 10px;
+}
+
+.related-item-card:hover .related-item-content h3 {
+  color: #e4d7c8;
+  transform: translateX(5px);
+}
+
+.related-item-content p {
+  font-size: 0.95rem;
+  margin: 0;
+  color: #666;
+  padding-left: 10px;
+}
+
+/* Back Button */
+.back-link {
+  margin-top: 5rem;
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.back-button {
+  display: inline-flex;
+  align-items: center;
+  color: #345164;
+  text-decoration: none;
+  font-size: 1.1rem;
+  font-weight: 500;
+  padding: 12px 30px;
+  border: 1px solid #345164;
+  border-radius: 50px;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  background: transparent;
+}
+
+.back-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #345164;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s ease;
+  z-index: -1;
+}
+
+.back-button:hover {
+  color: #fff;
+}
+
+.back-button:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.arrow-icon {
+  margin-right: 0.75rem;
+  font-size: 1.2rem;
+  transition: transform 0.3s ease;
+}
+
+.back-button:hover .arrow-icon {
+  transform: translateX(-5px);
+}
+
+/* Animations */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive Design */
+@media (max-width: 1300px) {
+  .exhibition-detail-hero-content {
+    padding: 2rem 8% 5rem;
+  }
+
+  .exhibition-detail-title {
+    font-size: 3.5rem;
+  }
+
+  .exhibition-detail-subtitle {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 992px) {
+  .exhibition-detail-hero {
+    height: 70vh;
+  }
+
+  .exhibition-detail-info {
+    grid-template-columns: 1fr;
+    grid-gap: 3rem;
+  }
+
+  .exhibition-detail-meta {
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .exhibition-detail-title {
+    font-size: 3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .exhibition-detail-hero {
+    height: 65vh;
+    clip-path: polygon(0 0, 100% 0, 100% 93%, 0 100%);
+  }
+
+  .exhibition-detail-hero-content {
+    padding: 2rem 6% 4rem;
+  }
+
+  .exhibition-detail-title {
+    font-size: 2.5rem;
+    max-width: 100%;
+  }
+
+  .exhibition-detail-subtitle {
+    font-size: 1.3rem;
+    max-width: 100%;
+  }
+
+  .exhibition-detail-content {
+    padding: 2rem 6%;
+  }
+
+  .related-items-grid {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    grid-gap: 1.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .exhibition-detail-hero {
+    height: 70vh;
+    min-height: 400px;
+    clip-path: polygon(0 0, 100% 0, 100% 95%, 0 100%);
+  }
+
+  .exhibition-detail-tag {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+  }
+
+  .exhibition-detail-title {
+    font-size: 2rem;
+  }
+
+  .exhibition-detail-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .exhibition-detail-content {
+    padding: 1.5rem 5%;
+  }
+
+  .exhibition-detail-meta {
+    padding: 1.5rem;
+  }
+
+  .exhibition-detail-description p:first-of-type {
+    font-size: 1.2rem;
+    padding-left: 0.8rem;
+  }
+
+  .exhibition-detail-description p {
+    font-size: 1rem;
+  }
+
+  .related-items h2 {
+    font-size: 1.8rem;
+  }
+
+  .exhibition-detail-curators ul,
+  .exhibition-detail-highlights ul {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Special treatment for Mamluks exhibition */
+.exhibition-detail-page[data-exhibition="mamluks"]
+  .exhibition-detail-hero-image
+  img {
+  object-position: center 30%; /* Adjust position to show more of the Mamluks image */
+}
+
+@keyframes fadeInCard {
+  0% {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

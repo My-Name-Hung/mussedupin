@@ -396,10 +396,7 @@ const DuPin = () => {
         style={{ opacity: 0.05 + scrollProgress * 0.1 }}
       ></div>
 
-      <div
-        className="dupin-header"
-        style={{ transform: `translateY(${scrollProgress * -20}px)` }}
-      >
+      <div className="dupin-header">
         <h2 className="dupin-title">
           <TranslatedText>MUSÉE DU PIN +</TranslatedText>
         </h2>
@@ -451,7 +448,9 @@ const DuPin = () => {
                 }`}
                 style={{
                   animationDelay: `${index * 0.15 + 0.1}s`,
-                  transform: `translateY(${getParallaxOffset(index)}px)`,
+                  transform: `translateY(${getParallaxOffset(index)}px) ${
+                    activeCardIndex === index ? "skewX(-2deg)" : ""
+                  }`,
                 }}
                 onMouseEnter={() => handleMouseEnter(index)}
               >
@@ -522,7 +521,9 @@ const DuPin = () => {
 
       <div
         className="dupin-footer"
-        style={{ transform: `translateY(${scrollProgress * -10}px)` }}
+        style={{
+          transform: `translateY(${scrollProgress * -10}px) skewY(-2deg)`,
+        }}
       >
         <Link to="/dupinplus" className="view-all-link">
           <TranslatedText>More content on Musée Du Pin+</TranslatedText>

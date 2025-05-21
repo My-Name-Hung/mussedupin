@@ -44,6 +44,22 @@ const PrepareVisit = () => {
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const [touchStartX, setTouchStartX] = useState(0);
   const [showScrollButton, setShowScrollButton] = useState(false);
+  const [selectedHomestay, setSelectedHomestay] = useState(null);
+  const [showHomestayDetails, setShowHomestayDetails] = useState(false);
+  const [showBookingSidebar, setShowBookingSidebar] = useState(false);
+  const [bookingForm, setBookingForm] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    checkIn: "",
+    checkOut: "",
+    guests: 1,
+    specialRequests: "",
+  });
+  const [bookingErrors, setBookingErrors] = useState({});
+  const [isBookingSubmitting, setIsBookingSubmitting] = useState(false);
+  const [bookingSuccess, setBookingSuccess] = useState(false);
 
   const sectionRefs = {
     hours: useRef(null),
@@ -568,7 +584,11 @@ const PrepareVisit = () => {
     if (!isMobile) return null;
 
     return (
-      <nav className={`mobile-bottom-nav ${isScrollingDown ? "hidden" : ""}`}>
+      <nav
+        className={`mobile-bottom-nav fixed-mobile-element ${
+          isScrollingDown ? "hidden" : ""
+        }`}
+      >
         <ul className="mobile-nav-list">
           <li
             className={`mobile-button-item ${
@@ -695,25 +715,6 @@ const PrepareVisit = () => {
     );
   };
 
-  // Add scroll to top button for mobile
-  const renderMobileScrollTop = () => {
-    if (!isMobile || !showScrollButton) return null;
-
-    return (
-      <button
-        className={`mobile-scroll-top visible`}
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        aria-label="Scroll to top"
-      >
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <path
-            d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"
-            fill="currentColor"
-          />
-        </svg>
-      </button>
-    );
-  };
 
   // Render Hours Section
   const renderHoursSection = () => (
@@ -1458,24 +1459,6 @@ const PrepareVisit = () => {
       id="homestay"
       ref={sectionRefs.homestay}
     >
-      <div
-        style={{
-          position: "absolute",
-          top: "40px",
-          left: "40px",
-          fontFamily: "'Montserrat', sans-serif",
-          fontSize: "1rem",
-          fontWeight: "600",
-          color: "#0f172a",
-          letterSpacing: "2px",
-          textTransform: "uppercase",
-          zIndex: "2",
-          opacity: "0.7",
-        }}
-      >
-        ACCOMMODATIONS
-      </div>
-
       {/* Decorative elements */}
       <div className="decorative-circle large"></div>
       <div className="decorative-circle medium"></div>
@@ -1574,10 +1557,16 @@ const PrepareVisit = () => {
                     </span>
                   </div>
                   <div className="homestay-card-actions">
-                    <button className="btn-view">
+                    <button
+                      className="btn-view"
+                      onClick={() => openDetailsSidebar(homestay)}
+                    >
                       <TranslatedText>View Details</TranslatedText>
                     </button>
-                    <button className="btn-book">
+                    <button
+                      className="btn-book"
+                      onClick={() => openBookingSidebar(homestay)}
+                    >
                       <TranslatedText>Book Now</TranslatedText>
                     </button>
                   </div>
@@ -1698,9 +1687,573 @@ const PrepareVisit = () => {
     };
   }, []);
 
+  // Open homestay details sidebar
+  const openDetailsSidebar = (homestay) => {
+    setSelectedHomestay(homestay);
+    setShowHomestayDetails(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  // Close homestay details sidebar
+  const closeDetailsSidebar = () => {
+    setShowHomestayDetails(false);
+    document.body.style.overflow = "";
+  };
+
+  // Open booking sidebar
+  const openBookingSidebar = (homestay) => {
+    setSelectedHomestay(homestay);
+    setShowBookingSidebar(true);
+    document.body.style.overflow = "hidden";
+  };
+
+  // Close booking sidebar
+  const closeBookingSidebar = () => {
+    setShowBookingSidebar(false);
+    document.body.style.overflow = "";
+  };
+
+  // Handle booking form input changes
+  const handleBookingInputChange = (e) => {
+    const { name, value } = e.target;
+    setBookingForm({
+      ...bookingForm,
+      [name]: value,
+    });
+
+    // Clear error when user types
+    if (bookingErrors[name]) {
+      setBookingErrors({
+        ...bookingErrors,
+        [name]: null,
+      });
+    }
+  };
+
+  // Validate booking form
+  const validateForm = () => {
+    const errors = {};
+
+    if (!bookingForm.firstName.trim()) {
+      errors.firstName = "First name is required";
+    }
+
+    if (!bookingForm.lastName.trim()) {
+      errors.lastName = "Last name is required";
+    }
+
+    if (!bookingForm.email.trim()) {
+      errors.email = "Email is required";
+    } else if (!/\S+@\S+\.\S+/.test(bookingForm.email)) {
+      errors.email = "Email is invalid";
+    }
+
+    if (!bookingForm.phone.trim()) {
+      errors.phone = "Phone number is required";
+    }
+
+    if (!bookingForm.checkIn) {
+      errors.checkIn = "Check-in date is required";
+    }
+
+    if (!bookingForm.checkOut) {
+      errors.checkOut = "Check-out date is required";
+    }
+
+    setBookingErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
+  // Handle booking form submission
+  const handleBookingSubmit = async (e) => {
+    e.preventDefault();
+
+    if (!validateForm()) {
+      return;
+    }
+
+    setIsBookingSubmitting(true);
+
+    // Simulate API call
+    try {
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      // Success
+      setBookingSuccess(true);
+      setBookingForm({
+        firstName: "",
+        lastName: "",
+        email: "",
+        phone: "",
+        checkIn: "",
+        checkOut: "",
+        guests: 1,
+        specialRequests: "",
+      });
+
+      // Close booking sidebar after delay
+      setTimeout(() => {
+        setBookingSuccess(false);
+        closeBookingSidebar();
+      }, 3000);
+    } catch (error) {
+      console.error("Booking failed:", error);
+    } finally {
+      setIsBookingSubmitting(false);
+    }
+  };
+
+  // Render homestay details sidebar
+  const renderHomestayDetailsSidebar = () => {
+    if (!selectedHomestay) return null;
+
+    return (
+      <div
+        className={`homestay-details-sidebar ${
+          showHomestayDetails ? "open" : ""
+        }`}
+      >
+        <div className="details-sidebar-header">
+          <h2>
+            <TranslatedText>{selectedHomestay.title}</TranslatedText>
+          </h2>
+          <button
+            className="close-sidebar"
+            onClick={closeDetailsSidebar}
+            aria-label="Close details"
+          >
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path
+                d="M18.3 5.71a.996.996 0 00-1.41 0L12 10.59 7.11 5.7A.996.996 0 105.7 7.11L10.59 12 5.7 16.89a.996.996 0 101.41 1.41L12 13.41l4.89 4.89a.996.996 0 101.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div className="homestay-gallery">
+          <div className="gallery-main">
+            <img src={selectedHomestay.image} alt={selectedHomestay.title} />
+          </div>
+          <div className="gallery-thumbnails">
+            <div className="gallery-thumbnail active">
+              <img src={selectedHomestay.image} alt={selectedHomestay.title} />
+            </div>
+            {/* In a real app, you would map through multiple images here */}
+            <div className="gallery-thumbnail">
+              <img src={traditionalImg} alt="Additional view" />
+            </div>
+            <div className="gallery-thumbnail">
+              <img src={luxuryImg} alt="Additional view" />
+            </div>
+            <div className="gallery-thumbnail">
+              <img src={modernImg} alt="Additional view" />
+            </div>
+          </div>
+        </div>
+
+        <div className="homestay-details-info">
+          <div className="homestay-details-subtitle">
+            <TranslatedText>
+              Hosted by {selectedHomestay.host} · {selectedHomestay.location}
+            </TranslatedText>
+          </div>
+
+          <div className="homestay-details-description">
+            <TranslatedText>{selectedHomestay.description}</TranslatedText>
+            <p>
+              <TranslatedText>
+                This homestay offers a unique opportunity to experience local
+                life while enjoying all the comforts of home. The perfect base
+                for exploring the museum and surrounding cultural attractions.
+              </TranslatedText>
+            </p>
+          </div>
+
+          <div className="homestay-details-location">
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path
+                d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                fill="currentColor"
+              />
+            </svg>
+            <span>
+              <TranslatedText>{selectedHomestay.location}</TranslatedText>
+            </span>
+          </div>
+
+          <div className="homestay-details-host">
+            <svg viewBox="0 0 24 24" width="18" height="18">
+              <path
+                d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
+                fill="currentColor"
+              />
+            </svg>
+            <span>
+              <TranslatedText>Hosted by {selectedHomestay.host}</TranslatedText>
+            </span>
+          </div>
+
+          <div className="homestay-details-section">
+            <h4>
+              <TranslatedText>Amenities</TranslatedText>
+            </h4>
+            <ul className="amenities-list">
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                  <path
+                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"
+                    fill="currentColor"
+                  />
+                </svg>
+                <TranslatedText>Wi-Fi</TranslatedText>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                  <path
+                    d="M17 10.5V7c0-.55-.45-1-1-1H4c-.55 0-1 .45-1 1v10c0 .55.45 1 1 1h12c.55 0 1-.45 1-1v-3.5l4 4v-11l-4 4z"
+                    fill="currentColor"
+                  />
+                </svg>
+                <TranslatedText>TV</TranslatedText>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                  <path
+                    d="M13 3H11v8h2zm4.83 2.17l-1.42 1.42C17.99 7.86 19 9.81 19 12c0 3.87-3.13 7-7 7s-7-3.13-7-7c0-2.19 1.01-4.14 2.58-5.42L6.17 5.17C4.23 6.82 3 9.26 3 12c0 4.97 4.03 9 9 9s9-4.03 9-9c0-2.74-1.23-5.18-3.17-6.83z"
+                    fill="currentColor"
+                  />
+                </svg>
+                <TranslatedText>Air Conditioning</TranslatedText>
+              </li>
+              <li>
+                <svg viewBox="0 0 24 24" width="18" height="18">
+                  <path
+                    d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"
+                    fill="currentColor"
+                  />
+                </svg>
+                <TranslatedText>Kitchen</TranslatedText>
+              </li>
+            </ul>
+          </div>
+
+          <div className="homestay-booking-card">
+            <div className="booking-card-price">
+              <span className="price-value">{selectedHomestay.price}</span>
+              <span className="price-unit">
+                <TranslatedText>per night</TranslatedText>
+              </span>
+            </div>
+            <button
+              className="btn-book-now"
+              onClick={() => {
+                closeDetailsSidebar();
+                openBookingSidebar(selectedHomestay);
+              }}
+            >
+              <TranslatedText>Book Now</TranslatedText>
+            </button>
+          </div>
+        </div>
+      </div>
+    );
+  };
+
+  // Render booking sidebar
+  const renderBookingSidebar = () => {
+    if (!selectedHomestay) return null;
+
+    return (
+      <div className={`booking-sidebar ${showBookingSidebar ? "open" : ""}`}>
+        <div className="booking-sidebar-header modern">
+          <h2>
+            <TranslatedText>Book Your Stay</TranslatedText>
+          </h2>
+          <button
+            className="close-sidebar"
+            onClick={closeBookingSidebar}
+            aria-label="Close booking"
+          >
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path
+                d="M18.3 5.71a.996.996 0 00-1.41 0L12 10.59 7.11 5.7A.996.996 0 105.7 7.11L10.59 12 5.7 16.89a.996.996 0 101.41 1.41L12 13.41l4.89 4.89a.996.996 0 101.41-1.41L13.41 12l4.89-4.89c.38-.38.38-1.02 0-1.4z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div className="booking-homestay-info modern">
+          <img src={selectedHomestay.image} alt={selectedHomestay.title} />
+          <div>
+            <h3>
+              <TranslatedText>{selectedHomestay.title}</TranslatedText>
+            </h3>
+            <div className="booking-homestay-location">
+              <svg viewBox="0 0 24 24" width="16" height="16">
+                <path
+                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+                  fill="currentColor"
+                />
+              </svg>
+              <span>
+                <TranslatedText>{selectedHomestay.location}</TranslatedText>
+              </span>
+            </div>
+            <div className="booking-homestay-price">
+              <span className="price-value">${selectedHomestay.price}</span>
+              <span className="price-unit">
+                <TranslatedText>per night</TranslatedText>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <form className="booking-form modern" onSubmit={handleBookingSubmit}>
+          <div className="form-group">
+            <label htmlFor="firstName">
+              <TranslatedText>First Name</TranslatedText>
+            </label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              value={bookingForm.firstName}
+              onChange={handleBookingInputChange}
+              className={bookingErrors.firstName ? "has-error" : ""}
+            />
+            {bookingErrors.firstName && (
+              <div className="error-message">
+                <TranslatedText>{bookingErrors.firstName}</TranslatedText>
+              </div>
+            )}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="lastName">
+              <TranslatedText>Last Name</TranslatedText>
+            </label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              value={bookingForm.lastName}
+              onChange={handleBookingInputChange}
+              className={bookingErrors.lastName ? "has-error" : ""}
+            />
+            {bookingErrors.lastName && (
+              <div className="error-message">
+                <TranslatedText>{bookingErrors.lastName}</TranslatedText>
+              </div>
+            )}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="email">
+              <TranslatedText>Email</TranslatedText>
+            </label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              value={bookingForm.email}
+              onChange={handleBookingInputChange}
+              className={bookingErrors.email ? "has-error" : ""}
+            />
+            {bookingErrors.email && (
+              <div className="error-message">
+                <TranslatedText>{bookingErrors.email}</TranslatedText>
+              </div>
+            )}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="phone">
+              <TranslatedText>Phone</TranslatedText>
+            </label>
+            <input
+              type="tel"
+              id="phone"
+              name="phone"
+              value={bookingForm.phone}
+              onChange={handleBookingInputChange}
+              className={bookingErrors.phone ? "has-error" : ""}
+            />
+            {bookingErrors.phone && (
+              <div className="error-message">
+                <TranslatedText>{bookingErrors.phone}</TranslatedText>
+              </div>
+            )}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="checkIn">
+              <TranslatedText>Check-in Date</TranslatedText>
+            </label>
+            <input
+              type="date"
+              id="checkIn"
+              name="checkIn"
+              value={bookingForm.checkIn}
+              onChange={handleBookingInputChange}
+              className={bookingErrors.checkIn ? "has-error" : ""}
+              min={new Date().toISOString().split("T")[0]}
+            />
+            {bookingErrors.checkIn && (
+              <div className="error-message">
+                <TranslatedText>{bookingErrors.checkIn}</TranslatedText>
+              </div>
+            )}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="checkOut">
+              <TranslatedText>Check-out Date</TranslatedText>
+            </label>
+            <input
+              type="date"
+              id="checkOut"
+              name="checkOut"
+              value={bookingForm.checkOut}
+              onChange={handleBookingInputChange}
+              className={bookingErrors.checkOut ? "has-error" : ""}
+              min={
+                bookingForm.checkIn
+                  ? new Date(new Date(bookingForm.checkIn).getTime() + 86400000)
+                      .toISOString()
+                      .split("T")[0]
+                  : new Date().toISOString().split("T")[0]
+              }
+            />
+            {bookingErrors.checkOut && (
+              <div className="error-message">
+                <TranslatedText>{bookingErrors.checkOut}</TranslatedText>
+              </div>
+            )}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="guests">
+              <TranslatedText>Number of Guests</TranslatedText>
+            </label>
+            <select
+              id="guests"
+              name="guests"
+              value={bookingForm.guests}
+              onChange={handleBookingInputChange}
+            >
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5+</option>
+            </select>
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="specialRequests">
+              <TranslatedText>Special Requests</TranslatedText>
+            </label>
+            <textarea
+              id="specialRequests"
+              name="specialRequests"
+              value={bookingForm.specialRequests}
+              onChange={handleBookingInputChange}
+              rows="3"
+            ></textarea>
+          </div>
+
+          <div className="booking-summary modern">
+            <div className="summary-row">
+              <div>
+                <TranslatedText>
+                  ${selectedHomestay.price} x{" "}
+                  {bookingForm.checkIn && bookingForm.checkOut
+                    ? Math.ceil(
+                        (new Date(bookingForm.checkOut) -
+                          new Date(bookingForm.checkIn)) /
+                          (1000 * 60 * 60 * 24)
+                      )
+                    : 1}{" "}
+                  nights
+                </TranslatedText>
+              </div>
+              <div>
+                $
+                {bookingForm.checkIn && bookingForm.checkOut
+                  ? selectedHomestay.price *
+                    Math.ceil(
+                      (new Date(bookingForm.checkOut) -
+                        new Date(bookingForm.checkIn)) /
+                        (1000 * 60 * 60 * 24)
+                    )
+                  : selectedHomestay.price}
+              </div>
+            </div>
+            <div className="summary-row">
+              <div>
+                <TranslatedText>Service fee</TranslatedText>
+              </div>
+              <div>$25</div>
+            </div>
+            <div className="summary-row total">
+              <div>
+                <TranslatedText>Total</TranslatedText>
+              </div>
+              <div>
+                $
+                {bookingForm.checkIn && bookingForm.checkOut
+                  ? selectedHomestay.price *
+                      Math.ceil(
+                        (new Date(bookingForm.checkOut) -
+                          new Date(bookingForm.checkIn)) /
+                          (1000 * 60 * 60 * 24)
+                      ) +
+                    25
+                  : selectedHomestay.price + 25}
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            className="btn-submit-booking modern"
+            disabled={isBookingSubmitting || bookingSuccess}
+          >
+            {isBookingSubmitting && <span className="spinner"></span>}
+            {bookingSuccess ? (
+              <TranslatedText>Booking Confirmed!</TranslatedText>
+            ) : isBookingSubmitting ? (
+              <TranslatedText>Processing...</TranslatedText>
+            ) : (
+              <TranslatedText>Confirm Booking</TranslatedText>
+            )}
+          </button>
+        </form>
+      </div>
+    );
+  };
+
   // Update the render with improved components
   return (
     <div className={`prepare-page ${isMobile ? "mobile-view" : ""}`}>
+      {/* Fix for mobile fixed elements - invisible div creates proper stacking context */}
+      {isMobile && (
+        <div
+          id="mobile-fixed-elements-fix"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            pointerEvents: "none",
+            zIndex: -1,
+          }}
+        ></div>
+      )}
+
       {/* Hero Section */}
       {renderHero()}
 
@@ -1728,8 +2281,11 @@ const PrepareVisit = () => {
       {/* Mobile Bottom Navigation */}
       {renderMobileNavigation()}
 
-      {/* Mobile Scroll to Top Button */}
-      {renderMobileScrollTop()}
+      {/* Homestay Details Sidebar */}
+      {renderHomestayDetailsSidebar()}
+
+      {/* Booking Sidebar */}
+      {renderBookingSidebar()}
     </div>
   );
 };

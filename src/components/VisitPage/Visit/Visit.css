@@ -1,6 +1,16 @@
 /* Import Google Fonts - Montserrat and Roboto */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap");
 
+/* Import Mythical-Prince font */
+@font-face {
+  font-family: "Mythical-Prince";
+  src: url("../../../assets/museedupin/1FTV-VIP-Mythical-Prince.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Visit page styles with elegant art museum aesthetic */
 .visit-page {
   width: 100%;
@@ -82,38 +92,27 @@
 }
 
 .visit-hero-title {
-  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
   font-size: 3.5rem;
-  font-weight: 400;
-  color: #ffffff;
-  margin: 0;
-  letter-spacing: -0.03em;
-  text-transform: uppercase;
-  line-height: 1.1;
-  position: relative;
-  overflow: hidden;
-  text-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+  font-weight: 500;
+  margin: 0 0 1.5rem;
+  max-width: 70%;
+  color: #fff;
+  line-height: 1.2;
+  animation: fadeInUp 1s ease 0.2s forwards;
+  opacity: 0;
+  transform: translateY(30px);
 }
 
-.visit-hero-title::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(to right, #00897b, rgba(0, 137, 123, 0.5));
-  animation: expandLine 1.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards 0.5s;
-  transform-origin: left;
-  transform: scaleX(0);
-}
-
-@keyframes expandLine {
+@keyframes fadeInUp {
   from {
-    transform: scaleX(0);
+    opacity: 0;
+    transform: translateY(30px);
   }
   to {
-    transform: scaleX(1);
+    opacity: 1;
+    transform: translateY(0);
   }
 }
 
@@ -263,20 +262,17 @@
 /* Mobile styles for navigation - cleaned up version */
 @media (max-width: 768px) {
   .visit-nav-container {
-    position: fixed;
-    top: 60px; /* Account for the top navbar */
-    left: 0;
-    width: 100%;
-    z-index: 1000; /* Higher z-index to ensure visibility */
-    overflow-x: auto;
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* IE/Edge */
-    padding: 10px 0px;
-    margin: 0;
-    background: #fff;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
-    display: flex;
-    justify-content: flex-start;
+    display: none; /* Hide the horizontal nav on mobile */
+  }
+
+  /* First section needs extra padding without the fixed nav */
+  .visit-section:first-of-type {
+    padding-top: 20px; /* Reduced padding since nav is hidden */
+  }
+
+  /* Mobile-view class no longer needs special padding for the fixed nav */
+  .mobile-view {
+    padding-top: 0;
   }
 
   .visit-nav-container::-webkit-scrollbar {
@@ -354,11 +350,6 @@
     border-radius: 0;
     margin-top: 0;
     background: #fff;
-  }
-
-  /* First section needs extra padding to accommodate fixed nav */
-  .visit-section:first-of-type {
-    padding-top: 90px; /* Reduced from 120px */
   }
 
   /* Mobile-optimized museum info */
@@ -475,7 +466,7 @@
   }
 
   .visit-hero-title {
-    font-size: 2.2rem;
+    font-size: 2.7rem;
     margin-bottom: 10px;
   }
 
@@ -484,7 +475,7 @@
   }
 
   .visit-section-title {
-    font-size: 1.8rem;
+    font-size: 1.3rem;
     margin-bottom: 15px;
   }
 
@@ -536,27 +527,101 @@
   z-index: 2;
 }
 
+/* Enhanced artistic section title */
 .visit-section-title {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Meholrax", serif;
   font-size: 3rem;
-  font-weight: 400;
-  color: #00695c;
-  margin: 0 0 60px;
-  text-align: left;
+  font-weight: 600;
+  margin-bottom: 2rem;
   position: relative;
-  letter-spacing: -0.5px;
-  overflow: hidden;
+  display: inline-block;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.9);
+  letter-spacing: 0.05em;
+  z-index: 1;
+}
+
+.visit-section-title::before {
+  content: "";
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 105, 92, 0.08) 0%,
+    rgba(0, 105, 92, 0) 70%
+  );
+  top: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: -1;
+  animation: pulse 6s infinite alternate;
 }
 
 .visit-section-title::after {
   content: "";
   position: absolute;
-  bottom: -12px;
-  left: 0;
-  width: 80px;
-  height: 3px;
-  background: linear-gradient(to right, #00695c, #4db6ac);
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120px;
+  height: 2px;
+  background: linear-gradient(to right, transparent, #00695c, transparent);
   border-radius: 3px;
+  transition: width 0.5s ease;
+}
+
+/* Decorative elements for section title */
+.visit-section-title span {
+  position: relative;
+  display: inline-block;
+}
+
+.visit-section-title span::before {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, rgba(0, 105, 92, 0.3));
+  top: 50%;
+  right: -45px;
+}
+
+.visit-section-title span::after {
+  content: "";
+  position: absolute;
+  width: 30px;
+  height: 1px;
+  background: linear-gradient(to left, transparent, rgba(0, 105, 92, 0.3));
+  top: 50%;
+  left: -45px;
+}
+
+.visit-section:hover .visit-section-title::after {
+  width: 180px;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+    transform: translateX(-50%) scale(1);
+  }
+  100% {
+    opacity: 0.8;
+    transform: translateX(-50%) scale(1.5);
+  }
+}
+
+/* Additional decorative dots */
+.visit-section-title::before,
+.visit-section-title::after {
+  z-index: -1;
+}
+
+.visit-section-title::before {
+  box-shadow: 0 0 30px rgba(0, 105, 92, 0.1);
 }
 
 /* Museum location tabs */
@@ -1057,14 +1122,12 @@
   opacity: 1;
 }
 
-.section-title {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.2rem;
-  font-weight: 600;
-  color: #000;
-  margin: 0;
-  letter-spacing: 0.5px;
-  z-index: 1;
+.section-titles {
+  font-family: "Meholrax", serif;
+  display: block;
+  position: relative;
+  font-size: 1.5rem;
+  padding-right: 60px;
 }
 
 .expand-button {
@@ -1297,7 +1360,7 @@
 
 .membership-heading {
   font-family: "Montserrat", sans-serif;
-  font-size: 2.2rem;
+  font-size: 1.2rem;
   font-weight: 400;
   color: #000;
   margin: 0 0 25px;
@@ -1407,11 +1470,10 @@
 }
 
 .visit-info-title {
-  font-family: "Montserrat", sans-serif;
-  font-size: 1.4rem;
-  font-weight: 500;
-  color: #000;
-  margin: 0 0 15px;
+  font-family: "Meholrax", serif;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
 }
 
 .visit-info-text {
@@ -1766,7 +1828,7 @@
     width: 100%;
     background: linear-gradient(to right, #1e293b, #0f172a);
     box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
-    z-index: 999;
+    z-index: 9700; /* Điều chỉnh thấp hơn mobile-hero-controller */
     padding: 12px 0;
     border-top-left-radius: 20px;
     border-top-right-radius: 20px;
@@ -1775,6 +1837,9 @@
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    will-change: transform; /* Cải thiện hiệu suất transform */
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
   }
 
   .visit-page .mobile-button-item {
@@ -1842,6 +1907,10 @@
   /* Adjust the scroll top button position for mobile */
   .visit-page .mobile-scroll-top {
     bottom: 80px;
+  }
+
+  .mobile-bottom-nav.hidden {
+    transform: translateY(100%);
   }
 }
 
@@ -1925,4 +1994,54 @@
 /* Glow effect for active nav item */
 .visit-page .mobile-button-item.active .mobile-nav-icon {
   filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+}
+
+/* Mobile responsiveness for enhanced section titles */
+@media (max-width: 768px) {
+  .visit-section-title {
+    font-size: 1.8rem;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+  }
+
+  .visit-section-title::before {
+    width: 40px;
+    height: 40px;
+    top: -10px;
+  }
+
+  .visit-section-title span::before,
+  .visit-section-title span::after {
+    width: 20px;
+    right: -30px;
+    left: -30px;
+  }
+
+  .visit-section-title::after {
+    width: 80px;
+  }
+
+  .visit-section:hover .visit-section-title::after {
+    width: 120px;
+  }
+}
+
+@media (max-width: 576px) {
+  .visit-section-title {
+    font-size: 2rem;
+    padding-bottom: 15px;
+    margin-bottom: 20px;
+  }
+
+  .visit-section-title::before {
+    width: 30px;
+    height: 30px;
+    top: -8px;
+  }
+
+  .visit-section-title span::before,
+  .visit-section-title span::after {
+    display: none; /* Hide decorative elements on very small screens */
+  }
 }

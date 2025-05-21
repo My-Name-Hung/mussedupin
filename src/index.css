@@ -2,11 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap");
 
-/* Custom Vietnamese Font Class */
-.vi-font {
-  font-family: "Cormorant Garamond", "Crimson Text", serif !important;
-}
-
 :root {
   font-family: Roboto, "Open Sans", Arial, Helvetica, sans-serif;
   line-height: 1.5;
@@ -22,27 +17,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-/* Vietnamese language specific font adjustments */
-:root[lang="vi"] {
-  --serif-font: "Cormorant Garamond", "Crimson Text", serif;
-  --sans-font: Roboto, "Open Sans", Arial, Helvetica, sans-serif;
-}
-
-/* Global Vietnamese font override for LouvreSerif */
-:root[lang="vi"] *[style*="LouvreSerif"],
-:root[lang="vi"] *[class*="title"],
-:root[lang="vi"] h1,
-:root[lang="vi"] h2,
-:root[lang="vi"] h3,
-:root[lang="vi"] h4,
-:root[lang="vi"] h5 {
-  font-family: var(--serif-font) !important;
-}
-
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+html,
+body {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
 }
 
 body {
@@ -51,11 +36,62 @@ body {
   min-width: 320px;
   min-height: 100vh;
   background-color: #020216;
+  isolation: isolate;
+}
+
+/* Fix for fixed positioned elements - enhanced version */
+.fixed-mobile-element {
+  position: fixed !important;
+  z-index: 9900 !important;
+  transform: translateZ(0) !important;
+  -webkit-transform-style: preserve-3d !important;
+  transform-style: preserve-3d !important;
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  will-change: transform, opacity !important;
+  isolation: isolate !important;
+}
+
+/* Specific element positioning fixes */
+.fixed-mobile-element.mobile-bottom-nav {
+  bottom: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  width: 100vw !important;
+  z-index: 9940 !important;
+}
+
+.fixed-mobile-element.mobile-scroll-top {
+  bottom: 80px !important;
+  right: 20px !important;
+  z-index: 9950 !important;
+}
+
+.fixed-mobile-element.homestay-details-sidebar,
+.fixed-mobile-element.booking-sidebar {
+  top: 0 !important;
+  right: -100% !important;
+  height: 100vh !important;
+  z-index: 9945 !important;
+}
+
+.fixed-mobile-element.homestay-details-sidebar.open,
+.fixed-mobile-element.booking-sidebar.open {
+  right: 0 !important;
+}
+
+.fixed-mobile-element.details-sidebar-header,
+.fixed-mobile-element.booking-sidebar-header {
+  top: 0 !important;
+  z-index: 9946 !important;
 }
 
 .app {
   width: 100%;
   min-height: 100vh;
+  isolation: isolate;
+  position: relative;
+  overflow-x: hidden;
 }
 
 a {
@@ -138,5 +174,25 @@ img {
   }
   100% {
     opacity: 0.2;
+  }
+}
+
+/* Fix for mobile quirks */
+@media (max-width: 768px) {
+  /* Force hardware acceleration and proper stacking for all fixed elements */
+  body .fixed-mobile-element {
+    -webkit-transform: translate3d(0, 0, 0) !important;
+    transform: translate3d(0, 0, 0) !important;
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+  }
+
+  /* Fixed position must be respected */
+  body .fixed-mobile-element.mobile-bottom-nav {
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    width: 100% !important;
   }
 }

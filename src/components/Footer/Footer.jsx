@@ -51,7 +51,7 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/collections">
+                <Link to="/collection">
                   <TranslatedText>Collection</TranslatedText>
                 </Link>
               </li>

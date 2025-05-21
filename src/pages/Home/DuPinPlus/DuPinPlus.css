@@ -1,3 +1,12 @@
+@font-face {
+  font-family: "Mythical-Prince";
+  src: url("../../../assets/museedupin/1FTV-VIP-Mythical-Prince.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 .dupin-plus-page {
   background-color: #000;
   color: #fff;
@@ -21,11 +30,12 @@
 }
 
 .page-title {
-  font-size: 4rem;
-  font-weight: 300;
-  margin: 0 0 1rem;
-  letter-spacing: 0.05em;
-  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
+  font-size: 3rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #333;
 }
 
 .page-subtitle {

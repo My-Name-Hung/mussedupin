@@ -87,15 +87,10 @@ const TranslatedText = memo(({ children, className = "", ...props }) => {
     return children;
   }
 
-  // Add vi-font class when language is Vietnamese
-  const isVietnamese = currentLanguage === "vi";
-  const fontClass = isVietnamese ? "vi-font" : "";
-
+  // Sử dụng cùng một cách hiển thị cho tất cả ngôn ngữ
   return (
     <span
-      className={`translated-text ${className} ${
-        isLoading ? "loading" : ""
-      } ${fontClass}`}
+      className={`translated-text ${className} ${isLoading ? "loading" : ""}`}
       {...props}
     >
       {translatedText}

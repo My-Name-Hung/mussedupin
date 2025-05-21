@@ -1,25 +1,93 @@
 .delve-into-section {
   background-color: #000;
   color: #fff;
-  padding: 5rem 0 8rem;
+  padding: 6rem 0;
   overflow: hidden;
   position: relative;
+  clip-path: polygon(0 4%, 100% 0, 100% 96%, 0 100%);
+  margin: 3rem 0;
+  transform: translateY(30px);
+  opacity: 0.8;
+  transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.delve-into-section::before {
-  content: "";
+.delve-into-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.delve-into-background {
   position: absolute;
   top: 0;
   left: 0;
-  width: 100%;
-  height: 100%;
+  right: 0;
+  bottom: 0;
   background: radial-gradient(
-    circle at 70% 30%,
-    rgba(50, 50, 50, 0.3),
-    transparent 70%
-  );
-  z-index: 1;
+      circle at 30% 50%,
+      rgba(50, 30, 80, 0.3),
+      transparent 80%
+    ),
+    radial-gradient(circle at 70% 30%, rgba(80, 30, 50, 0.3), transparent 70%);
+  opacity: 0.1;
+  transition: opacity 1.5s ease;
+  z-index: 0;
   pointer-events: none;
+  background-image: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.03) 25%,
+    transparent 25%,
+    transparent 50%,
+    rgba(255, 255, 255, 0.03) 50%,
+    rgba(255, 255, 255, 0.03) 75%,
+    transparent 75%,
+    transparent
+  );
+  background-size: 20px 20px;
+  animation: backgroundPulse 8s infinite alternate;
+}
+
+@keyframes backgroundPulse {
+  0% {
+    opacity: 0.08;
+  }
+  100% {
+    opacity: 0.18;
+  }
+}
+
+/* Add decorative angled lines similar to dupin-section */
+.delve-into-section::before {
+  content: "";
+  position: absolute;
+  top: 50px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(-2deg);
+  z-index: 1;
+}
+
+.delve-into-section::after {
+  content: "";
+  position: absolute;
+  bottom: 70px;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
+  transform: rotate(-2deg);
+  z-index: 1;
 }
 
 .delve-into-container {
@@ -28,16 +96,25 @@
   padding: 0 2rem;
   position: relative;
   z-index: 2;
+  transform: skewY(-2deg);
 }
 
 .delve-into-title {
-  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-family: "Meholrax", serif;
   font-size: 3.5rem;
   font-weight: 400;
   margin: 0 0 4rem;
   letter-spacing: 0.05em;
   text-align: start;
   position: relative;
+  transform: translateX(5%) skewY(2deg);
+  background: linear-gradient(to right, #fff, #b89a7a);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+  animation: titleFadeIn 1s ease-out forwards;
+  opacity: 0;
 }
 
 .delve-into-title::after {
@@ -45,16 +122,33 @@
   position: absolute;
   bottom: -20px;
   left: 0;
-  width: 120px;
+  width: 0;
   height: 3px;
   background: linear-gradient(
     90deg,
     rgba(255, 255, 255, 0.8),
     rgba(255, 255, 255, 0.1)
   );
+  animation: expandWidth 1.5s ease-out 0.5s forwards;
 }
 
-/* Modernized asymmetric grid layout */
+@keyframes expandWidth {
+  to {
+    width: 120px;
+  }
+}
+
+@keyframes titleFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(5%) translateY(20px) skewY(2deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(5%) translateY(0) skewY(2deg);
+  }
+}
+
 .delve-into-grid {
   display: grid;
   grid-template-columns: repeat(12, 1fr);
@@ -64,9 +158,16 @@
   margin-bottom: 5rem;
   transform-style: preserve-3d;
   perspective: 1200px;
+  transform: skewY(2deg);
+  opacity: 0;
+  transition: opacity 1s ease-out 0.2s;
 }
 
-/* Grid items with artistic positioning */
+.delve-into-grid.visible {
+  opacity: 1;
+}
+
+/* Grid items with artistic positioning and skewed effects */
 .grid-item {
   position: relative;
   border-radius: 8px;
@@ -75,19 +176,19 @@
   transform-style: preserve-3d;
   transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
   will-change: transform, box-shadow;
+  opacity: 0;
+  animation: gridItemAppear 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
-.grid-item::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 50%;
-  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-  pointer-events: none;
-  z-index: 1;
-  transition: opacity 0.5s ease;
+@keyframes gridItemAppear {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95) rotateX(5deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0);
+  }
 }
 
 .grid-item::before {
@@ -112,6 +213,19 @@
   opacity: 1;
 }
 
+.grid-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.5s ease;
+}
+
 .grid-image {
   width: 100%;
   height: 100%;
@@ -123,7 +237,7 @@
 
 .grid-item:hover {
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
-  transform: translateY(-12px) scale(1.02) rotateY(2deg);
+  transform: translateY(-12px) scale(1.02) rotateY(2deg) skewX(-2deg);
   z-index: 10;
 }
 
@@ -136,43 +250,37 @@
 .grid-item-1 {
   grid-column: 1 / span 5;
   grid-row: 1 / span 8;
-  transform: perspective(1000px) rotateY(-2deg) rotateX(1deg);
-  z-index: 2;
+  animation-delay: 0.1s;
 }
 
 .grid-item-2 {
   grid-column: 1 / span 3;
   grid-row: 9 / span 4;
-  transform: perspective(1000px) rotateY(1.5deg) rotateX(-1deg);
-  z-index: 1;
+  animation-delay: 0.3s;
 }
 
 .grid-item-3 {
   grid-column: 4 / span 2;
   grid-row: 9 / span 4;
-  transform: perspective(1000px) rotateY(-1.5deg) rotateX(1.5deg);
-  z-index: 3;
+  animation-delay: 0.5s;
 }
 
 .grid-item-4 {
   grid-column: 6 / span 4;
   grid-row: 1 / span 12;
-  transform: perspective(1000px) rotateX(1deg) translateY(-10px);
-  z-index: 4;
+  animation-delay: 0.2s;
 }
 
 .grid-item-5 {
   grid-column: 10 / span 3;
   grid-row: 1 / span 6;
-  transform: perspective(1000px) rotateY(2deg) rotateX(-0.5deg);
-  z-index: 2;
+  animation-delay: 0.4s;
 }
 
 .grid-item-6 {
   grid-column: 10 / span 3;
   grid-row: 7 / span 6;
-  transform: perspective(1000px) rotateY(1.5deg) rotateX(-1.5deg);
-  z-index: 1;
+  animation-delay: 0.6s;
 }
 
 .explore-button-container {
@@ -184,6 +292,15 @@
   justify-content: center;
   z-index: 10;
   margin-bottom: 1rem;
+  transform: skewY(2deg);
+  opacity: 0;
+  animation: fadeIn 1s ease 1.2s forwards;
+}
+
+@keyframes fadeIn {
+  to {
+    opacity: 1;
+  }
 }
 
 .explore-button {
@@ -201,6 +318,7 @@
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
   position: relative;
   overflow: hidden;
+  transform: skewX(-1deg);
 }
 
 .explore-button::before {
@@ -221,7 +339,7 @@
 
 .explore-button:hover {
   background-color: #fff;
-  transform: translateY(-8px) scale(1.05);
+  transform: translateY(-8px) scale(1.05) skewX(-1deg);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
 }
 
@@ -229,136 +347,106 @@
   left: 100%;
 }
 
-.explore-button:active {
-  transform: translateY(-4px) scale(1.02);
+/* Floating decorative elements */
+.decorative-element {
+  position: absolute;
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.2;
 }
 
-/* Enhanced staggered animation for grid items */
-.grid-item {
-  opacity: 0;
-  animation: fadeInGrid 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+.decorative-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.7);
+  top: 20%;
+  right: 10%;
+  filter: blur(1px);
+  animation: float 8s ease-in-out infinite alternate;
 }
 
-.grid-item-1 {
-  animation-delay: 0.1s;
+.decorative-line {
+  width: 2px;
+  height: 80px;
+  background: linear-gradient(to bottom, rgba(255, 255, 255, 0.2), transparent);
+  top: 15%;
+  left: 5%;
+  transform: rotate(45deg);
+  animation: float 12s ease-in-out 2s infinite alternate;
 }
 
-.grid-item-2 {
-  animation-delay: 0.3s;
+.decorative-circle {
+  width: 100px;
+  height: 100px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  bottom: 15%;
+  right: 15%;
+  animation: float 15s ease-in-out 1s infinite alternate;
 }
 
-.grid-item-3 {
-  animation-delay: 0.5s;
-}
-
-.grid-item-4 {
-  animation-delay: 0.2s;
-}
-
-.grid-item-5 {
-  animation-delay: 0.4s;
-}
-
-.grid-item-6 {
-  animation-delay: 0.6s;
-}
-
-@keyframes fadeInGrid {
-  from {
-    opacity: 0;
-    transform: translateY(40px) scale(0.95) rotateX(5deg);
+@keyframes float {
+  0% {
+    transform: translateY(0) rotate(0);
   }
-  to {
-    opacity: 1;
-    transform: translateY(0) scale(1) rotateX(0);
+  50% {
+    transform: translateY(-15px) rotate(5deg);
   }
-}
-
-/* Media queries for responsiveness */
-@media (max-width: 1200px) {
-  .delve-into-title {
-    font-size: 3rem;
-    margin-bottom: 3rem;
-  }
-
-  .delve-into-grid {
-    grid-template-rows: repeat(14, 45px);
-    gap: 1.5rem;
-    margin-bottom: 4rem;
-  }
-
-  .grid-item-4 {
-    transform: perspective(1000px) rotateX(1deg) translateY(-5px);
+  100% {
+    transform: translateY(15px) rotate(-5deg);
   }
 }
 
-@media (max-width: 992px) {
-  .delve-into-title {
-    font-size: 2.8rem;
-  }
-
-  .delve-into-grid {
-    grid-template-columns: repeat(8, 1fr);
-    grid-template-rows: repeat(22, 35px);
-    gap: 1.4rem;
-    perspective: 1000px;
-  }
-
-  .grid-item-1 {
-    grid-column: 1 / span 5;
-    grid-row: 1 / span 8;
-    transform: perspective(800px) rotateY(-3deg) rotateX(1deg);
-  }
-
-  .grid-item-2 {
-    grid-column: 6 / span 3;
-    grid-row: 1 / span 6;
-    transform: perspective(800px) rotateY(3deg) rotateX(-1deg);
-  }
-
-  .grid-item-3 {
-    grid-column: 6 / span 3;
-    grid-row: 7 / span 6;
-    transform: perspective(800px) rotateY(2deg) rotateX(1deg);
-  }
-
-  .grid-item-4 {
-    grid-column: 1 / span 4;
-    grid-row: 9 / span 8;
-    transform: perspective(800px) rotateY(-2deg) translateY(0);
-  }
-
-  .grid-item-5 {
-    grid-column: 5 / span 4;
-    grid-row: 13 / span 6;
-    transform: perspective(800px) rotateY(3deg) rotateX(-1deg);
-  }
-
-  .grid-item-6 {
-    grid-column: 1 / span 8;
-    grid-row: 19 / span 4;
-    transform: perspective(800px) rotateX(2deg);
-  }
-
-  .grid-item:hover {
-    transform: translateY(-8px) scale(1.03);
-  }
-}
-
+/* Mobile adjustments for angled design */
 @media (max-width: 768px) {
+  .delve-into-section::before {
+    top: 30px;
+    transform: rotate(-1deg);
+  }
+
+  .delve-into-section::after {
+    bottom: 40px;
+    transform: rotate(-1deg);
+  }
+
   .delve-into-section {
-    padding: 4rem 0 6rem;
+    clip-path: polygon(0 2%, 100% 0, 100% 98%, 0 100%);
+    margin: 1.5rem 0;
+    padding: 3rem 0 4rem;
+  }
+
+  .delve-into-container {
+    transform: skewY(-1deg);
   }
 
   .delve-into-title {
     font-size: 2.5rem;
+    transform: translateX(0) skewY(1deg);
     margin-bottom: 2.5rem;
   }
 
   .delve-into-title::after {
-    width: 80px;
-    height: 2px;
     bottom: -15px;
+  }
+
+  .delve-into-grid {
+    transform: skewY(1deg);
+    gap: 1.2rem;
+  }
+
+  .grid-item:hover {
+    transform: translateY(-6px) scale(1.02) skewX(-1deg);
+  }
+
+  .explore-button {
+    transform: skewX(-0.5deg);
+    padding: 0.9rem 2.7rem;
+    font-size: 1.1rem;
+  }
+
+  .explore-button-container {
+    transform: skewY(1deg);
   }
 
   /* Create a more artistic staggered mobile layout */
@@ -412,22 +500,9 @@
     transform: perspective(600px) rotateX(2deg);
     z-index: 2;
   }
-
-  .grid-item::after {
-    height: 60%;
-  }
-
-  .grid-item:hover {
-    transform: translateY(-6px) scale(1.02);
-  }
-
-  .explore-button {
-    padding: 0.9rem 2.7rem;
-    font-size: 1.1rem;
-  }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 576px) {
   .delve-into-section {
     padding: 3rem 0 5rem;
   }
@@ -496,46 +571,5 @@
     grid-row: 28 / span 8;
     z-index: 2;
     transform: perspective(500px) rotateX(2deg);
-  }
-
-  /* Add special light effect for better artistic feel */
-  .grid-item::before {
-    background: radial-gradient(
-      circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-      rgba(255, 255, 255, 0.25),
-      transparent 70%
-    );
-  }
-
-  .explore-button {
-    padding: 0.8rem 2.4rem;
-    font-size: 1rem;
-    backdrop-filter: blur(5px);
-    -webkit-backdrop-filter: blur(5px);
-  }
-
-  /* Dynamic shine effect for cards */
-  .grid-item:nth-child(odd)::after {
-    height: 100%;
-    background: linear-gradient(
-      135deg,
-      rgba(0, 0, 0, 0.7) 0%,
-      rgba(0, 0, 0, 0.4) 50%,
-      rgba(0, 0, 0, 0.7) 100%
-    );
-  }
-
-  .grid-item:nth-child(even)::after {
-    height: 100%;
-    background: linear-gradient(
-      225deg,
-      rgba(0, 0, 0, 0.7) 0%,
-      rgba(0, 0, 0, 0.4) 50%,
-      rgba(0, 0, 0, 0.7) 100%
-    );
-  }
-
-  .grid-item:hover {
-    transform: translateY(-5px) scale(1.02);
   }
 }

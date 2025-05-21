@@ -223,19 +223,10 @@
   transform: translateY(-2px);
 }
 
-.btn-outline {
-  border: 1px solid rgba(255, 255, 255, 0.7);
-}
-
 .btn-outline:hover {
   border-color: #ffffff;
   background-color: rgba(255, 255, 255, 0.1);
   text-decoration: none;
-}
-
-.btn-filled {
-  background-color: #00695c;
-  border: none;
 }
 
 .btn-filled:hover {
@@ -413,7 +404,7 @@
   }
 
   .btn-filled .btn-icon {
-    margin-right: 8px;
+    margin-right: 0px;
   }
 }
 
@@ -442,9 +433,9 @@
 
 /* Button icons */
 .btn-icon {
-  margin-right: 8px;
-  height: 1em;
-  width: 1em;
+  margin-right: 0px;
+  height: 1.2rem;
+  width: 1.2rem;
   pointer-events: none;
   fill: currentColor;
 }
@@ -1013,7 +1004,7 @@
 }
 
 .museum-name-mobile {
-  font-family: "Mythical-Prince", "Meholrax", serif;
+  font-family: "Meholrax", serif;
   font-size: 18px;
   color: #fff;
   margin-left: 8px;
@@ -1184,7 +1175,7 @@
 
 .mobile-nav-item {
   padding: 18px 0;
-  font-family: Montserrat, Verdana, sans-serif;
+  font-family: "Meholrax", Georgia, "Times New Roman", Times, serif;
   font-weight: 600;
   font-size: 18px;
   letter-spacing: 0.5px;
@@ -2654,7 +2645,7 @@ html {
 }
 
 .museum-name-mobile {
-  font-family: "Mythical-Prince", "Meholrax", serif;
+  font-family: "Meholrax", serif;
   font-size: 18px;
   color: #fff;
   margin-left: 0px;
@@ -2689,4 +2680,3 @@ html {
     margin-left: 6px;
   }
 }
-

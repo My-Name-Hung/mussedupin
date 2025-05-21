@@ -741,11 +741,9 @@ const Navbar = () => {
 
       case "EXPLORE":
         items = [
-          { title: "Collections", path: "/collections" },
+          { title: "Collections", path: "/collection" },
           { title: "Life at the museum", path: "/life-at-the-museum" },
           { title: "Visitor trails", path: "/visitor-trails" },
-          { title: "The palace", path: "/the-palace" },
-          { title: "The gardens", path: "/the-gardens" },
         ];
         featured = {
           title: "Beyoncé and Jay-Z's Louvre Highlights",
@@ -1127,11 +1125,9 @@ const Navbar = () => {
           <div className="buttons-container">
             <Link to="/boutique" className="btn btn-outline">
               <BoutiqueIcon />
-              <TranslatedText>Online Boutique</TranslatedText>
             </Link>
             <Link to="/tickets" className="btn btn-filled">
               <TicketIcon />
-              <TranslatedText>Tickets</TranslatedText>
             </Link>
           </div>
 
@@ -1152,19 +1148,22 @@ const Navbar = () => {
 
         </div> */}
 
-        <div className="mobile-logo" onClick={() => setShowMobileMenu(true)}>
-          <img
-            src={logo}
-            alt="Musée Du Pin Logo"
-            className="mobile-logo-image"
-          />
-          <span className="museum-name-mobile">Musée Du Pin</span>
+        <div className="mobile-logo">
+          <div onClick={() => setShowMobileMenu(true)}>
+            <img
+              src={logo}
+              alt="Musée Du Pin Logo"
+              className="mobile-logo-image"
+            />
+          </div>
+          <a href="/">
+            <span className="museum-name-mobile">Musée Du Pin</span>
+          </a>
         </div>
 
         <div className="right-section">
           <Link to="/tickets" className="btn btn-filled">
             <TicketIcon />
-            <span className="mobile-ticket-text">Tickets</span>
           </Link>
         </div>
       </div>
@@ -1726,7 +1725,7 @@ const Navbar = () => {
                     type="button"
                     className="nav-button"
                     onClick={() => {
-                      navigate("/collections");
+                      navigate("/collection");
                       setShowExploreDropdown(false);
                     }}
                   >

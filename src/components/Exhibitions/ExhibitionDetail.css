@@ -1,6 +1,22 @@
 /* Exhibition Detail Page Styles */
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap");
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../../assets/fonts/montserrat/600/latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mythical-Prince";
+  src: url("../../assets/museedupin/1FTV-VIP-Mythical-Prince.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 
 /* Main layout with dramatic aesthetic */
 .exhibition-detail-page {
@@ -115,29 +131,29 @@
 }
 
 .exhibition-detail-title {
-  font-family: "Playfair Display", serif;
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
   font-size: 4rem;
   font-weight: 700;
-  margin-bottom: 0.8rem;
+  margin-bottom: 1rem;
   line-height: 1.1;
-  max-width: 90%;
-  transform: translateY(20px);
-  opacity: 0;
-  animation: fadeUp 0.8s ease 0.4s forwards;
+  max-width: 800px;
   text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+  transform: translateY(30px);
+  opacity: 0;
+  animation: fadeUp 0.8s ease forwards 0.3s;
 }
 
 .exhibition-detail-subtitle {
   font-family: "Roboto", sans-serif;
-  font-size: 1.8rem;
-  font-weight: 300;
-  margin-top: 0;
-  margin-bottom: 1rem;
-  max-width: 80%;
-  transform: translateY(20px);
+  font-size: 1.5rem;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 2rem;
+  max-width: 700px;
+  transform: translateY(30px);
   opacity: 0;
-  animation: fadeUp 0.8s ease 0.6s forwards;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  animation: fadeUp 0.8s ease forwards 0.5s;
 }
 
 /* Main Content with asymmetrical layout */
@@ -227,7 +243,7 @@
 }
 
 .meta-item h3 {
-  font-family: "Playfair Display", serif;
+  font-family: "Monospace", serif;
   font-size: 1.1rem;
   font-weight: 600;
   text-transform: uppercase;
@@ -317,7 +333,7 @@
 }
 
 .exhibition-detail-description p:first-of-type::first-letter {
-  font-family: "Playfair Display", serif;
+  font-family: "Montserrat", serif;
   float: left;
   font-size: 4rem;
   line-height: 0.8;
@@ -335,7 +351,8 @@
 
 .exhibition-detail-curators h3,
 .exhibition-detail-highlights h3 {
-  font-family: "Playfair Display", serif;
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
   font-size: 1.6rem;
   margin-bottom: 1.5rem;
   color: #345164;
@@ -430,7 +447,8 @@
 }
 
 .related-items h2 {
-  font-family: "Roboto", serif;
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
   font-size: 2.2rem;
   margin-bottom: 2.5rem;
   color: #345164;
@@ -533,7 +551,7 @@
 }
 
 .related-item-content h3 {
-  font-family: "Playfair Display", serif;
+  font-family: "Montserrat", serif;
   font-size: 1.3rem;
   margin-top: 0;
   margin-bottom: 0.7rem;

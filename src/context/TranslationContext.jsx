@@ -7,7 +7,7 @@ import {
 } from "../utils/translate";
 import { translatePage } from "../utils/translatePage";
 
-// Import Vietnamese specific styles - will be used conditionally
+// Import standard styles for all languages
 import "../styles/vietnamese.css";
 
 // Tạo context với giá trị mặc định
@@ -82,17 +82,7 @@ export const TranslationProvider = ({ children }) => {
         return;
       }
 
-      // Show a message about Vietnamese vs. other languages translation quality
-      if (langCode === "vi") {
-        // Can remove this console message for production
-        console.info("Using manual Vietnamese translations for best quality.");
-      } else {
-        // Can remove this console message for production
-        console.info("Using automatic translation system for this language.");
-      }
-
-      // Đối với việc chuyển đổi giữa các ngôn ngữ không phải tiếng Anh
-      // (ví dụ: từ tiếng Việt sang tiếng Pháp)
+      // Xử lý đồng nhất cho tất cả ngôn ngữ không phải tiếng Anh
       // Cập nhật state để trigger useEffect và bắt đầu dịch
       setCurrentLanguage(langCode);
     }

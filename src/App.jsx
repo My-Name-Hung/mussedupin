@@ -1,18 +1,20 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
 import "./App.css";
+import ExhibitionDetail from "./components/Exhibitions/ExhibitionDetail";
+import Exhibitions from "./components/Exhibitions/Exhibitions";
 import Footer from "./components/Footer/Footer";
 import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
-import PrepareVisit from "./components/VisitPage/PrepareVisit/PrepareVisit";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollToTopButton from "./components/ScrollToTopButton/ScrollToTopButton";
 import TranslatedText from "./components/TranslatedText";
+import PrepareVisit from "./components/VisitPage/PrepareVisit/PrepareVisit";
 import Visit from "./components/VisitPage/Visit/Visit";
 import VisitInfo from "./components/VisitPage/Visit/VisitInfo";
 import "./index.css";
-import ExhibitionDetail from "./components/Exhibitions/ExhibitionDetail";
-import Exhibitions from "./components/Exhibitions/Exhibitions";
+import CategoryPage from "./pages/Collection/CategoryPage";
+import CollectionPage from "./pages/Collection/CollectionPage";
 import LegalNotice from "./pages/Footer/LegalNotice/LegalNotice";
 import DuPinPlus from "./pages/Home/DuPinPlus/DuPinPlus";
 import ExplorePage from "./pages/Home/ExplorePage/ExplorePage";
@@ -120,6 +122,11 @@ function App() {
             <Route path="/dupinplus" element={<DuPinPlus />} />
             <Route path="/legal-notice" element={<LegalNotice />} />
             <Route path="/search-results" element={<SearchResults />} />
+            <Route path="/collection" element={<CollectionPage />} />
+            <Route
+              path="/collection/category/:id/:title"
+              element={<CategoryPage />}
+            />
             <Route
               path="/exhibition-details/:id"
               element={<ExhibitionDetail />}

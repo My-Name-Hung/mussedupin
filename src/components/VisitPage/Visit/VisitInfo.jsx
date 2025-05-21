@@ -731,146 +731,72 @@ const VisitInfo = () => {
   );
 
   // Render Navigation Bar
-  const renderNavigationBar = () => (
-    <>
-      <div
-        className={`visitinfo-nav-container ${isNavSticky ? "sticky" : ""} ${
-          navScrolled ? "scrolled-right" : ""
-        }`}
-        ref={(el) => {
-          navRef.current = el;
-          horizontalNavRef.current = el;
-        }}
-        onTouchStart={handleNavTouchStart}
-        onTouchMove={handleNavTouchMove}
-      >
-        <div className="visitinfo-nav">
-          <ul className="visitinfo-nav-list">
-            <li
-              className={`visitinfo-nav-item ${
-                activeSection === "amenities" ? "active" : ""
-              }`}
-            >
-              <button
-                onClick={() => scrollToSection("amenities")}
-                className="visitinfo-nav-button"
-              >
-                <TranslatedText>Visitor Amenities</TranslatedText>
-              </button>
-              <span className="visitinfo-nav-indicator"></span>
-            </li>
-            <li
-              className={`visitinfo-nav-item ${
-                activeSection === "homestay" ? "active" : ""
-              }`}
-            >
-              <button
-                onClick={() => scrollToSection("homestay")}
-                className="visitinfo-nav-button"
-              >
-                <TranslatedText>Homestay Options</TranslatedText>
-              </button>
-              <span className="visitinfo-nav-indicator"></span>
-            </li>
-            <li
-              className={`visitinfo-nav-item ${
-                activeSection === "faq" ? "active" : ""
-              }`}
-            >
-              <button
-                onClick={() => scrollToSection("faq")}
-                className="visitinfo-nav-button"
-              >
-                <TranslatedText>FAQ</TranslatedText>
-              </button>
-              <span className="visitinfo-nav-indicator"></span>
-            </li>
-          </ul>
-        </div>
-      </div>
+  const renderNavigationBar = () => {
+    // Don't render the navigation bar on mobile
+    if (isMobile) return null;
 
-      {/* Mobile Bottom Navigation */}
-      <div className={`mobile-bottom-nav ${isNavSticky ? "hidden" : ""}`}>
-        <ul className="mobile-nav-list">
-          <li
-            className={`mobile-button-item ${
-              activeSection === "amenities" ? "active" : ""
-            }`}
-          >
-            <button
-              onClick={() => scrollToSection("amenities")}
-              className="mobile-nav-button ripple-effect"
-              onTouchStart={createRippleEffect}
-            >
-              <div className="mobile-nav-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
+    return (
+      <>
+        <div
+          className={`visitinfo-nav-container ${isNavSticky ? "sticky" : ""} ${
+            navScrolled ? "scrolled-right" : ""
+          }`}
+          ref={(el) => {
+            navRef.current = el;
+            horizontalNavRef.current = el;
+          }}
+          onTouchStart={handleNavTouchStart}
+          onTouchMove={handleNavTouchMove}
+        >
+          <div className="visitinfo-nav">
+            <ul className="visitinfo-nav-list">
+              <li
+                className={`visitinfo-nav-item ${
+                  activeSection === "amenities" ? "active" : ""
+                }`}
+              >
+                <button
+                  onClick={() => scrollToSection("amenities")}
+                  className="visitinfo-nav-button"
                 >
-                  <path d="M12 2C7.584 2 4 5.584 4 10c0 4.414 3.584 8 8 8s8-3.586 8-8c0-4.416-3.584-8-8-8zm0 12c-2.207 0-4-1.793-4-4s1.793-4 4-4 4 1.793 4 4-1.793 4-4 4zm0-5c-.553 0-1 .447-1 1s.447 1 1 1 1-.447 1-1-.447-1-1-1zm2.5 9H9.5V19h5v-1zm-2.5 4c-5.514 0-10-4.486-10-10S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10z" />
-                </svg>
-              </div>
-              <span className="mobile-nav-label">
-                <TranslatedText>Amenities</TranslatedText>
-              </span>
-            </button>
-          </li>
-          <li
-            className={`mobile-button-item ${
-              activeSection === "homestay" ? "active" : ""
-            }`}
-          >
-            <button
-              onClick={() => scrollToSection("homestay")}
-              className="mobile-nav-button ripple-effect"
-              onTouchStart={createRippleEffect}
-            >
-              <div className="mobile-nav-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
+                  <TranslatedText>Visitor Amenities</TranslatedText>
+                </button>
+                <span className="visitinfo-nav-indicator"></span>
+              </li>
+              <li
+                className={`visitinfo-nav-item ${
+                  activeSection === "homestay" ? "active" : ""
+                }`}
+              >
+                <button
+                  onClick={() => scrollToSection("homestay")}
+                  className="visitinfo-nav-button"
                 >
-                  <path d="M12 2.617L1 12h3v9h7v-6h2v6h7v-9h3L12 2.617zm-7 9.6V19H3v-8.447L12 2.619l9 7.934V19h-2v-6.766h-6v6.763h-3v-6.763H5v-.017z" />
-                </svg>
-              </div>
-              <span className="mobile-nav-label">
-                <TranslatedText>Homestay</TranslatedText>
-              </span>
-            </button>
-          </li>
-          <li
-            className={`mobile-button-item ${
-              activeSection === "faq" ? "active" : ""
-            }`}
-          >
-            <button
-              onClick={() => scrollToSection("faq")}
-              className="mobile-nav-button ripple-effect"
-              onTouchStart={createRippleEffect}
-            >
-              <div className="mobile-nav-icon">
-                <svg
-                  viewBox="0 0 24 24"
-                  width="24"
-                  height="24"
-                  fill="currentColor"
+                  <TranslatedText>Homestay Options</TranslatedText>
+                </button>
+                <span className="visitinfo-nav-indicator"></span>
+              </li>
+              <li
+                className={`visitinfo-nav-item ${
+                  activeSection === "faq" ? "active" : ""
+                }`}
+              >
+                <button
+                  onClick={() => scrollToSection("faq")}
+                  className="visitinfo-nav-button"
                 >
-                  <path d="M10 19h4v-4h-4v4zm0-6h4v-4h-4v4zm0-6h4V3h-4v4zm6 12h4v-4h-4v4zm0-6h4v-4h-4v4zm0-6h4V3h-4v4zm-12 12h4v-4H4v4zm0-6h4v-4H4v4zm0-6h4V3H4v4z" />
-                </svg>
-              </div>
-              <span className="mobile-nav-label">
-                <TranslatedText>FAQ</TranslatedText>
-              </span>
-            </button>
-          </li>
-        </ul>
-      </div>
-    </>
-  );
+                  <TranslatedText>FAQ</TranslatedText>
+                </button>
+                <span className="visitinfo-nav-indicator"></span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Mobile Bottom Navigation */}
+      </>
+    );
+  };
 
   // Function to create ripple effect on touch
   const createRippleEffect = (event) => {
@@ -957,7 +883,9 @@ const VisitInfo = () => {
               transition: "transform 0.5s ease",
             }}
           >
-            <TranslatedText>Comfort and convenience</TranslatedText>
+            <span>
+              <TranslatedText>Comfort and convenience</TranslatedText>
+            </span>
             <span
               style={{
                 position: "absolute",
@@ -1120,6 +1048,8 @@ const VisitInfo = () => {
             className="visitinfo-section-title modern"
             style={{
               fontSize: "3.5rem",
+              fontFamily:
+                "'Mythical-Prince', 'LouvreSerif', Georgia, 'Times New Roman', serif",
               color: "#0f172a",
               position: "relative",
               paddingBottom: "20px",
@@ -1128,9 +1058,11 @@ const VisitInfo = () => {
               marginBottom: "30px",
             }}
           >
-            <TranslatedText>
-              Experience local living near the museum
-            </TranslatedText>
+            <span>
+              <TranslatedText>
+                Experience local living near the museum
+              </TranslatedText>
+            </span>
             <span className="title-accent"></span>
           </h2>
           <p
@@ -1279,8 +1211,16 @@ const VisitInfo = () => {
 
       <div className="faq-container">
         <div className="faq-header">
-          <h2 className="faq-title">
-            <TranslatedText>Frequently asked questions</TranslatedText>
+          <h2
+            className="faq-title"
+            style={{
+              fontFamily:
+                "'Mythical-Prince', 'LouvreSerif', Georgia, 'Times New Roman', serif",
+            }}
+          >
+            <span>
+              <TranslatedText>Frequently asked questions</TranslatedText>
+            </span>
           </h2>
           <p className="faq-subtitle">
             <TranslatedText>Answers from the Musée Du Pin.</TranslatedText>
@@ -1545,7 +1485,12 @@ const VisitInfo = () => {
               />
             </svg>
           </button>
-          <h2>
+          <h2
+            style={{
+              fontFamily:
+                "'Mythical-Prince', 'LouvreSerif', Georgia, 'Times New Roman', serif",
+            }}
+          >
             <TranslatedText>Book Your Stay</TranslatedText>
           </h2>
           <div style={{ width: "32px" }}></div>{" "}

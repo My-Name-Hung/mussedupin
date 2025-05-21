@@ -95,7 +95,12 @@ function Home() {
           }`}
         >
           <div className="prepare-visit-content">
-            <div className="prepare-visit-left">
+            <div
+              className="prepare-visit-left"
+              style={{
+                fontFamily: "Mythical-Prince, LouvreSerif, Georgia, Times New Roman, serif",
+              }}
+            >
               <TranslatedText>PREPARE YOUR VISIT</TranslatedText>
             </div>
             <div className="prepare-visit-center">

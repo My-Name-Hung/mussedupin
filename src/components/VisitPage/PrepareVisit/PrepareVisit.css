@@ -1,6 +1,16 @@
 /* Import Google Fonts - Montserrat and Roboto */
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap");
 
+/* Import Mythical-Prince font */
+@font-face {
+  font-family: "Mythical-Prince";
+  src: url("../../../assets/museedupin/1FTV-VIP-Mythical-Prince.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 /* Base styles */
 .prepare-page {
   width: 100%;
@@ -8,6 +18,7 @@
   background-color: #fafafa;
   overflow-x: hidden;
   position: relative;
+  isolation: isolate; /* Tạo stacking context riêng */
 }
 
 .prepare-page * {
@@ -107,17 +118,20 @@
 }
 
 .prepare-hero-title {
-  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
-  font-size: 5rem;
-  font-weight: 700;
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
+  font-size: 4rem;
+  font-weight: 500;
   color: #ffffff;
-  margin: 0;
-  letter-spacing: -0.03em;
+  margin: 0 0 1.5rem;
+  letter-spacing: 0.5px;
   text-transform: uppercase;
-  line-height: 1.05;
+  text-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
   position: relative;
-  overflow: hidden;
-  text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  z-index: 2;
+  animation: fadeUpContent 1s ease 0.3s forwards;
+  opacity: 0;
+  transform: translateY(30px);
 }
 
 .prepare-hero-title::before {
@@ -358,6 +372,7 @@
   width: 100%;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
   animation: slideDown 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 9500;
 }
 
 .prepare-nav-container.sticky::before {
@@ -534,9 +549,12 @@
   background: rgba(255, 255, 255, 0.95);
   backdrop-filter: blur(10px);
   box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
-  z-index: 1000;
+  z-index: 9700; /* Điều chỉnh thấp hơn mobile-hero-controller */
   transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
   border-top: 1px solid rgba(0, 0, 0, 0.05);
+  will-change: transform; /* Cải thiện hiệu suất transform */
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
 }
 
 .mobile-bottom-nav.hidden {
@@ -545,133 +563,74 @@
 
 .mobile-nav-list {
   display: flex;
-  justify-content: space-around;
   list-style: none;
   margin: 0;
-  padding: 8px 0;
+  padding: 0;
+  width: 100%;
+  justify-content: space-around;
 }
 
 .mobile-button-item {
-  flex: 1;
-  position: relative;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
 }
 
 .mobile-button-item.active::before {
   content: "";
   position: absolute;
-  top: -8px;
+  bottom: 0;
   left: 50%;
   transform: translateX(-50%);
-  width: 30px;
+  width: 20px;
   height: 3px;
-  background: linear-gradient(to right, #00897b, #4db6ac);
-  border-radius: 3px;
+  background: #0284c7;
+  border-radius: 8px;
 }
 
 .mobile-nav-button {
   background: transparent;
   border: none;
   padding: 10px 0;
-  width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 6px;
+  cursor: pointer;
+  color: #64748b;
+  transition: all 0.3s ease;
   position: relative;
   overflow: hidden;
 }
 
 .mobile-nav-icon {
-  color: #777;
-  font-size: 1.3rem;
-  transition: transform 0.3s ease, color 0.3s ease;
+  font-size: 22px;
+  margin-bottom: 4px;
 }
 
 .mobile-nav-label {
-  font-size: 0.7rem;
+  font-size: 12px;
   font-weight: 500;
-  color: #777;
-  transition: color 0.3s ease;
 }
 
 .mobile-button-item.active .mobile-nav-icon,
 .mobile-button-item.active .mobile-nav-label {
-  color: #00897b;
+  color: #0284c7;
 }
 
 .mobile-button-item.active .mobile-nav-icon {
-  transform: translateY(-2px);
+  filter: drop-shadow(0 0 10px rgba(2, 132, 199, 0.4));
+}
+
+@media (max-width: 768px) {
+  .mobile-bottom-nav {
+    display: block;
+  }
 }
 
 /* Ripple effect for mobile buttons */
 .ripple-circle {
   position: absolute;
-  border-radius: 50%;
-  background-color: rgba(0, 137, 123, 0.2);
-  transform: scale(0);
-  animation: ripple 0.8s ease-out;
-  z-index: 0;
-}
-
-@keyframes ripple {
-  to {
-    transform: scale(2);
-    opacity: 0;
-  }
-}
-
-/* Mobile scroll to top button */
-.mobile-scroll-top {
-  position: fixed;
-  bottom: 80px;
-  right: 20px;
-  width: 45px;
-  height: 45px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #00897b, #00695c);
-  color: white;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 5px 15px rgba(0, 105, 92, 0.3);
-  opacity: 0;
-  transform: scale(0);
-  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  border: none;
-  z-index: 999;
-  cursor: pointer;
-}
-
-.mobile-scroll-top.visible {
-  opacity: 1;
-  transform: scale(1);
-}
-
-.mobile-scroll-top:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 20px rgba(0, 105, 92, 0.4);
-}
-
-/* Mobile specific styles */
-@media (max-width: 768px) {
-  .mobile-bottom-nav {
-    display: block;
-  }
-
-  .prepare-nav-container {
-    background-color: rgba(255, 255, 255, 0.98);
-  }
-
-  .prepare-nav-button {
-    padding: 1.2rem 0.8rem;
-    font-size: 0.85rem;
-  }
-
-  .prepare-nav-icon {
-    font-size: 1rem;
-  }
 }
 
 /* Section styles - Artistic and Creative Layouts */
@@ -832,16 +791,13 @@
 }
 
 .prepare-section-title {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Meholrax", serif;
   font-size: 3.5rem;
-  font-weight: 700;
-  color: #00695c;
-  margin: 0 0 30px;
-  text-align: left;
+  font-weight: 500;
+  color: #2c3e50;
+  margin: 0 0 1.5rem;
   position: relative;
-  letter-spacing: -0.5px;
   line-height: 1.2;
-  text-shadow: 2px 2px 0 rgba(0, 105, 92, 0.05);
 }
 
 .prepare-section:nth-child(odd) .prepare-section-title {
@@ -1341,7 +1297,7 @@
 }
 
 .prepare-section-title.modern {
-  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-family: "Meholrax", serif;
   color: #0f172a;
   position: relative;
   margin-bottom: 50px;
@@ -2751,5 +2707,723 @@
   .mobile-scroll-top:active {
     opacity: 1;
     transform: scale(1);
+  }
+}
+
+/* Mobile Bottom Navigation Improvements */
+@media (max-width: 768px) {
+  .prepare-nav-container {
+    display: none; /* Hide horizontal navigation on mobile */
+  }
+
+  .mobile-bottom-nav {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.1);
+    z-index: 9700;
+    transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+    border-top: 1px solid rgba(0, 0, 0, 0.05);
+    will-change: transform;
+    transform-style: preserve-3d;
+  }
+
+  .mobile-bottom-nav.hidden {
+    transform: translateY(100%);
+  }
+
+  .mobile-nav-list {
+    display: flex;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    justify-content: space-around;
+  }
+
+  .mobile-button-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 8px 0;
+  }
+
+  .mobile-button-item.active::before {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 20px;
+    height: 3px;
+    background: #0284c7;
+    border-radius: 8px;
+  }
+
+  .mobile-nav-button {
+    background: transparent;
+    border: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    color: #e2e8f0;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    padding: 0;
+  }
+
+  .mobile-nav-icon {
+    font-size: 22px;
+    margin-bottom: 4px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #000000;
+  }
+
+  .mobile-nav-label {
+    font-size: 12px;
+    font-weight: 500;
+    color: #000000;
+  }
+
+  .mobile-button-item.active .mobile-nav-icon,
+  .mobile-button-item.active .mobile-nav-label {
+    color: #0284c7;
+  }
+
+  .mobile-button-item.active .mobile-nav-icon {
+    filter: drop-shadow(0 0 10px rgba(2, 132, 199, 0.4));
+  }
+
+  /* Ripple effect for mobile buttons */
+  .ripple-effect {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ripple-circle {
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    transform: scale(0);
+    animation: ripple-animation 0.8s linear;
+    pointer-events: none;
+  }
+
+  @keyframes ripple-animation {
+    to {
+      transform: scale(4);
+      opacity: 0;
+    }
+  }
+}
+
+/* Homestay Details Sidebar and Booking Sidebar */
+.homestay-details-sidebar,
+.booking-sidebar {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 100%;
+  max-width: 480px;
+  height: 100vh;
+  background-color: #fff;
+  box-shadow: -5px 0 30px rgba(0, 0, 0, 0.15);
+  z-index: 9800;
+  overflow-y: auto;
+  transition: right 0.4s cubic-bezier(0.19, 1, 0.22, 1);
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.homestay-details-sidebar::-webkit-scrollbar,
+.booking-sidebar::-webkit-scrollbar {
+  width: 6px;
+}
+
+.homestay-details-sidebar::-webkit-scrollbar-track,
+.booking-sidebar::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+.homestay-details-sidebar::-webkit-scrollbar-thumb,
+.booking-sidebar::-webkit-scrollbar-thumb {
+  background: #bbb;
+  border-radius: 10px;
+}
+
+.homestay-details-sidebar.open,
+.booking-sidebar.open {
+  right: 0;
+}
+
+.details-sidebar-header,
+.booking-sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 25px 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  background: #fff;
+  z-index: 5;
+}
+
+.details-sidebar-header h2,
+.booking-sidebar-header h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #000;
+  margin: 0;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.details-sidebar-header h2::after,
+.booking-sidebar-header h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 40px;
+  height: 3px;
+  background: linear-gradient(to right, #0284c7, rgba(2, 132, 199, 0.3));
+  border-radius: 3px;
+}
+
+.close-sidebar {
+  background: transparent;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  color: #64748b;
+  padding: 0;
+}
+
+.close-sidebar:hover {
+  background: rgba(0, 0, 0, 0.05);
+  color: #0f172a;
+}
+
+.homestay-gallery {
+  padding: 20px 30px;
+}
+
+.gallery-main {
+  width: 100%;
+  height: 280px;
+  border-radius: 15px;
+  overflow: hidden;
+  margin-bottom: 15px;
+  position: relative;
+  cursor: pointer;
+}
+
+.gallery-main img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-main:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-main::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.3) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+.gallery-thumbnails {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 5px;
+}
+
+.gallery-thumbnail {
+  flex: 0 0 80px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  opacity: 0.7;
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.gallery-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.gallery-thumbnail::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.2);
+  transition: background 0.3s ease;
+}
+
+.gallery-thumbnail:hover::before {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+.gallery-thumbnail:hover {
+  opacity: 1;
+}
+
+.homestay-details-info {
+  padding: 20px 30px;
+}
+
+.homestay-details-subtitle {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #64748b;
+  margin: 0 0 20px;
+  padding-bottom: 15px;
+  position: relative;
+}
+
+.homestay-details-subtitle::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(to right, rgba(0, 0, 0, 0.1), transparent);
+}
+
+.homestay-details-description {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
+  color: #334155;
+  margin-bottom: 25px;
+}
+
+.homestay-details-location,
+.homestay-details-host {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.95rem;
+  color: #475569;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.05);
+  margin-bottom: 10px;
+  transition: color 0.3s ease;
+}
+
+.homestay-details-location:hover,
+.homestay-details-host:hover {
+  color: #0284c7;
+}
+
+.homestay-details-location svg,
+.homestay-details-host svg {
+  color: #0284c7;
+}
+
+.homestay-details-section {
+  padding: 15px 0;
+  margin-bottom: 15px;
+}
+
+.homestay-details-section h4 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 15px;
+  position: relative;
+  display: inline-block;
+}
+
+.homestay-details-section h4::before {
+  content: "";
+  position: absolute;
+  top: -5px;
+  left: -15px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+  opacity: 0.6;
+}
+
+.homestay-booking-card {
+  background: #f8fafc;
+  border-radius: 15px;
+  padding: 25px;
+  margin-top: 20px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+}
+
+.booking-card-price {
+  margin-bottom: 20px;
+}
+
+.booking-card-price .price-value {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0f172a;
+  display: inline-block;
+  position: relative;
+}
+
+.booking-card-price .price-value::before {
+  content: "$";
+  position: absolute;
+  top: 0;
+  left: -15px;
+  font-size: 1.2rem;
+  color: #64748b;
+}
+
+.booking-card-price .price-unit {
+  font-size: 0.95rem;
+  color: #64748b;
+  margin-left: 5px;
+}
+
+.btn-book-now {
+  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 15px 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-book-now::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.7s ease;
+}
+
+.btn-book-now:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(2, 132, 199, 0.35);
+}
+
+.btn-book-now:hover::before {
+  left: 100%;
+}
+
+/* Booking Sidebar Styles */
+.booking-sidebar-header.modern {
+  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+  color: white;
+  padding: 25px 30px;
+  border-bottom: none;
+}
+
+.booking-sidebar-header.modern h2 {
+  color: white;
+  font-weight: 600;
+  font-size: 1.5rem;
+  margin: 0;
+  padding-bottom: 0;
+}
+
+.booking-sidebar-header.modern h2::after {
+  display: none;
+}
+
+.booking-sidebar-header.modern .close-sidebar {
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.booking-sidebar-header.modern .close-sidebar:hover {
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.booking-homestay-info.modern {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 20px 30px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  background: #f8fafc;
+}
+
+.booking-homestay-info.modern img {
+  width: 80px;
+  height: 80px;
+  border-radius: 10px;
+  object-fit: cover;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.booking-homestay-info.modern h3 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #0f172a;
+  margin: 0 0 10px;
+  line-height: 1.3;
+}
+
+.booking-homestay-info.modern .booking-homestay-location {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #64748b;
+  font-size: 0.9rem;
+  margin-bottom: 5px;
+}
+
+.booking-homestay-info.modern .booking-homestay-location svg {
+  color: #0284c7;
+}
+
+.booking-homestay-info.modern .booking-homestay-price {
+  margin-top: 8px;
+}
+
+.booking-homestay-info.modern .price-value {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.booking-homestay-info.modern .price-unit {
+  font-size: 0.85rem;
+  color: #64748b;
+  margin-left: 3px;
+}
+
+.booking-form.modern {
+  padding: 30px;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.booking-form.modern .form-group {
+  margin-bottom: 25px;
+  position: relative;
+}
+
+.booking-form.modern label {
+  display: block;
+  font-family: "Montserrat", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: #374151;
+  margin-bottom: 8px;
+}
+
+.booking-form.modern input,
+.booking-form.modern select,
+.booking-form.modern textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #e2e8f0;
+  border-radius: 8px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  color: #1f2937;
+  background: #f8fafc;
+  transition: all 0.3s ease;
+}
+
+.booking-form.modern input:focus,
+.booking-form.modern select:focus,
+.booking-form.modern textarea:focus {
+  outline: none;
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 3px rgba(14, 165, 233, 0.15);
+  background: #fff;
+}
+
+.booking-form.modern .form-group.has-error input,
+.booking-form.modern .form-group.has-error select,
+.booking-form.modern .form-group.has-error textarea {
+  border-color: #ef4444;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.1);
+}
+
+.booking-form.modern .error-message {
+  font-size: 0.85rem;
+  color: #ef4444;
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.booking-form.modern .error-message::before {
+  content: "!";
+  display: inline-block;
+}
+
+.booking-summary.modern {
+  background: #f8fafc;
+  padding: 25px 30px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  margin-top: auto;
+}
+
+.booking-summary.modern .summary-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.95rem;
+  color: #4b5563;
+}
+
+.booking-summary.modern .summary-row:not(:last-child) {
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.05);
+}
+
+.booking-summary.modern .summary-row.total {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #0f172a;
+  padding-top: 15px;
+}
+
+.btn-submit-booking.modern {
+  background: linear-gradient(135deg, #0284c7, #0ea5e9);
+  color: white;
+  border: none;
+  width: 100%;
+  padding: 15px 0;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  box-shadow: 0 10px 25px rgba(2, 132, 199, 0.25);
+  position: relative;
+  margin-top: 20px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-submit-booking.modern::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: left 0.7s ease;
+}
+
+.btn-submit-booking.modern:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(2, 132, 199, 0.35);
+}
+
+.btn-submit-booking.modern:hover::before {
+  left: 100%;
+}
+
+.btn-submit-booking.modern:disabled {
+  background: #94a3b8;
+  box-shadow: none;
+  transform: none;
+  cursor: not-allowed;
+}
+
+.btn-submit-booking.modern .spinner {
+  width: 20px;
+  height: 20px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: white;
+  animation: spin 1s linear infinite;
+  margin-right: 10px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (max-width: 768px) {
+  .homestay-details-sidebar,
+  .booking-sidebar {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .booking-homestay-info.modern {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .booking-homestay-info.modern .booking-homestay-location {
+    margin-bottom: 10px;
   }
 }

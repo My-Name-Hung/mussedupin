@@ -110,7 +110,9 @@ const ScrollToTopButton = () => {
 
   return (
     <button
-      className={`scroll-to-top-button ${visible ? "visible" : ""}`}
+      className={`scroll-to-top-button fixed-mobile-element ${
+        visible ? "visible" : ""
+      }`}
       onClick={scrollToTop}
       aria-label={<TranslatedText>Scroll to top</TranslatedText>}
     >

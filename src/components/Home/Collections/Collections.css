@@ -16,7 +16,7 @@
 }
 
 .collections-title {
-  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-family: "Meholrax", serif;
   font-size: 56px;
   font-weight: 400;
   line-height: 64px;
@@ -75,6 +75,13 @@
   padding-bottom: 15px; /* Space for scrollbar */
   -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
   will-change: transform; /* Optimize for performance */
+  cursor: grab; /* Indicate draggable */
+  user-select: none; /* Prevent text selection during drag */
+}
+
+.collections-gallery.dragging {
+  cursor: grabbing;
+  scroll-behavior: auto; /* Disable smooth scrolling during drag */
 }
 
 .collections-gallery::-webkit-scrollbar {
@@ -86,6 +93,11 @@
   padding: 15px 5px;
   align-items: center;
   will-change: transform; /* Performance optimization */
+  transition: transform 0.1s ease-out; /* Smooth movement during drag */
+}
+
+.collections-gallery.dragging .collection-inner-container {
+  transition: none; /* Disable transition during active drag */
 }
 
 /* Collection item */
@@ -104,6 +116,8 @@
   animation-fill-mode: forwards;
   animation-timing-function: cubic-bezier(0.25, 0.46, 0.45, 0.94);
   animation-play-state: paused;
+  transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    filter 0.3s ease;
 }
 
 .visible .collection-item {
@@ -327,7 +341,7 @@
 }
 
 .collections-footer .view-all-link {
-  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-family: "Meholrax", serif;
   font-size: 18px;
   color: #1a1a1a;
   text-decoration: none;
@@ -336,6 +350,9 @@
   align-items: center;
   padding: 6px 2px;
   transition: all 0.3s ease;
+  font-style: normal;
+  text-transform: none;
+  transform: none;
 }
 
 .view-all-link:after {
@@ -545,6 +562,8 @@
   .collections-footer .view-all-link {
     font-size: 22px;
     padding: 8px 4px;
+    font-style: normal;
+    transform: none;
   }
 
   .arrow-icon {
@@ -798,6 +817,19 @@
 
   .view-all-link {
     font-size: 16px;
+    display: inline-flex;
+    align-items: center;
+    padding: 0 2px 4px;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    position: relative;
+    margin-top: 5px;
+  }
+
+  .view-all-link:after {
+    height: 1px;
+    opacity: 0.7;
   }
 
   .collections-gallery-container::after {
@@ -902,10 +934,16 @@
 
   .collections-footer {
     margin-top: 25px;
+    text-align: center;
   }
 
   .view-all-link {
     font-size: 15px;
+    padding: 0 2px 3px;
+    display: inline-flex;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
   }
 
   .arrow-icon {
@@ -924,6 +962,24 @@
 
   .collection-image-wrapper:hover .collection-image {
     transform: scale(1.05);
+  }
+}
+
+@media (max-width: 480px) {
+  .view-all-link {
+    font-size: 14px;
+  }
+}
+
+/* Additional mobile enhancements */
+@media (max-width: 360px) {
+  .view-all-link {
+    width: auto;
+    justify-content: right;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    font-size: 13px;
   }
 }
 
@@ -1058,5 +1114,153 @@
 @media (max-width: 576px) {
   .wavy-gallery .collection-inner-container {
     padding: 20px 5px;
+  }
+}
+
+/* Scroll indicator styles */
+.scroll-indicator {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  pointer-events: none;
+  z-index: 20;
+  opacity: 0;
+  animation: fadeInOut 2s ease-in-out infinite;
+  transform: translateY(-50%);
+}
+
+.scroll-indicator.hidden {
+  opacity: 0 !important;
+  animation: none;
+}
+
+@keyframes fadeInOut {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.scroll-arrow {
+  width: 40px;
+  height: 40px;
+  background-color: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 20px;
+  position: relative;
+}
+
+.scroll-arrow::before {
+  content: "";
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid white;
+  border-right: 2px solid white;
+  display: block;
+}
+
+.scroll-arrow.scroll-left::before {
+  transform: rotate(-135deg);
+  margin-left: 4px;
+}
+
+.scroll-arrow.scroll-right::before {
+  transform: rotate(45deg);
+  margin-right: 4px;
+}
+/* Mobile scroll indicator */
+.mobile-scroll-indicator {
+  position: absolute;
+  bottom: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  opacity: 0.7;
+  animation: pulseOpacity 2s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes pulseOpacity {
+  0%,
+  100% {
+    opacity: 0.5;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+.mobile-scroll-dot {
+  width: 6px;
+  height: 6px;
+  background-color: #333;
+  border-radius: 50%;
+  margin-bottom: 5px;
+  position: relative;
+}
+
+.mobile-scroll-dot::before,
+.mobile-scroll-dot::after {
+  content: "";
+  position: absolute;
+  width: 20px;
+  height: 2px;
+  background-color: #333;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.mobile-scroll-dot::before {
+  left: -25px;
+  border-radius: 2px 0 0 2px;
+}
+
+.mobile-scroll-dot::after {
+  right: -25px;
+  border-radius: 0 2px 2px 0;
+}
+
+.mobile-scroll-text {
+  font-size: 12px;
+  color: #333;
+  font-family: "Roboto", Arial, sans-serif;
+  letter-spacing: 0.5px;
+}
+
+/* Media queries for scroll indicators */
+@media (max-width: 768px) {
+  .scroll-indicator {
+    display: none; /* Hide desktop indicators on mobile */
+  }
+
+  .mobile-scroll-indicator {
+    bottom: -15px;
+  }
+
+  .collections-gallery-container {
+    margin-bottom: 20px; /* Make space for the mobile indicator */
+  }
+}
+
+/* Hide mobile indicator on desktop */
+@media (min-width: 1200px) {
+  .mobile-scroll-indicator {
+    display: none;
+  }
+
+  .collection-item:hover {
+    z-index: 15;
   }
 }

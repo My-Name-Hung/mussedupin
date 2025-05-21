@@ -120,6 +120,12 @@ const Collections = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [hoverItemIndex, setHoverItemIndex] = useState(null);
+  const [isDragging, setIsDragging] = useState(false);
+  const [startX, setStartX] = useState(0);
+  const [scrollLeft, setScrollLeft] = useState(0);
+  const [manualInteraction, setManualInteraction] = useState(false);
+  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
+  const userInteractionTimeout = useRef(null);
 
   // Check device type
   useEffect(() => {
@@ -213,7 +219,7 @@ const Collections = () => {
 
   // Enhanced auto-scroll animation with variable speed and smoother transitions
   useEffect(() => {
-    if (!isVisible || isPaused) {
+    if (!isVisible || isPaused || isDragging || manualInteraction) {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
         animationRef.current = null;
@@ -279,7 +285,16 @@ const Collections = () => {
       }
       lastTimestampRef.current = null;
     };
-  }, [isVisible, containerWidth, contentWidth, isPaused, isMobile, isDesktop]);
+  }, [
+    isVisible,
+    containerWidth,
+    contentWidth,
+    isPaused,
+    isMobile,
+    isDesktop,
+    isDragging,
+    manualInteraction,
+  ]);
 
   // Update scroll position on DOM with performance optimization
   useEffect(() => {
@@ -304,13 +319,120 @@ const Collections = () => {
   };
 
   // Pause scrolling on hover or touch with improved mobile handling
-  const handleMouseEnter = () => setIsPaused(true);
-  const handleMouseLeave = () => setIsPaused(false);
-  const handleTouchStart = () => setIsPaused(true);
-  const handleTouchEnd = () => {
-    // Add delay before resuming to improve mobile experience
-    setTimeout(() => setIsPaused(false), 800); // Reduced delay for more responsive feel
+  const handleMouseEnter = () => {
+    setIsPaused(true);
+    setShowScrollIndicator(false);
   };
+
+  const handleMouseLeave = () => {
+    if (!isDragging) {
+      setIsPaused(false);
+    }
+
+    // Only reset manual interaction if we're not still dragging
+    if (!isDragging) {
+      if (userInteractionTimeout.current) {
+        clearTimeout(userInteractionTimeout.current);
+      }
+      userInteractionTimeout.current = setTimeout(() => {
+        setManualInteraction(false);
+      }, 2000);
+    }
+  };
+
+  // Enhanced mouse down handler for drag scrolling
+  const handleMouseDown = (e) => {
+    setIsDragging(true);
+    setManualInteraction(true);
+    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
+    setScrollLeft(scrollPosition);
+
+    // Hide scroll indicator once user starts interacting
+    setShowScrollIndicator(false);
+  };
+
+  // Enhanced mouse move handler with improved physics
+  const handleMouseMove = (e) => {
+    if (!isDragging) return;
+    e.preventDefault();
+
+    const x = e.pageX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5; // Multiply for faster scrolling
+    const newPosition = Math.max(
+      0,
+      Math.min(scrollLeft - walk, contentWidth - containerWidth)
+    );
+    setScrollPosition(newPosition);
+  };
+
+  // Mouse up handler
+  const handleMouseUp = () => {
+    setIsDragging(false);
+
+    // Set a timeout to auto-resume scrolling after manual interaction
+    if (userInteractionTimeout.current) {
+      clearTimeout(userInteractionTimeout.current);
+    }
+    userInteractionTimeout.current = setTimeout(() => {
+      setManualInteraction(false);
+    }, 2000);
+  };
+
+  // Enhanced touch handlers for mobile
+  const handleTouchStart = (e) => {
+    setIsPaused(true);
+    setManualInteraction(true);
+    setStartX(e.touches[0].clientX - scrollContainerRef.current.offsetLeft);
+    setScrollLeft(scrollPosition);
+    setIsDragging(true);
+
+    // Hide scroll indicator once user starts interacting
+    setShowScrollIndicator(false);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!isDragging) return;
+
+    const x = e.touches[0].clientX - scrollContainerRef.current.offsetLeft;
+    const walk = (x - startX) * 1.5;
+    const newPosition = Math.max(
+      0,
+      Math.min(scrollLeft - walk, contentWidth - containerWidth)
+    );
+    setScrollPosition(newPosition);
+  };
+
+  const handleTouchEnd = () => {
+    setIsDragging(false);
+
+    // Add delay before resuming to improve mobile experience
+    setTimeout(() => {
+      setIsPaused(false);
+
+      // Set a timeout to auto-resume scrolling after manual interaction
+      if (userInteractionTimeout.current) {
+        clearTimeout(userInteractionTimeout.current);
+      }
+      userInteractionTimeout.current = setTimeout(() => {
+        setManualInteraction(false);
+      }, 2000);
+    }, 800);
+  };
+
+  // Show scroll indicator after inactivity
+  useEffect(() => {
+    let scrollIndicatorTimer;
+
+    if (isVisible && !isMobile) {
+      scrollIndicatorTimer = setTimeout(() => {
+        setShowScrollIndicator(true);
+      }, 3000);
+    }
+
+    return () => {
+      if (scrollIndicatorTimer) clearTimeout(scrollIndicatorTimer);
+    };
+  }, [isVisible, isMobile, manualInteraction]);
 
   return (
     <section className="collections-section" id="collections">
@@ -335,12 +457,24 @@ const Collections = () => {
         {isDesktop && <div className="shadow-effect"></div>}
         {isDesktop && <div className="left-fade"></div>}
 
+        {/* Scroll indicator arrows */}
+        {showScrollIndicator && !isMobile && (
+          <div className={`scroll-indicator ${isDragging ? "hidden" : ""}`}>
+            <div className="scroll-arrow scroll-left"></div>
+            <div className="scroll-arrow scroll-right"></div>
+          </div>
+        )}
+
         <div
-          className="collections-gallery"
+          className={`collections-gallery ${isDragging ? "dragging" : ""}`}
           ref={scrollContainerRef}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
+          onMouseDown={handleMouseDown}
+          onMouseMove={handleMouseMove}
+          onMouseUp={handleMouseUp}
           onTouchStart={handleTouchStart}
+          onTouchMove={handleTouchMove}
           onTouchEnd={handleTouchEnd}
           style={isMobile ? { overflow: "visible" } : {}}
         >
@@ -365,7 +499,7 @@ const Collections = () => {
                   onMouseEnter={() => handleItemHover(index)}
                   onMouseLeave={handleItemLeave}
                 >
-                  <Link to="/collections" className="collection-link">
+                  <Link to="/collection" className="collection-link">
                     <div className="collection-image-wrapper">
                       <img
                         src={item.image}
@@ -393,7 +527,7 @@ const Collections = () => {
       </div>
 
       <div className="collections-footer">
-        <Link to="/collections" className="view-all-link">
+        <Link to="/collection" className="view-all-link">
           <TranslatedText>View all collections</TranslatedText>
           <span className="arrow-icon">→</span>
         </Link>

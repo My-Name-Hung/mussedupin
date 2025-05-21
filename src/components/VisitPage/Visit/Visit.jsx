@@ -400,108 +400,113 @@ const Visit = () => {
   );
 
   // Render the horizontal nav with enhanced mobile support
-  const renderNavigationBar = () => (
-    <div
-      className={`visit-nav-container ${isNavSticky ? "sticky" : ""} ${
-        navScrolled ? "scrolled-right" : ""
-      }`}
-      ref={(el) => {
-        navRef.current = el;
-        horizontalNavRef.current = el;
-      }}
-      onTouchStart={handleNavTouchStart}
-      onTouchMove={handleNavTouchMove}
-    >
-      <div className="visit-nav">
-        <ul className="visit-nav-list">
-          <li
-            className={`visit-nav-item ${
-              activeSection === "hours" ? "active" : ""
-            }`}
-          >
-            <button
-              onClick={(e) => {
-                createRipple(e);
-                handleNavClick("hours");
-              }}
-              className="visit-nav-button"
+  const renderNavigationBar = () => {
+    // Don't render the navigation bar on mobile
+    if (isMobile) return null;
+
+    return (
+      <div
+        className={`visit-nav-container ${isNavSticky ? "sticky" : ""} ${
+          navScrolled ? "scrolled-right" : ""
+        }`}
+        ref={(el) => {
+          navRef.current = el;
+          horizontalNavRef.current = el;
+        }}
+        onTouchStart={handleNavTouchStart}
+        onTouchMove={handleNavTouchMove}
+      >
+        <div className="visit-nav">
+          <ul className="visit-nav-list">
+            <li
+              className={`visit-nav-item ${
+                activeSection === "hours" ? "active" : ""
+              }`}
             >
-              <TranslatedText>When to visit</TranslatedText>
-              {ripples.map((ripple) => (
-                <span
-                  key={ripple.id}
-                  className="ripple"
-                  style={{
-                    left: ripple.left,
-                    top: ripple.top,
-                    width: ripple.width,
-                    height: ripple.height,
-                  }}
-                />
-              ))}
-            </button>
-            <span className="visit-nav-indicator"></span>
-          </li>
-          <li
-            className={`visit-nav-item ${
-              activeSection === "tickets" ? "active" : ""
-            }`}
-          >
-            <button
-              onClick={(e) => {
-                createRipple(e);
-                handleNavClick("tickets");
-              }}
-              className="visit-nav-button"
+              <button
+                onClick={(e) => {
+                  createRipple(e);
+                  handleNavClick("hours");
+                }}
+                className="visit-nav-button"
+              >
+                <TranslatedText>When to visit</TranslatedText>
+                {ripples.map((ripple) => (
+                  <span
+                    key={ripple.id}
+                    className="ripple"
+                    style={{
+                      left: ripple.left,
+                      top: ripple.top,
+                      width: ripple.width,
+                      height: ripple.height,
+                    }}
+                  />
+                ))}
+              </button>
+              <span className="visit-nav-indicator"></span>
+            </li>
+            <li
+              className={`visit-nav-item ${
+                activeSection === "tickets" ? "active" : ""
+              }`}
             >
-              <TranslatedText>Ticket prices</TranslatedText>
-              {ripples.map((ripple) => (
-                <span
-                  key={ripple.id}
-                  className="ripple"
-                  style={{
-                    left: ripple.left,
-                    top: ripple.top,
-                    width: ripple.width,
-                    height: ripple.height,
-                  }}
-                />
-              ))}
-            </button>
-            <span className="visit-nav-indicator"></span>
-          </li>
-          <li
-            className={`visit-nav-item ${
-              activeSection === "membership" ? "active" : ""
-            }`}
-          >
-            <button
-              onClick={(e) => {
-                createRipple(e);
-                handleNavClick("membership");
-              }}
-              className="visit-nav-button"
+              <button
+                onClick={(e) => {
+                  createRipple(e);
+                  handleNavClick("tickets");
+                }}
+                className="visit-nav-button"
+              >
+                <TranslatedText>Ticket prices</TranslatedText>
+                {ripples.map((ripple) => (
+                  <span
+                    key={ripple.id}
+                    className="ripple"
+                    style={{
+                      left: ripple.left,
+                      top: ripple.top,
+                      width: ripple.width,
+                      height: ripple.height,
+                    }}
+                  />
+                ))}
+              </button>
+              <span className="visit-nav-indicator"></span>
+            </li>
+            <li
+              className={`visit-nav-item ${
+                activeSection === "membership" ? "active" : ""
+              }`}
             >
-              <TranslatedText>Memberships</TranslatedText>
-              {ripples.map((ripple) => (
-                <span
-                  key={ripple.id}
-                  className="ripple"
-                  style={{
-                    left: ripple.left,
-                    top: ripple.top,
-                    width: ripple.width,
-                    height: ripple.height,
-                  }}
-                />
-              ))}
-            </button>
-            <span className="visit-nav-indicator"></span>
-          </li>
-        </ul>
+              <button
+                onClick={(e) => {
+                  createRipple(e);
+                  handleNavClick("membership");
+                }}
+                className="visit-nav-button"
+              >
+                <TranslatedText>Memberships</TranslatedText>
+                {ripples.map((ripple) => (
+                  <span
+                    key={ripple.id}
+                    className="ripple"
+                    style={{
+                      left: ripple.left,
+                      top: ripple.top,
+                      width: ripple.width,
+                      height: ripple.height,
+                    }}
+                  />
+                ))}
+              </button>
+              <span className="visit-nav-indicator"></span>
+            </li>
+          </ul>
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   // Enhanced mobile-friendly museum info
   const renderMuseumInfo = () => (
@@ -513,9 +518,6 @@ const Visit = () => {
 
       <div className="museum-info-content">
         <div className="museum-status-bar">
-          <div className="museum-title">
-            <TranslatedText>MUSÉE DU PIN</TranslatedText>
-          </div>
           <div className={`museum-status ${statusClass}`}>
             <span className="status-dot"></span>
             <TranslatedText>The museum is {statusText}</TranslatedText>
@@ -669,7 +671,11 @@ const Visit = () => {
     if (!isMobile) return null;
 
     return (
-      <nav className={`mobile-bottom-nav ${isScrollingDown ? "hidden" : ""}`}>
+      <nav
+        className={`mobile-bottom-nav fixed-mobile-element ${
+          isScrollingDown ? "hidden" : ""
+        }`}
+      >
         <ul className="mobile-nav-list">
           <li
             className={`mobile-button-item ${
@@ -790,7 +796,7 @@ const Visit = () => {
 
     return (
       <button
-        className={`mobile-scroll-top visible`}
+        className={`mobile-scroll-top fixed-mobile-element visible`}
         onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
         aria-label="Scroll to top"
       >
@@ -823,6 +829,22 @@ const Visit = () => {
         touchDirection ? `touch-${touchDirection}` : ""
       } ${isScrolling ? "is-scrolling" : ""} ${isMobile ? "mobile-view" : ""}`}
     >
+      {/* Fix for mobile fixed elements - invisible div creates proper stacking context */}
+      {isMobile && (
+        <div
+          id="mobile-fixed-elements-fix"
+          style={{
+            position: "fixed",
+            top: 0,
+            left: 0,
+            width: "100%",
+            height: "100%",
+            pointerEvents: "none",
+            zIndex: -1,
+          }}
+        ></div>
+      )}
+
       {/* Hero Section */}
       {renderArtisticHero()}
 
@@ -839,7 +861,9 @@ const Visit = () => {
       >
         <div className="visit-section-container">
           <h2 className="visit-section-title">
-            <TranslatedText>WHEN TO VISIT</TranslatedText>
+            <span>
+              <TranslatedText>WHEN TO VISIT</TranslatedText>
+            </span>
           </h2>
 
           <div className="museum-location-tabs">
@@ -864,13 +888,12 @@ const Visit = () => {
       >
         <div className="visit-section-container">
           <h2 className="visit-section-title">
-            <TranslatedText>TICKET PRICES</TranslatedText>
+            <span>
+              <TranslatedText>TICKET PRICES</TranslatedText>
+            </span>
           </h2>
 
           <div className="ticket-intro">
-            <h3 className="ticket-heading">
-              <TranslatedText>Ticket</TranslatedText>
-            </h3>
             <p className="ticket-description">
               <TranslatedText>
                 A ticket gives you access to the permanent collections and
@@ -895,7 +918,7 @@ const Visit = () => {
             }`}
           >
             <div className="section-header" onClick={toggleAdmissionSection}>
-              <h3 className="section-title">
+              <h3 className="section-titles">
                 <TranslatedText>
                   VISITORS ELIGIBLE FOR FREE ADMISSION
                 </TranslatedText>
@@ -1156,7 +1179,9 @@ const Visit = () => {
       >
         <div className="visit-section-container">
           <h2 className="visit-section-title">
-            <TranslatedText>MEMBERSHIPS</TranslatedText>
+            <span>
+              <TranslatedText>MEMBERSHIPS</TranslatedText>
+            </span>
           </h2>
 
           <div className="membership-info">

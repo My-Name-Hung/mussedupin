@@ -7,141 +7,141 @@ import "./DuPinPlus.css";
 const allVideos = [
   {
     id: 1,
-    title: "The restoration of the Arc du Carrousel",
-    subtitle: "[ENG subtitles]",
+    title: "Quá trình Hình thành Musée Du Pin",
+    subtitle: "[Phụ đề tiếng Việt]",
     description:
-      "Discover the meticulous restoration process of this iconic monument, revealing the techniques and expertise of museum conservators.",
+      "Khám phá quá trình hình thành bảo tàng Thông - Musée Du Pin, từ ý tưởng đến thành quả hiện đại, thể hiện sự đa dạng và phong phú của nền văn hóa Đà lạt.",
     youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-    duration: "7 min",
+    duration: "30s",
     thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    category: "Restoration",
+    category: "Xây dựng",
   },
   {
     id: 2,
-    title: "The restoration of the Napoleon-III apartments",
+    title: "Ra mắt Nhà Mắt Thông",
     subtitle: "",
     description:
-      "An in-depth look at the restoration of these opulent apartments, showcasing the attention to detail in preserving historical interiors.",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-    duration: "10 min",
+      "NHÀ MẮT THÔNG- Tinh hoa kiến trúc của thiên nhiên Giữa lòng Đà Lạt, Nhà Mắt Thông hiện lên như một khúc ca dịu dàng của thiên nhiên và sự sáng tạo. Lấy cảm hứng từ hình dáng mắt thông khô – biểu tượng của sự trường tồn và nét đẹp tự nhiên, mỗi phiên bản Nhà Mắt Thông là một câu chuyện riêng, mang đậm dấu ấn của đất trời Đà Lạt.",
+    youtubeId: "dQw4w9WgXcQ",
+    duration: "1 phút",
     thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    category: "Restoration",
+    category: "Ra mắt",
   },
   {
     id: 3,
-    title: "The Salle des Etats",
+    title: "Phòng trưng bày chính",
     subtitle: "",
     description:
-      "Explore the history and significance of this grand hall and its collection of masterpieces that have shaped art history.",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-    duration: "4 min",
+      "Khám phá lịch sử và ý nghĩa của gian phòng lớn này cùng bộ sưu tập kiệt tác đã định hình nên lịch sử nghệ thuật.",
+    youtubeId: "dQw4w9WgXcQ",
+    duration: "4 phút",
     thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    category: "Collections",
+    category: "Bộ sưu tập",
   },
   {
     id: 4,
-    title: "« Forêt » by Anne Teresa De Keersmaeker",
-    subtitle: "[EN subtitles]",
+    title: "Múa truyền thống K'ho",
+    subtitle: "[Phụ đề tiếng Việt]",
     description:
-      "A captivating performance by renowned choreographer Anne Teresa De Keersmaeker, bringing contemporary dance into dialogue with classical art.",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-    duration: "7 min",
+      "Một buổi biểu diễn đặc sắc của nghệ thuật múa truyền thống, tạo nên cuộc đối thoại giữa nghệ thuật đương đại và cổ điển.",
+    youtubeId: "dQw4w9WgXcQ",
+    duration: "7 phút",
     thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    category: "Performances",
+    category: "Biểu diễn",
   },
   {
     id: 5,
-    title: "Virtual Tour: Egyptian Antiquities",
+    title: "Tour ảo: Khu trưng bày dân tộc K'ho",
     subtitle: "",
     description:
-      "Take a virtual journey through one of the most comprehensive collections of Egyptian artifacts, guided by expert curators.",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-    duration: "9 min",
+      "Tham quan ảo qua một trong những bộ sưu tập hiện vật K'ho toàn diện nhất, được hướng dẫn bởi các chuyên gia.",
+    youtubeId: "dQw4w9WgXcQ",
+    duration: "9 phút",
     thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    category: "Virtual Tours",
+    category: "Tour ảo",
   },
   {
     id: 6,
-    title: "Behind the Scenes: Restoration Workshop",
+    title: "Hậu trường: Xưởng phục chế",
     subtitle: "",
     description:
-      "Gain exclusive access to the museum's restoration workshops where skilled artisans preserve priceless treasures for future generations.",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-    duration: "6 min",
+      "Tiếp cận độc quyền với xưởng phục chế của bảo tàng, nơi các nghệ nhân lành nghề bảo tồn những báu vật vô giá cho thế hệ tương lai.",
+    youtubeId: "dQw4w9WgXcQ",
+    duration: "6 phút",
     thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    category: "Behind the Scenes",
+    category: "Hậu trường",
   },
   {
     id: 7,
-    title: "The Making of a Special Exhibition",
+    title: "Quá trình tạo nên triển lãm đặc biệt",
     subtitle: "",
     description:
-      "Follow the journey of creating a major exhibition from concept to opening night, revealing the curatorial process.",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-    duration: "12 min",
+      "Theo dõi hành trình tạo nên một triển lãm lớn từ ý tưởng đến đêm khai mạc, khám phá quá trình sáng tạo.",
+    youtubeId: "dQw4w9WgXcQ",
+    duration: "12 phút",
     thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    category: "Behind the Scenes",
+    category: "Hậu trường",
   },
   {
     id: 8,
-    title: "The Renaissance Collection Highlights",
+    title: "Điểm nhấn bộ sưu tập K'ho",
     subtitle: "",
     description:
-      "A guided tour through the exquisite Renaissance collection, exploring the techniques and stories behind these masterpieces.",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-    duration: "8 min",
+      "Tour tham quan qua bộ sưu tập K'ho tinh tế, khám phá kỹ thuật và câu chuyện đằng sau những kiệt tác này.",
+    youtubeId: "dQw4w9WgXcQ",
+    duration: "8 phút",
     thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    category: "Collections",
+    category: "Bộ sưu tập",
   },
   {
     id: 9,
-    title: "Conservation of Ancient Sculptures",
-    subtitle: "[ENG subtitles]",
+    title: "Bảo tồn điêu khắc cổ",
+    subtitle: "[Phụ đề tiếng Việt]",
     description:
-      "Witness the delicate process of conserving ancient marble sculptures, combining traditional techniques with cutting-edge technology.",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-    duration: "11 min",
+      "Chứng kiến quá trình bảo tồn tỉ mỉ các tác phẩm điêu khắc cổ, kết hợp kỹ thuật truyền thống với công nghệ hiện đại.",
+    youtubeId: "dQw4w9WgXcQ",
+    duration: "11 phút",
     thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    category: "Restoration",
+    category: "Phục chế",
   },
   {
     id: 10,
-    title: "Artistic Dialogues: Contemporary Meets Classical",
+    title: "Đối thoại nghệ thuật: Hiện đại gặp truyền thống",
     subtitle: "",
     description:
-      "Explore the fascinating dialogues between contemporary artists and classical masterpieces in this thought-provoking documentary.",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-    duration: "15 min",
+      "Khám phá cuộc đối thoại thú vị giữa nghệ sĩ đương đại và các kiệt tác truyền thống trong bộ phim tài liệu đầy suy tư này.",
+    youtubeId: "dQw4w9WgXcQ",
+    duration: "15 phút",
     thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    category: "Art History",
+    category: "Lịch sử nghệ thuật",
   },
   {
     id: 11,
-    title: "Virtual Tour: Greek and Roman Antiquities",
+    title: "Tour ảo: Văn hóa K'ho",
     subtitle: "",
     description:
-      "Experience the grandeur of classical antiquity through this immersive virtual tour of iconic sculptures and artifacts.",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-    duration: "9 min",
+      "Trải nghiệm sự hùng vĩ của văn hóa K'ho qua tour tham quan ảo về các tác phẩm điêu khắc và hiện vật mang tính biểu tượng.",
+    youtubeId: "dQw4w9WgXcQ",
+    duration: "9 phút",
     thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    category: "Virtual Tours",
+    category: "Tour ảo",
   },
   {
     id: 12,
-    title: "Music in the Museum: Classical Concert Series",
-    subtitle: "[EN subtitles]",
+    title: "Âm nhạc trong bảo tàng: Chuỗi hòa nhạc truyền thống",
+    subtitle: "[Phụ đề tiếng Việt]",
     description:
-      "Enjoy performances from the museum's concert series, where music resonates among masterpieces in perfect harmony.",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-    duration: "14 min",
+      "Thưởng thức các buổi biểu diễn từ chuỗi hòa nhạc của bảo tàng, nơi âm nhạc hòa quyện với các kiệt tác trong sự hài hòa hoàn hảo.",
+    youtubeId: "dQw4w9WgXcQ",
+    duration: "14 phút",
     thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    category: "Performances",
+    category: "Biểu diễn",
   },
 ];
 
 // Extract unique categories for the filter
 const categories = [
-  "All",
+  "Tất cả",
   ...new Set(allVideos.map((video) => video.category)),
 ];
 
@@ -149,7 +149,7 @@ const DuPinPlus = () => {
   const [videos, setVideos] = useState(allVideos);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [activeCategory, setActiveCategory] = useState("All");
+  const [activeCategory, setActiveCategory] = useState("Tất cả");
   const [searchQuery, setSearchQuery] = useState("");
 
   // Filter videos based on category and search query
@@ -157,7 +157,7 @@ const DuPinPlus = () => {
     let filteredVideos = allVideos;
 
     // Apply category filter
-    if (activeCategory !== "All") {
+    if (activeCategory !== "Tất cả") {
       filteredVideos = filteredVideos.filter(
         (video) => video.category === activeCategory
       );
@@ -199,20 +199,20 @@ const DuPinPlus = () => {
   return (
     <div className="dupin-plus-page">
       <Helmet>
-        <title>Musée Du Pin+ | Museum Video Archive</title>
+        <title>Bảo tàng Du Pin+ | Kho lưu trữ video</title>
         <meta
           name="description"
-          content="Explore our collection of videos, virtual tours, and behind-the-scenes content from the museum."
+          content="Khám phá bộ sưu tập video, tour ảo và nội dung hậu trường từ bảo tàng."
         />
       </Helmet>
 
       <header className="dupin-plus-header">
         <div className="header-content">
-          <h1 className="page-title">MUSÉE DU PIN +</h1>
+          <h1 className="page-title">Musée Du Pin +</h1>
           <p className="page-subtitle">
             <TranslatedText>
-              Discover our exclusive video content, virtual tours, and
-              behind-the-scenes features
+              Khám phá nội dung video độc quyền, tour ảo và các tính năng hậu
+              trường
             </TranslatedText>
           </p>
         </div>
@@ -222,7 +222,7 @@ const DuPinPlus = () => {
         <div className="search-box">
           <input
             type="text"
-            placeholder="Search videos..."
+            placeholder="Tìm kiếm video..."
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="search-input"
@@ -291,7 +291,7 @@ const DuPinPlus = () => {
                 <span className="video-category">{video.category}</span>
                 <h3 className="video-title">{video.title}</h3>
                 {video.subtitle && (
-                  <span className="video-subtitle">{video.subtitle}</span>
+                  <span className="video-subtitle"></span>
                 )}
                 <p className="video-description">{video.description}</p>
               </div>
@@ -299,13 +299,13 @@ const DuPinPlus = () => {
           ))
         ) : (
           <div className="no-results">
-            <h3>No videos found</h3>
-            <p>Try adjusting your search or filter criteria</p>
+            <h3>Không tìm thấy video</h3>
+            <p>Vui lòng điều chỉnh lại tiêu chí tìm kiếm hoặc bộ lọc</p>
           </div>
         )}
       </section>
 
-      {/* Video Modal - Same as in DuPin component */}
+      {/* Video Modal */}
       {showModal && (
         <div className="video-modal" onClick={handleModalBackdropClick}>
           <div className="video-modal-content">

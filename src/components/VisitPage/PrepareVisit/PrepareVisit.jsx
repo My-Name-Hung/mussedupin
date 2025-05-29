@@ -4,11 +4,11 @@ import TranslatedText from "../../TranslatedText";
 import "./PrepareVisit.css";
 
 // Hero section background image
-import modernImg from "../../../assets/home/collections/ANewLook.jpg";
-import luxuryImg from "../../../assets/home/collections/couture.jpg";
-import heroImage from "../../../assets/home/collections/louvre-sunset.jpg";
-import budgetImg from "../../../assets/home/collections/mamluks.jpg";
-import traditionalImg from "../../../assets/home/collections/Nature.jpg";
+import modernImg from "../../../assets/home/Collections/Bauholo_cards.webp";
+import luxuryImg from "../../../assets/home/Collections/congchien_cards.webp";
+import budgetImg from "../../../assets/home/Collections/DanT'rung_cards.webp";
+import traditionalImg from "../../../assets/home/Collections/Gui_cards.webp";
+import heroImage from "../../../assets/home/Hero/louvre-sunset.webp";
 
 // Import icons from react-icons
 import {
@@ -23,17 +23,15 @@ import {
   FaUsers,
 } from "react-icons/fa";
 
-// Placeholder images for amenities and homestay sections
-// In a real application, you'd import actual image files
-const placeholderImage = "";
-const informationDeskImg = placeholderImage;
-const cloakroomImg = placeholderImage;
-const equipmentImg = placeholderImage;
-const wifiImg = placeholderImage;
-const toiletsImg = placeholderImage;
-const parkingImg = placeholderImage;
-const lostFoundImg = placeholderImage;
-const babySpaceImg = placeholderImage;
+// Import optimized images for amenities
+import toiletsImg from "../../../assets/home/Collections/Bauholo_cards.webp";
+import parkingImg from "../../../assets/home/Collections/congchien_cards.webp";
+import lostFoundImg from "../../../assets/home/Collections/DanT'rung_cards.webp";
+import babySpaceImg from "../../../assets/home/Collections/Gui_cards.webp";
+import informationDeskImg from "../../../assets/home/Collections/Lehoi_cards.webp";
+import cloakroomImg from "../../../assets/home/Collections/LongDaDa_cards.webp";
+import equipmentImg from "../../../assets/home/Collections/noidat_cards.webp";
+import wifiImg from "../../../assets/home/Collections/phunu_cards.webp";
 
 const PrepareVisit = () => {
   const location = useLocation();
@@ -43,7 +41,6 @@ const PrepareVisit = () => {
   const [navScrolled, setNavScrolled] = useState(false);
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const [touchStartX, setTouchStartX] = useState(0);
-  const [showScrollButton, setShowScrollButton] = useState(false);
   const [selectedHomestay, setSelectedHomestay] = useState(null);
   const [showHomestayDetails, setShowHomestayDetails] = useState(false);
   const [showBookingSidebar, setShowBookingSidebar] = useState(false);
@@ -150,13 +147,6 @@ const PrepareVisit = () => {
     }
 
     setActiveSection(currentSection);
-
-    // Show/hide scroll button
-    if (window.scrollY > 300) {
-      setShowScrollButton(true);
-    } else {
-      setShowScrollButton(false);
-    }
   }, [isMobile]);
 
   useEffect(() => {
@@ -253,78 +243,78 @@ const PrepareVisit = () => {
   const amenitiesData = [
     {
       id: "information-desk",
-      title: "Information Desks",
+      title: "Quầy thông tin",
       description:
-        "Two information desks, where visitors can ask any questions to staff members and pick up the museum map. Brochures in 8 languages are available under the Pyramid.",
+        "Hai quầy thông tin, nơi du khách có thể hỏi đáp với nhân viên và nhận bản đồ bảo tàng. Tài liệu hướng dẫn bằng 8 ngôn ngữ có sẵn dưới Tháp.",
       image: informationDeskImg,
       icon: "info",
-      details: "Our multilingual staff is available from 9am to 7pm daily.",
+      details: "Nhân viên đa ngôn ngữ làm việc từ 9:00 đến 19:00 hàng ngày.",
     },
     {
       id: "cloakroom",
-      title: "Cloakroom",
+      title: "Phòng gửi đồ",
       description:
-        "Self-service lockers are available free of charge beneath the Pyramid. Visitors are advised to use the lockers at the entrance. All items placed in the museum lockers must be collected the same day.",
+        "Tủ khóa tự phục vụ miễn phí dưới Tháp. Khách tham quan nên sử dụng tủ khóa tại lối vào. Tất cả các vật dụng gửi trong tủ khóa phải được lấy lại trong cùng ngày.",
       image: cloakroomImg,
       icon: "hanger",
       details:
-        "Free storage for bags up to 55×35×20 cm. Larger items not permitted.",
+        "Gửi miễn phí cho túi có kích thước tối đa 55×35×20 cm. Không nhận vật dụng lớn hơn.",
     },
     {
       id: "equipment",
-      title: "Loan of Equipment",
+      title: "Cho mượn thiết bị",
       description:
-        "Walking sticks, folding stools, pushchairs, baby carriers, multifunctional rolling chair and wheelchairs are available free of charge from the visitor reception area beneath the Pyramid.",
+        "Gậy chống, ghế xếp, xe đẩy trẻ em, địu em bé, ghế đa năng có bánh xe và xe lăn được cung cấp miễn phí tại khu vực tiếp đón khách dưới Tháp.",
       image: equipmentImg,
       icon: "stroller",
-      details: "Contact our help desk for more information",
+      details: "Liên hệ quầy hỗ trợ để biết thêm thông tin",
     },
     {
       id: "wifi",
-      title: "Free Wi-Fi",
+      title: "Wi-Fi Miễn phí",
       description:
-        "The 'Musée Du Pin' network is available under the Pyramid and in the exhibition rooms. The free WiFi connection has one hour limit and can be renewed as many times as needed.",
+        "Mạng 'Musée Du Pin' có sẵn dưới Tháp và trong các phòng trưng bày. Kết nối Wi-Fi miễn phí có giới hạn một giờ và có thể được gia hạn nhiều lần theo nhu cầu.",
       image: wifiImg,
       icon: "wifi",
-      details: "Connection speed: 50 Mbps",
+      details: "Tốc độ kết nối: 50 Mbps",
     },
     {
       id: "toilets",
-      title: "Toilets",
+      title: "Nhà vệ sinh",
       description:
-        "Toilets can found in the welcome area under the Pyramid and throughout the museum. There is a baby changing table.",
+        "Nhà vệ sinh có thể được tìm thấy tại khu vực đón tiếp dưới Tháp và khắp bảo tàng. Có bàn thay tã cho em bé.",
       image: toiletsImg,
       icon: "toilet",
-      details: "All restrooms are accessible to visitors with reduced mobility",
+      details: "Tất cả nhà vệ sinh đều tiếp cận được cho người khuyết tật",
     },
     {
       id: "car-park",
-      title: "Car Park",
+      title: "Bãi đậu xe",
       description:
-        "An underground car park is located at 1 Avenue du Général Lemonnier, from which you can access the museum via the Carrousel entrance. It is especially open 7 days a week from 7am to 11pm.",
+        "Bãi đậu xe ngầm nằm tại số 1 Đại lộ Général Lemonnier, từ đó bạn có thể vào bảo tàng qua lối vào Carrousel. Mở cửa 7 ngày một tuần từ 7:00 đến 23:00.",
       image: parkingImg,
       icon: "parking",
       details:
-        "Visitors with disabilities are entitled to a reduced car park rate. This rate can be negotiated at the payment office just before payment.",
+        "Khách tham quan khuyết tật được hưởng giá đậu xe ưu đãi. Giá này có thể được thương lượng tại quầy thanh toán trước khi trả tiền.",
     },
     {
       id: "lost-found",
-      title: "Lost and Found",
+      title: "Đồ thất lạc",
       description:
-        "Lost something? If you are still in the museum, head to the Help Desk under the Pyramid and a member of staff should be able to help you.",
+        "Bị mất đồ? Nếu bạn vẫn còn trong bảo tàng, hãy đến Quầy Hỗ trợ dưới Tháp và nhân viên sẽ giúp bạn.",
       image: lostFoundImg,
       icon: "help",
       details:
-        "For items found after your visit, fill out a report form on our website",
+        "Đối với đồ vật tìm thấy sau chuyến thăm, hãy điền vào mẫu báo cáo trên trang web của chúng tôi",
     },
     {
       id: "baby-space",
-      title: "Baby Space",
+      title: "Khu vực cho em bé",
       description:
-        "The Studio – a special area designed with families in mind, located on the ground floor of the Richelieu wing – has a baby space equipped with a bottle warmer, a microwave oven and a nursing chair.",
+        "Studio – khu vực đặc biệt được thiết kế dành cho gia đình, nằm ở tầng trệt của cánh Richelieu – có khu vực dành cho em bé được trang bị máy hâm sữa, lò vi sóng và ghế cho con bú.",
       image: babySpaceImg,
       icon: "baby",
-      details: "Everything you need for comfort and care with your baby",
+      details: "Mọi thứ bạn cần cho sự thoải mái và chăm sóc em bé",
     },
   ];
 
@@ -426,24 +416,19 @@ const PrepareVisit = () => {
         <div className="prepare-hero-overlay"></div>
       </div>
 
-      {/* Artistic floating elements */}
-      <div className="floating-element one"></div>
-      <div className="floating-element two"></div>
-      <div className="floating-element three"></div>
-
       <div className="prepare-hero-content">
         <h1 className="prepare-hero-title">
-          <TranslatedText>PLAN YOUR VISIT</TranslatedText>
+          <TranslatedText>HƯỚNG DẪN THAM QUAN</TranslatedText>
         </h1>
         <p className="prepare-hero-subtitle">
           <TranslatedText>
-            Everything you need to know before coming to the museum
+            Tất cả những điều bạn cần biết trước khi đến bảo tàng
           </TranslatedText>
         </p>
 
         <div className="prepare-hero-cta">
           <Link to="/tickets" className="prepare-hero-button">
-            <TranslatedText>Get Tickets</TranslatedText>
+            <TranslatedText>Đặt vé</TranslatedText>
           </Link>
         </div>
       </div>
@@ -490,7 +475,7 @@ const PrepareVisit = () => {
               <span className="prepare-nav-icon">
                 <FaClock />
               </span>
-              <TranslatedText>Opening Hours</TranslatedText>
+              <TranslatedText>Giờ mở cửa</TranslatedText>
             </button>
             <span className="prepare-nav-indicator"></span>
           </li>
@@ -506,7 +491,7 @@ const PrepareVisit = () => {
               <span className="prepare-nav-icon">
                 <FaTicketAlt />
               </span>
-              <TranslatedText>Tickets</TranslatedText>
+              <TranslatedText>Vé</TranslatedText>
             </button>
             <span className="prepare-nav-indicator"></span>
           </li>
@@ -522,7 +507,7 @@ const PrepareVisit = () => {
               <span className="prepare-nav-icon">
                 <FaUsers />
               </span>
-              <TranslatedText>Memberships</TranslatedText>
+              <TranslatedText>Thành viên</TranslatedText>
             </button>
             <span className="prepare-nav-indicator"></span>
           </li>
@@ -538,7 +523,7 @@ const PrepareVisit = () => {
               <span className="prepare-nav-icon">
                 <FaInfo />
               </span>
-              <TranslatedText>Amenities</TranslatedText>
+              <TranslatedText>Tiện ích</TranslatedText>
             </button>
             <span className="prepare-nav-indicator"></span>
           </li>
@@ -554,7 +539,7 @@ const PrepareVisit = () => {
               <span className="prepare-nav-icon">
                 <FaHome />
               </span>
-              <TranslatedText>Homestay</TranslatedText>
+              <TranslatedText>Lưu trú</TranslatedText>
             </button>
             <span className="prepare-nav-indicator"></span>
           </li>
@@ -570,7 +555,7 @@ const PrepareVisit = () => {
               <span className="prepare-nav-icon">
                 <FaQuestion />
               </span>
-              <TranslatedText>FAQ</TranslatedText>
+              <TranslatedText>Hỏi đáp</TranslatedText>
             </button>
             <span className="prepare-nav-indicator"></span>
           </li>
@@ -606,7 +591,7 @@ const PrepareVisit = () => {
                 <FaClock />
               </span>
               <span className="mobile-nav-label">
-                <TranslatedText>Hours</TranslatedText>
+                <TranslatedText>Giờ</TranslatedText>
               </span>
             </button>
           </li>
@@ -626,7 +611,7 @@ const PrepareVisit = () => {
                 <FaTicketAlt />
               </span>
               <span className="mobile-nav-label">
-                <TranslatedText>Tickets</TranslatedText>
+                <TranslatedText>Vé</TranslatedText>
               </span>
             </button>
           </li>
@@ -646,7 +631,7 @@ const PrepareVisit = () => {
                 <FaUsers />
               </span>
               <span className="mobile-nav-label">
-                <TranslatedText>Members</TranslatedText>
+                <TranslatedText>Thành viên</TranslatedText>
               </span>
             </button>
           </li>
@@ -666,7 +651,7 @@ const PrepareVisit = () => {
                 <FaInfo />
               </span>
               <span className="mobile-nav-label">
-                <TranslatedText>Services</TranslatedText>
+                <TranslatedText>Dịch vụ</TranslatedText>
               </span>
             </button>
           </li>
@@ -686,7 +671,7 @@ const PrepareVisit = () => {
                 <FaHome />
               </span>
               <span className="mobile-nav-label">
-                <TranslatedText>Stay</TranslatedText>
+                <TranslatedText>Lưu trú</TranslatedText>
               </span>
             </button>
           </li>
@@ -706,7 +691,7 @@ const PrepareVisit = () => {
                 <FaQuestion />
               </span>
               <span className="mobile-nav-label">
-                <TranslatedText>FAQ</TranslatedText>
+                <TranslatedText>Hỏi đáp</TranslatedText>
               </span>
             </button>
           </li>
@@ -715,26 +700,20 @@ const PrepareVisit = () => {
     );
   };
 
-
   // Render Hours Section
   const renderHoursSection = () => (
-    <section
-      className="prepare-section hours-section"
-      id="hours"
-      ref={sectionRefs.hours}
-    >
+    <section className="hours-section" id="hours" ref={sectionRefs.hours}>
       <div className="prepare-section-container">
         <div className="prepare-section-header">
-          <div className="section-badge">
-            <FaClock />
-          </div>
+          <div className="section-badge"></div>
           <h2 className="prepare-section-title">
-            <TranslatedText>OPENING HOURS</TranslatedText>
+            <TranslatedText>GIỜ MỞ CỬA</TranslatedText>
             <span className="title-underline"></span>
           </h2>
           <p className="prepare-section-description">
             <TranslatedText>
-              Plan your visit with our current opening schedule
+              Lên kế hoạch cho chuyến tham quan với lịch trình hiện tại của
+              chúng tôi
             </TranslatedText>
           </p>
         </div>
@@ -742,108 +721,80 @@ const PrepareVisit = () => {
         <div className="museum-info-wrapper">
           <div className="museum-info-image">
             <img src={heroImage} alt="Musée Du Pin" />
+            {isMobile && <div className="info-image-overlay"></div>}
           </div>
+
           <div className="museum-info-content">
             <div className="museum-status-bar">
-              <h3 className="museum-title">
-                <TranslatedText>Musée Du Pin</TranslatedText>
-              </h3>
               <div className={`museum-status ${statusClass}`}>
                 <span className="status-dot"></span>
-                <span className="status-text">
-                  <TranslatedText>{statusText}</TranslatedText>
-                </span>
+                <TranslatedText>Bảo tàng {statusText}</TranslatedText>
               </div>
             </div>
 
             <div className="museum-hours">
-              <div className="hours-row">
+              <div className={`hours-row ${isMobile ? "touch-friendly" : ""}`}>
                 <div className="hours-time">
-                  <TranslatedText>Monday</TranslatedText>
+                  <span>
+                    <TranslatedText>7:00 → 21:00</TranslatedText>
+                  </span>
                 </div>
                 <div className="hours-days">
-                  <TranslatedText>7:00 AM - 21:00 PM</TranslatedText>
-                </div>
-              </div>
-              <div className="hours-row">
-                <div className="hours-time">
-                  <TranslatedText>Tuesday</TranslatedText>
-                </div>
-                <div className="hours-days">
-                  <TranslatedText>7:00 AM - 21:00 PM</TranslatedText>
-                </div>
-              </div>
-              <div className="hours-row">
-                <div className="hours-time">
-                  <TranslatedText>Wednesday</TranslatedText>
-                </div>
-                <div className="hours-days">
-                  <TranslatedText>7:00 AM - 21:00 PM</TranslatedText>
-                </div>
-              </div>
-              <div className="hours-row">
-                <div className="hours-time">
-                  <TranslatedText>Thursday</TranslatedText>
-                </div>
-                <div className="hours-days">
-                  <TranslatedText>7:00 AM - 21:00 PM</TranslatedText>
-                </div>
-              </div>
-              <div className="hours-row">
-                <div className="hours-time">
-                  <TranslatedText>Friday</TranslatedText>
-                </div>
-                <div className="hours-days">
-                  <TranslatedText>7:00 AM - 21:00 PM</TranslatedText>
-                </div>
-              </div>
-              <div className="hours-row">
-                <div className="hours-time">
-                  <TranslatedText>Saturday</TranslatedText>
-                </div>
-                <div className="hours-days">
-                  <TranslatedText>7:00 AM - 21:00 PM</TranslatedText>
-                </div>
-              </div>
-              <div className="hours-row">
-                <div className="hours-time">
-                  <TranslatedText>Sunday</TranslatedText>
-                </div>
-                <div className="hours-days">
-                  <TranslatedText>7:00 AM - 21:00 PM</TranslatedText>
+                  <span>
+                    <TranslatedText>Thứ Hai đến Chủ Nhật</TranslatedText>
+                  </span>
                 </div>
               </div>
             </div>
 
             <div className="museum-notes">
-              <div className="note-item">
+              <div className={`note-item ${isMobile ? "touch-friendly" : ""}`}>
                 <div className="note-label">
-                  <TranslatedText>Public Holidays</TranslatedText>
+                  <TranslatedText>Giờ vào cuối:</TranslatedText>
+                </div>
+                <div className="note-value">
+                  <TranslatedText>1 tiếng trước giờ đóng cửa</TranslatedText>
+                </div>
+              </div>
+
+              <div className={`note-item ${isMobile ? "touch-friendly" : ""}`}>
+                <div className="note-label">
+                  <TranslatedText>Dọn dẹp phòng:</TranslatedText>
+                </div>
+                <div className="note-value">
+                  <TranslatedText>30 phút trước giờ đóng cửa</TranslatedText>
+                </div>
+              </div>
+
+              <div className={`note-item ${isMobile ? "touch-friendly" : ""}`}>
+                <div className="note-label">
+                  <TranslatedText>Ngày lễ:</TranslatedText>
                 </div>
                 <div className="note-value">
                   <TranslatedText>
-                    The museum is closed on January 1, May 1, and December 25.
+                    Musée Du Pin đóng cửa vào ngày 1 tháng 1, 1 tháng 5 và 25
+                    tháng 12. Bảo tàng vẫn mở cửa vào các ngày lễ khác trừ khi
+                    rơi vào thứ Ba, ngày nghỉ định kỳ của bảo tàng.
                   </TranslatedText>
                 </div>
               </div>
-              <div className="note-item">
+
+              <div className={`note-item ${isMobile ? "touch-friendly" : ""}`}>
                 <div className="note-label">
-                  <TranslatedText>Night Visits</TranslatedText>
+                  <TranslatedText>Sân Carrée</TranslatedText>
                 </div>
                 <div className="note-value">
-                  <TranslatedText>
-                    Extended hours until 10:00 PM on Fridays with special guided
-                    tours.
-                  </TranslatedText>
+                  <TranslatedText>đóng cửa lúc 23:00.</TranslatedText>
                 </div>
               </div>
-              <div className="note-item">
+
+              <div className={`note-item ${isMobile ? "touch-friendly" : ""}`}>
                 <div className="note-label">
-                  <TranslatedText>Last Admission</TranslatedText>
+                  <TranslatedText>Sân Carrée</TranslatedText>
                 </div>
                 <div className="note-value">
                   <TranslatedText>
-                    Visitors may enter up to 30 minutes before closing time.
+                    sẽ đóng cửa từ ngày 7 tháng 4 đến 25 tháng 6 năm 2025.
                   </TranslatedText>
                 </div>
               </div>
@@ -856,23 +807,16 @@ const PrepareVisit = () => {
 
   // Render Tickets Section
   const renderTicketsSection = () => (
-    <section
-      className="prepare-section tickets-section"
-      id="tickets"
-      ref={sectionRefs.tickets}
-    >
+    <section className="tickets-section" id="tickets" ref={sectionRefs.tickets}>
       <div className="prepare-section-container">
         <div className="prepare-section-header">
-          <div className="section-badge">
-            <FaTicketAlt />
-          </div>
           <h2 className="prepare-section-title">
-            <TranslatedText>TICKETS & PRICING</TranslatedText>
+            <TranslatedText>VÉ & GIÁ</TranslatedText>
             <span className="title-underline"></span>
           </h2>
           <p className="prepare-section-description">
             <TranslatedText>
-              Choose the right ticket option for your museum experience
+              Chọn loại vé phù hợp cho trải nghiệm tham quan bảo tàng của bạn
             </TranslatedText>
           </p>
         </div>
@@ -881,7 +825,7 @@ const PrepareVisit = () => {
           <div className="ticket-card featured">
             <div className="ticket-header">
               <h3 className="ticket-title">
-                <TranslatedText>General Admission</TranslatedText>
+                <TranslatedText>Vé phổ thông</TranslatedText>
               </h3>
               <div className="ticket-price">
                 <span className="price-value">€15</span>
@@ -891,25 +835,23 @@ const PrepareVisit = () => {
               <ul className="ticket-features">
                 <li>
                   <TranslatedText>
-                    Access to all permanent collections
+                    Truy cập tất cả bộ sưu tập thường trực
                   </TranslatedText>
                 </li>
                 <li>
-                  <TranslatedText>
-                    Audio guide available (additional €5)
-                  </TranslatedText>
+                  <TranslatedText>Hướng dẫn âm thanh (thêm €5)</TranslatedText>
                 </li>
                 <li>
-                  <TranslatedText>Valid for one day</TranslatedText>
+                  <TranslatedText>Có giá trị trong một ngày</TranslatedText>
                 </li>
               </ul>
               <div className="ticket-notes">
                 <TranslatedText>
-                  Free for visitors under 18 and EU residents under 26
+                  Miễn phí cho khách dưới 18 tuổi và cư dân EU dưới 26 tuổi
                 </TranslatedText>
               </div>
               <button className="ticket-button">
-                <TranslatedText>Book Now</TranslatedText>
+                <TranslatedText>Đặt ngay</TranslatedText>
               </button>
             </div>
           </div>
@@ -917,7 +859,7 @@ const PrepareVisit = () => {
           <div className="ticket-card">
             <div className="ticket-header">
               <h3 className="ticket-title">
-                <TranslatedText>Exhibition Pass</TranslatedText>
+                <TranslatedText>Vé triển lãm</TranslatedText>
               </h3>
               <div className="ticket-price">
                 <span className="price-value">€25</span>
@@ -927,23 +869,23 @@ const PrepareVisit = () => {
               <ul className="ticket-features">
                 <li>
                   <TranslatedText>
-                    Access to all permanent collections
+                    Truy cập tất cả bộ sưu tập thường trực
                   </TranslatedText>
                 </li>
                 <li>
                   <TranslatedText>
-                    All temporary exhibitions included
+                    Bao gồm tất cả triển lãm tạm thời
                   </TranslatedText>
                 </li>
                 <li>
-                  <TranslatedText>Audio guide included</TranslatedText>
+                  <TranslatedText>Bao gồm hướng dẫn âm thanh</TranslatedText>
                 </li>
                 <li>
-                  <TranslatedText>Valid for one day</TranslatedText>
+                  <TranslatedText>Có giá trị trong một ngày</TranslatedText>
                 </li>
               </ul>
               <button className="ticket-button">
-                <TranslatedText>Book Now</TranslatedText>
+                <TranslatedText>Đặt ngay</TranslatedText>
               </button>
             </div>
           </div>
@@ -951,7 +893,7 @@ const PrepareVisit = () => {
           <div className="ticket-card">
             <div className="ticket-header">
               <h3 className="ticket-title">
-                <TranslatedText>Museum Pass</TranslatedText>
+                <TranslatedText>Vé thông hành</TranslatedText>
               </h3>
               <div className="ticket-price">
                 <span className="price-value">€45</span>
@@ -961,23 +903,27 @@ const PrepareVisit = () => {
               <ul className="ticket-features">
                 <li>
                   <TranslatedText>
-                    Unlimited access for 3 consecutive days
+                    Truy cập không giới hạn trong 3 ngày liên tiếp
                   </TranslatedText>
                 </li>
                 <li>
                   <TranslatedText>
-                    All collections and exhibitions included
+                    Bao gồm tất cả bộ sưu tập và triển lãm
                   </TranslatedText>
                 </li>
                 <li>
-                  <TranslatedText>Skip-the-line privileges</TranslatedText>
+                  <TranslatedText>
+                    Ưu tiên vào cửa không cần xếp hàng
+                  </TranslatedText>
                 </li>
                 <li>
-                  <TranslatedText>10% discount at museum shops</TranslatedText>
+                  <TranslatedText>
+                    Giảm 10% tại cửa hàng bảo tàng
+                  </TranslatedText>
                 </li>
               </ul>
               <button className="ticket-button">
-                <TranslatedText>Book Now</TranslatedText>
+                <TranslatedText>Đặt ngay</TranslatedText>
               </button>
             </div>
           </div>
@@ -986,25 +932,24 @@ const PrepareVisit = () => {
         <div className="tickets-info">
           <div className="info-block">
             <h4 className="info-title">
-              <TranslatedText>Free Admission</TranslatedText>
+              <TranslatedText>Miễn phí vào cửa</TranslatedText>
             </h4>
             <p className="info-text">
               <TranslatedText>
-                Entry is free for visitors under 18 years old, EU residents
-                under 26 years old, disabled visitors and one companion, and for
-                everyone on the first Friday of each month.
+                Miễn phí vào cửa cho khách dưới 18 tuổi, cư dân EU dưới 26 tuổi,
+                người khuyết tật và một người đi kèm, và cho tất cả mọi người
+                vào thứ Sáu đầu tiên của mỗi tháng.
               </TranslatedText>
             </p>
           </div>
           <div className="info-block">
             <h4 className="info-title">
-              <TranslatedText>Group Visits</TranslatedText>
+              <TranslatedText>Tham quan theo nhóm</TranslatedText>
             </h4>
             <p className="info-text">
               <TranslatedText>
-                Special rates available for groups of 10 or more people. Please
-                contact our group reservations department at least two weeks in
-                advance.
+                Có giá đặc biệt cho nhóm từ 10 người trở lên. Vui lòng liên hệ
+                bộ phận đặt chỗ nhóm ít nhất hai tuần trước chuyến thăm.
               </TranslatedText>
             </p>
           </div>
@@ -1016,22 +961,20 @@ const PrepareVisit = () => {
   // Render Membership Section
   const renderMembershipSection = () => (
     <section
-      className="prepare-section membership-section"
+      className="membership-section"
       id="membership"
       ref={sectionRefs.membership}
     >
       <div className="prepare-section-container">
         <div className="prepare-section-header">
-          <div className="section-badge">
-            <FaUsers />
-          </div>
           <h2 className="prepare-section-title">
-            <TranslatedText>MEMBERSHIPS</TranslatedText>
+            <TranslatedText>THÀNH VIÊN</TranslatedText>
             <span className="title-underline"></span>
           </h2>
           <p className="prepare-section-description">
             <TranslatedText>
-              Become a member and enjoy exclusive benefits and unlimited access
+              Trở thành thành viên và tận hưởng các đặc quyền cùng quyền truy
+              cập không giới hạn
             </TranslatedText>
           </p>
         </div>
@@ -1039,14 +982,14 @@ const PrepareVisit = () => {
         <div className="membership-info">
           <h3 className="membership-heading">
             <TranslatedText>
-              Become a member of the Amis du Musée Du Pin
+              Trở thành thành viên của Hội Bạn bè Musée Du Pin
             </TranslatedText>
           </h3>
           <p className="membership-description">
             <TranslatedText>
-              The Amis du Musée Du Pin offers a range of membership programmes
-              (youth, solo and duo, family), with prices ranging from €15 to
-              €120.
+              Hội Bạn bè Musée Du Pin cung cấp nhiều chương trình thành viên
+              khác nhau (thanh niên, cá nhân và cặp đôi, gia đình), với mức giá
+              từ €15 đến €120.
             </TranslatedText>
           </p>
 
@@ -1054,36 +997,38 @@ const PrepareVisit = () => {
             <div className="membership-card">
               <div className="membership-card-header">
                 <h4 className="membership-card-title">
-                  <TranslatedText>Youth Membership</TranslatedText>
+                  <TranslatedText>Thành viên thanh niên</TranslatedText>
                 </h4>
                 <div className="membership-card-price">
                   <span className="price-value">€15</span>
-                  <span className="price-period">/year</span>
+                  <span className="price-period">/năm</span>
                 </div>
               </div>
               <div className="membership-card-content">
                 <ul className="membership-benefits">
                   <li>
                     <TranslatedText>
-                      For visitors under 26 years old
+                      Dành cho khách tham quan dưới 26 tuổi
                     </TranslatedText>
                   </li>
                   <li>
                     <TranslatedText>
-                      Unlimited access to collections
+                      Truy cập không giới hạn vào bộ sưu tập
                     </TranslatedText>
                   </li>
                   <li>
-                    <TranslatedText>Special events for members</TranslatedText>
+                    <TranslatedText>
+                      Sự kiện đặc biệt cho thành viên
+                    </TranslatedText>
                   </li>
                   <li>
                     <TranslatedText>
-                      10% discount in museum shops
+                      Giảm 10% tại cửa hàng bảo tàng
                     </TranslatedText>
                   </li>
                 </ul>
                 <button className="membership-card-button">
-                  <TranslatedText>Join Now</TranslatedText>
+                  <TranslatedText>Tham gia ngay</TranslatedText>
                 </button>
               </div>
             </div>
@@ -1091,46 +1036,44 @@ const PrepareVisit = () => {
             <div className="membership-card featured">
               <div className="membership-card-header">
                 <div className="card-badge">
-                  <TranslatedText>Most Popular</TranslatedText>
+                  <TranslatedText>Phổ biến nhất</TranslatedText>
                 </div>
                 <h4 className="membership-card-title">
-                  <TranslatedText>Solo Membership</TranslatedText>
+                  <TranslatedText>Thành viên cá nhân</TranslatedText>
                 </h4>
                 <div className="membership-card-price">
                   <span className="price-value">€60</span>
-                  <span className="price-period">/year</span>
+                  <span className="price-period">/năm</span>
                 </div>
               </div>
               <div className="membership-card-content">
                 <ul className="membership-benefits">
                   <li>
                     <TranslatedText>
-                      Unlimited access for one person
+                      Truy cập không giới hạn cho một người
                     </TranslatedText>
                   </li>
                   <li>
                     <TranslatedText>
-                      Fast-track entry to exhibitions
+                      Vào cửa nhanh cho các triển lãm
                     </TranslatedText>
                   </li>
                   <li>
                     <TranslatedText>
-                      Access to member-only events
+                      Tham gia sự kiện dành riêng cho thành viên
                     </TranslatedText>
                   </li>
                   <li>
                     <TranslatedText>
-                      15% discount in museum shops
+                      Giảm 15% tại cửa hàng bảo tàng
                     </TranslatedText>
                   </li>
                   <li>
-                    <TranslatedText>
-                      Subscription to quarterly magazine
-                    </TranslatedText>
+                    <TranslatedText>Đăng ký tạp chí hàng quý</TranslatedText>
                   </li>
                 </ul>
                 <button className="membership-card-button featured">
-                  <TranslatedText>Join Now</TranslatedText>
+                  <TranslatedText>Tham gia ngay</TranslatedText>
                 </button>
               </div>
             </div>
@@ -1138,43 +1081,43 @@ const PrepareVisit = () => {
             <div className="membership-card">
               <div className="membership-card-header">
                 <h4 className="membership-card-title">
-                  <TranslatedText>Family Membership</TranslatedText>
+                  <TranslatedText>Thành viên gia đình</TranslatedText>
                 </h4>
                 <div className="membership-card-price">
                   <span className="price-value">€120</span>
-                  <span className="price-period">/year</span>
+                  <span className="price-period">/năm</span>
                 </div>
               </div>
               <div className="membership-card-content">
                 <ul className="membership-benefits">
                   <li>
                     <TranslatedText>
-                      Covers 2 adults and up to 4 children
+                      Áp dụng cho 2 người lớn và tối đa 4 trẻ em
                     </TranslatedText>
                   </li>
                   <li>
                     <TranslatedText>
-                      Unlimited access for the family
+                      Truy cập không giới hạn cho cả gia đình
                     </TranslatedText>
                   </li>
                   <li>
                     <TranslatedText>
-                      Special access to family workshops
+                      Quyền tham gia các hội thảo gia đình đặc biệt
                     </TranslatedText>
                   </li>
                   <li>
                     <TranslatedText>
-                      20% discount on educational programs
+                      Giảm 20% cho các chương trình giáo dục
                     </TranslatedText>
                   </li>
                   <li>
                     <TranslatedText>
-                      15% discount in museum shops
+                      Giảm 15% tại cửa hàng bảo tàng
                     </TranslatedText>
                   </li>
                 </ul>
                 <button className="membership-card-button">
-                  <TranslatedText>Join Now</TranslatedText>
+                  <TranslatedText>Tham gia ngay</TranslatedText>
                 </button>
               </div>
             </div>
@@ -1198,12 +1141,6 @@ const PrepareVisit = () => {
         overflow: "hidden",
       }}
     >
-      {/* Decorative elements */}
-      <div className="decorative-lines"></div>
-      <div className="decorative-circle large"></div>
-      <div className="decorative-circle medium"></div>
-      <div className="decorative-dots-pattern"></div>
-
       <div
         style={{
           position: "absolute",
@@ -1421,34 +1358,35 @@ const PrepareVisit = () => {
   // FAQ data with more detailed answers
   const faqData = [
     {
-      question: "Can I visit the museum for free? Do I have to book tickets?",
+      question:
+        "Tôi có thể tham quan bảo tàng miễn phí không? Tôi có cần đặt vé không?",
       answer:
-        "The museum offers free admission to several categories of visitors including those under 18 years old, EU residents under 26, and disabled visitors with a companion. Free entry is also available to everyone on the first Friday of each month from 6 PM (except July and August). We recommend booking a time slot in advance, even for free-admission visitors, especially during peak seasons.",
+        "Bảo tàng miễn phí vé vào cửa cho nhiều đối tượng bao gồm người dưới 18 tuổi, cư dân EU dưới 26 tuổi và người khuyết tật cùng một người đi kèm. Vào cửa miễn phí cũng được áp dụng cho tất cả mọi người vào thứ Sáu đầu tiên của mỗi tháng từ 18:00 (trừ tháng 7 và tháng 8). Chúng tôi khuyến nghị đặt khung giờ trước, kể cả đối với khách được miễn phí vé, đặc biệt là trong mùa cao điểm.",
     },
     {
-      question: "How can I buy a ticket at concession price?",
+      question: "Làm thế nào để mua vé ưu đãi?",
       answer:
-        "Concession tickets are available for young adults aged 18-25 from countries outside the EU, holders of the Education Pass, and members of partner organizations. You must present a valid ID or membership card at the entrance. Concession tickets can be purchased online or at the ticket office.",
+        "Vé ưu đãi có sẵn cho thanh niên từ 18-25 tuổi đến từ các nước ngoài EU, người có Thẻ Giáo dục và thành viên của các tổ chức đối tác. Bạn phải xuất trình CMND/CCCD hoặc thẻ thành viên hợp lệ tại cửa. Vé ưu đãi có thể được mua trực tuyến hoặc tại quầy vé.",
     },
     {
-      question: "Can I get a refund?",
+      question: "Tôi có thể được hoàn tiền không?",
       answer:
-        "Tickets are non-refundable once purchased. However, in case of museum closure for exceptional reasons, we will offer a refund or an alternative date. For special circumstances, please contact our visitor services at visitor@museedupin.com with your booking reference and reasons for requesting a refund.",
+        "Vé không được hoàn tiền sau khi mua. Tuy nhiên, trong trường hợp bảo tàng đóng cửa vì lý do đặc biệt, chúng tôi sẽ hoàn tiền hoặc đổi sang ngày khác. Đối với các trường hợp đặc biệt, vui lòng liên hệ dịch vụ khách tham quan tại visitor@museedupin.com kèm mã đặt chỗ và lý do yêu cầu hoàn tiền.",
     },
     {
-      question: "Which entrance do I use if I have bought tickets online?",
+      question: "Tôi nên vào cửa nào nếu đã mua vé trực tuyến?",
       answer:
-        "Visitors with e-tickets can enter through the Pyramid entrance (main entrance) or the Porte des Lions entrance. The Carrousel entrance is reserved for groups and museum pass holders. Your e-ticket includes a QR code that will be scanned at the entrance. We recommend arriving 15 minutes before your reserved time slot.",
+        "Khách có vé điện tử có thể vào qua cửa Tháp (cửa chính) hoặc cửa Porte des Lions. Cửa Carrousel dành riêng cho các đoàn và người có thẻ bảo tàng. Vé điện tử của bạn có mã QR sẽ được quét tại cửa. Chúng tôi khuyến nghị đến trước 15 phút so với khung giờ đã đặt.",
     },
     {
-      question: "Are prams allowed in the museum?",
+      question: "Có được mang xe đẩy em bé vào bảo tàng không?",
       answer:
-        "Yes, prams and strollers are allowed in the museum. However, during very busy periods, you may be asked to leave larger strollers at the cloakroom and use baby carriers instead, which are available free of charge. All galleries and exhibition spaces are accessible with strollers via elevators.",
+        "Có, xe đẩy và xe nôi được phép vào bảo tàng. Tuy nhiên, trong thời điểm rất đông khách, bạn có thể được yêu cầu gửi xe đẩy lớn tại phòng gửi đồ và sử dụng địu em bé thay thế, được cung cấp miễn phí. Tất cả các phòng trưng bày đều có thể tiếp cận bằng xe đẩy thông qua thang máy.",
     },
     {
-      question: "What items are not allowed in the museum?",
+      question: "Những vật dụng nào không được mang vào bảo tàng?",
       answer:
-        "Items not permitted inside the museum include large bags and suitcases (larger than 55×35×20 cm), tripods, selfie sticks, flash photography equipment, food and drinks (except water bottles), and sharp objects. These items must be left in the cloakroom. We also prohibit touching the artworks, smoking, and using mobile phones in the galleries.",
+        "Các vật dụng không được phép mang vào bảo tàng bao gồm túi xách và vali lớn (lớn hơn 55×35×20 cm), giá ba chân, gậy selfie, thiết bị chụp ảnh có đèn flash, đồ ăn và thức uống (trừ chai nước), và các vật sắc nhọn. Những vật dụng này phải được gửi tại phòng gửi đồ. Chúng tôi cũng cấm chạm vào tác phẩm nghệ thuật, hút thuốc và sử dụng điện thoại di động trong phòng trưng bày.",
     },
   ];
 
@@ -1459,12 +1397,6 @@ const PrepareVisit = () => {
       id="homestay"
       ref={sectionRefs.homestay}
     >
-      {/* Decorative elements */}
-      <div className="decorative-circle large"></div>
-      <div className="decorative-circle medium"></div>
-      <div className="decorative-square"></div>
-      <div className="decorative-dot"></div>
-
       <div
         className="prepare-section-container"
         style={{ position: "relative", zIndex: "2" }}
@@ -1594,19 +1526,16 @@ const PrepareVisit = () => {
       id="faq"
       ref={sectionRefs.faq}
     >
-      <div className="decorative-circle large"></div>
-      <div className="decorative-circle medium"></div>
-
       <div className="faq-container">
         <div className="faq-header">
           <div className="section-badge">
             <FaQuestion />
           </div>
           <h2 className="faq-title">
-            <TranslatedText>Frequently asked questions</TranslatedText>
+            <TranslatedText>Câu hỏi thường gặp</TranslatedText>
           </h2>
           <p className="faq-subtitle">
-            <TranslatedText>Answers from the Musée Du Pin.</TranslatedText>
+            <TranslatedText>Giải đáp từ Musée Du Pin.</TranslatedText>
           </p>
         </div>
 
@@ -1634,11 +1563,11 @@ const PrepareVisit = () => {
 
         <div className="faq-footer">
           <h3 className="faq-footer-title">
-            <TranslatedText>Didn't find your answer?</TranslatedText>
+            <TranslatedText>Chưa tìm thấy câu trả lời?</TranslatedText>
           </h3>
           <p className="faq-footer-text">
             <TranslatedText>
-              Contact our support team for more information.
+              Liên hệ đội ngũ hỗ trợ của chúng tôi để biết thêm thông tin.
             </TranslatedText>
           </p>
           <button className="contact-btn">
@@ -1648,7 +1577,7 @@ const PrepareVisit = () => {
                 d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
               />
             </svg>
-            <TranslatedText>Contact Us</TranslatedText>
+            <TranslatedText>Liên hệ chúng tôi</TranslatedText>
           </button>
         </div>
       </div>

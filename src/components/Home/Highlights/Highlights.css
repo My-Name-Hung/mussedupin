@@ -10,22 +10,21 @@
   font-display: swap;
 }
 
-/* CSS Variables for reusable values */
-:root {
-  --highlights-background-image: url("../../../assets/Background/Background2.png");
-}
-
-
 /* Main Highlights Section */
 .highlights-section {
   width: 100%;
+  max-width: 1240px;
   margin: 0 auto;
   padding: 60px 20px;
-  background-image: #FFF;
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
+  background-image: url("../../../assets/Background/Background2.png");
+  background-repeat: repeat;
+  background-position: top center;
+  background-size: 300px;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
   box-sizing: border-box;
+  position: relative;
+  z-index: 1;
 }
 
 .highlights-header {
@@ -34,13 +33,13 @@
 
 .highlights-title {
   font-family: "Meholrax", serif;
-  font-size: 56px;
+  font-size: 48px;
   font-weight: 400;
-  line-height: 1.2;
-  color: #000000;
+  line-height: 56px;
   margin: 0;
-  margin-bottom: 2rem;
-  position: relative;
+  padding: 0;
+  color: #000000;
+  letter-spacing: -0.02em;
   text-transform: uppercase;
 }
 
@@ -60,11 +59,9 @@
   position: relative;
   height: 100%;
   display: flex;
+  border-radius: 10px;
   flex-direction: column;
   overflow: hidden;
-  background-color: #fff;
-  border-radius: 4px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 /* Card link wrapper */
@@ -81,10 +78,10 @@
   top: 15px;
   left: 15px;
   z-index: 2;
-  background-color: #34515e;
+  background-color: #2c2f11;
   color: #fff;
   padding: 5px 12px;
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 14px;
   font-weight: 500;
   border-radius: 3px;
@@ -94,7 +91,6 @@
   position: relative;
   width: 100%;
   overflow: hidden;
-  background-color: #f5f5f5;
 }
 
 .card-image {
@@ -116,7 +112,7 @@
 }
 
 .card-content .card-title {
-  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-family: "Roboto", serif;
   font-size: 24px;
   font-weight: 400;
   margin: 0 0 12px;
@@ -146,7 +142,7 @@
 }
 
 .card-description {
-  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
   font-weight: 400;
   line-height: 24px;
@@ -283,18 +279,22 @@
 
   /* Card size and aspect ratio variants */
   .highlight-card-large .card-image-container {
-    padding-top: 75%; /* 4:3 Aspect ratio for large feature card */
+    padding-top: 56.25%; /* 16:9 Aspect ratio for landscape */
     position: relative;
   }
 
   .highlight-card-medium .card-image-container {
-    padding-top: 100%; /* 1:1 Aspect ratio for medium cards */
+    padding-top: 75%; /* 4:3 Aspect ratio for balanced view */
     position: relative;
   }
 
   .highlight-card-small .card-image-container {
-    padding-top: 100%; /* 1:1 Aspect ratio for small cards */
+    padding-top: 133.33%; /* 3:4 Aspect ratio for portrait */
     position: relative;
+  }
+
+  .highlights-row-2 .highlight-card-medium .card-image-container {
+    padding-top: 66.67%; /* 3:2 Aspect ratio for landscape medium cards */
   }
 
   .card-image {
@@ -303,10 +303,25 @@
     left: 0;
     width: 100%;
     height: 100%;
+    object-position: center;
   }
 
   .card-content {
     padding: 20px 0;
+  }
+}
+
+/* Mobile specific adjustments */
+@media (max-width: 819px) {
+  .highlights-grid-mobile .card-image-container {
+    padding-top: 75%; /* 4:3 Aspect ratio for mobile */
+    position: relative;
+  }
+
+  .card-image {
+    position: absolute;
+    top: 0;
+    left: 0;
   }
 }
 
@@ -372,24 +387,12 @@
   color: #fff;
   transform: translateY(100%);
   transition: transform 0.3s ease;
-  z-index: 9990;
+  z-index: 50;
   box-shadow: 0 -2px 10px rgba(0, 0, 0, 0.1);
 }
 
 .prepare-visit-bar.visible {
   transform: translateY(0);
-  animation: slideUp 0.3s ease forwards;
-}
-
-@keyframes slideUp {
-  from {
-    transform: translateY(100%);
-    opacity: 0;
-  }
-  to {
-    transform: translateY(0);
-    opacity: 1;
-  }
 }
 
 .prepare-visit-content {
@@ -494,25 +497,5 @@
     text-align: center;
     font-size: 13px;
     padding: 8px 10px;
-  }
-}
-
-/* Small devices fixes */
-@media (max-width: 576px) {
-  .prepare-visit-bar.visible {
-    position: fixed !important;
-    bottom: 0 !important;
-    z-index: 9990 !important;
-    transform: translateY(0) !important;
-  }
-}
-
-/* Extra small devices */
-@media (max-width: 375px) {
-  .prepare-visit-bar.visible {
-    position: fixed !important;
-    bottom: 0 !important;
-    z-index: 9990 !important;
-    transform: translateY(0) !important;
   }
 }

@@ -1,162 +1,210 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import logoImage from "../../assets/Logo/icon.jpg";
+import FeedbackModal from "../FeedbackModal/FeedbackModal";
 import TranslatedText from "../TranslatedText";
 import "./Footer.css";
 
 const Footer = () => {
+  const [openSections, setOpenSections] = useState([]);
+  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
+  const navigate = useNavigate();
+
+  const toggleSection = (index) => {
+    setOpenSections((prev) => {
+      if (prev.includes(index)) {
+        return prev.filter((i) => i !== index);
+      } else {
+        return [...prev, index];
+      }
+    });
+  };
+
+  const handleContactClick = (e) => {
+    e.preventDefault();
+    navigate("/about");
+    setTimeout(() => {
+      const element = document.getElementById("contact-section");
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
+      }
+    }, 100);
+  };
+
   return (
-    <footer className="site-footer">
-      <div className="footer-content">
-        <div className="footer-sections">
-          {/* About Section */}
-          <div className="footer-section">
-            <h3 className="footer-heading">
-              <TranslatedText>ABOUT</TranslatedText>
-            </h3>
-            <ul className="footer-links">
-              <li>
-                <Link to="/about">
-                  <TranslatedText>The Musée Du Pin in VietNam</TranslatedText>
-                </Link>
-              </li>
-              <li>
-                <Link to="/visitor-rules">
-                  <TranslatedText>Visitor rules</TranslatedText>
-                </Link>
-              </li>
-              <li>
-                <Link to="/loans">
-                  <TranslatedText>Loans and long-term loans</TranslatedText>
-                </Link>
-              </li>
-            </ul>
-          </div>
+    <>
+      <footer className="site-footer">
+        <div className="footer-content">
+          <div className="footer-sections">
+            {/* About Section */}
+            <div
+              className={`footer-section ${
+                openSections.includes(0) ? "open" : ""
+              }`}
+            >
+              <h3 className="footer-heading" onClick={() => toggleSection(0)}>
+                <TranslatedText>GIỚI THIỆU</TranslatedText>
+              </h3>
+              <ul className="footer-links">
+                <li>
+                  <Link to="/about">
+                    <TranslatedText>
+                      Bảo tàng Du Pin tại Việt Nam
+                    </TranslatedText>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/visitor-rules">
+                    <TranslatedText>Nội quy tham quan</TranslatedText>
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
-          {/* Our Websites Section */}
-          <div className="footer-section">
-            <h3 className="footer-heading">
-              <TranslatedText>OUR WEBSITES</TranslatedText>
-            </h3>
-            <ul className="footer-links">
-              <li>
-                <Link to="/tickets">
-                  <TranslatedText>Online ticketing service</TranslatedText>
-                </Link>
-              </li>
-              <li>
-                <Link to="/boutique">
-                  <TranslatedText>Online Boutique Shop</TranslatedText>
-                </Link>
-              </li>
-              <li>
-                <Link to="/collection">
-                  <TranslatedText>Collection</TranslatedText>
-                </Link>
-              </li>
-            </ul>
-          </div>
+            {/* Our Websites Section */}
+            <div
+              className={`footer-section ${
+                openSections.includes(1) ? "open" : ""
+              }`}
+            >
+              <h3 className="footer-heading" onClick={() => toggleSection(1)}>
+                <TranslatedText>TRANG WEB CỦA CHÚNG TÔI</TranslatedText>
+              </h3>
+              <ul className="footer-links">
+                <li>
+                  <Link to="/tickets">
+                    <TranslatedText>Dịch vụ đặt vé trực tuyến</TranslatedText>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="https://online-museeduphin.netlify.app/">
+                    <TranslatedText>Cửa hàng trực tuyến</TranslatedText>
+                  </Link>
+                </li>
+                <li>
+                  <Link to="/collection">
+                    <TranslatedText>Bộ sưu tập</TranslatedText>
+                  </Link>
+                </li>
+              </ul>
+            </div>
 
-          {/* Contact Section */}
-          <div className="footer-section">
-            <h3 className="footer-heading">
-              <TranslatedText>CONTACT</TranslatedText>
-            </h3>
-            <ul className="footer-links">
-              <li>
-                <Link to="/faq">
-                  <TranslatedText>FAQ</TranslatedText>
-                </Link>
-              </li>
-              <li>
-                <Link to="/contact">
-                  <TranslatedText>Contact us</TranslatedText>
-                </Link>
-              </li>
-              <li>
-                <Link to="/feedback">
-                  <TranslatedText>Give us your feedback!</TranslatedText>
-                </Link>
-              </li>
-              <li>
-                <Link to="/jobs">
-                  <TranslatedText>Jobs</TranslatedText>
-                </Link>
-              </li>
-              <li>
-                <Link to="/private-events">
-                  <TranslatedText>Private event and film shoots</TranslatedText>
-                </Link>
-              </li>
-            </ul>
-          </div>
+            {/* Contact Section */}
+            <div
+              className={`footer-section ${
+                openSections.includes(2) ? "open" : ""
+              }`}
+            >
+              <h3 className="footer-heading" onClick={() => toggleSection(2)}>
+                <TranslatedText>LIÊN HỆ</TranslatedText>
+              </h3>
+              <ul className="footer-links">
+                <li>
+                  <Link
+                    to="/visit-info#faq"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      navigate("/visit-info#faq");
+                    }}
+                  >
+                    <TranslatedText>Câu hỏi thường gặp</TranslatedText>
+                  </Link>
+                </li>
+                <li>
+                  <a href="#" onClick={handleContactClick}>
+                    <TranslatedText>Liên hệ với chúng tôi</TranslatedText>
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsFeedbackModalOpen(true);
+                    }}
+                  >
+                    <TranslatedText>Gửi phản hồi cho chúng tôi!</TranslatedText>
+                  </a>
+                </li>
+              </ul>
+            </div>
 
-          {/* Follow Us Section */}
-          <div className="footer-section social-section">
-            <h3 className="footer-heading">
-              <TranslatedText>FOLLOW US</TranslatedText>
-            </h3>
-            <div className="social-icons">
-              <a
-                href="https://www.facebook.com/BaoTangThongDalat"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Facebook"
-              >
-                <FaFacebook />
-              </a>
-              <a
-                href="https://instagram.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Instagram"
-              >
-                <FaInstagram />
-              </a>
-              <a
-                href="https://youtube.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="YouTube"
-              >
-                <FaYoutube />
-              </a>
-              <a
-                href="https://linkedin.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="LinkedIn"
-              >
-                <FaLinkedin />
-              </a>
+            {/* Follow Us Section */}
+            <div
+              className={`footer-section social-section ${
+                openSections.includes(3) ? "open" : ""
+              }`}
+            >
+              <h3 className="footer-heading" onClick={() => toggleSection(3)}>
+                <TranslatedText>THEO DÕI CHÚNG TÔI</TranslatedText>
+              </h3>
+              <div className="social-icons">
+                <a
+                  href="https://www.facebook.com/BaoTangThongDalat"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Facebook"
+                >
+                  <FaFacebook />
+                </a>
+                <a
+                  href="https://instagram.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Instagram"
+                >
+                  <FaInstagram />
+                </a>
+                <a
+                  href="https://youtube.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="YouTube"
+                >
+                  <FaYoutube />
+                </a>
+                <a
+                  href="https://linkedin.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="LinkedIn"
+                >
+                  <FaLinkedin />
+                </a>
+              </div>
             </div>
           </div>
-        </div>
 
-        {/* Bottom Legal Links */}
-        <div className="footer-legal">
-          <div className="legal-links">
-            <Link to="/legal-notice">
-              <TranslatedText>Legal Notice</TranslatedText>
-            </Link>
-            <Link to="/privacy-policy">
-              <TranslatedText>Privacy policy</TranslatedText>
-            </Link>
-            <Link to="/copyrights">
-              <TranslatedText>Copyrights</TranslatedText>
+          {/* Bottom Legal Links */}
+          <div className="footer-legal">
+            <div className="legal-links">
+              <Link to="/legal-notice">
+                <TranslatedText>Thông báo pháp lý</TranslatedText>
+              </Link>
+              <Link to="/privacy-policy">
+                <TranslatedText>Chính sách bảo mật</TranslatedText>
+              </Link>
+              <Link to="/copyrights">
+                <TranslatedText>Bản quyền</TranslatedText>
+              </Link>
+            </div>
+          </div>
+
+          {/* Logo */}
+          <div className="footer-logo">
+            <Link to="/">
+              <img src={logoImage} alt="Logo Bảo tàng Du Pin" />
             </Link>
           </div>
         </div>
+      </footer>
 
-        {/* Logo */}
-        <div className="footer-logo">
-          <Link to="/">
-            <img src={logoImage} alt="Du Pin Musée Logo" />
-          </Link>
-        </div>
-      </div>
-    </footer>
+      <FeedbackModal
+        isOpen={isFeedbackModalOpen}
+        onClose={() => setIsFeedbackModalOpen(false)}
+      />
+    </>
   );
 };
 

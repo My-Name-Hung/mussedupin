@@ -2,257 +2,177 @@ import React, { useEffect, useRef, useState } from "react";
 import TranslatedText from "../../components/TranslatedText";
 import "./CollectionPage.css";
 
-// Import images
-import {
-  default as heroImage2,
-  default as painting1,
-} from "../../assets/home/collections/ANewLook.jpg";
-import painting2 from "../../assets/home/collections/beautes.jpg";
-import painting3 from "../../assets/home/collections/couture.jpg";
-import heroImage1 from "../../assets/home/collections/louvre-sunset.jpg";
-import painting4, {
-  default as heroImage3,
-  default as painting5,
-} from "../../assets/home/collections/Masterpieces.jpg";
-import painting6 from "../../assets/home/collections/Nature.jpg";
-import painting7 from "../../assets/home/collections/portrait.jpg";
-import {
-  default as heroImage4,
-  default as painting8,
-} from "../../assets/home/collections/TheMetAu.jpg";
+// Import optimized images
+import bauho from "../../assets/home/Collections/Bauholo_cards.webp";
+import congchieng from "../../assets/home/Collections/congchien_cards.webp";
+import dantrung from "../../assets/home/Collections/DanT'rung_cards.webp";
+import gui from "../../assets/home/Collections/Gui_cards.webp";
+import cheghosanh from "../../assets/home/Collections/Lehoi_cards.webp";
+import longda from "../../assets/home/Collections/LongDaDa_cards.webp";
+import noidat from "../../assets/home/Collections/noidat_cards.webp";
+import phunu from "../../assets/home/Collections/phunu_cards.webp";
+import thong2 from "../../assets/home/Collections/Thông 2.webp";
+
+// Import thumbnails for related items
 
 // Collection data
 const collectionData = {
-  heroImages: [heroImage1, heroImage2, heroImage3, heroImage4],
+  heroImages: [congchieng, dantrung, longda, phunu],
 
   artworks: [
     {
-      id: 1,
-      title: "Young Girls at the Piano",
-      artist: "Auguste Renoir",
-      year: "1892",
-      image: painting1,
+      id: "dungcu-1",
+      title: "Dụng cụ âm nhạc Tây Nguyên",
+      artist: "Cồng chiêng",
+      year: "2024",
+      image: congchieng,
       description:
-        "In the early 1890s, friends and admirers of Renoir took exception to the fact that the French State had never made any official purchase from the painter, then almost fifty years old. In 1892, Stéphane Mallarmé, who knew and admired the artist, helped by Roger Marx, a young member of the Beaux Arts administration and open to new trends, took steps to bring Impressionist works into the national museums.",
-      location: "Niveau supérieur, Salle 35",
-      tags: ["Impressionism", "French", "19th Century"],
+        "Musée Du Pin trưng bày các nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, tiêu biểu là cồng chiêng – biểu tượng văn hóa và tín ngưỡng thiêng liêng. Âm thanh vang vọng của cồng chiêng thể hiện sự kết nối sâu sắc giữa con người và thế giới tâm linh.",
+      location: "Khu trưng bày nhạc cụ",
+      tags: ["Nhạc cụ", "Văn hóa", "Tây Nguyên"],
     },
     {
-      id: 2,
-      title: "The Caryatids",
-      artist: "Jean Goujon",
-      year: "1550-1551",
-      image: painting2,
+      id: "channuoi-1",
+      title: "K'ho chăn nuôi",
+      artist: "Lồng đa đa",
+      year: "2024",
+      image: longda,
       description:
-        "These sculptures by Jean Goujon are among the most recognizable works of French Renaissance sculpture. The Caryatids, female figures used as architectural supports, showcase Goujon's mastery of harmonious proportions and the evolving French style of the period.",
-      location: "Aile Sully, Rez-de-chaussée",
-      tags: ["Sculpture", "Renaissance", "French"],
+        "Lồng đa đa của người K'ho hiện đang được trưng bày tại Musée Du Pin như một biểu tượng mộc mạc nhưng đầy tính văn hóa của đời sống dân tộc Tây Nguyên. Được đan thủ công từ tre nứa, chiếc lồng không chỉ phục vụ mục đích chăn nuôi mà còn phản ánh sự khéo léo, tỉ mỉ và mối liên kết bền chặt giữa con người với thiên nhiên núi rừng.",
+      location: "Khu trưng bày đời sống",
+      tags: ["Đời sống", "Văn hóa", "K'ho"],
     },
     {
-      id: 3,
-      title: "Liberty Leading the People",
-      artist: "Eugène Delacroix",
-      year: "1830",
-      image: painting3,
+      id: "dieukhac-1",
+      title: "K'ho điêu khắc",
+      artist: "Tượng phụ nữ",
+      year: "2024",
+      image: phunu,
       description:
-        "Painted to commemorate the July Revolution of 1830, this iconic work shows Liberty personified as a woman leading the people forward over the bodies of the fallen. It has become an enduring symbol of freedom and the struggle against oppression in France and worldwide.",
-      location: "Aile Denon, 1er étage",
-      tags: ["Romanticism", "French", "19th Century"],
+        "Tác phẩm điêu khắc người dân tộc K'ho đang được trưng bày tại Musée Du Pin thể hiện hình ảnh phụ nữ Tây Nguyên trong dáng đứng trang nghiêm, tay cầm chiếc chiêng nhỏ – biểu tượng của âm nhạc và tín ngưỡng bản địa.",
+      location: "Khu trưng bày điêu khắc",
+      tags: ["Điêu khắc", "Văn hóa", "K'ho"],
     },
     {
-      id: 4,
-      title: "Mona Lisa",
-      artist: "Leonardo da Vinci",
-      year: "1503-1519",
-      image: painting4,
+      id: "lehoi-1",
+      title: "K'ho lễ hội",
+      artist: "Ché Ghò Sành",
+      year: "2024",
+      image: cheghosanh,
       description:
-        "Perhaps the most famous painting in the world, the Mona Lisa's enigmatic smile and Leonardo's innovative techniques have fascinated viewers for centuries. This masterpiece exemplifies Leonardo's sfumato technique and his deep understanding of human anatomy and expression.",
-      location: "Aile Denon, 1er étage, Salle des États",
-      tags: ["Renaissance", "Italian", "Portrait"],
+        "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, hiện đang được trưng bày tại Musée Du Pin, đây là biểu tượng của sự giàu có, quyền uy và tín ngưỡng tâm linh trong đời sống người bản địa.",
+      location: "Khu trưng bày lễ hội",
+      tags: ["Lễ hội", "Văn hóa", "K'ho"],
     },
     {
-      id: 5,
-      title: "Venus de Milo",
-      artist: "Alexandros of Antioch",
-      year: "c. 100 BCE",
-      image: painting5,
+      id: "sinhoat-1",
+      title: "K'ho sinh hoạt thường nhật",
+      artist: "Nồi đất",
+      year: "2024",
+      image: noidat,
       description:
-        "Discovered in 1820 on the island of Milos, this Hellenistic marble sculpture represents Aphrodite (Venus), the Greek goddess of love and beauty. Despite the loss of her arms, the Venus de Milo remains one of the most celebrated sculptures from antiquity.",
-      location: "Aile Sully, Rez-de-chaussée",
-      tags: ["Sculpture", "Greek", "Hellenistic"],
+        "Muée Du Pin trưng bày nồi đất của người K'ho, đây là biểu tượng của sự phát triển và tiến bộ của dân tộc Tây Nguyên.",
+      location: "Khu trưng bày đời sống",
+      tags: ["Đời sống", "Văn hóa", "K'ho"],
     },
     {
-      id: 6,
-      title: "The Raft of the Medusa",
-      artist: "Théodore Géricault",
-      year: "1818-1819",
-      image: painting6,
+      id: "sinhoat-2",
+      title: "K'ho sinh hoạt thường nhật",
+      artist: "Bầu hồ lô",
+      year: "2024",
+      image: bauho,
       description:
-        "This monumental painting depicts the aftermath of the wreck of the French naval frigate Méduse. Géricault's dramatic composition and unflinching portrayal of human suffering make this a key work of Romanticism and an emotionally powerful indictment of political incompetence.",
-      location: "Aile Denon, 1er étage",
-      tags: ["Romanticism", "French", "19th Century"],
+        "Được khoét rỗng từ quả hồ lô khô, vật phẩm này thường được dùng để đựng nước, rượu cần hoặc làm nhạc cụ truyền thống",
+      location: "Khu trưng bày đời sống",
+      tags: ["Đời sống", "Văn hóa", "K'ho"],
     },
     {
-      id: 7,
-      title: "The Wedding Feast at Cana",
-      artist: "Paolo Veronese",
-      year: "1563",
-      image: painting7,
+      id: "phuctang-1",
+      title: "Phức Tầng",
+      artist: "Thông 2",
+      year: "2025",
+      image: thong2,
       description:
-        "This massive canvas depicts the biblical story of Jesus turning water into wine at a wedding feast. Veronese populated the scene with contemporary Venetian figures in luxurious attire, creating an opulent Renaissance banquet that showcases his mastery of color and composition.",
-      location: "Aile Denon, 1er étage",
-      tags: ["Renaissance", "Italian", "Biblical"],
-    },
-    {
-      id: 8,
-      title: "Winged Victory of Samothrace",
-      artist: "Unknown",
-      year: "c. 200-190 BCE",
-      image: painting8,
-      description:
-        "This Hellenistic sculpture of Nike, the Greek goddess of victory, was discovered on the island of Samothrace in 1863. The dynamic movement of the figure, with her wings spread and garments appearing windswept, creates a sense of triumph and motion that has influenced countless artists.",
-      location: "Escalier Daru",
-      tags: ["Sculpture", "Greek", "Hellenistic"],
-    },
-    {
-      id: 9,
-      title: "Michelangelo's Slaves",
-      artist: "Michelangelo",
-      year: "1513-1516",
-      image: painting2,
-      description:
-        "These unfinished sculptures, known as the 'Captives' or 'Slaves', were originally intended for the tomb of Pope Julius II. They exemplify Michelangelo's concept of 'non-finito' and his belief that the sculptor's task was to liberate the figure from the stone.",
-      location: "Aile Denon, Rez-de-chaussée",
-      tags: ["Sculpture", "Renaissance", "Italian"],
-    },
-    {
-      id: 10,
-      title: "The Coronation of Napoleon",
-      artist: "Jacques-Louis David",
-      year: "1805-1807",
-      image: painting3,
-      description:
-        "This massive painting depicts the coronation of Napoleon as Emperor of the French at Notre-Dame de Paris. David's meticulous attention to detail and masterful composition create a powerful political statement celebrating the new imperial regime.",
-      location: "Aile Denon, 1er étage",
-      tags: ["Neoclassicism", "French", "19th Century"],
-    },
-    {
-      id: 11,
-      title: "The Lacemaker",
-      artist: "Johannes Vermeer",
-      year: "c. 1669-1670",
-      image: painting1,
-      description:
-        "This small but exquisite painting showcases Vermeer's mastery of light and his ability to convey the dignity of everyday labor. The lacemaker's intense concentration and the delicate rendering of the threads exemplify the artist's precision and sensitivity.",
-      location: "Aile Richelieu, 2ème étage",
-      tags: ["Dutch Golden Age", "Genre", "17th Century"],
-    },
-    {
-      id: 12,
-      title: "Egyptian Antiquities",
-      artist: "Various Artists",
-      year: "c. 3000 BCE - 30 BCE",
-      image: painting5,
-      description:
-        "The Egyptian antiquities collection includes sarcophagi, mummies, jewelry, and everyday objects that provide insight into one of the world's oldest civilizations. These artifacts reflect the Egyptians' complex belief system and remarkable artistic achievements.",
-      location: "Aile Sully, Niveau 0, 1, 2",
-      tags: ["Ancient", "Egyptian", "Antiquities"],
-    },
-    {
-      id: 13,
-      title: "The Nike of Samothrace",
-      artist: "Unknown Greek Artist",
-      year: "c. 200-190 BCE",
-      image: painting8,
-      description:
-        "Also known as the Winged Victory, this Hellenistic sculpture depicts Nike, the goddess of victory, as she descends from the heavens to the prow of a ship. The masterful rendering of the flowing drapery suggests a strong sea breeze, creating a sense of dynamic movement.",
-      location: "Escalier Daru",
-      tags: ["Sculpture", "Greek", "Hellenistic"],
-    },
-    {
-      id: 14,
-      title: "Portrait of François I",
-      artist: "Jean Clouet",
-      year: "c. 1530",
-      image: painting7,
-      description:
-        "This elegant portrait depicts François I, the Renaissance king who founded the Louvre Palace and was a significant patron of the arts. Clouet's meticulous attention to detail captures both the king's majestic authority and his personal charisma.",
-      location: "Aile Denon, 1er étage",
-      tags: ["Renaissance", "Portrait", "French"],
+        "Được Musée Du Pin bắt trọn khoảng khắc các hình ảnh thiên nhiên đậm sắc dân tộc K'ho, tạo nên bức tranh đẹp về đất nước Tây Nguyên.",
+      location: "Khu trưng bày đời sống",
+      tags: ["Đời sống", "Văn hóa", "Thiên nhiên"],
     },
   ],
 
   categories: [
-    { id: 1, title: "Painting", image: painting1 },
-    { id: 2, title: "Sculpture", image: painting5 },
-    { id: 3, title: "Decorative Arts", image: painting2 },
-    { id: 4, title: "Ancient Art", image: painting3 },
-    { id: 5, title: "Renaissance", image: painting7 },
-    { id: 6, title: "Modern Art", image: painting4 },
-    { id: 7, title: "Islamic Art", image: painting6 },
-    { id: 8, title: "Asian Art", image: painting8 },
+    { id: 1, title: "Dụng cụ âm nhạc Tây Nguyên", image: congchieng },
+    { id: 2, title: "K'ho chăn nuôi", image: bauho },
+    { id: 3, title: "K'ho lễ hội", image: cheghosanh },
+    { id: 4, title: "K'ho điêu khắc", image: longda },
+    {
+      id: 5,
+      title: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
+      image: gui,
+    },
+    { id: 6, title: "K'ho sinh hoạt thường nhật", image: noidat },
+    { id: 7, title: "Phức Tầng", image: thong2 },
   ],
 
   highlights: [
     {
       id: 1,
-      title: "The Renaissance Masters",
-      category: "Renaissance",
-      image: painting1,
+      title: "Nhạc cụ truyền thống",
+      category: "Nhạc cụ",
+      image: congchieng,
       type: "video",
       youtubeId: "dQw4w9WgXcQ",
       description:
-        "Explore the masterpieces of Italian Renaissance artists who changed the course of art history.",
+        "Khám phá âm nhạc truyền thống của người Tây Nguyên qua các nhạc cụ độc đáo.",
     },
     {
       id: 2,
-      title: "Classical Sculptures",
-      category: "Sculpture",
-      image: painting3,
+      title: "Điêu khắc K'ho",
+      category: "Điêu khắc",
+      image: phunu,
       type: "image",
       artwork: 1,
       description:
-        "Discover the beauty and elegance of classical sculpture from ancient Greece and Rome.",
+        "Nghệ thuật điêu khắc truyền thống của người K'ho qua các tác phẩm tiêu biểu.",
     },
     {
       id: 3,
-      title: "Impressionist Revolution",
-      category: "Impressionism",
-      image: painting7,
+      title: "Đời sống thường nhật",
+      category: "Đời sống",
+      image: bauho,
       type: "video",
       youtubeId: "dQw4w9WgXcQ",
       description:
-        "Follow the revolutionary path of the Impressionists who changed how we see and experience art.",
+        "Tìm hiểu về cuộc sống hàng ngày của người K'ho qua các vật dụng sinh hoạt.",
     },
     {
       id: 4,
-      title: "The Baroque Period",
-      category: "Baroque",
-      image: painting5,
+      title: "Lễ hội truyền thống",
+      category: "Lễ hội",
+      image: cheghosanh,
       type: "image",
       artwork: 4,
       description:
-        "Experience the drama, grandeur, and emotional intensity of Baroque masterpieces.",
+        "Khám phá các lễ hội truyền thống và ý nghĩa văn hóa của người K'ho.",
     },
     {
       id: 5,
-      title: "Islamic Art & Architecture",
-      category: "Islamic Art",
-      image: painting6,
+      title: "Chăn nuôi K'ho",
+      category: "Chăn nuôi",
+      image: longda,
       type: "video",
       youtubeId: "dQw4w9WgXcQ",
       description:
-        "Discover the rich patterns, calligraphy, and architectural elements of Islamic artistic tradition.",
+        "Tìm hiểu về hoạt động chăn nuôi và các công cụ truyền thống của người K'ho.",
     },
     {
       id: 6,
-      title: "Fashion Through the Ages",
-      category: "Fashion",
-      image: painting2,
+      title: "Sinh hoạt văn hóa",
+      category: "Sinh hoạt",
+      image: gui,
       type: "image",
       artwork: 2,
       description:
-        "See how clothing and adornment reflected cultural values and aesthetics throughout history.",
+        "Khám phá các hoạt động sinh hoạt văn hóa đặc trưng của người K'ho.",
     },
   ],
 };
@@ -770,20 +690,27 @@ const CollectionPage = () => {
         <div className="cp-hero-overlay"></div>
         <div className="cp-hero-content">
           <h1 className="cp-hero-title">
-            <span className="translated-text">EXPLORE THE COLLECTION</span>
+            <span className="translated-text">KHÁM PHÁ BỘ SƯU TẬP</span>
           </h1>
           <p className="cp-hero-subtitle">
             <span className="translated-text">
-              Discover masterpieces from around the world, spanning thousands of
-              years of human creativity
+              Khám phá các kiệt tác từ khắp nơi, trải dài qua hàng nghìn năm
+              sáng tạo của con người
             </span>
           </p>
         </div>
         <div className="cp-hero-scroll-indicator">
-          <div className="cp-hero-scroll-mouse">
+          <div
+            className="cp-hero-scroll-mouse"
+            onClick={() => {
+              document.querySelector(".cp-discover-section").scrollIntoView({
+                behavior: "smooth",
+              });
+            }}
+          >
             <div className="cp-hero-scroll-wheel"></div>
           </div>
-          <span>SCROLL</span>
+          <span>CUỘN XUỐNG</span>
         </div>
         <div
           className="diagonal-divider bottom enhanced"
@@ -795,7 +722,7 @@ const CollectionPage = () => {
       <section className="cp-discover-section animate-section">
         <div className="cp-section-header">
           <h2 className="cp-section-title">
-            <TranslatedText>Discover the Works</TranslatedText>
+            <TranslatedText>Khám Phá Tác Phẩm</TranslatedText>
           </h2>
           <div className="cp-section-divider"></div>
         </div>
@@ -923,17 +850,16 @@ const CollectionPage = () => {
       </section>
 
       {/* Complete Collection Section */}
-      <section className="cp-categories-section animate-section">
-        <div className="diagonal-divider top white-to-black"></div>
-
+      <section className="cp-categories-section">
         <div className="cp-categories-container">
           <div className="cp-categories-header">
             <h2 className="cp-categories-title">
-              <TranslatedText>Complete Collection</TranslatedText>
+              <TranslatedText>Bộ Sưu Tập Hoàn Chỉnh</TranslatedText>
             </h2>
             <p className="cp-categories-description">
               <TranslatedText>
-                Explore our extensive collections organized by category
+                Khám phá bộ sưu tập đa dạng của chúng tôi được tổ chức theo từng
+                danh mục
               </TranslatedText>
             </p>
           </div>
@@ -975,15 +901,10 @@ const CollectionPage = () => {
             ))}
           </div>
         </div>
-
-        <div className="diagonal-divider bottom black-to-white"></div>
       </section>
 
       {/* Featured Artwork Section */}
-      <section
-        className="cp-featured-artwork-section animate-section"
-        id="featured-artwork"
-      >
+      <section className="cp-featured-artwork-section" id="featured-artwork">
         <div className="cp-featured-container">
           <div className="cp-featured-left">
             <div className="cp-featured-image-container">
@@ -1012,25 +933,25 @@ const CollectionPage = () => {
 
               <div className="cp-artwork-metadata">
                 <div className="cp-metadata-item">
-                  <span className="cp-metadata-label">ARTIST</span>
+                  <span className="cp-metadata-label">Tác giả</span>
                   <span className="cp-metadata-value">
                     {collectionData.artworks[selectedArtwork].artist}
                   </span>
                 </div>
 
                 <div className="cp-metadata-item">
-                  <span className="cp-metadata-label">YEAR</span>
+                  <span className="cp-metadata-label">Năm</span>
                   <span className="cp-metadata-value">
                     {collectionData.artworks[selectedArtwork].year}
                   </span>
                 </div>
 
-                <div className="cp-metadata-item">
-                  <span className="cp-metadata-label">LOCATION</span>
+                {/* <div className="cp-metadata-item">
+                  <span className="cp-metadata-label">Địa điểm</span>
                   <span className="cp-metadata-value">
                     {collectionData.artworks[selectedArtwork].location}
                   </span>
-                </div>
+                </div> */}
               </div>
 
               <div className="cp-artwork-description">
@@ -1056,7 +977,7 @@ const CollectionPage = () => {
                 </div>
 
                 <div className="cp-location-details">
-                  <h4 className="cp-location-title">Access</h4>
+                  <h4 className="cp-location-title">Địa điểm</h4>
                   <p className="cp-location-description">
                     {collectionData.artworks[selectedArtwork].location}
                   </p>
@@ -1064,7 +985,7 @@ const CollectionPage = () => {
               </div>
 
               <a className="cp-visit-button" href="/visit">
-                Plan Your Visit
+                Lập lịch thăm viếng
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="18"
@@ -1137,21 +1058,18 @@ const CollectionPage = () => {
             </svg>
           </button>
         </div>
-        <div className="diagonal-divider bottom white-to-black"></div>
       </section>
 
       {/* Immersive Collection Highlights Section */}
-      <section className="cp-highlights-section animate-section">
-        <div className="diagonal-divider top white-to-black"></div>
-
+      <section className="cp-highlights-section">
         <div className="cp-highlights-container">
-          <h2 className="cp-highlights-title">
-            <TranslatedText>Immersive Collection Highlights</TranslatedText>
+          <h2 className="cp-categories-title">
+            <TranslatedText>Điểm Nhấn Bộ Sưu Tập</TranslatedText>
           </h2>
           <p className="cp-highlights-description">
             <TranslatedText>
-              Explore our most significant artworks through immersive videos and
-              detailed imagery
+              Khám phá những tác phẩm nghệ thuật tiêu biểu nhất của chúng tôi
+              thông qua video và hình ảnh chi tiết
             </TranslatedText>
           </p>
 
@@ -1220,8 +1138,6 @@ const CollectionPage = () => {
             ))}
           </div>
         </div>
-
-        <div className="diagonal-divider bottom black-to-white"></div>
       </section>
 
       {/* Artwork Category Modal */}
@@ -1315,9 +1231,6 @@ const CollectionPage = () => {
                         <h3 className="cp-category-artwork-title">
                           {artwork.title}
                         </h3>
-                        <p className="cp-category-artwork-artist">
-                          {artwork.artist}
-                        </p>
                         <p className="cp-category-artwork-year">
                           {artwork.year}
                         </p>
@@ -1371,7 +1284,7 @@ const CollectionPage = () => {
                 <div className="cp-artwork-modal-actions">
                   <button
                     className="cp-artwork-action-button cp-artwork-zoom"
-                    title="Zoom"
+                    title="Phóng to"
                   >
                     <svg viewBox="0 0 24 24" width="20" height="20">
                       <path
@@ -1387,7 +1300,7 @@ const CollectionPage = () => {
                   <button
                     className="cp-artwork-action-button"
                     onClick={() => handleDownload(modalContent)}
-                    title="Download"
+                    title="Tải xuống"
                   >
                     <svg viewBox="0 0 24 24" width="20" height="20">
                       <path
@@ -1408,7 +1321,7 @@ const CollectionPage = () => {
                 <div className="cp-artwork-modal-metadata">
                   <div className="cp-artwork-modal-artist">
                     <span className="cp-metadata-label">
-                      <TranslatedText>Artist</TranslatedText>:
+                      <TranslatedText>Nghệ sĩ</TranslatedText>:
                     </span>
                     <span className="cp-metadata-value">
                       {modalContent.artist}
@@ -1417,7 +1330,7 @@ const CollectionPage = () => {
 
                   <div className="cp-artwork-modal-year">
                     <span className="cp-metadata-label">
-                      <TranslatedText>Year</TranslatedText>:
+                      <TranslatedText>Năm</TranslatedText>:
                     </span>
                     <span className="cp-metadata-value">
                       {modalContent.year}
@@ -1426,7 +1339,7 @@ const CollectionPage = () => {
 
                   <div className="cp-artwork-modal-location">
                     <span className="cp-metadata-label">
-                      <TranslatedText>Location</TranslatedText>:
+                      <TranslatedText>Vị trí</TranslatedText>:
                     </span>
                     <span className="cp-metadata-value">
                       {modalContent.location}
@@ -1467,7 +1380,7 @@ const CollectionPage = () => {
 
                   <div className="cp-artwork-modal-visit-info">
                     <h4 className="cp-visit-title">
-                      <TranslatedText>Where to Find</TranslatedText>
+                      <TranslatedText>Vị trí trưng bày</TranslatedText>
                     </h4>
                     <p className="cp-visit-description">
                       {modalContent.location}
@@ -1476,7 +1389,7 @@ const CollectionPage = () => {
                 </div>
 
                 <a href="/visit" className="cp-artwork-modal-cta">
-                  <TranslatedText>Plan Your Visit</TranslatedText>
+                  <TranslatedText>Lên kế hoạch tham quan</TranslatedText>
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="18"
@@ -1557,7 +1470,7 @@ const CollectionPage = () => {
                 {/* Related Videos Section */}
                 <div className="cp-video-related">
                   <h4 className="cp-video-related-title">
-                    <TranslatedText>Related Videos</TranslatedText>
+                    <TranslatedText>Video Liên Quan</TranslatedText>
                   </h4>
                   <div className="cp-video-related-items">
                     {collectionData.highlights

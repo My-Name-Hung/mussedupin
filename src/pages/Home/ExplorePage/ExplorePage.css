@@ -1,30 +1,52 @@
+@font-face {
+  font-family: "Mythical-Prince";
+  src: url("../../../assets/museedupin/1FTV-VIP-Mythical-Prince.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 .explore-page {
-  background-color: #000;
+  background-color: #2c2f11;
   color: #fff;
   min-height: 100vh;
+  font-family: "Roboto", sans-serif;
 }
 
 /* Header styles */
 .explore-header {
-  background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)),
-    url("../../assets/home/collections/louvre-sunset.jpg") no-repeat center
+  background: linear-gradient(
+      to bottom,
+      rgba(44, 47, 17, 0.9),
+      rgba(44, 47, 17, 0.95)
+    ),
+    url("../../../assets/home/collections/louvre-sunset.webp") no-repeat center
       center;
   background-size: cover;
-  padding: 8rem 2rem 6rem;
-  text-align: center;
+  padding: 8rem 2rem 4rem;
+  position: relative;
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
 }
 
 .header-content {
-  max-width: 1000px;
+  max-width: 1200px;
   margin: 0 auto;
+  position: relative;
+  z-index: 2;
+  text-align: center;
 }
 
 .explore-title {
-  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
-  font-size: 4.5rem;
-  font-weight: 400;
-  margin: 0 0 1.5rem;
-  letter-spacing: 0.05em;
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
+  font-size: 4rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #b38741;
+  letter-spacing: 2px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  animation: fadeInUp 1s ease;
 }
 
 .explore-subtitle {
@@ -34,6 +56,8 @@
   font-weight: 300;
   line-height: 1.6;
   opacity: 0.9;
+  font-family: "Roboto", serif;
+  animation: fadeInUp 1s ease 0.3s both;
 }
 
 /* Shared container styles */
@@ -45,17 +69,23 @@
 
 /* Section title styles */
 .section-title {
-  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
   font-size: 2.5rem;
   font-weight: 400;
   margin: 0 0 3rem;
   letter-spacing: 0.02em;
+  color: #b38741;
+  text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
 }
 
 /* Categories section styles */
 .explore-categories-section {
   padding: 5rem 0;
-  background-color: #000;
+  background-color: rgba(44, 47, 17, 0.95);
+  position: relative;
+  z-index: 10;
+  margin-top: -3rem;
 }
 
 .categories-grid {
@@ -65,52 +95,64 @@
 }
 
 .category-card {
-  background-color: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 8px;
+  background-color: rgba(179, 135, 65, 0.1);
+  border: 1px solid rgba(179, 135, 65, 0.3);
+  border-radius: 12px;
   padding: 2rem;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   cursor: pointer;
 }
 
 .category-card:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(179, 135, 65, 0.2);
   transform: translateY(-5px);
+  border-color: #b38741;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
 }
 
 .category-name {
   font-size: 1.5rem;
   margin: 0 0 0.5rem;
   font-weight: 500;
+  color: #b38741;
+  font-family: "Meholrax", serif;
 }
 
 .category-count {
   font-size: 1rem;
   opacity: 0.7;
+  color: #fff;
 }
 
 /* Featured collections section */
 .featured-collections-section {
   padding: 5rem 0;
-  background-color: #111;
+  background-color: #2c2f11;
 }
 
 .collections-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(400px, 1fr));
-  gap: 3rem;
+  gap: 2.5rem;
 }
 
 .collection-card {
-  background-color: #000;
-  border-radius: 10px;
+  background-color: rgba(44, 47, 17, 0.95);
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
-  transition: transform 0.4s ease;
+  box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.3);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  cursor: pointer;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  border: 1px solid rgba(179, 135, 65, 0.2);
 }
 
 .collection-card:hover {
   transform: translateY(-10px);
+  box-shadow: 0 15px 40px -5px rgba(0, 0, 0, 0.4);
+  border-color: #b38741;
 }
 
 .collection-image-container {
@@ -124,7 +166,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.6s ease;
+  transition: transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
 .collection-card:hover .collection-image {
@@ -135,23 +177,31 @@
   position: absolute;
   top: 1rem;
   right: 1rem;
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
+  background-color: rgba(179, 135, 65, 0.1);
+  color: #b38741;
   padding: 0.4rem 1rem;
-  border-radius: 30px;
-  font-size: 0.85rem;
-  font-weight: 500;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .collection-info {
   padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  flex-grow: 1;
 }
 
 .collection-title {
-  font-size: 1.6rem;
-  margin: 0 0 1rem;
+  font-size: 1.4rem;
   font-weight: 500;
-  line-height: 1.3;
+  margin: 0;
+  line-height: 1.4;
+  font-family: "Meholrax", serif;
+  color: #b38741;
+  letter-spacing: 0.5px;
 }
 
 .collection-description {
@@ -159,32 +209,36 @@
   line-height: 1.6;
   opacity: 0.8;
   margin: 0 0 1.5rem;
+  color: rgba(255, 255, 255, 0.8);
 }
 
 .view-collection-button {
   background-color: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.3);
-  color: white;
+  border: 1px solid rgba(179, 135, 65, 0.3);
+  color: #b38741;
   padding: 0.8rem 1.5rem;
   border-radius: 30px;
   font-size: 1rem;
   cursor: pointer;
   transition: all 0.3s ease;
+  align-self: flex-start;
 }
 
 .view-collection-button:hover {
-  background-color: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.5);
+  background-color: rgba(179, 135, 65, 0.1);
+  border-color: #b38741;
+  transform: translateY(-2px);
 }
 
 /* Call-to-action section */
 .explore-cta-section {
   padding: 6rem 0;
-  background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-    url("../../assets/home/collections/Masterpieces.jpg") no-repeat center
+  background: linear-gradient(rgba(44, 47, 17, 0.9), rgba(44, 47, 17, 0.95)),
+    url("../../../assets/home/collections/Masterpieces.jpg") no-repeat center
       center;
   background-size: cover;
   background-attachment: fixed;
+  clip-path: polygon(0 8%, 100% 0, 100% 100%, 0 100%);
 }
 
 .cta-content {
@@ -194,10 +248,13 @@
 }
 
 .cta-title {
-  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
   font-size: 3rem;
   font-weight: 400;
   margin: 0 0 1.5rem;
+  color: #b38741;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .cta-text {
@@ -205,6 +262,7 @@
   margin: 0 0 2.5rem;
   line-height: 1.6;
   opacity: 0.9;
+  color: #fff;
 }
 
 .cta-buttons {
@@ -223,27 +281,39 @@
 }
 
 .cta-button.primary {
-  background-color: white;
-  color: black;
+  background-color: #b38741;
+  color: #2c2f11;
 }
 
 .cta-button.primary:hover {
-  background-color: #f0f0f0;
+  background-color: #c49851;
   transform: translateY(-3px);
 }
 
 .cta-button.secondary {
   background-color: transparent;
-  color: white;
-  border: 1px solid white;
+  color: #b38741;
+  border: 1px solid #b38741;
 }
 
 .cta-button.secondary:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(179, 135, 65, 0.1);
   transform: translateY(-3px);
 }
 
-/* Media queries */
+/* Animations */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media Queries */
 @media (max-width: 1200px) {
   .explore-title {
     font-size: 3.5rem;

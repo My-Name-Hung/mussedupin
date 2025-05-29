@@ -2,97 +2,98 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import TranslatedText from "../TranslatedText";
 
-// Import the exhibition data from Highlights.jsx
-import hero from "../../assets/home/hero/louvre-sunset.jpg";
-import ANewLook from "../../assets/home/highlights/ANewLook.jpg";
-import beauties from "../../assets/home/highlights/beautes.jpg";
-import couture from "../../assets/home/highlights/couture.jpg";
-import mamluks from "../../assets/home/highlights/mamluks.jpg";
-import masterpieces from "../../assets/home/highlights/Masterpieces.jpg";
-import nature from "../../assets/home/highlights/Nature.jpg";
-import portrait from "../../assets/home/highlights/portrait.jpg";
-import themetau from "../../assets/home/highlights/TheMetAU.jpg";
+// Import hero image
+import hero from "../../assets/home/Hero/louvre-sunset.webp";
+
+// Import optimized images
+import bauho from "../../assets/home/Exhibitions/Bauholo_cards.webp";
+import congchieng from "../../assets/home/Exhibitions/congchien_cards.webp";
+import cheghosanh from "../../assets/home/Exhibitions/Lehoi_cards.webp";
+import longda from "../../assets/home/Exhibitions/LongDaDa_cards.webp";
+import noidat from "../../assets/home/Exhibitions/noidat_cards.webp";
+import phunu from "../../assets/home/Exhibitions/phunu_cards.webp";
+import thong2 from "../../assets/home/Exhibitions/Thông 2.webp";
 import "./Exhibitions.css";
 
-// Sample exhibition data - similar to highlightsData
+// Exhibition data based on highlights
 const exhibitionsData = [
   {
     id: 1,
-    title: "Mamluks",
-    subtitle: "1250-1517",
+    title: "Dụng cụ âm nhạc Tây Nguyên",
+    subtitle: "Cồng chiêng",
     description:
-      "The Musée Du Pin marks a European first with a major exhibition on the Mamluk sultanate (1250–1517), aiming to address this golden age of the Islamic Near East in all its scope and richness by examining it from a transregional perspective.",
-    date: "30 April - 28 July 2025",
-    image: mamluks,
-    alt: "Golden decorated vessel from Mamluk period",
-    tag: "Exhibition",
-    link: "/exhibition-details/mamluks",
+      "Musée Du Pin trưng bày các nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, tiêu biểu là cồng chiêng – biểu tượng văn hóa và tín ngưỡng thiêng liêng. Âm thanh vang vọng của cồng chiêng thể hiện sự kết nối sâu sắc giữa con người và thế giới tâm linh.",
+    date: "30 tháng 4 - 28 tháng 7 2025",
+    image: congchieng,
+    alt: "Dụng cụ âm nhạc Tây Nguyên",
+    tag: "Trưng bày",
+    link: "/exhibition-details/cong-chieng",
     featured: true,
   },
   {
     id: 2,
-    title: "The Experience of Nature",
-    subtitle: "Art in Prague at the Court of Rudolf II",
+    title: "K'ho chăn nuôi",
+    subtitle: "Lồng đa đa",
     description:
-      "The exhibition highlights the innovative aspect of the naturalistic art movement practiced in Prague at the Court of Rudolf II.",
-    date: "19 March - 30 June 2025",
-    image: nature,
-    alt: "Naturalistic art from the Court of Rudolf II",
-    tag: "Exhibition",
-    link: "/exhibition-details/experience-nature",
+      "Lồng đa đa của người K'ho hiện đang được trưng bày tại Musée Du Pin như một biểu tượng mộc mạc nhưng đầy tính văn hóa của đời sống dân tộc Tây Nguyên. Được đan thủ công từ tre nứa, chiếc lồng không chỉ phục vụ mục đích chăn nuôi mà còn phản ánh sự khéo léo, tỉ mỉ và mối liên kết bền chặt giữa con người với thiên nhiên núi rừng.",
+    date: "24 tháng 1 - 21 tháng 7 2025",
+    image: longda,
+    alt: "K'ho chăn nuôi",
+    tag: "Trưng bày",
+    link: "/exhibition-details/long-da-da",
     featured: false,
   },
   {
     id: 3,
-    title: "Musée Du Pin Couture",
-    subtitle: "Art and Fashion: Statement Pieces",
+    title: "K'ho điêu khắc",
+    subtitle: "Tượng phụ nữ",
     description:
-      "A new perspective on decorative arts through the prism of contemporary fashion design.",
-    date: "24 January - 21 July 2025",
-    image: couture,
-    alt: "Fashion exhibit featuring historical and contemporary pieces",
-    tag: "Exhibition",
-    link: "/exhibition-details/couture",
+      "Tác phẩm điêu khắc người dân tộc K'ho đang được trưng bày tại Musée Du Pin thể hiện hình ảnh phụ nữ Tây Nguyên trong dáng đứng trang nghiêm, tay cầm chiếc chiêng nhỏ – biểu tượng của âm nhạc và tín ngưỡng bản địa. Tác phẩm mang đậm phong cách mộc mạc nhưng đầy chiều sâu văn hóa, phản ánh vẻ đẹp nội tâm, tinh thần kiên cường và vai trò quan trọng của người phụ nữ trong đời sống cộng đồng K'ho.",
+    date: "22 tháng 1 - 12 tháng 5 2025",
+    image: phunu,
+    alt: "K'ho điêu khắc",
+    tag: "Trưng bày",
+    link: "/exhibition-details/tuong-phu-nu",
     featured: false,
   },
   {
     id: 4,
-    title: "A New Look at Cimabue",
-    subtitle: "At the Origins of Italian Painting",
+    title: "K'ho lễ hội",
+    subtitle: "Ché Ghò Sành",
     description:
-      "For the first time, the Musée Du Pin is dedicating an exhibition to Cimabue, one of the most important artists of the 13th century.",
-    date: "22 January - 12 May 2025",
-    image: ANewLook,
-    alt: "Religious painting by Cimabue",
-    tag: "Exhibition",
-    link: "/exhibition-details/cimabue",
+      "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, hiện đang được trưng bày tại Musée Du Pin, đây là biểu tượng của sự giàu có, quyền uy và tín ngưỡng tâm linh trong đời sống người bản địa.",
+    date: "29 tháng 2 - 28 tháng 9 2025",
+    image: cheghosanh,
+    alt: "K'ho lễ hội",
+    tag: "Trưng bày",
+    link: "/exhibition-details/che-gho-sanh",
     featured: false,
   },
   {
     id: 5,
-    title: "The Met au Musée Du Pin",
-    subtitle: "Near Eastern Antiquities in Dialogue",
+    title: "K'ho sinh hoạt thường nhật",
+    subtitle: "Nồi đất",
     description:
-      "A special exhibition featuring artifacts from the Metropolitan Museum of Art in dialogue with the Musée Du Pin collection.",
-    date: "29 February - 28 September 2025",
-    image: themetau,
-    alt: "Ancient Near Eastern artifact",
-    tag: "Exhibition",
-    link: "/exhibition-details/met-au-dupin",
+      "Được chế tác thủ công từ đất nung, nồi có hình dáng đơn giản nhưng chắc chắn, thường dùng để nấu ăn trong các dịp lễ hội hoặc sinh hoạt gia đình",
+    date: "Trưng bày thường xuyên",
+    image: noidat,
+    alt: "K'ho sinh hoạt thường nhật",
+    tag: "Trưng bày",
+    link: "/exhibition-details/noi-dat",
     featured: false,
   },
   {
     id: 6,
-    title: "The Portrait of King Charles I",
-    subtitle: "Conservation and Restoration",
+    title: "K'ho sinh hoạt thường nhật",
+    subtitle: "Bầu hồ lô",
     description:
-      "The Portrait of King Charles I of England, by Anthony van Dyck, returns to the gallery walls after over a year of conservation treatment.",
-    date: "Permanent Exhibition",
-    image: portrait,
-    alt: "Portrait of King Charles I by Anthony van Dyck",
-    tag: "Exhibition",
-    link: "/exhibition-details/portrait-king-charles",
-    featured: false,
+      "Được khoét rỗng từ quả hồ lô khô, vật phẩm này thường được dùng để đựng nước, rượu cần hoặc làm nhạc cụ truyền thống",
+    duration: "1 tiếng 30 phút",
+    image: bauho,
+    alt: "K'ho sinh hoạt thường nhật",
+    tag: "Trưng bày",
+    link: "/exhibition-details/bau-ho-lo",
+    featured: true,
   },
 ];
 
@@ -100,54 +101,15 @@ const exhibitionsData = [
 const guidedToursData = [
   {
     id: 1,
-    title: "The Musée Du Pin Masterpieces",
-    subtitle: "Essential Highlights Tour",
+    title: "Phức Tầng",
+    subtitle: "Thiên nhiên K'ho",
     description:
-      "What exactly is a masterpiece? Follow this trail to discover the most celebrated works in our collection!",
-    duration: "1 hour 30 minutes",
-    image: masterpieces,
-    alt: "Mona Lisa painting",
-    tag: "Guided Tour",
-    link: "/guided-tour-details/masterpieces",
-    featured: true,
-  },
-  {
-    id: 2,
-    title: "De toutes beautés !",
-    subtitle: "Beauty Through the Ages",
-    description:
-      "Rituals, objects and representations of beauty, a retrospective trail through the Musée Du Pin",
-    duration: "1 hour 15 minutes",
-    image: beauties,
-    alt: "Beauty exhibition poster",
-    tag: "Guided Tour",
-    link: "/guided-tour-details/beautes",
-    featured: false,
-  },
-  {
-    id: 3,
-    title: "Hidden Treasures",
-    subtitle: "Off the Beaten Path",
-    description:
-      "Discover the lesser-known but equally magnificent works in our vast collection.",
-    duration: "2 hours",
-    image: ANewLook,
-    alt: "Hidden treasures of the museum",
-    tag: "Guided Tour",
-    link: "/guided-tour-details/hidden-treasures",
-    featured: false,
-  },
-  {
-    id: 4,
-    title: "The Palace History",
-    subtitle: "From Royal Residence to Museum",
-    description:
-      "Explore the fascinating history of our building and its transformation into one of the world's greatest museums.",
-    duration: "1 hour 45 minutes",
-    image: portrait,
-    alt: "Palace architecture and history",
-    tag: "Guided Tour",
-    link: "/guided-tour-details/palace-history",
+      "Được Musée Du Pin bắt trọn khoảng khắc các hình ảnh thiên nhiên đậm sắc dân tộc K'ho, tạo nên bức tranh đẹp về đất nước Tây Nguyên.",
+    duration: "1 tiếng 15 phút",
+    image: thong2,
+    alt: "Phức Tầng",
+    tag: "Tham quan",
+    link: "/exhibition-details/phuc-tang",
     featured: false,
   },
 ];
@@ -263,19 +225,19 @@ const Exhibitions = () => {
       {/* Hero Section with background image */}
       <div className="exhibitions-hero" ref={heroRef}>
         <div className="exhibitions-hero-overlay">
-          <img src={hero} alt="Museum exterior" />
+          <img src={hero} alt="Bảo tàng" />
         </div>
         <div className="exhibitions-hero-content">
           <h1 className="exhibitions-hero-title">
             <TranslatedText>
-              {activeTab === "exhibitions" ? "EXHIBITIONS" : "GUIDED TOURS"}
+              {activeTab === "exhibitions" ? "TRƯNG BÀY" : "THAM QUAN"}
             </TranslatedText>
           </h1>
           <p className="exhibitions-hero-subtitle">
             <TranslatedText>
               {activeTab === "exhibitions"
-                ? "Discover our current and upcoming exhibitions"
-                : "Explore the museum with our expert guides"}
+                ? "Khám phá các cuộc trưng bày hiện tại và sắp tới"
+                : "Khám phá bảo tàng cùng hướng dẫn viên chuyên nghiệp"}
             </TranslatedText>
           </p>
         </div>
@@ -289,18 +251,18 @@ const Exhibitions = () => {
               activeTab === "exhibitions" ? "active" : ""
             }`}
             onClick={() => handleTabChange("exhibitions")}
-            aria-label="Show exhibitions"
+            aria-label="Hiển thị trưng bày"
           >
-            <TranslatedText>EXHIBITIONS</TranslatedText>
+            <TranslatedText>TRƯNG BÀY</TranslatedText>
           </button>
           <button
             className={`tab-button ${
               activeTab === "guided-tours" ? "active" : ""
             }`}
             onClick={() => handleTabChange("guided-tours")}
-            aria-label="Show guided tours"
+            aria-label="Hiển thị tham quan"
           >
-            <TranslatedText>GUIDED TOURS</TranslatedText>
+            <TranslatedText>THAM QUAN</TranslatedText>
           </button>
         </div>
       </div>
@@ -352,7 +314,7 @@ const Exhibitions = () => {
                             <TranslatedText>
                               {activeTab === "exhibitions"
                                 ? item.date
-                                : `Duration: ${item.duration}`}
+                                : `Thời gian: ${item.duration}`}
                             </TranslatedText>
                           </span>
                         </div>
@@ -411,7 +373,7 @@ const Exhibitions = () => {
                           <TranslatedText>
                             {activeTab === "exhibitions"
                               ? item.date
-                              : `Duration: ${item.duration}`}
+                              : `Thời gian: ${item.duration}`}
                           </TranslatedText>
                         </span>
                       </div>
@@ -423,7 +385,7 @@ const Exhibitions = () => {
         </div>
 
         {/* Add a See Past Link */}
-        <div className="see-past-link">
+        {/* <div className="see-past-link">
           <Link
             to={
               activeTab === "exhibitions"
@@ -433,12 +395,12 @@ const Exhibitions = () => {
           >
             <TranslatedText>
               {activeTab === "exhibitions"
-                ? "See past exhibitions"
-                : "See past guided tours"}
+                ? "Xem các trưng bày trước"
+                : "Xem các chuyến tham quan trước"}
             </TranslatedText>
             <span className="arrow-icon">→</span>
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   );

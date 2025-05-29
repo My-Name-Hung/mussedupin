@@ -3,87 +3,77 @@ import { Link } from "react-router-dom";
 import TranslatedText from "../../../components/TranslatedText";
 import "./Collections.css";
 
-// Import existing images from the project
-import painting1 from "../../../assets/home/collections/ANewLook.jpg";
-import painting2 from "../../../assets/home/collections/beautes.jpg";
-import painting3 from "../../../assets/home/collections/couture.jpg";
-import heroImage from "../../../assets/home/collections/louvre-sunset.jpg";
-import painting4 from "../../../assets/home/collections/mamluks.jpg";
-import painting5 from "../../../assets/home/collections/Masterpieces.jpg";
-import painting6 from "../../../assets/home/collections/Nature.jpg";
-import painting7 from "../../../assets/home/collections/portrait.jpg";
-import painting8 from "../../../assets/home/collections/TheMetAu.jpg";
-
+// Import optimized images
+import bauho from "../../../assets/home/Collections/Bauholo_cards.webp";
+import congchieng from "../../../assets/home/Collections/congchien_cards.webp";
+import cheghosanh from "../../../assets/home/Collections/Lehoi_cards.webp";
+import longda from "../../../assets/home/Collections/LongDaDa_cards.webp";
+import noidat from "../../../assets/home/Collections/noidat_cards.webp";
+import phunu from "../../../assets/home/Collections/phunu_cards.webp";
+import thong2 from "../../../assets/home/Collections/Thông 2.webp";
 const collectionsData = [
   {
     id: 1,
-    title: "The Floor Planers",
-    artist: "Gustave Caillebotte",
-    image: painting1,
-    alt: "The Floor Planers painting by Gustave Caillebotte",
+    title: "Dụng cụ âm nhạc Tây Nguyên",
+    artist: "Trưng bày",
+    image: congchieng,
+    alt: "Dụng cụ âm nhạc Tây Nguyên",
+    description:
+      "Musée Du Pin trưng bày các nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, tiêu biểu là cồng chiêng – biểu tượng văn hóa và tín ngưỡng thiêng liêng. Âm thanh vang vọng của cồng chiêng thể hiện sự kết nối sâu sắc giữa con người và thế giới tâm linh.",
   },
   {
     id: 2,
-    title: "La Goulue arriving at the Moulin Rouge",
-    artist: "Henri de Toulouse-Lautrec",
-    image: painting2,
-    alt: "Painting by Henri de Toulouse-Lautrec",
+    title: "K'ho chăn nuôi",
+    artist: "Trưng bày",
+    image: longda,
+    alt: "K'ho chăn nuôi",
+    description:
+      "Lồng đa đa của người K'ho hiện đang được trưng bày tại Musée Du Pin như một biểu tượng mộc mạc nhưng đầy tính văn hóa của đời sống dân tộc Tây Nguyên. Được đan thủ công từ tre nứa, chiếc lồng không chỉ phục vụ mục đích chăn nuôi mà còn phản ánh sự khéo léo, tỉ mỉ và mối liên kết bền chặt giữa con người với thiên nhiên núi rừng.",
   },
   {
     id: 3,
-    title: "Water Lilies",
-    artist: "Claude Monet",
-    image: painting3,
-    alt: "Water Lilies by Claude Monet",
+    title: "K'ho điêu khắc",
+    artist: "Trưng bày",
+    image: phunu,
+    alt: "K'ho điêu khắc",
+    description:
+      "Tác phẩm điêu khắc người dân tộc K'ho đang được trưng bày tại Musée Du Pin thể hiện hình ảnh phụ nữ Tây Nguyên trong dáng đứng trang nghiêm, tay cầm chiếc chiêng nhỏ – biểu tượng của âm nhạc và tín ngưỡng bản địa. Tác phẩm mang đậm phong cách mộc mạc nhưng đầy chiều sâu văn hóa, phản ánh vẻ đẹp nội tâm, tinh thần kiên cường và vai trò quan trọng của người phụ nữ trong đời sống cộng đồng K'ho.",
   },
   {
     id: 4,
-    title: "Noon: Rest from Work",
-    artist: "Vincent van Gogh",
-    image: painting4,
-    alt: "Noon: Rest from Work by Vincent van Gogh",
+    title: "K'ho lễ hội",
+    artist: "Trưng bày",
+    image: cheghosanh,
+    alt: "K'ho lễ hội",
+    description:
+      "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, hiện đang được trưng bày tại Musée Du Pin, đây là biểu tượng của sự giàu có, quyền uy và tín ngưỡng tâm linh trong đời sống người bản địa.",
   },
   {
     id: 5,
-    title: "Buddha in the Garden",
-    artist: "Odilon Redon",
-    image: painting5,
-    alt: "Buddha in the Garden by Odilon Redon",
+    title: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
+    artist: "Tham quan",
+    image: noidat,
+    alt: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
+    description:
+      "Được chế tác thủ công từ đất nung, nồi có hình dáng đơn giản nhưng chắc chắn, thường dùng để nấu ăn trong các dịp lễ hội hoặc sinh hoạt gia đình",
   },
   {
     id: 6,
-    title: "Vanity Table",
-    artist: "French Decorative Arts",
-    image: painting6,
-    alt: "Gold vanity table from French decorative arts collection",
+    title: "K'ho sinh hoạt thường nhật",
+    artist: "Tham quan",
+    image: bauho,
+    alt: "K'ho sinh hoạt thường nhật",
+    description:
+      "Được khoét rỗng từ quả hồ lô khô, vật phẩm này thường được dùng để đựng nước, rượu cần hoặc làm nhạc cụ truyền thống",
   },
   {
     id: 7,
-    title: "Twilight Landscape",
-    artist: "Eugène Jansson",
-    image: painting7,
-    alt: "Twilight Landscape by Eugène Jansson",
-  },
-  {
-    id: 8,
-    title: "Dr. Gachet",
-    artist: "Vincent van Gogh",
-    image: painting8,
-    alt: "Portrait of Dr. Gachet by Vincent van Gogh",
-  },
-  {
-    id: 9,
-    title: "Notre-Dame View",
-    artist: "Henri Matisse",
-    image: heroImage,
-    alt: "Notre-Dame View by Henri Matisse",
-  },
-  {
-    id: 10,
-    title: "Woman with Hat",
-    artist: "Henri Matisse",
-    image: painting5,
-    alt: "Woman with Hat by Henri Matisse",
+    title: "Phức Tầng",
+    artist: "Tham quan",
+    image: thong2,
+    alt: "Phức Tầng",
+    description:
+      "Được Musée Du Pin bắt trọn khoảng khắc các hình ảnh thiên nhiên đậm sắc dân tộc K'ho, tạo nên bức tranh đẹp về đất nước Tây Nguyên.",
   },
 ];
 
@@ -120,12 +110,9 @@ const Collections = () => {
   const [isMobile, setIsMobile] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [hoverItemIndex, setHoverItemIndex] = useState(null);
-  const [isDragging, setIsDragging] = useState(false);
-  const [startX, setStartX] = useState(0);
-  const [scrollLeft, setScrollLeft] = useState(0);
-  const [manualInteraction, setManualInteraction] = useState(false);
-  const [showScrollIndicator, setShowScrollIndicator] = useState(true);
-  const userInteractionTimeout = useRef(null);
+  const [touchStartX, setTouchStartX] = useState(0);
+  const [isUserInteracting, setIsUserInteracting] = useState(false);
+  const [showSwipeHint, setShowSwipeHint] = useState(true);
 
   // Check device type
   useEffect(() => {
@@ -138,10 +125,18 @@ const Collections = () => {
     handleResize();
     window.addEventListener("resize", handleResize);
 
+    // Hide swipe hint after 5 seconds
+    if (isMobile) {
+      const timer = setTimeout(() => {
+        setShowSwipeHint(false);
+      }, 5000);
+      return () => clearTimeout(timer);
+    }
+
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [isMobile]);
 
   // Handle visibility detection with smoother threshold
   useEffect(() => {
@@ -219,7 +214,7 @@ const Collections = () => {
 
   // Enhanced auto-scroll animation with variable speed and smoother transitions
   useEffect(() => {
-    if (!isVisible || isPaused || isDragging || manualInteraction) {
+    if (!isVisible || isPaused) {
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current);
         animationRef.current = null;
@@ -285,25 +280,19 @@ const Collections = () => {
       }
       lastTimestampRef.current = null;
     };
-  }, [
-    isVisible,
-    containerWidth,
-    contentWidth,
-    isPaused,
-    isMobile,
-    isDesktop,
-    isDragging,
-    manualInteraction,
-  ]);
+  }, [isVisible, containerWidth, contentWidth, isPaused, isMobile, isDesktop]);
 
   // Update scroll position on DOM with performance optimization
   useEffect(() => {
     if (scrollContainerRef.current) {
-      // Use transform for better performance on all devices, including mobile
-      scrollContainerRef.current.style.transform = `translateX(-${scrollPosition}px)`;
-      scrollContainerRef.current.style.willChange = "transform"; // Performance hint
+      // Use hardware-accelerated transforms for better performance
+      if (isMobile) {
+        scrollContainerRef.current.style.transform = `translateX(-${scrollPosition}px)`;
+      } else {
+        scrollContainerRef.current.scrollLeft = scrollPosition;
+      }
     }
-  }, [scrollPosition]);
+  }, [scrollPosition, isMobile]);
 
   // Enhanced item hover handlers for desktop
   const handleItemHover = (index) => {
@@ -319,218 +308,154 @@ const Collections = () => {
   };
 
   // Pause scrolling on hover or touch with improved mobile handling
-  const handleMouseEnter = () => {
-    setIsPaused(true);
-    setShowScrollIndicator(false);
-  };
+  const handleMouseEnter = () => setIsPaused(true);
+  const handleMouseLeave = () => setIsPaused(false);
 
-  const handleMouseLeave = () => {
-    if (!isDragging) {
-      setIsPaused(false);
-    }
-
-    // Only reset manual interaction if we're not still dragging
-    if (!isDragging) {
-      if (userInteractionTimeout.current) {
-        clearTimeout(userInteractionTimeout.current);
-      }
-      userInteractionTimeout.current = setTimeout(() => {
-        setManualInteraction(false);
-      }, 2000);
-    }
-  };
-
-  // Enhanced mouse down handler for drag scrolling
-  const handleMouseDown = (e) => {
-    setIsDragging(true);
-    setManualInteraction(true);
-    setStartX(e.pageX - scrollContainerRef.current.offsetLeft);
-    setScrollLeft(scrollPosition);
-
-    // Hide scroll indicator once user starts interacting
-    setShowScrollIndicator(false);
-  };
-
-  // Enhanced mouse move handler with improved physics
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-
-    const x = e.pageX - scrollContainerRef.current.offsetLeft;
-    const walk = (x - startX) * 1.5; // Multiply for faster scrolling
-    const newPosition = Math.max(
-      0,
-      Math.min(scrollLeft - walk, contentWidth - containerWidth)
-    );
-    setScrollPosition(newPosition);
-  };
-
-  // Mouse up handler
-  const handleMouseUp = () => {
-    setIsDragging(false);
-
-    // Set a timeout to auto-resume scrolling after manual interaction
-    if (userInteractionTimeout.current) {
-      clearTimeout(userInteractionTimeout.current);
-    }
-    userInteractionTimeout.current = setTimeout(() => {
-      setManualInteraction(false);
-    }, 2000);
-  };
-
-  // Enhanced touch handlers for mobile
+  // Enhanced touch handling
   const handleTouchStart = (e) => {
     setIsPaused(true);
-    setManualInteraction(true);
-    setStartX(e.touches[0].clientX - scrollContainerRef.current.offsetLeft);
-    setScrollLeft(scrollPosition);
-    setIsDragging(true);
-
-    // Hide scroll indicator once user starts interacting
-    setShowScrollIndicator(false);
-  };
-
-  const handleTouchMove = (e) => {
-    if (!isDragging) return;
-
-    const x = e.touches[0].clientX - scrollContainerRef.current.offsetLeft;
-    const walk = (x - startX) * 1.5;
-    const newPosition = Math.max(
-      0,
-      Math.min(scrollLeft - walk, contentWidth - containerWidth)
-    );
-    setScrollPosition(newPosition);
+    setIsUserInteracting(true);
+    setTouchStartX(e.touches[0].clientX);
+    setShowSwipeHint(false); // Hide hint when user interacts
   };
 
   const handleTouchEnd = () => {
-    setIsDragging(false);
-
-    // Add delay before resuming to improve mobile experience
+    setIsUserInteracting(false);
+    // Delay before resuming auto-scroll
     setTimeout(() => {
-      setIsPaused(false);
-
-      // Set a timeout to auto-resume scrolling after manual interaction
-      if (userInteractionTimeout.current) {
-        clearTimeout(userInteractionTimeout.current);
+      if (!isPaused) {
+        setIsPaused(false);
       }
-      userInteractionTimeout.current = setTimeout(() => {
-        setManualInteraction(false);
-      }, 2000);
-    }, 800);
+    }, 1200);
   };
 
-  // Show scroll indicator after inactivity
-  useEffect(() => {
-    let scrollIndicatorTimer;
+  const handleTouchMove = (e) => {
+    if (isUserInteracting && scrollContainerRef.current) {
+      const touchX = e.touches[0].clientX;
+      const diff = touchStartX - touchX;
 
-    if (isVisible && !isMobile) {
-      scrollIndicatorTimer = setTimeout(() => {
-        setShowScrollIndicator(true);
-      }, 3000);
+      // Update scroll position based on finger movement
+      setScrollPosition((prev) => {
+        const newPosition = prev + diff * 1.2; // Swipe sensitivity
+        setTouchStartX(touchX);
+
+        if (newPosition < 0) return 0;
+        if (newPosition > contentWidth - containerWidth)
+          return contentWidth - containerWidth;
+
+        return newPosition;
+      });
     }
-
-    return () => {
-      if (scrollIndicatorTimer) clearTimeout(scrollIndicatorTimer);
-    };
-  }, [isVisible, isMobile, manualInteraction]);
+  };
 
   return (
     <section className="collections-section" id="collections">
-      <div className="collections-header">
-        <h2 className="collections-title">
-          <TranslatedText>The collections</TranslatedText>
-        </h2>
-        {isDesktop && (
-          <p className="collections-subtitle">
-            <TranslatedText>
-              Explore our prestigious art collection
-            </TranslatedText>
-          </p>
-        )}
-      </div>
-
-      <div
-        className={`collections-gallery-container ${
-          isVisible ? "visible" : ""
-        } ${isDesktop ? "desktop-view" : ""} wavy-gallery`}
-      >
-        {isDesktop && <div className="shadow-effect"></div>}
-        {isDesktop && <div className="left-fade"></div>}
-
-        {/* Scroll indicator arrows */}
-        {showScrollIndicator && !isMobile && (
-          <div className={`scroll-indicator ${isDragging ? "hidden" : ""}`}>
-            <div className="scroll-arrow scroll-left"></div>
-            <div className="scroll-arrow scroll-right"></div>
-          </div>
-        )}
+      <div className="collections-content-container">
+        <div className="collections-header">
+          <h2 className="collections-title">
+            <TranslatedText>Bộ sưu tập</TranslatedText>
+          </h2>
+          {isDesktop && (
+            <p className="collections-subtitle">
+              <TranslatedText>Khám phá bộ sưu tập nghệ thuật</TranslatedText>
+            </p>
+          )}
+        </div>
 
         <div
-          className={`collections-gallery ${isDragging ? "dragging" : ""}`}
-          ref={scrollContainerRef}
-          onMouseEnter={handleMouseEnter}
-          onMouseLeave={handleMouseLeave}
-          onMouseDown={handleMouseDown}
-          onMouseMove={handleMouseMove}
-          onMouseUp={handleMouseUp}
-          onTouchStart={handleTouchStart}
-          onTouchMove={handleTouchMove}
-          onTouchEnd={handleTouchEnd}
-          style={isMobile ? { overflow: "visible" } : {}}
+          className={`collections-gallery-container ${
+            isVisible ? "visible" : ""
+          } ${isDesktop ? "desktop-view" : ""} wavy-gallery`}
         >
-          <div className="collection-inner-container">
-            {collectionsData.map((item, index) => {
-              const waveOffset = getWaveOffset(index);
-              const itemSize = getItemSize(index);
+          {isDesktop && <div className="shadow-effect"></div>}
+          {isDesktop && <div className="left-fade"></div>}
 
-              return (
-                <div
-                  key={item.id}
-                  className={`collection-item ${
-                    hoverItemIndex === index ? "item-hovered" : ""
-                  }`}
-                  style={{
-                    animationDelay: `${index * 0.1}s`,
-                    transform: `translateY(${waveOffset}px)`,
-                    width: `${itemSize.width}px`,
-                    height: `${itemSize.height}px`,
-                    transition: "transform 0.5s ease, scale 0.3s ease",
-                  }}
-                  onMouseEnter={() => handleItemHover(index)}
-                  onMouseLeave={handleItemLeave}
+          {isMobile && showSwipeHint && (
+            <div className="swipe-hint">
+              <span className="swipe-text">
+                <TranslatedText>Trượt để khám phá</TranslatedText>
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  height="18"
+                  width="18"
+                  stroke="currentColor"
                 >
-                  <Link to="/collection" className="collection-link">
-                    <div className="collection-image-wrapper">
-                      <img
-                        src={item.image}
-                        alt={item.alt}
-                        className="collection-image"
-                        loading={index < 5 ? "eager" : "lazy"}
-                      />
-                      <div className="collection-overlay">
-                        <div className="collection-info">
-                          <h3 className="collection-title">
-                            <TranslatedText>{item.title}</TranslatedText>
-                          </h3>
-                          <p className="collection-artist">
-                            <TranslatedText>{item.artist}</TranslatedText>
-                          </p>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M9 5l7 7-7 7"
+                  ></path>
+                </svg>
+              </span>
+            </div>
+          )}
+
+          <div
+            className="collections-gallery"
+            ref={scrollContainerRef}
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            onTouchStart={handleTouchStart}
+            onTouchEnd={handleTouchEnd}
+            onTouchMove={handleTouchMove}
+            style={isMobile ? { overflow: "visible" } : {}}
+          >
+            <div className="collection-inner-container">
+              {collectionsData.map((item, index) => {
+                const waveOffset = getWaveOffset(index);
+                const itemSize = getItemSize(index);
+
+                return (
+                  <div
+                    key={item.id}
+                    className={`collection-item ${
+                      hoverItemIndex === index ? "item-hovered" : ""
+                    }`}
+                    style={{
+                      animationDelay: `${index * 0.1}s`,
+                      transform: `translateY(${waveOffset}px)`,
+                      width: `${itemSize.width}px`,
+                      height: `${itemSize.height}px`,
+                      transition: "transform 0.5s ease, scale 0.3s ease",
+                    }}
+                    onMouseEnter={() => handleItemHover(index)}
+                    onMouseLeave={handleItemLeave}
+                  >
+                    <Link to="/collection" className="collection-link">
+                      <div className="collection-image-wrapper">
+                        <img
+                          src={item.image}
+                          alt={item.alt}
+                          className="collection-image"
+                          loading={index < 5 ? "eager" : "lazy"}
+                        />
+                        <div className="collection-overlay">
+                          <div className="collection-info">
+                            <h3 className="collection-title">
+                              <TranslatedText>{item.title}</TranslatedText>
+                            </h3>
+                            <p className="collection-artist">
+                              <TranslatedText>{item.artist}</TranslatedText>
+                            </p>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </Link>
-                </div>
-              );
-            })}
+                    </Link>
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
-      </div>
 
-      <div className="collections-footer">
-        <Link to="/collection" className="view-all-link">
-          <TranslatedText>View all collections</TranslatedText>
-          <span className="arrow-icon">→</span>
-        </Link>
+        <div className="collections-footer">
+          <Link to="/collection" className="view-all-link">
+            <TranslatedText>Xem tất cả bộ sưu tập</TranslatedText>
+            <span className="arrow-icon">→</span>
+          </Link>
+        </div>
       </div>
     </section>
   );

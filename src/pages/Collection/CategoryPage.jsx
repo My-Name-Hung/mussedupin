@@ -3,166 +3,254 @@ import { Link, useParams } from "react-router-dom";
 import TranslatedText from "../../components/TranslatedText";
 import "./CategoryPage.css";
 
-// Import the same images for demo purposes
-// In a real app, these would come from your data source
-import painting1 from "../../assets/home/collections/ANewLook.jpg";
-import painting2 from "../../assets/home/collections/beautes.jpg";
-import painting3 from "../../assets/home/collections/couture.jpg";
-import painting4 from "../../assets/home/collections/mamluks.jpg";
-import painting5 from "../../assets/home/collections/Masterpieces.jpg";
-import painting6 from "../../assets/home/collections/Nature.jpg";
-import painting7 from "../../assets/home/collections/portrait.jpg";
-import painting8 from "../../assets/home/collections/TheMetAu.jpg";
+// Import category thumbnails
+import dungcuThumb from "../../assets/home/Collections/DungcuAmNhacTayNguyen/Cồng Chiên.webp";
+import channuoiThumb from "../../assets/home/Collections/K_hoChanNuoi/Lồng Đa Đa.webp";
+import dieukhacThumb from "../../assets/home/Collections/K_hoDieuKhac/Điêu Khắc.webp";
+import lehoiThumb from "../../assets/home/Collections/K_hoLeHoi/Lễ Hội.webp";
+import sanbanThumb from "../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/Chiếc Gùi.webp";
+import sinhoatThumb from "../../assets/home/Collections/K_hoSinhHoatThuongNhat/Nồi Đất.webp";
+import phuctangThumb from "../../assets/home/Collections/PhucTang/Thông 2.webp";
 
-// Sample collection data (in a real app, fetch this from your API or database)
+// Import all images for each category
+const dungcuImages = import.meta.glob(
+  "../../assets/home/Collections/DungcuAmNhacTayNguyen/*.webp"
+);
+const khoChanNuoiImages = import.meta.glob(
+  "../../assets/home/Collections/K_hoChanNuoi/*.webp"
+);
+const khoDieuKhacImages = import.meta.glob(
+  "../../assets/home/Collections/K_hoDieuKhac/*.webp"
+);
+const khoLeHoiImages = import.meta.glob(
+  "../../assets/home/Collections/K_hoLeHoi/*.webp"
+);
+const khoSanBanImages = import.meta.glob(
+  "../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/*.webp"
+);
+const khoSinhHoatImages = import.meta.glob(
+  "../../assets/home/Collections/K_hoSinhHoatThuongNhat/*.webp"
+);
+const phucTangImages = import.meta.glob(
+  "../../assets/home/Collections/PhucTang/*.webp"
+);
+
+// Sample collection data
 const collectionData = {
   categories: [
-    { id: 1, title: "Painting", image: painting1 },
-    { id: 2, title: "Sculpture", image: painting5 },
-    { id: 3, title: "Decorative Arts", image: painting2 },
-    { id: 4, title: "Ancient Art", image: painting3 },
-    { id: 5, title: "Renaissance", image: painting7 },
-    { id: 6, title: "Modern Art", image: painting4 },
-    { id: 7, title: "Islamic Art", image: painting6 },
-    { id: 8, title: "Asian Art", image: painting8 },
-  ],
-  artworks: [
     {
       id: 1,
-      title: "Ottoman Iznik Tile",
-      artist: "Unknown",
-      year: "17th Century",
-      image: painting6, // Placeholder image
-      location: "Islamic Art Wing",
-      tags: ["Ottoman", "Ceramic", "Decorative Arts"],
+      title: "Dụng cụ âm nhạc Tây Nguyên",
+      image: dungcuThumb,
+      images: dungcuImages,
     },
     {
       id: 2,
-      title: "The Caryatids",
-      artist: "Jean Goujon",
-      year: "1550-1551",
-      image: painting2,
-      location: "Aile Sully, Rez-de-chaussée",
-      tags: ["Sculpture", "Renaissance", "French"],
+      title: "K'ho chăn nuôi",
+      image: channuoiThumb,
+      images: khoChanNuoiImages,
     },
     {
       id: 3,
-      title: "Liberty Leading the People",
-      artist: "Eugène Delacroix",
-      year: "1830",
-      image: painting3,
-      location: "Aile Denon, 1er étage",
-      tags: ["Painting", "Romanticism", "French", "19th Century"],
+      title: "K'ho điêu khắc",
+      image: dieukhacThumb,
+      images: khoDieuKhacImages,
     },
     {
       id: 4,
-      title: "Mona Lisa",
-      artist: "Leonardo da Vinci",
-      year: "1503-1519",
-      image: painting4,
-      location: "Aile Denon, 1er étage, Salle des États",
-      tags: ["Painting", "Renaissance", "Italian", "Portrait"],
+      title: "K'ho lễ hội",
+      image: lehoiThumb,
+      images: khoLeHoiImages,
     },
     {
       id: 5,
-      title: "Venus de Milo",
-      artist: "Alexandros of Antioch",
-      year: "c. 100 BCE",
-      image: painting5,
-      location: "Aile Sully, Rez-de-chaussée",
-      tags: ["Sculpture", "Greek", "Hellenistic"],
+      title: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
+      image: sanbanThumb,
+      images: khoSanBanImages,
     },
     {
       id: 6,
-      title: "The Raft of the Medusa",
-      artist: "Théodore Géricault",
-      year: "1818-1819",
-      image: painting6,
-      location: "Aile Denon, 1er étage",
-      tags: ["Painting", "Romanticism", "French", "19th Century"],
+      title: "K'ho sinh hoạt thường nhật",
+      image: sinhoatThumb,
+      images: khoSinhHoatImages,
     },
     {
       id: 7,
-      title: "The Wedding Feast at Cana",
-      artist: "Paolo Veronese",
-      year: "1563",
-      image: painting7,
-      location: "Aile Denon, 1er étage",
-      tags: ["Painting", "Renaissance", "Italian", "Biblical"],
-    },
-    {
-      id: 8,
-      title: "Winged Victory of Samothrace",
-      artist: "Unknown",
-      year: "c. 200-190 BCE",
-      image: painting8,
-      location: "Escalier Daru",
-      tags: ["Sculpture", "Greek", "Hellenistic"],
-    },
-    // Additional artworks to ensure all categories have items
-    {
-      id: 9,
-      title: "Blue and White Porcelain Vase",
-      artist: "Ming Dynasty Artisan",
-      year: "c. 1500",
-      image: painting8,
-      location: "Asian Art Wing, Room 12",
-      tags: ["Asian Art", "Ceramics", "Chinese", "Ming Dynasty"],
-    },
-    {
-      id: 10,
-      title: "Islamic Calligraphy Panel",
-      artist: "Ottoman Master Calligrapher",
-      year: "1780",
-      image: painting6,
-      location: "Islamic Art Gallery, Section 3",
-      tags: ["Islamic Art", "Calligraphy", "Ottoman", "18th Century"],
-    },
-    {
-      id: 11,
-      title: "Art Deco Jewelry Box",
-      artist: "Émile-Jacques Ruhlmann",
-      year: "1925",
-      image: painting2,
-      location: "Decorative Arts Gallery, Modern Section",
-      tags: ["Decorative Arts", "Art Deco", "French", "20th Century"],
-    },
-    {
-      id: 12,
-      title: "Ancient Egyptian Sarcophagus",
-      artist: "Unknown Egyptian Artisan",
-      year: "c. 1200 BCE",
-      image: painting3,
-      location: "Ancient Art Wing, Egyptian Gallery",
-      tags: ["Ancient Art", "Egyptian", "Funerary Art", "New Kingdom"],
+      title: "Phức Tầng",
+      image: phuctangThumb,
+      images: phucTangImages,
     },
   ],
-  // Sample related artworks data
+
+  // Tự động tạo artworks từ các hình ảnh đã import
+  artworks: [
+    ...Object.entries(dungcuImages).map(([path, loader], index) => ({
+      id: `dungcu-${index + 1}`,
+      title: path.split("/").pop().replace(".webp", ""),
+      artist: "Musée Du Pin",
+      year: "2024",
+      image: path,
+      imageLoader: loader,
+      description: "Dụng cụ âm nhạc truyền thống của người Tây Nguyên",
+      location: "Khu trưng bày nhạc cụ",
+      tags: ["Nhạc cụ"],
+    })),
+    ...Object.entries(khoChanNuoiImages).map(([path, loader], index) => ({
+      id: `channuoi-${index + 1}`,
+      title: path.split("/").pop().replace(".webp", ""),
+      artist: "Musée Du Pin",
+      year: "2024",
+      image: path,
+      imageLoader: loader,
+      description: "Vật dụng chăn nuôi truyền thống của người K'ho",
+      location: "Khu trưng bày đời sống",
+      tags: ["Đời sống", "Văn hóa"],
+    })),
+    ...Object.entries(khoDieuKhacImages).map(([path, loader], index) => ({
+      id: `dieukhac-${index + 1}`,
+      title: path.split("/").pop().replace(".webp", ""),
+      artist: "Musée Du Pin",
+      year: "2024",
+      image: path,
+      imageLoader: loader,
+      description: "Tác phẩm điêu khắc truyền thống của người K'ho",
+      location: "Khu trưng bày điêu khắc",
+      tags: ["Điêu khắc"],
+    })),
+    ...Object.entries(khoLeHoiImages).map(([path, loader], index) => ({
+      id: `lehoi-${index + 1}`,
+      title: path.split("/").pop().replace(".webp", ""),
+      artist: "Musée Du Pin",
+      year: "2024",
+      image: path,
+      imageLoader: loader,
+      description: "Lễ hội truyền thống của người K'ho",
+      location: "Khu trưng bày lễ hội",
+      tags: ["Lễ hội"],
+    })),
+    ...Object.entries(khoSanBanImages).map(([path, loader], index) => ({
+      id: `sanban-${index + 1}`,
+      title: path.split("/").pop().replace(".webp", ""),
+      artist: "Musée Du Pin",
+      year: "2024",
+      image: path,
+      imageLoader: loader,
+      description: "Công cụ săn bắn và hái lượm của người K'ho",
+      location: "Khu trưng bày đời sống",
+      tags: ["Đời sống", "Văn hóa"],
+    })),
+    ...Object.entries(khoSinhHoatImages).map(([path, loader], index) => ({
+      id: `sinhoat-${index + 1}`,
+      title: path.split("/").pop().replace(".webp", ""),
+      artist: "Musée Du Pin",
+      year: "2024",
+      image: path,
+      imageLoader: loader,
+      description: "Sinh hoạt thường nhật của người K'ho",
+      location: "Khu trưng bày đời sống",
+      tags: ["Đời sống", "K'ho"],
+    })),
+    ...Object.entries(phucTangImages).map(([path, loader], index) => ({
+      id: `phuctang-${index + 1}`,
+      title: path.split("/").pop().replace(".webp", ""),
+      artist: "Musée Du Pin",
+      year: "2024",
+      image: path,
+      imageLoader: loader,
+      description: "Phức tầng văn hóa K'ho",
+      location: "Khu trưng bày phức tầng",
+      tags: ["Phức tầng"],
+    })),
+  ],
+
+  highlights: [
+    {
+      id: 1,
+      title: "Nhạc cụ truyền thống",
+      category: "Nhạc cụ",
+      image: dungcuThumb,
+      type: "video",
+      youtubeId: "dQw4w9WgXcQ",
+      description:
+        "Khám phá âm nhạc truyền thống của người Tây Nguyên qua các nhạc cụ độc đáo.",
+    },
+    {
+      id: 2,
+      title: "Điêu khắc K'ho",
+      category: "Điêu khắc",
+      image: dieukhacThumb,
+      type: "image",
+      artwork: 1,
+      description:
+        "Nghệ thuật điêu khắc truyền thống của người K'ho qua các tác phẩm tiêu biểu.",
+    },
+    {
+      id: 3,
+      title: "Đời sống thường nhật",
+      category: "Đời sống",
+      image: sinhoatThumb,
+      type: "video",
+      youtubeId: "dQw4w9WgXcQ",
+      description:
+        "Tìm hiểu về cuộc sống hàng ngày của người K'ho qua các vật dụng sinh hoạt.",
+    },
+    {
+      id: 4,
+      title: "Lễ hội truyền thống",
+      category: "Lễ hội",
+      image: lehoiThumb,
+      type: "image",
+      artwork: 4,
+      description:
+        "Khám phá các lễ hội truyền thống và ý nghĩa văn hóa của người K'ho.",
+    },
+    {
+      id: 5,
+      title: "Chăn nuôi K'ho",
+      category: "Chăn nuôi",
+      image: channuoiThumb,
+      type: "video",
+      youtubeId: "dQw4w9WgXcQ",
+      description:
+        "Tìm hiểu về hoạt động chăn nuôi và các công cụ truyền thống của người K'ho.",
+    },
+    {
+      id: 6,
+      title: "Sinh hoạt văn hóa",
+      category: "Sinh hoạt",
+      image: sanbanThumb,
+      type: "image",
+      artwork: 2,
+      description:
+        "Khám phá các hoạt động sinh hoạt văn hóa đặc trưng của người K'ho.",
+    },
+  ],
+
   relatedArtworks: [
     {
       id: 1,
-      title: "Similar Works",
+      title: "Tác phẩm tương tự",
       description:
-        "Explore artworks with similar styles, themes, or time periods",
+        "Khám phá các tác phẩm có phong cách, chủ đề hoặc thời kỳ tương tự",
       items: [2, 5, 8],
     },
     {
       id: 2,
-      title: "From the Same Artist",
-      description: "Discover more works by the same creator",
+      title: "Cùng nghệ nhân",
+      description: "Khám phá thêm các tác phẩm của cùng nghệ nhân",
       items: [3, 7, 1],
     },
     {
       id: 3,
-      title: "You Might Also Like",
-      description: "Based on your interest in this category",
+      title: "Có thể bạn quan tâm",
+      description: "Dựa trên sở thích của bạn về danh mục này",
       items: [4, 6, 2],
     },
   ],
 };
 
 const CategoryPage = () => {
-  const { id, title } = useParams();
+  const { id } = useParams();
   const [category, setCategory] = useState(null);
   const [artworks, setArtworks] = useState([]);
   const [selectedArtwork, setSelectedArtwork] = useState(null);
@@ -192,36 +280,75 @@ const CategoryPage = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Find the category and filter related artworks
+  // Load images for the current category
   useEffect(() => {
-    // Find the current category
-    const foundCategory = collectionData.categories.find(
-      (cat) => cat.id === parseInt(id)
-    );
+    const loadCategoryImages = async () => {
+      const foundCategory = collectionData.categories.find(
+        (cat) => cat.id === parseInt(id)
+      );
 
-    if (foundCategory) {
-      setCategory(foundCategory);
+      if (foundCategory) {
+        setCategory(foundCategory);
 
-      // Filter artworks related to this category
-      const categoryNameLower = foundCategory.title.toLowerCase();
-      const filteredArtworks = collectionData.artworks.filter((artwork) => {
-        // Match by tags
-        return artwork.tags.some(
-          (tag) =>
-            tag.toLowerCase() === categoryNameLower ||
-            tag.toLowerCase().includes(categoryNameLower) ||
-            categoryNameLower.includes(tag.toLowerCase())
+        // Load all images for this category
+        const imageEntries = Object.entries(foundCategory.images);
+        const loadedImageUrls = {};
+
+        await Promise.all(
+          imageEntries.map(async ([path, loader]) => {
+            try {
+              const module = await loader();
+              loadedImageUrls[path] = module.default;
+            } catch (error) {
+              console.error(`Error loading image ${path}:`, error);
+            }
+          })
         );
-      });
 
-      setArtworks(filteredArtworks);
+        // Get tags based on category
+        const getCategoryTags = (categoryId) => {
+          switch (categoryId) {
+            case 1: // Dụng cụ âm nhạc
+              return ["Nhạc cụ", "Văn hóa", "Tây Nguyên"];
+            case 2: // K'ho chăn nuôi
+              return ["Đời sống", "Văn hóa"];
+            case 3: // K'ho điêu khắc
+              return ["Điêu khắc"];
+            case 4: // K'ho lễ hội
+              return ["Lễ hội"];
+            case 5: // K'ho săn bắn
+              return ["Đời sống", "Văn hóa"];
+            case 6: // K'ho sinh hoạt
+              return ["Đời sống", "K'ho"];
+            case 7: // Phức tầng
+              return ["Phức tầng"];
+            default:
+              return ["K'ho"];
+          }
+        };
 
-      // Simulate loading time for animation effects
-      setTimeout(() => {
+        // Create artwork entries from loaded images
+        const categoryArtworks = imageEntries.map(([path], index) => ({
+          id: `${foundCategory.id}-${index + 1}`,
+          title: path.split("/").pop().replace(".webp", ""),
+          artist: "Musée Du Pin",
+          year: "2024",
+          image: loadedImageUrls[path],
+          description: `${foundCategory.title} - ${path
+            .split("/")
+            .pop()
+            .replace(".webp", "")}`,
+          location: "Khu trưng bày",
+          tags: getCategoryTags(foundCategory.id),
+        }));
+
+        setArtworks(categoryArtworks);
         setIsLoaded(true);
-      }, 300);
-    }
-  }, [id, title]);
+      }
+    };
+
+    loadCategoryImages();
+  }, [id]);
 
   // Close modal when pressing escape key
   useEffect(() => {
@@ -376,7 +503,7 @@ const CategoryPage = () => {
 
   return (
     <div className="category-page">
-      {/* Hero Section with Diagonal Divider */}
+      {/* Hero Section */}
       <section
         className={`category-hero ${isLoaded ? "loaded" : ""} ${
           heroLoaded ? "image-loaded" : ""
@@ -384,13 +511,15 @@ const CategoryPage = () => {
       >
         <div className="category-hero-slides-container">
           <div className="category-hero-slide active">
-            <img
-              ref={heroImageRef}
-              src={category.image}
-              alt={category.title}
-              className="category-hero-img"
-              onLoad={handleHeroImageLoaded}
-            />
+            {category && (
+              <img
+                ref={heroImageRef}
+                src={category.image}
+                alt={category.title}
+                className="category-hero-img"
+                onLoad={handleHeroImageLoaded}
+              />
+            )}
           </div>
         </div>
         <div className="category-hero-overlay"></div>
@@ -409,21 +538,25 @@ const CategoryPage = () => {
             <path d="M19 12H5M12 19l-7-7 7-7"></path>
           </svg>
           <span>
-            <TranslatedText>Back to Collections</TranslatedText>
+            <TranslatedText>Quay lại Bộ sưu tập</TranslatedText>
           </span>
         </Link>
         <div className="category-hero-content">
-          <h1 className="category-hero-title">{category.title}</h1>
+          <h1
+            className={`category-hero-title ${
+              category?.title.length > 30 ? "long-title" : ""
+            }`}
+          ></h1>
         </div>
         <div className="category-hero-scroll-indicator">
           <div className="category-hero-scroll-mouse">
             <div className="category-hero-scroll-wheel"></div>
           </div>
-          <span>SCROLL</span>
+          <span>CUỘN XUỐNG</span>
         </div>
       </section>
 
-      {/* Artworks Grid with Artistic Animations */}
+      {/* Artworks Grid */}
       <section
         className="category-artworks-section"
         ref={artworksRef}
@@ -433,12 +566,12 @@ const CategoryPage = () => {
           <header className="category-artworks-header">
             <h2 className="category-artworks-title">
               <TranslatedText>
-                Browse {category.title} Collection
+                Khám phá bộ sưu tập {category?.title}
               </TranslatedText>
             </h2>
             <p className="category-artworks-count">
               <span>{artworks.length}</span>{" "}
-              <TranslatedText>items</TranslatedText>
+              <TranslatedText>tác phẩm</TranslatedText>
             </p>
           </header>
 
@@ -500,7 +633,7 @@ const CategoryPage = () => {
         </div>
       </section>
 
-      {/* Improved Artwork Modal with swipe support */}
+      {/* Artwork Modal */}
       {isModalOpen && selectedArtwork && (
         <div
           className="artwork-modal"
@@ -513,7 +646,7 @@ const CategoryPage = () => {
                 type="button"
                 className="artwork-modal-close"
                 onClick={handleCloseButtonClick}
-                aria-label="Close modal"
+                aria-label="Đóng"
               >
                 <svg viewBox="0 0 24 24" width="20" height="20">
                   <path
@@ -557,7 +690,7 @@ const CategoryPage = () => {
                     <line x1="12" y1="15" x2="12" y2="3"></line>
                   </svg>
                   <span>
-                    <TranslatedText>Download Image</TranslatedText>
+                    <TranslatedText>Tải ảnh</TranslatedText>
                   </span>
                 </button>
               </div>
@@ -573,19 +706,19 @@ const CategoryPage = () => {
 
                 <div className="artwork-modal-metadata">
                   <div className="artwork-metadata-item">
-                    <div className="metadata-label">ARTIST</div>
+                    <div className="metadata-label">TÁC GIẢ</div>
                     <div className="metadata-value">
                       {selectedArtwork.artist}
                     </div>
                   </div>
 
                   <div className="artwork-metadata-item">
-                    <div className="metadata-label">YEAR</div>
+                    <div className="metadata-label">NĂM</div>
                     <div className="metadata-value">{selectedArtwork.year}</div>
                   </div>
 
                   <div className="artwork-metadata-item">
-                    <div className="metadata-label">LOCATION</div>
+                    <div className="metadata-label">ĐỊA ĐIỂM</div>
                     <div className="metadata-value">
                       {selectedArtwork.location}
                     </div>
@@ -622,13 +755,13 @@ const CategoryPage = () => {
                     </svg>
                   </div>
                   <div className="location-details">
-                    <h4 className="location-title">Access</h4>
+                    <h4 className="location-title">Địa điểm</h4>
                     <p className="location-info">{selectedArtwork.location}</p>
                   </div>
                 </div>
 
                 <a href="/visit" className="artwork-visit-button">
-                  Plan Your Visit
+                  Lập lịch thăm viếng
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="18"

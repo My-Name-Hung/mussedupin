@@ -101,11 +101,11 @@ function Home() {
                 fontFamily: "Mythical-Prince, LouvreSerif, Georgia, Times New Roman, serif",
               }}
             >
-              <TranslatedText>PREPARE YOUR VISIT</TranslatedText>
+              <TranslatedText>Chuẩn bị tham quan</TranslatedText>
             </div>
             <div className="prepare-visit-center">
               <div className="prepare-visit-museum-status">
-                <TranslatedText>The museum is open today</TranslatedText>
+                <TranslatedText>Bảo tàng đang mở cửa</TranslatedText>
               </div>
               <div className="prepare-visit-time">
                 <span>7:00 AM</span>

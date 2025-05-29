@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import sunset from "../../../assets/home/hero/louvre-sunset.jpg";
+import heroVideo from "../../../assets/Home/Hero/LANGBIANG.mp4";
+
 import { getCurrentLanguage, translateText } from "../../../utils/translate";
 import "./Hero.css";
 
@@ -100,10 +101,10 @@ const Hero = () => {
         museumOpen: await translateText("The museum is open today", language),
         bookTicket: await translateText("Book a ticket", language),
         prepareVisit: await translateText("Prepare your visit", language),
-        prepareVisitCaps: await translateText("PREPARE YOUR VISIT", language),
+        prepareVisitCaps: await translateText("Chuẩn bị tham quan", language),
         imgAlt:
           (await translateText(
-            "Museum at sunset with glass pyramid",
+            "Bảo tàng hoạt động từ",
             language
           )) + " - Musée Du Pin",
         timeStart: await translateText("7:00 AM", language),
@@ -151,14 +152,9 @@ const Hero = () => {
     <>
       <section className="hero-container">
         <div className="hero-image-container">
-          <img
-            src={sunset}
-            alt={
-              translations.imgAlt ||
-              "Musée Du Pin Museum at sunset with glass pyramid"
-            }
-            className="hero-image"
-          />
+          <video autoPlay muted loop playsInline className="hero-video">
+            <source src={heroVideo} type="video/mp4" />
+          </video>
           <div className="hero-overlay"></div>
           <div className="hero-content">
             <h1 className="hero-title">
@@ -172,7 +168,7 @@ const Hero = () => {
       {isMobile && (
         <div className="mobile-hero-controller">
           <div className="mobile-prepare-visit" onClick={togglePrepareVisit}>
-            <span>{translations.prepareVisitCaps || "PREPARE YOUR VISIT"}</span>
+            <span>{translations.prepareVisitCaps || "Chuẩn bị tham quan"}</span>
             {isPrepareOpen ? <ChevronDown /> : <ChevronUp />}
           </div>
         </div>
@@ -185,12 +181,8 @@ const Hero = () => {
       >
         <div className="info-panel-content">
           <div className="info-panel-left">
-            <h2 className="info-panel-title">
-              {translations.welcomeTitle || "Welcome to the Musée Du Pin"}
-            </h2>
-            <p className="info-panel-status">
-              {translations.museumOpen || "The museum is open today"}
-            </p>
+            <h2 className="info-panel-title">Chào mừng đến với Musée Du Pin</h2>
+            <p className="info-panel-status">Bảo tàng đang mở cửa</p>
             <p className="info-panel-hours">
               <span>{translations.timeStart || "7:00 AM"}</span>
               <ArrowIcon />
@@ -203,14 +195,14 @@ const Hero = () => {
           <div className="info-panel-right">
             <Link to="/tickets" className="info-panel-button btn-primary">
               <TicketIcon />
-              {translations.bookTicket || "Book a ticket"}
+              Đặt vé
             </Link>
             <Link
-              to="/prepare-visit"
+              to="https://online-museeduphin.netlify.app/"
               className="info-panel-button btn-secondary"
             >
               <InfoIcon />
-              {translations.prepareVisit || "Prepare your visit"}
+              Quà lưu niệm
             </Link>
           </div>
         </div>

@@ -1,7 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import {
   changeLanguage as changeLang,
-  DEFAULT_LANGUAGE,
   getCurrentLanguage,
   SUPPORTED_LANGUAGES,
 } from "../utils/translate";
@@ -12,27 +11,30 @@ import "../styles/vietnamese.css";
 
 // Tạo context với giá trị mặc định
 const TranslationContext = createContext({
-  currentLanguage: DEFAULT_LANGUAGE,
+  currentLanguage: "vi",
   changeLanguage: () => {},
-  supportedLanguages: [],
+  supportedLanguages: [
+    { code: "vi", name: "Tiếng Việt" },
+    { code: "en", name: "English" },
+  ],
   isTranslating: false,
   translationProgress: 0,
 });
 
 // Provider component để cung cấp giá trị context cho các component con
 export const TranslationProvider = ({ children }) => {
-  const [currentLanguage, setCurrentLanguage] = useState(getCurrentLanguage());
+  const [currentLanguage, setCurrentLanguage] = useState("vi");
   const [isTranslating, setIsTranslating] = useState(false);
   const [translationProgress, setTranslationProgress] = useState(0);
 
   // Khởi tạo trạng thái ban đầu
   useEffect(() => {
-    const initialLanguage = getCurrentLanguage();
+    const initialLanguage = getCurrentLanguage() || "vi";
     setCurrentLanguage(initialLanguage);
 
     // Dịch toàn bộ trang ngay khi tải, nếu ngôn ngữ hiện tại khác với ngôn ngữ mặc định (tiếng Anh)
     // và không phải lần đầu load (đã có ngôn ngữ được lưu trong localStorage)
-    if (initialLanguage !== "en" && localStorage.getItem("selectedLanguage")) {
+    if (initialLanguage !== "vi" && localStorage.getItem("selectedLanguage")) {
       translateWholePageTo(initialLanguage);
     }
   }, []);
@@ -62,7 +64,7 @@ export const TranslationProvider = ({ children }) => {
   // Dịch toàn bộ trang khi ngôn ngữ thay đổi
   useEffect(() => {
     // Không cần dịch nếu ngôn ngữ là mặc định (tiếng Anh)
-    if (currentLanguage === "en") return;
+    if (currentLanguage === "vi") return;
 
     // Bắt đầu dịch
     translateWholePageTo(currentLanguage);
@@ -74,8 +76,8 @@ export const TranslationProvider = ({ children }) => {
       // Cập nhật localStorage thông qua hàm từ utils
       changeLang(langCode);
 
-      // Nếu chuyển sang tiếng Anh (ngôn ngữ mặc định), cần tải lại nội dung gốc
-      if (langCode === "en") {
+      // Nếu chuyển sang tiếng Việt (ngôn ngữ mặc định), cần tải lại nội dung gốc
+      if (langCode === "vi") {
         // Bạn có thể lựa chọn tải lại trang trong trường hợp này
         // hoặc xử lý đặc biệt để hiển thị nội dung tiếng Anh ban đầu
         window.location.reload();

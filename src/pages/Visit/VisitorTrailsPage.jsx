@@ -1,0 +1,310 @@
+import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+import "./VisitorTrailsPage.css";
+
+// Import trail images from collection folders
+const dungcuImages = import.meta.glob(
+  "../../assets/home/Collections/DungcuAmNhacTayNguyen/*.webp"
+);
+const khoChanNuoiImages = import.meta.glob(
+  "../../assets/home/Collections/K_hoChanNuoi/*.webp"
+);
+const khoDieuKhacImages = import.meta.glob(
+  "../../assets/home/Collections/K_hoDieuKhac/*.webp"
+);
+const khoLeHoiImages = import.meta.glob(
+  "../../assets/home/Collections/K_hoLeHoi/*.webp"
+);
+const khoSanBanImages = import.meta.glob(
+  "../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/*.webp"
+);
+const khoSinhHoatImages = import.meta.glob(
+  "../../assets/home/Collections/K_hoSinhHoatThuongNhat/*.webp"
+);
+const phucTangImages = import.meta.glob(
+  "../../assets/home/Collections/PhucTang/*.webp"
+);
+
+// Import thumbnails for each category
+import dungcuThumb from "../../assets/home/Collections/DungcuAmNhacTayNguyen/Cồng Chiên.webp";
+import channuoiThumb from "../../assets/home/Collections/K_hoChanNuoi/Lồng Đa Đa.webp";
+import dieukhacThumb from "../../assets/home/Collections/K_hoDieuKhac/Điêu Khắc.webp";
+import lehoiThumb from "../../assets/home/Collections/K_hoLeHoi/Lễ Hội.webp";
+import sanbanThumb from "../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/Chiếc Gùi.webp";
+import sinhoatThumb from "../../assets/home/Collections/K_hoSinhHoatThuongNhat/Nồi Đất.webp";
+import phuctangThumb from "../../assets/home/Collections/PhucTang/Thông 2.webp";
+
+// Import hero image
+import heroImage from "../../assets/home/Hero/louvre-sunset.webp";
+
+// SVG icons
+const ClockIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="16"
+    height="16"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+    className="vt-clock-icon"
+  >
+    <circle cx="12" cy="12" r="10"></circle>
+    <polyline points="12 6 12 12 16 14"></polyline>
+  </svg>
+);
+
+const AudioIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M11 5L6 9H2v6h4l5 4V5z"></path>
+    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+  </svg>
+);
+
+const ArrowRightIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <line x1="5" y1="12" x2="19" y2="12"></line>
+    <polyline points="12 5 19 12 12 19"></polyline>
+  </svg>
+);
+
+const ScrollDownIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="24"
+    height="24"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <path d="M12 5v14"></path>
+    <path d="M19 12l-7 7-7-7"></path>
+  </svg>
+);
+
+// Trail data
+const trailsData = [
+  {
+    id: 1,
+    title: "DỤNG CỤ ÂM NHẠC TÂY NGUYÊN",
+    description:
+      "Khám phá âm nhạc truyền thống của người Tây Nguyên qua các nhạc cụ độc đáo như cồng chiêng - biểu tượng văn hóa và tín ngưỡng thiêng liêng.",
+    image: dungcuThumb,
+    duration: "1H30",
+    audioGuide: true,
+    images: dungcuImages,
+  },
+  {
+    id: 2,
+    title: "K'HO CHĂN NUÔI",
+    description:
+      "Khám phá các công cụ và phương thức chăn nuôi truyền thống của người K'ho, từ lồng đa đa đến các vật dụng chăn nuôi khác.",
+    image: channuoiThumb,
+    duration: "1H30",
+    audioGuide: true,
+    images: khoChanNuoiImages,
+  },
+  {
+    id: 3,
+    title: "K'HO LỄ HỘI",
+    description:
+      "Tìm hiểu về các lễ hội truyền thống và nghi thức văn hóa của người K'ho thông qua các hiện vật như Ché Ghò Sành.",
+    image: lehoiThumb,
+    duration: "1H",
+    audioGuide: true,
+    images: khoLeHoiImages,
+  },
+  {
+    id: 4,
+    title: "K'HO ĐIÊU KHẮC",
+    description:
+      "Chiêm ngưỡng nghệ thuật điêu khắc truyền thống của người K'ho qua các tác phẩm tượng và điêu khắc tinh xảo.",
+    image: dieukhacThumb,
+    duration: "1H30",
+    audioGuide: true,
+    images: khoDieuKhacImages,
+  },
+  {
+    id: 5,
+    title: "K'HO SĂN BẮN & HÁI LƯỢM",
+    description:
+      "Khám phá các công cụ săn bắn, hái lượm và canh tác truyền thống của người K'ho.",
+    image: sanbanThumb,
+    duration: "1H",
+    audioGuide: true,
+    images: khoSanBanImages,
+  },
+  {
+    id: 6,
+    title: "K'HO SINH HOẠT THƯỜNG NHẬT",
+    description:
+      "Tìm hiểu về đời sống hàng ngày của người K'ho qua các vật dụng sinh hoạt như nồi đất, bầu hồ lô.",
+    image: sinhoatThumb,
+    duration: "1H30",
+    audioGuide: true,
+    images: khoSinhHoatImages,
+  },
+  {
+    id: 7,
+    title: "PHỨC TẦNG",
+    description: "Tham quan trải nghiệm thiên nhiên của đồi thông.",
+    image: phuctangThumb,
+    duration: "1H",
+    audioGuide: true,
+    images: phucTangImages,
+  },
+];
+
+const VisitorTrailsPage = () => {
+  const [animatedSections, setAnimatedSections] = useState({});
+
+  useEffect(() => {
+    // Set page title
+    document.title = "Lộ trình tham quan | Bảo tàng Du Pin";
+
+    // Initialize animation observer
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setAnimatedSections((prev) => ({
+              ...prev,
+              [entry.target.id]: true,
+            }));
+          }
+        });
+      },
+      { threshold: 0.2 }
+    );
+
+    // Observe all sections with animation
+    document.querySelectorAll(".animate-section").forEach((section) => {
+      observer.observe(section);
+    });
+
+    return () => {
+      // Cleanup
+      document.querySelectorAll(".animate-section").forEach((section) => {
+        observer.unobserve(section);
+      });
+    };
+  }, []);
+
+  return (
+    <div className="visitor-trails-page">
+      {/* Hero Section */}
+      <div className="vt-hero">
+        <div
+          className="vt-hero-image"
+          style={{ backgroundImage: `url(${heroImage})` }}
+        >
+          <div className="vt-hero-overlay"></div>
+        </div>
+        <div className="vt-hero-content">
+          <h1 className="vt-hero-title">LỘ TRÌNH THAM QUAN</h1>
+          <p className="vt-hero-subtitle">
+            Những gợi ý hữu ích trước hoặc trong chuyến thăm của bạn
+          </p>
+        </div>
+        <div className="vt-hero-scroll-indicator">
+          <div className="vt-hero-scroll-mouse">
+            <div className="vt-hero-scroll-wheel"></div>
+          </div>
+          <span>CUỘN XUỐNG</span>
+        </div>
+      </div>
+
+      {/* Description Section */}
+      <section
+        id="description-section"
+        className={`vt-description-section animate-section ${
+          animatedSections["description-section"] ? "visible" : ""
+        }`}
+      >
+        <div className="vt-description-container">
+          <div className="vt-description-text">
+            <p>
+              Không biết bắt đầu từ đâu? Hãy tự làm hướng dẫn viên cho mình với
+              những lộ trình được thiết kế dựa trên thời gian bạn dự định dành
+              cho bảo tàng và sở thích của bạn.
+            </p>
+            <p>
+              Để chuẩn bị cho chuyến thăm, hãy nhớ kiểm tra tình trạng mở cửa
+              của các phòng. Một số tác phẩm có thể không được trưng bày do
+              triển lãm đặc biệt, cho mượn, bảo trì, v.v. Nếu gặp trường hợp
+              này, hãy chuyển sang điểm dừng tiếp theo, vì điều này sẽ không làm
+              thay đổi lộ trình tham quan của bạn.
+            </p>
+          </div>
+
+          <Link to="/museum-map" className="vt-map-link">
+            Xem bản đồ bảo tàng <ArrowRightIcon />
+          </Link>
+        </div>
+      </section>
+
+      {/* Trails Section */}
+      <section
+        id="trails-section"
+        className={`vt-trails-section animate-section ${
+          animatedSections["trails-section"] ? "visible" : ""
+        }`}
+      >
+        <div className="vt-section-header">
+          <h2 className="vt-section-title">Khám phá lộ trình tham quan</h2>
+          <div className="vt-section-divider"></div>
+        </div>
+
+        <div className="vt-trails-grid">
+          {trailsData.map((trail) => (
+            <div key={trail.id} className="vt-trail-item">
+              <Link to={`/visitor-trails/${trail.id}`}>
+                <div className="vt-trail-image-container">
+                  <img
+                    src={trail.image}
+                    alt={trail.title}
+                    className="vt-trail-image"
+                  />
+                  <div className="vt-trail-duration">
+                    <ClockIcon /> {trail.duration}
+                  </div>
+                </div>
+                <div className="vt-trail-content">
+                  <h3 className="vt-trail-title">{trail.title}</h3>
+                  <p className="vt-trail-description">{trail.description}</p>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+      </section>
+    </div>
+  );
+};
+
+export default VisitorTrailsPage;

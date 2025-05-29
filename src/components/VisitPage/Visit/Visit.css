@@ -15,10 +15,17 @@
 .visit-page {
   width: 100%;
   color: #1a1a1a;
-  background-color: #fafafa;
+  background-image: url("../../../assets/Background/Background2.png");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 300px;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
   overflow-x: hidden;
   transition: transform 0.3s ease;
   position: relative;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .visit-page.touch-up {
@@ -32,11 +39,14 @@
 /* Hero section styles */
 .visit-hero {
   position: relative;
-  height: 85vh;
+  height: 100vh;
   max-height: 700px;
   overflow: hidden;
   display: flex;
   align-items: flex-end;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .visit-hero-image-container {
@@ -117,7 +127,8 @@
 }
 
 .visit-hero-subtitle {
-  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
   font-size: 1.8rem;
   font-weight: 300;
   color: #ffffff;
@@ -142,9 +153,7 @@
 /* Horizontal navigation styles */
 .visit-nav-container {
   width: 100%;
-  background-color: #ffffff;
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.03);
   z-index: 100;
   transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   overflow-x: auto;
@@ -156,7 +165,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: none;
   animation: slideDown 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
@@ -234,14 +243,7 @@
 
 /* Create a gliding effect for the active indicator */
 .visit-nav-list::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  height: 3px;
-  background: linear-gradient(to right, #00695c, #009688);
-  border-radius: 3px;
-  transition: transform 0.5s cubic-bezier(0.215, 0.61, 0.355, 1),
-    width 0.5s cubic-bezier(0.215, 0.61, 0.355, 1);
+  display: none;
 }
 
 .visit-nav-item:nth-child(1).active ~ .visit-nav-list::after {
@@ -280,19 +282,7 @@
   }
 
   .visit-nav-container::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 40px;
-    background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 1)
-    );
-    pointer-events: none;
-    z-index: 2;
+    display: none;
   }
 
   .visit-nav-container.scrolled-right::after {
@@ -349,7 +339,6 @@
     padding: 25px 15px;
     border-radius: 0;
     margin-top: 0;
-    background: #fff;
   }
 
   /* Mobile-optimized museum info */
@@ -393,12 +382,6 @@
 
   .hours-row {
     padding: 10px; /* Reduced from 12px */
-  }
-
-  /* Optimized notes display */
-  .museum-notes {
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
-    border-radius: 8px;
   }
 
   .note-item {
@@ -502,21 +485,12 @@
 }
 
 .visit-section:nth-child(even) {
-  background-color: #f7f7f7;
   position: relative;
   overflow: hidden;
 }
 
 .visit-section:nth-child(even)::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23009688' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
-  pointer-events: none;
-  opacity: 0.5;
+  display: none;
 }
 
 .visit-section-container {
@@ -543,34 +517,11 @@
 }
 
 .visit-section-title::before {
-  content: "";
-  position: absolute;
-  width: 60px;
-  height: 60px;
-  border-radius: 50%;
-  background: radial-gradient(
-    circle,
-    rgba(0, 105, 92, 0.08) 0%,
-    rgba(0, 105, 92, 0) 70%
-  );
-  top: -15px;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: -1;
-  animation: pulse 6s infinite alternate;
+  display: none;
 }
 
 .visit-section-title::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 120px;
-  height: 2px;
-  background: linear-gradient(to right, transparent, #00695c, transparent);
-  border-radius: 3px;
-  transition: width 0.5s ease;
+  display: none;
 }
 
 /* Decorative elements for section title */
@@ -580,23 +531,11 @@
 }
 
 .visit-section-title span::before {
-  content: "";
-  position: absolute;
-  width: 30px;
-  height: 1px;
-  background: linear-gradient(to right, transparent, rgba(0, 105, 92, 0.3));
-  top: 50%;
-  right: -45px;
+  display: none;
 }
 
 .visit-section-title span::after {
-  content: "";
-  position: absolute;
-  width: 30px;
-  height: 1px;
-  background: linear-gradient(to left, transparent, rgba(0, 105, 92, 0.3));
-  top: 50%;
-  left: -45px;
+  display: none;
 }
 
 .visit-section:hover .visit-section-title::after {
@@ -677,12 +616,13 @@
   grid-template-columns: 1fr 1fr;
   gap: 60px;
   margin-top: 40px;
+  padding: 30px;
+  border-radius: 12px;
 }
 
 .museum-info-image {
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
   position: relative;
   transition: transform 0.5s ease;
 }
@@ -732,6 +672,7 @@
 /* Museum status bar */
 .museum-status-bar {
   margin-bottom: 40px;
+  width: 100%;
 }
 
 .museum-title {
@@ -755,25 +696,15 @@
 }
 
 .museum-status.open {
-  background: linear-gradient(
-    135deg,
-    rgba(76, 175, 80, 0.1),
-    rgba(76, 175, 80, 0.2)
-  );
-  color: #2e7d32;
+  border: 1px solid #2e7d32;
 }
 
 .museum-status.closed {
-  background: linear-gradient(
-    135deg,
-    rgba(244, 67, 54, 0.1),
-    rgba(244, 67, 54, 0.2)
-  );
-  color: #c62828;
+  border: 1px solid #c62828;
 }
 
 .status-dot {
-  width: 12px;
+  width: 16px;
   height: 12px;
   border-radius: 50%;
   margin-right: 12px;
@@ -820,7 +751,6 @@
   margin-bottom: 40px;
   border-radius: 8px;
   overflow: hidden;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
 }
 
 .hours-row {
@@ -832,10 +762,6 @@
 
 .hours-row:last-child {
   border-bottom: none;
-}
-
-.hours-row:hover {
-  background-color: rgba(0, 0, 0, 0.02);
 }
 
 .hours-time {
@@ -860,9 +786,7 @@
 /* Museum notes */
 .museum-notes {
   font-family: "Roboto", sans-serif;
-  border-radius: 8px;
-  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
-  overflow: hidden;
+  background: none !important;
 }
 
 .note-item {
@@ -879,7 +803,7 @@
 }
 
 .note-item:hover {
-  background-color: rgba(0, 0, 0, 0.02);
+  background-color: transparent;
 }
 
 .note-label {
@@ -898,6 +822,8 @@
 .ticket-intro {
   max-width: 850px;
   margin-bottom: 60px;
+  padding: 30px;
+  border-radius: 12px;
 }
 
 .ticket-heading {
@@ -911,13 +837,7 @@
 }
 
 .ticket-heading::after {
-  content: "";
-  position: absolute;
-  bottom: -8px;
-  left: 0;
-  width: 60%;
-  height: 2px;
-  background: linear-gradient(to right, #00695c, transparent);
+  display: none;
 }
 
 .ticket-description {
@@ -934,7 +854,6 @@
   font-size: 1rem;
   color: #555;
   padding: 20px 25px;
-  background-color: rgba(0, 0, 0, 0.03);
   border-radius: 8px;
   margin-top: 30px;
   border-left: 3px solid #00695c;
@@ -947,19 +866,21 @@
   left: -15px;
   top: 50%;
   transform: translateY(-50%);
-  background: white;
+  background: transparent;
   width: 30px;
   height: 30px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 /* Ticket options */
 .ticket-options {
   margin-bottom: 70px;
+  padding: 20px;
+  border-radius: 12px;
 }
 
 .ticket-option {
@@ -974,9 +895,7 @@
 }
 
 .ticket-option:hover {
-  background-color: rgba(0, 0, 0, 0.02);
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
 }
 
 .ticket-option:first-child {
@@ -1069,11 +988,10 @@
   border-radius: 8px;
   overflow: hidden;
   transition: all 0.4s ease;
-  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
 }
 
 .expandable.expanded {
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+  box-shadow: none;
 }
 
 .section-header {
@@ -1081,7 +999,6 @@
   justify-content: space-between;
   align-items: center;
   padding: 25px 30px;
-  background-color: #f5f5f5;
   cursor: pointer;
   transition: all 0.3s ease;
   position: relative;
@@ -1089,37 +1006,19 @@
 }
 
 .expandable.expanded .section-header {
-  background-color: #e0f2f1;
+  background-color: rgba(224, 242, 241, 0.8);
 }
 
 .section-header:hover {
-  background-color: #eeeeee;
+  background-color: rgba(238, 238, 238, 0.9);
 }
 
 .expandable.expanded .section-header:hover {
-  background-color: #b2dfdb;
+  background-color: rgba(178, 223, 219, 0.9);
 }
 
 .section-header::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle at center,
-    rgba(0, 137, 123, 0.2) 0%,
-    rgba(0, 137, 123, 0) 70%
-  );
-  transform: scale(0);
-  opacity: 0;
-  transition: transform 0.6s ease, opacity 0.6s ease;
-}
-
-.section-header:hover::before {
-  transform: scale(2);
-  opacity: 1;
+  display: none;
 }
 
 .section-titles {
@@ -1211,9 +1110,7 @@
 }
 
 .visitor-category:hover {
-  background-color: rgba(0, 0, 0, 0.02);
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.05);
 }
 
 .category-title {
@@ -1417,9 +1314,7 @@
   max-width: 900px;
   margin: 0 auto 100px;
   padding: 40px;
-  background: linear-gradient(135deg, #f9f9f9, #f1f1f1);
   border-radius: 12px;
-  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: all 0.4s ease;
   position: relative;
@@ -1428,29 +1323,6 @@
 
 .visit-info-box:hover {
   transform: translateY(-5px);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-.visit-info-box::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    circle at center,
-    rgba(0, 105, 92, 0.1) 0%,
-    rgba(0, 105, 92, 0) 70%
-  );
-  transform: scale(0);
-  opacity: 0;
-  transition: transform 0.6s ease, opacity 0.6s ease;
-}
-
-.visit-info-box:hover::before {
-  transform: scale(2);
-  opacity: 1;
 }
 
 .visit-info-icon {
@@ -1601,6 +1473,8 @@
 /* Mobile-specific features */
 .mobile-view .visit-hero {
   height: 65vh;
+  margin-top: 0;
+  padding-top: 0;
 }
 
 .mobile-view .visit-hero-title {
@@ -1710,21 +1584,7 @@
 @media (max-width: 768px) {
   /* Enhanced nav scrolling indicator */
   .visit-nav-container::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    right: 0;
-    height: 100%;
-    width: 40px;
-    background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 1)
-    );
-    pointer-events: none;
-    z-index: 2;
-    opacity: 1;
-    transition: opacity 0.3s ease;
+    display: none;
   }
 
   .visit-nav-container.scrolled-right::after {
@@ -1793,7 +1653,8 @@
 
 /* Adjust the mobile-view class to account for fixed navigation */
 .mobile-view {
-  padding-top: 40px; /* Reduced from 50px */
+  padding-top: 0;
+  margin-top: 0;
 }
 
 .visit-section-container {
@@ -1850,8 +1711,21 @@
     position: relative;
   }
 
+  .mobile-nav-list {
+    display: flex;
+    list-style: none;
+    background-image: url(../../../assets//Background/Background2.png);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    justify-content: space-around;
+  }
+
   .visit-page .mobile-nav-button {
-    background: transparent;
+    background: none !important;
     border: none;
     padding: 12px 0;
     display: flex;
@@ -2043,5 +1917,24 @@
   .visit-section-title span::before,
   .visit-section-title span::after {
     display: none; /* Hide decorative elements on very small screens */
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .visit-page {
+    background-size: 200px; /* Smaller background pattern for mobile */
+  }
+
+  .museum-info-wrapper {
+    padding: 20px;
+  }
+
+  .ticket-intro {
+    padding: 20px;
+  }
+
+  .ticket-options {
+    padding: 15px;
   }
 }

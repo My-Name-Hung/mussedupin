@@ -396,13 +396,16 @@ const DuPin = () => {
         style={{ opacity: 0.05 + scrollProgress * 0.1 }}
       ></div>
 
-      <div className="dupin-header">
+      <div
+        className="dupin-header"
+        style={{ transform: `translateY(${scrollProgress * -20}px)` }}
+      >
         <h2 className="dupin-title">
           <TranslatedText>MUSÉE DU PIN +</TranslatedText>
         </h2>
         <div className="dupin-subtitle">
           <TranslatedText>
-            Discover our exclusive digital content
+            Khám phá nội dung kỹ thuật số độc quyền của chúng tôi
           </TranslatedText>
         </div>
       </div>
@@ -448,9 +451,7 @@ const DuPin = () => {
                 }`}
                 style={{
                   animationDelay: `${index * 0.15 + 0.1}s`,
-                  transform: `translateY(${getParallaxOffset(index)}px) ${
-                    activeCardIndex === index ? "skewX(-2deg)" : ""
-                  }`,
+                  transform: `translateY(${getParallaxOffset(index)}px)`,
                 }}
                 onMouseEnter={() => handleMouseEnter(index)}
               >
@@ -521,12 +522,10 @@ const DuPin = () => {
 
       <div
         className="dupin-footer"
-        style={{
-          transform: `translateY(${scrollProgress * -10}px) skewY(-2deg)`,
-        }}
+        style={{ transform: `translateY(${scrollProgress * -10}px)` }}
       >
         <Link to="/dupinplus" className="view-all-link">
-          <TranslatedText>More content on Musée Du Pin+</TranslatedText>
+          <TranslatedText>Nội dung thêm trên Musée Du Pin+</TranslatedText>
           <span className="arrow-icon">→</span>
         </Link>
       </div>

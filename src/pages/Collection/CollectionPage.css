@@ -42,21 +42,15 @@
 .collection-page {
   width: 100%;
   overflow-x: hidden;
-  background-color: var(--bg-light);
+  background-image: url("../../assets/Background/Background2.png");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 300px;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  box-sizing: border-box;
+  overflow: visible;
   color: var(--text-color);
-}
-
-/* Animation classes */
-.animate-section {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: opacity 1.5s cubic-bezier(0.19, 1, 0.22, 1),
-    transform 1.5s cubic-bezier(0.19, 1, 0.22, 1);
-}
-
-.animate-section.visible {
-  opacity: 1;
-  transform: translateY(0);
 }
 
 /* Hero Section */
@@ -201,6 +195,7 @@
   border-radius: 20px;
   margin-bottom: 10px;
   position: relative;
+  cursor: pointer;
 }
 
 .cp-hero-scroll-wheel {
@@ -249,7 +244,6 @@
 /* Discover Section */
 .cp-discover-section {
   padding: 5rem 0 8rem;
-  background-color: #fff;
   position: relative;
   overflow: visible;
 }
@@ -453,7 +447,6 @@
   overflow: hidden;
   background-color: white;
   transition: transform 0.3s ease;
-  border: 6px solid white;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.08);
 }
 
@@ -629,7 +622,7 @@
 }
 
 .cp-scroll-text {
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 0.95rem;
   margin-bottom: 10px;
   color: #555;
@@ -672,20 +665,14 @@
 
 /* Complete Collection Section with dark background */
 .cp-categories-section {
-  background-color: #131313;
+  background-color: #2c2f11;
   position: relative;
   padding: 7rem 0;
   color: #ffffff;
   overflow: hidden;
-  background-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.9),
-      rgba(25, 25, 25, 0.95)
-    ),
-    url("../../assets/textures/dark-pattern.svg");
-  background-blend-mode: overlay;
-  background-size: 100px 100px;
   box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
+  margin-top: -5rem;
+  clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
 }
 
 /* Diagonal section dividers */
@@ -855,16 +842,7 @@
 
 /* Special section backgrounds for better contrast with dividers */
 .cp-categories-section {
-  background-color: #131313;
-  background-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.9),
-      rgba(25, 25, 25, 0.95)
-    ),
-    url("../../assets/textures/dark-pattern.svg");
-  background-blend-mode: overlay;
-  background-size: 100px 100px;
-  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
+  background-color: #2c2f11;
   position: relative;
   padding: 8rem 0;
   color: #ffffff;
@@ -873,19 +851,12 @@
 
 .cp-highlights-section {
   position: relative;
-  padding: 10rem 0 12rem;
-  background-color: #000000;
+  padding: 10rem 0 1rem;
+  background-color: #2c2f11;
   color: #ffffff;
   overflow: hidden;
-  background-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.92),
-      rgba(15, 15, 15, 0.97)
-    ),
-    url("../../assets/textures/dark-pattern.svg");
-  background-blend-mode: overlay;
-  background-size: 100px 100px;
-  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
+  margin-top: -5rem;
+  clip-path: polygon(0 3%, 100% 0, 100% 100%, 0 100%);
 }
 
 /* Top divider positioning */
@@ -1117,6 +1088,11 @@
   margin-bottom: 1.5rem;
   position: relative;
   text-transform: uppercase;
+  background: linear-gradient(90deg, #fcfccc, #596016);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }
 
 .cp-categories-title::after {
@@ -1132,7 +1108,7 @@
 }
 
 .cp-categories-description {
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 1.25rem; /* Slightly larger */
   line-height: 1.6;
   color: #e0e0e0; /* Lighter color for better contrast */
@@ -1262,8 +1238,7 @@
   left: 0;
   width: 100%;
   padding: 1.8rem;
-  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
-    serif;
+  font-family: "Roboto", serif;
   font-size: 1.6rem;
   color: white;
   text-shadow: 0 2px 6px rgba(0, 0, 0, 0.7);
@@ -1342,7 +1317,7 @@
 }
 
 .category-hero-description {
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
   color: #f0f0f0;
   max-width: 600px;
@@ -1374,7 +1349,6 @@
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   cursor: pointer;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  background-color: #fff;
 }
 
 .category-artwork-card:hover {
@@ -1416,14 +1390,14 @@
 }
 
 .category-artwork-artist {
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 0.9rem;
   color: #666;
   margin-bottom: 0.3rem;
 }
 
 .category-artwork-year {
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 0.9rem;
   color: #888;
   margin-bottom: 0.8rem;
@@ -1431,7 +1405,7 @@
 
 .category-artwork-tag {
   display: inline-block;
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 0.8rem;
   color: white;
   background-color: var(--primary-color);
@@ -1524,14 +1498,14 @@
 }
 
 .artwork-modal-artist {
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 1.1rem;
   color: #666;
   margin-right: 1rem;
 }
 
 .artwork-modal-year {
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 1.1rem;
   color: #888;
 }
@@ -1544,7 +1518,7 @@
 }
 
 .artwork-modal-tag {
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 0.9rem;
   color: white;
   background-color: var(--primary-color);
@@ -1553,7 +1527,7 @@
 }
 
 .artwork-modal-description {
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   color: #555;
@@ -1568,7 +1542,7 @@
   color: white;
   border: none;
   border-radius: 4px;
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -1784,7 +1758,7 @@
 .cp-artwork-modal-location {
   display: flex;
   margin-bottom: 0.8rem;
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
 }
 
@@ -1807,7 +1781,7 @@
 }
 
 .cp-artwork-modal-tag {
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 0.85rem;
   padding: 0.3rem 0.8rem;
   border-radius: 30px;
@@ -1817,7 +1791,7 @@
 
 .cp-artwork-modal-description {
   margin-bottom: 2.5rem;
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   line-height: 1.7;
   color: #444;
@@ -1850,7 +1824,7 @@
 }
 
 .cp-visit-description {
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 0.9rem;
   color: #555;
 }
@@ -1863,7 +1837,7 @@
   color: white;
   border: none;
   border-radius: 4px;
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   cursor: pointer;
   transition: background-color 0.3s;
@@ -2005,42 +1979,19 @@
 }
 
 /* Featured Artwork Section - Enhanced with artistic touches */
-.cp-featured-artwork-section {
-  padding: 0;
-  background-color: #fff;
-  position: relative;
-  overflow: hidden;
-}
-
-/* Subtle artistic background pattern */
-.cp-featured-artwork-section::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40%;
-  height: 100%;
-  background-image: radial-gradient(
-      circle at 30% 25%,
-      rgba(240, 240, 240, 0.5) 0%,
-      rgba(255, 255, 255, 0) 35%
-    ),
-    radial-gradient(
-      circle at 70% 85%,
-      rgba(240, 240, 240, 0.4) 0%,
-      rgba(255, 255, 255, 0) 40%
-    );
-  opacity: 0.6;
-  pointer-events: none;
-  z-index: 1;
-}
 
 .cp-featured-container {
   display: flex;
   width: 100%;
   min-height: 80vh;
-  background-color: #fff;
-  overflow: hidden;
+  background-image: url("../../assets/Background/Background2.png");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 300px;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  box-sizing: border-box;
+  overflow: visible;
   position: relative;
   z-index: 2;
 }
@@ -2048,23 +1999,10 @@
 .cp-featured-left {
   flex: 0 0 60%;
   position: relative;
-  background-color: #000;
+  background-color: none;
   overflow: hidden;
   box-shadow: 0 0 40px rgba(0, 0, 0, 0.15);
   transform: translateZ(0);
-}
-
-/* Subtle frame effect for artwork */
-.cp-featured-left::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  z-index: 5;
-  pointer-events: none;
 }
 
 .cp-featured-image-container {
@@ -2109,7 +2047,7 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  background-color: #fff;
+  background-color: none;
   position: relative;
 }
 
@@ -2262,12 +2200,10 @@
 .cp-artwork-location {
   display: flex;
   padding: 25px;
-  background-color: rgba(249, 247, 243, 0.7);
   border-radius: 4px;
   margin-bottom: 40px;
   backdrop-filter: blur(5px);
   border: 1px solid rgba(0, 0, 0, 0.05);
-  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.03);
   opacity: 0;
   transform: translateY(15px);
   animation: fadeUpIn 0.8s 0.7s cubic-bezier(0.19, 1, 0.22, 1) forwards;
@@ -2284,14 +2220,14 @@
 }
 
 .cp-location-title {
-  font-family: "Meholrax", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
 }
 
 .cp-location-description {
-  font-family: "Roboto", Arial, sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 15px;
   color: #333;
   margin: 0;
@@ -2301,11 +2237,11 @@
   display: inline-flex;
   align-items: center;
   padding: 14px 28px;
-  background-color: #000;
+  background-color: #2c2f11;
   color: white;
   border: none;
-  border-radius: 0;
-  font-family: "Roboto", Arial, sans-serif;
+  border-radius: 10px;
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
   text-transform: none;
   text-decoration: none;
@@ -2338,6 +2274,7 @@
 .cp-visit-button:hover {
   background-color: #111;
   transform: translateY(-2px);
+  color: yellowgreen;
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
@@ -2369,7 +2306,7 @@
 .cp-artwork-tag {
   display: inline-block;
   padding: 6px 12px;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: #2c2f11;
   color: #fff;
   border-radius: 3px;
   font-family: "Roboto", Arial, sans-serif;
@@ -2390,7 +2327,14 @@
   justify-content: center;
   align-items: center;
   padding: 40px 0;
-  background-color: #fff;
+  background-image: url("../../assets/Background/Background2.png");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 300px;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  box-sizing: border-box;
+  overflow: visible;
   position: relative;
 }
 
@@ -2625,19 +2569,12 @@
 /* Immersive Collection Highlights Section */
 .cp-highlights-section {
   position: relative;
-  padding: 10rem 0 12rem;
-  background-color: #000000;
+  padding: 10rem 0 4rem;
+  background-color: #2c2f11;
   color: #ffffff;
   overflow: hidden;
-  background-image: linear-gradient(
-      to bottom,
-      rgba(0, 0, 0, 0.92),
-      rgba(15, 15, 15, 0.97)
-    ),
-    url("../../assets/textures/dark-pattern.svg");
-  background-blend-mode: overlay;
-  background-size: 100px 100px;
-  box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
+  margin-top: -5rem;
+  clip-path: polygon(0 3%, 100% 0, 100% 100%, 0 100%);
 }
 
 .cp-highlights-container {
@@ -2670,7 +2607,7 @@
 }
 
 .cp-highlights-description {
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 1.25rem;
   line-height: 1.6;
   color: #e0e0e0;
@@ -2815,16 +2752,15 @@
   top: 20px;
   right: 20px;
   padding: 6px 12px;
-  background-color: rgba(0, 0, 0, 0.7);
+  background-color: #2c2f11;
   color: #fff;
   border-radius: 30px;
   font-size: 12px;
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   letter-spacing: 1px;
   text-transform: uppercase;
   font-weight: 500;
   backdrop-filter: blur(5px);
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .cp-highlight-content {
@@ -2858,7 +2794,7 @@
   display: flex;
   align-items: center;
   color: rgba(255, 255, 255, 0.7);
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 0.9rem;
 }
 
@@ -3016,7 +2952,7 @@
 }
 
 .cp-video-indicator {
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 11px;
   color: white;
   text-transform: uppercase;
@@ -3415,14 +3351,6 @@
   border-bottom: 1px solid rgba(0, 0, 0, 0.05);
 }
 
-/* White to black transition for Featured Artwork to Highlights section */
-.cp-featured-artwork-section .diagonal-divider.bottom.white-to-black::before {
-  background-color: #ffffff;
-  transform: skewY(4deg);
-  transform-origin: bottom right;
-  box-shadow: 0 -5px 30px rgba(0, 0, 0, 0.1);
-}
-
 /* Fix the margins for sections to accommodate dividers */
 .cp-featured-artwork-section {
   margin-bottom: 40px;
@@ -3595,7 +3523,7 @@
 /* Artistic modal video details section */
 .cp-modal-video-details {
   padding: 30px;
-  background: linear-gradient(to bottom, #111111, #1a1a1a);
+  background: #2c2f11;
   color: #fff;
   border-radius: 0 0 12px 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.05);
@@ -3641,7 +3569,7 @@
 }
 
 .cp-modal-video-title {
-  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-family: "Meholrax", serif;
   font-size: 2.2rem;
   margin: 0;
   background: linear-gradient(to right, #fff, #b89a7a);
@@ -3664,7 +3592,7 @@
 .cp-modal-video-category {
   display: inline-block;
   padding: 6px 16px;
-  background-color: rgba(179, 135, 65, 0.2);
+  background-color: #93702f;
   color: #fff;
   border-radius: 30px;
   font-size: 12px;
@@ -3681,7 +3609,7 @@
 }
 
 .cp-modal-video-description {
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 1.1rem;
   line-height: 1.7;
   color: rgba(255, 255, 255, 0.8);
@@ -3812,7 +3740,7 @@
 }
 
 .cp-video-related-item-title {
-  font-family: "Meholrax", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   font-weight: 600;
   margin-top: 0.5rem;
@@ -4021,7 +3949,7 @@
 
 /* Enhanced video indicator */
 .cp-video-indicator {
-  font-family: var(--font-secondary);
+  font-family: "Roboto", sans-serif;
   font-size: 11px;
   color: white;
   text-transform: uppercase;

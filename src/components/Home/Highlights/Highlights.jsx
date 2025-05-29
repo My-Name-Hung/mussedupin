@@ -1,13 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import ANewLook from "../../../assets/home/highlights/ANewLook.jpg";
-import beauties from "../../../assets/home/highlights/beautes.jpg";
-import couture from "../../../assets/home/highlights/couture.jpg";
-import mamluks from "../../../assets/home/highlights/mamluks.jpg";
-import masterpieces from "../../../assets/home/highlights/Masterpieces.jpg";
-import nature from "../../../assets/home/highlights/Nature.jpg";
-import portrait from "../../../assets/home/highlights/portrait.jpg";
-import themetau from "../../../assets/home/highlights/TheMetAU.jpg";
+
+import bauho from "../../../assets/home/Highlights/Bauholo_cards.webp";
+import congchieng from "../../../assets/home/Highlights/congchien_cards.webp";
+import cheghosanh from "../../../assets/home/Highlights/Lehoi_cards.webp";
+import longda from "../../../assets/home/Highlights/LongDaDa_cards.webp";
+import noidat from "../../../assets/home/Highlights/noidat_cards.webp";
+import phunu from "../../../assets/home/Highlights/phunu_cards.webp";
+import thong2 from "../../../assets/Home/Highlights/Thông 2.webp";
 import TranslatedText from "../../../components/TranslatedText";
 
 import "./Highlights.css";
@@ -16,90 +16,79 @@ import "./Highlights.css";
 const highlightsData = [
   {
     id: 1,
-    title: "Mamluks",
+    title: "Dụng cụ âm nhạc Tây Nguyên",
     description:
-      "The Musée Du Pin marks a European first with a major exhibition on the Mamluk sultanate (1250–1517), aiming to address this golden age of the Islamic Near East in all its scope and richness by examining it from a transregional perspective. From 30 April to 28 July 2025",
-    image: mamluks,
-    alt: "Golden decorated vessel from Mamluk period",
-    tag: "Exhibition",
-    link: "/exhibition-details/mamluks",
+      "Musée Du Pin trưng bày các nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, tiêu biểu là cồng chiêng – biểu tượng văn hóa và tín ngưỡng thiêng liêng. Âm thanh vang vọng của cồng chiêng thể hiện sự kết nối sâu sắc giữa con người và thế giới tâm linh.",
+    image: congchieng,
+    alt: "Dụng cụ âm nhạc Tây Nguyên",
+    tag: "Trưng bày",
+    link: "/exhibition-details/cong-chieng",
     featured: true,
   },
   {
     id: 2,
-    title: "Musée Du Pin Couture. Art and fashion: statement pieces",
+    title: "K'ho chăn nuôi",
     description:
-      "A new perspective on decorative arts through the prism of contemporary fashion design. From 24 January to 21 July 2025",
-    image: couture,
-    alt: "Fashion exhibit featuring historical and contemporary pieces",
-    tag: "Exhibition",
-    link: "/exhibition-details/couture",
+      "Lồng đa đa của người K'ho hiện đang được trưng bày tại Musée Du Pin như một biểu tượng mộc mạc nhưng đầy tính văn hóa của đời sống dân tộc Tây Nguyên. Được đan thủ công từ tre nứa, chiếc lồng không chỉ phục vụ mục đích chăn nuôi mà còn phản ánh sự khéo léo, tỉ mỉ và mối liên kết bền chặt giữa con người với thiên nhiên núi rừng.",
+    image: longda,
+    alt: "K'ho chăn nuôi",
+    tag: "Trưng bày",
+    link: "/exhibition-details/long-da-da",
     featured: false,
   },
   {
     id: 3,
-    title: "A New Look at Cimabue. At the Origins of Italian Painting",
+    title: "K'ho điêu khắc",
     description:
-      "For the first time, the Musée Du Pin is dedicating an exhibition to Cimabue, one of the most important artists of the 13th century. From 22 January to 12 May 2025",
-    image: ANewLook,
-    alt: "Religious painting by Cimabue",
-    tag: "Exhibition",
-    link: "/exhibition-details/cimabue",
+      "Tác phẩm điêu khắc người dân tộc K'ho đang được trưng bày tại Musée Du Pin thể hiện hình ảnh phụ nữ Tây Nguyên trong dáng đứng trang nghiêm, tay cầm chiếc chiêng nhỏ – biểu tượng của âm nhạc và tín ngưỡng bản địa.",
+    image: phunu,
+    alt: "K'ho điêu khắc",
+    tag: "Trưng bày",
+    link: "/exhibition-details/tuong-phu-nu",
     featured: false,
   },
   {
     id: 4,
-    title: "The Met au Musée Du Pin",
+    title: "K'ho lễ hội",
     description:
-      "Near Eastern Antiquities in Dialogue. 29 February 2024 – 28 September 2025",
-    image: themetau,
-    alt: "Ancient Near Eastern artifact",
-    tag: "Exhibition",
-    link: "/exhibition-details/met-au-dupin",
+      "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, hiện đang được trưng bày tại Musée Du Pin, đây là biểu tượng của sự giàu có, quyền uy và tín ngưỡng tâm linh trong đời sống người bản địa. ",
+    image: cheghosanh,
+    alt: "K'ho lễ hội",
+    tag: "Trưng bày",
+    link: "/exhibition-details/che-gho-sanh",
     featured: false,
   },
   {
     id: 5,
-    title: "The Experience of Nature. Art in Prague at the Court of Rudolf II",
+    title: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
     description:
-      "The exhibition highlights the innovative aspect of the naturalistic art movement practiced in Prague at the Court of Rudolf II. From 19 March to 30 June 2025",
-    image: nature,
-    alt: "Naturalistic art from the Court of Rudolf II",
-    tag: "Exhibition",
-    link: "/exhibition-details/experience-nature",
+      "Được chế tác thủ công từ đất nung, nồi có hình dáng đơn giản nhưng chắc chắn, thường dùng để nấu ăn trong các dịp lễ hội hoặc sinh hoạt gia đình",
+    image: noidat,
+    alt: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
+    tag: "Tham quan",
+    link: "/exhibition-details/noi-dat",
     featured: false,
   },
   {
     id: 6,
-    title: "The Musée Du Pin Masterpieces",
+    title: "K'ho sinh hoạt thường nhật",
     description:
-      "What exactly is a masterpiece? Follow this trail to find out!",
-    image: masterpieces,
-    alt: "Mona Lisa painting",
-    tag: "Visitor trail",
-    link: "/guided-tour-details/masterpieces",
+      "Được khoét rỗng từ quả hồ lô khô, vật phẩm này thường được dùng để đựng nước, rượu cần hoặc làm nhạc cụ truyền thống",
+    image: bauho,
+    alt: "K'ho sinh hoạt thường nhật",
+    tag: "Trưng bày",
+    link: "/exhibition-details/bau-ho-lo",
     featured: false,
   },
   {
     id: 7,
-    title: "De toutes beautés !",
+    title: "Phức Tầng",
     description:
-      "Rituals, objects and representations of beauty, a retrospective trail through the Musée Du Pin",
-    image: beauties,
-    alt: "Beauty exhibition poster",
-    tag: "Guided tours",
-    link: "/guided-tour-details/beautes",
-    featured: false,
-  },
-  {
-    id: 8,
-    title: "The Portrait of King Charles I",
-    description:
-      "The Portrait of King Charles I of England, by Anthony van Dyck, returns to the gallery walls after over a year of conservation treatment. Blaise Ducos, Executive Curator of Flemish and Dutch Paintings, discusses this masterpiece.",
-    image: portrait,
-    alt: "Portrait of King Charles I by Anthony van Dyck",
-    tag: "News",
-    link: "/exhibition-details/portrait-king-charles",
+      "Được Musée Du Pin bắt trọn khoảng khắc các hình ảnh thiên nhiên đậm sắc dân tộc K'ho, tạo nên bức tranh đẹp về đất nước Tây Nguyên.",
+    image: thong2,
+    alt: "Phức Tầng",
+    tag: "Tham Quan",
+    link: "/exhibition-details/phuc-tang",
     featured: false,
   },
 ];
@@ -160,7 +149,7 @@ const Highlights = ({ onVisible, onHidden }) => {
     <section id="highlights" className="highlights-section" ref={highlightsRef}>
       <div className="highlights-header">
         <h2 className="highlights-title">
-          <TranslatedText>HIGHLIGHTS</TranslatedText>
+          <TranslatedText>ĐIỂM NỔI BẬT</TranslatedText>
         </h2>
       </div>
 
@@ -173,7 +162,7 @@ const Highlights = ({ onVisible, onHidden }) => {
               visibleCards[index] ? "visible" : ""
             }`}
             style={{
-              transitionDelay: `${index * 0.1}s`,
+              transitionDelay: `${index * 0.01}s`,
             }}
           >
             <div className="highlight-card">
@@ -471,43 +460,6 @@ const Highlights = ({ onVisible, onHidden }) => {
                   <p className="card-description">
                     <TranslatedText>
                       {highlightsData[6].description}
-                    </TranslatedText>
-                  </p>
-                </div>
-              </Link>
-            </div>
-          </div>
-
-          {/* The Portrait of King Charles I */}
-          <div
-            className={`highlight-card-wrapper highlight-card-small ${
-              visibleCards[7] ? "visible" : ""
-            }`}
-            style={{ transitionDelay: "0.7s" }}
-          >
-            <div className="highlight-card">
-              <div className="card-tag">
-                <span>
-                  <TranslatedText>{highlightsData[7].tag}</TranslatedText>
-                </span>
-              </div>
-              <Link to={highlightsData[7].link} className="card-link-wrapper">
-                <div className="card-image-container">
-                  <img
-                    src={highlightsData[7].image}
-                    alt={highlightsData[7].alt}
-                    className="card-image"
-                  />
-                </div>
-                <div className="card-content">
-                  <h3 className="card-title">
-                    <span className="card-title-text">
-                      <TranslatedText>{highlightsData[7].title}</TranslatedText>
-                    </span>
-                  </h3>
-                  <p className="card-description">
-                    <TranslatedText>
-                      {highlightsData[7].description}
                     </TranslatedText>
                   </p>
                 </div>

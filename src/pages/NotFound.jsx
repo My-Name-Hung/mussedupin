@@ -1,7 +1,7 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import TranslatedText from "../components/TranslatedText";
 import logo from "../assets/Logo/icon.jpg";
+import TranslatedText from "../components/TranslatedText";
 import "../styles/NotFound.css";
 
 const NotFound = () => {
@@ -10,52 +10,48 @@ const NotFound = () => {
 
   return (
     <div className="not-found-page">
-
       <div className="not-found-container">
         <div className="breadcrumb">
           <Link to="/">
-            <img
-              src={logo}
-              alt="Logo"
-              className="breadcrumb-logo"
-            />
+            <img src={logo} alt="Logo" className="breadcrumb-logo" />
           </Link>
           <span className="breadcrumb-separator">›</span>
           <span className="breadcrumb-label">
-            <TranslatedText>Search results</TranslatedText>
+            <TranslatedText>Kết quả tìm kiếm</TranslatedText>
           </span>
         </div>
 
         <div className="not-found-content">
           <h1 className="not-found-title">
-            <TranslatedText>No results found</TranslatedText>
+            <TranslatedText>Không tìm thấy kết quả</TranslatedText>
           </h1>
 
           <p className="not-found-message">
             <TranslatedText>
-              We couldn't find any results for your search: « {query} »
+              Chúng tôi không thể tìm thấy kết quả nào cho tìm kiếm của bạn: «{" "}
+              {query} »
             </TranslatedText>
           </p>
 
           <div className="not-found-suggestions">
             <h2>
-              <TranslatedText>Suggestions:</TranslatedText>
+              <TranslatedText>Gợi ý:</TranslatedText>
             </h2>
             <ul>
               <li>
                 <TranslatedText>
-                  Check the spelling of your search term
+                  Kiểm tra chính tả của từ khóa tìm kiếm
                 </TranslatedText>
               </li>
               <li>
-                <TranslatedText>Try using more general keywords</TranslatedText>
+                <TranslatedText>Thử sử dụng từ khóa chung hơn</TranslatedText>
               </li>
               <li>
-                <TranslatedText>Try using different keywords</TranslatedText>
+                <TranslatedText>Thử sử dụng từ khóa khác</TranslatedText>
               </li>
               <li>
                 <TranslatedText>
-                  Browse our collections by category
+                  Duyệt bộ sưu tập của chúng tôi theo danh mục
                 </TranslatedText>
               </li>
             </ul>
@@ -63,7 +59,7 @@ const NotFound = () => {
 
           <div className="search-again-container">
             <h3 className="search-again-title">
-              <TranslatedText>Try another search</TranslatedText>
+              <TranslatedText>Thử tìm kiếm khác</TranslatedText>
             </h3>
 
             <div className="search-bar">
@@ -85,7 +81,7 @@ const NotFound = () => {
                   }
                 }}
                 className="search-input"
-                placeholder="Search"
+                placeholder="Tìm kiếm"
               />
               <button
                 type="button"
@@ -115,7 +111,7 @@ const NotFound = () => {
 
           <div className="back-to-home">
             <Link to="/" className="home-link">
-              <TranslatedText>Return to home page</TranslatedText>
+              <TranslatedText>Quay lại trang chủ</TranslatedText>
             </Link>
           </div>
         </div>

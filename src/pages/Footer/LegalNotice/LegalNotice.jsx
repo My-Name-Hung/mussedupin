@@ -4,25 +4,25 @@ import TranslatedText from "../../../components/TranslatedText";
 import "./LegalNotice.css";
 
 // Import header image
-import headerImage from "../../../assets/Home/Collections/louvre-sunset.jpg";
+import headerImage from "../../../assets/Home/Hero/louvre-sunset.webp";
 
 const LegalNotice = () => {
   return (
     <div className="legal-notice-container">
       <Helmet>
-        <title>Legal Notice | Du Pin Museum</title>
+        <title>Điều khoản pháp lý | Bảo tàng Du Pin</title>
         <meta
           name="description"
-          content="Legal information and terms of use for the Du Pin Museum website."
+          content="Thông tin pháp lý và điều khoản sử dụng cho website Bảo tàng Du Pin."
         />
       </Helmet>
 
       {/* Header Banner */}
       <div className="legal-banner">
-        <img src={headerImage} alt="Du Pin Museum" />
+        <img src={headerImage} alt="Bảo tàng Du Pin" />
         <div className="banner-overlay">
           <h1>
-            <TranslatedText>LEGAL NOTICE</TranslatedText>
+            <TranslatedText>ĐIỀU KHOẢN PHÁP LÝ</TranslatedText>
           </h1>
         </div>
       </div>
@@ -31,7 +31,7 @@ const LegalNotice = () => {
         {/* Publishing Section */}
         <div className="section">
           <h2>
-            <TranslatedText>PUBLISHING</TranslatedText>
+            <TranslatedText>THÔNG TIN XUẤT BẢN</TranslatedText>
           </h2>
           <p>
             <TranslatedText>
@@ -39,11 +39,11 @@ const LegalNotice = () => {
               <br />
               MST: XXX XXX XXX
               <br />
-              Address: XXX XXX XXX
+              Địa chỉ: XXX XXX XXX
               <br />
-              Tel: XXX XXX XXX
+              Điện thoại: XXX XXX XXX
               <br />
-              Publishing Director: Musée du Pin
+              Giám đốc xuất bản: Musée du Pin
             </TranslatedText>
           </p>
         </div>
@@ -51,19 +51,19 @@ const LegalNotice = () => {
         {/* Website Content Section */}
         <div className="section">
           <h2>
-            <TranslatedText>WEBSITE CONTENT</TranslatedText>
+            <TranslatedText>NỘI DUNG WEBSITE</TranslatedText>
           </h2>
           <p>
             <TranslatedText>
               Musée du Pin
               <br />
-              Digital and Audiovisual Productions Division
+              Phòng Sản xuất Kỹ thuật số và Nghe nhìn
               <br />
-              Interpretation and Cultural Programming Department
+              Phòng Giải thích và Lập trình Văn hóa
               <br />
-              75058 Paris cedex 01 FRANCE
+              29-31 Đống Đa, phường 3, Đà Lạt
               <br />
-              info@dupin.fr
+              baotangthong2024@gmail.com
             </TranslatedText>
           </p>
         </div>
@@ -71,90 +71,88 @@ const LegalNotice = () => {
         {/* Intellectual Property Section */}
         <div className="section">
           <h2>
-            <TranslatedText>INTELLECTUAL PROPERTY</TranslatedText>
+            <TranslatedText>QUYỀN SỞ HỮU TRÍ TUỆ</TranslatedText>
           </h2>
           <h3>
-            <TranslatedText>Website development</TranslatedText>
+            <TranslatedText>Phát triển website</TranslatedText>
           </h3>
           <p>
             <TranslatedText>
-              The general structure of this website is the exclusive property of
-              the Public Establishment of the Musée du Pin. Any reproduction,
-              representation, in whole or in part, use, adaptation, provision,
-              or modification by any process, any person, and any means
-              whatsoever (particularly sales, marketing, rental, etc.) without
-              the express authorisation of the museum, any authors or
-              rightsholders is strictly prohibited and constitutes a violation
-              of the French Intellectual Property Code.
+              Cấu trúc chung của website này là tài sản độc quyền của Bảo tàng
+              Du Pin. Mọi hình thức sao chép, trình bày, toàn bộ hoặc một phần,
+              sử dụng, điều chỉnh, cung cấp hoặc sửa đổi bằng bất kỳ quy trình,
+              cá nhân và phương tiện nào (đặc biệt là bán, tiếp thị, cho thuê,
+              v.v.) mà không có sự cho phép rõ ràng của bảo tàng, bất kỳ tác giả
+              hoặc chủ sở hữu quyền nào đều bị nghiêm cấm và cấu thành vi phạm
+              Bộ luật Sở hữu Trí tuệ.
             </TranslatedText>
           </p>
 
           <h3>
-            <TranslatedText>Website Content</TranslatedText>
+            <TranslatedText>Nội dung Website</TranslatedText>
           </h3>
           <p>
             <TranslatedText>
-              Under intellectual property law, the scientific, cultural, and
-              educational content (including, but not limited to, texts, images,
-              photographs, audio recordings and audiovisual and multimedia
-              documents) of this website are the property of the Public
-              Establishment of the Musée du Pin.
+              Theo luật sở hữu trí tuệ, nội dung khoa học, văn hóa và giáo dục
+              (bao gồm nhưng không giới hạn ở văn bản, hình ảnh, ảnh chụp, bản
+              ghi âm và tài liệu nghe nhìn và đa phương tiện) của website này là
+              tài sản của Bảo tàng Du Pin.
             </TranslatedText>
           </p>
           <p>
             <TranslatedText>
-              Consequently, any reproduction, representation, in whole or in
-              part, use, adaptation, provision, or modification of this content
-              by any process, any person, and any means whatsoever (particularly
-              sales, marketing, rental, etc.) without the express authorization
-              of the authors or rights holders is strictly prohibited and
-              constitutes a violation of the French Intellectual Property Code.
+              Do đó, mọi hình thức sao chép, trình bày, toàn bộ hoặc một phần,
+              sử dụng, điều chỉnh, cung cấp hoặc sửa đổi nội dung này bằng bất
+              kỳ quy trình, cá nhân và phương tiện nào (đặc biệt là bán, tiếp
+              thị, cho thuê, v.v.) mà không có sự cho phép rõ ràng của tác giả
+              hoặc chủ sở hữu quyền đều bị nghiêm cấm và cấu thành vi phạm Bộ
+              luật Sở hữu Trí tuệ.
             </TranslatedText>
           </p>
 
           <h3>
-            <TranslatedText>Photographs</TranslatedText>
+            <TranslatedText>Hình ảnh</TranslatedText>
           </h3>
           <p>
             <TranslatedText>
-              Photographs credited © Musée du Pin / [...] are the exclusive
-              property of the Musée du Pin and are used by the Musée du Pin with
-              the permission of their authors or rightsholders.
+              Hình ảnh có ghi © Musée du Pin / [...] là tài sản độc quyền của
+              Bảo tàng Du Pin và được Bảo tàng Du Pin sử dụng với sự cho phép
+              của tác giả hoặc chủ sở hữu quyền.
             </TranslatedText>
           </p>
           <p>
             <TranslatedText>
-              Photographs credited © RMN, Musée du Pin / [...] are the property
-              of the RMN. Non-commercial re-use is authorised, provided the
-              source and author are acknowledged.
+              Hình ảnh có ghi © RMN, Musée du Pin / [...] là tài sản của RMN.
+              Việc tái sử dụng phi thương mại được cho phép, với điều kiện phải
+              ghi nhận nguồn gốc và tác giả.
             </TranslatedText>
           </p>
           <p>
             <TranslatedText>
-              For any commercial and/or editorial re-use of an image from the
-              collections of the Musée du Pin and other National Galleries, please
-              contact the photography agency Réunion des Musées nationaux et du
-              Grand Palais des Champs-Élysées (Rmn-Gp).
+              Đối với bất kỳ việc tái sử dụng thương mại và/hoặc biên tập lại
+              hình ảnh từ bộ sưu tập của Bảo tàng Du Pin và các Phòng trưng bày
+              Quốc gia khác, vui lòng liên hệ với cơ quan nhiếp ảnh Réunion des
+              Musées nationaux et du Grand Palais des Champs-Élysées (Rmn-Gp).
             </TranslatedText>
           </p>
 
           <h3>
-            <TranslatedText>Trademarks and logos</TranslatedText>
+            <TranslatedText>Thương hiệu và logo</TranslatedText>
           </h3>
           <p>
             <TranslatedText>
-              The trademarks of the Musée du Pin and its partners, as well as
-              the logos shown on the site, are filed and registered with the
-              INPI (French National Institute of Industrial Property) and are,
-              as such, protected by industrial property law.
+              Các thương hiệu của Bảo tàng Du Pin và đối tác của nó, cũng như
+              các logo hiển thị trên trang web, đã được đăng ký và đăng ký với
+              INPI (Viện Sở hữu Công nghiệp Quốc gia Pháp) và do đó được bảo vệ
+              bởi luật sở hữu công nghiệp.
             </TranslatedText>
           </p>
           <p>
             <TranslatedText>
-              Any reproduction, in whole or in part, of these trademarks and/or
-              logos made from elements of the website without the express
-              permission of their owners is strictly prohibited and constitutes
-              a violation of the French Intellectual Property Code.
+              Mọi hình thức sao chép, toàn bộ hoặc một phần, các thương hiệu
+              và/hoặc logo này được tạo ra từ các yếu tố của website mà không có
+              sự cho phép rõ ràng của chủ sở hữu đều bị nghiêm cấm và cấu thành
+              vi phạm Bộ luật Sở hữu Trí tuệ.
             </TranslatedText>
           </p>
         </div>
@@ -162,28 +160,26 @@ const LegalNotice = () => {
         {/* Public Sector Information Section */}
         <div className="section">
           <h2>
-            <TranslatedText>PUBLIC SECTOR INFORMATION</TranslatedText>
+            <TranslatedText>THÔNG TIN KHU VỰC CÔNG</TranslatedText>
           </h2>
           <p>
             <TranslatedText>
-              The informative and programming content on this website is
-              administrative public sector information under Articles L.321-1
-              and L.322-1 of the French Code of Relations Between the Public and
-              the Administration. This information may be re-used, provided it
-              is not altered, its meaning is not distorted, and mention is made
-              of its sources and the date of its last update.
+              Nội dung thông tin và lập trình trên website này là thông tin khu
+              vực công hành chính theo Điều L.321-1 và L.322-1 của Bộ luật Quan
+              hệ giữa Công chúng và Hành chính Pháp. Thông tin này có thể được
+              tái sử dụng, với điều kiện không bị thay đổi, không bị bóp méo ý
+              nghĩa và phải ghi rõ nguồn gốc và ngày cập nhật gần nhất.
             </TranslatedText>
           </p>
           <p>
             <TranslatedText>
-              Rights to the administrative public sector information are not
-              transferred to the re-user. The re-user benefits from a personal
-              and non-exclusive right to re-use the administrative public sector
-              information. Any person re-using public sector information in
-              violation of the abovementioned provisions is liable to a fine by
-              the Commission on Access to Administrative Documents (CADA in
-              French), an independent body responsible for ensuring the freedom
-              of access to administrative documents.
+              Quyền đối với thông tin khu vực công hành chính không được chuyển
+              giao cho người tái sử dụng. Người tái sử dụng được hưởng quyền cá
+              nhân và không độc quyền để tái sử dụng thông tin khu vực công hành
+              chính. Bất kỳ người nào tái sử dụng thông tin khu vực công vi phạm
+              các quy định nêu trên đều có thể bị phạt bởi Ủy ban Tiếp cận Tài
+              liệu Hành chính (CADA), một cơ quan độc lập chịu trách nhiệm đảm
+              bảo quyền tự do tiếp cận tài liệu hành chính.
             </TranslatedText>
           </p>
         </div>
@@ -191,40 +187,40 @@ const LegalNotice = () => {
         {/* Hypertext Links Section */}
         <div className="section">
           <h2>
-            <TranslatedText>HYPERTEXT LINKS</TranslatedText>
+            <TranslatedText>LIÊN KẾT SIÊU VĂN BẢN</TranslatedText>
           </h2>
           <p>
             <TranslatedText>
-              The Musée du Pin website (www.dupin.fr) authorises the use of
-              hypertext links to its content provided that:
+              Website Bảo tàng Du Pin (www.dupin.fr) cho phép sử dụng liên kết
+              siêu văn bản đến nội dung của mình với điều kiện:
             </TranslatedText>
           </p>
           <ul>
             <li>
               <TranslatedText>
-                deep linking is not used, i.e. pages from the Musée du Pin
-                website must not be embedded within pages on another site, but
-                should be accessible with the opening of a new window.
+                không sử dụng liên kết sâu, nghĩa là các trang từ website Bảo
+                tàng Du Pin không được nhúng trong các trang của một trang web
+                khác, mà phải được mở trong cửa sổ mới.
               </TranslatedText>
             </li>
             <li>
               <TranslatedText>
-                the source is mentioned when a hypertext link leads directly to
-                the content.
+                phải ghi rõ nguồn gốc khi liên kết siêu văn bản dẫn trực tiếp
+                đến nội dung.
               </TranslatedText>
             </li>
           </ul>
           <p>
             <TranslatedText>
-              The information is used only for personal, associative or
-              professional reasons; all use for commercial or advertising
-              purposes is strictly prohibited.
+              Thông tin chỉ được sử dụng cho mục đích cá nhân, hiệp hội hoặc
+              chuyên môn; mọi sử dụng cho mục đích thương mại hoặc quảng cáo đều
+              bị nghiêm cấm.
             </TranslatedText>
           </p>
           <p>
             <TranslatedText>
-              Authorisation shall not be granted to websites with content deemed
-              offensive to human dignity, public order or public morals.
+              Không cấp phép cho các website có nội dung được coi là xúc phạm
+              nhân phẩm, trật tự công cộng hoặc đạo đức công cộng.
             </TranslatedText>
           </p>
         </div>
@@ -232,27 +228,25 @@ const LegalNotice = () => {
         {/* Liability Section */}
         <div className="section">
           <h2>
-            <TranslatedText>LIABILITY</TranslatedText>
+            <TranslatedText>TRÁCH NHIỆM PHÁP LÝ</TranslatedText>
           </h2>
           <p>
             <TranslatedText>
-              The public establishment of the Musée du Pin uses all reasonable
-              efforts to ensure the information on the website (www.dupin.fr) is
-              as available, accurate, and up to date as possible, and reserves
-              the right to make corrections with regard to the information at
-              any time without prior notification. However, the public
-              establishment of the Musée du Pin cannot guarantee the
-              availability, exactness, actuality, or completeness of the
-              information presented. Use of the information available or
-              provided on this website is the sole responsibility of the user.
+              Bảo tàng Du Pin nỗ lực hết sức để đảm bảo thông tin trên website
+              (www.dupin.fr) luôn sẵn có, chính xác và cập nhật, và có quyền sửa
+              đổi thông tin bất cứ lúc nào mà không cần thông báo trước. Tuy
+              nhiên, Bảo tàng Du Pin không thể đảm bảo tính sẵn có, chính xác,
+              thời sự hoặc đầy đủ của thông tin được trình bày. Việc sử dụng
+              thông tin có sẵn hoặc được cung cấp trên website này là trách
+              nhiệm của người dùng.
             </TranslatedText>
           </p>
           <p>
             <TranslatedText>
-              The Musée du Pin is not responsible for the content of these
-              sites, and will not be held liable for any damage or injury
-              resulting from them. Links to other sites are provided to users
-              for convenience only.
+              Bảo tàng Du Pin không chịu trách nhiệm về nội dung của các trang
+              web này, và sẽ không chịu trách nhiệm về bất kỳ thiệt hại hoặc tổn
+              thương nào phát sinh từ chúng. Các liên kết đến các trang web khác
+              chỉ được cung cấp cho người dùng để thuận tiện.
             </TranslatedText>
           </p>
         </div>

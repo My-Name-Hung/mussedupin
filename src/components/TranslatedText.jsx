@@ -49,8 +49,8 @@ const TranslatedText = memo(({ children, className = "", ...props }) => {
   );
 
   useEffect(() => {
-    // Nếu ngôn ngữ hiện tại là tiếng Anh (mặc định), không cần dịch
-    if (currentLanguage === "en") {
+    // Nếu ngôn ngữ hiện tại là tiếng Việt (mặc định), không cần dịch
+    if (currentLanguage === "vi") {
       setTranslatedText(originalText);
       return;
     }

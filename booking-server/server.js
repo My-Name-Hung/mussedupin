@@ -135,6 +135,66 @@ const sendAdminEmail = (bookingData) => {
   return transporter.sendMail(mailOptions);
 };
 
+// Send feedback email to admin
+const sendFeedbackEmail = (feedbackData) => {
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
+    subject: "Phản hồi mới từ khách hàng - Bảo tàng Thông",
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e6e6e6; border-radius: 10px;">
+        <div style="background: linear-gradient(135deg, #1e3a8a, #2563eb); padding: 20px; text-align: center; color: white; border-radius: 10px 10px 0 0;">
+          <h1 style="margin: 0;">Phản hồi mới từ khách hàng</h1>
+        </div>
+        <div style="padding: 20px;">
+          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1e3a8a; margin-top: 0;">Thông tin người gửi</h3>
+            <p><strong>Tên:</strong> ${feedbackData.name}</p>
+            <p><strong>Email:</strong> ${feedbackData.email}</p>
+          </div>
+          
+          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1e3a8a; margin-top: 0;">Nội dung phản hồi</h3>
+            <p>${feedbackData.feedback}</p>
+          </div>
+        </div>
+      </div>
+    `,
+  };
+
+  return transporter.sendMail(mailOptions);
+};
+
+// Send confirmation email to customer
+const sendFeedbackConfirmation = (feedbackData) => {
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: feedbackData.email,
+    subject: "Xác nhận phản hồi - Bảo tàng Thông",
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e6e6e6; border-radius: 10px;">
+        <div style="background: linear-gradient(135deg, #1e3a8a, #2563eb); padding: 20px; text-align: center; color: white; border-radius: 10px 10px 0 0;">
+          <h1 style="margin: 0;">Xác nhận phản hồi</h1>
+        </div>
+        <div style="padding: 20px;">
+          <p>Xin chào ${feedbackData.name},</p>
+          <p>Cảm ơn bạn đã gửi phản hồi cho Bảo tàng Thông. Chúng tôi đã nhận được phản hồi của bạn và sẽ xem xét trong thời gian sớm nhất.</p>
+          
+          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1e3a8a; margin-top: 0;">Nội dung phản hồi của bạn</h3>
+            <p>${feedbackData.feedback}</p>
+          </div>
+          
+          <p>Nếu cần thiết, chúng tôi sẽ liên hệ với bạn qua email để trao đổi thêm.</p>
+          <p>Trân trọng,<br>Đội ngũ Bảo tàng Thông</p>
+        </div>
+      </div>
+    `,
+  };
+
+  return transporter.sendMail(mailOptions);
+};
+
 // API endpoint để xử lý đặt phòng
 app.post("/api/bookings", async (req, res) => {
   const bookingData = req.body;
@@ -252,6 +312,53 @@ app.get("/api/available-slots", async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Failed to fetch available time slots",
+      error: error.message,
+    });
+  }
+});
+
+// API endpoint để xử lý phản hồi
+app.post("/api/feedback", async (req, res) => {
+  const feedbackData = req.body;
+
+  try {
+    // Lưu vào Google Sheets
+    const row = [
+      new Date().toISOString(), // Timestamp
+      feedbackData.name,
+      feedbackData.email,
+      feedbackData.feedback,
+      "New", // Status
+    ];
+
+    const request = {
+      spreadsheetId: SPREADSHEET_ID,
+      range: "Feedback!A:E",
+      valueInputOption: "RAW",
+      insertDataOption: "INSERT_ROWS",
+      resource: {
+        values: [row],
+      },
+    };
+
+    // Gửi dữ liệu tới Google Sheets
+    await sheets.spreadsheets.values.append(request);
+
+    // Gửi email xác nhận
+    await Promise.all([
+      sendFeedbackEmail(feedbackData),
+      sendFeedbackConfirmation(feedbackData),
+    ]);
+
+    res.status(200).json({
+      success: true,
+      message: "Feedback received and processed successfully",
+    });
+  } catch (error) {
+    console.error("Error processing feedback:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to process feedback",
       error: error.message,
     });
   }

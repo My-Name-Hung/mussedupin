@@ -44,7 +44,7 @@ const SKIP_CLASS = "no-translate";
  */
 export const translateElement = async (element, targetLanguage, onProgress) => {
   // Nếu là ngôn ngữ mặc định (tiếng Anh), không cần dịch
-  if (targetLanguage === "en") return;
+  if (targetLanguage === "vi") return;
 
   // Nếu phần tử có class 'no-translate', bỏ qua
   if (element.classList && element.classList.contains(SKIP_CLASS)) return;

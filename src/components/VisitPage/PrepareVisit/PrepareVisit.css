@@ -1,5 +1,5 @@
-/* Import Google Fonts - Montserrat and Roboto */
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap");
+/* Import Google Fonts - Roboto and Roboto */
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap");
 
 /* Import Mythical-Prince font */
 @font-face {
@@ -15,8 +15,14 @@
 .prepare-page {
   width: 100%;
   color: #1a1a1a;
-  background-color: #fafafa;
-  overflow-x: hidden;
+  background-image: url("../../../assets/Background/Background2.png");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 300px;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  box-sizing: border-box;
+  overflow: visible;
   position: relative;
   isolation: isolate; /* Tạo stacking context riêng */
 }
@@ -86,16 +92,6 @@
 }
 
 /* Artistic pattern overlay */
-.prepare-hero-overlay::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffffff' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
-  pointer-events: none;
-}
 
 .prepare-hero-content {
   position: relative;
@@ -134,20 +130,6 @@
   transform: translateY(30px);
 }
 
-.prepare-hero-title::before {
-  content: "";
-  position: absolute;
-  left: -5%;
-  top: 50%;
-  width: 25px;
-  height: 25px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #00897b, #4db6ac);
-  transform: translateY(-50%);
-  opacity: 0.8;
-  box-shadow: 0 0 20px rgba(0, 137, 123, 0.6);
-}
-
 .prepare-hero-title::after {
   content: "";
   position: absolute;
@@ -171,7 +153,7 @@
 }
 
 .prepare-hero-subtitle {
-  font-family: "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-family: "Roboto", sans-serif;
   font-size: 2rem;
   font-weight: 300;
   font-style: italic;
@@ -227,11 +209,11 @@
 }
 
 .prepare-hero-button {
-  background: linear-gradient(135deg, #00897b, #00695c);
+  background: #2c2f11;
   color: white;
   border: none;
   padding: 18px 40px;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
   border-radius: 50px;
@@ -437,7 +419,7 @@
 }
 
 .prepare-nav-button {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 500;
   font-size: 0.95rem;
   color: #333;
@@ -723,19 +705,8 @@
 /* Artistic section header styles */
 .prepare-section-header {
   margin-bottom: 80px;
+  margin-top: 30px;
   position: relative;
-}
-
-.prepare-section-header::before {
-  content: "";
-  position: absolute;
-  top: -30px;
-  left: -20px;
-  width: 70px;
-  height: 70px;
-  border: 2px solid rgba(0, 137, 123, 0.1);
-  border-radius: 50%;
-  z-index: -1;
 }
 
 .prepare-section-header::after {
@@ -746,48 +717,6 @@
   width: 40%;
   height: 1px;
   background: linear-gradient(to right, rgba(0, 137, 123, 0.5), transparent);
-}
-
-.section-badge {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 60px;
-  height: 60px;
-  background: linear-gradient(135deg, #00695c, #009688);
-  border-radius: 20px;
-  margin-bottom: 30px;
-  box-shadow: 0 10px 25px rgba(0, 105, 92, 0.25);
-  color: white;
-  font-size: 1.5rem;
-  position: relative;
-  transform: rotate(-5deg);
-  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-.section-badge:hover {
-  transform: rotate(0) scale(1.1);
-}
-
-.section-badge::before {
-  content: "";
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  right: -5px;
-  bottom: -5px;
-  border: 1px dashed rgba(0, 137, 123, 0.3);
-  border-radius: 24px;
-  animation: rotateSlow 10s linear infinite;
-}
-
-@keyframes rotateSlow {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
 }
 
 .prepare-section-title {
@@ -923,7 +852,7 @@
 }
 
 .museum-title {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: #000;
@@ -1031,8 +960,6 @@
   margin-bottom: 50px;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
-  background: linear-gradient(to bottom right, #fff, #f9f9f9);
   position: relative;
   transform: perspective(800px) rotateY(-2deg);
   transition: transform 0.5s ease;
@@ -1071,7 +998,7 @@
 
 .hours-time {
   flex: 0 0 45%;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
   color: #000;
@@ -1105,10 +1032,8 @@
 .museum-notes {
   font-family: "Roboto", sans-serif;
   border-radius: 16px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.08);
   overflow: hidden;
   position: relative;
-  background: linear-gradient(to bottom right, #fff, #f9f9f9);
 }
 
 .museum-notes::after {
@@ -1312,7 +1237,7 @@
   position: absolute;
   top: -40px;
   left: -10px;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 100px;
   font-weight: 800;
   letter-spacing: -5px;
@@ -1435,7 +1360,7 @@
 }
 
 .homestay-card-title {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.8rem;
   font-weight: 600;
   color: #0f172a;
@@ -1490,7 +1415,7 @@
 }
 
 .price-value {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
   color: #0f172a;
@@ -1691,7 +1616,7 @@
 }
 
 .ticket-title {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
   color: #00695c;
@@ -1764,7 +1689,7 @@
   color: white;
   border: none;
   padding: 15px 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.05rem;
   font-weight: 600;
   border-radius: 10px;
@@ -1828,7 +1753,7 @@
 }
 
 .info-title {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
   color: #00695c;
@@ -1881,7 +1806,6 @@
 
 /* Membership Section Styles - Artistic Design */
 .membership-section {
-  background: linear-gradient(135deg, #f5f7fa, #e4f1fe);
   position: relative;
   overflow: hidden;
 }
@@ -1926,7 +1850,7 @@
 }
 
 .membership-heading {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 2.2rem;
   font-weight: 600;
   color: #1a3a34;
@@ -2031,7 +1955,7 @@
 }
 
 .membership-card-title {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.8rem;
   font-weight: 700;
   color: #1a3a34;
@@ -2044,7 +1968,7 @@
 }
 
 .price-value {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 2.5rem;
   font-weight: 700;
   color: #00897b;
@@ -2100,7 +2024,7 @@
   color: #1a3a34;
   border: 2px solid #00897b;
   padding: 15px 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.05rem;
   font-weight: 600;
   border-radius: 50px;
@@ -2220,7 +2144,7 @@
   }
 
   .prepare-hero-content {
-    margin-bottom: 20%;
+    margin-bottom: 50%;
     padding: 0 5%;
   }
 
@@ -2413,11 +2337,6 @@
     font-size: 0.9rem;
   }
 
-  .museum-hours,
-  .museum-notes {
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-  }
-
   /* Improved Touch Target Sizes */
   .prepare-nav-button,
   .mobile-nav-button,
@@ -2593,7 +2512,7 @@
   /* Mobile scroll indicator */
   .mobile-scroll-indicator {
     position: absolute;
-    bottom: 30px;
+    bottom: 130px;
     left: 50%;
     transform: translateX(-50%);
     width: 30px;
@@ -2669,14 +2588,6 @@
   }
 
   /* Art-directed backgrounds */
-  .tickets-section {
-    background-image: linear-gradient(
-        to bottom,
-        rgba(255, 255, 255, 0.95),
-        rgba(255, 255, 255, 0.95)
-      ),
-      url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300897b' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
 
   .homestay-section {
     background-image: linear-gradient(
@@ -2881,7 +2792,7 @@
 
 .details-sidebar-header h2,
 .booking-sidebar-header h2 {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
   font-weight: 600;
   color: #000;
@@ -3064,7 +2975,7 @@
 }
 
 .homestay-details-section h4 {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
   color: #0f172a;
@@ -3098,7 +3009,7 @@
 }
 
 .booking-card-price .price-value {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 2rem;
   font-weight: 700;
   color: #0f172a;
@@ -3127,7 +3038,7 @@
   border: none;
   width: 100%;
   padding: 15px 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   font-weight: 600;
   border-radius: 10px;
@@ -3210,7 +3121,7 @@
 }
 
 .booking-homestay-info.modern h3 {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.3rem;
   font-weight: 600;
   color: #0f172a;
@@ -3236,7 +3147,7 @@
 }
 
 .booking-homestay-info.modern .price-value {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
   font-weight: 700;
   color: #0f172a;
@@ -3262,7 +3173,7 @@
 
 .booking-form.modern label {
   display: block;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 0.95rem;
   font-weight: 500;
   color: #374151;
@@ -3334,7 +3245,7 @@
 }
 
 .booking-summary.modern .summary-row.total {
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1.1rem;
   font-weight: 600;
   color: #0f172a;
@@ -3347,7 +3258,7 @@
   border: none;
   width: 100%;
   padding: 15px 0;
-  font-family: "Montserrat", sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 1rem;
   font-weight: 600;
   border-radius: 8px;

@@ -1,61 +1,61 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { SAMPLE_IMAGES } from "../assets/assets";
+import logo from "../assets/Logo/icon.jpg";
 import TranslatedText from "../components/TranslatedText";
 import "../styles/SearchResults.css";
-import logo from "../assets/Logo/icon.jpg";
 
 // Mock data - trong ứng dụng thực tế, bạn sẽ cần truy vấn dữ liệu từ API hoặc cơ sở dữ liệu
 const mockDatabase = [
   {
     id: 1,
     title: "Mona Lisa",
-    type: "Painting",
+    type: "Tranh",
     artist: "Leonardo da Vinci",
     year: "1503",
     image: SAMPLE_IMAGES.monalisa,
     description:
-      "The Mona Lisa is a half-length portrait painting by Italian artist Leonardo da Vinci.",
+      "Mona Lisa là một bức chân dung nửa người do nghệ sĩ người Ý Leonardo da Vinci vẽ.",
   },
   {
     id: 2,
     title: "Venus de Milo",
-    type: "Sculpture",
+    type: "Tượng",
     artist: "Alexandros of Antioch",
-    year: "130-100 BC",
+    year: "130-100 TCN",
     image: SAMPLE_IMAGES.venusdemilo,
     description:
-      "The Venus de Milo is an ancient Greek statue and one of the most famous works of ancient Greek sculpture.",
+      "Venus de Milo là một bức tượng Hy Lạp cổ đại và là một trong những tác phẩm điêu khắc Hy Lạp cổ đại nổi tiếng nhất.",
   },
   {
     id: 3,
-    title: "Liberty Leading the People",
-    type: "Painting",
+    title: "Tự do dẫn dắt nhân dân",
+    type: "Tranh",
     artist: "Eugène Delacroix",
     year: "1830",
     image: SAMPLE_IMAGES.libertyLeading,
     description:
-      "Liberty Leading the People is a painting by Eugène Delacroix commemorating the July Revolution of 1830.",
+      "Tự do dẫn dắt nhân dân là một bức tranh của Eugène Delacroix kỷ niệm cuộc Cách mạng tháng 7 năm 1830.",
   },
   {
     id: 4,
-    title: "The Raft of the Medusa",
-    type: "Painting",
+    title: "Bè của Medusa",
+    type: "Tranh",
     artist: "Théodore Géricault",
     year: "1818–1819",
     image: SAMPLE_IMAGES.raftOfMedusa,
     description:
-      "The Raft of the Medusa is an oil painting by the French Romantic painter and lithographer Théodore Géricault.",
+      "Bè của Medusa là một bức tranh sơn dầu của họa sĩ và nhà in thạch bản lãng mạn người Pháp Théodore Géricault.",
   },
   {
     id: 5,
-    title: "The Coronation of Napoleon",
-    type: "Painting",
+    title: "Lễ đăng quang của Napoleon",
+    type: "Tranh",
     artist: "Jacques-Louis David",
     year: "1805–1807",
     image: SAMPLE_IMAGES.coronationNapoleon,
     description:
-      "The Coronation of Napoleon is a painting completed in 1807 by Jacques-Louis David.",
+      "Lễ đăng quang của Napoleon là một bức tranh hoàn thành năm 1807 của Jacques-Louis David.",
   },
 ];
 
@@ -97,25 +97,20 @@ const SearchResults = () => {
 
   return (
     <div className="search-results-page">
-
       <div className="search-results-container">
         <div className="breadcrumb">
           <Link to="/">
-            <img
-              src={logo}
-              alt="Logo"
-              className="breadcrumb-logo"
-            />
+            <img src={logo} alt="Logo" className="breadcrumb-logo" />
           </Link>
           <span className="breadcrumb-separator">›</span>
           <span className="breadcrumb-label">
-            <TranslatedText>Search results</TranslatedText>
+            <TranslatedText>Kết quả tìm kiếm</TranslatedText>
           </span>
         </div>
 
         <div className="search-input-container">
           <h2 className="search-title">
-            <TranslatedText>Search</TranslatedText>
+            <TranslatedText>Tìm kiếm</TranslatedText>
           </h2>
           <div className="search-bar">
             <input
@@ -127,7 +122,7 @@ const SearchResults = () => {
                 )}`)
               }
               className="search-input"
-              placeholder="Search"
+              placeholder="Tìm kiếm"
             />
             <button type="button" className="search-button">
               <svg viewBox="0 0 24 24" width="24" height="24">
@@ -146,23 +141,23 @@ const SearchResults = () => {
 
         <div className="search-filters">
           <button className="filter-button active">
-            <TranslatedText>All</TranslatedText>
+            <TranslatedText>Tất cả</TranslatedText>
           </button>
           <button className="filter-button">
-            <TranslatedText>Exhibition</TranslatedText>
+            <TranslatedText>Triển lãm</TranslatedText>
           </button>
           <button className="filter-button">
-            <TranslatedText>Artwork</TranslatedText>
+            <TranslatedText>Tác phẩm</TranslatedText>
           </button>
         </div>
 
         <div className="results-header">
           <h2 className="results-count">
             {loading ? (
-              <TranslatedText>Searching...</TranslatedText>
+              <TranslatedText>Đang tìm kiếm...</TranslatedText>
             ) : (
               <TranslatedText>
-                {results.length} RESULTS FOUND FOR « {query} » :
+                {results.length} KẾT QUẢ TÌM THẤY CHO « {query} » :
               </TranslatedText>
             )}
           </h2>

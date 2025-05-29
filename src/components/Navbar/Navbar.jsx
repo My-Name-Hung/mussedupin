@@ -383,7 +383,7 @@ const searchData = [
     description: "Expert-led tours through the collections",
     category: "Exhibitions",
     image: ExhibitionsAnother,
-    path: "/exhibitions#guided-tours",
+    path: "/exhibitions?tab=guided-tours",
   },
   {
     id: 12,
@@ -399,7 +399,7 @@ const searchData = [
     description: "Discover lesser-known treasures",
     category: "Exhibitions",
     image: ExhibitionsAnother,
-    path: "/exhibitions#guided-tours",
+    path: "/exhibitions?tab=guided-tours",
   },
 
   // Collections sections
@@ -495,7 +495,7 @@ const searchData = [
     description: "How to find and navigate the museum",
     category: "Practical Info",
     image: visitArtworkImg,
-    path: "/map-and-directions",
+    path: "/museum-map",
   },
   {
     id: 25,
@@ -687,10 +687,14 @@ const Navbar = () => {
 
   // Lấy tên hiển thị của ngôn ngữ hiện tại
   const getCurrentLanguageName = () => {
+    // Nếu chưa có currentLanguage, trả về "Tiếng Việt"
+    if (!currentLanguage) return "Tiếng Việt";
+
     const lang = supportedLanguages.find(
       (lang) => lang.code === currentLanguage
     );
-    return lang ? lang.name : "English";
+    // Nếu không tìm thấy ngôn ngữ hoặc là ngôn ngữ mặc định, trả về "Tiếng Việt"
+    return lang ? lang.name : "Tiếng Việt";
   };
 
   // Thêm hàm xử lý khi nhấp vào liên kết trong mobile menu
@@ -708,61 +712,72 @@ const Navbar = () => {
 
     // Thiết lập các mục cho từng loại submenu
     switch (menuType) {
-      case "VISIT":
+      case "THAM QUAN":
         items = [
-          { title: "Hours & admission", path: "/visit" },
-          { title: "Ticket prices", path: "/visit#tickets" },
-          { title: "Membership", path: "/visit#membership" },
-          { title: "Visitor amenities", path: "/visit-info" },
-          { title: "Homestay", path: "/visit-info#homestay" },
-          { title: "FAQ", path: "/visit-info#faq" },
+          { title: "Giờ mở cửa & vé vào cửa", path: "/visit" },
+          { title: "Bản đồ, lối vào & chỉ dẫn", path: "/museum-map" },
+          { title: "Giá vé", path: "/visit#tickets" },
+          { title: "Thành viên", path: "/visit#membership" },
+          { title: "Tiện ích cho khách tham quan", path: "/visit-info" },
+          { title: "Cuộc sống tại bảo tàng", path: "/visit-info#homestay" },
+          { title: "Câu hỏi thường gặp", path: "/visit-info#faq" },
         ];
         featured = {
-          title: "Prepare your visit",
-          path: "/prepare-visit",
+          title: "Chuẩn bị cho chuyến tham quan",
+          path: "/visit-info",
           image: visitArtworkImg,
-          description: "Everything you need to know before visiting the museum",
+          description:
+            "Tất cả những điều bạn cần biết trước khi tham quan bảo tàng",
         };
         break;
 
-      case "EXHIBITIONS":
+      case "TRIỂN LÃM":
         items = [
-          { title: "Exhibitions", path: "/exhibitions" },
-          { title: "Guided tours", path: "/exhibitions?tab=guided-tours" },
+          { title: "Triển lãm", path: "/exhibitions" },
+          {
+            title: "Tham quan có hướng dẫn",
+            path: "/exhibitions?tab=guided-tours",
+          },
         ];
         featured = {
-          title: "Another Musée Du Pin",
-          path: "/exhibitions#guided-tours",
+          title: "Một Musée Du Pin khác",
+          path: "/exhibitions?tab=guided-tours",
           image: ExhibitionsAnother,
           description:
-            "Enjoy a visit away from the crowds and discover the lesser-known treasures",
+            "Tận hưởng chuyến tham quan tránh xa đám đông và khám phá những kho báu ít người biết đến và khung cảnh tuyệt đẹp của 'một Musée Du Pin khác'",
         };
         break;
 
-      case "EXPLORE":
+      case "KHÁM PHÁ":
         items = [
-          { title: "Collections", path: "/collection" },
-          { title: "Life at the museum", path: "/life-at-the-museum" },
-          { title: "Visitor trails", path: "/visitor-trails" },
+          { title: "Bộ sưu tập", path: "/collection" },
+          { title: "Tin tức", path: "/life-at-the-museum" },
+          { title: "Lộ trình tham quan", path: "/visitor-trails" },
         ];
         featured = {
-          title: "Beyoncé and Jay-Z's Louvre Highlights",
-          path: "/beyonce-jayz-louvre",
+          title: "Điểm nổi bật",
+          path: "/visitor-trails",
           image: ExhibitionsAnother,
-          description: "Artworks featured in the 'APES**T' music video",
+          description: "Các tác phẩm nổi bật",
         };
         break;
 
-      case "SEE_MORE":
+      case "XEM THÊM":
         items = [
-          { title: "Visit our online store", path: "/boutique" },
-          { title: "Support the Musée Du Pin", path: "/support" },
+          {
+            title: "Cửa hàng trực tuyến",
+            path: "https://online-museeduphin.netlify.app/",
+          },
+          {
+            title: "Ghé thăm cửa hàng trực tuyến của chúng tôi",
+            path: "/support",
+          },
         ];
         featured = {
-          title: "Become a Patron!",
+          title: "Trở thành Nhà bảo trợ!",
           path: "/support",
           image: artworkImg,
-          description: "Individuals, companies or foundations",
+          description: "Cá nhân, công ty hoặc tổ chức",
         };
         break;
 
@@ -1006,7 +1021,7 @@ const Navbar = () => {
             ) : (
               <div className="search-results-title">
                 <TranslatedText>
-                  {`${searchResults.length} results found for "${
+                  {`${searchResults.length} kết quả tìm kiếm cho "${
                     searchTerm || mobileSearchTerm
                   }"`}
                 </TranslatedText>
@@ -1054,12 +1069,12 @@ const Navbar = () => {
           ) : (
             <div className="search-no-results">
               <h3>
-                <TranslatedText>No results found</TranslatedText>
+                <TranslatedText>Không tìm thấy kết quả</TranslatedText>
               </h3>
               <p>
                 <TranslatedText>
-                  We couldn't find any results for your search. Please try a
-                  different term.
+                  Chúng tôi không thể tìm thấy kết quả nào cho tìm kiếm của bạn.
+                  Vui lòng thử từ khóa khác.
                 </TranslatedText>
               </p>
             </div>
@@ -1081,7 +1096,7 @@ const Navbar = () => {
           >
             <SearchIcon />
             <span>
-              <TranslatedText>Search</TranslatedText>
+              <TranslatedText>Tìm kiếm</TranslatedText>
             </span>
           </div>
 
@@ -1123,7 +1138,10 @@ const Navbar = () => {
         {/* Desktop Navbar - Right Section */}
         <div className="desktop-right-section">
           <div className="buttons-container">
-            <Link to="/boutique" className="btn btn-outline">
+            <Link
+              to="https://online-museeduphin.netlify.app/"
+              className="btn btn-outline"
+            >
               <BoutiqueIcon />
             </Link>
             <Link to="/tickets" className="btn btn-filled">
@@ -1196,7 +1214,7 @@ const Navbar = () => {
                   }
                 }}
               >
-                <TranslatedText>VISIT</TranslatedText>
+                <TranslatedText>THAM QUAN</TranslatedText>
                 <div className="underline"></div>
               </Link>
             </li>
@@ -1221,7 +1239,7 @@ const Navbar = () => {
                   }
                 }}
               >
-                <TranslatedText>EXHIBITIONS AND EVENTS</TranslatedText>
+                <TranslatedText>TRIỂN LÃM VÀ SỰ KIỆN</TranslatedText>
                 <div className="underline"></div>
               </Link>
             </li>
@@ -1247,7 +1265,7 @@ const Navbar = () => {
                   }
                 }}
               >
-                <TranslatedText>EXPLORE</TranslatedText>
+                <TranslatedText>KHÁM PHÁ</TranslatedText>
                 <div className="underline"></div>
               </Link>
             </li>
@@ -1271,7 +1289,7 @@ const Navbar = () => {
           }}
         >
           <span>
-            <TranslatedText>SEE MORE</TranslatedText>
+            <TranslatedText>XEM THÊM</TranslatedText>
           </span>
           <MenuIcon />
           <div className="underline"></div>
@@ -1290,11 +1308,11 @@ const Navbar = () => {
               >
                 <SearchIcon />
                 <div className="search-input-label">
-                  <TranslatedText>Search</TranslatedText>
+                  <TranslatedText>Tìm kiếm</TranslatedText>
                 </div>
                 <input
                   type="text"
-                  placeholder={isFocused ? "" : "Search"}
+                  placeholder={isFocused ? "" : "Tìm kiếm"}
                   value={searchTerm}
                   onChange={handleSearchInputChange}
                   onFocus={() => setIsFocused(true)}
@@ -1355,18 +1373,20 @@ const Navbar = () => {
               <div className="dropdown-left-section">
                 <div className="dropdown-menu-section">
                   <h3>
-                    <TranslatedText>Online boutique</TranslatedText>
+                    <TranslatedText>Cửa hàng trực tuyến</TranslatedText>
                   </h3>
                   <Link
-                    to="/boutique"
+                    to="https://online-museeduphin.netlify.app/"
                     className="dropdown-link"
                     onClick={(e) => {
                       e.preventDefault();
                       setShowSeeMoreDropdown(false);
-                      navigate("/boutique");
+                      navigate("https://online-museeduphin.netlify.app/");
                     }}
                   >
-                    <TranslatedText>Visit our online store</TranslatedText>
+                    <TranslatedText>
+                      Ghé thăm cửa hàng trực tuyến của chúng tôi
+                    </TranslatedText>
                   </Link>
                 </div>
 
@@ -1375,7 +1395,7 @@ const Navbar = () => {
                   style={{ marginTop: "30px" }}
                 >
                   <h3>
-                    <TranslatedText>Support the Musée Du Pin</TranslatedText>
+                    <TranslatedText>Hỗ trợ Musée Du Pin</TranslatedText>
                   </h3>
                   <Link
                     to="/support"
@@ -1387,7 +1407,7 @@ const Navbar = () => {
                     }}
                   >
                     <TranslatedText>
-                      Individuals, companies or foundations
+                      Cá nhân, công ty hoặc tổ chức
                     </TranslatedText>
                   </Link>
                 </div>
@@ -1410,7 +1430,7 @@ const Navbar = () => {
                   }}
                 >
                   <PatronIcon />
-                  <TranslatedText>Become a Patron!</TranslatedText>
+                  <TranslatedText>Trở thành Nhà bảo trợ!</TranslatedText>
                 </Link>
 
                 <div className="dropdown-image-caption">
@@ -1423,11 +1443,11 @@ const Navbar = () => {
                       navigate("/support");
                     }}
                   >
-                    <TranslatedText>Support the Musée Du Pin →</TranslatedText>
+                    <TranslatedText>Hỗ trợ Musée Du Pin →</TranslatedText>
                   </Link>
                   <p className="dropdown-description">
                     <TranslatedText>
-                      Individuals, companies or foundations
+                      Cá nhân, công ty hoặc tổ chức
                     </TranslatedText>
                   </p>
                 </div>
@@ -1466,7 +1486,7 @@ const Navbar = () => {
                       setShowVisitDropdown(false);
                     }}
                   >
-                    <TranslatedText>Hours & admission</TranslatedText>
+                    <TranslatedText>Giờ mở cửa & vé vào cửa</TranslatedText>
                   </Link>
                   <Link
                     to="/visit#tickets"
@@ -1476,7 +1496,7 @@ const Navbar = () => {
                       setShowVisitDropdown(false);
                     }}
                   >
-                    <TranslatedText>Ticket prices</TranslatedText>
+                    <TranslatedText>Giá vé</TranslatedText>
                   </Link>
                   <Link
                     to="/visit#membership"
@@ -1486,7 +1506,7 @@ const Navbar = () => {
                       setShowVisitDropdown(false);
                     }}
                   >
-                    <TranslatedText>Membership</TranslatedText>
+                    <TranslatedText>Thành viên</TranslatedText>
                   </Link>
                 </div>
               </div>
@@ -1502,7 +1522,9 @@ const Navbar = () => {
                       navigate("/visit-info");
                     }}
                   >
-                    <TranslatedText>Visitor amenities</TranslatedText>
+                    <TranslatedText>
+                      Tiện ích cho khách tham quan
+                    </TranslatedText>
                   </Link>
                   <Link
                     to="/homestay"
@@ -1513,7 +1535,7 @@ const Navbar = () => {
                       navigate("/visit-info#homestay");
                     }}
                   >
-                    <TranslatedText>Homestay</TranslatedText>
+                    <TranslatedText>Lưu trú</TranslatedText>
                   </Link>
                   <Link
                     to="/visit-info#faq"
@@ -1524,7 +1546,7 @@ const Navbar = () => {
                       navigate("/visit-info#faq");
                     }}
                   >
-                    <TranslatedText>FAQ</TranslatedText>
+                    <TranslatedText>Câu hỏi thường gặp</TranslatedText>
                   </Link>
                 </div>
               </div>
@@ -1538,15 +1560,17 @@ const Navbar = () => {
 
                 <div className="dropdown-image-caption">
                   <Link
-                    to="/prepare-visit"
+                    to="/visit-info"
                     className="dropdown-title-link"
                     onClick={(e) => {
                       e.preventDefault();
                       setShowVisitDropdown(false);
-                      navigate("/prepare-visit");
+                      navigate("/visit-info");
                     }}
                   >
-                    <TranslatedText>Prepare your visit</TranslatedText>
+                    <TranslatedText>
+                      Chuẩn bị cho chuyến tham quan
+                    </TranslatedText>
                     <svg
                       width="16"
                       height="16"
@@ -1563,7 +1587,8 @@ const Navbar = () => {
                   </Link>
                   <p className="dropdown-description">
                     <TranslatedText>
-                      Everything you need to know before visiting the museum
+                      Tất cả những điều bạn cần biết trước khi tham quan bảo
+                      tàng
                     </TranslatedText>
                   </p>
                 </div>
@@ -1602,7 +1627,7 @@ const Navbar = () => {
                       setShowExhibitionsDropdown(false);
                     }}
                   >
-                    <TranslatedText>Exhibitions</TranslatedText>
+                    <TranslatedText>Triển lãm</TranslatedText>
                   </button>
                   <button
                     type="button"
@@ -1612,7 +1637,7 @@ const Navbar = () => {
                       setShowExhibitionsDropdown(false);
                     }}
                   >
-                    <TranslatedText>Guided tours</TranslatedText>
+                    <TranslatedText>Tham quan có hướng dẫn</TranslatedText>
                   </button>
                 </div>
               </div>
@@ -1622,18 +1647,18 @@ const Navbar = () => {
                   <div className="exhibition-feature-image">
                     <img src={ExhibitionsAnother} alt="Another" />
                     <div className="feature-tag">
-                      <TranslatedText>Guided tours</TranslatedText>
+                      <TranslatedText>Một Musée Du Pin khác</TranslatedText>
                     </div>
                   </div>
                   <button
                     type="button"
                     className="exhibition-feature-title nav-button"
                     onClick={() => {
-                      navigate("/exhibitions#guided-tours");
+                      navigate("/exhibitions?tab=guided-tours");
                       setShowExhibitionsDropdown(false);
                     }}
                   >
-                    <TranslatedText>Another Musée Du Pin</TranslatedText>
+                    <TranslatedText>Một Musée Du Pin khác</TranslatedText>
                     <svg
                       width="16"
                       height="16"
@@ -1650,9 +1675,9 @@ const Navbar = () => {
                   </button>
                   <p className="exhibition-feature-description">
                     <TranslatedText>
-                      Enjoy a visit away from the crowds and discover the
-                      lesser-known treasures and stunning settings of 'another
-                      Musée Du Pin'
+                      Tận hưởng chuyến tham quan tránh xa đám đông và khám phá
+                      những kho báu ít người biết đến và khung cảnh tuyệt đẹp
+                      của 'một Musée Du Pin khác'
                     </TranslatedText>
                   </p>
                 </div>
@@ -1661,7 +1686,7 @@ const Navbar = () => {
                   <div className="exhibition-feature-image">
                     <img src={Exhibitions} alt="Couture" />
                     <div className="feature-tag">
-                      <TranslatedText>Exhibition</TranslatedText>
+                      <TranslatedText>Musée Du Pin Couture</TranslatedText>
                     </div>
                   </div>
                   <button
@@ -1729,7 +1754,7 @@ const Navbar = () => {
                       setShowExploreDropdown(false);
                     }}
                   >
-                    <TranslatedText>Collections</TranslatedText>
+                    <TranslatedText>Bộ sưu tập</TranslatedText>
                   </button>
                   <button
                     type="button"
@@ -1739,7 +1764,7 @@ const Navbar = () => {
                       setShowExploreDropdown(false);
                     }}
                   >
-                    <TranslatedText>Life at the museum</TranslatedText>
+                    <TranslatedText>Cuộc sống tại bảo tàng</TranslatedText>
                   </button>
                   <button
                     type="button"
@@ -1749,18 +1774,9 @@ const Navbar = () => {
                       directNavigate("/visitor-trails");
                     }}
                   >
-                    <TranslatedText>Visitor trails</TranslatedText>
+                    <TranslatedText>Lộ trình tham quan</TranslatedText>
                   </button>
-                  <button
-                    type="button"
-                    className="nav-button"
-                    onClick={() => {
-                      setShowExploreDropdown(false);
-                      directNavigate("/the-palace");
-                    }}
-                  >
-                    <TranslatedText>The palace</TranslatedText>
-                  </button>
+
                   <button
                     type="button"
                     className="nav-button"
@@ -1769,7 +1785,7 @@ const Navbar = () => {
                       directNavigate("/the-gardens");
                     }}
                   >
-                    <TranslatedText>The gardens</TranslatedText>
+                    <TranslatedText>Vườn</TranslatedText>
                   </button>
                 </div>
               </div>
@@ -1779,7 +1795,7 @@ const Navbar = () => {
                   <div className="exhibition-feature-image">
                     <img src={ExhibitionsAnother} alt="Beyoncé" />
                     <div className="feature-tag">
-                      <TranslatedText>Highlights</TranslatedText>
+                      <TranslatedText>Điểm nổi bật</TranslatedText>
                     </div>
                   </div>
                   <button
@@ -1808,9 +1824,7 @@ const Navbar = () => {
                     </svg>
                   </button>
                   <p className="exhibition-feature-description">
-                    <TranslatedText>
-                      Artworks featured in the 'APES**T' music video
-                    </TranslatedText>
+                    <TranslatedText>Các tác phẩm video nổi bật</TranslatedText>
                   </p>
                 </div>
 
@@ -1890,7 +1904,7 @@ const Navbar = () => {
                       handleLanguageChange(lang.code);
                     }}
                   >
-                    {lang.name}
+                    {lang.code === "vi" ? "Tiếng Việt" : "English"}
                   </div>
                 ))}
               </div>
@@ -1903,7 +1917,7 @@ const Navbar = () => {
             <div className="mobile-search-input">
               <input
                 type="text"
-                placeholder="Search"
+                placeholder="Tìm kiếm"
                 value={mobileSearchTerm}
                 onChange={handleMobileSearchInputChange}
               />
@@ -1923,23 +1937,23 @@ const Navbar = () => {
         <div className="mobile-nav-links">
           <div
             className="mobile-nav-item"
-            onClick={() => openMobileSubmenu("VISIT")}
+            onClick={() => openMobileSubmenu("THAM QUAN")}
           >
-            <TranslatedText>VISIT</TranslatedText>
+            <TranslatedText>THAM QUAN</TranslatedText>
             <ChevronRight />
           </div>
           <div
             className="mobile-nav-item"
-            onClick={() => openMobileSubmenu("EXHIBITIONS")}
+            onClick={() => openMobileSubmenu("TRIỂN LÃM")}
           >
-            <TranslatedText>EXHIBITIONS AND EVENTS</TranslatedText>
+            <TranslatedText>TRIỂN LÃM VÀ SỰ KIỆN</TranslatedText>
             <ChevronRight />
           </div>
           <div
             className="mobile-nav-item"
-            onClick={() => openMobileSubmenu("EXPLORE")}
+            onClick={() => openMobileSubmenu("KHÁM PHÁ")}
           >
-            <TranslatedText>EXPLORE</TranslatedText>
+            <TranslatedText>KHÁM PHÁ</TranslatedText>
             <ChevronRight />
           </div>
         </div>
@@ -1951,13 +1965,13 @@ const Navbar = () => {
             className="mobile-secondary-item"
             onClick={() => handleNavItemClick("/boutique")}
           >
-            <TranslatedText>Online boutique</TranslatedText>
+            <TranslatedText>Cửa hàng Lưu niệm</TranslatedText>
           </div>
           <div
             className="mobile-secondary-item"
             onClick={() => handleNavItemClick("/support")}
           >
-            <TranslatedText>Support the Musée Du Pin</TranslatedText>
+            <TranslatedText>Hỗ trợ Musée Du Pin</TranslatedText>
           </div>
         </div>
 
@@ -2033,7 +2047,7 @@ const Navbar = () => {
         >
           <div className="submenu-header">
             <button
-              className="back-button"
+              className="back-buttons"
               onClick={closeMobileSubmenu}
               aria-label="Back to main menu"
             >
@@ -2049,7 +2063,7 @@ const Navbar = () => {
               >
                 <path d="M15 18l-6-6 6-6" />
               </svg>
-              <TranslatedText>Back</TranslatedText>
+              <TranslatedText>Quay lại</TranslatedText>
             </button>
             <h2 className="submenu-title">
               <TranslatedText>{currentMobileSubmenu}</TranslatedText>

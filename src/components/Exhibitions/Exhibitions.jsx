@@ -8,6 +8,7 @@ import hero from "../../assets/home/Hero/louvre-sunset.webp";
 // Import optimized images
 import bauho from "../../assets/home/Exhibitions/Bauholo_cards.webp";
 import congchieng from "../../assets/home/Exhibitions/congchien_cards.webp";
+import hoabantrang from "../../assets/home/Exhibitions/Hoa Ban Trắng.webp";
 import cheghosanh from "../../assets/home/Exhibitions/Lehoi_cards.webp";
 import longda from "../../assets/home/Exhibitions/LongDaDa_cards.webp";
 import noidat from "../../assets/home/Exhibitions/noidat_cards.webp";
@@ -94,6 +95,19 @@ const exhibitionsData = [
     tag: "Trưng bày",
     link: "/exhibition-details/bau-ho-lo",
     featured: true,
+  },
+  {
+    id: 7,
+    title: "Vật liệu",
+    subtitle: "Chất liệu K'ho",
+    description:
+      "Tại Musée Du Pin, mỗi chất liệu được chọn lựa kỹ lưỡng nhằm tôn vinh vẻ đẹp tự nhiên và bản sắc văn hóa Tây Nguyên. Các vật liệu truyền thống như gỗ, đá, đất và sợi tự nhiên không chỉ là phương tiện sáng tạo mà còn là cầu nối giữa nghệ thuật và đời sống bản địa.",
+    date: "Trưng bày thường xuyên",
+    image: hoabantrang,
+    alt: "Vật liệu",
+    tag: "Trưng bày",
+    link: "/exhibition-details/vat-lieu",
+    featured: false,
   },
 ];
 

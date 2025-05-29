@@ -3,21 +3,22 @@ import TranslatedText from "../../components/TranslatedText";
 import "./CollectionPage.css";
 
 // Import optimized images
-import bauho from "../../assets/home/Collections/Bauholo_cards.webp";
-import congchieng from "../../assets/home/Collections/congchien_cards.webp";
-import dantrung from "../../assets/home/Collections/DanT'rung_cards.webp";
-import gui from "../../assets/home/Collections/Gui_cards.webp";
-import cheghosanh from "../../assets/home/Collections/Lehoi_cards.webp";
-import longda from "../../assets/home/Collections/LongDaDa_cards.webp";
-import noidat from "../../assets/home/Collections/noidat_cards.webp";
-import phunu from "../../assets/home/Collections/phunu_cards.webp";
-import thong2 from "../../assets/home/Collections/Thông 2.webp";
+import congchieng from "../../assets/home/Collections/DungcuAmNhacTayNguyen/Cồng Chiên.webp";
+import dantrung from "../../assets/home/Collections/DungcuAmNhacTayNguyen/DSC_2475.webp";
+import longda from "../../assets/home/Collections/K_hoChanNuoi/Lồng Đa Đa.webp";
+import phunu from "../../assets/home/Collections/K_hoDieuKhac/Điêu Khắc.webp";
+import cheghosanh from "../../assets/home/Collections/K_hoLeHoi/36 (2).webp";
+import gui from "../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/Chiếc Gùi.webp";
+import bauho from "../../assets/home/Collections/K_hoSinhHoatThuongNhat/46.webp";
+import noidat from "../../assets/home/Collections/K_hoSinhHoatThuongNhat/Nồi Đất.webp";
+import thong2 from "../../assets/home/Collections/PhucTang/Thông 2.webp";
+import hoabantrang from "../../assets/home/Collections/VatLieu/Hoa Ban Trắng.webp";
 
 // Import thumbnails for related items
 
 // Collection data
 const collectionData = {
-  heroImages: [congchieng, dantrung, longda, phunu],
+  heroImages: [congchieng, dantrung, longda, phunu, hoabantrang],
 
   artworks: [
     {
@@ -97,6 +98,17 @@ const collectionData = {
       location: "Khu trưng bày đời sống",
       tags: ["Đời sống", "Văn hóa", "Thiên nhiên"],
     },
+    {
+      id: "vatlieu-1",
+      title: "Vật liệu",
+      artist: "Chất liệu K'ho",
+      year: "2024",
+      image: hoabantrang,
+      description:
+        "Tại Musée Du Pin, mỗi chất liệu được chọn lựa kỹ lưỡng nhằm tôn vinh vẻ đẹp tự nhiên và bản sắc văn hóa Tây Nguyên. Các vật liệu truyền thống như gỗ, đá, đất và sợi tự nhiên không chỉ là phương tiện sáng tạo mà còn là cầu nối giữa nghệ thuật và đời sống bản địa.",
+      location: "Khu trưng bày vật liệu",
+      tags: ["Vật liệu", "Văn hóa", "K'ho"],
+    },
   ],
 
   categories: [
@@ -111,6 +123,7 @@ const collectionData = {
     },
     { id: 6, title: "K'ho sinh hoạt thường nhật", image: noidat },
     { id: 7, title: "Phức Tầng", image: thong2 },
+    { id: 8, title: "Vật liệu", image: hoabantrang },
   ],
 
   highlights: [
@@ -173,6 +186,16 @@ const collectionData = {
       artwork: 2,
       description:
         "Khám phá các hoạt động sinh hoạt văn hóa đặc trưng của người K'ho.",
+    },
+    {
+      id: 7,
+      title: "Vật liệu K'ho",
+      category: "Vật liệu",
+      image: hoabantrang,
+      type: "image",
+      artwork: 1,
+      description:
+        "Khám phá các chất liệu truyền thống và ý nghĩa văn hóa của người K'ho.",
     },
   ],
 };

@@ -7,6 +7,7 @@ import "./ExhibitionDetail.css";
 import bauho from "../../assets/home/Exhibitions/Bauholo_cards.webp";
 import congchieng from "../../assets/home/Exhibitions/congchien_cards.webp";
 import gui from "../../assets/home/Exhibitions/Gui_cards.webp";
+import hoabantrang from "../../assets/home/Exhibitions/Hoa Ban Trắng.webp";
 import cheghosanh from "../../assets/home/Exhibitions/Lehoi_cards.webp";
 import longda from "../../assets/home/Exhibitions/LongDaDa_cards.webp";
 import noidat from "../../assets/home/Exhibitions/noidat_cards.webp";
@@ -111,6 +112,25 @@ const allItemsData = {
       "Đây là một trong những hiện vật thể hiện đời sống sinh hoạt hàng ngày của người K'ho.",
     ],
     curators: ["TS. Lê Văn L", "ThS. Phạm Thị M"],
+    type: "exhibition",
+  },
+  "vat-lieu": {
+    id: "vat-lieu",
+    title: "Vật liệu",
+    subtitle: "Chất liệu K'ho",
+    description:
+      "Tại Musée Du Pin, mỗi chất liệu được chọn lựa kỹ lưỡng nhằm tôn vinh vẻ đẹp tự nhiên và bản sắc văn hóa Tây Nguyên. Các vật liệu truyền thống như gỗ, đá, đất và sợi tự nhiên không chỉ là phương tiện sáng tạo mà còn là cầu nối giữa nghệ thuật và đời sống bản địa.",
+    date: "Trưng bày thường xuyên",
+    location: "Tầng 2",
+    image: hoabantrang,
+    alt: "Vật liệu",
+    tag: "Trưng bày",
+    longDescription: [
+      "Tại Musée Du Pin, mỗi chất liệu được chọn lựa kỹ lưỡng nhằm tôn vinh vẻ đẹp tự nhiên và bản sắc văn hóa Tây Nguyên.",
+      "Các vật liệu truyền thống như gỗ, đá, đất và sợi tự nhiên không chỉ là phương tiện sáng tạo mà còn là cầu nối giữa nghệ thuật và đời sống bản địa.",
+      "Mỗi chất liệu đều mang trong mình câu chuyện về sự gắn kết giữa con người với thiên nhiên, về kỹ thuật chế tác truyền thống, và về triết lý sống hài hòa với môi trường của người K'ho.",
+    ],
+    curators: ["TS. Nguyễn Văn X", "ThS. Lê Thị Y"],
     type: "exhibition",
   },
 
@@ -508,8 +528,8 @@ const ExhibitionDetail = () => {
           <a href="#" onClick={handleBackClick} className="back-button">
             <span className="arrow-icon">←</span>
             <TranslatedText>
-              Back to{" "}
-              {item.type === "exhibition" ? "Exhibitions" : "Guided Tours"}
+              Trở về{" "}
+              {item.type === "exhibition" ? "Trưng bày" : "Tham quan"}
             </TranslatedText>
           </a>
         </div>

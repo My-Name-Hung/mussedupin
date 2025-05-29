@@ -1950,10 +1950,33 @@
   display: none; /* Hide scrollbar in Chrome, Safari, Opera */
 }
 
+.gallery-thumbnail {
+  width: 80px;
+  height: 60px;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  opacity: 0.6;
+  border: 2px solid transparent;
+}
+
+.gallery-thumbnail img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.gallery-thumbnail:hover {
+  opacity: 0.8;
+  transform: translateY(-2px);
+}
+
 .gallery-thumbnail.active {
-  border: 2px solid #2563eb;
+  opacity: 1;
+  border-color: #fff;
   transform: scale(1.05);
-  box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
+  box-shadow: 0 5px 15px rgba(255, 255, 255, 0.3);
 }
 
 .gallery-counter {
@@ -1968,6 +1991,43 @@
   align-items: center;
   justify-content: center;
   backdrop-filter: blur(5px);
+}
+
+/* Mobile responsiveness for gallery */
+@media (max-width: 768px) {
+  .gallery-image-container {
+    width: 100%;
+    height: 60%;
+  }
+
+  .gallery-nav-btn {
+    width: 40px;
+    height: 40px;
+  }
+
+  .gallery-nav-btn.prev {
+    left: 10px;
+  }
+
+  .gallery-nav-btn.next {
+    right: 10px;
+  }
+
+  .gallery-thumbnails-row {
+    max-width: 90%;
+  }
+
+  .gallery-thumbnail {
+    width: 60px;
+    height: 45px;
+  }
+
+  .gallery-close-btn {
+    top: 15px;
+    right: 15px;
+    width: 35px;
+    height: 35px;
+  }
 }
 
 /* Adding animation for modal opening */
@@ -2131,10 +2191,9 @@
 }
 
 .faq-item {
-  
   border-radius: 16px;
   overflow: hidden;
-  
+
   transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
   border: 1px solid rgba(226, 232, 240, 0.8);
   position: relative;

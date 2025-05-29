@@ -11,6 +11,7 @@ import lehoiThumb from "../../assets/home/Collections/K_hoLeHoi/Lễ Hội.webp"
 import sanbanThumb from "../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/Chiếc Gùi.webp";
 import sinhoatThumb from "../../assets/home/Collections/K_hoSinhHoatThuongNhat/Nồi Đất.webp";
 import phuctangThumb from "../../assets/home/Collections/PhucTang/Thông 2.webp";
+import vatlieuThumb from "../../assets/home/Collections/VatLieu/Hoa Ban Trắng.webp";
 
 // Import all images for each category
 const dungcuImages = import.meta.glob(
@@ -33,6 +34,9 @@ const khoSinhHoatImages = import.meta.glob(
 );
 const phucTangImages = import.meta.glob(
   "../../assets/home/Collections/PhucTang/*.webp"
+);
+const vatLieuImages = import.meta.glob(
+  "../../assets/home/Collections/VatLieu/*.webp"
 );
 
 // Sample collection data
@@ -79,6 +83,12 @@ const collectionData = {
       title: "Phức Tầng",
       image: phuctangThumb,
       images: phucTangImages,
+    },
+    {
+      id: 8,
+      title: "Vật liệu",
+      image: vatlieuThumb,
+      images: vatLieuImages,
     },
   ],
 
@@ -224,6 +234,16 @@ const collectionData = {
       description:
         "Khám phá các hoạt động sinh hoạt văn hóa đặc trưng của người K'ho.",
     },
+    {
+      id: 7,
+      title: "Vật liệu K'ho",
+      category: "Vật liệu",
+      image: vatlieuThumb,
+      type: "image",
+      artwork: 1,
+      description:
+        "Khám phá các chất liệu truyền thống và ý nghĩa văn hóa của người K'ho.",
+    },
   ],
 
   relatedArtworks: [
@@ -322,6 +342,8 @@ const CategoryPage = () => {
               return ["Đời sống", "K'ho"];
             case 7: // Phức tầng
               return ["Phức tầng"];
+            case 8: // Vật liệu
+              return ["Vật liệu"];
             default:
               return ["K'ho"];
           }

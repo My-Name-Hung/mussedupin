@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import heroVideo from "../../../assets/Home/Hero/LANGBIANG.mp4";
+import heroVideo from "../../../assets/Home/Hero/LANGBIANG_RESIZE.mp4";
 
 import { getCurrentLanguage, translateText } from "../../../utils/translate";
 import "./Hero.css";
@@ -103,10 +103,8 @@ const Hero = () => {
         prepareVisit: await translateText("Prepare your visit", language),
         prepareVisitCaps: await translateText("Chuẩn bị tham quan", language),
         imgAlt:
-          (await translateText(
-            "Bảo tàng hoạt động từ",
-            language
-          )) + " - Musée Du Pin",
+          (await translateText("Bảo tàng hoạt động từ", language)) +
+          " - Musée Du Pin",
         timeStart: await translateText("7:00 AM", language),
         timeEnd: await translateText("21:00 PM", language),
       };
@@ -152,7 +150,17 @@ const Hero = () => {
     <>
       <section className="hero-container">
         <div className="hero-image-container">
-          <video autoPlay muted loop playsInline className="hero-video">
+          <video
+            autoPlay
+            muted
+            loop
+            playsInline
+            preload="auto"
+            loading="eager"
+            width="100%"
+            height="100%"
+            className="hero-video"
+          >
             <source src={heroVideo} type="video/mp4" />
           </video>
           <div className="hero-overlay"></div>

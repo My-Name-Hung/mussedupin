@@ -3,10 +3,10 @@ import TranslatedText from "../../components/TranslatedText";
 import "./AboutPage.css";
 
 import { FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
-import herosVideo from "../../assets/Home/About/Hero_Abouts.mp4";
+import herosVideo from "../../assets/Home/About/Hero_Abouts_Resize.mp4";
 import khonggian from "../../assets/Home/About/khonggian.jpg";
 import nha from "../../assets/Home/About/nha.jpg";
-import nhaVideo from "../../assets/Home/About/NhaMatThong.mp4";
+import nhaVideo from "../../assets/Home/About/NhaMatThong_Resize.mp4";
 const AboutPage = () => {
   const [activeSection, setActiveSection] = useState("intro");
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);

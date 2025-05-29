@@ -75,7 +75,6 @@ const VisitInfo = () => {
   const horizontalNavRef = useRef(null);
   const detailsSidebarRef = useRef(null);
   const bookingSidebarRef = useRef(null);
-  const galleryModalRef = useRef(null);
 
   // Handle hash links when component mounts
   useEffect(() => {
@@ -473,7 +472,7 @@ const VisitInfo = () => {
       tags: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
       category: ["popular", "recommended"],
       location: "Cách bảo tàng 5 phút đi bộ",
-      host: "Marie Dupont",
+      host: "Musée Du Pin",
       roomType: "Phòng riêng trong nhà truyền thống",
       beds: "1 giường đôi",
       amenities: [
@@ -510,7 +509,7 @@ const VisitInfo = () => {
       tags: ["Đánh giá cao", "Sang trọng", "Vị trí trung tâm"],
       category: ["popular", "top-rated"],
       location: "Cách bảo tàng 10 phút đi bộ",
-      host: "Thomas Martin",
+      host: "Musée Du Pin",
       roomType: "Toàn bộ căn hộ",
       beds: "1 giường king, 1 giường sofa",
       amenities: [
@@ -548,7 +547,7 @@ const VisitInfo = () => {
       tags: ["Cao cấp", "Riêng tư", "Dịch vụ đầy đủ"],
       category: ["top-rated", "luxury"],
       location: "Cách bảo tàng 15 phút lái xe",
-      host: "Philippe Dubois",
+      host: "Musée Du Pin",
       roomType: "Toàn bộ biệt thự",
       beds: "2 giường king, 1 giường queen",
       amenities: [
@@ -592,7 +591,7 @@ const VisitInfo = () => {
       tags: ["Giá tốt", "Thuận tiện", "Đáng giá"],
       category: ["recommended", "budget-friendly"],
       location: "Cách bảo tàng 20 phút đi tàu điện ngầm",
-      host: "Claire Roux",
+      host: "Musée Du Pin",
       roomType: "Phòng riêng trong căn hộ chung",
       beds: "1 giường đôi",
       amenities: [
@@ -1202,7 +1201,7 @@ const VisitInfo = () => {
                 />
               </svg>
               <span>
-                <TranslatedText>Chủ nhà</TranslatedText>:{" "}
+                <TranslatedText>Chủ sở hữu</TranslatedText>:{" "}
                 {selectedHomestay.host}
               </span>
             </div>
@@ -1376,7 +1375,7 @@ const VisitInfo = () => {
                 name="email"
                 value={bookingFormData.email}
                 onChange={handleBookingInputChange}
-                placeholder="Enter your email address"
+                placeholder="Nhập địa chỉ email của bạn"
               />
               {formErrors.email && (
                 <div className="error-message">{formErrors.email}</div>
@@ -1387,7 +1386,7 @@ const VisitInfo = () => {
               className={`form-group ${formErrors.phone ? "has-error" : ""}`}
             >
               <label htmlFor="phone">
-                <TranslatedText>Phone Number</TranslatedText>
+                <TranslatedText>Số điện thoại</TranslatedText>
               </label>
               <input
                 type="tel"
@@ -1395,7 +1394,7 @@ const VisitInfo = () => {
                 name="phone"
                 value={bookingFormData.phone}
                 onChange={handleBookingInputChange}
-                placeholder="Enter your phone number"
+                placeholder="Nhận số điện thoại của bạn"
               />
               {formErrors.phone && (
                 <div className="error-message">{formErrors.phone}</div>
@@ -1406,7 +1405,7 @@ const VisitInfo = () => {
               className={`form-group ${formErrors.guests ? "has-error" : ""}`}
             >
               <label htmlFor="guests">
-                <TranslatedText>Number of Guests</TranslatedText>
+                <TranslatedText>Số lượng khách</TranslatedText>
               </label>
               <input
                 type="number"
@@ -1424,14 +1423,14 @@ const VisitInfo = () => {
 
             <div className="form-group">
               <label htmlFor="specialRequests">
-                <TranslatedText>Special Requests</TranslatedText>
+                <TranslatedText>Yêu cầu</TranslatedText>
               </label>
               <textarea
                 id="specialRequests"
                 name="specialRequests"
                 value={bookingFormData.specialRequests}
                 onChange={handleBookingInputChange}
-                placeholder="Any special requests or requirements?"
+                placeholder="Bạn có yêu cầu hoặc yêu cầu đặc biệt nào không?"
                 rows="3"
               ></textarea>
             </div>
@@ -1556,8 +1555,9 @@ const VisitInfo = () => {
 
           <p className="success-message">
             <TranslatedText>
-              Thank you for your booking. We've sent a confirmation to your
-              email. The host will contact you shortly with further details.
+              Cảm ơn bạn đã đặt phòng. Chúng tôi đã gửi xác nhận đến email của
+              bạn. Bộ phận chăm sóc khách hàng sẽ sớm liên hệ với bạn để cung
+              cấp thêm thông tin chi tiết.
             </TranslatedText>
           </p>
 
@@ -1570,7 +1570,8 @@ const VisitInfo = () => {
                 />
               </svg>
               <span>
-                <TranslatedText>Host</TranslatedText>: {successBookingData.host}
+                <TranslatedText>Chủ sỡ hữu</TranslatedText>:{" "}
+                {successBookingData.host}
               </span>
             </div>
 
@@ -1597,7 +1598,7 @@ const VisitInfo = () => {
                 {new Date(successBookingData.checkIn).toLocaleDateString()} -{" "}
                 {new Date(successBookingData.checkOut).toLocaleDateString()}
                 <span className="booking-nights">
-                  ({successBookingData.nights} nights)
+                  ({successBookingData.nights} đêm)
                 </span>
               </span>
             </div>
@@ -1610,14 +1611,14 @@ const VisitInfo = () => {
                 />
               </svg>
               <span>
-                <TranslatedText>Total</TranslatedText>:{" "}
+                <TranslatedText>Tổng</TranslatedText>:{" "}
                 <span className="total-price">${totalPrice}</span>
               </span>
             </div>
           </div>
 
           <button className="btn-close-success" onClick={closeSuccessModal}>
-            <TranslatedText>Close</TranslatedText>
+            <TranslatedText>Đóng</TranslatedText>
           </button>
         </div>
       </div>
@@ -1866,10 +1867,22 @@ const VisitInfo = () => {
 
     const gallery = selectedHomestay.gallery || [];
 
+    const handlePrevImage = () => {
+      setActiveImageIndex((prev) =>
+        prev === 0 ? gallery.length - 1 : prev - 1
+      );
+    };
+
+    const handleNextImage = () => {
+      setActiveImageIndex((prev) =>
+        prev === gallery.length - 1 ? 0 : prev + 1
+      );
+    };
+
     return (
-      <div className="gallery-modal" ref={galleryModalRef}>
+      <div className={`gallery-modal ${showGalleryModal ? "open" : ""}`}>
         <button
-          className="close-gallery"
+          className="gallery-close-btn"
           onClick={() => setShowGalleryModal(false)}
         >
           <svg viewBox="0 0 24 24" width="24" height="24">
@@ -1883,30 +1896,56 @@ const VisitInfo = () => {
           </svg>
         </button>
 
-        <div className="gallery-modal-content">
-          <div className="gallery-main-image">
-            <img
-              src={gallery[activeImageIndex]}
-              alt={`${selectedHomestay.title} - hình ${activeImageIndex + 1}`}
-            />
-          </div>
+        <div className="gallery-image-container">
+          <button className="gallery-nav-btn prev" onClick={handlePrevImage}>
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path
+                d="M15 18l-6-6 6-6"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
 
-          <div className="gallery-thumbnails">
-            {gallery.map((img, index) => (
-              <div
-                key={index}
-                className={`gallery-thumbnail ${
-                  activeImageIndex === index ? "active" : ""
-                }`}
-                onClick={() => setActiveImageIndex(index)}
-              >
-                <img
-                  src={img}
-                  alt={`${selectedHomestay.title} - hình ${index + 1}`}
-                />
-              </div>
-            ))}
-          </div>
+          <img
+            src={gallery[activeImageIndex]}
+            alt={`${selectedHomestay.title} - hình ${activeImageIndex + 1}`}
+          />
+
+          <button className="gallery-nav-btn next" onClick={handleNextImage}>
+            <svg viewBox="0 0 24 24" width="24" height="24">
+              <path
+                d="M9 18l6-6-6-6"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </button>
+        </div>
+
+        <div className="gallery-thumbnails-row">
+          {gallery.map((img, index) => (
+            <div
+              key={index}
+              className={`gallery-thumbnail ${
+                activeImageIndex === index ? "active" : ""
+              }`}
+              onClick={() => setActiveImageIndex(index)}
+            >
+              <img
+                src={img}
+                alt={`${selectedHomestay.title} - thumbnail ${index + 1}`}
+              />
+            </div>
+          ))}
+        </div>
+
+        <div className="gallery-counter">
+          {activeImageIndex + 1} / {gallery.length}
         </div>
       </div>
     );

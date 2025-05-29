@@ -63,10 +63,17 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 2rem;
-  background-color: white;
-  box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+  overflow-x: hidden;
+  background-image: url("../../../assets/Background/Background2.png");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 300px;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  box-sizing: border-box;
+  overflow: visible;
   border-radius: 5px;
-  margin-top: -50px;
+  margin-top: 25px;
   position: relative;
   z-index: 3;
 }
@@ -119,7 +126,6 @@
 
 /* Highlight important information */
 .highlight {
-  background-color: #f9f9f9;
   padding: 1rem;
   border-left: 4px solid #007bff;
   margin: 1rem 0;
@@ -245,7 +251,7 @@
 
   .legal-content {
     padding: 1.2rem;
-    margin-top: -25px;
+    margin-top: 25px;
     border-radius: 12px 12px 0 0;
   }
 

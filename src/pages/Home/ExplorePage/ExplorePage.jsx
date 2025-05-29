@@ -10,7 +10,7 @@ import cheghosanh from "../../../assets/home/Collections/Lehoi_cards.webp";
 import longda from "../../../assets/home/Collections/LongDaDa_cards.webp";
 import noidat from "../../../assets/home/Collections/noidat_cards.webp";
 import phunu from "../../../assets/home/Collections/phunu_cards.webp";
-
+import hoabantrang from "../../../assets/home/Collections/VatLieu/Hoa Ban Trắng.webp";
 // Sample collection categories
 const categories = [
   { id: 1, name: "Dụng cụ âm nhạc", count: 48 },
@@ -19,6 +19,7 @@ const categories = [
   { id: 4, name: "Nghệ thuật K'ho", count: 18 },
   { id: 5, name: "Hiện vật cổ", count: 20 },
   { id: 6, name: "Văn hóa dân tộc", count: 22 },
+  { id: 7, name: "Vật liệu", count: 24 },
 ];
 
 // Sample collection items
@@ -77,7 +78,17 @@ const collections = [
       "Được khoét rỗng từ quả hồ lô khô, vật phẩm này thường được dùng để đựng nước, rượu cần hoặc làm nhạc cụ truyền thống",
     category: "Nghệ thuật trang trí",
   },
+  {
+    id: 7,
+    title: "Vật liệu",
+    artist: "Tham quan",
+    image: hoabantrang,
+    description:
+      "Tại Musée Du Pin, mỗi chất liệu được chọn lựa kỹ lưỡng nhằm tôn vinh vẻ đẹp tự nhiên và bản sắc văn hóa Tây Nguyên. Các vật liệu truyền thống như gỗ, đá, đất và sợi tự nhiên không chỉ là phương tiện sáng tạo mà còn là cầu nối giữa nghệ thuật và đời sống bản địa.",
+    category: "Vật liệu",
+  },
 ];
+
 
 const ExplorePage = () => {
   return (

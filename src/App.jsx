@@ -18,15 +18,19 @@ import "./index.css";
 import AboutPage from "./pages/About/AboutPage";
 import CategoryPage from "./pages/Collection/CategoryPage";
 import CollectionPage from "./pages/Collection/CollectionPage";
+import Copyrights from "./pages/Footer/Copyrights/Copyrights";
 import LegalNotice from "./pages/Footer/LegalNotice/LegalNotice";
+import PrivacyPolicy from "./pages/Footer/PrivacyPolicy/PrivacyPolicy";
 import DuPinPlus from "./pages/Home/DuPinPlus/DuPinPlus";
 import ExplorePage from "./pages/Home/ExplorePage/ExplorePage";
 import LifeAtMuseumPage from "./pages/Museum/LifeAtMuseumPage";
 import NewsDetailPage from "./pages/Museum/NewsDetailPage";
 import NotFound from "./pages/NotFound";
 import SearchResults from "./pages/SearchResults";
+import SupportPage from "./pages/Support/SupportPage";
 import MuseumMapPage from "./pages/Visit/MuseumMapPage";
 import TrailExperiencePage from "./pages/Visit/TrailExperiencePage";
+import VisitorRules from "./pages/Visit/VisitorRules";
 import VisitorTrailDetailPage from "./pages/Visit/VisitorTrailDetailPage";
 import VisitorTrailsPage from "./pages/Visit/VisitorTrailsPage";
 
@@ -182,6 +186,10 @@ function App() {
               <Route path="/boutique" element={<BoutiquePage />} />
               <Route path="/dupinplus" element={<DuPinPlus />} />
               <Route path="/legal-notice" element={<LegalNotice />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/copyrights" element={<Copyrights />} />
+              <Route path="/visitor-rules" element={<VisitorRules />} />
+              <Route path="/support" element={<SupportPage />} />
               <Route path="/search-results" element={<SearchResults />} />
               <Route path="/collection" element={<CollectionPage />} />
               <Route

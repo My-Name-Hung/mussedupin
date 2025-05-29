@@ -4,13 +4,14 @@ import TranslatedText from "../../../components/TranslatedText";
 import "./Collections.css";
 
 // Import optimized images
-import bauho from "../../../assets/home/Collections/Bauholo_cards.webp";
-import congchieng from "../../../assets/home/Collections/congchien_cards.webp";
-import cheghosanh from "../../../assets/home/Collections/Lehoi_cards.webp";
-import longda from "../../../assets/home/Collections/LongDaDa_cards.webp";
-import noidat from "../../../assets/home/Collections/noidat_cards.webp";
-import phunu from "../../../assets/home/Collections/phunu_cards.webp";
-import thong2 from "../../../assets/home/Collections/Thông 2.webp";
+import congchieng from "../../../assets/home/Collections/DungcuAmNhacTayNguyen/Cồng Chiên.webp";
+import gui from "../../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/Chiếc Gùi.webp";
+import cheghosanh from "../../../assets/home/Collections/K_hoLeHoi/36 (2).webp";
+import longda from "../../../assets/home/Collections/K_hoChanNuoi/Lồng Đa Đa.webp";
+import noidat from "../../../assets/home/Collections/K_hoSinhHoatThuongNhat/Nồi Đất.webp";
+import phunu from "../../../assets/home/Collections/K_hoDieuKhac/Điêu Khắc.webp";
+import thong2 from "../../../assets/home/Collections/PhucTang/Thông 2.webp";
+import hoabantrang from "../../../assets/home/Collections/VatLieu/Hoa Ban Trắng.webp";
 const collectionsData = [
   {
     id: 1,
@@ -59,12 +60,12 @@ const collectionsData = [
   },
   {
     id: 6,
-    title: "K'ho sinh hoạt thường nhật",
+    title: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
     artist: "Tham quan",
-    image: bauho,
-    alt: "K'ho sinh hoạt thường nhật",
+    image: gui,
+    alt: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
     description:
-      "Được khoét rỗng từ quả hồ lô khô, vật phẩm này thường được dùng để đựng nước, rượu cần hoặc làm nhạc cụ truyền thống",
+      "Chiếc gùi",
   },
   {
     id: 7,
@@ -74,6 +75,15 @@ const collectionsData = [
     alt: "Phức Tầng",
     description:
       "Được Musée Du Pin bắt trọn khoảng khắc các hình ảnh thiên nhiên đậm sắc dân tộc K'ho, tạo nên bức tranh đẹp về đất nước Tây Nguyên.",
+  },
+  {
+    id: 8,
+    title: "Vật liệu",
+    artist: "Tham quan",
+    image: hoabantrang,
+    alt: "Vật liệu",
+    description:
+      "Vật liệu",
   },
 ];
 

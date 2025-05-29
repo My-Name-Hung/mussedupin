@@ -24,13 +24,16 @@ const FeedbackModal = ({ isOpen, onClose }) => {
     setSubmitStatus(null);
 
     try {
-      const response = await fetch("http://localhost:5000/api/feedback", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "https://mussedupin.onrender.com/api/feedback",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
       const data = await response.json();
 
@@ -49,6 +52,7 @@ const FeedbackModal = ({ isOpen, onClose }) => {
         throw new Error(data.message || "Có lỗi xảy ra");
       }
     } catch (error) {
+      console.error("Error submitting feedback:", error);
       setSubmitStatus({
         type: "error",
         message: "Có lỗi xảy ra khi gửi phản hồi. Vui lòng thử lại sau.",
@@ -66,7 +70,10 @@ const FeedbackModal = ({ isOpen, onClose }) => {
         <button className="close-button" onClick={onClose}>
           &times;
         </button>
-        <h2>Gửi phản hồi</h2>
+
+        <div className="modal-header">
+          <h2>Gửi phản hồi</h2>
+        </div>
 
         {submitStatus && (
           <div className={`submit-status ${submitStatus.type}`}>
@@ -77,41 +84,47 @@ const FeedbackModal = ({ isOpen, onClose }) => {
         <form onSubmit={handleSubmit}>
           <div className="form-group">
             <label htmlFor="name">Họ và tên</label>
-            <input
-              type="text"
-              id="name"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              required
-              placeholder="Nhập họ và tên của bạn"
-            />
+            <div className="input-container">
+              <input
+                type="text"
+                id="name"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                required
+                placeholder="Nhập họ và tên của bạn"
+              />
+            </div>
           </div>
 
           <div className="form-group">
             <label htmlFor="email">Email</label>
-            <input
-              type="email"
-              id="email"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              required
-              placeholder="Nhập địa chỉ email của bạn"
-            />
+            <div className="input-container">
+              <input
+                type="email"
+                id="email"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                required
+                placeholder="Nhập địa chỉ email của bạn"
+              />
+            </div>
           </div>
 
           <div className="form-group">
             <label htmlFor="feedback">Nội dung phản hồi</label>
-            <textarea
-              id="feedback"
-              name="feedback"
-              value={formData.feedback}
-              onChange={handleChange}
-              required
-              placeholder="Nhập nội dung phản hồi của bạn"
-              rows="5"
-            />
+            <div className="input-container">
+              <textarea
+                id="feedback"
+                name="feedback"
+                value={formData.feedback}
+                onChange={handleChange}
+                required
+                placeholder="Nhập nội dung phản hồi của bạn"
+                rows="5"
+              />
+            </div>
           </div>
 
           <button

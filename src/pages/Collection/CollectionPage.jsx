@@ -1,4 +1,5 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useLocation } from "react-router-dom";
 import TranslatedText from "../../components/TranslatedText";
 import "./CollectionPage.css";
 
@@ -189,7 +190,7 @@ const collectionData = {
     },
     {
       id: 7,
-      title: "Vật liệu K'ho",
+      title: "Vật liệu",
       category: "Vật liệu",
       image: hoabantrang,
       type: "image",
@@ -200,7 +201,17 @@ const collectionData = {
   ],
 };
 
+// Preload critical images
+const preloadImages = () => {
+  const imagesToPreload = [congchieng, dantrung, longda, phunu, hoabantrang];
+  imagesToPreload.forEach((src) => {
+    const img = new Image();
+    img.src = src;
+  });
+};
+
 const CollectionPage = () => {
+  const location = useLocation();
   // State for hero section slideshow
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
 
@@ -230,6 +241,11 @@ const CollectionPage = () => {
   // State for parallax effect on category cards
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const categoryGridRef = useRef(null);
+
+  // State for touch events
+  const [lastTouchX, setLastTouchX] = useState(0);
+  const [lastTouchTime, setLastTouchTime] = useState(0);
+  const [touchVelocity, setTouchVelocity] = useState(0);
 
   // Handle auto-rotating hero slideshow
   useEffect(() => {
@@ -505,56 +521,137 @@ const CollectionPage = () => {
     }, 2000);
   };
 
-  const handleMouseMove = (e) => {
-    if (!isDragging) return;
-    e.preventDefault();
-    const x = e.pageX - discoverWorksRef.current.offsetLeft;
-    const walk = (x - startX) * 2; // Scroll speed multiplier
-    setScrollLeft(
-      Math.max(0, Math.min(scrollLeft - walk, contentWidth - containerWidth))
-    );
-  };
+  const handleMouseMove = useCallback(
+    (e) => {
+      if (!isDragging || !discoverWorksRef.current) return;
+      e.preventDefault();
+
+      const x = e.pageX - discoverWorksRef.current.offsetLeft;
+      const walk = (x - startX) * 2;
+
+      requestAnimationFrame(() => {
+        if (discoverWorksRef.current) {
+          discoverWorksRef.current.scrollLeft = scrollLeft - walk;
+        }
+      });
+    },
+    [isDragging, startX, scrollLeft]
+  );
 
   // Handle touch events for mobile
   const handleTouchStart = (e) => {
     setIsDragging(true);
-    setStartX(e.touches[0].clientX - discoverWorksRef.current.offsetLeft);
+    setStartX(e.touches[0].clientX);
     setScrollLeft(discoverWorksRef.current.scrollLeft);
     setManualInteraction(true);
+    setAutoScrollEnabled(false);
     setShowScrollIndicator(false);
+    setLastTouchX(e.touches[0].clientX);
+    setLastTouchTime(Date.now());
   };
 
   const handleTouchMove = (e) => {
-    if (!isDragging) return;
-    const x = e.touches[0].clientX - discoverWorksRef.current.offsetLeft;
-    const walk = (x - startX) * 2;
-    setScrollLeft(
-      Math.max(0, Math.min(scrollLeft - walk, contentWidth - containerWidth))
-    );
+    if (!isDragging || !discoverWorksRef.current) return;
+    e.preventDefault();
+    const touchX = e.touches[0].clientX;
+    const diff = startX - touchX;
+
+    // Calculate velocity
+    const now = Date.now();
+    const deltaTime = now - lastTouchTime;
+    const deltaX = touchX - lastTouchX;
+    setTouchVelocity(deltaX / deltaTime);
+
+    // Update last position and time
+    setLastTouchX(touchX);
+    setLastTouchTime(now);
+
+    // Update scroll position with improved sensitivity and smoothing
+    const sensitivity = 1.2;
+    const currentScroll = discoverWorksRef.current.scrollLeft;
+    const newPosition = currentScroll + diff * sensitivity;
+    setStartX(touchX);
+
+    // Add resistance at edges
+    if (newPosition < 0) {
+      discoverWorksRef.current.scrollLeft = Math.max(
+        newPosition * 0.5,
+        -containerWidth * 0.1
+      );
+    } else if (newPosition > contentWidth - containerWidth) {
+      const overscroll = newPosition - (contentWidth - containerWidth);
+      discoverWorksRef.current.scrollLeft =
+        contentWidth - containerWidth + overscroll * 0.5;
+    } else {
+      discoverWorksRef.current.scrollLeft = newPosition;
+    }
   };
 
   const handleTouchEnd = () => {
     setIsDragging(false);
 
-    // Add delay before resuming to improve mobile experience
-    setTimeout(() => {
-      if (userInteractionTimeout.current) {
-        clearTimeout(userInteractionTimeout.current);
-      }
-      userInteractionTimeout.current = setTimeout(() => {
-        setManualInteraction(false);
-      }, 2000);
-    }, 800);
-  };
+    // Apply momentum scrolling
+    if (Math.abs(touchVelocity) > 0.5) {
+      const momentum = touchVelocity * 100;
+      const targetScroll = discoverWorksRef.current.scrollLeft + momentum;
 
-  // Handle scroll arrows
-  const handleScroll = (direction) => {
-    if (discoverWorksRef.current) {
-      const scrollAmount = direction === "left" ? -400 : 400;
-      discoverWorksRef.current.scrollBy({
-        left: scrollAmount,
-        behavior: "smooth",
-      });
+      // Animate to target with easing
+      const startScroll = discoverWorksRef.current.scrollLeft;
+      const startTime = Date.now();
+      const duration = 500;
+
+      const animateMomentum = () => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Easing function
+        const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+        const currentProgress = easeOut(progress);
+
+        const newScroll =
+          startScroll + (targetScroll - startScroll) * currentProgress;
+
+        if (discoverWorksRef.current) {
+          // Add resistance at edges with smooth bounce
+          if (newScroll < 0) {
+            discoverWorksRef.current.scrollLeft = Math.max(newScroll * 0.5, 0);
+          } else if (newScroll > contentWidth - containerWidth) {
+            const overscroll = newScroll - (contentWidth - containerWidth);
+            discoverWorksRef.current.scrollLeft =
+              contentWidth - containerWidth + overscroll * 0.5;
+          } else {
+            discoverWorksRef.current.scrollLeft = newScroll;
+          }
+        }
+
+        if (progress < 1) {
+          requestAnimationFrame(animateMomentum);
+        } else {
+          // Resume auto-scroll after momentum ends and 1s delay
+          setTimeout(() => {
+            setManualInteraction(false);
+            // Ensure we're starting from the current position
+            if (discoverWorksRef.current) {
+              const finalScroll = discoverWorksRef.current.scrollLeft;
+              discoverWorksRef.current.scrollLeft = finalScroll;
+            }
+            setAutoScrollEnabled(true);
+          }, 1000);
+        }
+      };
+
+      requestAnimationFrame(animateMomentum);
+    } else {
+      // If no momentum, resume auto-scroll after 1s
+      setTimeout(() => {
+        setManualInteraction(false);
+        // Ensure we're starting from the current position
+        if (discoverWorksRef.current) {
+          const finalScroll = discoverWorksRef.current.scrollLeft;
+          discoverWorksRef.current.scrollLeft = finalScroll;
+        }
+        setAutoScrollEnabled(true);
+      }, 1000);
     }
   };
 
@@ -580,7 +677,7 @@ const CollectionPage = () => {
     }
   };
 
-  // Optimize the slideshow animation to be smoother and faster
+  // Optimize auto-scrolling
   useEffect(() => {
     if (
       !discoverWorksRef.current ||
@@ -591,44 +688,30 @@ const CollectionPage = () => {
       return () => {};
     }
 
-    // Set CSS scroll behavior to auto for smoother animation
-    if (discoverWorksRef.current.firstChild) {
-      discoverWorksRef.current.firstChild.style.transition =
-        "transform 0ms linear";
-    }
-
-    // Calculate widths once at the beginning of animation
-    const containerWidth = discoverWorksRef.current.clientWidth;
-    const contentWidth = discoverWorksRef.current.scrollWidth;
-    setContainerWidth(containerWidth);
-    setContentWidth(contentWidth);
-
-    if (contentWidth <= containerWidth) return () => {};
-
-    // Smoother animation with optimized timing
     let startTime = null;
     let animationFrameId = null;
-    const duration = 50000; // 50 seconds for full scroll
+    const scrollDuration = 50000;
+    const containerWidth = discoverWorksRef.current.clientWidth;
+    const contentWidth = discoverWorksRef.current.scrollWidth;
     const maxScroll = contentWidth - containerWidth;
-
-    // Use direct DOM manipulation for better performance
-    const innerContainer = discoverWorksRef.current.firstChild;
+    const currentScroll = discoverWorksRef.current.scrollLeft;
 
     const animateScroll = (timestamp) => {
-      if (!startTime) startTime = timestamp;
+      if (!startTime) {
+        // Calculate the appropriate startTime based on current scroll position
+        const progress = currentScroll / maxScroll;
+        startTime = timestamp - progress * scrollDuration;
+      }
       const elapsed = timestamp - startTime;
+      const progress = (elapsed / scrollDuration) * maxScroll;
 
-      // Calculate scroll position with simple linear function - less calculations, smoother animation
-      const scrollPos = (elapsed / duration) * maxScroll;
-
-      // Reset when we reach the end
-      if (scrollPos >= maxScroll) {
+      if (progress >= maxScroll) {
         startTime = timestamp;
-        // Jump back to start without animation
-        innerContainer.style.transform = `translateX(0px)`;
-      } else {
-        // Direct DOM manipulation instead of using React state for smoother animation
-        innerContainer.style.transform = `translateX(-${scrollPos}px)`;
+        if (discoverWorksRef.current) {
+          discoverWorksRef.current.scrollLeft = 0;
+        }
+      } else if (discoverWorksRef.current) {
+        discoverWorksRef.current.scrollLeft = progress;
       }
 
       animationFrameId = requestAnimationFrame(animateScroll);
@@ -636,7 +719,6 @@ const CollectionPage = () => {
 
     animationFrameId = requestAnimationFrame(animateScroll);
 
-    // Clean up animation
     return () => {
       if (animationFrameId) {
         cancelAnimationFrame(animationFrameId);
@@ -644,41 +726,75 @@ const CollectionPage = () => {
     };
   }, [autoScrollEnabled, isDragging, manualInteraction]);
 
-  // Add ResizeObserver useEffect to update dimensions when window resizes
+  // Optimize resize handling
   useEffect(() => {
     if (!discoverWorksRef.current) return;
 
     const calculateWidths = () => {
-      if (discoverWorksRef.current) {
-        const containerWidth = discoverWorksRef.current.clientWidth;
-        const contentWidth = discoverWorksRef.current.scrollWidth;
-
-        setContainerWidth(containerWidth);
-        setContentWidth(contentWidth);
-      }
+      requestAnimationFrame(() => {
+        if (discoverWorksRef.current) {
+          setContainerWidth(discoverWorksRef.current.clientWidth);
+          setContentWidth(discoverWorksRef.current.scrollWidth);
+        }
+      });
     };
 
-    // Initial calculation
+    const debouncedCalculateWidths = debounce(calculateWidths, 250);
+
     calculateWidths();
+    window.addEventListener("resize", debouncedCalculateWidths);
 
-    // Use ResizeObserver for more precise updates
-    if (window.ResizeObserver) {
-      const resizeObserver = new ResizeObserver(calculateWidths);
-      resizeObserver.observe(discoverWorksRef.current);
-
-      return () => {
-        resizeObserver.disconnect();
-      };
-    } else {
-      // Fallback for browsers without ResizeObserver
-      const handleResize = () => calculateWidths();
-      window.addEventListener("resize", handleResize);
-
-      return () => {
-        window.removeEventListener("resize", handleResize);
-      };
-    }
+    return () => {
+      window.removeEventListener("resize", debouncedCalculateWidths);
+    };
   }, []);
+
+  // Debounce function
+  const debounce = (func, wait) => {
+    let timeout;
+    return function executedFunction(...args) {
+      const later = () => {
+        clearTimeout(timeout);
+        func(...args);
+      };
+      clearTimeout(timeout);
+      timeout = setTimeout(later, wait);
+    };
+  };
+
+  // Optimize image loading in discover works section
+  const renderDiscoverWorkItem = useCallback(
+    (artwork, index) => (
+      <div
+        key={artwork.id}
+        className="cp-discover-artwork-item"
+        style={{
+          animationDelay: `${index * 0.1}s`,
+          transform: `translateY(${
+            index % 2 === 0 ? -35 - (index % 5) * 5 : 20 + (index % 4) * 12
+          }px) rotate(${index % 2 === 0 ? -1 : 1}deg)`,
+          width: `${250 + (index % 5) * 18}px`,
+          height: `${320 + (index % 4) * 25}px`,
+        }}
+        onClick={() => handleArtworkSelect(index)}
+      >
+        <div className="artwork-frame">
+          <div className="artwork-image-container">
+            <img
+              src={artwork.image}
+              alt={artwork.title}
+              className="artwork-image"
+              loading={index < 4 ? "eager" : "lazy"}
+              decoding="async"
+              width="100%"
+              height="100%"
+            />
+          </div>
+        </div>
+      </div>
+    ),
+    []
+  );
 
   // Optimize mouse movement handler with throttling to improve performance
   const handleCategoryMouseMove = (e) => {
@@ -694,6 +810,23 @@ const CollectionPage = () => {
 
     setMousePosition({ x, y });
   };
+
+  // Preload images on mount
+  useEffect(() => {
+    preloadImages();
+  }, []);
+
+  // Scroll to anchor section if state.scrollTo is present
+  useEffect(() => {
+    if (location.state && location.state.scrollTo) {
+      const el = document.getElementById(location.state.scrollTo);
+      if (el) {
+        setTimeout(() => {
+          el.scrollIntoView({ behavior: "smooth", block: "start" });
+        }, 200);
+      }
+    }
+  }, [location.state]);
 
   return (
     <div className="collection-page">
@@ -755,7 +888,7 @@ const CollectionPage = () => {
           <div className="cp-discover-gradient-right"></div>
 
           <div className="cp-scroll-arrows">
-            <button
+            {/* <button
               className="cp-scroll-arrow cp-scroll-left"
               onClick={() => handleScroll("left")}
               aria-label="Scroll left"
@@ -771,8 +904,8 @@ const CollectionPage = () => {
               >
                 <polyline points="15 18 9 12 15 6"></polyline>
               </svg>
-            </button>
-            <button
+            </button> */}
+            {/* <button
               className="cp-scroll-arrow cp-scroll-right"
               onClick={() => handleScroll("right")}
               aria-label="Scroll right"
@@ -788,7 +921,7 @@ const CollectionPage = () => {
               >
                 <polyline points="9 18 15 12 9 6"></polyline>
               </svg>
-            </button>
+            </button> */}
           </div>
 
           <div
@@ -809,50 +942,9 @@ const CollectionPage = () => {
             onMouseEnter={handleMouseEnter}
           >
             <div className="cp-discover-inner-container">
-              {collectionData.artworks.map((artwork, index) => (
-                <div
-                  key={artwork.id}
-                  className="cp-discover-artwork-item"
-                  style={{
-                    animationDelay: `${index * 0.1}s`,
-                    transform: `translateY(${
-                      index % 2 === 0
-                        ? -35 - (index % 5) * 5
-                        : index % 3 === 0
-                        ? -20 - (index % 4) * 8
-                        : index % 5 === 0
-                        ? -40 + (index % 3) * 10
-                        : 20 + (index % 4) * 12
-                    }px) rotate(${index % 2 === 0 ? -1 : 1}deg)`,
-                    width: `${250 + (index % 5) * 18}px`,
-                    height: `${320 + (index % 4) * 25}px`,
-                    "--delay": `${index * 0.7}s`,
-                  }}
-                  onClick={() => handleArtworkSelect(index)}
-                >
-                  <div className="artwork-frame">
-                    <div className="artwork-image-container">
-                      <img
-                        src={artwork.image}
-                        alt={artwork.title}
-                        className="artwork-image"
-                        loading={index < 8 ? "eager" : "lazy"}
-                      />
-                      <div className="artwork-overlay">
-                        <div className="artwork-info-hover">
-                          <h3 className="artwork-title-hover">
-                            {artwork.title}
-                          </h3>
-                          <p className="artwork-artist-hover">
-                            {artwork.artist}
-                          </p>
-                          <p className="artwork-year-hover">{artwork.year}</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              ))}
+              {collectionData.artworks.map((artwork, index) =>
+                renderDiscoverWorkItem(artwork, index)
+              )}
             </div>
           </div>
 
@@ -873,7 +965,7 @@ const CollectionPage = () => {
       </section>
 
       {/* Complete Collection Section */}
-      <section className="cp-categories-section">
+      <section className="cp-categories-section" id="complete-collection">
         <div className="cp-categories-container">
           <div className="cp-categories-header">
             <h2 className="cp-categories-title">

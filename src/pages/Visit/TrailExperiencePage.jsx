@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import "./TrailExperiencePage.css";
 
 // Import trail images from collection folders
@@ -24,6 +24,9 @@ const khoSinhHoatImages = import.meta.glob(
 const phucTangImages = import.meta.glob(
   "../../assets/home/Collections/PhucTang/*.webp"
 );
+const vatLieuImages = import.meta.glob(
+  "../../assets/home/Collections/VatLieu/*.webp"
+);
 
 // Import thumbnails for each category
 import dungcuThumb from "../../assets/home/Collections/DungcuAmNhacTayNguyen/Cồng Chiên.webp";
@@ -33,6 +36,7 @@ import lehoiThumb from "../../assets/home/Collections/K_hoLeHoi/Lễ Hội.webp"
 import sanbanThumb from "../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/Chiếc Gùi.webp";
 import sinhoatThumb from "../../assets/home/Collections/K_hoSinhHoatThuongNhat/Nồi Đất.webp";
 import phuctangThumb from "../../assets/home/Collections/PhucTang/Thông 2.webp";
+import vatlieuThumb from "../../assets/home/Collections/VatLieu/Hoa Ban Trắng.webp";
 
 // SVG Icons
 const KeyIcon = () => (
@@ -204,9 +208,25 @@ const EditIcon = () => (
   </svg>
 );
 
+const BackIcon = () => (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    strokeWidth="2"
+    strokeLinecap="round"
+    strokeLinejoin="round"
+  >
+    <line x1="19" y1="12" x2="5" y2="12"></line>
+    <polyline points="12 19 5 12 12 5"></polyline>
+  </svg>
+);
+
 // Sample artworks data structure for the trail
 const getArtworkData = (trailId) => {
-  // This would ideally come from an API or database
   const trails = {
     1: [
       {
@@ -217,53 +237,15 @@ const getArtworkData = (trailId) => {
         description:
           "Cồng chiêng là nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, là biểu tượng văn hóa và tín ngưỡng thiêng liêng.",
         room: "Khu trưng bày nhạc cụ",
-        images: Object.entries(dungcuImages).map(([path, loader]) => ({
-          path,
-          loader,
-        })),
+        images: dungcuImages,
         access: [
           {
             icon: <LocationIcon />,
-            text: "Vào qua cửa chính.",
+            text: "Vào qua cửa chính bảo tàng",
           },
           {
             icon: <ArrowRightIcon />,
-            text: "Đi thẳng đến khu trưng bày nhạc cụ.",
-          },
-        ],
-        additionalSections: [
-          {
-            title: "NGHỆ THUẬT CỒNG CHIÊNG",
-            icon: <ChatIcon />,
-            content:
-              "Cồng chiêng không chỉ là nhạc cụ mà còn là biểu tượng của quyền lực và địa vị trong cộng đồng.",
-          },
-        ],
-      },
-      {
-        id: 2,
-        title: "ĐIÊU KHẮC TÂY NGUYÊN",
-        artist: "Nghệ nhân K'ho",
-        image: dieukhacThumb,
-        description:
-          "Nghệ thuật điêu khắc truyền thống của người K'ho thể hiện đặc trưng văn hóa và đời sống tinh thần của dân tộc.",
-        room: "Khu trưng bày điêu khắc",
-        images: Object.entries(khoDieuKhacImages).map(([path, loader]) => ({
-          path,
-          loader,
-        })),
-        access: [
-          {
-            icon: <LocationIcon />,
-            text: "Đi theo chỉ dẫn đến khu điêu khắc.",
-          },
-        ],
-        additionalSections: [
-          {
-            title: "NGHỆ THUẬT ĐIÊU KHẮC",
-            icon: <ChatIcon />,
-            content:
-              "Nghệ thuật điêu khắc K'ho thể hiện đặc trưng văn hóa và đời sống tinh thần của dân tộc.",
+            text: "Đi thẳng đến khu trưng bày nhạc cụ",
           },
         ],
       },
@@ -271,32 +253,21 @@ const getArtworkData = (trailId) => {
     2: [
       {
         id: 1,
-        title: "CHĂN NUÔI K'HO",
+        title: "K'HO CHĂN NUÔI",
         artist: "Nghệ nhân K'ho",
         image: channuoiThumb,
         description:
-          "Khám phá hoạt động chăn nuôi truyền thống của người K'ho.",
+          "Lồng đa đa của người K'ho được đan thủ công từ tre nứa, thể hiện sự khéo léo và mối liên kết với thiên nhiên.",
         room: "Khu trưng bày đời sống",
-        images: Object.entries(khoChanNuoiImages).map(([path, loader]) => ({
-          path,
-          loader,
-        })),
+        images: khoChanNuoiImages,
         access: [
           {
             icon: <LocationIcon />,
-            text: "Vào qua khu trưng bày chính.",
+            text: "Vào qua cửa chính bảo tàng",
           },
           {
             icon: <ArrowRightIcon />,
-            text: "Rẽ phải đến khu trưng bày đời sống.",
-          },
-        ],
-        additionalSections: [
-          {
-            title: "CHĂN NUÔI TRUYỀN THỐNG",
-            icon: <ChatIcon />,
-            content:
-              "Hoạt động chăn nuôi của người K'ho thể hiện sự gắn bó với thiên nhiên và truyền thống văn hóa.",
+            text: "Rẽ phải đến khu trưng bày đời sống",
           },
         ],
       },
@@ -304,27 +275,21 @@ const getArtworkData = (trailId) => {
     3: [
       {
         id: 1,
-        title: "LỄ HỘI K'HO",
+        title: "K'HO LỄ HỘI",
         artist: "Cộng đồng K'ho",
         image: lehoiThumb,
-        description: "Khám phá các lễ hội truyền thống của người K'ho.",
+        description:
+          "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, là biểu tượng của sự giàu có và tín ngưỡng.",
         room: "Khu trưng bày lễ hội",
-        images: Object.entries(khoLeHoiImages).map(([path, loader]) => ({
-          path,
-          loader,
-        })),
+        images: khoLeHoiImages,
         access: [
           {
             icon: <LocationIcon />,
-            text: "Đi theo lối dẫn đến khu trưng bày lễ hội.",
+            text: "Vào qua cửa chính bảo tàng",
           },
-        ],
-        additionalSections: [
           {
-            title: "VĂN HÓA LỄ HỘI",
-            icon: <ChatIcon />,
-            content:
-              "Lễ hội truyền thống là một phần không thể thiếu trong đời sống văn hóa của người K'ho.",
+            icon: <ArrowRightIcon />,
+            text: "Đi theo chỉ dẫn đến khu trưng bày lễ hội",
           },
         ],
       },
@@ -332,32 +297,21 @@ const getArtworkData = (trailId) => {
     4: [
       {
         id: 1,
-        title: "SĂN BẮN VÀ HÁI LƯỢM",
-        artist: "Cộng đồng K'ho",
-        image: sanbanThumb,
+        title: "K'HO ĐIÊU KHẮC",
+        artist: "Nghệ nhân K'ho",
+        image: dieukhacThumb,
         description:
-          "Tìm hiểu về hoạt động săn bắn và hái lượm của người K'ho.",
-        room: "Khu trưng bày đời sống",
-        images: Object.entries(khoSanBanImages).map(([path, loader]) => ({
-          path,
-          loader,
-        })),
+          "Nghệ thuật điêu khắc K'ho thể hiện đặc trưng văn hóa và đời sống tinh thần của dân tộc.",
+        room: "Khu trưng bày điêu khắc",
+        images: khoDieuKhacImages,
         access: [
           {
             icon: <LocationIcon />,
-            text: "Vào qua khu trưng bày chính.",
+            text: "Vào qua cửa chính bảo tàng",
           },
           {
             icon: <ArrowRightIcon />,
-            text: "Đi theo chỉ dẫn đến khu trưng bày đời sống.",
-          },
-        ],
-        additionalSections: [
-          {
-            title: "SINH KẾ TRUYỀN THỐNG",
-            icon: <ChatIcon />,
-            content:
-              "Săn bắn và hái lượm là hoạt động sinh kế quan trọng của người K'ho.",
+            text: "Đi theo chỉ dẫn đến khu trưng bày điêu khắc",
           },
         ],
       },
@@ -365,27 +319,21 @@ const getArtworkData = (trailId) => {
     5: [
       {
         id: 1,
-        title: "SINH HOẠT THƯỜNG NHẬT",
+        title: "K'HO SĂN BẮN & HÁI LƯỢM",
         artist: "Cộng đồng K'ho",
-        image: sinhoatThumb,
-        description: "Khám phá đời sống sinh hoạt hàng ngày của người K'ho.",
+        image: sanbanThumb,
+        description:
+          "Chiếc gùi - vật dụng không thể thiếu trong đời sống của người K'ho, dùng để đựng nông sản và đồ đạc.",
         room: "Khu trưng bày đời sống",
-        images: Object.entries(khoSinhHoatImages).map(([path, loader]) => ({
-          path,
-          loader,
-        })),
+        images: khoSanBanImages,
         access: [
           {
             icon: <LocationIcon />,
-            text: "Đi theo chỉ dẫn đến khu trưng bày đời sống.",
+            text: "Vào qua cửa chính bảo tàng",
           },
-        ],
-        additionalSections: [
           {
-            title: "ĐỜI SỐNG HÀNG NGÀY",
-            icon: <ChatIcon />,
-            content:
-              "Sinh hoạt thường nhật phản ánh nét văn hóa độc đáo của người K'ho.",
+            icon: <ArrowRightIcon />,
+            text: "Đi theo chỉ dẫn đến khu trưng bày đời sống",
           },
         ],
       },
@@ -393,140 +341,154 @@ const getArtworkData = (trailId) => {
     6: [
       {
         id: 1,
-        title: "PHỨC TẦNG VĂN HÓA",
+        title: "K'HO SINH HOẠT THƯỜNG NHẬT",
         artist: "Cộng đồng K'ho",
-        image: phuctangThumb,
-        description: "Tìm hiểu về phức tầng văn hóa K'ho.",
-        room: "Khu trưng bày phức tầng",
-        images: Object.entries(phucTangImages).map(([path, loader]) => ({
-          path,
-          loader,
-        })),
+        image: sinhoatThumb,
+        description:
+          "Nồi đất và bầu hồ lô là những vật dụng thiết yếu trong sinh hoạt hàng ngày của người K'ho.",
+        room: "Khu trưng bày đời sống",
+        images: khoSinhHoatImages,
         access: [
           {
             icon: <LocationIcon />,
-            text: "Vào qua cửa chính bảo tàng.",
+            text: "Vào qua cửa chính bảo tàng",
           },
-        ],
-        additionalSections: [
           {
-            title: "PHỨC TẦNG VĂN HÓA",
-            icon: <ChatIcon />,
-            content:
-              "Phức tầng văn hóa K'ho là sự kết hợp độc đáo của nhiều yếu tố văn hóa truyền thống.",
+            icon: <ArrowRightIcon />,
+            text: "Đi theo chỉ dẫn đến khu trưng bày sinh hoạt",
           },
         ],
       },
     ],
-    // Add default data for any other trail ID
-    default: [
+    7: [
       {
         id: 1,
-        title: "VĂN HÓA K'HO",
+        title: "PHỨC TẦNG",
         artist: "Cộng đồng K'ho",
         image: phuctangThumb,
-        description: "Khám phá nét văn hóa độc đáo của người K'ho.",
-        room: "Khu trưng bày chính",
-        images: Object.entries(phucTangImages).map(([path, loader]) => ({
-          path,
-          loader,
-        })),
+        description:
+          "Đồi thông là biểu tượng của sự bền vững và tín ngưỡng thiêng liêng trong đời sống người dân Tây Nguyên.",
+        room: "Khu trưng bày phức tầng",
+        images: phucTangImages,
         access: [
           {
             icon: <LocationIcon />,
-            text: "Vào qua cửa chính bảo tàng.",
+            text: "Vào qua cửa chính bảo tàng",
+          },
+          {
+            icon: <ArrowRightIcon />,
+            text: "Đi theo chỉ dẫn đến khu trưng bày phức tầng",
           },
         ],
-        additionalSections: [
+      },
+    ],
+    8: [
+      {
+        id: 1,
+        title: "VẬT LIỆU",
+        artist: "Cộng đồng K'ho",
+        image: vatlieuThumb,
+        description:
+          "Tại Musée Du Pin, mỗi chất liệu được chọn lựa kỹ lưỡng nhằm tôn vinh vẻ đẹp tự nhiên và bản sắc văn hóa Tây Nguyên.",
+        room: "Khu trưng bày vật liệu",
+        images: vatLieuImages,
+        access: [
           {
-            title: "VĂN HÓA K'HO",
-            icon: <ChatIcon />,
-            content:
-              "Văn hóa K'ho là một phần quan trọng của di sản văn hóa Tây Nguyên.",
+            icon: <LocationIcon />,
+            text: "Vào qua cửa chính bảo tàng",
+          },
+          {
+            icon: <ArrowRightIcon />,
+            text: "Đi theo chỉ dẫn đến khu trưng bày vật liệu",
           },
         ],
       },
     ],
   };
 
-  // Return the trail data if it exists, otherwise return default data
-  return trails[trailId] || trails.default;
+  return trails[trailId] || trails[1];
 };
 
 const TrailExperiencePage = () => {
   const { trailId, artworkId = 1 } = useParams();
-  const navigate = useNavigate();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [allImages, setAllImages] = useState([]);
   const [showAccess, setShowAccess] = useState(false);
   const [showArtworksList, setShowArtworksList] = useState(false);
+  const [accessInfo, setAccessInfo] = useState([]);
 
   useEffect(() => {
     // Get trail data
     try {
       const trailArtworks = getArtworkData(parseInt(trailId) || 1);
+      const currentArtwork =
+        trailArtworks.find((a) => a.id === parseInt(artworkId)) ||
+        trailArtworks[0];
 
-      // Load all images for the current artwork
-      const loadImages = async () => {
-        const currentArtwork =
-          trailArtworks.find((a) => a.id === parseInt(artworkId)) ||
-          trailArtworks[0];
-        if (currentArtwork && currentArtwork.images) {
-          const imagePromises = currentArtwork.images.map(
-            async ({ path, loader }) => {
-              try {
-                const module = await loader();
-                return {
-                  path,
-                  url: module.default,
-                  title: path.split("/").pop().replace(".webp", ""),
-                  artist: currentArtwork.artist,
-                  description: currentArtwork.description,
-                  additionalSections: currentArtwork.additionalSections,
-                };
-              } catch (error) {
-                console.error(`Error loading image ${path}:`, error);
-                return null;
-              }
-            }
-          );
+      if (currentArtwork) {
+        setAccessInfo(currentArtwork.access || []);
 
-          const loadedImagesList = (await Promise.all(imagePromises)).filter(
-            (img) => img !== null
-          );
-          setAllImages([
-            {
-              path: "main",
-              url: currentArtwork.image,
-              title: currentArtwork.title,
-              artist: currentArtwork.artist,
-              description: currentArtwork.description,
-              additionalSections: currentArtwork.additionalSections,
-            },
-            ...loadedImagesList,
-          ]);
-          setCurrentImageIndex(0);
-        }
-      };
+        // Load all images for the current artwork
+        const loadImages = async () => {
+          if (currentArtwork && currentArtwork.images) {
+            const imageModules = Object.entries(currentArtwork.images);
+            const loadedImages = await Promise.all(
+              imageModules.map(async ([path, loader]) => {
+                try {
+                  const module = await loader();
+                  return {
+                    path,
+                    url: module.default,
+                    title: path.split("/").pop().replace(".webp", ""),
+                    artist: currentArtwork.artist,
+                    description: currentArtwork.description,
+                    additionalSections: currentArtwork.additionalSections,
+                  };
+                } catch (error) {
+                  console.error(`Error loading image ${path}:`, error);
+                  return null;
+                }
+              })
+            );
 
-      loadImages();
-      setLoading(false);
+            // Filter out any failed loads and add the main thumbnail
+            const validImages = loadedImages.filter((img) => img !== null);
+            setAllImages([
+              {
+                path: "main",
+                url: currentArtwork.image,
+                title: currentArtwork.title,
+                artist: currentArtwork.artist,
+                description: currentArtwork.description,
+                additionalSections: currentArtwork.additionalSections,
+              },
+              ...validImages,
+            ]);
+            setCurrentImageIndex(0);
+          }
+        };
+
+        loadImages();
+        setLoading(false);
+      }
 
       // Set trail name based on trail ID
       const trailNames = {
         1: "Dụng cụ âm nhạc Tây Nguyên",
         2: "K'ho chăn nuôi",
         3: "K'ho lễ hội",
-        4: "K'ho săn bắn và hái lượm",
-        5: "K'ho sinh hoạt thường nhật",
-        6: "Phức tầng văn hóa K'ho",
+        4: "K'ho điêu khắc",
+        5: "K'ho săn bắn & hái lượm",
+        6: "K'ho sinh hoạt thường nhật",
+        7: "Phức tầng",
+        8: "Vật liệu",
       };
 
       document.title = `${
         trailNames[trailId] || "Lộ trình tham quan"
-      } | Bảo tàng Du Pin`;
+      } | Musée Du Pin`;
     } catch (err) {
       console.error("Error loading trail data:", err);
       setError("Không thể tải dữ liệu. Vui lòng thử lại.");
@@ -551,6 +513,12 @@ const TrailExperiencePage = () => {
   if (loading) {
     return (
       <div className="trail-experience-page">
+        <Link
+          to={`/visitor-trails/${trailId}`}
+          className="trail-exp-back-button"
+        >
+          <BackIcon /> Quay lại
+        </Link>
         <div className="loading-container">
           <div className="loading-spinner"></div>
           <p>Đang tải trải nghiệm...</p>
@@ -562,12 +530,15 @@ const TrailExperiencePage = () => {
   if (error) {
     return (
       <div className="trail-experience-page">
+        <Link
+          to={`/visitor-trails/${trailId}`}
+          className="trail-exp-back-button"
+        >
+          <BackIcon /> Quay lại
+        </Link>
         <div className="error-container">
           <h2>Đã xảy ra lỗi</h2>
           <p>{error}</p>
-          <button onClick={() => navigate(`/visitor-trails`)}>
-            Quay lại lộ trình tham quan
-          </button>
         </div>
       </div>
     );
@@ -575,11 +546,19 @@ const TrailExperiencePage = () => {
 
   return (
     <div className="trail-experience-page">
-      <h1 className="trail-exp-title">{currentImage.title}</h1>
+      <div className="trail-exp-header">
+        <Link
+          to={`/visitor-trails/${trailId}`}
+          className="trail-exp-back-button"
+        >
+          <BackIcon /> Quay lại
+        </Link>
+        <h1 className="trail-exp-title">{currentImage.title}</h1>
+      </div>
 
       <div className="trail-exp-main-content">
         {/* Access section */}
-        <div className="trail-exp-access">
+        <div className={`trail-exp-access ${showAccess ? "show" : ""}`}>
           <div
             className="trail-exp-access-header"
             onClick={() => setShowAccess(!showAccess)}
@@ -591,15 +570,26 @@ const TrailExperiencePage = () => {
               <ChevronDownIcon />
             </div>
           </div>
+
+          <div className="trail-exp-access-content">
+            {accessInfo.map((item, index) => (
+              <div key={index} className="trail-exp-access-item">
+                <div className="trail-exp-access-icon">{item.icon}</div>
+                <div className="trail-exp-access-text">{item.text}</div>
+              </div>
+            ))}
+          </div>
         </div>
 
         {/* Main artwork image */}
         <div className="trail-exp-artwork-container">
-          <img
-            src={currentImage.url}
-            alt={currentImage.title}
-            className="trail-exp-artwork main-artwork"
-          />
+          {currentImage && currentImage.url && (
+            <img
+              src={currentImage.url}
+              alt={currentImage.title}
+              className="trail-exp-artwork main-artwork"
+            />
+          )}
         </div>
 
         {/* Artwork info */}
@@ -645,19 +635,7 @@ const TrailExperiencePage = () => {
             onClick={() => navigateImages(-1)}
             disabled={currentImageIndex === 0}
           >
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <polyline points="15 18 9 12 15 6"></polyline>
-            </svg>
+            <BackArrowIcon />
           </button>
 
           <button
@@ -741,19 +719,7 @@ const TrailExperiencePage = () => {
                   onClick={() => navigateImages(-1)}
                   disabled={currentImageIndex === 0}
                 >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <polyline points="15 18 9 12 15 6"></polyline>
-                  </svg>
+                  <BackArrowIcon />
                 </button>
                 <button
                   className="trail-exp-modal-nav-button"

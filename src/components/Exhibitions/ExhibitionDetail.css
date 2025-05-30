@@ -204,7 +204,7 @@
 }
 
 .exhibition-detail-meta {
-  position: relative;;
+  position: relative;
   padding: 2.5rem;
   color: #333;
   border-radius: 12px;
@@ -216,7 +216,6 @@
   opacity: 0;
   animation: fadeUp 0.8s ease 0.2s forwards;
 }
-
 
 .meta-item {
   border-bottom: 1px solid rgba(0, 0, 0, 0.1);
@@ -298,7 +297,7 @@
 .exhibition-detail-description {
   display: flex;
   flex-direction: column;
-  gap: 1.8rem;
+  gap: 1.2rem;
   position: relative;
   transform: translateY(50px);
   opacity: 0;
@@ -316,7 +315,7 @@
 .exhibition-detail-description p:first-of-type {
   font-size: 1.4rem;
   font-weight: 500;
-  color: #345164;
+  color: #2c2f11;
   position: relative;
   padding-left: 1.5rem;
   border-left: 3px solid #e4d7c8;
@@ -328,7 +327,7 @@
   font-size: 4rem;
   line-height: 0.8;
   padding-right: 0.8rem;
-  color: #345164;
+  color: #2c2f11;
 }
 
 .exhibition-detail-curators,
@@ -341,7 +340,7 @@
 
 .exhibition-detail-curators h3,
 .exhibition-detail-highlights h3 {
-  font-family:"Meholrax", serif;
+  font-family: "Meholrax", serif;
   font-size: 1.6rem;
   margin-bottom: 1.5rem;
   color: #345164;
@@ -754,5 +753,196 @@
   100% {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+/* Gallery Button */
+.gallery-button {
+  margin-top: 1rem;
+  background-color: #4a4a4a !important;
+  width: 100%;
+  transition: all 0.3s ease;
+}
+
+.gallery-button:hover {
+  background-color: #333 !important;
+}
+
+/* Gallery Slideshow */
+.gallery-slideshow {
+  width: 100%;
+  margin-top: 1rem;
+  overflow: hidden;
+  animation: slideDown 0.3s ease-out;
+}
+
+.gallery-slideshow-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+  padding: 1rem 0;
+}
+
+.gallery-slide {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  aspect-ratio: 4/3;
+}
+
+.gallery-slide:hover {
+  transform: translateY(-5px);
+}
+
+.gallery-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-slide-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 0.8rem;
+  background: rgba(0, 0, 0, 0.7);
+  color: white;
+  font-size: 0.9rem;
+  text-align: center;
+  transform: translateY(100%);
+  transition: transform 0.3s ease;
+}
+
+.gallery-slide:hover .gallery-slide-title {
+  transform: translateY(0);
+}
+
+/* Image Modal */
+.image-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.9);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 2rem;
+  animation: fadeIn 0.3s ease-out;
+}
+
+.modal-close-button {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 2rem;
+  cursor: pointer;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+  z-index: 1001;
+}
+
+.modal-close-button:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  transform: rotate(90deg);
+}
+
+.image-modal-content {
+  position: relative;
+  max-width: 90vw;
+  max-height: 90vh;
+  animation: zoomIn 0.3s ease-out;
+}
+
+.image-modal-content img {
+  max-width: 100%;
+  max-height: 85vh;
+  object-fit: contain;
+  border-radius: 4px;
+}
+
+.image-modal-title {
+  position: absolute;
+  bottom: -2rem;
+  left: 0;
+  right: 0;
+  color: white;
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 1200px) {
+  .gallery-slideshow-container {
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .gallery-slideshow-container {
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 0.8rem;
+  }
+
+  .gallery-slide-title {
+    padding: 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .image-modal {
+    padding: 1rem;
+  }
+
+  .modal-close-button {
+    top: 0.5rem;
+    right: 0.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .gallery-slideshow-container {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 0.5rem;
+  }
+
+  .gallery-slide-title {
+    padding: 0.4rem;
+    font-size: 0.8rem;
   }
 }

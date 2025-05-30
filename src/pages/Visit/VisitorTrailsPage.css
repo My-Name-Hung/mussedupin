@@ -51,6 +51,7 @@
   box-sizing: border-box;
   overflow: visible;
   color: var(--text-color);
+  -webkit-overflow-scrolling: touch;
 }
 
 /* Hero Section */
@@ -72,6 +73,9 @@
   background-size: cover;
   background-position: center 30%;
   filter: saturate(1.2) contrast(1.1) brightness(0.95);
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .vt-hero-overlay {
@@ -325,6 +329,14 @@
   height: 100%;
   cursor: pointer;
   position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.vt-trail-item.loaded {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .vt-trail-item:hover {
@@ -353,7 +365,10 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  transition: transform 0.5s ease;
+  transition: transform 0.3s ease;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
 }
 
 .vt-trail-item:hover .vt-trail-image {
@@ -540,6 +555,14 @@
   .vt-trail-image-container {
     padding-bottom: 56%;
   }
+
+  .vt-trail-item {
+    transition: transform 0.3s ease;
+  }
+
+  .vt-hero-image {
+    transition: transform 0.3s ease;
+  }
 }
 
 @media (max-width: 576px) {
@@ -570,4 +593,17 @@
 .animate-section.visible {
   opacity: 1;
   transform: translateY(0);
+}
+
+/* Optimize animation performance */
+@media (prefers-reduced-motion: reduce) {
+  .vt-trail-item {
+    transition: none;
+    animation: none;
+    transform: none;
+  }
+
+  .vt-hero-image {
+    transition: none;
+  }
 }

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import TranslatedText from "../../../components/TranslatedText";
 import "./DelveInto.css";
 
@@ -7,13 +7,13 @@ import "./DelveInto.css";
 import congchieng from "../../../assets/home/DelveInto/congchien_hero.webp";
 import dantrung from "../../../assets/home/DelveInto/DanT'rung_hero.webp";
 import gui from "../../../assets/home/DelveInto/Gui_hero.webp";
-import cheghosanh from "../../../assets/home/DelveInto/Lehoi_hero.webp";
 import longda from "../../../assets/home/DelveInto/LongDaDa_hero.webp";
 import phunu from "../../../assets/home/DelveInto/phunu_hero.webp";
 import thong2 from "../../../assets/home/DelveInto/Thông 2.webp";
 
 const DelveInto = () => {
   const gridRef = useRef(null);
+  const navigate = useNavigate();
 
   // Add mouse movement effect for grid items
   useEffect(() => {
@@ -40,6 +40,10 @@ const DelveInto = () => {
       document.removeEventListener("mousemove", handleMouseMove);
     };
   }, []);
+
+  const handleExploreClick = () => {
+    navigate("/collection", { state: { scrollTo: "complete-collection" } });
+  };
 
   return (
     <section className="delve-into-section">
@@ -75,9 +79,9 @@ const DelveInto = () => {
         </div>
 
         <div className="explore-button-container">
-          <Link to="/explore" className="explore-button">
+          <button className="explore-button" onClick={handleExploreClick}>
             <TranslatedText>Khám phá</TranslatedText>
-          </Link>
+          </button>
         </div>
       </div>
     </section>

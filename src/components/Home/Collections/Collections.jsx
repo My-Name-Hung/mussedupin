@@ -5,11 +5,11 @@ import "./Collections.css";
 
 // Import optimized images
 import congchieng from "../../../assets/home/Collections/DungcuAmNhacTayNguyen/Cồng Chiên.webp";
-import gui from "../../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/Chiếc Gùi.webp";
-import cheghosanh from "../../../assets/home/Collections/K_hoLeHoi/36 (2).webp";
 import longda from "../../../assets/home/Collections/K_hoChanNuoi/Lồng Đa Đa.webp";
-import noidat from "../../../assets/home/Collections/K_hoSinhHoatThuongNhat/Nồi Đất.webp";
 import phunu from "../../../assets/home/Collections/K_hoDieuKhac/Điêu Khắc.webp";
+import cheghosanh from "../../../assets/home/Collections/K_hoLeHoi/36 (2).webp";
+import gui from "../../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/Chiếc Gùi.webp";
+import noidat from "../../../assets/home/Collections/K_hoSinhHoatThuongNhat/Nồi Đất.webp";
 import thong2 from "../../../assets/home/Collections/PhucTang/Thông 2.webp";
 import hoabantrang from "../../../assets/home/Collections/VatLieu/Hoa Ban Trắng.webp";
 const collectionsData = [
@@ -64,8 +64,7 @@ const collectionsData = [
     artist: "Tham quan",
     image: gui,
     alt: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
-    description:
-      "Chiếc gùi",
+    description: "Chiếc gùi",
   },
   {
     id: 7,
@@ -82,8 +81,7 @@ const collectionsData = [
     artist: "Tham quan",
     image: hoabantrang,
     alt: "Vật liệu",
-    description:
-      "Vật liệu",
+    description: "Vật liệu",
   },
 ];
 
@@ -123,6 +121,9 @@ const Collections = () => {
   const [touchStartX, setTouchStartX] = useState(0);
   const [isUserInteracting, setIsUserInteracting] = useState(false);
   const [showSwipeHint, setShowSwipeHint] = useState(true);
+  const [lastTouchX, setLastTouchX] = useState(0);
+  const [lastTouchTime, setLastTouchTime] = useState(0);
+  const [touchVelocity, setTouchVelocity] = useState(0);
 
   // Check device type
   useEffect(() => {
@@ -326,17 +327,56 @@ const Collections = () => {
     setIsPaused(true);
     setIsUserInteracting(true);
     setTouchStartX(e.touches[0].clientX);
+    setLastTouchX(e.touches[0].clientX);
+    setLastTouchTime(Date.now());
     setShowSwipeHint(false); // Hide hint when user interacts
   };
 
   const handleTouchEnd = () => {
     setIsUserInteracting(false);
-    // Delay before resuming auto-scroll
-    setTimeout(() => {
-      if (!isPaused) {
+
+    // Apply momentum scrolling
+    if (Math.abs(touchVelocity) > 0.5) {
+      const momentum = touchVelocity * 100;
+      const targetScroll = scrollPosition + momentum;
+
+      // Animate to target with easing
+      const startScroll = scrollPosition;
+      const startTime = Date.now();
+      const duration = 500;
+
+      const animateMomentum = () => {
+        const elapsed = Date.now() - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+
+        // Easing function
+        const easeOut = (t) => 1 - Math.pow(1 - t, 3);
+        const currentProgress = easeOut(progress);
+
+        const newScroll =
+          startScroll + (targetScroll - startScroll) * currentProgress;
+
+        setScrollPosition(
+          Math.max(0, Math.min(newScroll, contentWidth - containerWidth))
+        );
+
+        if (progress < 1) {
+          requestAnimationFrame(animateMomentum);
+        } else {
+          // Resume auto-scroll after momentum ends and 1s delay
+          setTimeout(() => {
+            setIsPaused(false);
+          }, 1000);
+        }
+      };
+
+      requestAnimationFrame(animateMomentum);
+    } else {
+      // If no momentum, resume auto-scroll after 1s
+      setTimeout(() => {
         setIsPaused(false);
-      }
-    }, 1200);
+      }, 1000);
+    }
   };
 
   const handleTouchMove = (e) => {
@@ -344,14 +384,30 @@ const Collections = () => {
       const touchX = e.touches[0].clientX;
       const diff = touchStartX - touchX;
 
-      // Update scroll position based on finger movement
+      // Calculate velocity
+      const now = Date.now();
+      const deltaTime = now - lastTouchTime;
+      const deltaX = touchX - lastTouchX;
+      setTouchVelocity(deltaX / deltaTime);
+
+      // Update last position and time
+      setLastTouchX(touchX);
+      setLastTouchTime(now);
+
+      // Update scroll position with improved sensitivity and smoothing
       setScrollPosition((prev) => {
-        const newPosition = prev + diff * 1.2; // Swipe sensitivity
+        const sensitivity = 1.2;
+        const newPosition = prev + diff * sensitivity;
         setTouchStartX(touchX);
 
-        if (newPosition < 0) return 0;
-        if (newPosition > contentWidth - containerWidth)
-          return contentWidth - containerWidth;
+        // Add resistance at edges
+        if (newPosition < 0) {
+          return Math.max(newPosition * 0.5, -containerWidth * 0.1);
+        }
+        if (newPosition > contentWidth - containerWidth) {
+          const overscroll = newPosition - (contentWidth - containerWidth);
+          return contentWidth - containerWidth + overscroll * 0.5;
+        }
 
         return newPosition;
       });

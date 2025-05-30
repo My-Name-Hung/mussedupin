@@ -280,6 +280,8 @@ const CategoryPage = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [heroLoaded, setHeroLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [loadedImages, setLoadedImages] = useState({});
+  const [modalLoading, setModalLoading] = useState(false);
   const artworksRef = useRef(null);
   const modalContentRef = useRef(null);
   const heroImageRef = useRef(null);
@@ -300,7 +302,7 @@ const CategoryPage = () => {
     return () => window.removeEventListener("resize", checkMobile);
   }, []);
 
-  // Load images for the current category
+  // Load images for the current category (only preload thumbnail, not all images)
   useEffect(() => {
     const loadCategoryImages = async () => {
       const foundCategory = collectionData.categories.find(
@@ -310,52 +312,53 @@ const CategoryPage = () => {
       if (foundCategory) {
         setCategory(foundCategory);
 
-        // Load all images for this category
+        // Load all images for the category
         const imageEntries = Object.entries(foundCategory.images);
         const loadedImageUrls = {};
 
-        await Promise.all(
-          imageEntries.map(async ([path, loader]) => {
-            try {
-              const module = await loader();
-              loadedImageUrls[path] = module.default;
-            } catch (error) {
-              console.error(`Error loading image ${path}:`, error);
-            }
-          })
-        );
+        // Load all images
+        for (const [path, loader] of imageEntries) {
+          try {
+            const module = await loader();
+            loadedImageUrls[path] = module.default;
+          } catch (error) {
+            console.error(`Error loading image ${path}:`, error);
+          }
+        }
 
         // Get tags based on category
         const getCategoryTags = (categoryId) => {
           switch (categoryId) {
-            case 1: // Dụng cụ âm nhạc
+            case 1:
               return ["Nhạc cụ", "Văn hóa", "Tây Nguyên"];
-            case 2: // K'ho chăn nuôi
+            case 2:
               return ["Đời sống", "Văn hóa"];
-            case 3: // K'ho điêu khắc
+            case 3:
               return ["Điêu khắc"];
-            case 4: // K'ho lễ hội
+            case 4:
               return ["Lễ hội"];
-            case 5: // K'ho săn bắn
+            case 5:
               return ["Đời sống", "Văn hóa"];
-            case 6: // K'ho sinh hoạt
+            case 6:
               return ["Đời sống", "K'ho"];
-            case 7: // Phức tầng
+            case 7:
               return ["Phức tầng"];
-            case 8: // Vật liệu
+            case 8:
               return ["Vật liệu"];
             default:
               return ["K'ho"];
           }
         };
 
-        // Create artwork entries from loaded images
+        // Create artwork entries with loaded images
         const categoryArtworks = imageEntries.map(([path], index) => ({
           id: `${foundCategory.id}-${index + 1}`,
           title: path.split("/").pop().replace(".webp", ""),
           artist: "Musée Du Pin",
           year: "2024",
-          image: loadedImageUrls[path],
+          image: loadedImageUrls[path] || null,
+          imagePath: path,
+          imageLoader: foundCategory.images[path],
           description: `${foundCategory.title} - ${path
             .split("/")
             .pop()
@@ -365,12 +368,75 @@ const CategoryPage = () => {
         }));
 
         setArtworks(categoryArtworks);
+        setLoadedImages(loadedImageUrls);
         setIsLoaded(true);
       }
     };
 
     loadCategoryImages();
   }, [id]);
+
+  // Lazy-load image for modal when needed
+  const ensureImageLoaded = async (artwork, idx) => {
+    if (artwork.image) return artwork.image;
+    if (loadedImages[artwork.imagePath]) return loadedImages[artwork.imagePath];
+
+    setModalLoading(true);
+    try {
+      const module = await artwork.imageLoader();
+      const imageUrl = module.default;
+
+      setLoadedImages((prev) => ({
+        ...prev,
+        [artwork.imagePath]: imageUrl,
+      }));
+
+      setArtworks((prev) => {
+        const newArr = [...prev];
+        newArr[idx] = { ...newArr[idx], image: imageUrl };
+        return newArr;
+      });
+
+      setModalLoading(false);
+      return imageUrl;
+    } catch (error) {
+      console.error("Error loading image:", error);
+      setModalLoading(false);
+      return null;
+    }
+  };
+
+  // Open modal and lazy-load image if needed
+  const openArtworkModal = async (artwork) => {
+    const idx = artworks.findIndex((art) => art.id === artwork.id);
+    setModalSlide(idx);
+    setIsModalOpen(true);
+    setSelectedArtwork(artwork);
+    document.body.style.overflow = "hidden";
+    if (!artwork.image) {
+      await ensureImageLoaded(artwork, idx);
+    }
+  };
+
+  // Navigate between artworks in modal (lazy-load image if needed)
+  const navigateModal = async (direction) => {
+    const newIndex =
+      (modalSlide + direction + artworks.length) % artworks.length;
+    setModalSlide(newIndex);
+    setSelectedArtwork(artworks[newIndex]);
+    if (!artworks[newIndex].image) {
+      await ensureImageLoaded(artworks[newIndex], newIndex);
+    }
+  };
+
+  // Dot navbar click (lazy-load image if needed)
+  const handleDotClick = async (idx) => {
+    setModalSlide(idx);
+    setSelectedArtwork(artworks[idx]);
+    if (!artworks[idx].image) {
+      await ensureImageLoaded(artworks[idx], idx);
+    }
+  };
 
   // Close modal when pressing escape key
   useEffect(() => {
@@ -424,17 +490,6 @@ const CategoryPage = () => {
     }
   };
 
-  const openArtworkModal = (artwork) => {
-    setSelectedArtwork(artwork);
-
-    // Find index of current artwork
-    const currentIndex = artworks.findIndex((art) => art.id === artwork.id);
-    setModalSlide(currentIndex);
-
-    setIsModalOpen(true);
-    document.body.style.overflow = "hidden";
-  };
-
   const closeModal = () => {
     // Add closing animation class
     if (modalContentRef.current) {
@@ -454,14 +509,6 @@ const CategoryPage = () => {
   const handleCloseButtonClick = () => {
     setIsModalOpen(false);
     document.body.style.overflow = "auto";
-  };
-
-  // Navigate between artworks in modal
-  const navigateModal = (direction) => {
-    const newIndex =
-      (modalSlide + direction + artworks.length) % artworks.length;
-    setModalSlide(newIndex);
-    setSelectedArtwork(artworks[newIndex]);
   };
 
   // Handle hero image loaded
@@ -685,11 +732,69 @@ const CategoryPage = () => {
             <div className="artwork-modal-body">
               <div className="artwork-modal-image-container">
                 <div className="artwork-image-frame">
-                  <img
-                    src={selectedArtwork.image}
-                    alt={selectedArtwork.title}
-                    className="artwork-modal-image"
-                  />
+                  {/* Left navigation button */}
+                  {artworks.length > 1 && (
+                    <button
+                      className="artwork-modal-nav-btn left"
+                      onClick={() => navigateModal(-1)}
+                      aria-label="Previous image"
+                    >
+                      <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <polyline points="15 18 9 12 15 6"></polyline>
+                      </svg>
+                    </button>
+                  )}
+                  {modalLoading ? (
+                    <div className="artwork-modal-img-loading">
+                      <div className="spinner"></div>
+                      <p>
+                        <TranslatedText>Đang tải ảnh...</TranslatedText>
+                      </p>
+                    </div>
+                  ) : (
+                    <img
+                      src={selectedArtwork.image}
+                      alt={selectedArtwork.title}
+                      className="artwork-modal-image"
+                      onError={(e) => {
+                        console.error(
+                          "Error loading image:",
+                          selectedArtwork.image
+                        );
+                        e.target.src = "path/to/fallback-image.jpg"; // Add a fallback image
+                      }}
+                    />
+                  )}
+                  {/* Right navigation button */}
+                  {artworks.length > 1 && (
+                    <button
+                      className="artwork-modal-nav-btn right"
+                      onClick={() => navigateModal(1)}
+                      aria-label="Next image"
+                    >
+                      <svg
+                        width="32"
+                        height="32"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <polyline points="9 18 15 12 9 6"></polyline>
+                      </svg>
+                    </button>
+                  )}
                 </div>
 
                 <button
@@ -715,6 +820,22 @@ const CategoryPage = () => {
                     <TranslatedText>Tải ảnh</TranslatedText>
                   </span>
                 </button>
+
+                {/* Dot navbar */}
+                {artworks.length > 1 && (
+                  <div className="artwork-modal-dot-navbar">
+                    {artworks.map((_, idx) => (
+                      <button
+                        key={idx}
+                        className={`artwork-modal-dot${
+                          modalSlide === idx ? " active" : ""
+                        }`}
+                        onClick={() => handleDotClick(idx)}
+                        aria-label={`Xem ảnh ${idx + 1}`}
+                      />
+                    ))}
+                  </div>
+                )}
               </div>
 
               <div className="artwork-modal-details">

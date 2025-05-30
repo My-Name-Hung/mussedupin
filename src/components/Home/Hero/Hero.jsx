@@ -165,9 +165,9 @@ const Hero = () => {
           </video>
           <div className="hero-overlay"></div>
           <div className="hero-content">
-            <h1 className="hero-title">
+            {/* <h1 className="hero-title">
               {translations.title || "Escape with the Musée Du Pin"}
-            </h1>
+            </h1> */}
           </div>
         </div>
       </section>

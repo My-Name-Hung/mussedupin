@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./VisitorTrailsPage.css";
 
@@ -24,6 +24,9 @@ const khoSinhHoatImages = import.meta.glob(
 const phucTangImages = import.meta.glob(
   "../../assets/home/Collections/PhucTang/*.webp"
 );
+const vatLieuImages = import.meta.glob(
+  "../../assets/home/Collections/VatLieu/*.webp"
+);
 
 // Import thumbnails for each category
 import dungcuThumb from "../../assets/home/Collections/DungcuAmNhacTayNguyen/Cồng Chiên.webp";
@@ -33,7 +36,7 @@ import lehoiThumb from "../../assets/home/Collections/K_hoLeHoi/Lễ Hội.webp"
 import sanbanThumb from "../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/Chiếc Gùi.webp";
 import sinhoatThumb from "../../assets/home/Collections/K_hoSinhHoatThuongNhat/Nồi Đất.webp";
 import phuctangThumb from "../../assets/home/Collections/PhucTang/Thông 2.webp";
-
+import vatlieuThumb from "../../assets/home/Collections/VatLieu/Hoa Ban Trắng.webp";
 // Import hero image
 import heroImage from "../../assets/home/Hero/louvre-sunset.webp";
 
@@ -145,7 +148,7 @@ const trailsData = [
     description:
       "Chiêm ngưỡng nghệ thuật điêu khắc truyền thống của người K'ho qua các tác phẩm tượng và điêu khắc tinh xảo.",
     image: dieukhacThumb,
-    duration: "1H30",
+    duration: "1H30P",
     audioGuide: true,
     images: khoDieuKhacImages,
   },
@@ -178,50 +181,74 @@ const trailsData = [
     audioGuide: true,
     images: phucTangImages,
   },
+  {
+    id: 8,
+    title: "VẬT LIỆU",
+    description: "Tham quan vật liệu của người Tây Nguyên.",
+    image: vatlieuThumb,
+    duration: "30P",
+    audioGuide: true,
+    images: vatLieuImages,
+  },
 ];
 
 const VisitorTrailsPage = () => {
   const [animatedSections, setAnimatedSections] = useState({});
+  const [loadedImages, setLoadedImages] = useState({});
+
+  // Optimize intersection observer by using useCallback
+  const observerCallback = useCallback((entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        setAnimatedSections((prev) => ({
+          ...prev,
+          [entry.target.id]: true,
+        }));
+      }
+    });
+  }, []);
 
   useEffect(() => {
-    // Set page title
     document.title = "Lộ trình tham quan | Bảo tàng Du Pin";
 
-    // Initialize animation observer
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setAnimatedSections((prev) => ({
-              ...prev,
-              [entry.target.id]: true,
-            }));
-          }
-        });
-      },
-      { threshold: 0.2 }
-    );
+    // Preload hero image
+    const heroImg = new Image();
+    heroImg.src = heroImage;
 
-    // Observe all sections with animation
-    document.querySelectorAll(".animate-section").forEach((section) => {
-      observer.observe(section);
+    // Optimize observer options
+    const observer = new IntersectionObserver(observerCallback, {
+      threshold: 0.1, // Reduce threshold for earlier loading
+      rootMargin: "50px", // Load images before they enter viewport
     });
 
+    // Observe sections with debounced handler
+    const sections = document.querySelectorAll(".animate-section");
+    sections.forEach((section) => observer.observe(section));
+
     return () => {
-      // Cleanup
-      document.querySelectorAll(".animate-section").forEach((section) => {
-        observer.unobserve(section);
-      });
+      sections.forEach((section) => observer.unobserve(section));
     };
+  }, [observerCallback]);
+
+  // Lazy load trail images
+  const handleImageLoad = useCallback((trailId) => {
+    setLoadedImages((prev) => ({
+      ...prev,
+      [trailId]: true,
+    }));
   }, []);
 
   return (
     <div className="visitor-trails-page">
-      {/* Hero Section */}
+      {/* Hero Section - Optimize background image loading */}
       <div className="vt-hero">
         <div
           className="vt-hero-image"
-          style={{ backgroundImage: `url(${heroImage})` }}
+          style={{
+            backgroundImage: `url(${heroImage})`,
+            willChange: "transform",
+            transform: "translateZ(0)",
+          }}
         >
           <div className="vt-hero-overlay"></div>
         </div>
@@ -268,7 +295,7 @@ const VisitorTrailsPage = () => {
         </div>
       </section>
 
-      {/* Trails Section */}
+      {/* Trails Section - Optimize image loading */}
       <section
         id="trails-section"
         className={`vt-trails-section animate-section ${
@@ -282,13 +309,24 @@ const VisitorTrailsPage = () => {
 
         <div className="vt-trails-grid">
           {trailsData.map((trail) => (
-            <div key={trail.id} className="vt-trail-item">
+            <div
+              key={trail.id}
+              className={`vt-trail-item ${
+                loadedImages[trail.id] ? "loaded" : ""
+              }`}
+            >
               <Link to={`/visitor-trails/${trail.id}`}>
                 <div className="vt-trail-image-container">
                   <img
                     src={trail.image}
                     alt={trail.title}
                     className="vt-trail-image"
+                    loading="lazy"
+                    onLoad={() => handleImageLoad(trail.id)}
+                    style={{
+                      willChange: "transform",
+                      transform: "translateZ(0)",
+                    }}
                   />
                   <div className="vt-trail-duration">
                     <ClockIcon /> {trail.duration}
@@ -307,4 +345,4 @@ const VisitorTrailsPage = () => {
   );
 };
 
-export default VisitorTrailsPage;
+export default React.memo(VisitorTrailsPage); // Prevent unnecessary re-renders

@@ -6,85 +6,112 @@ import TranslatedText from "../TranslatedText";
 import hero from "../../assets/home/Hero/louvre-sunset.webp";
 
 // Import optimized images
-import bauho from "../../assets/home/Exhibitions/Bauholo_cards.webp";
-import congchieng from "../../assets/home/Exhibitions/congchien_cards.webp";
-import hoabantrang from "../../assets/home/Exhibitions/Hoa Ban Trắng.webp";
-import cheghosanh from "../../assets/home/Exhibitions/Lehoi_cards.webp";
-import longda from "../../assets/home/Exhibitions/LongDaDa_cards.webp";
-import noidat from "../../assets/home/Exhibitions/noidat_cards.webp";
-import phunu from "../../assets/home/Exhibitions/phunu_cards.webp";
+import langbiang from "../../assets/home/About/nha.jpg";
 import thong2 from "../../assets/home/Exhibitions/Thông 2.webp";
+import bauho from "../../assets/home/Exhibitions/Bauholo_cards.webp";
+
 import "./Exhibitions.css";
 
 // Exhibition data based on highlights
 const exhibitionsData = [
   {
     id: 1,
-    title: "Dụng cụ âm nhạc Tây Nguyên",
-    subtitle: "Cồng chiêng",
+    title: "Không gian nghệ thuật Langbiang",
+    subtitle: "",
     description:
-      "Musée Du Pin trưng bày các nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, tiêu biểu là cồng chiêng – biểu tượng văn hóa và tín ngưỡng thiêng liêng. Âm thanh vang vọng của cồng chiêng thể hiện sự kết nối sâu sắc giữa con người và thế giới tâm linh.",
+      "Khi nghệ thuật không chỉ để ngắm, mà để sống cùng và sống trong. Không có tủ kính ngăn cách. Không có rào chắn giữa người và hiện vật. Langbiang không đơn thuần là một căn phòng, mà là một vùng ký ức sống, nơi hồn cốt của núi rừng thở trong từng vật phẩm, cháy trong từng ngọn lửa bếp, ngân nga trong từng tiếng cồng chiêng.",
     date: "30 tháng 4 - 28 tháng 7 2025",
-    image: congchieng,
-    alt: "Dụng cụ âm nhạc Tây Nguyên",
+    image: langbiang,
+    alt: "Không gian nghệ thuật Langbiang",
     tag: "Trưng bày",
-    link: "/exhibition-details/cong-chieng",
+    link: "/exhibition-details/langbiang-khong-gian",
     featured: true,
   },
   {
     id: 2,
-    title: "K'ho chăn nuôi",
-    subtitle: "Lồng đa đa",
+    title: "Phức tầng",
+    subtitle: "Thiên nhiên",
     description:
-      "Lồng đa đa của người K'ho hiện đang được trưng bày tại Musée Du Pin như một biểu tượng mộc mạc nhưng đầy tính văn hóa của đời sống dân tộc Tây Nguyên. Được đan thủ công từ tre nứa, chiếc lồng không chỉ phục vụ mục đích chăn nuôi mà còn phản ánh sự khéo léo, tỉ mỉ và mối liên kết bền chặt giữa con người với thiên nhiên núi rừng.",
+      "In lên mây, những hàng thông điệp khúc,\nTrên triền dốc, những nếp nhà khảm vào nhau,\nBao than thở chất chồng in bóng mặt hồ.\nTrong lòng lữ khách độc hành\nTrái thông khô mở vảy.",
     date: "24 tháng 1 - 21 tháng 7 2025",
-    image: longda,
-    alt: "K'ho chăn nuôi",
+    image: thong2,
+    alt: "Đà Lạt những phức tầng trầm mặc",
     tag: "Trưng bày",
-    link: "/exhibition-details/long-da-da",
+    link: "/exhibition-details/phuc-tang-tram-mac",
     featured: false,
   },
+
+  // {
+  //   id: 2,
+  //   title: "K'ho chăn nuôi",
+  //   subtitle: "Lồng đa đa",
+  //   description:
+  //     "Lồng đa đa của người K'ho hiện đang được trưng bày tại Musée Du Pin như một biểu tượng mộc mạc nhưng đầy tính văn hóa của đời sống dân tộc Tây Nguyên. Được đan thủ công từ tre nứa, chiếc lồng không chỉ phục vụ mục đích chăn nuôi mà còn phản ánh sự khéo léo, tỉ mỉ và mối liên kết bền chặt giữa con người với thiên nhiên núi rừng.",
+  //   date: "24 tháng 1 - 21 tháng 7 2025",
+  //   image: longda,
+  //   alt: "K'ho chăn nuôi",
+  //   tag: "Trưng bày",
+  //   link: "/exhibition-details/long-da-da",
+  //   featured: false,
+  // },
+  // {
+  //   id: 3,
+  //   title: "K'ho điêu khắc",
+  //   subtitle: "Tượng phụ nữ",
+  //   description:
+  //     "Tác phẩm điêu khắc người dân tộc K'ho đang được trưng bày tại Musée Du Pin thể hiện hình ảnh phụ nữ Tây Nguyên trong dáng đứng trang nghiêm, tay cầm chiếc chiêng nhỏ – biểu tượng của âm nhạc và tín ngưỡng bản địa. Tác phẩm mang đậm phong cách mộc mạc nhưng đầy chiều sâu văn hóa, phản ánh vẻ đẹp nội tâm, tinh thần kiên cường và vai trò quan trọng của người phụ nữ trong đời sống cộng đồng K'ho.",
+  //   date: "22 tháng 1 - 12 tháng 5 2025",
+  //   image: phunu,
+  //   alt: "K'ho điêu khắc",
+  //   tag: "Trưng bày",
+  //   link: "/exhibition-details/tuong-phu-nu",
+  //   featured: false,
+  // },
+  // {
+  //   id: 4,
+  //   title: "K'ho lễ hội",
+  //   subtitle: "Ché Ghò Sành",
+  //   description:
+  //     "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, hiện đang được trưng bày tại Musée Du Pin, đây là biểu tượng của sự giàu có, quyền uy và tín ngưỡng tâm linh trong đời sống người bản địa.",
+  //   date: "29 tháng 2 - 28 tháng 9 2025",
+  //   image: cheghosanh,
+  //   alt: "K'ho lễ hội",
+  //   tag: "Trưng bày",
+  //   link: "/exhibition-details/che-gho-sanh",
+  //   featured: false,
+  // },
+  // {
+  //   id: 5,
+  //   title: "K'ho sinh hoạt thường nhật",
+  //   subtitle: "Nồi đất",
+  //   description:
+  //     "Được chế tác thủ công từ đất nung, nồi có hình dáng đơn giản nhưng chắc chắn, thường dùng để nấu ăn trong các dịp lễ hội hoặc sinh hoạt gia đình",
+  //   date: "Trưng bày thường xuyên",
+  //   image: noidat,
+  //   alt: "K'ho sinh hoạt thường nhật",
+  //   tag: "Trưng bày",
+  //   link: "/exhibition-details/noi-dat",
+  //   featured: false,
+  // },
+  // {
+  //   id: 6,
+  //   title: "Vật liệu",
+  //   subtitle: "Chất liệu K'ho",
+  //   description:
+  //     "Tại Musée Du Pin, mỗi chất liệu được chọn lựa kỹ lưỡng nhằm tôn vinh vẻ đẹp tự nhiên và bản sắc văn hóa Tây Nguyên. Các vật liệu truyền thống như gỗ, đá, đất và sợi tự nhiên không chỉ là phương tiện sáng tạo mà còn là cầu nối giữa nghệ thuật và đời sống bản địa.",
+  //   date: "Trưng bày thường xuyên",
+  //   image: hoabantrang,
+  //   alt: "Vật liệu",
+  //   tag: "Trưng bày",
+  //   link: "/exhibition-details/vat-lieu",
+  //   featured: false,
+  // },
+];
+
+// Sample guided tours data
+const guidedToursData = [
   {
-    id: 3,
-    title: "K'ho điêu khắc",
-    subtitle: "Tượng phụ nữ",
-    description:
-      "Tác phẩm điêu khắc người dân tộc K'ho đang được trưng bày tại Musée Du Pin thể hiện hình ảnh phụ nữ Tây Nguyên trong dáng đứng trang nghiêm, tay cầm chiếc chiêng nhỏ – biểu tượng của âm nhạc và tín ngưỡng bản địa. Tác phẩm mang đậm phong cách mộc mạc nhưng đầy chiều sâu văn hóa, phản ánh vẻ đẹp nội tâm, tinh thần kiên cường và vai trò quan trọng của người phụ nữ trong đời sống cộng đồng K'ho.",
-    date: "22 tháng 1 - 12 tháng 5 2025",
-    image: phunu,
-    alt: "K'ho điêu khắc",
-    tag: "Trưng bày",
-    link: "/exhibition-details/tuong-phu-nu",
-    featured: false,
-  },
-  {
-    id: 4,
-    title: "K'ho lễ hội",
-    subtitle: "Ché Ghò Sành",
-    description:
-      "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, hiện đang được trưng bày tại Musée Du Pin, đây là biểu tượng của sự giàu có, quyền uy và tín ngưỡng tâm linh trong đời sống người bản địa.",
-    date: "29 tháng 2 - 28 tháng 9 2025",
-    image: cheghosanh,
-    alt: "K'ho lễ hội",
-    tag: "Trưng bày",
-    link: "/exhibition-details/che-gho-sanh",
-    featured: false,
-  },
-  {
-    id: 5,
-    title: "K'ho sinh hoạt thường nhật",
-    subtitle: "Nồi đất",
-    description:
-      "Được chế tác thủ công từ đất nung, nồi có hình dáng đơn giản nhưng chắc chắn, thường dùng để nấu ăn trong các dịp lễ hội hoặc sinh hoạt gia đình",
-    date: "Trưng bày thường xuyên",
-    image: noidat,
-    alt: "K'ho sinh hoạt thường nhật",
-    tag: "Trưng bày",
-    link: "/exhibition-details/noi-dat",
-    featured: false,
-  },
-  {
-    id: 6,
+    id: 1,
     title: "K'ho sinh hoạt thường nhật",
     subtitle: "Bầu hồ lô",
     description:
@@ -92,39 +119,9 @@ const exhibitionsData = [
     duration: "1 tiếng 30 phút",
     image: bauho,
     alt: "K'ho sinh hoạt thường nhật",
-    tag: "Trưng bày",
+    tag: "Tham quan",
     link: "/exhibition-details/bau-ho-lo",
     featured: true,
-  },
-  {
-    id: 7,
-    title: "Vật liệu",
-    subtitle: "Chất liệu K'ho",
-    description:
-      "Tại Musée Du Pin, mỗi chất liệu được chọn lựa kỹ lưỡng nhằm tôn vinh vẻ đẹp tự nhiên và bản sắc văn hóa Tây Nguyên. Các vật liệu truyền thống như gỗ, đá, đất và sợi tự nhiên không chỉ là phương tiện sáng tạo mà còn là cầu nối giữa nghệ thuật và đời sống bản địa.",
-    date: "Trưng bày thường xuyên",
-    image: hoabantrang,
-    alt: "Vật liệu",
-    tag: "Trưng bày",
-    link: "/exhibition-details/vat-lieu",
-    featured: false,
-  },
-];
-
-// Sample guided tours data
-const guidedToursData = [
-  {
-    id: 1,
-    title: "Phức Tầng",
-    subtitle: "Thiên nhiên K'ho",
-    description:
-      "Được Musée Du Pin bắt trọn khoảng khắc các hình ảnh thiên nhiên đậm sắc dân tộc K'ho, tạo nên bức tranh đẹp về đất nước Tây Nguyên.",
-    duration: "1 tiếng 15 phút",
-    image: thong2,
-    alt: "Phức Tầng",
-    tag: "Tham quan",
-    link: "/exhibition-details/phuc-tang",
-    featured: false,
   },
 ];
 
@@ -317,9 +314,9 @@ const Exhibitions = () => {
                         <h2 className="card-title">
                           <TranslatedText>{item.title}</TranslatedText>
                         </h2>
-                        <h3 className="card-subtitle">
+                        {/* <h3 className="card-subtitle">
                           <TranslatedText>{item.subtitle}</TranslatedText>
-                        </h3>
+                        </h3> */}
                         <p className="card-description">
                           <TranslatedText>{item.description}</TranslatedText>
                         </p>
@@ -376,9 +373,9 @@ const Exhibitions = () => {
                       <h2 className="card-title">
                         <TranslatedText>{item.title}</TranslatedText>
                       </h2>
-                      <h3 className="card-subtitle">
+                      {/* <h3 className="card-subtitle">
                         <TranslatedText>{item.subtitle}</TranslatedText>
-                      </h3>
+                      </h3> */}
                       <p className="card-description">
                         <TranslatedText>{item.description}</TranslatedText>
                       </p>

@@ -1,26 +1,43 @@
 /* Remove Google Fonts imports and use local fonts */
 /* Hero Container Styles */
 .hero-container {
+  width: 100vw;
+  max-width: 100%;
   position: relative;
-  width: 100%;
-  height: 100vh;
   overflow: hidden;
+  /* aspect-ratio: 21/9; */
+  min-height: 320px;
+  height: 60vh;
+  max-height: 700px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-image-container {
-  position: relative;
-  width: 100%;
+  width: 100vw;
+  max-width: 100%;
   height: 100%;
+  position: relative;
+  aspect-ratio: 21/9;
+  min-height: 320px;
+  max-height: 700px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .hero-video {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
+  width: 100vw;
   height: 100%;
+  min-height: 320px;
+  max-height: 700px;
   object-fit: cover;
-  z-index: 1;
+  object-position: center;
+  aspect-ratio: 21/9;
+  display: block;
+  background: #000;
 }
 
 .hero-overlay {
@@ -29,6 +46,11 @@
   left: 0;
   width: 100%;
   height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.15) 0%,
+    rgba(0, 0, 0, 0.45) 100%
+  );
   z-index: 2;
 }
 
@@ -46,11 +68,14 @@
 /* Hero Content Styles */
 .hero-content {
   position: absolute;
-  visibility: hidden;
-  bottom: 35%;
-  left: 8%;
-  width: 60%;
-  z-index: 100;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  max-width: 900px;
 }
 
 /* Custom font loading */
@@ -390,5 +415,37 @@
 
   .info-panel-button {
     padding: 8px 16px;
+  }
+}
+
+@media (max-width: 900px) {
+  .hero-container,
+  .hero-image-container {
+    aspect-ratio: 16/9;
+    height: 38vw;
+    min-height: 180px;
+    max-height: 350px;
+  }
+  .hero-video {
+    aspect-ratio: 16/9;
+    height: 38vw;
+    min-height: 180px;
+    max-height: 350px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero-container,
+  .hero-image-container {
+    aspect-ratio: 16/9;
+    height: 48vw;
+    min-height: 120px;
+    max-height: 220px;
+  }
+  .hero-video {
+    aspect-ratio: 16/9;
+    height: 48vw;
+    min-height: 120px;
+    max-height: 220px;
   }
 }

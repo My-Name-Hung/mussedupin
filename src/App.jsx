@@ -22,7 +22,7 @@ import Copyrights from "./pages/Footer/Copyrights/Copyrights";
 import LegalNotice from "./pages/Footer/LegalNotice/LegalNotice";
 import PrivacyPolicy from "./pages/Footer/PrivacyPolicy/PrivacyPolicy";
 import DuPinPlus from "./pages/Home/DuPinPlus/DuPinPlus";
-import ExplorePage from "./pages/Home/ExplorePage/ExplorePage";
+// import ExplorePage from "./pages/Home/ExplorePage/ExplorePage";
 import LifeAtMuseumPage from "./pages/Museum/LifeAtMuseumPage";
 import NewsDetailPage from "./pages/Museum/NewsDetailPage";
 import NotFound from "./pages/NotFound";
@@ -181,7 +181,7 @@ function App() {
               <Route path="/visit-info" element={<VisitInfo />} />
               <Route path="/prepare-visit" element={<PrepareVisit />} />
               <Route path="/exhibitions" element={<Exhibitions />} />
-              <Route path="/explore" element={<ExplorePage />} />
+              {/* <Route path="/explore" element={<ExplorePage />} /> */}
               <Route path="/tickets" element={<TicketsPage />} />
               <Route path="/boutique" element={<BoutiquePage />} />
               <Route path="/dupinplus" element={<DuPinPlus />} />

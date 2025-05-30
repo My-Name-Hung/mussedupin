@@ -24,6 +24,9 @@ const khoSinhHoatImages = import.meta.glob(
 const phucTangImages = import.meta.glob(
   "../../assets/home/Collections/PhucTang/*.webp"
 );
+const vatlieuImages = import.meta.glob(
+  "../../assets/home/Collections/VatLieu/*.webp"
+);
 
 // Import thumbnails for each category
 import dungcuThumb from "../../assets/home/Collections/DungcuAmNhacTayNguyen/Cồng Chiên.webp";
@@ -33,6 +36,7 @@ import lehoiThumb from "../../assets/home/Collections/K_hoLeHoi/Lễ Hội.webp"
 import sanbanThumb from "../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/Chiếc Gùi.webp";
 import sinhoatThumb from "../../assets/home/Collections/K_hoSinhHoatThuongNhat/Nồi Đất.webp";
 import phuctangThumb from "../../assets/home/Collections/PhucTang/Thông 2.webp";
+import vatlieuThumb from "../../assets/home/Collections/VatLieu/Hoa Ban Trắng.webp";
 
 // SVG icons
 const ClockIcon = () => (
@@ -242,19 +246,36 @@ const trailsData = [
       "Đồi thông là biểu tượng của sự bền vững và tín ngưỡng thiêng liêng trong đời sống người dân Tây Nguyên.",
     images: phucTangImages,
   },
+  {
+    id: 8,
+    title: "VẬT LIỆU",
+    description: "Tham quan vật liệu của người Tây Nguyên.",
+    image: vatlieuThumb,
+    duration: "30P",
+    audioGuide: true,
+    accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
+    introduction:
+      "Vật liệu là biểu tượng của sự bền vững và tín ngưỡng thiêng liêng trong đời sống người dân Tây Nguyên.",
+    images: vatlieuImages,
+  },
 ];
 
 const VisitorTrailDetailPage = () => {
   const { id } = useParams();
   const [trail, setTrail] = useState(null);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   useEffect(() => {
-    // Find the trail by id
+    // Find the trail by id and preload image
     const foundTrail = trailsData.find((t) => t.id === parseInt(id));
 
     if (foundTrail) {
+      // Preload hero image
+      const img = new Image();
+      img.src = foundTrail.image;
+      img.onload = () => setImageLoaded(true);
+
       setTrail(foundTrail);
-      // Set page title
       document.title = `${foundTrail.title} | Musée Du Pin`;
     }
   }, [id]);
@@ -265,12 +286,17 @@ const VisitorTrailDetailPage = () => {
 
   return (
     <div className="trail-detail-page">
-      {/* Hero Section */}
-      <div className="trail-detail-hero">
+      {/* Hero Section - Optimized with loading state */}
+      <div className={`trail-detail-hero ${imageLoaded ? "loaded" : ""}`}>
         <img
           src={trail.image}
           alt={trail.title}
           className="trail-detail-hero-image"
+          loading="eager"
+          style={{
+            willChange: "transform",
+            transform: "translateZ(0)",
+          }}
         />
         <div className="trail-detail-hero-overlay"></div>
 
@@ -294,22 +320,22 @@ const VisitorTrailDetailPage = () => {
         </div>
       </div>
 
-      {/* Accessibility Info */}
-      <div className="trail-detail-info">
+      {/* Accessibility Info - Add fade-in animation */}
+      <div className="trail-detail-info animate-on-scroll">
         <h3 className="trail-detail-info-title">Mở cửa vào:</h3>
         <p className="trail-detail-info-content">{trail.accessibility}</p>
       </div>
 
-      {/* Introduction */}
-      <div className="trail-detail-introduction">
+      {/* Introduction - Add fade-in animation */}
+      <div className="trail-detail-introduction animate-on-scroll">
         <h2 className="trail-detail-introduction-title">Giới thiệu</h2>
         <p className="trail-detail-introduction-content">
           {trail.introduction}
         </p>
       </div>
 
-      {/* Museum Map Section */}
-      <div className="trail-detail-map-section">
+      {/* Museum Map Section - Add fade-in animation */}
+      <div className="trail-detail-map-section animate-on-scroll">
         <div className="trail-detail-map-content">
           <h3 className="trail-detail-map-title">Cần trợ giúp tìm đường?</h3>
           <p className="trail-detail-map-description">
@@ -325,4 +351,5 @@ const VisitorTrailDetailPage = () => {
   );
 };
 
-export default VisitorTrailDetailPage;
+// Prevent unnecessary re-renders
+export default React.memo(VisitorTrailDetailPage);

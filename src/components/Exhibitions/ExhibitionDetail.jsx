@@ -1,137 +1,197 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import useImageCache from "../../hooks/useImageCache";
 import TranslatedText from "../TranslatedText";
 import "./ExhibitionDetail.css";
 
 // Import optimized images
 import bauho from "../../assets/home/Exhibitions/Bauholo_cards.webp";
-import congchieng from "../../assets/home/Exhibitions/congchien_cards.webp";
-import gui from "../../assets/home/Exhibitions/Gui_cards.webp";
-import hoabantrang from "../../assets/home/Exhibitions/Hoa Ban Trắng.webp";
-import cheghosanh from "../../assets/home/Exhibitions/Lehoi_cards.webp";
-import longda from "../../assets/home/Exhibitions/LongDaDa_cards.webp";
-import noidat from "../../assets/home/Exhibitions/noidat_cards.webp";
-import phunu from "../../assets/home/Exhibitions/phunu_cards.webp";
+import langbiang from "../../assets/home/Exhibitions/Langbiang.webp";
 import thong2 from "../../assets/home/Exhibitions/Thông 2.webp";
+
+// Import gallery images for Phuc Tang
+import gallery1 from "../../assets/home/collections/phuctang/Cô đơn.webp";
+import gallery2 from "../../assets/home/collections/phuctang/Gào thét.webp";
+import gallery3 from "../../assets/home/collections/phuctang/Lãng du.webp";
+import gallery4 from "../../assets/home/collections/phuctang/Mênh mang.webp";
+import gallery5 from "../../assets/home/collections/phuctang/Thông 1.webp";
+import gallery6 from "../../assets/home/collections/phuctang/Thông 2.webp";
+import gallery7 from "../../assets/home/collections/phuctang/Thông 3.webp";
+import gallery8 from "../../assets/home/collections/phuctang/Thông 4.webp";
+import gallery9 from "../../assets/home/collections/phuctang/Trầm mặc.webp";
 
 // Import thumbnails for related items
 
 // Combined data for both exhibitions and guided tours
 const allItemsData = {
   // Exhibitions
-  "cong-chieng": {
-    id: "cong-chieng",
-    title: "Dụng cụ âm nhạc Tây Nguyên",
-    subtitle: "Cồng chiêng",
+  // "cong-chieng": {
+  //   id: "cong-chieng",
+  //   title: "Dụng cụ âm nhạc Tây Nguyên",
+  //   subtitle: "Cồng chiêng",
+  //   description:
+  //     "Musée Du Pin trưng bày các nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, tiêu biểu là cồng chiêng – biểu tượng văn hóa và tín ngưỡng thiêng liêng. Âm thanh vang vọng của cồng chiêng thể hiện sự kết nối sâu sắc giữa con người và thế giới tâm linh.",
+  //   date: "30 tháng 4 - 28 tháng 7 2025",
+  //   location: "Tầng 1",
+  //   image: congchieng,
+  //   alt: "Dụng cụ âm nhạc Tây Nguyên",
+  //   tag: "Trưng bày",
+  //   longDescription: [
+  //     "Musée Du Pin trưng bày các nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, tiêu biểu là cồng chiêng – biểu tượng văn hóa và tín ngưỡng thiêng liêng.",
+  //     "Âm thanh vang vọng của cồng chiêng thể hiện sự kết nối sâu sắc giữa con người và thế giới tâm linh.",
+  //     "Cồng chiêng không chỉ là nhạc cụ mà còn là vật phẩm thiêng liêng trong các nghi lễ và lễ hội truyền thống của người Tây Nguyên.",
+  //   ],
+  //   curators: ["Musée Du Pin"],
+  //   type: "exhibition",
+  // },
+  // "long-da-da": {
+  //   id: "long-da-da",
+  //   title: "K'ho chăn nuôi",
+  //   subtitle: "Lồng đa đa",
+  //   description:
+  //     "Lồng đa đa của người K'ho hiện đang được trưng bày tại Musée Du Pin như một biểu tượng mộc mạc nhưng đầy tính văn hóa của đời sống dân tộc Tây Nguyên.",
+  //   date: "24 tháng 1 - 21 tháng 7 2025",
+  //   location: "Tầng 2",
+  //   image: longda,
+  //   alt: "K'ho chăn nuôi",
+  //   tag: "Trưng bày",
+  //   longDescription: [
+  //     "Lồng đa đa của người K'ho hiện đang được trưng bày tại Musée Du Pin như một biểu tượng mộc mạc nhưng đầy tính văn hóa của đời sống dân tộc Tây Nguyên.",
+  //     "Được đan thủ công từ tre nứa, chiếc lồng không chỉ phục vụ mục đích chăn nuôi mà còn phản ánh sự khéo léo, tỉ mỉ và mối liên kết bền chặt giữa con người với thiên nhiên núi rừng.",
+  //     "Đây là một trong những hiện vật quý giá thể hiện đời sống văn hóa vật chất của người K'ho.",
+  //   ],
+  //   curators: ["Musée Du Pin"],
+  //   type: "exhibition",
+  // },
+  // "tuong-phu-nu": {
+  //   id: "tuong-phu-nu",
+  //   title: "K'ho điêu khắc",
+  //   subtitle: "Tượng phụ nữ",
+  //   description:
+  //     "Tác phẩm điêu khắc người dân tộc K'ho đang được trưng bày tại Musée Du Pin thể hiện hình ảnh phụ nữ Tây Nguyên trong dáng đứng trang nghiêm.",
+  //   date: "22 tháng 1 - 12 tháng 5 2025",
+  //   location: "Tầng 3",
+  //   image: phunu,
+  //   alt: "K'ho điêu khắc",
+  //   tag: "Trưng bày",
+  //   longDescription: [
+  //     "Tác phẩm điêu khắc người dân tộc K'ho đang được trưng bày tại Musée Du Pin thể hiện hình ảnh phụ nữ Tây Nguyên trong dáng đứng trang nghiêm, tay cầm chiếc chiêng nhỏ – biểu tượng của âm nhạc và tín ngưỡng bản địa.",
+  //     "Tác phẩm mang đậm phong cách mộc mạc nhưng đầy chiều sâu văn hóa, phản ánh vẻ đẹp nội tâm, tinh thần kiên cường và vai trò quan trọng của người phụ nữ trong đời sống cộng đồng K'ho.",
+  //     "Đây là một trong những hiện vật quý hiếm thể hiện nghệ thuật điêu khắc truyền thống của người K'ho.",
+  //   ],
+  //   curators: ["Musée Du Pin"],
+  //   type: "exhibition",
+  // },
+  // "che-gho-sanh": {
+  //   id: "che-gho-sanh",
+  //   title: "K'ho lễ hội",
+  //   subtitle: "Ché Ghò Sành",
+  //   description:
+  //     "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, hiện đang được trưng bày tại Musée Du Pin.",
+  //   date: "29 tháng 2 - 28 tháng 9 2025",
+  //   location: "Tầng 1",
+  //   image: cheghosanh,
+  //   alt: "K'ho lễ hội",
+  //   tag: "Trưng bày",
+  //   longDescription: [
+  //     "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, hiện đang được trưng bày tại Musée Du Pin.",
+  //     "Đây là biểu tượng của sự giàu có, quyền uy và tín ngưỡng tâm linh trong đời sống người bản địa.",
+  //     "Ché được sử dụng trong các nghi lễ quan trọng và là vật phẩm quý giá được truyền từ đời này sang đời khác.",
+  //   ],
+  //   curators: ["Musée Du Pin"],
+  //   type: "exhibition",
+  // },
+  // "noi-dat": {
+  //   id: "noi-dat",
+  //   title: "K'ho sinh hoạt thường nhật",
+  //   subtitle: "Nồi đất",
+  //   description:
+  //     "Được chế tác thủ công từ đất nung, nồi có hình dáng đơn giản nhưng chắc chắn.",
+  //   date: "Trưng bày thường xuyên",
+  //   location: "Tầng 3",
+  //   image: noidat,
+  //   alt: "K'ho sinh hoạt thường nhật",
+  //   tag: "Trưng bày",
+  //   longDescription: [
+  //     "Được chế tác thủ công từ đất nung, nồi có hình dáng đơn giản nhưng chắc chắn.",
+  //     "Thường dùng để nấu ăn trong các dịp lễ hội hoặc sinh hoạt gia đình.",
+  //     "Đây là một trong những hiện vật thể hiện đời sống sinh hoạt hàng ngày của người K'ho.",
+  //   ],
+  //   curators: ["Musée Du Pin"],
+  //   type: "exhibition",
+  // },
+  // "vat-lieu": {
+  //   id: "vat-lieu",
+  //   title: "Vật liệu",
+  //   subtitle: "Chất liệu K'ho",
+  //   description:
+  //     "Tại Musée Du Pin, mỗi chất liệu được chọn lựa kỹ lưỡng nhằm tôn vinh vẻ đẹp tự nhiên và bản sắc văn hóa Tây Nguyên. Các vật liệu truyền thống như gỗ, đá, đất và sợi tự nhiên không chỉ là phương tiện sáng tạo mà còn là cầu nối giữa nghệ thuật và đời sống bản địa.",
+  //   date: "Trưng bày thường xuyên",
+  //   location: "Tầng 2",
+  //   image: hoabantrang,
+  //   alt: "Vật liệu",
+  //   tag: "Trưng bày",
+  //   longDescription: [
+  //     "Tại Musée Du Pin, mỗi chất liệu được chọn lựa kỹ lưỡng nhằm tôn vinh vẻ đẹp tự nhiên và bản sắc văn hóa Tây Nguyên.",
+  //     "Các vật liệu truyền thống như gỗ, đá, đất và sợi tự nhiên không chỉ là phương tiện sáng tạo mà còn là cầu nối giữa nghệ thuật và đời sống bản địa.",
+  //     "Mỗi chất liệu đều mang trong mình câu chuyện về sự gắn kết giữa con người với thiên nhiên, về kỹ thuật chế tác truyền thống, và về triết lý sống hài hòa với môi trường của người K'ho.",
+  //   ],
+  //   curators: ["Musée Du Pin"],
+  //   type: "exhibition",
+  // },
+  "langbiang-khong-gian": {
+    id: "langbiang-khong-gian",
+    title: "LANGBIANG - KHÔNG GIAN NGHỆ THUẬT SỐNG CÙNG VĂN HOÁ",
+    subtitle: "",
     description:
-      "Musée Du Pin trưng bày các nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, tiêu biểu là cồng chiêng – biểu tượng văn hóa và tín ngưỡng thiêng liêng. Âm thanh vang vọng của cồng chiêng thể hiện sự kết nối sâu sắc giữa con người và thế giới tâm linh.",
+      "Khi nghệ thuật không chỉ để ngắm, mà để sống cùng và sống trong. Không có tủ kính ngăn cách. Không có rào chắn giữa người và hiện vật.",
     date: "30 tháng 4 - 28 tháng 7 2025",
     location: "Tầng 1",
-    image: congchieng,
-    alt: "Dụng cụ âm nhạc Tây Nguyên",
+    image: langbiang,
+    alt: "Không gian nghệ thuật Langbiang",
     tag: "Trưng bày",
     longDescription: [
-      "Musée Du Pin trưng bày các nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, tiêu biểu là cồng chiêng – biểu tượng văn hóa và tín ngưỡng thiêng liêng.",
-      "Âm thanh vang vọng của cồng chiêng thể hiện sự kết nối sâu sắc giữa con người và thế giới tâm linh.",
-      "Cồng chiêng không chỉ là nhạc cụ mà còn là vật phẩm thiêng liêng trong các nghi lễ và lễ hội truyền thống của người Tây Nguyên.",
+      "Khi nghệ thuật không chỉ để ngắm, mà để sống cùng và sống trong. Không có tủ kính ngăn cách. Không có rào chắn giữa người và hiện vật.",
+      "Langbiang không đơn thuần là một căn phòng, mà là một vùng ký ức sống, nơi hồn cốt của núi rừng thở trong từng vật phẩm, cháy trong từng ngọn lửa bếp, ngân nga trong từng tiếng cồng chiêng.",
+      "Bạn không đến đây để nhìn, mà để chạm. Không để nghe kể, mà để nghe thức tỉnh. Không để chụp hình, mà để gặp lại chính mình trong một nền văn hóa từng bị lãng quên.",
+      "Khi cánh cửa Langbiang mở ra, những giá trị truyền thống và văn hoá của mảnh đất ngàn thông này cũng được toả lan khắp nơi, vậy nên hãy đến và mở cánh cửa Langbiang, bạn nhé!",
+      "Chạm tay vào hiện vật. Nghe rừng lên tiếng. Cảm được cội nguồn",
     ],
-    curators: ["PGS.TS. Nguyễn Văn A", "TS. Trần Thị B"],
+    curators: ["Bảo tàng Thông | Musée Du Pin"],
     type: "exhibition",
   },
-  "long-da-da": {
-    id: "long-da-da",
-    title: "K'ho chăn nuôi",
-    subtitle: "Lồng đa đa",
+  "phuc-tang-tram-mac": {
+    id: "phuc-tang-tram-mac",
+    title: "Phức Tầng",
+    subtitle: "",
     description:
-      "Lồng đa đa của người K'ho hiện đang được trưng bày tại Musée Du Pin như một biểu tượng mộc mạc nhưng đầy tính văn hóa của đời sống dân tộc Tây Nguyên.",
-    date: "24 tháng 1 - 21 tháng 7 2025",
+      "Đà Lạt những phức tầng trầm mặc, in lên mây, những hàng thông điệp khúc, Trên triền dốc, những nếp nhà khảm vào nhau.",
+    date: "2025",
     location: "Tầng 2",
-    image: longda,
-    alt: "K'ho chăn nuôi",
+    image: thong2,
+    alt: "Đà Lạt những phức tầng trầm mặc",
     tag: "Trưng bày",
     longDescription: [
-      "Lồng đa đa của người K'ho hiện đang được trưng bày tại Musée Du Pin như một biểu tượng mộc mạc nhưng đầy tính văn hóa của đời sống dân tộc Tây Nguyên.",
-      "Được đan thủ công từ tre nứa, chiếc lồng không chỉ phục vụ mục đích chăn nuôi mà còn phản ánh sự khéo léo, tỉ mỉ và mối liên kết bền chặt giữa con người với thiên nhiên núi rừng.",
-      "Đây là một trong những hiện vật quý giá thể hiện đời sống văn hóa vật chất của người K'ho.",
+      "Đà Lạt những phức tầng trầm mặc",
+      "In lên mây, những hàng thông điệp khúc,",
+      "Trên triền dốc, những nếp nhà khảm vào nhau,",
+      "Bao than thở chất chồng in bóng mặt hồ.",
+      "Trong lòng lữ khách độc hành",
+      "Trái thông khô mở vảy.",
     ],
-    curators: ["TS. Lê Văn C", "ThS. Phạm Thị D"],
+    curators: ["Tùng Xuân Lâm"],
     type: "exhibition",
-  },
-  "tuong-phu-nu": {
-    id: "tuong-phu-nu",
-    title: "K'ho điêu khắc",
-    subtitle: "Tượng phụ nữ",
-    description:
-      "Tác phẩm điêu khắc người dân tộc K'ho đang được trưng bày tại Musée Du Pin thể hiện hình ảnh phụ nữ Tây Nguyên trong dáng đứng trang nghiêm.",
-    date: "22 tháng 1 - 12 tháng 5 2025",
-    location: "Tầng 3",
-    image: phunu,
-    alt: "K'ho điêu khắc",
-    tag: "Trưng bày",
-    longDescription: [
-      "Tác phẩm điêu khắc người dân tộc K'ho đang được trưng bày tại Musée Du Pin thể hiện hình ảnh phụ nữ Tây Nguyên trong dáng đứng trang nghiêm, tay cầm chiếc chiêng nhỏ – biểu tượng của âm nhạc và tín ngưỡng bản địa.",
-      "Tác phẩm mang đậm phong cách mộc mạc nhưng đầy chiều sâu văn hóa, phản ánh vẻ đẹp nội tâm, tinh thần kiên cường và vai trò quan trọng của người phụ nữ trong đời sống cộng đồng K'ho.",
-      "Đây là một trong những hiện vật quý hiếm thể hiện nghệ thuật điêu khắc truyền thống của người K'ho.",
+    gallery: [
+      { image: gallery1, title: "Cô đơn" },
+      { image: gallery2, title: "Gào thét" },
+      { image: gallery3, title: "Lãng du" },
+      { image: gallery4, title: "Mênh mang" },
+      { image: gallery5, title: "Thông 1" },
+      { image: gallery6, title: "Thông 2" },
+      { image: gallery7, title: "Thông 3" },
+      { image: gallery8, title: "Thông 4" },
+      { image: gallery9, title: "Trầm mặc" },
     ],
-    curators: ["TS. Nguyễn Thị E", "ThS. Trần Văn F"],
-    type: "exhibition",
-  },
-  "che-gho-sanh": {
-    id: "che-gho-sanh",
-    title: "K'ho lễ hội",
-    subtitle: "Ché Ghò Sành",
-    description:
-      "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, hiện đang được trưng bày tại Musée Du Pin.",
-    date: "29 tháng 2 - 28 tháng 9 2025",
-    location: "Tầng 1",
-    image: cheghosanh,
-    alt: "K'ho lễ hội",
-    tag: "Trưng bày",
-    longDescription: [
-      "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, hiện đang được trưng bày tại Musée Du Pin.",
-      "Đây là biểu tượng của sự giàu có, quyền uy và tín ngưỡng tâm linh trong đời sống người bản địa.",
-      "Ché được sử dụng trong các nghi lễ quan trọng và là vật phẩm quý giá được truyền từ đời này sang đời khác.",
-    ],
-    curators: ["PGS.TS. Phạm Văn G", "TS. Lê Thị H"],
-    type: "exhibition",
-  },
-  "noi-dat": {
-    id: "noi-dat",
-    title: "K'ho sinh hoạt thường nhật",
-    subtitle: "Nồi đất",
-    description:
-      "Được chế tác thủ công từ đất nung, nồi có hình dáng đơn giản nhưng chắc chắn.",
-    date: "Trưng bày thường xuyên",
-    location: "Tầng 3",
-    image: noidat,
-    alt: "K'ho sinh hoạt thường nhật",
-    tag: "Trưng bày",
-    longDescription: [
-      "Được chế tác thủ công từ đất nung, nồi có hình dáng đơn giản nhưng chắc chắn.",
-      "Thường dùng để nấu ăn trong các dịp lễ hội hoặc sinh hoạt gia đình.",
-      "Đây là một trong những hiện vật thể hiện đời sống sinh hoạt hàng ngày của người K'ho.",
-    ],
-    curators: ["TS. Lê Văn L", "ThS. Phạm Thị M"],
-    type: "exhibition",
-  },
-  "vat-lieu": {
-    id: "vat-lieu",
-    title: "Vật liệu",
-    subtitle: "Chất liệu K'ho",
-    description:
-      "Tại Musée Du Pin, mỗi chất liệu được chọn lựa kỹ lưỡng nhằm tôn vinh vẻ đẹp tự nhiên và bản sắc văn hóa Tây Nguyên. Các vật liệu truyền thống như gỗ, đá, đất và sợi tự nhiên không chỉ là phương tiện sáng tạo mà còn là cầu nối giữa nghệ thuật và đời sống bản địa.",
-    date: "Trưng bày thường xuyên",
-    location: "Tầng 2",
-    image: hoabantrang,
-    alt: "Vật liệu",
-    tag: "Trưng bày",
-    longDescription: [
-      "Tại Musée Du Pin, mỗi chất liệu được chọn lựa kỹ lưỡng nhằm tôn vinh vẻ đẹp tự nhiên và bản sắc văn hóa Tây Nguyên.",
-      "Các vật liệu truyền thống như gỗ, đá, đất và sợi tự nhiên không chỉ là phương tiện sáng tạo mà còn là cầu nối giữa nghệ thuật và đời sống bản địa.",
-      "Mỗi chất liệu đều mang trong mình câu chuyện về sự gắn kết giữa con người với thiên nhiên, về kỹ thuật chế tác truyền thống, và về triết lý sống hài hòa với môi trường của người K'ho.",
-    ],
-    curators: ["TS. Nguyễn Văn X", "ThS. Lê Thị Y"],
-    type: "exhibition",
   },
 
   // Guided Tours
@@ -160,56 +220,56 @@ const allItemsData = {
     price: "200.000 VND/người",
     type: "tour",
   },
-  "phuc-tang": {
-    id: "phuc-tang",
-    title: "Phức Tầng",
-    subtitle: "Thiên nhiên K'ho",
-    description:
-      "Được Musée Du Pin bắt trọn khoảng khắc các hình ảnh thiên nhiên đậm sắc dân tộc K'ho, tạo nên bức tranh đẹp về đất nước Tây Nguyên.",
-    duration: "1 giờ 15 phút",
-    schedule: "Hàng thứ 2, thứ 4, thứ 6 lúc 11:30",
-    image: thong2,
-    alt: "Phức Tầng",
-    tag: "Tham quan",
-    longDescription: [
-      "Được Musée Du Pin bắt trọn khoảng khắc các hình ảnh thiên nhiên đậm sắc dân tộc K'ho, tạo nên bức tranh đẹp về đất nước Tây Nguyên.",
-      "Bức tranh thiên nhiên hùng vĩ của Tây Nguyên được thể hiện qua góc nhìn nghệ thuật độc đáo.",
-      "Triển lãm mang đến cái nhìn mới mẻ về vẻ đẹp tự nhiên của vùng đất K'ho.",
-    ],
-    highlights: [
-      "Góc nhìn nghệ thuật độc đáo",
-      "Vẻ đẹp thiên nhiên Tây Nguyên",
-      "Đời sống văn hóa K'ho",
-      "Nghệ thuật nhiếp ảnh",
-    ],
-    price: "180.000 VND/người",
-    type: "tour",
-  },
-  gui: {
-    id: "gui",
-    title: "K'ho sinh hoạt thường nhật",
-    subtitle: "Gùi",
-    description:
-      "Được Musée Du Pin đan bằng tre, nứa hoặc lồ ô, gùi không chỉ dùng để mang theo lương thực, củi, nông sản mà còn là hình ảnh quen thuộc gắn liền với vai trò của người phụ nữ trong gia đình và cộng đồng.",
-    duration: "1 giờ 15 phút",
-    schedule: "Hàng thứ 2, thứ 4, thứ 6 lúc 11:30",
-    image: gui,
-    alt: "K'ho sinh hoạt thường nhật",
-    tag: "Trưng bày",
-    longDescription: [
-      "Được đan bằng tre, nứa hoặc lồ ô, gùi là vật dụng không thể thiếu trong đời sống của người K'ho.",
-      "Gùi không chỉ dùng để mang theo lương thực, củi, nông sản mà còn là hình ảnh quen thuộc gắn liền với vai trò của người phụ nữ trong gia đình và cộng đồng.",
-      "Mỗi chiếc gùi là một tác phẩm nghệ thuật đan lát thủ công, thể hiện sự khéo léo và tỉ mỉ của người thợ.",
-    ],
-    highlights: [
-      "Kỹ thuật đan lát truyền thống",
-      "Vai trò trong đời sống",
-      "Biểu tượng văn hóa",
-      "Nghệ thuật trang trí",
-    ],
-    price: "180.000 VND/người",
-    type: "tour",
-  },
+  // "phuc-tang": {
+  //   id: "phuc-tang",
+  //   title: "Phức Tầng",
+  //   subtitle: "Thiên nhiên K'ho",
+  //   description:
+  //     "Được Musée Du Pin bắt trọn khoảng khắc các hình ảnh thiên nhiên đậm sắc dân tộc K'ho, tạo nên bức tranh đẹp về đất nước Tây Nguyên.",
+  //   duration: "1 giờ 15 phút",
+  //   schedule: "Hàng thứ 2, thứ 4, thứ 6 lúc 11:30",
+  //   image: thong2,
+  //   alt: "Phức Tầng",
+  //   tag: "Tham quan",
+  //   longDescription: [
+  //     "Được Musée Du Pin bắt trọn khoảng khắc các hình ảnh thiên nhiên đậm sắc dân tộc K'ho, tạo nên bức tranh đẹp về đất nước Tây Nguyên.",
+  //     "Bức tranh thiên nhiên hùng vĩ của Tây Nguyên được thể hiện qua góc nhìn nghệ thuật độc đáo.",
+  //     "Triển lãm mang đến cái nhìn mới mẻ về vẻ đẹp tự nhiên của vùng đất K'ho.",
+  //   ],
+  //   highlights: [
+  //     "Góc nhìn nghệ thuật độc đáo",
+  //     "Vẻ đẹp thiên nhiên Tây Nguyên",
+  //     "Đời sống văn hóa K'ho",
+  //     "Nghệ thuật nhiếp ảnh",
+  //   ],
+  //   price: "180.000 VND/người",
+  //   type: "tour",
+  // },
+  // gui: {
+  //   id: "gui",
+  //   title: "K'ho sinh hoạt thường nhật",
+  //   subtitle: "Gùi",
+  //   description:
+  //     "Được Musée Du Pin đan bằng tre, nứa hoặc lồ ô, gùi không chỉ dùng để mang theo lương thực, củi, nông sản mà còn là hình ảnh quen thuộc gắn liền với vai trò của người phụ nữ trong gia đình và cộng đồng.",
+  //   duration: "1 giờ 15 phút",
+  //   schedule: "Hàng thứ 2, thứ 4, thứ 6 lúc 11:30",
+  //   image: gui,
+  //   alt: "K'ho sinh hoạt thường nhật",
+  //   tag: "Trưng bày",
+  //   longDescription: [
+  //     "Được đan bằng tre, nứa hoặc lồ ô, gùi là vật dụng không thể thiếu trong đời sống của người K'ho.",
+  //     "Gùi không chỉ dùng để mang theo lương thực, củi, nông sản mà còn là hình ảnh quen thuộc gắn liền với vai trò của người phụ nữ trong gia đình và cộng đồng.",
+  //     "Mỗi chiếc gùi là một tác phẩm nghệ thuật đan lát thủ công, thể hiện sự khéo léo và tỉ mỉ của người thợ.",
+  //   ],
+  //   highlights: [
+  //     "Kỹ thuật đan lát truyền thống",
+  //     "Vai trò trong đời sống",
+  //     "Biểu tượng văn hóa",
+  //     "Nghệ thuật trang trí",
+  //   ],
+  //   price: "180.000 VND/người",
+  //   type: "tour",
+  // },
 };
 
 const ExhibitionDetail = () => {
@@ -219,11 +279,24 @@ const ExhibitionDetail = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [relatedVisible, setRelatedVisible] = useState(false);
+  const [showGallery, setShowGallery] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
+  const [galleryLoading, setGalleryLoading] = useState(false);
+  const [galleryLoaded, setGalleryLoaded] = useState(false);
+  const [galleryImagesCache, setGalleryImagesCache] = useState(() => {
+    // Sử dụng sessionStorage để cache trạng thái đã load ảnh gallery
+    if (typeof window !== "undefined" && window.sessionStorage) {
+      return window.sessionStorage.getItem("phucTangGalleryLoaded") === "true";
+    }
+    return false;
+  });
 
   // Refs for animation elements
   const heroRef = useRef(null);
   const contentRef = useRef(null);
   const relatedRef = useRef(null);
+
+  const { preloadAll } = useImageCache();
 
   useEffect(() => {
     // In a real app, this would be an API call
@@ -302,6 +375,29 @@ const ExhibitionDetail = () => {
     };
   }, [id]);
 
+  // Khi mở modal gallery, nếu chưa từng load thì bắt đầu load tất cả ảnh
+  useEffect(() => {
+    if (
+      showGallery &&
+      !galleryLoaded &&
+      !galleryImagesCache &&
+      item &&
+      item.id === "phuc-tang-tram-mac" &&
+      item.gallery
+    ) {
+      setGalleryLoading(true);
+      const imageSrcs = item.gallery.map((g) => g.image);
+      preloadAll(imageSrcs).then(() => {
+        setGalleryLoading(false);
+        setGalleryLoaded(true);
+        setGalleryImagesCache(true);
+        if (typeof window !== "undefined" && window.sessionStorage) {
+          window.sessionStorage.setItem("phucTangGalleryLoaded", "true");
+        }
+      });
+    }
+  }, [showGallery, galleryLoaded, galleryImagesCache, item, preloadAll]);
+
   // Handler for back button to maintain tab selection
   const handleBackClick = (e) => {
     e.preventDefault();
@@ -377,7 +473,9 @@ const ExhibitionDetail = () => {
               <>
                 <div className="meta-item">
                   <h3>
-                    <TranslatedText>Ngày</TranslatedText>
+                    <TranslatedText>
+                      {item.date.includes("-") ? "Ngày" : "Năm"}
+                    </TranslatedText>
                   </h3>
                   <p>
                     <TranslatedText>{item.date}</TranslatedText>
@@ -390,6 +488,57 @@ const ExhibitionDetail = () => {
                   <p>
                     <TranslatedText>{item.location}</TranslatedText>
                   </p>
+                </div>
+                <div className="meta-button">
+                  <Link to="/tickets" className="cta-button">
+                    <TranslatedText>Mua vé</TranslatedText>
+                  </Link>
+                  {item.id === "phuc-tang-tram-mac" && (
+                    <>
+                      <button
+                        className="cta-button gallery-button"
+                        onClick={() => setShowGallery(!showGallery)}
+                      >
+                        <TranslatedText>
+                          {showGallery ? "Ẩn bộ sưu tập" : "Xem bộ sưu tập"}
+                        </TranslatedText>
+                      </button>
+                      {showGallery && (
+                        <div className="gallery-slideshow">
+                          {galleryLoading && (
+                            <div className="gallery-loading-overlay">
+                              <div className="gallery-loading-spinner"></div>
+                              <p>Đang tải bộ sưu tập...</p>
+                            </div>
+                          )}
+                          {!galleryLoading &&
+                            (galleryLoaded || galleryImagesCache) && (
+                              <div className="gallery-slideshow-container">
+                                {item.gallery.map((galleryItem, index) => (
+                                  <div
+                                    key={index}
+                                    className="gallery-slide"
+                                    onClick={() =>
+                                      setSelectedImage(galleryItem)
+                                    }
+                                  >
+                                    <img
+                                      src={galleryItem.image}
+                                      alt={galleryItem.title}
+                                    />
+                                    <div className="gallery-slide-title">
+                                      <TranslatedText>
+                                        {galleryItem.title}
+                                      </TranslatedText>
+                                    </div>
+                                  </div>
+                                ))}
+                              </div>
+                            )}
+                        </div>
+                      )}
+                    </>
+                  )}
                 </div>
               </>
             ) : (
@@ -420,18 +569,6 @@ const ExhibitionDetail = () => {
                 </div>
               </>
             )}
-
-            <div className="meta-button">
-              {item.type === "exhibition" ? (
-                <Link to="/tickets" className="cta-button">
-                  <TranslatedText>Mua vé</TranslatedText>
-                </Link>
-              ) : (
-                <Link to="/tickets" className="cta-button">
-                  <TranslatedText>Đặt chuyến</TranslatedText>
-                </Link>
-              )}
-            </div>
           </div>
 
           <div className="exhibition-detail-description">
@@ -528,12 +665,32 @@ const ExhibitionDetail = () => {
           <a href="#" onClick={handleBackClick} className="back-button">
             <span className="arrow-icon">←</span>
             <TranslatedText>
-              Trở về{" "}
-              {item.type === "exhibition" ? "Trưng bày" : "Tham quan"}
+              Trở về {item.type === "exhibition" ? "Trưng bày" : "Tham quan"}
             </TranslatedText>
           </a>
         </div>
       </div>
+
+      {/* Full size image modal */}
+      {selectedImage && (
+        <div className="image-modal" onClick={() => setSelectedImage(null)}>
+          <button
+            className="modal-close-button"
+            onClick={() => setSelectedImage(null)}
+          >
+            ×
+          </button>
+          <div
+            className="image-modal-content"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <img src={selectedImage.image} alt={selectedImage.title} />
+            <div className="image-modal-title">
+              <TranslatedText>{selectedImage.title}</TranslatedText>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import useImageCache from "../../hooks/useImageCache";
 import TranslatedText from "../TranslatedText";
 import "./ExhibitionDetail.css";
 
@@ -296,8 +295,6 @@ const ExhibitionDetail = () => {
   const contentRef = useRef(null);
   const relatedRef = useRef(null);
 
-  const { preloadAll } = useImageCache();
-
   useEffect(() => {
     // In a real app, this would be an API call
     // For now, we're just using our static data
@@ -386,8 +383,20 @@ const ExhibitionDetail = () => {
       item.gallery
     ) {
       setGalleryLoading(true);
-      const imageSrcs = item.gallery.map((g) => g.image);
-      preloadAll(imageSrcs).then(() => {
+      // Tạo promise load tất cả ảnh
+      const loadPromises = item.gallery.map((g) => {
+        return new Promise((resolve) => {
+          const img = new window.Image();
+          img.src = g.image;
+          if (img.complete) {
+            resolve();
+          } else {
+            img.onload = () => resolve();
+            img.onerror = () => resolve();
+          }
+        });
+      });
+      Promise.all(loadPromises).then(() => {
         setGalleryLoading(false);
         setGalleryLoaded(true);
         setGalleryImagesCache(true);
@@ -396,7 +405,7 @@ const ExhibitionDetail = () => {
         }
       });
     }
-  }, [showGallery, galleryLoaded, galleryImagesCache, item, preloadAll]);
+  }, [showGallery, galleryLoaded, galleryImagesCache, item]);
 
   // Handler for back button to maintain tab selection
   const handleBackClick = (e) => {

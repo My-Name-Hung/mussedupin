@@ -6,9 +6,9 @@ import TranslatedText from "../TranslatedText";
 import hero from "../../assets/home/Hero/louvre-sunset.webp";
 
 // Import optimized images
-import langbiang from "../../assets/home/About/nha.jpg";
-import thong2 from "../../assets/home/Exhibitions/Thông 2.webp";
+import langbiang from "../../assets/home/About/nha.webp";
 import bauho from "../../assets/home/Exhibitions/Bauholo_cards.webp";
+import thong2 from "../../assets/home/Exhibitions/Thông 2.webp";
 
 import "./Exhibitions.css";
 
@@ -138,7 +138,6 @@ const Exhibitions = () => {
   const [activeTab, setActiveTab] = useState(
     tabParam === "guided-tours" ? "guided-tours" : "exhibitions"
   );
-  const [isVisible, setIsVisible] = useState({});
   const [pageLoaded, setPageLoaded] = useState(false);
 
   // Effect to handle loading animation
@@ -165,9 +164,6 @@ const Exhibitions = () => {
 
     setActiveTab(tab);
 
-    // Reset visibility state for new cards
-    setIsVisible({});
-
     // Update URL without page reload
     navigate(
       `/exhibitions${tab === "guided-tours" ? "?tab=guided-tours" : ""}`,
@@ -184,48 +180,6 @@ const Exhibitions = () => {
       setActiveTab("exhibitions");
     }
   }, [location.search]);
-
-  // Observe elements for animation on scroll
-  useEffect(() => {
-    const observerOptions = {
-      threshold: 0.15,
-      rootMargin: "0px 0px -50px 0px",
-    };
-
-    const observerCallback = (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          setIsVisible((prev) => ({
-            ...prev,
-            [entry.target.dataset.id]: true,
-          }));
-        }
-      });
-    };
-
-    const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions
-    );
-
-    // Reset visibility on tab change
-    // Add a small delay to allow DOM to update after tab change
-    setTimeout(() => {
-      // Observe all card elements
-      const cards = document.querySelectorAll(".exhibition-card-wrapper");
-      cards.forEach((card) => {
-        observer.observe(card);
-      });
-    }, 100);
-
-    return () => {
-      // Clean up observer
-      const cards = document.querySelectorAll(".exhibition-card-wrapper");
-      cards.forEach((card) => {
-        observer.unobserve(card);
-      });
-    };
-  }, [activeTab]);
 
   // Get active data based on current tab
   const activeData =
@@ -289,11 +243,8 @@ const Exhibitions = () => {
                 <div
                   key={item.id}
                   className={`exhibition-card-wrapper featured ${
-                    isVisible[`featured-${item.id}`] || pageLoaded
-                      ? "visible"
-                      : ""
+                    pageLoaded ? "visible" : ""
                   }`}
-                  data-id={`featured-${item.id}`}
                 >
                   <div className="exhibition-card featured-card">
                     <div className="card-tag">
@@ -345,13 +296,10 @@ const Exhibitions = () => {
               <div
                 key={item.id}
                 className={`exhibition-card-wrapper ${
-                  isVisible[`regular-${item.id}`] ? "visible" : ""
+                  pageLoaded ? "visible" : ""
                 }`}
-                data-id={`regular-${item.id}`}
                 style={{
-                  transitionDelay: !isVisible[`regular-${item.id}`]
-                    ? `${index * 0.1}s`
-                    : "0s",
+                  transitionDelay: !pageLoaded ? `${index * 0.1}s` : "0s",
                 }}
               >
                 <div className="exhibition-card">

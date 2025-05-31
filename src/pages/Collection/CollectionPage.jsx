@@ -831,7 +831,7 @@ const CollectionPage = () => {
   return (
     <div className="collection-page">
       {/* Hero Section */}
-      <section className="cp-hero animate-section">
+      <section className="cp-hero visible">
         <div className="cp-hero-slides-container">
           {collectionData.heroImages.map((image, index) => (
             <div
@@ -875,7 +875,7 @@ const CollectionPage = () => {
       </section>
 
       {/* Discover the Works Section */}
-      <section className="cp-discover-section animate-section">
+      <section className="cp-discover-section visible">
         <div className="cp-section-header">
           <h2 className="cp-section-title">
             <TranslatedText>Khám Phá Tác Phẩm</TranslatedText>

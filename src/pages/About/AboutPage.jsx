@@ -4,8 +4,8 @@ import "./AboutPage.css";
 
 import { FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 import herosVideo from "../../assets/Home/About/Hero_Abouts_Resize.mp4";
-import khonggian from "../../assets/Home/About/khonggian.jpg";
-import nha from "../../assets/Home/About/nha.jpg";
+import khonggian from "../../assets/Home/About/khonggian.webp";
+import nha from "../../assets/Home/About/nha.webp";
 import nhaVideo from "../../assets/Home/About/NhaMatThong_Resize.mp4";
 const AboutPage = () => {
   const [activeSection, setActiveSection] = useState("intro");

@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import useImageCache from "../../hooks/useImageCache";
 import TranslatedText from "../TranslatedText";
 import "./ExhibitionDetail.css";
 
@@ -295,6 +296,8 @@ const ExhibitionDetail = () => {
   const contentRef = useRef(null);
   const relatedRef = useRef(null);
 
+  const { preloadAll } = useImageCache();
+
   useEffect(() => {
     // In a real app, this would be an API call
     // For now, we're just using our static data
@@ -383,29 +386,22 @@ const ExhibitionDetail = () => {
       item.gallery
     ) {
       setGalleryLoading(true);
-      // Tạo promise load tất cả ảnh
-      const loadPromises = item.gallery.map((g) => {
-        return new Promise((resolve) => {
-          const img = new window.Image();
-          img.src = g.image;
-          if (img.complete) {
-            resolve();
-          } else {
-            img.onload = () => resolve();
-            img.onerror = () => resolve();
+      // Sử dụng useImageCache để preload tất cả ảnh
+      const srcArr = item.gallery.map((g) => g.image);
+      preloadAll(srcArr)
+        .then(() => {
+          setGalleryLoading(false);
+          setGalleryLoaded(true);
+          setGalleryImagesCache(true);
+          if (typeof window !== "undefined" && window.sessionStorage) {
+            window.sessionStorage.setItem("phucTangGalleryLoaded", "true");
           }
+        })
+        .catch(() => {
+          setGalleryLoading(false);
         });
-      });
-      Promise.all(loadPromises).then(() => {
-        setGalleryLoading(false);
-        setGalleryLoaded(true);
-        setGalleryImagesCache(true);
-        if (typeof window !== "undefined" && window.sessionStorage) {
-          window.sessionStorage.setItem("phucTangGalleryLoaded", "true");
-        }
-      });
     }
-  }, [showGallery, galleryLoaded, galleryImagesCache, item]);
+  }, [showGallery, galleryLoaded, galleryImagesCache, item, preloadAll]);
 
   // Handler for back button to maintain tab selection
   const handleBackClick = (e) => {
@@ -534,6 +530,7 @@ const ExhibitionDetail = () => {
                                     <img
                                       src={galleryItem.image}
                                       alt={galleryItem.title}
+                                      loading="lazy"
                                     />
                                     <div className="gallery-slide-title">
                                       <TranslatedText>

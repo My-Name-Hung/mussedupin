@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import TranslatedText from "../../components/TranslatedText";
+import useImageCache from "../../hooks/useImageCache";
 import "./CategoryPage.css";
 
 // Import category thumbnails
@@ -285,6 +286,7 @@ const CategoryPage = () => {
   const artworksRef = useRef(null);
   const modalContentRef = useRef(null);
   const heroImageRef = useRef(null);
+  const { preloadAll } = useImageCache();
 
   // Check if device is mobile
   useEffect(() => {
@@ -559,6 +561,18 @@ const CategoryPage = () => {
     }
   };
 
+  // Preload toàn bộ ảnh gallery khi mở modal đầu tiên (nếu có nhiều ảnh)
+  useEffect(() => {
+    if (isModalOpen && artworks.length > 0) {
+      const unloaded = artworks.filter((a) => !a.image && a.imageLoader);
+      if (unloaded.length > 0) {
+        const srcArr = unloaded.map((a) => a.imagePath);
+        // Preload tất cả ảnh chưa có
+        preloadAll(srcArr);
+      }
+    }
+  }, [isModalOpen, artworks, preloadAll]);
+
   if (!category) {
     return (
       <div className="category-loading">
@@ -648,21 +662,11 @@ const CategoryPage = () => {
             {artworks.map((artwork, index) => (
               <div
                 key={artwork.id}
-                className={`category-artwork-card ${isLoaded ? "appear" : ""}`}
+                className={`category-artwork-card`}
                 onClick={() => openArtworkModal(artwork)}
                 onTouchStart={(e) => handleTouchStart(artwork, e)}
                 onTouchEnd={handleTouchEnd}
                 onTouchMove={handleTouchMove}
-                style={{
-                  "--index": index,
-                  animationDelay: `${100 + index * 120}ms`,
-                  transform: !isMobile
-                    ? `perspective(1000px) 
-                       rotateX(${mousePosition.y * 5}deg) 
-                       rotateY(${-mousePosition.x * 5}deg)
-                       translateZ(10px)`
-                    : "none",
-                }}
               >
                 <div className="category-artwork-image-container">
                   <img
@@ -670,12 +674,6 @@ const CategoryPage = () => {
                     alt={artwork.title}
                     className="category-artwork-image"
                     loading="lazy"
-                    style={{
-                      transform: !isMobile
-                        ? `translateX(${mousePosition.x * -15}px) 
-                           translateY(${mousePosition.y * -15}px)`
-                        : "none",
-                    }}
                   />
                   <div className="category-artwork-overlay">
                     <div className="artwork-quick-info">

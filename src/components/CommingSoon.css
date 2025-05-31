@@ -1,0 +1,23 @@
+.comming-soon-page {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f8f8f8;
+}
+.comming-soon-content {
+  text-align: center;
+  padding: 2rem 3rem;
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+}
+.comming-soon-content h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #222;
+}
+.comming-soon-content p {
+  font-size: 1.2rem;
+  color: #666;
+}

@@ -1,21 +1,165 @@
+:root {
+  /* Colors */
+  --primary-color: #b38741;
+  --primary-dark: #93702f;
+  --primary-light: #d3af78;
+  --secondary-color: #1e1e1e;
+  --text-color: #333333;
+  --light-color: #f5f5f5;
+  --accent-color: #d4af37;
+  --bg-light: #f9f8f6;
+  --bg-medium: #f3f0e9;
+  --bg-dark: #e9e4d8;
+
+  /* Shadows */
+  --shadow-soft: 0 6px 15px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.12);
+  --shadow-hard: 0 15px 35px rgba(0, 0, 0, 0.18);
+
+  /* Transitions */
+  --transition-slow: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  --transition-medium: 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+  --transition-fast: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+
+  /* Fonts */
+  --font-primary: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
+  --font-secondary: "Roboto", sans-serif;
+}
+
+/* Common background pattern */
+.bg-pattern {
+  background-image: url("./assets/Background/Background2.webp");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 300px;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+/* Common animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Common utility classes */
+.text-center {
+  text-align: center;
+}
+.flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.relative {
+  position: relative;
+}
+.absolute {
+  position: absolute;
+}
+.overflow-hidden {
+  overflow: hidden;
+}
+.z-1 {
+  z-index: 1;
+}
+.z-2 {
+  z-index: 2;
+}
+.z-3 {
+  z-index: 3;
+}
+
+/* Common component styles */
+.hero-section {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  width: 100%;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+}
+
+.hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.5) 0%,
+    rgba(0, 0, 0, 0.8) 100%
+  );
+  z-index: 1;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  color: white;
+  text-align: center;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Common button styles */
+.btn {
+  display: inline-block;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 4px;
+  background-color: var(--primary-color);
+  color: white;
+  font-family: var(--font-secondary);
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.btn:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+}
+
+/* Common card styles */
+.card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: var(--shadow-soft);
+  overflow: hidden;
+  transition: transform var(--transition-medium);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-medium);
+}
+
 .app {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
   background-color: #fff;
-}
-
-.hero-section {
-  height: 70vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background-color: #f5f5f5;
-  background-image: url("/hero-bg.jpg");
-  background-size: cover;
-  background-position: center;
-  color: white;
-  position: relative;
 }
 
 .hero-section::before {
@@ -47,21 +191,6 @@
   padding: 60px 20px;
   max-width: 1200px;
   margin: 0 auto;
-}
-
-.card {
-  background-color: #fff;
-  border: 1px solid #e0e0e0;
-  border-radius: 4px;
-  padding: 30px;
-  width: 300px;
-  transition: all 0.3s ease;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 
 .card h2 {

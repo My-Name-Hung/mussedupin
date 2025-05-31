@@ -193,8 +193,8 @@
 }
 
 .explore-button {
-  background-color: rgba(255, 255, 255, 0.92);
-  color: #000;
+  background-color: #656d1e;
+  color: yellow;
   border: none;
   border-radius: 30px;
   padding: 1rem 3rem;
@@ -226,7 +226,7 @@
 }
 
 .explore-button:hover {
-  background-color: #fff;
+  background-color: #2c2f11;
   transform: translateY(-8px) scale(1.05);
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
 }

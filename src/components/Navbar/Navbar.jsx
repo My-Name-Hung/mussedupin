@@ -2,10 +2,10 @@ import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import logo from "../../assets/Logo/logo-icon.jpg";
-import ExhibitionsAnother from "../../assets/Navbar/Exhibitions another-artwork.jpg";
-import Exhibitions from "../../assets/Navbar/Exhibitions-artwork.jpg";
-import artworkImg from "../../assets/Navbar/louvre-artwork.jpg";
-import visitArtworkImg from "../../assets/Navbar/visit-louvre-artwork.jpg";
+import ExhibitionsAnother from "../../assets/Navbar/LongDaDa_cards.webp";
+import Exhibitions from "../../assets/Navbar/noidat_cards.webp";
+import artworkImg from "../../assets/Navbar/phunu_cards.webp";
+import visitArtworkImg from "../../assets/Navbar/Thông 2.webp";
 
 import TranslatedText from "../../components/TranslatedText";
 import { useTranslation } from "../../context/TranslationContext";
@@ -1144,7 +1144,7 @@ const Navbar = () => {
             >
               <BoutiqueIcon />
             </Link>
-            <Link to="/tickets" className="btn btn-filled">
+            <Link to="/tickets" className="btn">
               <TicketIcon />
             </Link>
           </div>
@@ -1180,7 +1180,7 @@ const Navbar = () => {
         </div>
 
         <div className="right-section">
-          <Link to="/tickets" className="btn btn-filled">
+          <Link to="/tickets" className="btn">
             <TicketIcon />
           </Link>
         </div>

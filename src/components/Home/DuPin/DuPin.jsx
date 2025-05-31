@@ -7,57 +7,47 @@ import "./DuPin.css";
 const videoData = [
   {
     id: 1,
-    title: "The restoration of the Arc du Carrousel",
-    subtitle: "[ENG subtitles]",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-    duration: "7 min",
-    thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg", // This will be replaced with actual thumbnails
-    category: "Restoration",
+    title:
+      "Góc nhìn từ Bảo Tàng Thông – Một lát cắt Đà Lạt trọn vẹn trong ánh chiều tà!",
+    subtitle: "Nguồn: Bảo Tàng Thông",
+    youtubeId: "aozcRuYVPKw", // Replace with actual YouTube ID
+    duration: "",
+    thumbnail:
+      "https://i.ytimg.com/vi/aozcRuYVPKw/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG2CIAC0AWKAgwIABABGD4gQihyMA8=&rs=AOn4CLCybz6fVtK17RW4ZlrHrBfDMcmiPw", // This will be replaced with actual thumbnails
+    category: "Thiên nhiên",
   },
   {
     id: 2,
-    title: "The restoration of the Napoleon-III apartments",
-    subtitle: "",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-    duration: "10 min",
-    thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    category: "Architecture",
+    title:
+      "Góc nhìn từ Bảo Tàng Thông – Một lát cắt Đà Lạt trọn vẹn trong ánh chiều tà!",
+    subtitle: "Nguồn: Bảo Tàng Thông",
+    youtubeId: "aozcRuYVPKw", // Replace with actual YouTube ID
+    duration: "",
+    thumbnail:
+      "https://i.ytimg.com/vi/aozcRuYVPKw/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG2CIAC0AWKAgwIABABGD4gQihyMA8=&rs=AOn4CLCybz6fVtK17RW4ZlrHrBfDMcmiPw", // This will be replaced with actual thumbnails
+    category: "Thiên nhiên",
   },
   {
     id: 3,
-    title: "The Salle des Etats",
-    subtitle: "",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-    duration: "4 min",
-    thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    category: "History",
+    title:
+      "Góc nhìn từ Bảo Tàng Thông – Một lát cắt Đà Lạt trọn vẹn trong ánh chiều tà!",
+    subtitle: "Nguồn: Bảo Tàng Thông",
+    youtubeId: "aozcRuYVPKw", // Replace with actual YouTube ID
+    duration: "",
+    thumbnail:
+      "https://i.ytimg.com/vi/aozcRuYVPKw/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG2CIAC0AWKAgwIABABGD4gQihyMA8=&rs=AOn4CLCybz6fVtK17RW4ZlrHrBfDMcmiPw", // This will be replaced with actual thumbnails
+    category: "Thiên nhiên",
   },
   {
     id: 4,
-    title: "« Forêt » by Anne Teresa De Keersmaeker",
-    subtitle: "[EN subtitles]",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-    duration: "7 min",
-    thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    category: "Performance",
-  },
-  {
-    id: 5,
-    title: "Virtual Tour: Egyptian Antiquities",
-    subtitle: "",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-    duration: "9 min",
-    thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    category: "Tour",
-  },
-  {
-    id: 6,
-    title: "Behind the Scenes: Restoration Workshop",
-    subtitle: "",
-    youtubeId: "dQw4w9WgXcQ", // Replace with actual YouTube ID
-    duration: "6 min",
-    thumbnail: "https://img.youtube.com/vi/dQw4w9WgXcQ/maxresdefault.jpg",
-    category: "Workshop",
+    title:
+      "Góc nhìn từ Bảo Tàng Thông – Một lát cắt Đà Lạt trọn vẹn trong ánh chiều tà!",
+    subtitle: "Nguồn: Bảo Tàng Thông",
+    youtubeId: "aozcRuYVPKw", // Replace with actual YouTube ID
+    duration: "",
+    thumbnail:
+      "https://i.ytimg.com/vi/aozcRuYVPKw/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG2CIAC0AWKAgwIABABGD4gQihyMA8=&rs=AOn4CLCybz6fVtK17RW4ZlrHrBfDMcmiPw", // This will be replaced with actual thumbnails
+    category: "Thiên nhiên",
   },
 ];
 

@@ -473,6 +473,25 @@ const MuseumMapPage = () => {
 
       {/* Content */}
       <div className="map-content">{renderContent()}</div>
+
+      {/* Google Map Section - always visible at bottom */}
+      <section className="museum-map-google-section">
+        <div className="museum-map-google-container">
+          <h2 className="museum-map-google-title">Vị trí bảo tàng</h2>
+          <div className="museum-map-google-content">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.6347163633855!2d108.44256451806218!3d11.923690928634585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317113472aaa2ceb%3A0xb2d96d24754e2a02!2zMjkgxJDhu5FuZyDEkGEsIFBoxrDhu51uZyAzLCDEkMOgIEzhuqF0LCBMw6JtIMSQ4buTbmcsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1748493614119!5m2!1svi!2s"
+              width="100%"
+              height="400"
+              style={{ border: 0 }}
+              allowFullScreen=""
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Bản đồ bảo tàng Musée Du Pin"
+            ></iframe>
+          </div>
+        </div>
+      </section>
     </div>
   );
 };

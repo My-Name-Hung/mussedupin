@@ -358,12 +358,18 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
-  padding: 2.5rem 1.5rem 1.5rem;
-  transform: translateY(5px);
-  opacity: 1;
-  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  z-index: 4;
+  width: 100%;
+  padding: 18px 12px 14px 12px;
+  background: linear-gradient(
+    to top,
+    rgba(0, 0, 0, 0.7) 80%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+  z-index: 2;
+  min-height: 60px;
+  box-sizing: border-box;
 }
 
 .dupin-video-wrapper:hover .dupin-overlay {
@@ -377,12 +383,23 @@
 }
 
 .dupin-video-title {
-  font-size: 1.35rem;
-  font-weight: 500;
-  margin: 0;
-  line-height: 1.3;
-  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-  transition: transform 0.4s ease;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #fff;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
+  background: rgba(0, 0, 0, 0.45); /* nền mờ sau chữ */
+  padding: 8px 14px;
+  border-radius: 8px;
+  margin-bottom: 6px;
+  max-width: 90%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* hoặc nếu muốn xuống dòng đẹp hơn: */
+  /* display: -webkit-box;
+     -webkit-line-clamp: 2;
+     -webkit-box-orient: vertical;
+     white-space: normal; */
 }
 
 .dupin-video-wrapper:hover .dupin-video-title {
@@ -391,9 +408,12 @@
 
 .dupin-subtitle {
   font-size: 0.9rem;
-  font-weight: 400;
+  color: #ffe;
   opacity: 0.85;
-  margin-left: 0.5rem;
+  margin-top: 2px;
+  display: block;
+  font-weight: 400;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 .dupin-meta {

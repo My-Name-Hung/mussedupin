@@ -8,7 +8,7 @@
 }
 
 .dupin-plus-page {
-  background-image: url("../../../assets/Background/Background2.png");
+  background-image: url("../../../assets/Background/Background2.webp");
   background-repeat: repeat;
   background-position: center;
   background-size: 300px;
@@ -97,7 +97,7 @@
 .search-input {
   background: transparent;
   border: none;
-  color: white;
+  color: white !important;
   font-size: 1.1rem;
   width: 100%;
   padding: 0.5rem 0;

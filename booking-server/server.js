@@ -4,10 +4,25 @@ import dotenv from "dotenv";
 import express from "express";
 import { google } from "googleapis";
 import https from "https";
+import { GridFSBucket } from "mongodb";
+import mongoose from "mongoose";
 import cron from "node-cron";
 import nodemailer from "nodemailer";
 
 dotenv.config();
+
+// MongoDB Connection
+mongoose
+  .connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log("Connected to MongoDB");
+    // Initialize GridFS
+    const bucket = new GridFSBucket(mongoose.connection.db, {
+      bucketName: "assets",
+    });
+    global.bucket = bucket;
+  })
+  .catch((err) => console.error("MongoDB connection error:", err));
 
 const app = express();
 app.use(bodyParser.json());
@@ -360,6 +375,78 @@ app.post("/api/feedback", async (req, res) => {
       success: false,
       message: "Failed to process feedback",
       error: error.message,
+    });
+  }
+});
+
+// API endpoints for assets
+app.post("/api/assets/upload", async (req, res) => {
+  try {
+    const { file, metadata } = req.body;
+    const buffer = Buffer.from(file.split(",")[1], "base64");
+
+    const uploadStream = global.bucket.openUploadStream(metadata.filename, {
+      metadata: metadata,
+    });
+
+    uploadStream.write(buffer);
+    uploadStream.end();
+
+    uploadStream.on("finish", (file) => {
+      res.status(200).json({
+        success: true,
+        fileId: file._id,
+        filename: file.filename,
+      });
+    });
+  } catch (error) {
+    console.error("Error uploading file:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to upload file",
+    });
+  }
+});
+
+app.get("/api/assets/:filename", async (req, res) => {
+  try {
+    const filename = req.params.filename;
+    const files = await global.bucket.find({ filename }).toArray();
+
+    if (files.length === 0) {
+      return res.status(404).json({
+        success: false,
+        message: "File not found",
+      });
+    }
+
+    const downloadStream = global.bucket.openDownloadStream(files[0]._id);
+    downloadStream.pipe(res);
+  } catch (error) {
+    console.error("Error downloading file:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to download file",
+    });
+  }
+});
+
+app.get("/api/assets", async (req, res) => {
+  try {
+    const files = await global.bucket.find().toArray();
+    res.status(200).json({
+      success: true,
+      files: files.map((file) => ({
+        id: file._id,
+        filename: file.filename,
+        metadata: file.metadata,
+      })),
+    });
+  } catch (error) {
+    console.error("Error listing files:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to list files",
     });
   }
 });

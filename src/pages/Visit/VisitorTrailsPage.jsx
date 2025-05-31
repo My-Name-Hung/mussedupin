@@ -267,12 +267,7 @@ const VisitorTrailsPage = () => {
       </div>
 
       {/* Description Section */}
-      <section
-        id="description-section"
-        className={`vt-description-section animate-section ${
-          animatedSections["description-section"] ? "visible" : ""
-        }`}
-      >
+      <section id="description-section" className="animate-section visible">
         <div className="vt-description-container">
           <div className="vt-description-text">
             <p>
@@ -296,12 +291,7 @@ const VisitorTrailsPage = () => {
       </section>
 
       {/* Trails Section - Optimize image loading */}
-      <section
-        id="trails-section"
-        className={`vt-trails-section animate-section ${
-          animatedSections["trails-section"] ? "visible" : ""
-        }`}
-      >
+      <section id="trails-section" className="animate-section visible">
         <div className="vt-section-header">
           <h2 className="vt-section-title">Khám phá lộ trình tham quan</h2>
           <div className="vt-section-divider"></div>

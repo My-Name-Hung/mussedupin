@@ -15,7 +15,7 @@
 .visit-page {
   width: 100%;
   color: #1a1a1a;
-  background-image: url("../../../assets/Background/Background2.png");
+  background-image: url("../../../assets/Background/Background2.webp");
   background-repeat: repeat;
   background-position: center;
   background-size: 300px;
@@ -1687,7 +1687,7 @@
     bottom: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(to right, #1e293b, #0f172a);
+    background: #2c2f11;
     box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
     z-index: 9700; /* Điều chỉnh thấp hơn mobile-hero-controller */
     padding: 12px 0;
@@ -1714,10 +1714,7 @@
   .mobile-nav-list {
     display: flex;
     list-style: none;
-    background-image: url(../../../assets//Background/Background2.png);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
+    background-color: #2c2f11 !important;
     margin: 0;
     padding: 0;
     width: 100%;

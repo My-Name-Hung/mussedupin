@@ -43,7 +43,11 @@ const Collections = () => {
   const [lastTouchX, setLastTouchX] = useState(0);
   const [lastTouchTime, setLastTouchTime] = useState(0);
   const [touchVelocity, setTouchVelocity] = useState(0);
-  const { assets, loading, error, getAssetUrl } = useAssets();
+  const { assets, getAssetUrl } = useAssets();
+
+  const collectionsData = [
+    // ... define your collection items here with image as string filename ...
+  ];
 
   // Check device type
   useEffect(() => {
@@ -339,7 +343,9 @@ const Collections = () => {
     const asset = assets.find(
       (a) => a.filename && item.image.includes(a.filename)
     );
-    return asset ? { ...item, image: getAssetUrl(asset.filename) } : item;
+    return asset
+      ? { ...item, image: asset.url || getAssetUrl(asset.filename) }
+      : item;
   });
 
   return (

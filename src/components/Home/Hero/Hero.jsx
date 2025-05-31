@@ -81,7 +81,7 @@ const ChevronUp = () => (
 );
 
 const Hero = () => {
-  const { assets, loading, error, getAssetUrl } = useAssets();
+  const { assets, getAssetUrl } = useAssets();
   const [isPrepareOpen, setIsPrepareOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [translations, setTranslations] = useState({});
@@ -156,9 +156,7 @@ const Hero = () => {
     <>
       <section className="hero-container">
         <div className="hero-image-container">
-          {loading && <div>Đang tải video...</div>}
-          {error && <div>Lỗi tải video: {error}</div>}
-          {heroVideoAsset && !loading && !error && (
+          {heroVideoAsset && (
             <video
               autoPlay
               muted
@@ -171,7 +169,9 @@ const Hero = () => {
               className="hero-video"
             >
               <source
-                src={getAssetUrl(heroVideoAsset.filename)}
+                src={
+                  heroVideoAsset?.url || getAssetUrl(heroVideoAsset?.filename)
+                }
                 type="video/mp4"
               />
             </video>

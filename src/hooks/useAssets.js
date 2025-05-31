@@ -9,36 +9,35 @@ export const useAssets = (category) => {
 
   useEffect(() => {
     const fetchAssets = async () => {
+      setLoading(true);
+      setError(null);
       try {
-        const response = await fetch(`${API_URL}/api/assets`);
+        let url = "/api/assets";
+        if (category) {
+          url += `?category=${encodeURIComponent(category)}`;
+        }
+        const response = await fetch(url);
         const data = await response.json();
-
         if (data.success) {
-          const filteredAssets = category
-            ? data.files.filter((file) => file.metadata.category === category)
-            : data.files;
-          setAssets(filteredAssets);
+          setAssets(data.files);
         } else {
-          throw new Error(data.message);
+          setError(data.message || "Failed to fetch assets");
         }
       } catch (err) {
-        setError(err.message);
+        setError(err.message || "Failed to fetch assets");
       } finally {
         setLoading(false);
       }
     };
-
     fetchAssets();
   }, [category]);
 
   const getAssetUrl = (filename) => {
-    return `${API_URL}/api/assets/${filename}`;
+    const asset = assets.find((a) => a.filename === filename);
+    if (asset && asset.url) return asset.url;
+    // fallback for legacy
+    return `/api/assets/${filename}`;
   };
 
-  return {
-    assets,
-    loading,
-    error,
-    getAssetUrl,
-  };
+  return { assets, loading, error, getAssetUrl };
 };

@@ -14,7 +14,9 @@ dotenv.config();
 
 // MongoDB Connection
 mongoose
-  .connect(process.env.MONGODB_URI)
+  .connect(
+    "mongodb+srv://hung1111:Hung20021@museumassets.0rx4ai2.mongodb.net/?retryWrites=true&w=majority&appName=museumassets"
+  )
   .then(() => {
     console.log("Connected to MongoDB");
     // Initialize GridFS

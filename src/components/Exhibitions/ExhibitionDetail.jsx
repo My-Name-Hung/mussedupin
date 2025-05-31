@@ -318,7 +318,10 @@ const ExhibitionDetail = () => {
               (a) => a.filename && foundItem.image.includes(a.filename)
             );
             if (asset)
-              foundItem = { ...foundItem, image: getAssetUrl(asset.filename) };
+              foundItem = {
+                ...foundItem,
+                image: asset.url ? asset.url : getAssetUrl(asset.filename),
+              };
           }
           if (foundItem.gallery) {
             foundItem = {
@@ -327,7 +330,14 @@ const ExhibitionDetail = () => {
                 const asset = assets.find(
                   (a) => a.filename && g.image.includes(a.filename)
                 );
-                return asset ? { ...g, image: getAssetUrl(asset.filename) } : g;
+                return asset
+                  ? {
+                      ...g,
+                      image: asset.url
+                        ? asset.url
+                        : getAssetUrl(asset.filename),
+                    }
+                  : g;
               }),
             };
           }

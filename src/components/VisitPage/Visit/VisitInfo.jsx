@@ -649,7 +649,9 @@ const VisitInfo = () => {
     const asset = assets.find(
       (a) => a.filename && item.image.includes(a.filename)
     );
-    return asset ? { ...item, image: getAssetUrl(asset.filename) } : item;
+    return asset
+      ? { ...item, image: asset.url || getAssetUrl(asset.filename) }
+      : item;
   });
 
   // Render Hero Section

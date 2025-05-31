@@ -6,7 +6,7 @@ import "./AboutPage.css";
 import { FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 
 const AboutPage = () => {
-  const { assets, loading, error, getAssetUrl } = useAssets();
+  const { assets, getAssetUrl } = useAssets();
   const { translate } = useTranslation();
   const [activeSection, setActiveSection] = useState("intro");
   const videoRef = useRef(null);
@@ -100,10 +100,11 @@ const AboutPage = () => {
 
       {/* Hero Section */}
       <div className="about-hero">
-        {loading && <div>Đang tải ảnh...</div>}
-        {error && <div>Lỗi tải ảnh: {error}</div>}
-        {heroAsset && !loading && !error && (
-          <img src={getAssetUrl(heroAsset.filename)} alt="Bảo tàng Du Pin" />
+        {heroAsset && (
+          <img
+            src={heroAsset.url || getAssetUrl(heroAsset.filename)}
+            alt="Bảo tàng Du Pin"
+          />
         )}
         <div className="hero-overlay">
           <h1>{translate("about") || "GIỚI THIỆU"}</h1>
@@ -126,17 +127,23 @@ const AboutPage = () => {
             </div>
             <div className="about-images">
               <figure>
-                <img
-                  src={getAssetUrl(khonggianAsset.filename)}
-                  alt="Không gian bảo tàng"
-                />
+                {khonggianAsset && (
+                  <img
+                    src={
+                      khonggianAsset.url || getAssetUrl(khonggianAsset.filename)
+                    }
+                    alt="Không gian bảo tàng"
+                  />
+                )}
                 <figcaption>Không gian trưng bày nghệ thuật</figcaption>
               </figure>
               <figure>
-                <img
-                  src={getAssetUrl(nhaAsset.filename)}
-                  alt="Kiến trúc bảo tàng"
-                />
+                {nhaAsset && (
+                  <img
+                    src={nhaAsset.url || getAssetUrl(nhaAsset.filename)}
+                    alt="Kiến trúc bảo tàng"
+                  />
+                )}
                 <figcaption>Kiến trúc độc đáo của bảo tàng</figcaption>
               </figure>
             </div>
@@ -152,12 +159,16 @@ const AboutPage = () => {
           </h2>
           <div className="nhamatthong-content">
             <div className="nhamatthong-video">
-              <video autoPlay muted loop playsInline>
-                <source
-                  src={getAssetUrl(nhaVideoAsset.filename)}
-                  type="video/mp4"
-                />
-              </video>
+              {nhaVideoAsset && (
+                <video autoPlay muted loop playsInline>
+                  <source
+                    src={
+                      nhaVideoAsset.url || getAssetUrl(nhaVideoAsset.filename)
+                    }
+                    type="video/mp4"
+                  />
+                </video>
+              )}
             </div>
             <div className="nhamatthong-text">
               <p>

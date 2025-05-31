@@ -25,7 +25,7 @@ const PrivacyPolicy = () => {
         {error && <div>Lỗi tải ảnh: {error}</div>}
         {headerAsset && !loading && !error && (
           <img
-            src={getAssetUrl(headerAsset.filename)}
+            src={headerAsset.url || getAssetUrl(headerAsset.filename)}
             alt="Bảo tàng Thông - Musée Du Pin"
           />
         )}

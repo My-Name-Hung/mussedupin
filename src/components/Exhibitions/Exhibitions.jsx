@@ -131,7 +131,7 @@ const Exhibitions = () => {
   const navigate = useNavigate();
   const gridRef = useRef(null);
   const heroRef = useRef(null);
-  const { assets, loading, error, getAssetUrl } = useAssets();
+  const { assets, getAssetUrl } = useAssets();
 
   // Check for tab parameter in URL
   const queryParams = new URLSearchParams(location.search);
@@ -188,13 +188,17 @@ const Exhibitions = () => {
     const asset = assets.find(
       (a) => a.filename && item.image.includes(a.filename)
     );
-    return asset ? { ...item, image: getAssetUrl(asset.filename) } : item;
+    return asset
+      ? { ...item, image: asset.url || getAssetUrl(asset.filename) }
+      : item;
   });
   const guidedToursDataWithAssets = guidedToursData.map((item) => {
     const asset = assets.find(
       (a) => a.filename && item.image.includes(a.filename)
     );
-    return asset ? { ...item, image: getAssetUrl(asset.filename) } : item;
+    return asset
+      ? { ...item, image: asset.url || getAssetUrl(asset.filename) }
+      : item;
   });
   const activeData =
     activeTab === "exhibitions"

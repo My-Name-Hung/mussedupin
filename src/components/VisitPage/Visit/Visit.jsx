@@ -37,7 +37,7 @@ const Visit = () => {
   const horizontalNavRef = useRef(null);
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const lastScrollTop = useRef(0);
-  const { assets, loading, error, getAssetUrl } = useAssets();
+  const { assets, getAssetUrl } = useAssets();
   // Find the hero image by filename
   const heroAsset = assets.find((a) => a.filename === "louvre-sunset.webp");
 
@@ -390,7 +390,7 @@ const Visit = () => {
     <div className="visit-hero" ref={heroRef}>
       <div className="visit-hero-image-container">
         <img
-          src={getAssetUrl(heroAsset.filename)}
+          src={heroAsset?.url || getAssetUrl(heroAsset?.filename)}
           alt="Musée Du Pin"
           className="visit-hero-image"
         />
@@ -520,7 +520,10 @@ const Visit = () => {
   const renderMuseumInfo = () => (
     <div className="museum-info-wrapper">
       <div className="museum-info-image">
-        <img src={getAssetUrl(heroAsset.filename)} alt="Musée Du Pin" />
+        <img
+          src={heroAsset?.url || getAssetUrl(heroAsset?.filename)}
+          alt="Musée Du Pin"
+        />
         {isMobile && <div className="info-image-overlay"></div>}
       </div>
 
@@ -1167,7 +1170,7 @@ const Visit = () => {
             </p>
             <div className="payment-image">
               <img
-                src={getAssetUrl(heroAsset.filename)}
+                src={heroAsset?.url || getAssetUrl(heroAsset?.filename)}
                 alt="Thanh toán tại Musée Du Pin"
               />
             </div>
@@ -1206,7 +1209,7 @@ const Visit = () => {
 
             <div className="membership-card-image">
               <img
-                src={getAssetUrl(heroAsset.filename)}
+                src={heroAsset?.url || getAssetUrl(heroAsset?.filename)}
                 alt="Thẻ thành viên Hội Bạn bè Musée Du Pin"
               />
             </div>

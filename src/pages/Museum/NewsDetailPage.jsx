@@ -129,7 +129,7 @@ const getAllNewsData = () => {
 };
 
 const NewsDetailPage = () => {
-  const { assets, loading, error, getAssetUrl } = useAssets();
+  const { getAssetUrl } = useAssets();
   const { translate } = useTranslation();
   const navigate = useNavigate();
   const { slug } = useParams();
@@ -182,9 +182,7 @@ const NewsDetailPage = () => {
     <div className="news-detail-page">
       {/* Hero section */}
       <div className="news-detail-hero">
-        {loading && <div>Đang tải ảnh...</div>}
-        {error && <div>Lỗi tải ảnh: {error}</div>}
-        {newsItem.image && !loading && !error && (
+        {newsItem.image && (
           <img src={getAssetUrl(newsItem.image)} alt={newsItem.title} />
         )}
         <div className="hero-overlay">
@@ -229,9 +227,7 @@ const NewsDetailPage = () => {
                 <article key={item.id} className="related-news-item">
                   <a href={`/life-at-the-museum/${createSlug(item.title)}`}>
                     <div className="related-news-image-container">
-                      {loading && <div>Đang tải ảnh...</div>}
-                      {error && <div>Lỗi tải ảnh: {error}</div>}
-                      {item.image && !loading && !error && (
+                      {item.image && (
                         <img
                           src={getAssetUrl(item.image)}
                           alt={item.title}

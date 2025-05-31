@@ -15,7 +15,7 @@ const highlightsData = [
     description:
       "Khi nghệ thuật không chỉ để ngắm, mà để sống cùng và sống trong. Không có tủ kính ngăn cách. Không có rào chắn giữa người và hiện vật. Langbiang không đơn thuần là một căn phòng, mà là một vùng ký ức sống, nơi hồn cốt của núi rừng thở trong từng vật phẩm, cháy trong từng ngọn lửa bếp, ngân nga trong từng tiếng cồng chiêng.",
     date: "30 tháng 4 - 28 tháng 7 2025",
-    image: langbiang,
+    image: "langbiang.webp",
     alt: "Không gian nghệ thuật Langbiang",
     tag: "Trưng bày",
     link: "/exhibition-details/langbiang-khong-gian",
@@ -28,7 +28,7 @@ const highlightsData = [
     description:
       "In lên mây, những hàng thông điệp khúc,\nTrên triền dốc, những nếp nhà khảm vào nhau,\nBao than thở chất chồng in bóng mặt hồ.\nTrong lòng lữ khách độc hành\nTrái thông khô mở vảy.",
     date: "24 tháng 1 - 21 tháng 7 2025",
-    image: thong2,
+    image: "thong2.webp",
     alt: "Đà Lạt những phức tầng trầm mặc",
     tag: "Trưng bày",
     link: "/exhibition-details/phuc-tang-tram-mac",
@@ -47,7 +47,9 @@ const Highlights = ({ onVisible, onHidden }) => {
     const asset = assets.find(
       (a) => a.filename && item.image.includes(a.filename)
     );
-    return asset ? { ...item, image: getAssetUrl(asset.filename) } : item;
+    return asset
+      ? { ...item, image: asset.url || getAssetUrl(asset.filename) }
+      : item;
   });
 
   // Improved scroll detection for highlighting section

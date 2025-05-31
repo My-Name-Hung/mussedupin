@@ -131,12 +131,6 @@ const LifeAtMuseumPage = () => {
   const { assets, loading, error, getAssetUrl } = useAssets();
   const { translate } = useTranslation();
 
-  // Find all hero images by filename
-  const heroAsset1 = assets.find((a) => a.filename === "congchien_cards.webp");
-  const heroAsset2 = assets.find((a) => a.filename === "Bauholo_cards.webp");
-  const heroAsset3 = assets.find((a) => a.filename === "DanT'rung_cards.webp");
-  const heroAsset4 = assets.find((a) => a.filename === "Gui_cards.webp");
-
   // State for hero section slideshow
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
   const [selectedFilter, setSelectedFilter] = useState("All");
@@ -145,19 +139,19 @@ const LifeAtMuseumPage = () => {
   // Hero section slideshow images
   const heroSlides = [
     {
-      image: heroAsset1 ? getAssetUrl(heroAsset1.filename) : "",
+      image: getAssetUrl("congchien_cards.webp"),
       title: translate("lifeAtMuseum") || "CUỘC SỐNG TẠI BẢO TÀNG",
     },
     {
-      image: heroAsset2 ? getAssetUrl(heroAsset2.filename) : "",
+      image: getAssetUrl("Bauholo_cards.webp"),
       title: translate("lifeAtMuseum") || "CUỘC SỐNG TẠI BẢO TÀNG",
     },
     {
-      image: heroAsset3 ? getAssetUrl(heroAsset3.filename) : "",
+      image: getAssetUrl("DanT'rung_cards.webp"),
       title: translate("lifeAtMuseum") || "CUỘC SỐNG TẠI BẢO TÀNG",
     },
     {
-      image: heroAsset4 ? getAssetUrl(heroAsset4.filename) : "",
+      image: getAssetUrl("Gui_cards.webp"),
       title: translate("lifeAtMuseum") || "CUỘC SỐNG TẠI BẢO TÀNG",
     },
   ];

@@ -1,25 +1,12 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import TranslatedText from "../../components/TranslatedText";
+import { useAssets } from "../../hooks/useAssets";
 import "./CollectionPage.css";
-
-// Import optimized images
-import congchieng from "../../assets/home/Collections/DungcuAmNhacTayNguyen/Cồng Chiên.webp";
-import dantrung from "../../assets/home/Collections/DungcuAmNhacTayNguyen/DSC_2475.webp";
-import longda from "../../assets/home/Collections/K_hoChanNuoi/Lồng Đa Đa.webp";
-import phunu from "../../assets/home/Collections/K_hoDieuKhac/Điêu Khắc.webp";
-import cheghosanh from "../../assets/home/Collections/K_hoLeHoi/36 (2).webp";
-import gui from "../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/Chiếc Gùi.webp";
-import bauho from "../../assets/home/Collections/K_hoSinhHoatThuongNhat/46.webp";
-import noidat from "../../assets/home/Collections/K_hoSinhHoatThuongNhat/Nồi Đất.webp";
-import thong2 from "../../assets/home/Collections/PhucTang/Thông 2.webp";
-import hoabantrang from "../../assets/home/Collections/VatLieu/Hoa Ban Trắng.webp";
-
-// Import thumbnails for related items
 
 // Collection data
 const collectionData = {
-  heroImages: [congchieng, dantrung, longda, phunu, hoabantrang],
+  heroImages: [],
 
   artworks: [
     {
@@ -27,7 +14,7 @@ const collectionData = {
       title: "Dụng cụ âm nhạc Tây Nguyên",
       artist: "Cồng chiêng",
       year: "2024",
-      image: congchieng,
+      image: "",
       description:
         "Musée Du Pin trưng bày các nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, tiêu biểu là cồng chiêng – biểu tượng văn hóa và tín ngưỡng thiêng liêng. Âm thanh vang vọng của cồng chiêng thể hiện sự kết nối sâu sắc giữa con người và thế giới tâm linh.",
       location: "Khu trưng bày nhạc cụ",
@@ -38,7 +25,7 @@ const collectionData = {
       title: "K'ho chăn nuôi",
       artist: "Lồng đa đa",
       year: "2024",
-      image: longda,
+      image: "",
       description:
         "Lồng đa đa của người K'ho hiện đang được trưng bày tại Musée Du Pin như một biểu tượng mộc mạc nhưng đầy tính văn hóa của đời sống dân tộc Tây Nguyên. Được đan thủ công từ tre nứa, chiếc lồng không chỉ phục vụ mục đích chăn nuôi mà còn phản ánh sự khéo léo, tỉ mỉ và mối liên kết bền chặt giữa con người với thiên nhiên núi rừng.",
       location: "Khu trưng bày đời sống",
@@ -49,7 +36,7 @@ const collectionData = {
       title: "K'ho điêu khắc",
       artist: "Tượng phụ nữ",
       year: "2024",
-      image: phunu,
+      image: "",
       description:
         "Tác phẩm điêu khắc người dân tộc K'ho đang được trưng bày tại Musée Du Pin thể hiện hình ảnh phụ nữ Tây Nguyên trong dáng đứng trang nghiêm, tay cầm chiếc chiêng nhỏ – biểu tượng của âm nhạc và tín ngưỡng bản địa.",
       location: "Khu trưng bày điêu khắc",
@@ -60,7 +47,7 @@ const collectionData = {
       title: "K'ho lễ hội",
       artist: "Ché Ghò Sành",
       year: "2024",
-      image: cheghosanh,
+      image: "",
       description:
         "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, hiện đang được trưng bày tại Musée Du Pin, đây là biểu tượng của sự giàu có, quyền uy và tín ngưỡng tâm linh trong đời sống người bản địa.",
       location: "Khu trưng bày lễ hội",
@@ -71,7 +58,7 @@ const collectionData = {
       title: "K'ho sinh hoạt thường nhật",
       artist: "Nồi đất",
       year: "2024",
-      image: noidat,
+      image: "",
       description:
         "Muée Du Pin trưng bày nồi đất của người K'ho, đây là biểu tượng của sự phát triển và tiến bộ của dân tộc Tây Nguyên.",
       location: "Khu trưng bày đời sống",
@@ -82,7 +69,7 @@ const collectionData = {
       title: "K'ho sinh hoạt thường nhật",
       artist: "Bầu hồ lô",
       year: "2024",
-      image: bauho,
+      image: "",
       description:
         "Được khoét rỗng từ quả hồ lô khô, vật phẩm này thường được dùng để đựng nước, rượu cần hoặc làm nhạc cụ truyền thống",
       location: "Khu trưng bày đời sống",
@@ -93,7 +80,7 @@ const collectionData = {
       title: "Phức Tầng",
       artist: "Thông 2",
       year: "2025",
-      image: thong2,
+      image: "",
       description:
         "Được Musée Du Pin bắt trọn khoảng khắc các hình ảnh thiên nhiên đậm sắc dân tộc K'ho, tạo nên bức tranh đẹp về đất nước Tây Nguyên.",
       location: "Khu trưng bày đời sống",
@@ -104,7 +91,7 @@ const collectionData = {
       title: "Vật liệu",
       artist: "Chất liệu K'ho",
       year: "2024",
-      image: hoabantrang,
+      image: "",
       description:
         "Tại Musée Du Pin, mỗi chất liệu được chọn lựa kỹ lưỡng nhằm tôn vinh vẻ đẹp tự nhiên và bản sắc văn hóa Tây Nguyên. Các vật liệu truyền thống như gỗ, đá, đất và sợi tự nhiên không chỉ là phương tiện sáng tạo mà còn là cầu nối giữa nghệ thuật và đời sống bản địa.",
       location: "Khu trưng bày vật liệu",
@@ -113,18 +100,18 @@ const collectionData = {
   ],
 
   categories: [
-    { id: 1, title: "Dụng cụ âm nhạc Tây Nguyên", image: congchieng },
-    { id: 2, title: "K'ho chăn nuôi", image: bauho },
-    { id: 3, title: "K'ho lễ hội", image: cheghosanh },
-    { id: 4, title: "K'ho điêu khắc", image: longda },
+    { id: 1, title: "Dụng cụ âm nhạc Tây Nguyên", image: "" },
+    { id: 2, title: "K'ho chăn nuôi", image: "" },
+    { id: 3, title: "K'ho lễ hội", image: "" },
+    { id: 4, title: "K'ho điêu khắc", image: "" },
     {
       id: 5,
       title: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
-      image: gui,
+      image: "",
     },
-    { id: 6, title: "K'ho sinh hoạt thường nhật", image: noidat },
-    { id: 7, title: "Phức Tầng", image: thong2 },
-    { id: 8, title: "Vật liệu", image: hoabantrang },
+    { id: 6, title: "K'ho sinh hoạt thường nhật", image: "" },
+    { id: 7, title: "Phức Tầng", image: "" },
+    { id: 8, title: "Vật liệu", image: "" },
   ],
 
   highlights: [
@@ -132,7 +119,7 @@ const collectionData = {
       id: 1,
       title: "Nhạc cụ truyền thống",
       category: "Nhạc cụ",
-      image: congchieng,
+      image: "",
       type: "video",
       youtubeId: "dQw4w9WgXcQ",
       description:
@@ -142,7 +129,7 @@ const collectionData = {
       id: 2,
       title: "Điêu khắc K'ho",
       category: "Điêu khắc",
-      image: phunu,
+      image: "",
       type: "image",
       artwork: 1,
       description:
@@ -152,7 +139,7 @@ const collectionData = {
       id: 3,
       title: "Đời sống thường nhật",
       category: "Đời sống",
-      image: bauho,
+      image: "",
       type: "video",
       youtubeId: "dQw4w9WgXcQ",
       description:
@@ -162,7 +149,7 @@ const collectionData = {
       id: 4,
       title: "Lễ hội truyền thống",
       category: "Lễ hội",
-      image: cheghosanh,
+      image: "",
       type: "image",
       artwork: 4,
       description:
@@ -172,7 +159,7 @@ const collectionData = {
       id: 5,
       title: "Chăn nuôi K'ho",
       category: "Chăn nuôi",
-      image: longda,
+      image: "",
       type: "video",
       youtubeId: "dQw4w9WgXcQ",
       description:
@@ -182,7 +169,7 @@ const collectionData = {
       id: 6,
       title: "Sinh hoạt văn hóa",
       category: "Sinh hoạt",
-      image: gui,
+      image: "",
       type: "image",
       artwork: 2,
       description:
@@ -192,7 +179,7 @@ const collectionData = {
       id: 7,
       title: "Vật liệu",
       category: "Vật liệu",
-      image: hoabantrang,
+      image: "",
       type: "image",
       artwork: 1,
       description:
@@ -201,17 +188,9 @@ const collectionData = {
   ],
 };
 
-// Preload critical images
-const preloadImages = () => {
-  const imagesToPreload = [congchieng, dantrung, longda, phunu, hoabantrang];
-  imagesToPreload.forEach((src) => {
-    const img = new Image();
-    img.src = src;
-  });
-};
-
 const CollectionPage = () => {
   const location = useLocation();
+  const { assets, loading, error, getAssetUrl } = useAssets();
   // State for hero section slideshow
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
 
@@ -493,7 +472,7 @@ const CollectionPage = () => {
   // Handle download artwork
   const handleDownload = (artwork) => {
     const link = document.createElement("a");
-    link.href = artwork.image;
+    link.href = getAssetUrl(artwork.image);
     link.download = `${artwork.title.replace(/\s+/g, "-").toLowerCase()}.jpg`;
     document.body.appendChild(link);
     link.click();
@@ -781,7 +760,7 @@ const CollectionPage = () => {
         <div className="artwork-frame">
           <div className="artwork-image-container">
             <img
-              src={artwork.image}
+              src={getAssetUrl(artwork.image)}
               alt={artwork.title}
               className="artwork-image"
               loading={index < 4 ? "eager" : "lazy"}
@@ -811,11 +790,6 @@ const CollectionPage = () => {
     setMousePosition({ x, y });
   };
 
-  // Preload images on mount
-  useEffect(() => {
-    preloadImages();
-  }, []);
-
   // Scroll to anchor section if state.scrollTo is present
   useEffect(() => {
     if (location.state && location.state.scrollTo) {
@@ -839,7 +813,7 @@ const CollectionPage = () => {
               className={`cp-hero-slide ${
                 activeHeroSlide === index ? "active" : ""
               }`}
-              style={{ backgroundImage: `url(${image})` }}
+              style={{ backgroundImage: `url(${getAssetUrl(image)})` }}
             />
           ))}
         </div>
@@ -1000,7 +974,7 @@ const CollectionPage = () => {
               >
                 <div className="cp-category-image-container">
                   <img
-                    src={category.image}
+                    src={getAssetUrl(category.image)}
                     alt={category.title}
                     className="cp-category-image"
                     loading="lazy"
@@ -1024,7 +998,9 @@ const CollectionPage = () => {
           <div className="cp-featured-left">
             <div className="cp-featured-image-container">
               <img
-                src={collectionData.artworks[selectedArtwork].image}
+                src={getAssetUrl(
+                  collectionData.artworks[selectedArtwork].image
+                )}
                 alt={collectionData.artworks[selectedArtwork].title}
                 className="cp-featured-image"
               />
@@ -1202,7 +1178,7 @@ const CollectionPage = () => {
               >
                 <div className="cp-highlight-thumbnail">
                   <img
-                    src={highlight.image}
+                    src={getAssetUrl(highlight.image)}
                     alt={highlight.title}
                     className="cp-highlight-img"
                     loading="lazy"
@@ -1277,7 +1253,11 @@ const CollectionPage = () => {
             {/* Enhanced Category Hero Section */}
             <div
               className="cp-category-hero"
-              style={{ backgroundImage: `url(${modalContent.category.image})` }}
+              style={{
+                backgroundImage: `url(${getAssetUrl(
+                  modalContent.category.image
+                )})`,
+              }}
             >
               <div className="cp-category-hero-overlay"></div>
               <div className="cp-category-hero-content">
@@ -1336,7 +1316,7 @@ const CollectionPage = () => {
                     >
                       <div className="cp-category-artwork-image-container">
                         <img
-                          src={artwork.image}
+                          src={getAssetUrl(artwork.image)}
                           alt={artwork.title}
                           loading="lazy"
                         />
@@ -1391,7 +1371,7 @@ const CollectionPage = () => {
             <div className="cp-artwork-modal-body">
               <div className="cp-artwork-modal-image-container">
                 <img
-                  src={modalContent.image}
+                  src={getAssetUrl(modalContent.image)}
                   alt={modalContent.title}
                   className="cp-artwork-modal-image"
                 />
@@ -1603,7 +1583,7 @@ const CollectionPage = () => {
                             setModalContent(item);
                           }}
                         >
-                          <img src={item.image} alt={item.title} />
+                          <img src={getAssetUrl(item.image)} alt={item.title} />
                           <p className="cp-video-related-item-title">
                             {item.title}
                           </p>

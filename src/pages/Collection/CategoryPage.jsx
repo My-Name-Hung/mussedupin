@@ -278,7 +278,6 @@ const CategoryPage = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
   const [modalSlide, setModalSlide] = useState(0);
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [heroLoaded, setHeroLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [loadedImages, setLoadedImages] = useState({});
@@ -464,7 +463,8 @@ const CategoryPage = () => {
     const x = (e.clientX - width / 2) / (width / 2);
     const y = (e.clientY - height / 2) / (height / 2);
 
-    setMousePosition({ x, y });
+    // Handle mouse movement for parallax effect - only on non-mobile
+    // ... existing code ...
   };
 
   // Handle touch start for items (to improve touch experience)

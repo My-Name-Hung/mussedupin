@@ -54,6 +54,9 @@ const transporter = nodemailer.createTransport({
   },
 });
 
+const SERVER_URL =
+  process.env.SERVER_URL || `http://localhost:${process.env.PORT || 5000}`;
+
 // Send email to customer
 const sendCustomerEmail = (bookingData) => {
   const mailOptions = {
@@ -400,6 +403,7 @@ app.post("/api/assets/upload", async (req, res) => {
         success: true,
         fileId: file._id,
         filename: file.filename,
+        url: `${SERVER_URL}/api/assets/${file.filename}`,
       });
     });
   } catch (error) {
@@ -455,6 +459,7 @@ app.get("/api/assets", async (req, res) => {
         id: file._id,
         filename: file.filename,
         metadata: file.metadata,
+        url: `${SERVER_URL}/api/assets/${file.filename}`,
       })),
     });
   } catch (error) {

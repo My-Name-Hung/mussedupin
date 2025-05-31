@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import heroVideo from "../../../assets/Home/Hero/LANGBIANG_RESIZE.mp4";
+import { useAssets } from "../../../hooks/useAssets";
 
 import { getCurrentLanguage, translateText } from "../../../utils/translate";
 import "./Hero.css";
@@ -81,10 +81,16 @@ const ChevronUp = () => (
 );
 
 const Hero = () => {
+  const { assets, loading, error, getAssetUrl } = useAssets();
   const [isPrepareOpen, setIsPrepareOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [translations, setTranslations] = useState({});
   const [currentLanguage, setCurrentLanguage] = useState(getCurrentLanguage());
+
+  // Find the hero video by filename
+  const heroVideoAsset = assets.find(
+    (a) => a.filename === "LANGBIANG_RESIZE.mp4"
+  );
 
   // Load translations
   useEffect(() => {
@@ -150,19 +156,26 @@ const Hero = () => {
     <>
       <section className="hero-container">
         <div className="hero-image-container">
-          <video
-            autoPlay
-            muted
-            loop
-            playsInline
-            preload="auto"
-            loading="eager"
-            width="100%"
-            height="100%"
-            className="hero-video"
-          >
-            <source src={heroVideo} type="video/mp4" />
-          </video>
+          {loading && <div>Đang tải video...</div>}
+          {error && <div>Lỗi tải video: {error}</div>}
+          {heroVideoAsset && !loading && !error && (
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              preload="auto"
+              loading="eager"
+              width="100%"
+              height="100%"
+              className="hero-video"
+            >
+              <source
+                src={getAssetUrl(heroVideoAsset.filename)}
+                type="video/mp4"
+              />
+            </video>
+          )}
           <div className="hero-overlay"></div>
           <div className="hero-content">
             {/* <h1 className="hero-title">

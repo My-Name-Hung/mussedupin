@@ -1,32 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useAssets } from "../../hooks/useAssets";
 import "./TrailExperiencePage.css";
-
-// Import trail images from collection folders
-const dungcuImages = import.meta.glob(
-  "../../assets/home/Collections/DungcuAmNhacTayNguyen/*.webp"
-);
-const khoChanNuoiImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoChanNuoi/*.webp"
-);
-const khoDieuKhacImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoDieuKhac/*.webp"
-);
-const khoLeHoiImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoLeHoi/*.webp"
-);
-const khoSanBanImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/*.webp"
-);
-const khoSinhHoatImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoSinhHoatThuongNhat/*.webp"
-);
-const phucTangImages = import.meta.glob(
-  "../../assets/home/Collections/PhucTang/*.webp"
-);
-const vatLieuImages = import.meta.glob(
-  "../../assets/home/Collections/VatLieu/*.webp"
-);
 
 // Import thumbnails for each category
 import dungcuThumb from "../../assets/home/Collections/DungcuAmNhacTayNguyen/Cồng Chiên.webp";
@@ -237,7 +212,7 @@ const getArtworkData = (trailId) => {
         description:
           "Cồng chiêng là nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, là biểu tượng văn hóa và tín ngưỡng thiêng liêng.",
         room: "Khu trưng bày nhạc cụ",
-        images: dungcuImages,
+        images: dungcuThumb,
         access: [
           {
             icon: <LocationIcon />,
@@ -259,7 +234,7 @@ const getArtworkData = (trailId) => {
         description:
           "Lồng đa đa của người K'ho được đan thủ công từ tre nứa, thể hiện sự khéo léo và mối liên kết với thiên nhiên.",
         room: "Khu trưng bày đời sống",
-        images: khoChanNuoiImages,
+        images: channuoiThumb,
         access: [
           {
             icon: <LocationIcon />,
@@ -281,7 +256,7 @@ const getArtworkData = (trailId) => {
         description:
           "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, là biểu tượng của sự giàu có và tín ngưỡng.",
         room: "Khu trưng bày lễ hội",
-        images: khoLeHoiImages,
+        images: lehoiThumb,
         access: [
           {
             icon: <LocationIcon />,
@@ -303,7 +278,7 @@ const getArtworkData = (trailId) => {
         description:
           "Nghệ thuật điêu khắc K'ho thể hiện đặc trưng văn hóa và đời sống tinh thần của dân tộc.",
         room: "Khu trưng bày điêu khắc",
-        images: khoDieuKhacImages,
+        images: dieukhacThumb,
         access: [
           {
             icon: <LocationIcon />,
@@ -325,7 +300,7 @@ const getArtworkData = (trailId) => {
         description:
           "Chiếc gùi - vật dụng không thể thiếu trong đời sống của người K'ho, dùng để đựng nông sản và đồ đạc.",
         room: "Khu trưng bày đời sống",
-        images: khoSanBanImages,
+        images: sanbanThumb,
         access: [
           {
             icon: <LocationIcon />,
@@ -347,7 +322,7 @@ const getArtworkData = (trailId) => {
         description:
           "Nồi đất và bầu hồ lô là những vật dụng thiết yếu trong sinh hoạt hàng ngày của người K'ho.",
         room: "Khu trưng bày đời sống",
-        images: khoSinhHoatImages,
+        images: sinhoatThumb,
         access: [
           {
             icon: <LocationIcon />,
@@ -369,7 +344,7 @@ const getArtworkData = (trailId) => {
         description:
           "Đồi thông là biểu tượng của sự bền vững và tín ngưỡng thiêng liêng trong đời sống người dân Tây Nguyên.",
         room: "Khu trưng bày phức tầng",
-        images: phucTangImages,
+        images: phuctangThumb,
         access: [
           {
             icon: <LocationIcon />,
@@ -391,7 +366,7 @@ const getArtworkData = (trailId) => {
         description:
           "Tại Musée Du Pin, mỗi chất liệu được chọn lựa kỹ lưỡng nhằm tôn vinh vẻ đẹp tự nhiên và bản sắc văn hóa Tây Nguyên.",
         room: "Khu trưng bày vật liệu",
-        images: vatLieuImages,
+        images: vatlieuThumb,
         access: [
           {
             icon: <LocationIcon />,
@@ -410,9 +385,8 @@ const getArtworkData = (trailId) => {
 };
 
 const TrailExperiencePage = () => {
+  const { assets, loading, error, getAssetUrl } = useAssets();
   const { trailId, artworkId = 1 } = useParams();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [allImages, setAllImages] = useState([]);
   const [showAccess, setShowAccess] = useState(false);
@@ -440,7 +414,7 @@ const TrailExperiencePage = () => {
                   const module = await loader();
                   return {
                     path,
-                    url: module.default,
+                    url: getAssetUrl(path),
                     title: path.split("/").pop().replace(".webp", ""),
                     artist: currentArtwork.artist,
                     description: currentArtwork.description,
@@ -494,7 +468,7 @@ const TrailExperiencePage = () => {
       setError("Không thể tải dữ liệu. Vui lòng thử lại.");
       setLoading(false);
     }
-  }, [trailId, artworkId]);
+  }, [trailId, artworkId, getAssetUrl]);
 
   const navigateImages = (direction) => {
     const newIndex =

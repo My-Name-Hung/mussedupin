@@ -1,32 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
+import { useAssets } from "../../hooks/useAssets";
 import "./VisitorTrailDetailPage.css";
-
-// Import trail images from collection folders
-const dungcuImages = import.meta.glob(
-  "../../assets/home/Collections/DungcuAmNhacTayNguyen/*.webp"
-);
-const khoChanNuoiImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoChanNuoi/*.webp"
-);
-const khoDieuKhacImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoDieuKhac/*.webp"
-);
-const khoLeHoiImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoLeHoi/*.webp"
-);
-const khoSanBanImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/*.webp"
-);
-const khoSinhHoatImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoSinhHoatThuongNhat/*.webp"
-);
-const phucTangImages = import.meta.glob(
-  "../../assets/home/Collections/PhucTang/*.webp"
-);
-const vatlieuImages = import.meta.glob(
-  "../../assets/home/Collections/VatLieu/*.webp"
-);
 
 // Import thumbnails for each category
 import dungcuThumb from "../../assets/home/Collections/DungcuAmNhacTayNguyen/Cồng Chiên.webp";
@@ -156,7 +131,6 @@ const trailsData = [
     accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
     introduction:
       "Cồng chiêng là nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, là biểu tượng văn hóa và tín ngưỡng thiêng liêng.",
-    images: dungcuImages,
   },
   {
     id: 2,
@@ -171,7 +145,6 @@ const trailsData = [
     accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
     introduction:
       "Lồng đa đa của người K'ho được đan thủ công từ tre nứa, thể hiện sự khéo léo và mối liên kết với thiên nhiên.",
-    images: khoChanNuoiImages,
   },
   {
     id: 3,
@@ -186,7 +159,6 @@ const trailsData = [
     accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
     introduction:
       "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, là biểu tượng của sự giàu có và tín ngưỡng.",
-    images: khoLeHoiImages,
   },
   {
     id: 4,
@@ -201,7 +173,6 @@ const trailsData = [
     accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
     introduction:
       "Nghệ thuật điêu khắc K'ho thể hiện đặc trưng văn hóa và đời sống tinh thần của dân tộc.",
-    images: khoDieuKhacImages,
   },
   {
     id: 5,
@@ -216,7 +187,6 @@ const trailsData = [
     accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
     introduction:
       "Chiếc gùi - vật dụng không thể thiếu trong đời sống của người K'ho, dùng để đựng nông sản và đồ đạc.",
-    images: khoSanBanImages,
   },
   {
     id: 6,
@@ -230,7 +200,6 @@ const trailsData = [
     accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
     introduction:
       "Nồi đất và bầu hồ lô là những vật dụng thiết yếu trong sinh hoạt hàng ngày của người K'ho.",
-    images: khoSinhHoatImages,
   },
   {
     id: 7,
@@ -244,7 +213,6 @@ const trailsData = [
     accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
     introduction:
       "Đồi thông là biểu tượng của sự bền vững và tín ngưỡng thiêng liêng trong đời sống người dân Tây Nguyên.",
-    images: phucTangImages,
   },
   {
     id: 8,
@@ -256,7 +224,6 @@ const trailsData = [
     accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
     introduction:
       "Vật liệu là biểu tượng của sự bền vững và tín ngưỡng thiêng liêng trong đời sống người dân Tây Nguyên.",
-    images: vatlieuImages,
   },
 ];
 
@@ -264,6 +231,7 @@ const VisitorTrailDetailPage = () => {
   const { id } = useParams();
   const [trail, setTrail] = useState(null);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const { assets, loading, error, getAssetUrl } = useAssets();
 
   useEffect(() => {
     // Find the trail by id and preload image
@@ -289,7 +257,7 @@ const VisitorTrailDetailPage = () => {
       {/* Hero Section - Optimized with loading state */}
       <div className={`trail-detail-hero ${imageLoaded ? "loaded" : ""}`}>
         <img
-          src={trail.image}
+          src={getAssetUrl(trail.image)}
           alt={trail.title}
           className="trail-detail-hero-image"
           loading="eager"

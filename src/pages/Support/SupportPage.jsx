@@ -13,7 +13,6 @@ import {
   FaTicketAlt,
   FaUserFriends,
 } from "react-icons/fa";
-import herosssVideo from "../../assets/Home/About/Hero_Abouts_Resize.mp4";
 
 const SupportPage = () => {
   const [activeSection, setActiveSection] = useState("intro");
@@ -106,9 +105,6 @@ const SupportPage = () => {
     },
   ];
 
-  // Find the hero image by filename
-  const heroAsset = assets.find((a) => a.filename === "louvre-sunset.webp");
-
   return (
     <div className="support-page">
       {/* Navigation Sidebar */}
@@ -186,9 +182,14 @@ const SupportPage = () => {
       <div className="support-hero">
         {loading && <div>Đang tải ảnh...</div>}
         {error && <div>Lỗi tải ảnh: {error}</div>}
-        {heroAsset && !loading && !error && (
-          <img src={getAssetUrl(heroAsset.filename)} alt="Bảo tàng Du Pin" />
-        )}
+        {assets.find((a) => a.filename === "louvre-sunset.webp") &&
+          !loading &&
+          !error && (
+            <img
+              src={getAssetUrl("louvre-sunset.webp")}
+              alt="Bảo tàng Du Pin"
+            />
+          )}
         <div className="hero-overlay">
           <h1>{translations.support || "HỖ TRỢ"}</h1>
         </div>

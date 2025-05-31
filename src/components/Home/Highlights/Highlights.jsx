@@ -1,10 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 
-import langbiang from "../../../assets/Home/Exhibitions/Langbiang.webp";
-import thong2 from "../../../assets/Home/Exhibitions/Thông 2.webp";
-
 import TranslatedText from "../../../components/TranslatedText";
+import { useAssets } from "../../../hooks/useAssets";
 
 import "./Highlights.css";
 
@@ -36,13 +34,21 @@ const highlightsData = [
     link: "/exhibition-details/phuc-tang-tram-mac",
     featured: false,
   },
-  
 ];
 
 const Highlights = ({ onVisible, onHidden }) => {
+  const { assets, loading, error, getAssetUrl } = useAssets();
   const [isVisible, setIsVisible] = useState(false);
   const highlightsRef = useRef(null);
   const [visibleCards, setVisibleCards] = useState({});
+
+  // Map highlightsData to use asset URLs
+  const highlightsDataWithAssets = highlightsData.map((item) => {
+    const asset = assets.find(
+      (a) => a.filename && item.image.includes(a.filename)
+    );
+    return asset ? { ...item, image: getAssetUrl(asset.filename) } : item;
+  });
 
   // Improved scroll detection for highlighting section
   useEffect(() => {
@@ -101,7 +107,7 @@ const Highlights = ({ onVisible, onHidden }) => {
 
       {/* Mobile layout */}
       <div className="highlights-grid-mobile">
-        {highlightsData.map((item, index) => (
+        {highlightsDataWithAssets.map((item, index) => (
           <div
             key={item.id}
             className={`highlight-card-wrapper ${
@@ -150,26 +156,33 @@ const Highlights = ({ onVisible, onHidden }) => {
             <div className="highlight-card">
               <div className="card-tag">
                 <span>
-                  <TranslatedText>{highlightsData[0].tag}</TranslatedText>
+                  <TranslatedText>
+                    {highlightsDataWithAssets[0].tag}
+                  </TranslatedText>
                 </span>
               </div>
-              <Link to={highlightsData[0].link} className="card-link-wrapper">
+              <Link
+                to={highlightsDataWithAssets[0].link}
+                className="card-link-wrapper"
+              >
                 <div className="card-image-container">
                   <img
-                    src={highlightsData[0].image}
-                    alt={highlightsData[0].alt}
+                    src={highlightsDataWithAssets[0].image}
+                    alt={highlightsDataWithAssets[0].alt}
                     className="card-image"
                   />
                 </div>
                 <div className="card-content">
                   <h3 className="card-title">
                     <span className="card-title-text">
-                      <TranslatedText>{highlightsData[0].title}</TranslatedText>
+                      <TranslatedText>
+                        {highlightsDataWithAssets[0].title}
+                      </TranslatedText>
                     </span>
                   </h3>
                   <p className="card-description">
                     <TranslatedText>
-                      {highlightsData[0].description}
+                      {highlightsDataWithAssets[0].description}
                     </TranslatedText>
                   </p>
                 </div>
@@ -189,14 +202,19 @@ const Highlights = ({ onVisible, onHidden }) => {
               <div className="highlight-card">
                 <div className="card-tag">
                   <span>
-                    <TranslatedText>{highlightsData[1].tag}</TranslatedText>
+                    <TranslatedText>
+                      {highlightsDataWithAssets[1].tag}
+                    </TranslatedText>
                   </span>
                 </div>
-                <Link to={highlightsData[1].link} className="card-link-wrapper">
+                <Link
+                  to={highlightsDataWithAssets[1].link}
+                  className="card-link-wrapper"
+                >
                   <div className="card-image-container">
                     <img
-                      src={highlightsData[1].image}
-                      alt={highlightsData[1].alt}
+                      src={highlightsDataWithAssets[1].image}
+                      alt={highlightsDataWithAssets[1].alt}
                       className="card-image"
                     />
                   </div>
@@ -204,13 +222,13 @@ const Highlights = ({ onVisible, onHidden }) => {
                     <h3 className="card-title">
                       <span className="card-title-text">
                         <TranslatedText>
-                          {highlightsData[1].title}
+                          {highlightsDataWithAssets[1].title}
                         </TranslatedText>
                       </span>
                     </h3>
                     <p className="card-description">
                       <TranslatedText>
-                        {highlightsData[1].description}
+                        {highlightsDataWithAssets[1].description}
                       </TranslatedText>
                     </p>
                   </div>

@@ -23,7 +23,7 @@ const getAllNewsData = () => {
       title:
         "Bức tranh này không mất đi sự phức tạp khi bạn nhìn lâu – nó trở nên phong phú hơn",
       date: "5 THÁNG 2 2025",
-      image: heroImage2,
+      image: "congchien_cards.webp",
       excerpt:
         "Chân dung Vua Charles I của Anh do Anthony van Dyck vẽ, trở lại trên tường phòng trưng bày sau hơn một năm bảo tồn. Blaise Ducos, Giám tuyển Tranh Flemish và Hà Lan, thảo luận về kiệt tác này.",
       category: "Tin bộ sưu tập",
@@ -36,7 +36,7 @@ const getAllNewsData = () => {
       id: 2,
       title: "Nói bằng một chiếc ghế!",
       date: "24 THÁNG 12 2024",
-      image: heroImage3,
+      image: "congchien_cards.webp",
       excerpt:
         "Bảo tàng Du Pin đang triển khai một chiến dịch dài hạn để bảo tồn những chiếc ghế lịch sử đã có mặt trong Vườn Tuileries từ thế kỷ 19.",
       category: "Tin bộ sưu tập",
@@ -49,7 +49,7 @@ const getAllNewsData = () => {
       id: 3,
       title: "Triển lãm Kiệt tác từ Thế giới Cổ đại",
       date: "18 THÁNG 11 2024",
-      image: heroImage4,
+      image: "congchien_cards.webp",
       excerpt:
         "Khám phá vẻ đẹp và những bí ẩn của các nền văn minh cổ đại trong triển lãm tạm thời mới của chúng tôi với các hiện vật từ Ai Cập, Hy Lạp và La Mã.",
       category: "Triển lãm",
@@ -62,7 +62,7 @@ const getAllNewsData = () => {
       id: 4,
       title: "Hội thảo Nghệ thuật Thiếu nhi: Khám phá Kỹ thuật Phục hưng",
       date: "10 THÁNG 10 2024",
-      image: heroImage1,
+      image: "congchien_cards.webp",
       excerpt:
         "Một loạt hội thảo cuối tuần đặc biệt giới thiệu cho trẻ em về kỹ thuật hội họa của các bậc thầy thời Phục hưng.",
       category: "Giáo dục",
@@ -75,7 +75,7 @@ const getAllNewsData = () => {
       id: 5,
       title: "Bộ sưu tập mới: Điêu khắc Pháp thế kỷ 18",
       date: "5 THÁNG 9 2024",
-      image: heroImage2,
+      image: "congchien_cards.webp",
       excerpt:
         "Bảo tàng Du Pin tự hào thông báo việc mua lại một bộ sưu tập quan trọng các tác phẩm điêu khắc Pháp thế kỷ 18, mở rộng bộ sưu tập ấn tượng của chúng tôi.",
       category: "Tin bộ sưu tập",
@@ -88,7 +88,7 @@ const getAllNewsData = () => {
       id: 6,
       title: "Hòa nhạc Buổi tối: Nhạc cổ điển trong Phòng trưng bày Lớn",
       date: "20 THÁNG 8 2024",
-      image: heroImage3,
+      image: "congchien_cards.webp",
       excerpt:
         "Trải nghiệm ma thuật của âm nhạc cổ điển được trình diễn trong khung cảnh tráng lệ của Phòng trưng bày Lớn của chúng tôi, mỗi tối thứ Sáu trong tháng 9.",
       category: "Sự kiện",
@@ -101,7 +101,7 @@ const getAllNewsData = () => {
       id: 7,
       title: "Hậu trường: Bảo tồn Bản thảo Trung cổ",
       date: "15 THÁNG 7 2024",
-      image: heroImage4,
+      image: "congchien_cards.webp",
       excerpt:
         "Có một cái nhìn hiếm hoi vào phòng thí nghiệm bảo tồn của chúng tôi khi đội ngũ của chúng tôi làm việc để bảo quản và phục hồi bộ sưu tập bản thảo trung cổ mới được bảo tàng mua lại.",
       category: "Tin bộ sưu tập",
@@ -114,7 +114,7 @@ const getAllNewsData = () => {
       id: 8,
       title: "Nghệ thuật In ấn Nhật Bản: Triển lãm mới",
       date: "1 THÁNG 7 2024",
-      image: heroImage1,
+      image: "congchien_cards.webp",
       excerpt:
         "Khám phá vẻ đẹp và nghệ thuật của tranh khắc gỗ truyền thống Nhật Bản trong triển lãm tạm thời mới của chúng tôi với các tác phẩm từ thời kỳ Edo đến các nghệ sĩ đương đại.",
       category: "Triển lãm",
@@ -136,13 +136,6 @@ const NewsDetailPage = () => {
   const [newsItem, setNewsItem] = useState(null);
   const [relatedNews, setRelatedNews] = useState([]);
   const allNews = getAllNewsData();
-
-  // Find all hero images by filename
-  const heroAsset1 = assets.find((a) => a.filename === "congchien_cards.webp");
-  const heroAsset2 = assets.find((a) => a.filename === "Bauholo_cards.webp");
-  const heroAsset3 = assets.find((a) => a.filename === "DanT'rung_cards.webp");
-  const heroAsset4 = assets.find((a) => a.filename === "Gui_cards.webp");
-  const mainHeroAsset = assets.find((a) => a.filename === "louvre-sunset.webp");
 
   useEffect(() => {
     // Find the news item matching the slug
@@ -191,11 +184,8 @@ const NewsDetailPage = () => {
       <div className="news-detail-hero">
         {loading && <div>Đang tải ảnh...</div>}
         {error && <div>Lỗi tải ảnh: {error}</div>}
-        {mainHeroAsset && !loading && !error && (
-          <img
-            src={getAssetUrl(mainHeroAsset.filename)}
-            alt="Bảo tàng Du Pin"
-          />
+        {newsItem.image && !loading && !error && (
+          <img src={getAssetUrl(newsItem.image)} alt={newsItem.title} />
         )}
         <div className="hero-overlay">
           <h1>{translate("news") || "TIN TỨC"}</h1>

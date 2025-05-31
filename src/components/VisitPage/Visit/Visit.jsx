@@ -1,10 +1,11 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useAssets } from "../../../hooks/useAssets";
 import TranslatedText from "../../TranslatedText";
 import "./Visit.css";
 
 // Hero section background image
-import heroImage from "../../../assets/Home/Hero/louvre-sunset.webp";
+// import heroImage from "../../../assets/Home/Hero/louvre-sunset.webp";
 
 const Visit = () => {
   const location = useLocation();
@@ -36,6 +37,9 @@ const Visit = () => {
   const horizontalNavRef = useRef(null);
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const lastScrollTop = useRef(0);
+  const { assets, loading, error, getAssetUrl } = useAssets();
+  // Find the hero image by filename
+  const heroAsset = assets.find((a) => a.filename === "louvre-sunset.webp");
 
   // Handle hash links when component mounts
   useEffect(() => {
@@ -385,7 +389,11 @@ const Visit = () => {
   const renderArtisticHero = () => (
     <div className="visit-hero" ref={heroRef}>
       <div className="visit-hero-image-container">
-        <img src={heroImage} alt="Musée Du Pin" className="visit-hero-image" />
+        <img
+          src={getAssetUrl(heroAsset.filename)}
+          alt="Musée Du Pin"
+          className="visit-hero-image"
+        />
         <div className="visit-hero-overlay"></div>
       </div>
       <div className="visit-hero-content">
@@ -512,7 +520,7 @@ const Visit = () => {
   const renderMuseumInfo = () => (
     <div className="museum-info-wrapper">
       <div className="museum-info-image">
-        <img src={heroImage} alt="Musée Du Pin" />
+        <img src={getAssetUrl(heroAsset.filename)} alt="Musée Du Pin" />
         {isMobile && <div className="info-image-overlay"></div>}
       </div>
 
@@ -1158,7 +1166,10 @@ const Visit = () => {
               </TranslatedText>
             </p>
             <div className="payment-image">
-              <img src={heroImage} alt="Thanh toán tại Musée Du Pin" />
+              <img
+                src={getAssetUrl(heroAsset.filename)}
+                alt="Thanh toán tại Musée Du Pin"
+              />
             </div>
           </div>
         </div>
@@ -1195,7 +1206,7 @@ const Visit = () => {
 
             <div className="membership-card-image">
               <img
-                src={heroImage}
+                src={getAssetUrl(heroAsset.filename)}
                 alt="Thẻ thành viên Hội Bạn bè Musée Du Pin"
               />
             </div>

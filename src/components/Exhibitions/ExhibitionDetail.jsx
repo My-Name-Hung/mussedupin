@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useAssets } from "../../hooks/useAssets";
 import useImageCache from "../../hooks/useImageCache";
 import TranslatedText from "../TranslatedText";
 import "./ExhibitionDetail.css";
@@ -275,6 +276,12 @@ const allItemsData = {
 const ExhibitionDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const {
+    assets,
+    loading: assetsLoading,
+    error: assetsError,
+    getAssetUrl,
+  } = useAssets();
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -302,8 +309,29 @@ const ExhibitionDetail = () => {
     // In a real app, this would be an API call
     // For now, we're just using our static data
     setTimeout(() => {
-      const foundItem = allItemsData[id];
+      let foundItem = allItemsData[id];
       if (foundItem) {
+        // Replace image fields with asset URLs if available
+        if (assets && assets.length > 0) {
+          if (foundItem.image) {
+            const asset = assets.find(
+              (a) => a.filename && foundItem.image.includes(a.filename)
+            );
+            if (asset)
+              foundItem = { ...foundItem, image: getAssetUrl(asset.filename) };
+          }
+          if (foundItem.gallery) {
+            foundItem = {
+              ...foundItem,
+              gallery: foundItem.gallery.map((g) => {
+                const asset = assets.find(
+                  (a) => a.filename && g.image.includes(a.filename)
+                );
+                return asset ? { ...g, image: getAssetUrl(asset.filename) } : g;
+              }),
+            };
+          }
+        }
         setItem(foundItem);
         setLoading(false);
 
@@ -373,7 +401,7 @@ const ExhibitionDetail = () => {
       if (relatedRef.current) observer.unobserve(relatedRef.current);
       clearTimeout(backupTimer);
     };
-  }, [id]);
+  }, [id, assets, getAssetUrl]);
 
   // Khi mở modal gallery, nếu chưa từng load thì bắt đầu load tất cả ảnh
   useEffect(() => {
@@ -413,6 +441,24 @@ const ExhibitionDetail = () => {
       navigate("/exhibitions?tab=guided-tours");
     }
   };
+
+  if (assetsLoading) {
+    return (
+      <div className="exhibition-detail-loading">
+        <div className="loading-spinner"></div>
+        <p>Đang tải tài sản...</p>
+      </div>
+    );
+  }
+
+  if (assetsError) {
+    return (
+      <div className="exhibition-detail-error">
+        <h2>Lỗi tải tài sản</h2>
+        <p>{assetsError}</p>
+      </div>
+    );
+  }
 
   if (loading) {
     return (

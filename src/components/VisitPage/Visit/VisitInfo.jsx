@@ -4,10 +4,6 @@ import TranslatedText from "../../TranslatedText";
 import "./VisitInfo.css";
 
 // Images - we'll import placeholder images from assets
-import {
-  default as informationDeskImg,
-  default as lostFoundImg,
-} from "../../../assets/home/Collections/Bauholo_cards.webp";
 import cloakroomImg from "../../../assets/home/Collections/congchien_cards.webp";
 import equipmentImg from "../../../assets/home/Collections/DanT'rung_cards.webp";
 import babySpaceImg from "../../../assets/home/Collections/Lehoi_cards.webp";
@@ -30,6 +26,9 @@ import room3 from "../../../assets/home/Collections/phunu_cards.webp";
 
 import { FaBaby, FaCar, FaSearch } from "react-icons/fa";
 
+// Remove all import lines for images
+import { useAssets } from "../../../hooks/useAssets";
+
 const VisitInfo = () => {
   const location = useLocation();
   const [activeSection, setActiveSection] = useState("amenities");
@@ -39,6 +38,8 @@ const VisitInfo = () => {
   const [touchStartX, setTouchStartX] = useState(0);
   const lastScrollTop = useRef(0);
   const scrollTimeout = useRef(null);
+
+  const { assets, getAssetUrl } = useAssets();
 
   // Homestay filter and detail states
   const [activeCategory, setActiveCategory] = useState("all");
@@ -385,9 +386,8 @@ const VisitInfo = () => {
     {
       id: "information-desk",
       title: "Quầy thông tin",
-      description:
-        "Hai quầy thông tin, nơi du khách có thể hỏi đáp với nhân viên và nhận bản đồ bảo tàng. Tài liệu hướng dẫn bằng 8 ngôn ngữ có sẵn dưới Tháp.",
-      image: informationDeskImg,
+      description: "Hai quầy thông tin...",
+      image: "Bauholo_cards.webp",
       icon: "info",
       details: "Nhân viên đa ngôn ngữ làm việc từ 9:00 đến 19:00 hàng ngày.",
     },
@@ -439,16 +439,6 @@ const VisitInfo = () => {
         "Khách tham quan khuyết tật được hưởng giá đậu xe ưu đãi. Giá này có thể được thương lượng tại quầy thanh toán trước khi trả tiền.",
     },
     {
-      id: "lost-found",
-      title: "Đồ thất lạc",
-      description:
-        "Bị mất đồ? Nếu bạn vẫn còn trong bảo tàng, hãy đến Quầy Hỗ trợ dưới Tháp và nhân viên sẽ giúp bạn.",
-      image: lostFoundImg,
-      icon: "help",
-      details:
-        "Đối với đồ vật tìm thấy sau chuyến thăm, hãy điền vào mẫu báo cáo trên trang web của chúng tôi",
-    },
-    {
       id: "baby-space",
       title: "Khu vực cho em bé",
       description:
@@ -464,9 +454,8 @@ const VisitInfo = () => {
     {
       id: "traditional",
       title: "Nhà nghỉ truyền thống",
-      description:
-        "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
-      image: traditionalImg,
+      description: "Nhà ở địa phương đích thực...",
+      image: "Lehoi_cards.webp",
       price: 2800000,
       rating: 4.8,
       tags: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
@@ -655,6 +644,14 @@ const VisitInfo = () => {
     },
   ];
 
+  // Map amenitiesData and homestayData to use asset URLs
+  const amenitiesDataWithAssets = amenitiesData.map((item) => {
+    const asset = assets.find(
+      (a) => a.filename && item.image.includes(a.filename)
+    );
+    return asset ? { ...item, image: getAssetUrl(asset.filename) } : item;
+  });
+
   // Render Hero Section
   const renderHero = () => (
     <div className="visitinfo-hero" ref={heroRef}>
@@ -801,7 +798,7 @@ const VisitInfo = () => {
         </div>
 
         <div className="amenities-container">
-          {amenitiesData.map((amenity, index) => (
+          {amenitiesDataWithAssets.map((amenity, index) => (
             <div
               className={`amenity-card desktop-enhanced ${
                 index % 3 === 0 ? "wide" : ""

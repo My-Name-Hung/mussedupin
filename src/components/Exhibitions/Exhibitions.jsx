@@ -1,14 +1,15 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useAssets } from "../../hooks/useAssets";
 import TranslatedText from "../TranslatedText";
 
 // Import hero image
-import hero from "../../assets/home/Hero/louvre-sunset.webp";
+// import hero from "../../assets/home/Hero/louvre-sunset.webp";
 
 // Import optimized images
-import langbiang from "../../assets/home/About/nha.webp";
-import bauho from "../../assets/home/Exhibitions/Bauholo_cards.webp";
-import thong2 from "../../assets/home/Exhibitions/Thông 2.webp";
+// import langbiang from "../../assets/home/About/nha.webp";
+// import bauho from "../../assets/home/Exhibitions/Bauholo_cards.webp";
+// import thong2 from "../../assets/home/Exhibitions/Thông 2.webp";
 
 import "./Exhibitions.css";
 
@@ -21,7 +22,7 @@ const exhibitionsData = [
     description:
       "Khi nghệ thuật không chỉ để ngắm, mà để sống cùng và sống trong. Không có tủ kính ngăn cách. Không có rào chắn giữa người và hiện vật. Langbiang không đơn thuần là một căn phòng, mà là một vùng ký ức sống, nơi hồn cốt của núi rừng thở trong từng vật phẩm, cháy trong từng ngọn lửa bếp, ngân nga trong từng tiếng cồng chiêng.",
     date: "30 tháng 4 - 28 tháng 7 2025",
-    image: langbiang,
+    image: "langbiang.webp",
     alt: "Không gian nghệ thuật Langbiang",
     tag: "Trưng bày",
     link: "/exhibition-details/langbiang-khong-gian",
@@ -34,7 +35,7 @@ const exhibitionsData = [
     description:
       "In lên mây, những hàng thông điệp khúc,\nTrên triền dốc, những nếp nhà khảm vào nhau,\nBao than thở chất chồng in bóng mặt hồ.\nTrong lòng lữ khách độc hành\nTrái thông khô mở vảy.",
     date: "24 tháng 1 - 21 tháng 7 2025",
-    image: thong2,
+    image: "thong2.webp",
     alt: "Đà Lạt những phức tầng trầm mặc",
     tag: "Trưng bày",
     link: "/exhibition-details/phuc-tang-tram-mac",
@@ -117,7 +118,7 @@ const guidedToursData = [
     description:
       "Được khoét rỗng từ quả hồ lô khô, vật phẩm này thường được dùng để đựng nước, rượu cần hoặc làm nhạc cụ truyền thống",
     duration: "1 tiếng 30 phút",
-    image: bauho,
+    image: "bauho.webp",
     alt: "K'ho sinh hoạt thường nhật",
     tag: "Tham quan",
     link: "/exhibition-details/bau-ho-lo",
@@ -130,6 +131,7 @@ const Exhibitions = () => {
   const navigate = useNavigate();
   const gridRef = useRef(null);
   const heroRef = useRef(null);
+  const { assets, loading, error, getAssetUrl } = useAssets();
 
   // Check for tab parameter in URL
   const queryParams = new URLSearchParams(location.search);
@@ -181,16 +183,30 @@ const Exhibitions = () => {
     }
   }, [location.search]);
 
-  // Get active data based on current tab
+  // Map exhibitionData and guidedToursData to use asset URLs
+  const exhibitionsDataWithAssets = exhibitionsData.map((item) => {
+    const asset = assets.find(
+      (a) => a.filename && item.image.includes(a.filename)
+    );
+    return asset ? { ...item, image: getAssetUrl(asset.filename) } : item;
+  });
+  const guidedToursDataWithAssets = guidedToursData.map((item) => {
+    const asset = assets.find(
+      (a) => a.filename && item.image.includes(a.filename)
+    );
+    return asset ? { ...item, image: getAssetUrl(asset.filename) } : item;
+  });
   const activeData =
-    activeTab === "exhibitions" ? exhibitionsData : guidedToursData;
+    activeTab === "exhibitions"
+      ? exhibitionsDataWithAssets
+      : guidedToursDataWithAssets;
 
   return (
     <div className="exhibitions-page">
       {/* Hero Section with background image */}
       <div className="exhibitions-hero" ref={heroRef}>
         <div className="exhibitions-hero-overlay">
-          <img src={hero} alt="Bảo tàng" />
+          {/* <img src={hero} alt="Bảo tàng" /> */}
         </div>
         <div className="exhibitions-hero-content">
           <h1 className="exhibitions-hero-title">

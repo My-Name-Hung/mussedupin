@@ -1,89 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import TranslatedText from "../../../components/TranslatedText";
+import { useAssets } from "../../../hooks/useAssets";
 import "./Collections.css";
-
-// Import optimized images
-import congchieng from "../../../assets/home/Collections/DungcuAmNhacTayNguyen/Cồng Chiên.webp";
-import longda from "../../../assets/home/Collections/K_hoChanNuoi/Lồng Đa Đa.webp";
-import phunu from "../../../assets/home/Collections/K_hoDieuKhac/Điêu Khắc.webp";
-import cheghosanh from "../../../assets/home/Collections/K_hoLeHoi/36 (2).webp";
-import gui from "../../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/Chiếc Gùi.webp";
-import noidat from "../../../assets/home/Collections/K_hoSinhHoatThuongNhat/Nồi Đất.webp";
-import thong2 from "../../../assets/home/Collections/PhucTang/Thông 2.webp";
-import hoabantrang from "../../../assets/home/Collections/VatLieu/Hoa Ban Trắng.webp";
-const collectionsData = [
-  {
-    id: 1,
-    title: "Dụng cụ âm nhạc Tây Nguyên",
-    artist: "Trưng bày",
-    image: congchieng,
-    alt: "Dụng cụ âm nhạc Tây Nguyên",
-    description:
-      "Musée Du Pin trưng bày các nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, tiêu biểu là cồng chiêng – biểu tượng văn hóa và tín ngưỡng thiêng liêng. Âm thanh vang vọng của cồng chiêng thể hiện sự kết nối sâu sắc giữa con người và thế giới tâm linh.",
-  },
-  {
-    id: 2,
-    title: "K'ho chăn nuôi",
-    artist: "Trưng bày",
-    image: longda,
-    alt: "K'ho chăn nuôi",
-    description:
-      "Lồng đa đa của người K'ho hiện đang được trưng bày tại Musée Du Pin như một biểu tượng mộc mạc nhưng đầy tính văn hóa của đời sống dân tộc Tây Nguyên. Được đan thủ công từ tre nứa, chiếc lồng không chỉ phục vụ mục đích chăn nuôi mà còn phản ánh sự khéo léo, tỉ mỉ và mối liên kết bền chặt giữa con người với thiên nhiên núi rừng.",
-  },
-  {
-    id: 3,
-    title: "K'ho điêu khắc",
-    artist: "Trưng bày",
-    image: phunu,
-    alt: "K'ho điêu khắc",
-    description:
-      "Tác phẩm điêu khắc người dân tộc K'ho đang được trưng bày tại Musée Du Pin thể hiện hình ảnh phụ nữ Tây Nguyên trong dáng đứng trang nghiêm, tay cầm chiếc chiêng nhỏ – biểu tượng của âm nhạc và tín ngưỡng bản địa. Tác phẩm mang đậm phong cách mộc mạc nhưng đầy chiều sâu văn hóa, phản ánh vẻ đẹp nội tâm, tinh thần kiên cường và vai trò quan trọng của người phụ nữ trong đời sống cộng đồng K'ho.",
-  },
-  {
-    id: 4,
-    title: "K'ho lễ hội",
-    artist: "Trưng bày",
-    image: cheghosanh,
-    alt: "K'ho lễ hội",
-    description:
-      "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, hiện đang được trưng bày tại Musée Du Pin, đây là biểu tượng của sự giàu có, quyền uy và tín ngưỡng tâm linh trong đời sống người bản địa.",
-  },
-  {
-    id: 5,
-    title: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
-    artist: "Tham quan",
-    image: noidat,
-    alt: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
-    description:
-      "Được chế tác thủ công từ đất nung, nồi có hình dáng đơn giản nhưng chắc chắn, thường dùng để nấu ăn trong các dịp lễ hội hoặc sinh hoạt gia đình",
-  },
-  {
-    id: 6,
-    title: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
-    artist: "Tham quan",
-    image: gui,
-    alt: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
-    description: "Chiếc gùi",
-  },
-  {
-    id: 7,
-    title: "Phức Tầng",
-    artist: "Tham quan",
-    image: thong2,
-    alt: "Phức Tầng",
-    description:
-      "Được Musée Du Pin bắt trọn khoảng khắc các hình ảnh thiên nhiên đậm sắc dân tộc K'ho, tạo nên bức tranh đẹp về đất nước Tây Nguyên.",
-  },
-  {
-    id: 8,
-    title: "Vật liệu",
-    artist: "Tham quan",
-    image: hoabantrang,
-    alt: "Vật liệu",
-    description: "Vật liệu",
-  },
-];
 
 // Define wave pattern offsets for each item
 const getWaveOffset = (index) => {
@@ -124,6 +43,7 @@ const Collections = () => {
   const [lastTouchX, setLastTouchX] = useState(0);
   const [lastTouchTime, setLastTouchTime] = useState(0);
   const [touchVelocity, setTouchVelocity] = useState(0);
+  const { assets, loading, error, getAssetUrl } = useAssets();
 
   // Check device type
   useEffect(() => {
@@ -414,6 +334,14 @@ const Collections = () => {
     }
   };
 
+  // Map collectionsData to use asset URLs
+  const collectionsDataWithAssets = collectionsData.map((item) => {
+    const asset = assets.find(
+      (a) => a.filename && item.image.includes(a.filename)
+    );
+    return asset ? { ...item, image: getAssetUrl(asset.filename) } : item;
+  });
+
   return (
     <section className="collections-section" id="collections">
       <div className="collections-content-container">
@@ -469,7 +397,7 @@ const Collections = () => {
             style={isMobile ? { overflow: "visible" } : {}}
           >
             <div className="collection-inner-container">
-              {collectionsData.map((item, index) => {
+              {collectionsDataWithAssets.map((item, index) => {
                 const waveOffset = getWaveOffset(index);
                 const itemSize = getItemSize(index);
 

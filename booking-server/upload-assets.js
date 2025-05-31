@@ -1,3 +1,4 @@
+/* global process */
 import dotenv from "dotenv";
 import fs from "fs";
 import { GridFSBucket } from "mongodb";
@@ -7,6 +8,8 @@ import path from "path";
 dotenv.config();
 
 const ASSETS_DIR = path.join(process.cwd(), "..", "src", "assets");
+const SERVER_URL =
+  process.env.SERVER_URL || `http://localhost:${process.env.PORT || 5000}`;
 
 async function uploadFile(filePath, bucket) {
   const fileStream = fs.createReadStream(filePath);
@@ -21,7 +24,13 @@ async function uploadFile(filePath, bucket) {
   });
 
   return new Promise((resolve, reject) => {
-    fileStream.pipe(uploadStream).on("error", reject).on("finish", resolve);
+    fileStream
+      .pipe(uploadStream)
+      .on("error", reject)
+      .on("finish", () => {
+        console.log(`Asset URL: ${SERVER_URL}/api/assets/${filename}`);
+        resolve();
+      });
   });
 }
 

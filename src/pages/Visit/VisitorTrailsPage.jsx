@@ -1,32 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useAssets } from "../../hooks/useAssets";
 import "./VisitorTrailsPage.css";
-
-// Import trail images from collection folders
-const dungcuImages = import.meta.glob(
-  "../../assets/home/Collections/DungcuAmNhacTayNguyen/*.webp"
-);
-const khoChanNuoiImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoChanNuoi/*.webp"
-);
-const khoDieuKhacImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoDieuKhac/*.webp"
-);
-const khoLeHoiImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoLeHoi/*.webp"
-);
-const khoSanBanImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/*.webp"
-);
-const khoSinhHoatImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoSinhHoatThuongNhat/*.webp"
-);
-const phucTangImages = import.meta.glob(
-  "../../assets/home/Collections/PhucTang/*.webp"
-);
-const vatLieuImages = import.meta.glob(
-  "../../assets/home/Collections/VatLieu/*.webp"
-);
 
 // Import thumbnails for each category
 import dungcuThumb from "../../assets/home/Collections/DungcuAmNhacTayNguyen/Cồng Chiên.webp";
@@ -193,6 +168,7 @@ const trailsData = [
 ];
 
 const VisitorTrailsPage = () => {
+  const { assets, loading, error, getAssetUrl } = useAssets();
   const [animatedSections, setAnimatedSections] = useState({});
   const [loadedImages, setLoadedImages] = useState({});
 
@@ -308,7 +284,7 @@ const VisitorTrailsPage = () => {
               <Link to={`/visitor-trails/${trail.id}`}>
                 <div className="vt-trail-image-container">
                   <img
-                    src={trail.image}
+                    src={getAssetUrl(trail.image)}
                     alt={trail.title}
                     className="vt-trail-image"
                     loading="lazy"

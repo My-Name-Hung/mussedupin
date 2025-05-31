@@ -4,15 +4,11 @@ import { useAssets } from "../../hooks/useAssets";
 import "./AboutPage.css";
 
 import { FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
-import khonggian from "../../assets/Home/About/khonggian.webp";
-import nha from "../../assets/Home/About/nha.webp";
-import nhaVideo from "../../assets/Home/About/NhaMatThong_Resize.mp4";
 
 const AboutPage = () => {
   const { assets, loading, error, getAssetUrl } = useAssets();
   const { translate } = useTranslation();
   const [activeSection, setActiveSection] = useState("intro");
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const videoRef = useRef(null);
   const sectionRefs = {
     intro: useRef(null),
@@ -21,8 +17,13 @@ const AboutPage = () => {
     contact: useRef(null),
   };
 
-  // Find the hero image by filename
+  // Find the hero image and other images/videos by filename
   const heroAsset = assets.find((a) => a.filename === "louvre-sunset.webp");
+  const khonggianAsset = assets.find((a) => a.filename === "khonggian.webp");
+  const nhaAsset = assets.find((a) => a.filename === "nha.webp");
+  const nhaVideoAsset = assets.find(
+    (a) => a.filename === "NhaMatThong_Resize.mp4"
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -125,11 +126,17 @@ const AboutPage = () => {
             </div>
             <div className="about-images">
               <figure>
-                <img src={khonggian} alt="Không gian bảo tàng" />
+                <img
+                  src={getAssetUrl(khonggianAsset.filename)}
+                  alt="Không gian bảo tàng"
+                />
                 <figcaption>Không gian trưng bày nghệ thuật</figcaption>
               </figure>
               <figure>
-                <img src={nha} alt="Kiến trúc bảo tàng" />
+                <img
+                  src={getAssetUrl(nhaAsset.filename)}
+                  alt="Kiến trúc bảo tàng"
+                />
                 <figcaption>Kiến trúc độc đáo của bảo tàng</figcaption>
               </figure>
             </div>
@@ -146,7 +153,10 @@ const AboutPage = () => {
           <div className="nhamatthong-content">
             <div className="nhamatthong-video">
               <video autoPlay muted loop playsInline>
-                <source src={nhaVideo} type="video/mp4" />
+                <source
+                  src={getAssetUrl(nhaVideoAsset.filename)}
+                  type="video/mp4"
+                />
               </video>
             </div>
             <div className="nhamatthong-text">

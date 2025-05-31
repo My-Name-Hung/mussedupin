@@ -1,13 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
-import TranslatedText from "../../components/TranslatedText";
+import { useTranslation } from "react-i18next";
+import { useAssets } from "../../hooks/useAssets";
 import "./AboutPage.css";
 
 import { FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
-import herosVideo from "../../assets/Home/About/Hero_Abouts_Resize.mp4";
 import khonggian from "../../assets/Home/About/khonggian.webp";
 import nha from "../../assets/Home/About/nha.webp";
 import nhaVideo from "../../assets/Home/About/NhaMatThong_Resize.mp4";
+
 const AboutPage = () => {
+  const { assets, loading, error, getAssetUrl } = useAssets();
+  const { translate } = useTranslation();
   const [activeSection, setActiveSection] = useState("intro");
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const videoRef = useRef(null);
@@ -17,6 +20,9 @@ const AboutPage = () => {
     nhamatthong: useRef(null),
     contact: useRef(null),
   };
+
+  // Find the hero image by filename
+  const heroAsset = assets.find((a) => a.filename === "louvre-sunset.webp");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -92,31 +98,16 @@ const AboutPage = () => {
       </nav>
 
       {/* Hero Section */}
-      <section className="about-heros" ref={sectionRefs.intro}>
-        <div className="heros-video-container">
-          <video
-            ref={videoRef}
-            autoPlay
-            muted
-            loop
-            playsInline
-            className={`heros-video ${isVideoLoaded ? "loaded" : ""}`}
-          >
-            <source src={herosVideo} type="video/mp4" />
-          </video>
-          <div className="heros-overlay"></div>
+      <div className="about-hero">
+        {loading && <div>Đang tải ảnh...</div>}
+        {error && <div>Lỗi tải ảnh: {error}</div>}
+        {heroAsset && !loading && !error && (
+          <img src={getAssetUrl(heroAsset.filename)} alt="Bảo tàng Du Pin" />
+        )}
+        <div className="hero-overlay">
+          <h1>{translate("about") || "GIỚI THIỆU"}</h1>
         </div>
-        <div className="heros-content">
-          <h1 className="heros-title">
-            <TranslatedText>Bảo tàng Thông - Musée Du Pin</TranslatedText>
-          </h1>
-          <p className="heros-subtitle">
-            <TranslatedText>
-              Nơi gìn giữ, nâng niu, những giá trị Đà Lạt
-            </TranslatedText>
-          </p>
-        </div>
-      </section>
+      </div>
 
       {/* About Section */}
       <section className="about-section" ref={sectionRefs.about}>

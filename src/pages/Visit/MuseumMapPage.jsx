@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { useTranslation } from "../../contexts/TranslationContext";
+import { useAssets } from "../../hooks/useAssets";
 import "./MuseumMapPage.css";
-
-// Import hero image
-import heroImage from "../../assets/home/Hero/louvre-sunset.webp";
 
 // SVG Icons
 const BackIcon = () => (
@@ -81,6 +78,10 @@ const MuseumMapPage = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [translations, setTranslations] = useState({});
   const { translate } = useTranslation();
+  const { assets, loading, error, getAssetUrl } = useAssets();
+
+  // Find the hero image by filename
+  const heroAsset = assets.find((a) => a.filename === "louvre-sunset.webp");
 
   useEffect(() => {
     const loadTranslations = async () => {
@@ -435,26 +436,14 @@ const MuseumMapPage = () => {
   return (
     <div className="museum-map-page">
       {/* Hero Section */}
-      <div className="map-hero">
-        <div
-          className="map-hero-image"
-          style={{ backgroundImage: `url(${heroImage})` }}
-        >
-          <div className="map-hero-overlay"></div>
-        </div>
-
-        <Link to="/" className="map-back-button">
-          <BackIcon /> {translations.back || "Quay lại"}
-        </Link>
-
-        <div className="map-hero-content">
-          <p className="map-hero-subtitle">
-            {translations.mapDirections || "BẢN ĐỒ & CHỈ ĐƯỜNG"}
-          </p>
-          <h1 className="map-hero-title">
-            {translations.howToReachMuséeDuPin ||
-              "Làm thế nào để đến Musée Du Pin"}
-          </h1>
+      <div className="museum-map-hero">
+        {loading && <div>Đang tải ảnh...</div>}
+        {error && <div>Lỗi tải ảnh: {error}</div>}
+        {heroAsset && !loading && !error && (
+          <img src={getAssetUrl(heroAsset.filename)} alt="Bảo tàng Du Pin" />
+        )}
+        <div className="hero-overlay">
+          <h1>{translations.mapDirections || "BẢN ĐỒ & CHỈ ĐƯỜNG"}</h1>
         </div>
       </div>
 

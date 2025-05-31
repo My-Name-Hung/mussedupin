@@ -1,10 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TranslatedText from "../../components/TranslatedText";
+import { useAssets } from "../../hooks/useAssets";
 import "./SupportPage.css";
 
 import {
-  FaBook,
   FaCalendarAlt,
   FaImage,
   FaInfoCircle,
@@ -20,6 +20,7 @@ const SupportPage = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const videoRef = useRef(null);
   const navigate = useNavigate();
+  const { assets, loading, error, getAssetUrl } = useAssets();
 
   const sectionRefs = {
     intro: useRef(null),
@@ -105,6 +106,9 @@ const SupportPage = () => {
     },
   ];
 
+  // Find the hero image by filename
+  const heroAsset = assets.find((a) => a.filename === "louvre-sunset.webp");
+
   return (
     <div className="support-page">
       {/* Navigation Sidebar */}
@@ -177,6 +181,18 @@ const SupportPage = () => {
           </div>
         </div>
       </section>
+
+      {/* Hero section */}
+      <div className="support-hero">
+        {loading && <div>Đang tải ảnh...</div>}
+        {error && <div>Lỗi tải ảnh: {error}</div>}
+        {heroAsset && !loading && !error && (
+          <img src={getAssetUrl(heroAsset.filename)} alt="Bảo tàng Du Pin" />
+        )}
+        <div className="hero-overlay">
+          <h1>{translations.support || "HỖ TRỢ"}</h1>
+        </div>
+      </div>
     </div>
   );
 };

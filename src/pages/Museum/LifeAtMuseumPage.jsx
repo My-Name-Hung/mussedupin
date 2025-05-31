@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
+import { useAssets } from "../../hooks/useAssets";
 import "./LifeAtMuseumPage.css";
-
-// Import images (you'll need to replace these with your actual images)
-import heroImage2 from "../../assets/home/Collections/Bauholo_cards.webp";
-import heroImage1 from "../../assets/home/Collections/congchien_cards.webp";
-import heroImage3 from "../../assets/home/Collections/DanT'rung_cards.webp";
-import heroImage4 from "../../assets/home/Collections/Gui_cards.webp";
 
 // Helper function to create URL-friendly slugs from titles
 const createSlug = (title) => {
@@ -132,11 +128,39 @@ const additionalNewsData = [
 ];
 
 const LifeAtMuseumPage = () => {
+  const { assets, loading, error, getAssetUrl } = useAssets();
+  const { translate } = useTranslation();
+
+  // Find all hero images by filename
+  const heroAsset1 = assets.find((a) => a.filename === "congchien_cards.webp");
+  const heroAsset2 = assets.find((a) => a.filename === "Bauholo_cards.webp");
+  const heroAsset3 = assets.find((a) => a.filename === "DanT'rung_cards.webp");
+  const heroAsset4 = assets.find((a) => a.filename === "Gui_cards.webp");
+
   // State for hero section slideshow
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [showMoreNews, setShowMoreNews] = useState(false);
-  const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4];
+
+  // Hero section slideshow images
+  const heroSlides = [
+    {
+      image: heroAsset1 ? getAssetUrl(heroAsset1.filename) : "",
+      title: translate("lifeAtMuseum") || "CUỘC SỐNG TẠI BẢO TÀNG",
+    },
+    {
+      image: heroAsset2 ? getAssetUrl(heroAsset2.filename) : "",
+      title: translate("lifeAtMuseum") || "CUỘC SỐNG TẠI BẢO TÀNG",
+    },
+    {
+      image: heroAsset3 ? getAssetUrl(heroAsset3.filename) : "",
+      title: translate("lifeAtMuseum") || "CUỘC SỐNG TẠI BẢO TÀNG",
+    },
+    {
+      image: heroAsset4 ? getAssetUrl(heroAsset4.filename) : "",
+      title: translate("lifeAtMuseum") || "CUỘC SỐNG TẠI BẢO TÀNG",
+    },
+  ];
 
   // Get all unique categories and subcategories from news data
   const getCategories = () => {
@@ -157,14 +181,13 @@ const LifeAtMuseumPage = () => {
 
   const categories = getCategories();
 
-  // Handle auto-rotating hero slideshow
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveHeroSlide((prev) => (prev + 1) % heroImages.length);
+      setActiveHeroSlide((prev) => (prev + 1) % heroSlides.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [heroImages.length]);
+  }, [heroSlides.length]);
 
   // Intersection observer for animations
   useEffect(() => {
@@ -260,37 +283,31 @@ const LifeAtMuseumPage = () => {
 
   return (
     <div className="life-museum-page">
-      {/* Hero Section */}
-      <section className="lm-hero animate-section">
-        <div className="lm-hero-slides-container">
-          {heroImages.map((image, index) => (
-            <div
-              key={index}
-              className={`lm-hero-slide ${
-                activeHeroSlide === index ? "active" : ""
-              }`}
-              style={{ backgroundImage: `url(${image})` }}
-            />
-          ))}
-        </div>
-        <div className="lm-hero-overlay"></div>
-        <div className="lm-hero-content">
-          <h1 className="lm-hero-title">CUỘC SỐNG TẠI BẢO TÀNG</h1>
-        </div>
-        <div className="lm-hero-scroll-indicator">
+      {/* Hero section */}
+      <div className="lm-hero">
+        {loading && <div>Đang tải ảnh...</div>}
+        {error && <div>Lỗi tải ảnh: {error}</div>}
+        {heroSlides.map((slide, index) => (
           <div
-            className="lm-hero-scroll-mouse"
-            onClick={() => {
-              document.querySelector(".lm-news-section").scrollIntoView({
-                behavior: "smooth",
-              });
+            key={index}
+            className={`lm-hero-slide ${
+              index === activeHeroSlide ? "active" : ""
+            }`}
+            style={{
+              backgroundImage: `url(${slide.image})`,
             }}
           >
-            <div className="lm-hero-scroll-wheel"></div>
+            <div className="lm-hero-overlay"></div>
+            <div className="lm-hero-content">
+              <h1 className="lm-hero-title">{slide.title}</h1>
+            </div>
           </div>
-          <span>CUỘN XUỐNG</span>
+        ))}
+        <div className="lm-hero-scroll-indicator">
+          <span>Scroll</span>
+          <div className="scroll-arrow"></div>
         </div>
-      </section>
+      </div>
 
       {/* All the News Section */}
       <section className="lm-news-section animate-section">

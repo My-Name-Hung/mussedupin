@@ -1,3 +1,4 @@
+/* global process, global, Buffer */
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
@@ -246,7 +247,7 @@ app.post("/api/bookings", async (req, res) => {
     const sheetsResponse = await sheets.spreadsheets.values.append(request);
 
     // Gửi email xác nhận
-    const [customerEmailResponse, adminEmailResponse] = await Promise.all([
+    await Promise.all([
       sendCustomerEmail(bookingData),
       sendAdminEmail(bookingData),
     ]);
@@ -255,10 +256,6 @@ app.post("/api/bookings", async (req, res) => {
       success: true,
       message: "Booking saved successfully and email notifications sent.",
       sheetsResponse: sheetsResponse.data,
-      emailResponse: {
-        customerEmailSent: true,
-        adminEmailSent: true,
-      },
     });
   } catch (error) {
     console.error("Error processing booking:", error);
@@ -382,6 +379,12 @@ app.post("/api/feedback", async (req, res) => {
 // API endpoints for assets
 app.post("/api/assets/upload", async (req, res) => {
   try {
+    if (!global.bucket) {
+      return res.status(503).json({
+        success: false,
+        message: "Asset storage not initialized. Please try again later.",
+      });
+    }
     const { file, metadata } = req.body;
     const buffer = Buffer.from(file.split(",")[1], "base64");
 
@@ -410,6 +413,12 @@ app.post("/api/assets/upload", async (req, res) => {
 
 app.get("/api/assets/:filename", async (req, res) => {
   try {
+    if (!global.bucket) {
+      return res.status(503).json({
+        success: false,
+        message: "Asset storage not initialized. Please try again later.",
+      });
+    }
     const filename = req.params.filename;
     const files = await global.bucket.find({ filename }).toArray();
 
@@ -433,6 +442,12 @@ app.get("/api/assets/:filename", async (req, res) => {
 
 app.get("/api/assets", async (req, res) => {
   try {
+    if (!global.bucket) {
+      return res.status(503).json({
+        success: false,
+        message: "Asset storage not initialized. Please try again later.",
+      });
+    }
     const files = await global.bucket.find().toArray();
     res.status(200).json({
       success: true,

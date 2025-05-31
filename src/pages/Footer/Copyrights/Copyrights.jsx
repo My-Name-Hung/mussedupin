@@ -1,12 +1,14 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import TranslatedText from "../../../components/TranslatedText";
+import { useAssets } from "../../../hooks/useAssets";
 import "./Copyrights.css";
 
-// Import header image
-import headerImage from "../../../assets/Home/Hero/louvre-sunset.webp";
-
 const Copyrights = () => {
+  const { assets, loading, error, getAssetUrl } = useAssets();
+  // Find the header image by filename
+  const headerAsset = assets.find((a) => a.filename === "louvre-sunset.webp");
+
   return (
     <div className="copyrights-container">
       <Helmet>
@@ -19,7 +21,14 @@ const Copyrights = () => {
 
       {/* Header Banner */}
       <div className="copyrights-banner">
-        <img src={headerImage} alt="Bảo tàng Thông - Musée Du Pin" />
+        {loading && <div>Đang tải ảnh...</div>}
+        {error && <div>Lỗi tải ảnh: {error}</div>}
+        {headerAsset && !loading && !error && (
+          <img
+            src={getAssetUrl(headerAsset.filename)}
+            alt="Bảo tàng Thông - Musée Du Pin"
+          />
+        )}
         <div className="banner-overlay">
           <h1>
             <TranslatedText>BẢN QUYỀN</TranslatedText>
@@ -36,9 +45,10 @@ const Copyrights = () => {
           <p>
             <TranslatedText>
               Trang web này và toàn bộ nội dung của nó thuộc quyền sở hữu của
-              Bảo tàng Thông - Musée Du Pin. Mọi quyền sở hữu trí tuệ, bao gồm nhưng không
-              giới hạn ở bản quyền, nhãn hiệu, và các quyền sở hữu trí tuệ khác
-              đều được bảo vệ bởi pháp luật Việt Nam và các công ước quốc tế.
+              Bảo tàng Thông - Musée Du Pin. Mọi quyền sở hữu trí tuệ, bao gồm
+              nhưng không giới hạn ở bản quyền, nhãn hiệu, và các quyền sở hữu
+              trí tuệ khác đều được bảo vệ bởi pháp luật Việt Nam và các công
+              ước quốc tế.
             </TranslatedText>
           </p>
         </div>
@@ -144,8 +154,8 @@ const Copyrights = () => {
           <ul>
             <li>
               <TranslatedText>
-                Hình ảnh có dấu © Bảo tàng Thông - Musée Du Pin: Thuộc quyền sở hữu độc quyền
-                của bảo tàng
+                Hình ảnh có dấu © Bảo tàng Thông - Musée Du Pin: Thuộc quyền sở
+                hữu độc quyền của bảo tàng
               </TranslatedText>
             </li>
             <li>
@@ -234,7 +244,8 @@ const Copyrights = () => {
           </h2>
           <p>
             <TranslatedText>
-              Bảo tàng Thông - Musée Du Pin nghiêm túc xử lý mọi hành vi vi phạm bản quyền:
+              Bảo tàng Thông - Musée Du Pin nghiêm túc xử lý mọi hành vi vi phạm
+              bản quyền:
             </TranslatedText>
           </p>
           <ul>

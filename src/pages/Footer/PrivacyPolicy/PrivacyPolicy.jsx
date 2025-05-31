@@ -1,12 +1,14 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import TranslatedText from "../../../components/TranslatedText";
+import { useAssets } from "../../../hooks/useAssets";
 import "./PrivacyPolicy.css";
 
-// Import header image
-import headerImage from "../../../assets/Home/Hero/louvre-sunset.webp";
-
 const PrivacyPolicy = () => {
+  const { assets, loading, error, getAssetUrl } = useAssets();
+  // Find the header image by filename
+  const headerAsset = assets.find((a) => a.filename === "louvre-sunset.webp");
+
   return (
     <div className="privacy-policy-container">
       <Helmet>
@@ -19,7 +21,14 @@ const PrivacyPolicy = () => {
 
       {/* Header Banner */}
       <div className="privacy-banner">
-        <img src={headerImage} alt="Bảo tàng Thông - Musée Du Pin" />
+        {loading && <div>Đang tải ảnh...</div>}
+        {error && <div>Lỗi tải ảnh: {error}</div>}
+        {headerAsset && !loading && !error && (
+          <img
+            src={getAssetUrl(headerAsset.filename)}
+            alt="Bảo tàng Thông - Musée Du Pin"
+          />
+        )}
         <div className="banner-overlay">
           <h1>
             <TranslatedText>CHÍNH SÁCH BẢO MẬT</TranslatedText>
@@ -35,10 +44,10 @@ const PrivacyPolicy = () => {
           </h2>
           <p>
             <TranslatedText>
-              Bảo tàng Thông - Musée Du Pin cam kết bảo vệ quyền riêng tư và dữ liệu cá nhân
-              của quý khách. Chính sách bảo mật này mô tả cách chúng tôi thu
-              thập, sử dụng, lưu trữ và bảo vệ thông tin của quý khách khi truy
-              cập website và sử dụng dịch vụ của bảo tàng.
+              Bảo tàng Thông - Musée Du Pin cam kết bảo vệ quyền riêng tư và dữ
+              liệu cá nhân của quý khách. Chính sách bảo mật này mô tả cách
+              chúng tôi thu thập, sử dụng, lưu trữ và bảo vệ thông tin của quý
+              khách khi truy cập website và sử dụng dịch vụ của bảo tàng.
             </TranslatedText>
           </p>
         </div>
@@ -152,9 +161,9 @@ const PrivacyPolicy = () => {
           </h2>
           <p>
             <TranslatedText>
-              Bảo tàng Thông - Musée Du Pin áp dụng các biện pháp bảo mật thích hợp để bảo vệ
-              thông tin của quý khách khỏi truy cập trái phép, thay đổi, tiết lộ
-              hoặc phá hủy. Các biện pháp này bao gồm:
+              Bảo tàng Thông - Musée Du Pin áp dụng các biện pháp bảo mật thích
+              hợp để bảo vệ thông tin của quý khách khỏi truy cập trái phép,
+              thay đổi, tiết lộ hoặc phá hủy. Các biện pháp này bao gồm:
             </TranslatedText>
           </p>
           <ul>

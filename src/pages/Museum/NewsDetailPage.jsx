@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "../../contexts/TranslationContext";
+import { useAssets } from "../../hooks/useAssets";
 import "./NewsDetailPage.css";
-
-// Import images (these should match the ones in LifeAtMuseumPage.jsx)
-import heroImage2 from "../../assets/home/Collections/Bauholo_cards.webp";
-import heroImage1 from "../../assets/home/Collections/congchien_cards.webp";
-import heroImage3 from "../../assets/home/Collections/DanT'rung_cards.webp";
-import heroImage4 from "../../assets/home/Collections/Gui_cards.webp";
 
 // Helper function to create URL-friendly slugs from titles
 const createSlug = (title) => {
@@ -133,11 +129,20 @@ const getAllNewsData = () => {
 };
 
 const NewsDetailPage = () => {
-  const { slug } = useParams();
+  const { assets, loading, error, getAssetUrl } = useAssets();
+  const { translate } = useTranslation();
   const navigate = useNavigate();
+  const { slug } = useParams();
   const [newsItem, setNewsItem] = useState(null);
   const [relatedNews, setRelatedNews] = useState([]);
   const allNews = getAllNewsData();
+
+  // Find all hero images by filename
+  const heroAsset1 = assets.find((a) => a.filename === "congchien_cards.webp");
+  const heroAsset2 = assets.find((a) => a.filename === "Bauholo_cards.webp");
+  const heroAsset3 = assets.find((a) => a.filename === "DanT'rung_cards.webp");
+  const heroAsset4 = assets.find((a) => a.filename === "Gui_cards.webp");
+  const mainHeroAsset = assets.find((a) => a.filename === "louvre-sunset.webp");
 
   useEffect(() => {
     // Find the news item matching the slug
@@ -184,11 +189,16 @@ const NewsDetailPage = () => {
     <div className="news-detail-page">
       {/* Hero section */}
       <div className="news-detail-hero">
-        <div
-          className="news-detail-hero-image"
-          style={{ backgroundImage: `url(${newsItem.image})` }}
-        >
-          <div className="news-detail-hero-overlay"></div>
+        {loading && <div>Đang tải ảnh...</div>}
+        {error && <div>Lỗi tải ảnh: {error}</div>}
+        {mainHeroAsset && !loading && !error && (
+          <img
+            src={getAssetUrl(mainHeroAsset.filename)}
+            alt="Bảo tàng Du Pin"
+          />
+        )}
+        <div className="hero-overlay">
+          <h1>{translate("news") || "TIN TỨC"}</h1>
         </div>
       </div>
 
@@ -229,11 +239,15 @@ const NewsDetailPage = () => {
                 <article key={item.id} className="related-news-item">
                   <a href={`/life-at-the-museum/${createSlug(item.title)}`}>
                     <div className="related-news-image-container">
-                      <img
-                        src={item.image}
-                        alt={item.title}
-                        className="related-news-image"
-                      />
+                      {loading && <div>Đang tải ảnh...</div>}
+                      {error && <div>Lỗi tải ảnh: {error}</div>}
+                      {item.image && !loading && !error && (
+                        <img
+                          src={getAssetUrl(item.image)}
+                          alt={item.title}
+                          className="related-news-image"
+                        />
+                      )}
                     </div>
                     <h3 className="related-news-title">{item.title}</h3>
                     <time className="related-news-date">{item.date}</time>

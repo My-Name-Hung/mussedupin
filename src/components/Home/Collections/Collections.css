@@ -67,7 +67,6 @@
 .collections-gallery-container {
   position: relative;
   width: 100%;
-  overflow: hidden;
   margin: 0;
   padding: 0;
 }
@@ -464,21 +463,7 @@
 }
 
 /* Add a subtle faded edge to indicate more content */
-.collections-gallery-container::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 80px;
-  height: 100%;
-  background: linear-gradient(
-    to right,
-    rgba(255, 255, 255, 0),
-    rgba(255, 255, 255, 0.9)
-  );
-  pointer-events: none;
-  z-index: 5;
-}
+
 
 /* Desktop-specific enhancements */
 .desktop-view .collections-gallery {
@@ -715,15 +700,7 @@
     opacity: 1;
   }
 
-  /* Enhanced fade edges */
-  .collections-gallery-container::after {
-    width: 120px;
-    background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 1)
-    );
-  }
+
 
   /* Remove left fade for desktop */
   .collections-gallery-container .left-fade {
@@ -806,9 +783,6 @@
     width: 230px;
   }
 
-  .collections-gallery-container::after {
-    width: 60px;
-  }
 }
 
 @media (max-width: 768px) {
@@ -902,14 +876,7 @@
     font-size: 16px;
   }
 
-  .collections-gallery-container::after {
-    width: 50px;
-    background: linear-gradient(
-      to right,
-      rgba(255, 255, 255, 0),
-      rgba(255, 255, 255, 0.7)
-    );
-  }
+
 
   .collection-inner-container {
     padding: 10px 0;
@@ -1030,9 +997,7 @@
     font-size: 18px;
   }
 
-  .collections-gallery-container::after {
-    width: 40px;
-  }
+
 
   /* Optimize hover effects for touch devices */
   .collection-image-wrapper:hover {
@@ -1109,9 +1074,7 @@
     padding: 8px 5px;
   }
 
-  .collections-gallery-container::after {
-    width: 30px;
-  }
+
 
   .collections-section {
     padding-bottom: 80px;

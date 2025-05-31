@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { SAMPLE_IMAGES } from "../assets/assets";
-import logo from "../assets/Logo/icon.jpg";
+import logo from "../assets/Logo/icon.webp";
 import TranslatedText from "../components/TranslatedText";
 import "../styles/SearchResults.css";
 

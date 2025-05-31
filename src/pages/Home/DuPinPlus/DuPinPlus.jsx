@@ -9,13 +9,14 @@ const allVideos = [
     id: 1,
     title:
       "Góc nhìn từ Bảo Tàng Thông – Một lát cắt Đà Lạt trọn vẹn trong ánh chiều tà!",
-    subtitle: "Nguồn: Bảo Tàng Thông",
+    subtitle: "Góc nhìn từ Bảo Tàng Thông",
     youtubeId: "aozcRuYVPKw", // Replace with actual YouTube ID
-    duration: "",
+    duration: "11s",
     thumbnail:
       "https://i.ytimg.com/vi/aozcRuYVPKw/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG2CIAC0AWKAgwIABABGD4gQihyMA8=&rs=AOn4CLCybz6fVtK17RW4ZlrHrBfDMcmiPw", // This will be replaced with actual thumbnails
     category: "Thiên nhiên",
   },
+  
 ];
 
 // Extract unique categories for the filter
@@ -48,9 +49,7 @@ const DuPinPlus = () => {
       filteredVideos = filteredVideos.filter(
         (video) =>
           video.title.toLowerCase().includes(query) ||
-          (video.description
-            ? video.description.toLowerCase().includes(query)
-            : false)
+          video.subtitle.toLowerCase().includes(query)
       );
     }
 
@@ -171,7 +170,9 @@ const DuPinPlus = () => {
               <div className="video-info">
                 <span className="video-category">{video.category}</span>
                 <h3 className="video-title">{video.title}</h3>
-                {video.subtitle && <span className="video-subtitle"></span>}
+                {video.subtitle && (
+                  <span className="video-subtitle"></span>
+                )}
                 <p className="video-description">{video.description}</p>
               </div>
             </div>

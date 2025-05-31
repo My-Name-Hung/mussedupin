@@ -1,25 +1,12 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useAssets } from "../../hooks/useAssets";
-import useImageCache from "../../hooks/useImageCache";
+import { getAssetUrl } from "../../utils/getAssetUrl";
 import TranslatedText from "../TranslatedText";
 import "./ExhibitionDetail.css";
 
 // Import optimized images
-import bauho from "../../assets/home/Exhibitions/Bauholo_cards.webp";
-import langbiang from "../../assets/home/Exhibitions/Langbiang.webp";
-import thong2 from "../../assets/home/Exhibitions/Thông 2.webp";
 
 // Import gallery images for Phuc Tang
-import gallery1 from "../../assets/home/collections/phuctang/Cô đơn.webp";
-import gallery2 from "../../assets/home/collections/phuctang/Gào thét.webp";
-import gallery3 from "../../assets/home/collections/phuctang/Lãng du.webp";
-import gallery4 from "../../assets/home/collections/phuctang/Mênh mang.webp";
-import gallery5 from "../../assets/home/collections/phuctang/Thông 1.webp";
-import gallery6 from "../../assets/home/collections/phuctang/Thông 2.webp";
-import gallery7 from "../../assets/home/collections/phuctang/Thông 3.webp";
-import gallery8 from "../../assets/home/collections/phuctang/Thông 4.webp";
-import gallery9 from "../../assets/home/collections/phuctang/Trầm mặc.webp";
 
 // Import thumbnails for related items
 
@@ -148,7 +135,7 @@ const allItemsData = {
       "Khi nghệ thuật không chỉ để ngắm, mà để sống cùng và sống trong. Không có tủ kính ngăn cách. Không có rào chắn giữa người và hiện vật.",
     date: "30 tháng 4 - 28 tháng 7 2025",
     location: "Tầng 1",
-    image: langbiang,
+    image: "Langbiang.webp",
     alt: "Không gian nghệ thuật Langbiang",
     tag: "Trưng bày",
     longDescription: [
@@ -169,7 +156,7 @@ const allItemsData = {
       "Đà Lạt những phức tầng trầm mặc, in lên mây, những hàng thông điệp khúc, Trên triền dốc, những nếp nhà khảm vào nhau.",
     date: "2025",
     location: "Tầng 2",
-    image: thong2,
+    image: "Thông 2.webp",
     alt: "Đà Lạt những phức tầng trầm mặc",
     tag: "Trưng bày",
     longDescription: [
@@ -183,15 +170,15 @@ const allItemsData = {
     curators: ["Tùng Xuân Lâm"],
     type: "exhibition",
     gallery: [
-      { image: gallery1, title: "Cô đơn" },
-      { image: gallery2, title: "Gào thét" },
-      { image: gallery3, title: "Lãng du" },
-      { image: gallery4, title: "Mênh mang" },
-      { image: gallery5, title: "Thông 1" },
-      { image: gallery6, title: "Thông 2" },
-      { image: gallery7, title: "Thông 3" },
-      { image: gallery8, title: "Thông 4" },
-      { image: gallery9, title: "Trầm mặc" },
+      { image: "Cô đơn.webp", title: "Cô đơn" },
+      { image: "Gào thét.webp", title: "Gào thét" },
+      { image: "Lãng du.webp", title: "Lãng du" },
+      { image: "Mênh mang.webp", title: "Mênh mang" },
+      { image: "Thông 1.webp", title: "Thông 1" },
+      { image: "Thông 2.webp", title: "Thông 2" },
+      { image: "Thông 3.webp", title: "Thông 3" },
+      { image: "Thông 4.webp", title: "Thông 4" },
+      { image: "Trầm mặc.webp", title: "Trầm mặc" },
     ],
   },
 
@@ -204,7 +191,7 @@ const allItemsData = {
       "Được khoét rỗng từ quả hồ lô khô, vật phẩm này thường được dùng để đựng nước, rượu cần hoặc làm nhạc cụ truyền thống",
     duration: "1 giờ 30 phút",
     schedule: "Hàng ngày lúc 10:00 và 14:00",
-    image: bauho,
+    image: "46.webp",
     alt: "K'ho sinh hoạt thường nhật",
     tag: "Tham quan",
     longDescription: [
@@ -276,12 +263,6 @@ const allItemsData = {
 const ExhibitionDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-  const {
-    assets,
-    loading: assetsLoading,
-    error: assetsError,
-    getAssetUrl,
-  } = useAssets();
   const [item, setItem] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -303,45 +284,12 @@ const ExhibitionDetail = () => {
   const contentRef = useRef(null);
   const relatedRef = useRef(null);
 
-  const { preloadAll } = useImageCache();
-
   useEffect(() => {
     // In a real app, this would be an API call
     // For now, we're just using our static data
     setTimeout(() => {
-      let foundItem = allItemsData[id];
+      const foundItem = allItemsData[id];
       if (foundItem) {
-        // Replace image fields with asset URLs if available
-        if (assets && assets.length > 0) {
-          if (foundItem.image) {
-            const asset = assets.find(
-              (a) => a.filename && foundItem.image.includes(a.filename)
-            );
-            if (asset)
-              foundItem = {
-                ...foundItem,
-                image: asset.url ? asset.url : getAssetUrl(asset.filename),
-              };
-          }
-          if (foundItem.gallery) {
-            foundItem = {
-              ...foundItem,
-              gallery: foundItem.gallery.map((g) => {
-                const asset = assets.find(
-                  (a) => a.filename && g.image.includes(a.filename)
-                );
-                return asset
-                  ? {
-                      ...g,
-                      image: asset.url
-                        ? asset.url
-                        : getAssetUrl(asset.filename),
-                    }
-                  : g;
-              }),
-            };
-          }
-        }
         setItem(foundItem);
         setLoading(false);
 
@@ -411,7 +359,7 @@ const ExhibitionDetail = () => {
       if (relatedRef.current) observer.unobserve(relatedRef.current);
       clearTimeout(backupTimer);
     };
-  }, [id, assets, getAssetUrl]);
+  }, [id]);
 
   // Khi mở modal gallery, nếu chưa từng load thì bắt đầu load tất cả ảnh
   useEffect(() => {
@@ -424,22 +372,29 @@ const ExhibitionDetail = () => {
       item.gallery
     ) {
       setGalleryLoading(true);
-      // Sử dụng useImageCache để preload tất cả ảnh
-      const srcArr = item.gallery.map((g) => g.image);
-      preloadAll(srcArr)
-        .then(() => {
-          setGalleryLoading(false);
-          setGalleryLoaded(true);
-          setGalleryImagesCache(true);
-          if (typeof window !== "undefined" && window.sessionStorage) {
-            window.sessionStorage.setItem("phucTangGalleryLoaded", "true");
+      // Tạo promise load tất cả ảnh
+      const loadPromises = item.gallery.map((g) => {
+        return new Promise((resolve) => {
+          const img = new window.Image();
+          img.src = getAssetUrl(g.image);
+          if (img.complete) {
+            resolve();
+          } else {
+            img.onload = () => resolve();
+            img.onerror = () => resolve();
           }
-        })
-        .catch(() => {
-          setGalleryLoading(false);
         });
+      });
+      Promise.all(loadPromises).then(() => {
+        setGalleryLoading(false);
+        setGalleryLoaded(true);
+        setGalleryImagesCache(true);
+        if (typeof window !== "undefined" && window.sessionStorage) {
+          window.sessionStorage.setItem("phucTangGalleryLoaded", "true");
+        }
+      });
     }
-  }, [showGallery, galleryLoaded, galleryImagesCache, item, preloadAll]);
+  }, [showGallery, galleryLoaded, galleryImagesCache, item]);
 
   // Handler for back button to maintain tab selection
   const handleBackClick = (e) => {
@@ -451,24 +406,6 @@ const ExhibitionDetail = () => {
       navigate("/exhibitions?tab=guided-tours");
     }
   };
-
-  if (assetsLoading) {
-    return (
-      <div className="exhibition-detail-loading">
-        <div className="loading-spinner"></div>
-        <p>Đang tải tài sản...</p>
-      </div>
-    );
-  }
-
-  if (assetsError) {
-    return (
-      <div className="exhibition-detail-error">
-        <h2>Lỗi tải tài sản</h2>
-        <p>{assetsError}</p>
-      </div>
-    );
-  }
 
   if (loading) {
     return (
@@ -504,7 +441,7 @@ const ExhibitionDetail = () => {
       {/* Hero Section */}
       <div className="exhibition-detail-hero" ref={heroRef}>
         <div className="exhibition-detail-hero-image">
-          <img src={item.image} alt={item.alt} />
+          <img src={getAssetUrl(item.image)} alt={item.alt} />
           <div className="exhibition-detail-hero-overlay"></div>
         </div>
         <div className="exhibition-detail-hero-content">
@@ -584,9 +521,8 @@ const ExhibitionDetail = () => {
                                     }
                                   >
                                     <img
-                                      src={galleryItem.image}
+                                      src={getAssetUrl(galleryItem.image)}
                                       alt={galleryItem.title}
-                                      loading="lazy"
                                     />
                                     <div className="gallery-slide-title">
                                       <TranslatedText>
@@ -702,7 +638,10 @@ const ExhibitionDetail = () => {
                     }}
                   >
                     <div className="related-item-image">
-                      <img src={relatedItem.image} alt={relatedItem.alt} />
+                      <img
+                        src={getAssetUrl(relatedItem.image)}
+                        alt={relatedItem.alt}
+                      />
                     </div>
                     <div className="related-item-content">
                       <h3>
@@ -746,7 +685,10 @@ const ExhibitionDetail = () => {
             className="image-modal-content"
             onClick={(e) => e.stopPropagation()}
           >
-            <img src={selectedImage.image} alt={selectedImage.title} />
+            <img
+              src={getAssetUrl(selectedImage.image)}
+              alt={selectedImage.title}
+            />
             <div className="image-modal-title">
               <TranslatedText>{selectedImage.title}</TranslatedText>
             </div>

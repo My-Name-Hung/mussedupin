@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import logoImage from "../../assets/Logo/icon.jpg";
+import logoImage from "../../assets/Logo/icon.webp";
 import FeedbackModal from "../FeedbackModal/FeedbackModal";
 import TranslatedText from "../TranslatedText";
 import "./Footer.css";

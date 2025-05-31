@@ -156,19 +156,7 @@
   }
 }
 
-.dupin-gallery {
-  position: relative;
-  width: 100%;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scrollbar-width: none; /* Firefox */
-  -ms-overflow-style: none; /* IE and Edge */
-  padding-bottom: 2rem;
-}
 
-.dupin-gallery::-webkit-scrollbar {
-  display: none; /* Chrome, Safari, Opera */
-}
 
 .dupin-inner-container {
   display: flex;
@@ -196,9 +184,9 @@
   z-index: 5;
 }
 
-.dupin-item:not(.active) {
+/* .dupin-item:not(.active) {
   filter: brightness(0.85);
-}
+} */
 
 @keyframes fadeIn {
   to {
@@ -221,9 +209,9 @@
   background-color: #111;
 }
 
-.dupin-item.active .dupin-video-wrapper {
+/* .dupin-item.active .dupin-video-wrapper {
   box-shadow: 0 15px 50px rgba(255, 255, 255, 0.1);
-}
+} */
 
 .dupin-video-wrapper:hover {
   transform: perspective(1000px) rotateX(2deg) translateY(-10px) scale(1.02);
@@ -269,7 +257,7 @@
   bottom: 0;
   background: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0) 40%,
+    rgba(0, 0, 0, 0.4) 40%,
     rgba(0, 0, 0, 0.7) 80%,
     rgba(0, 0, 0, 0.9) 100%
   );
@@ -358,18 +346,12 @@
   position: absolute;
   bottom: 0;
   left: 0;
-  width: 100%;
-  padding: 18px 12px 14px 12px;
-  background: linear-gradient(
-    to top,
-    rgba(0, 0, 0, 0.7) 80%,
-    rgba(0, 0, 0, 0.1) 100%
-  );
-  border-bottom-left-radius: 12px;
-  border-bottom-right-radius: 12px;
-  z-index: 2;
-  min-height: 60px;
-  box-sizing: border-box;
+  right: 0;
+  padding: 2.5rem 1.5rem 1.5rem;
+  transform: translateY(5px);
+  opacity: 1;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  z-index: 4;
 }
 
 .dupin-video-wrapper:hover .dupin-overlay {
@@ -383,23 +365,12 @@
 }
 
 .dupin-video-title {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #fff;
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.7);
-  background: rgba(0, 0, 0, 0.45); /* nền mờ sau chữ */
-  padding: 8px 14px;
-  border-radius: 8px;
-  margin-bottom: 6px;
-  max-width: 90%;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  /* hoặc nếu muốn xuống dòng đẹp hơn: */
-  /* display: -webkit-box;
-     -webkit-line-clamp: 2;
-     -webkit-box-orient: vertical;
-     white-space: normal; */
+  font-size: 1.35rem;
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.3;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+  transition: transform 0.4s ease;
 }
 
 .dupin-video-wrapper:hover .dupin-video-title {
@@ -408,12 +379,9 @@
 
 .dupin-subtitle {
   font-size: 0.9rem;
-  color: #ffe;
-  opacity: 0.85;
-  margin-top: 2px;
-  display: block;
   font-weight: 400;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  opacity: 0.85;
+  margin-left: 0.5rem;
 }
 
 .dupin-meta {
@@ -777,13 +745,6 @@
     -webkit-overflow-scrolling: touch;
     scroll-snap-type: x mandatory;
     scrollbar-width: none;
-  }
-
-  .dupin-inner-container {
-    padding: 1rem;
-    gap: 12px;
-    display: flex;
-    align-items: center;
   }
 
   .dupin-item {

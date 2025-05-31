@@ -1,14 +1,12 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import TranslatedText from "../../components/TranslatedText";
-import { useAssets } from "../../hooks/useAssets";
 import "./VisitorRules.css";
+import { getAssetUrl } from "../../utils/getAssetUrl";
+
 
 const VisitorRules = () => {
-  const { assets, loading, error, getAssetUrl } = useAssets();
-  // Find the header image by filename
-  const headerAsset = assets.find((a) => a.filename === "louvre-sunset.webp");
-
+  const headerImage = getAssetUrl("louvre-sunset.webp");
   return (
     <div className="visitor-rules-container">
       <Helmet>
@@ -21,14 +19,7 @@ const VisitorRules = () => {
 
       {/* Header Banner */}
       <div className="rules-banner">
-        {loading && <div>Đang tải ảnh...</div>}
-        {error && <div>Lỗi tải ảnh: {error}</div>}
-        {headerAsset && !loading && !error && (
-          <img
-            src={headerAsset.url || getAssetUrl(headerAsset.filename)}
-            alt="Bảo tàng Du Pin"
-          />
-        )}
+        <img src={headerImage} alt="Bảo tàng Du Pin" />
         <div className="banner-overlay">
           <h1>
             <TranslatedText>NỘI QUY THAM QUAN</TranslatedText>

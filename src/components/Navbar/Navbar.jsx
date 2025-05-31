@@ -1,14 +1,12 @@
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/Logo/logo-icon.jpg";
-import ExhibitionsAnother from "../../assets/Navbar/LongDaDa_cards.webp";
-import Exhibitions from "../../assets/Navbar/noidat_cards.webp";
-import artworkImg from "../../assets/Navbar/phunu_cards.webp";
-import visitArtworkImg from "../../assets/Navbar/Thông 2.webp";
+import logo from "../../assets/Logo/logo-icon.webp";
 
 import TranslatedText from "../../components/TranslatedText";
 import { useTranslation } from "../../context/TranslationContext";
+import useCachedAsset from "../../hooks/useCachedAsset";
+import { getAssetUrl } from "../../utils/getAssetUrl";
 import "./Navbar.css";
 
 // Icon components
@@ -300,7 +298,7 @@ const searchData = [
     title: "Hours & Admission",
     description: "Opening hours and admission information",
     category: "Visit",
-    image: visitArtworkImg,
+    image: "Thông 2.webp",
     path: "/visit#hours",
   },
   {
@@ -308,7 +306,7 @@ const searchData = [
     title: "When to Visit",
     description: "Best times to visit the museum",
     category: "Visit",
-    image: visitArtworkImg,
+    image: "Thông 2.webp",
     path: "/visit#hours",
   },
   {
@@ -316,7 +314,7 @@ const searchData = [
     title: "Ticket Prices",
     description: "Admission fees and ticket information",
     category: "Visit",
-    image: visitArtworkImg,
+    image: "Thông 2.webp",
     path: "/visit#tickets",
   },
   {
@@ -324,7 +322,7 @@ const searchData = [
     title: "Free Admission",
     description: "Visitors eligible for free entry",
     category: "Visit",
-    image: visitArtworkImg,
+    image: "Thông 2.webp",
     path: "/visit#tickets",
   },
   {
@@ -332,7 +330,7 @@ const searchData = [
     title: "Membership",
     description: "Become a member of the Musée Du Pin",
     category: "Visit",
-    image: visitArtworkImg,
+    image: "Thông 2.webp",
     path: "/visit#membership",
   },
   {
@@ -340,7 +338,7 @@ const searchData = [
     title: "Tours & Activities",
     description: "Guided tours and museum activities",
     category: "Visit",
-    image: visitArtworkImg,
+    image: "Thông 2.webp",
     path: "/visit#tickets",
   },
   {
@@ -348,7 +346,7 @@ const searchData = [
     title: "Payment Methods",
     description: "Accepted payment methods at the ticket office",
     category: "Visit",
-    image: visitArtworkImg,
+    image: "Thông 2.webp",
     path: "/visit#tickets",
   },
 
@@ -358,7 +356,7 @@ const searchData = [
     title: "Current Exhibitions",
     description: "Exhibitions currently on display",
     category: "Exhibitions",
-    image: Exhibitions,
+    image: "noidat_cards.webp",
     path: "/exhibitions#current",
   },
   {
@@ -366,7 +364,7 @@ const searchData = [
     title: "Upcoming Exhibitions",
     description: "Future exhibitions at the museum",
     category: "Exhibitions",
-    image: Exhibitions,
+    image: "noidat_cards.webp",
     path: "/exhibitions#upcoming",
   },
   {
@@ -374,7 +372,7 @@ const searchData = [
     title: "Past Exhibitions",
     description: "Previous exhibitions at the museum",
     category: "Exhibitions",
-    image: Exhibitions,
+    image: "noidat_cards.webp",
     path: "/exhibitions#past",
   },
   {
@@ -382,7 +380,7 @@ const searchData = [
     title: "Guided Tours",
     description: "Expert-led tours through the collections",
     category: "Exhibitions",
-    image: ExhibitionsAnother,
+    image: "LongDaDa_cards.webp",
     path: "/exhibitions?tab=guided-tours",
   },
   {
@@ -390,7 +388,7 @@ const searchData = [
     title: "Louvre Couture",
     description: "Art and fashion: statement pieces",
     category: "Exhibitions",
-    image: Exhibitions,
+    image: "noidat_cards.webp",
     path: "/louvre-couture",
   },
   {
@@ -398,7 +396,7 @@ const searchData = [
     title: "Another Musée Du Pin",
     description: "Discover lesser-known treasures",
     category: "Exhibitions",
-    image: ExhibitionsAnother,
+    image: "LongDaDa_cards.webp",
     path: "/exhibitions?tab=guided-tours",
   },
 
@@ -408,7 +406,7 @@ const searchData = [
     title: "Collection Highlights",
     description: "Masterpieces from our permanent collection",
     category: "Collections",
-    image: artworkImg,
+    image: "phunu_cards.webp",
     path: "/collections#highlights",
   },
   {
@@ -416,7 +414,7 @@ const searchData = [
     title: "European Paintings",
     description: "Renaissance to Modern European art",
     category: "Collections",
-    image: artworkImg,
+    image: "phunu_cards.webp",
     path: "/collections/european-paintings",
   },
   {
@@ -424,7 +422,7 @@ const searchData = [
     title: "Sculptures",
     description: "Ancient to contemporary sculptures",
     category: "Collections",
-    image: artworkImg,
+    image: "phunu_cards.webp",
     path: "/collections/sculptures",
   },
   {
@@ -432,7 +430,7 @@ const searchData = [
     title: "Decorative Arts",
     description: "Furniture, ceramics and decorative objects",
     category: "Collections",
-    image: artworkImg,
+    image: "phunu_cards.webp",
     path: "/collections/decorative-arts",
   },
 
@@ -442,7 +440,7 @@ const searchData = [
     title: "The Palace",
     description: "History and architecture of the palace",
     category: "Explore",
-    image: visitArtworkImg,
+    image: "Thông 2.webp",
     path: "/the-palace",
   },
   {
@@ -450,7 +448,7 @@ const searchData = [
     title: "The Gardens",
     description: "Landscaped gardens and outdoor sculptures",
     category: "Explore",
-    image: Exhibitions,
+    image: "noidat_cards.webp",
     path: "/the-gardens",
   },
   {
@@ -458,7 +456,7 @@ const searchData = [
     title: "Visitor Trails",
     description: "Curated routes through the museum",
     category: "Explore",
-    image: ExhibitionsAnother,
+    image: "LongDaDa_cards.webp",
     path: "/visitor-trails",
   },
 
@@ -468,7 +466,7 @@ const searchData = [
     title: "Online Boutique",
     description: "Museum shop with art-inspired items",
     category: "Shop",
-    image: artworkImg,
+    image: "phunu_cards.webp",
     path: "/boutique",
   },
   {
@@ -476,7 +474,7 @@ const searchData = [
     title: "Support the Museum",
     description: "Ways to contribute to the museum",
     category: "Support",
-    image: artworkImg,
+    image: "phunu_cards.webp",
     path: "/support",
   },
   {
@@ -484,7 +482,7 @@ const searchData = [
     title: "Become a Patron",
     description: "Individual, company and foundation support",
     category: "Support",
-    image: artworkImg,
+    image: "phunu_cards.webp",
     path: "/support#patron",
   },
 
@@ -494,7 +492,7 @@ const searchData = [
     title: "Map & Directions",
     description: "How to find and navigate the museum",
     category: "Practical Info",
-    image: visitArtworkImg,
+    image: "Thông 2.webp",
     path: "/museum-map",
   },
   {
@@ -502,7 +500,7 @@ const searchData = [
     title: "Accessibility",
     description: "Services for visitors with disabilities",
     category: "Practical Info",
-    image: visitArtworkImg,
+    image: "Thông 2.webp",
     path: "/accessibility",
   },
   {
@@ -510,7 +508,7 @@ const searchData = [
     title: "FAQ",
     description: "Frequently asked questions",
     category: "Practical Info",
-    image: visitArtworkImg,
+    image: "Thông 2.webp",
     path: "/faq",
   },
   {
@@ -518,7 +516,7 @@ const searchData = [
     title: "Restaurants & Cafés",
     description: "Dining options at the museum",
     category: "Practical Info",
-    image: visitArtworkImg,
+    image: "Thông 2.webp",
     path: "/restaurants",
   },
   {
@@ -526,10 +524,28 @@ const searchData = [
     title: "Visitor Amenities",
     description: "Facilities and services for visitors",
     category: "Practical Info",
-    image: visitArtworkImg,
+    image: "Thông 2.webp",
     path: "/visit-info",
   },
 ];
+
+// Component for cached navbar images
+const CachedNavbarImage = ({ src, alt, className, loading = "lazy" }) => {
+  const { url: cachedUrl, isLoaded } = useCachedAsset(getAssetUrl(src));
+
+  return (
+    <img
+      src={cachedUrl}
+      alt={alt}
+      className={className}
+      loading={loading}
+      style={{
+        opacity: isLoaded ? 1 : 0.9,
+        transition: "opacity 0.3s ease",
+      }}
+    />
+  );
+};
 
 const Navbar = () => {
   const { currentLanguage, changeLanguage, supportedLanguages, isTranslating } =
@@ -725,7 +741,7 @@ const Navbar = () => {
         featured = {
           title: "Chuẩn bị cho chuyến tham quan",
           path: "/visit-info",
-          image: visitArtworkImg,
+          image: "Thông 2.webp",
           description:
             "Tất cả những điều bạn cần biết trước khi tham quan bảo tàng",
         };
@@ -742,7 +758,7 @@ const Navbar = () => {
         featured = {
           title: "Một Musée Du Pin khác",
           path: "/exhibitions?tab=guided-tours",
-          image: ExhibitionsAnother,
+          image: "LongDaDa_cards.webp",
           description:
             "Tận hưởng chuyến tham quan tránh xa đám đông và khám phá những kho báu ít người biết đến và khung cảnh tuyệt đẹp của 'một Musée Du Pin khác'",
         };
@@ -757,7 +773,7 @@ const Navbar = () => {
         featured = {
           title: "Điểm nổi bật",
           path: "/visitor-trails",
-          image: ExhibitionsAnother,
+          image: "LongDaDa_cards.webp",
           description: "Các tác phẩm nổi bật",
         };
         break;
@@ -776,7 +792,7 @@ const Navbar = () => {
         featured = {
           title: "Trở thành Nhà bảo trợ!",
           path: "/support",
-          image: artworkImg,
+          image: "phunu_cards.webp",
           description: "Cá nhân, công ty hoặc tổ chức",
         };
         break;
@@ -1049,7 +1065,7 @@ const Navbar = () => {
                   }`}
                   onClick={() => handleSearchResultClick(result.path)}
                 >
-                  <img
+                  <CachedNavbarImage
                     src={result.image}
                     alt={result.title}
                     className="search-result-image"
@@ -1144,7 +1160,7 @@ const Navbar = () => {
             >
               <BoutiqueIcon />
             </Link>
-            <Link to="/tickets" className="btn">
+            <Link to="/tickets" className="btn btn-filled">
               <TicketIcon />
             </Link>
           </div>
@@ -1180,7 +1196,7 @@ const Navbar = () => {
         </div>
 
         <div className="right-section">
-          <Link to="/tickets" className="btn">
+          <Link to="/tickets" className="btn btn-filled">
             <TicketIcon />
           </Link>
         </div>
@@ -1414,8 +1430,8 @@ const Navbar = () => {
               </div>
 
               <div className="dropdown-right-section">
-                <img
-                  src={artworkImg}
+                <CachedNavbarImage
+                  src="phunu_cards.webp"
                   alt="Classical Artwork"
                   className="dropdown-image"
                 />
@@ -1552,8 +1568,8 @@ const Navbar = () => {
               </div>
 
               <div className="dropdown-right-section">
-                <img
-                  src={visitArtworkImg}
+                <CachedNavbarImage
+                  src="Thông 2.webp"
                   alt="Museum Gallery"
                   className="dropdown-image"
                 />
@@ -1645,7 +1661,10 @@ const Navbar = () => {
               <div className="dropdown-right-section exhibitions-features">
                 <div className="exhibition-feature">
                   <div className="exhibition-feature-image">
-                    <img src={ExhibitionsAnother} alt="Another" />
+                    <CachedNavbarImage
+                      src="LongDaDa_cards.webp"
+                      alt="Another"
+                    />
                     <div className="feature-tag">
                       <TranslatedText>Một Musée Du Pin khác</TranslatedText>
                     </div>
@@ -1684,7 +1703,7 @@ const Navbar = () => {
 
                 <div className="exhibition-feature">
                   <div className="exhibition-feature-image">
-                    <img src={Exhibitions} alt="Couture" />
+                    <CachedNavbarImage src="noidat_cards.webp" alt="Couture" />
                     <div className="feature-tag">
                       <TranslatedText>Musée Du Pin Couture</TranslatedText>
                     </div>
@@ -1793,7 +1812,10 @@ const Navbar = () => {
               <div className="dropdown-right-section exhibitions-features">
                 <div className="exhibition-feature">
                   <div className="exhibition-feature-image">
-                    <img src={ExhibitionsAnother} alt="Beyoncé" />
+                    <CachedNavbarImage
+                      src="LongDaDa_cards.webp"
+                      alt="Beyoncé"
+                    />
                     <div className="feature-tag">
                       <TranslatedText>Điểm nổi bật</TranslatedText>
                     </div>
@@ -1830,7 +1852,10 @@ const Navbar = () => {
 
                 <div className="exhibition-feature">
                   <div className="exhibition-feature-image">
-                    <img src={Exhibitions} alt="Restoration" />
+                    <CachedNavbarImage
+                      src="noidat_cards.webp"
+                      alt="Restoration"
+                    />
                     <div className="feature-tag">
                       <TranslatedText>Video</TranslatedText>
                     </div>
@@ -2112,7 +2137,7 @@ const Navbar = () => {
                   <path d="M12 5l7 7-7 7"></path>
                 </svg>
               </Link>
-              <img
+              <CachedNavbarImage
                 src={submenuFeatured.image}
                 alt={submenuFeatured.title}
                 className="featured-image"

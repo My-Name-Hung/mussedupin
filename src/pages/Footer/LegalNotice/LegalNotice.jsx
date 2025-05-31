@@ -1,14 +1,12 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import TranslatedText from "../../../components/TranslatedText";
-import { useAssets } from "../../../hooks/useAssets";
+import { getAssetUrl } from "../../../utils/getAssetUrl";
 import "./LegalNotice.css";
 
-const LegalNotice = () => {
-  const { assets, loading, error, getAssetUrl } = useAssets();
-  // Find the header image by filename
-  const headerAsset = assets.find((a) => a.filename === "louvre-sunset.webp");
+// Import header image
 
+const LegalNotice = () => {
   return (
     <div className="legal-notice-container">
       <Helmet>
@@ -21,14 +19,7 @@ const LegalNotice = () => {
 
       {/* Header Banner */}
       <div className="legal-banner">
-        {loading && <div>Đang tải ảnh...</div>}
-        {error && <div>Lỗi tải ảnh: {error}</div>}
-        {headerAsset && !loading && !error && (
-          <img
-            src={headerAsset.url || getAssetUrl(headerAsset.filename)}
-            alt="Bảo tàng Du Pin"
-          />
-        )}
+        <img src={getAssetUrl("louvre-sunset.webp")} alt="Bảo tàng Du Pin" />
         <div className="banner-overlay">
           <h1>
             <TranslatedText>ĐIỀU KHOẢN PHÁP LÝ</TranslatedText>

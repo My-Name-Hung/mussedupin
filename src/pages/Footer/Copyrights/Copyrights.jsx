@@ -1,14 +1,12 @@
 import React from "react";
 import { Helmet } from "react-helmet";
 import TranslatedText from "../../../components/TranslatedText";
-import { useAssets } from "../../../hooks/useAssets";
+import { getAssetUrl } from "../../../utils/getAssetUrl";
 import "./Copyrights.css";
 
-const Copyrights = () => {
-  const { assets, loading, error, getAssetUrl } = useAssets();
-  // Find the header image by filename
-  const headerAsset = assets.find((a) => a.filename === "louvre-sunset.webp");
+// Import header image
 
+const Copyrights = () => {
   return (
     <div className="copyrights-container">
       <Helmet>
@@ -21,14 +19,10 @@ const Copyrights = () => {
 
       {/* Header Banner */}
       <div className="copyrights-banner">
-        {loading && <div>Đang tải ảnh...</div>}
-        {error && <div>Lỗi tải ảnh: {error}</div>}
-        {headerAsset && !loading && !error && (
-          <img
-            src={headerAsset.url || getAssetUrl(headerAsset.filename)}
-            alt="Bảo tàng Thông - Musée Du Pin"
-          />
-        )}
+        <img
+          src={getAssetUrl("louvre-sunset.webp")}
+          alt="Bảo tàng Thông - Musée Du Pin"
+        />
         <div className="banner-overlay">
           <h1>
             <TranslatedText>BẢN QUYỀN</TranslatedText>

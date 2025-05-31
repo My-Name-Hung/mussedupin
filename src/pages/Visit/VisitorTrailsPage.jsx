@@ -1,19 +1,9 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useAssets } from "../../hooks/useAssets";
+import { getAssetUrl } from "../../utils/getAssetUrl";
 import "./VisitorTrailsPage.css";
 
-// Import thumbnails for each category
-import dungcuThumb from "../../assets/home/Collections/DungcuAmNhacTayNguyen/Cồng Chiên.webp";
-import channuoiThumb from "../../assets/home/Collections/K_hoChanNuoi/Lồng Đa Đa.webp";
-import dieukhacThumb from "../../assets/home/Collections/K_hoDieuKhac/Điêu Khắc.webp";
-import lehoiThumb from "../../assets/home/Collections/K_hoLeHoi/Lễ Hội.webp";
-import sanbanThumb from "../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/Chiếc Gùi.webp";
-import sinhoatThumb from "../../assets/home/Collections/K_hoSinhHoatThuongNhat/Nồi Đất.webp";
-import phuctangThumb from "../../assets/home/Collections/PhucTang/Thông 2.webp";
-import vatlieuThumb from "../../assets/home/Collections/VatLieu/Hoa Ban Trắng.webp";
-// Import hero image
-import heroImage from "../../assets/home/Hero/louvre-sunset.webp";
+
 
 // SVG icons
 const ClockIcon = () => (
@@ -92,83 +82,74 @@ const trailsData = [
     title: "DỤNG CỤ ÂM NHẠC TÂY NGUYÊN",
     description:
       "Khám phá âm nhạc truyền thống của người Tây Nguyên qua các nhạc cụ độc đáo như cồng chiêng - biểu tượng văn hóa và tín ngưỡng thiêng liêng.",
-    image: dungcuThumb,
+    image: "Cồng Chiên.webp",
     duration: "1H30",
     audioGuide: true,
-    images: dungcuImages,
   },
   {
     id: 2,
     title: "K'HO CHĂN NUÔI",
     description:
       "Khám phá các công cụ và phương thức chăn nuôi truyền thống của người K'ho, từ lồng đa đa đến các vật dụng chăn nuôi khác.",
-    image: channuoiThumb,
+    image: "Lồng Đa Đa.webp",
     duration: "1H30",
     audioGuide: true,
-    images: khoChanNuoiImages,
   },
   {
     id: 3,
     title: "K'HO LỄ HỘI",
     description:
       "Tìm hiểu về các lễ hội truyền thống và nghi thức văn hóa của người K'ho thông qua các hiện vật như Ché Ghò Sành.",
-    image: lehoiThumb,
+    image: "36 (2).webp",
     duration: "1H",
     audioGuide: true,
-    images: khoLeHoiImages,
   },
   {
     id: 4,
     title: "K'HO ĐIÊU KHẮC",
     description:
       "Chiêm ngưỡng nghệ thuật điêu khắc truyền thống của người K'ho qua các tác phẩm tượng và điêu khắc tinh xảo.",
-    image: dieukhacThumb,
+    image: "Điêu Khắc.webp",
     duration: "1H30P",
     audioGuide: true,
-    images: khoDieuKhacImages,
   },
   {
     id: 5,
     title: "K'HO SĂN BẮN & HÁI LƯỢM",
     description:
       "Khám phá các công cụ săn bắn, hái lượm và canh tác truyền thống của người K'ho.",
-    image: sanbanThumb,
+    image: "Chiếc Gùi.webp",
     duration: "1H",
     audioGuide: true,
-    images: khoSanBanImages,
   },
   {
     id: 6,
     title: "K'HO SINH HOẠT THƯỜNG NHẬT",
     description:
       "Tìm hiểu về đời sống hàng ngày của người K'ho qua các vật dụng sinh hoạt như nồi đất, bầu hồ lô.",
-    image: sinhoatThumb,
+    image: "Nồi Đất.webp",
     duration: "1H30",
     audioGuide: true,
-    images: khoSinhHoatImages,
   },
   {
     id: 7,
     title: "PHỨC TẦNG",
     description: "Tham quan trải nghiệm thiên nhiên của đồi thông.",
-    image: phuctangThumb,
+    image: "Thông 2.webp",
     duration: "1H",
     audioGuide: true,
-    images: phucTangImages,
   },
   {
     id: 8,
     title: "VẬT LIỆU",
     description: "Tham quan vật liệu của người Tây Nguyên.",
-    image: vatlieuThumb,
+    image: "Hoa Ban Trắng.webp",
     duration: "30P",
     audioGuide: true,
-    images: vatLieuImages,
   },
 ];
 
 const VisitorTrailsPage = () => {
-  const { assets, loading, error, getAssetUrl } = useAssets();
   const [animatedSections, setAnimatedSections] = useState({});
   const [loadedImages, setLoadedImages] = useState({});
 
@@ -189,7 +170,7 @@ const VisitorTrailsPage = () => {
 
     // Preload hero image
     const heroImg = new Image();
-    heroImg.src = heroImage;
+    heroImg.src = getAssetUrl("louvre-sunset.webp");
 
     // Optimize observer options
     const observer = new IntersectionObserver(observerCallback, {
@@ -221,7 +202,7 @@ const VisitorTrailsPage = () => {
         <div
           className="vt-hero-image"
           style={{
-            backgroundImage: `url(${heroImage})`,
+            backgroundImage: `url(${getAssetUrl("louvre-sunset.webp")})`,
             willChange: "transform",
             transform: "translateZ(0)",
           }}
@@ -243,7 +224,12 @@ const VisitorTrailsPage = () => {
       </div>
 
       {/* Description Section */}
-      <section id="description-section" className="animate-section visible">
+      <section
+        id="description-section"
+        className={`vt-description-section animate-section ${
+          animatedSections["description-section"] ? "visible" : ""
+        }`}
+      >
         <div className="vt-description-container">
           <div className="vt-description-text">
             <p>
@@ -267,7 +253,12 @@ const VisitorTrailsPage = () => {
       </section>
 
       {/* Trails Section - Optimize image loading */}
-      <section id="trails-section" className="animate-section visible">
+      <section
+        id="trails-section"
+        className={`vt-trails-section animate-section ${
+          animatedSections["trails-section"] ? "visible" : ""
+        }`}
+      >
         <div className="vt-section-header">
           <h2 className="vt-section-title">Khám phá lộ trình tham quan</h2>
           <div className="vt-section-divider"></div>

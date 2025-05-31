@@ -1,15 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import TranslatedText from "../../../components/TranslatedText";
+import { getAssetUrl } from "../../../utils/getAssetUrl";
 import "./DelveInto.css";
-
-// Import optimized images
-import congchieng from "../../../assets/home/DelveInto/congchien_hero.webp";
-import dantrung from "../../../assets/home/DelveInto/DanT'rung_hero.webp";
-import gui from "../../../assets/home/DelveInto/Gui_hero.webp";
-import longda from "../../../assets/home/DelveInto/LongDaDa_hero.webp";
-import phunu from "../../../assets/home/DelveInto/phunu_hero.webp";
-import thong2 from "../../../assets/home/DelveInto/Thông 2.webp";
 
 const DelveInto = () => {
   const gridRef = useRef(null);
@@ -54,27 +47,51 @@ const DelveInto = () => {
 
         <div className="delve-into-grid" ref={gridRef}>
           <div className="grid-item grid-item-1">
-            <img src={thong2} className="grid-image" />
+            <img
+              src={getAssetUrl("Thông 2.webp")}
+              alt="Thông 2"
+              className="grid-image"
+            />
           </div>
 
           <div className="grid-item grid-item-2">
-            <img src={dantrung} alt="Đàn T'rưng" className="grid-image" />
+            <img
+              src={getAssetUrl("DanT'rung_hero.webp")}
+              alt="Đàn T'rưng"
+              className="grid-image"
+            />
           </div>
 
           <div className="grid-item grid-item-3">
-            <img src={gui} alt="Chiếc Gùi Tây Nguyên" className="grid-image" />
+            <img
+              src={getAssetUrl("Gui_hero.webp")}
+              alt="Chiếc Gùi Tây Nguyên"
+              className="grid-image"
+            />
           </div>
 
           <div className="grid-item grid-item-4">
-            <img src={longda} alt="Lồng Đa Đa" className="grid-image" />
+            <img
+              src={getAssetUrl("LongDaDa_hero.webp")}
+              alt="Lồng Đa Đa"
+              className="grid-image"
+            />
           </div>
 
           <div className="grid-item grid-item-5">
-            <img src={phunu} alt="Điêu Khắc" className="grid-image" />
+            <img
+              src={getAssetUrl("phunu_hero.webp")}
+              alt="Điêu Khắc"
+              className="grid-image"
+            />
           </div>
 
           <div className="grid-item grid-item-6">
-            <img src={congchieng} className="grid-image" />
+            <img
+              src={getAssetUrl("congchien_hero.webp")}
+              alt="Cồng Chiên"
+              className="grid-image"
+            />
           </div>
         </div>
 

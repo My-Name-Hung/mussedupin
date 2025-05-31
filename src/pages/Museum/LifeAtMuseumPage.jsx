@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
-import { useAssets } from "../../hooks/useAssets";
+import { getAssetUrl } from "../../utils/getAssetUrl";
 import "./LifeAtMuseumPage.css";
+
+// Import images (you'll need to replace these with your actual images)
+const heroImage1 = getAssetUrl("Cồng Chiên.webp");
+const heroImage3 = getAssetUrl("Điêu Khắc.webp");
+const heroImage4 = getAssetUrl("Chiếc Gùi.webp");
+const heroImage2 = getAssetUrl("46.webp");
 
 // Helper function to create URL-friendly slugs from titles
 const createSlug = (title) => {
@@ -21,7 +26,7 @@ const newsData = [
     title:
       "Bức tranh này không mất đi sự phức tạp khi bạn nhìn lâu – nó trở nên phong phú hơn",
     date: "5 THÁNG 2 2025",
-    image: heroImage2,
+    image: "46.webp",
     excerpt:
       "Chân dung Vua Charles I của Anh do Anthony van Dyck vẽ, trở lại trên tường phòng trưng bày sau hơn một năm bảo tồn. Blaise Ducos, Giám tuyển Tranh Flemish và Hà Lan, thảo luận về kiệt tác này.",
     category: "Tin bộ sưu tập",
@@ -34,7 +39,7 @@ const newsData = [
     id: 2,
     title: "Nói bằng một chiếc ghế!",
     date: "24 THÁNG 12 2024",
-    image: heroImage3,
+    image: "Điêu Khắc.webp",
     excerpt:
       "Bảo tàng Du Pin đang triển khai một chiến dịch dài hạn để bảo tồn những chiếc ghế lịch sử đã có mặt trong Vườn Tuileries từ thế kỷ 19.",
     category: "Tin bộ sưu tập",
@@ -128,33 +133,11 @@ const additionalNewsData = [
 ];
 
 const LifeAtMuseumPage = () => {
-  const { assets, loading, error, getAssetUrl } = useAssets();
-  const { translate } = useTranslation();
-
   // State for hero section slideshow
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [showMoreNews, setShowMoreNews] = useState(false);
-
-  // Hero section slideshow images
-  const heroSlides = [
-    {
-      image: getAssetUrl("congchien_cards.webp"),
-      title: translate("lifeAtMuseum") || "CUỘC SỐNG TẠI BẢO TÀNG",
-    },
-    {
-      image: getAssetUrl("Bauholo_cards.webp"),
-      title: translate("lifeAtMuseum") || "CUỘC SỐNG TẠI BẢO TÀNG",
-    },
-    {
-      image: getAssetUrl("DanT'rung_cards.webp"),
-      title: translate("lifeAtMuseum") || "CUỘC SỐNG TẠI BẢO TÀNG",
-    },
-    {
-      image: getAssetUrl("Gui_cards.webp"),
-      title: translate("lifeAtMuseum") || "CUỘC SỐNG TẠI BẢO TÀNG",
-    },
-  ];
+  const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4];
 
   // Get all unique categories and subcategories from news data
   const getCategories = () => {
@@ -175,13 +158,14 @@ const LifeAtMuseumPage = () => {
 
   const categories = getCategories();
 
+  // Handle auto-rotating hero slideshow
   useEffect(() => {
     const interval = setInterval(() => {
-      setActiveHeroSlide((prev) => (prev + 1) % heroSlides.length);
+      setActiveHeroSlide((prev) => (prev + 1) % heroImages.length);
     }, 5000);
 
     return () => clearInterval(interval);
-  }, [heroSlides.length]);
+  }, [heroImages.length]);
 
   // Intersection observer for animations
   useEffect(() => {
@@ -244,64 +228,39 @@ const LifeAtMuseumPage = () => {
     );
   };
 
-  // Create news item component
-  const NewsItem = ({ newsItem }) => {
-    const slug = createSlug(newsItem.title);
-    const detailUrl = `/life-at-the-museum/${slug}`;
-
-    return (
-      <article className="lm-news-item">
-        <Link to={detailUrl} className="lm-news-link">
-          <div className="lm-news-image-container">
-            <img
-              src={newsItem.image}
-              alt={newsItem.title}
-              className="lm-news-image"
-            />
-            <div className="lm-news-categories">
-              <span className="lm-news-category">{newsItem.category}</span>
-              <span className="lm-news-subcategory">
-                {newsItem.subcategory}
-              </span>
-            </div>
-          </div>
-          <div className="lm-news-content">
-            <h3 className="lm-news-title">{newsItem.title}</h3>
-            <p className="lm-news-excerpt">{newsItem.excerpt}</p>
-            <time className="lm-news-date">{newsItem.date}</time>
-          </div>
-        </Link>
-      </article>
-    );
-  };
-
   return (
     <div className="life-museum-page">
-      {/* Hero section */}
-      <div className="lm-hero">
-        {loading && <div>Đang tải ảnh...</div>}
-        {error && <div>Lỗi tải ảnh: {error}</div>}
-        {heroSlides.map((slide, index) => (
+      {/* Hero Section */}
+      <section className="lm-hero animate-section">
+        <div className="lm-hero-slides-container">
+          {heroImages.map((image, index) => (
+            <div
+              key={index}
+              className={`lm-hero-slide ${
+                activeHeroSlide === index ? "active" : ""
+              }`}
+              style={{ backgroundImage: `url(${image})` }}
+            />
+          ))}
+        </div>
+        <div className="lm-hero-overlay"></div>
+        <div className="lm-hero-content">
+          <h1 className="lm-hero-title">TIN TỨC</h1>
+        </div>
+        <div className="lm-hero-scroll-indicator">
           <div
-            key={index}
-            className={`lm-hero-slide ${
-              index === activeHeroSlide ? "active" : ""
-            }`}
-            style={{
-              backgroundImage: `url(${slide.image})`,
+            className="lm-hero-scroll-mouse"
+            onClick={() => {
+              document.querySelector(".lm-news-section").scrollIntoView({
+                behavior: "smooth",
+              });
             }}
           >
-            <div className="lm-hero-overlay"></div>
-            <div className="lm-hero-content">
-              <h1 className="lm-hero-title">{slide.title}</h1>
-            </div>
+            <div className="lm-hero-scroll-wheel"></div>
           </div>
-        ))}
-        <div className="lm-hero-scroll-indicator">
-          <span>Scroll</span>
-          <div className="scroll-arrow"></div>
+          <span>CUỘN XUỐNG</span>
         </div>
-      </div>
+      </section>
 
       {/* All the News Section */}
       <section className="lm-news-section animate-section">
@@ -330,7 +289,30 @@ const LifeAtMuseumPage = () => {
         {/* Initial News Grid */}
         <div className="lm-news-grid">
           {getDisplayedNews().map((newsItem) => (
-            <NewsItem key={newsItem.id} newsItem={newsItem} />
+            <article key={newsItem.id} className="lm-news-item">
+              <Link to={`/life-at-the-museum/${createSlug(newsItem.title)}`}>
+                <div className="lm-news-image-container">
+                  <img
+                    src={getAssetUrl(newsItem.image)}
+                    alt={newsItem.title}
+                    className="lm-news-image"
+                  />
+                  <div className="lm-news-categories">
+                    <span className="lm-news-category">
+                      {newsItem.category}
+                    </span>
+                    <span className="lm-news-subcategory">
+                      {newsItem.subcategory}
+                    </span>
+                  </div>
+                </div>
+                <div className="lm-news-content">
+                  <h3 className="lm-news-title">{newsItem.title}</h3>
+                  <p className="lm-news-excerpt">{newsItem.excerpt}</p>
+                  <time className="lm-news-date">{newsItem.date}</time>
+                </div>
+              </Link>
+            </article>
           ))}
         </div>
 
@@ -341,7 +323,30 @@ const LifeAtMuseumPage = () => {
           }`}
         >
           {getAdditionalNews().map((newsItem) => (
-            <NewsItem key={newsItem.id} newsItem={newsItem} />
+            <article key={newsItem.id} className="lm-news-item">
+              <Link to={`/life-at-the-museum/${createSlug(newsItem.title)}`}>
+                <div className="lm-news-image-container">
+                  <img
+                    src={getAssetUrl(newsItem.image)}
+                    alt={newsItem.title}
+                    className="lm-news-image"
+                  />
+                  <div className="lm-news-categories">
+                    <span className="lm-news-category">
+                      {newsItem.category}
+                    </span>
+                    <span className="lm-news-subcategory">
+                      {newsItem.subcategory}
+                    </span>
+                  </div>
+                </div>
+                <div className="lm-news-content">
+                  <h3 className="lm-news-title">{newsItem.title}</h3>
+                  <p className="lm-news-excerpt">{newsItem.excerpt}</p>
+                  <time className="lm-news-date">{newsItem.date}</time>
+                </div>
+              </Link>
+            </article>
           ))}
         </div>
 

@@ -1,8 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { useAssets } from "../../../hooks/useAssets";
-
 import { getCurrentLanguage, translateText } from "../../../utils/translate";
+import OptimizedVideo from "../../OptimizedVideo/OptimizedVideo";
 import "./Hero.css";
 
 // SVG Icons
@@ -81,38 +80,60 @@ const ChevronUp = () => (
 );
 
 const Hero = () => {
-  const { assets, getAssetUrl } = useAssets();
   const [isPrepareOpen, setIsPrepareOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [translations, setTranslations] = useState({});
   const [currentLanguage, setCurrentLanguage] = useState(getCurrentLanguage());
+  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
+  const heroRef = useRef(null);
 
-  // Find the hero video by filename
-  const heroVideoAsset = assets.find(
-    (a) => a.filename === "LANGBIANG_RESIZE.mp4"
-  );
+  // Handle video loading
+  const handleVideoCanPlay = () => {
+    console.log("Hero video loaded successfully");
+    setIsVideoLoaded(true);
+  };
 
-  // Load translations
+  const handleVideoError = () => {
+    console.error("Hero video failed to load");
+  };
+
+  // Load translations with optimization
   useEffect(() => {
     const loadTranslations = async () => {
       const language = getCurrentLanguage();
       setCurrentLanguage(language);
 
-      // Translate all text elements
+      // Use Promise.all for parallel translation loading
+      const [
+        titleText,
+        welcomeText,
+        museumOpenText,
+        bookTicketText,
+        prepareVisitText,
+        prepareVisitCapsText,
+        timeStartText,
+        timeEndText,
+      ] = await Promise.all([
+        translateText("Escape with the", language),
+        translateText("Welcome to the", language),
+        translateText("The museum is open today", language),
+        translateText("Book a ticket", language),
+        translateText("Prepare your visit", language),
+        translateText("Chuẩn bị tham quan", language),
+        translateText("7:00 AM", language),
+        translateText("21:00 PM", language),
+      ]);
+
       const translatedTexts = {
-        title:
-          (await translateText("Escape with the", language)) + " Musée Du Pin",
-        welcomeTitle:
-          (await translateText("Welcome to the", language)) + " Musée Du Pin",
-        museumOpen: await translateText("The museum is open today", language),
-        bookTicket: await translateText("Book a ticket", language),
-        prepareVisit: await translateText("Prepare your visit", language),
-        prepareVisitCaps: await translateText("Chuẩn bị tham quan", language),
-        imgAlt:
-          (await translateText("Bảo tàng hoạt động từ", language)) +
-          " - Musée Du Pin",
-        timeStart: await translateText("7:00 AM", language),
-        timeEnd: await translateText("21:00 PM", language),
+        title: titleText + " Musée Du Pin",
+        welcomeTitle: welcomeText + " Musée Du Pin",
+        museumOpen: museumOpenText,
+        bookTicket: bookTicketText,
+        prepareVisit: prepareVisitText,
+        prepareVisitCaps: prepareVisitCapsText,
+        imgAlt: "Bảo tàng hoạt động từ - Musée Du Pin",
+        timeStart: timeStartText,
+        timeEnd: timeEndText,
       };
 
       setTranslations(translatedTexts);
@@ -134,10 +155,14 @@ const Hero = () => {
     };
   }, [currentLanguage]);
 
-  // Kiểm tra kích thước màn hình để áp dụng chế độ mobile
+  // Check mobile with debounce
   useEffect(() => {
+    let timeoutId;
     const checkIfMobile = () => {
-      setIsMobile(window.innerWidth <= 768);
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        setIsMobile(window.innerWidth <= 768);
+      }, 100);
     };
 
     checkIfMobile();
@@ -145,6 +170,7 @@ const Hero = () => {
 
     return () => {
       window.removeEventListener("resize", checkIfMobile);
+      clearTimeout(timeoutId);
     };
   }, []);
 
@@ -154,33 +180,45 @@ const Hero = () => {
 
   return (
     <>
-      <section className="hero-container">
+      <section className="hero-container" ref={heroRef}>
         <div className="hero-image-container">
-          {heroVideoAsset && (
-            <video
-              autoPlay
-              muted
-              loop
-              playsInline
-              preload="auto"
-              loading="eager"
-              width="100%"
-              height="100%"
-              className="hero-video"
-            >
-              <source
-                src={
-                  heroVideoAsset?.url || getAssetUrl(heroVideoAsset?.filename)
-                }
-                type="video/mp4"
-              />
-            </video>
-          )}
+          <OptimizedVideo
+            src="0531_resize.mp4"
+            poster="hero-poster.webp"
+            autoPlay={true}
+            muted={true}
+            loop={true}
+            playsInline={true}
+            priority={true}
+            width="1920"
+            height="1080"
+            onCanPlay={handleVideoCanPlay}
+            onError={handleVideoError}
+            className={`hero-video ${isVideoLoaded ? "loaded" : ""}`}
+            style={{
+              width: "100%",
+              height: "100%",
+            }}
+          />
           <div className="hero-overlay"></div>
           <div className="hero-content">
-            {/* <h1 className="hero-title">
-              {translations.title || "Escape with the Musée Du Pin"}
-            </h1> */}
+            {/* Add structured data for SEO */}
+            <script type="application/ld+json">
+              {JSON.stringify({
+                "@context": "https://schema.org",
+                "@type": "Museum",
+                name: "Musée Du Pin",
+                description:
+                  "Bảo tàng Thông - Nơi gìn giữ và nâng niu những giá trị Đà Lạt",
+                openingHours: "Mo-Su 07:00-21:00",
+                address: {
+                  "@type": "PostalAddress",
+                  streetAddress: "29-31 Đống Đa, Phường 3",
+                  addressLocality: "Đà Lạt",
+                  addressCountry: "VN",
+                },
+              })}
+            </script>
           </div>
         </div>
       </section>
@@ -214,13 +252,20 @@ const Hero = () => {
           <div className="info-panel-separator"></div>
 
           <div className="info-panel-right">
-            <Link to="/tickets" className="info-panel-button btn-primary">
+            <Link
+              to="/tickets"
+              className="info-panel-button btn-primary"
+              aria-label="Đặt vé tham quan bảo tàng"
+            >
               <TicketIcon />
               Đặt vé
             </Link>
             <Link
               to="https://online-museeduphin.netlify.app/"
               className="info-panel-button btn-secondary"
+              aria-label="Mua quà lưu niệm trực tuyến"
+              target="_blank"
+              rel="noopener noreferrer"
             >
               <InfoIcon />
               Quà lưu niệm

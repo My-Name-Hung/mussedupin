@@ -1,9 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-
 import TranslatedText from "../../../components/TranslatedText";
-import { useAssets } from "../../../hooks/useAssets";
-
+import useCachedAsset from "../../../hooks/useCachedAsset";
+import { getAssetUrl } from "../../../utils/getAssetUrl";
 import "./Highlights.css";
 
 // Sample highlight data - in a real app, this would come from an API or CMS
@@ -11,46 +10,49 @@ const highlightsData = [
   {
     id: 1,
     title: "Không gian nghệ thuật Langbiang",
-    subtitle: "",
     description:
       "Khi nghệ thuật không chỉ để ngắm, mà để sống cùng và sống trong. Không có tủ kính ngăn cách. Không có rào chắn giữa người và hiện vật. Langbiang không đơn thuần là một căn phòng, mà là một vùng ký ức sống, nơi hồn cốt của núi rừng thở trong từng vật phẩm, cháy trong từng ngọn lửa bếp, ngân nga trong từng tiếng cồng chiêng.",
-    date: "30 tháng 4 - 28 tháng 7 2025",
-    image: "langbiang.webp",
-    alt: "Không gian nghệ thuật Langbiang",
+    image: "Langbiang.webp",
+    alt: "Langbiang",
     tag: "Trưng bày",
     link: "/exhibition-details/langbiang-khong-gian",
     featured: true,
   },
   {
     id: 2,
-    title: "Phức tầng",
-    subtitle: "Thiên nhiên",
+    title: "Phức Tầng",
     description:
-      "In lên mây, những hàng thông điệp khúc,\nTrên triền dốc, những nếp nhà khảm vào nhau,\nBao than thở chất chồng in bóng mặt hồ.\nTrong lòng lữ khách độc hành\nTrái thông khô mở vảy.",
-    date: "24 tháng 1 - 21 tháng 7 2025",
-    image: "thong2.webp",
-    alt: "Đà Lạt những phức tầng trầm mặc",
-    tag: "Trưng bày",
+      "Được Musée Du Pin bắt trọn khoảng khắc các hình ảnh thiên nhiên đậm sắc dân tộc K'ho, tạo nên bức tranh đẹp về đất nước Tây Nguyên.",
+    image: "Thông 2.webp",
+    alt: "Phức Tầng",
+    tag: "Tham Quan",
     link: "/exhibition-details/phuc-tang-tram-mac",
     featured: false,
   },
 ];
 
+// Component for cached image
+const CachedImage = ({ src, alt, className, loading = "eager" }) => {
+  const { url: cachedUrl, isLoaded } = useCachedAsset(getAssetUrl(src));
+
+  return (
+    <img
+      src={cachedUrl}
+      alt={alt}
+      className={className}
+      loading={loading}
+      style={{
+        opacity: isLoaded ? 1 : 0.9,
+        transition: "opacity 0.2s ease",
+      }}
+    />
+  );
+};
+
 const Highlights = ({ onVisible, onHidden }) => {
-  const { assets, loading, error, getAssetUrl } = useAssets();
   const [isVisible, setIsVisible] = useState(false);
   const highlightsRef = useRef(null);
   const [visibleCards, setVisibleCards] = useState({});
-
-  // Map highlightsData to use asset URLs
-  const highlightsDataWithAssets = highlightsData.map((item) => {
-    const asset = assets.find(
-      (a) => a.filename && item.image.includes(a.filename)
-    );
-    return asset
-      ? { ...item, image: asset.url || getAssetUrl(asset.filename) }
-      : item;
-  });
 
   // Improved scroll detection for highlighting section
   useEffect(() => {
@@ -109,7 +111,7 @@ const Highlights = ({ onVisible, onHidden }) => {
 
       {/* Mobile layout */}
       <div className="highlights-grid-mobile">
-        {highlightsDataWithAssets.map((item, index) => (
+        {highlightsData.map((item, index) => (
           <div
             key={item.id}
             className={`highlight-card-wrapper ${
@@ -127,7 +129,12 @@ const Highlights = ({ onVisible, onHidden }) => {
               </div>
               <Link to={item.link} className="card-link-wrapper">
                 <div className="card-image-container">
-                  <img src={item.image} alt={item.alt} className="card-image" />
+                  <CachedImage
+                    src={item.image}
+                    alt={item.alt}
+                    className="card-image"
+                    loading="eager"
+                  />
                 </div>
                 <div className="card-content">
                   <h3 className="card-title">
@@ -149,7 +156,7 @@ const Highlights = ({ onVisible, onHidden }) => {
       <div className="highlights-grid-desktop">
         {/* First row */}
         <div className="highlights-row highlights-row-1">
-          {/* Không gian nghệ thuật Langbiang */}
+          {/* Featured card (left) */}
           <div
             className={`highlight-card-wrapper highlight-card-large ${
               visibleCards[0] ? "visible" : ""
@@ -158,33 +165,27 @@ const Highlights = ({ onVisible, onHidden }) => {
             <div className="highlight-card">
               <div className="card-tag">
                 <span>
-                  <TranslatedText>
-                    {highlightsDataWithAssets[0].tag}
-                  </TranslatedText>
+                  <TranslatedText>{highlightsData[0].tag}</TranslatedText>
                 </span>
               </div>
-              <Link
-                to={highlightsDataWithAssets[0].link}
-                className="card-link-wrapper"
-              >
+              <Link to={highlightsData[0].link} className="card-link-wrapper">
                 <div className="card-image-container">
-                  <img
-                    src={highlightsDataWithAssets[0].image}
-                    alt={highlightsDataWithAssets[0].alt}
+                  <CachedImage
+                    src={highlightsData[0].image}
+                    alt={highlightsData[0].alt}
                     className="card-image"
+                    loading="eager"
                   />
                 </div>
                 <div className="card-content">
                   <h3 className="card-title">
                     <span className="card-title-text">
-                      <TranslatedText>
-                        {highlightsDataWithAssets[0].title}
-                      </TranslatedText>
+                      <TranslatedText>{highlightsData[0].title}</TranslatedText>
                     </span>
                   </h3>
                   <p className="card-description">
                     <TranslatedText>
-                      {highlightsDataWithAssets[0].description}
+                      {highlightsData[0].description}
                     </TranslatedText>
                   </p>
                 </div>
@@ -194,43 +195,41 @@ const Highlights = ({ onVisible, onHidden }) => {
 
           {/* Right column */}
           <div className="highlights-column">
+            {/* K'ho chăn nuôi */}
+
             {/* Phức Tầng */}
             <div
               className={`highlight-card-wrapper highlight-card-small ${
                 visibleCards[1] ? "visible" : ""
               }`}
-              style={{ transitionDelay: "0.1s" }}
+              style={{ transitionDelay: "0.2s" }}
             >
               <div className="highlight-card">
                 <div className="card-tag">
                   <span>
-                    <TranslatedText>
-                      {highlightsDataWithAssets[1].tag}
-                    </TranslatedText>
+                    <TranslatedText>{highlightsData[1].tag}</TranslatedText>
                   </span>
                 </div>
-                <Link
-                  to={highlightsDataWithAssets[1].link}
-                  className="card-link-wrapper"
-                >
+                <Link to={highlightsData[1].link} className="card-link-wrapper">
                   <div className="card-image-container">
-                    <img
-                      src={highlightsDataWithAssets[1].image}
-                      alt={highlightsDataWithAssets[1].alt}
+                    <CachedImage
+                      src={highlightsData[1].image}
+                      alt={highlightsData[1].alt}
                       className="card-image"
+                      loading="eager"
                     />
                   </div>
                   <div className="card-content">
                     <h3 className="card-title">
                       <span className="card-title-text">
                         <TranslatedText>
-                          {highlightsDataWithAssets[1].title}
+                          {highlightsData[1].title}
                         </TranslatedText>
                       </span>
                     </h3>
                     <p className="card-description">
                       <TranslatedText>
-                        {highlightsDataWithAssets[1].description}
+                        {highlightsData[1].description}
                       </TranslatedText>
                     </p>
                   </div>

@@ -1,33 +1,10 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { getAssetUrl } from "../../../utils/getAssetUrl";
 import TranslatedText from "../../TranslatedText";
 import "./VisitInfo.css";
 
-// Images - we'll import placeholder images from assets
-import cloakroomImg from "../../../assets/home/Collections/congchien_cards.webp";
-import equipmentImg from "../../../assets/home/Collections/DanT'rung_cards.webp";
-import babySpaceImg from "../../../assets/home/Collections/Lehoi_cards.webp";
-import wifiImg from "../../../assets/home/Collections/LongDaDa_cards.webp";
-import toiletsImg from "../../../assets/home/Collections/noidat_cards.webp";
-import parkingImg from "../../../assets/home/Collections/phunu_cards.webp";
-import heroImage from "../../../assets/home/Hero/louvre-sunset.webp";
-
-// Homestay images
-import modernImg from "../../../assets/home/Collections/congchien_cards.webp";
-import luxuryImg from "../../../assets/home/Collections/DanT'rung_cards.webp";
-import budgetImg from "../../../assets/home/Collections/Gui_cards.webp";
-import traditionalImg from "../../../assets/home/Collections/Lehoi_cards.webp";
-
-// Additional homestay images for galleries
-import room4 from "../../../assets/home/Collections/Bauholo_cards.webp";
-import room1 from "../../../assets/home/Collections/LongDaDa_cards.webp";
-import room2 from "../../../assets/home/Collections/noidat_cards.webp";
-import room3 from "../../../assets/home/Collections/phunu_cards.webp";
-
 import { FaBaby, FaCar, FaSearch } from "react-icons/fa";
-
-// Remove all import lines for images
-import { useAssets } from "../../../hooks/useAssets";
 
 const VisitInfo = () => {
   const location = useLocation();
@@ -38,8 +15,6 @@ const VisitInfo = () => {
   const [touchStartX, setTouchStartX] = useState(0);
   const lastScrollTop = useRef(0);
   const scrollTimeout = useRef(null);
-
-  const { assets, getAssetUrl } = useAssets();
 
   // Homestay filter and detail states
   const [activeCategory, setActiveCategory] = useState("all");
@@ -386,7 +361,8 @@ const VisitInfo = () => {
     {
       id: "information-desk",
       title: "Quầy thông tin",
-      description: "Hai quầy thông tin...",
+      description:
+        "Hai quầy thông tin, nơi du khách có thể hỏi đáp với nhân viên và nhận bản đồ bảo tàng. Tài liệu hướng dẫn bằng 8 ngôn ngữ có sẵn dưới Tháp.",
       image: "Bauholo_cards.webp",
       icon: "info",
       details: "Nhân viên đa ngôn ngữ làm việc từ 9:00 đến 19:00 hàng ngày.",
@@ -396,7 +372,7 @@ const VisitInfo = () => {
       title: "Phòng gửi đồ",
       description:
         "Tủ khóa tự phục vụ miễn phí dưới Tháp. Khách tham quan nên sử dụng tủ khóa tại lối vào. Tất cả các vật dụng gửi trong tủ khóa phải được lấy lại trong cùng ngày.",
-      image: cloakroomImg,
+      image: "congchien_cards.webp",
       icon: "hanger",
       details:
         "Gửi miễn phí cho túi có kích thước tối đa 55×35×20 cm. Không nhận vật dụng lớn hơn.",
@@ -406,7 +382,7 @@ const VisitInfo = () => {
       title: "Cho mượn thiết bị",
       description:
         "Gậy chống, ghế xếp, xe đẩy trẻ em, địu em bé, ghế đa năng có bánh xe và xe lăn được cung cấp miễn phí tại khu vực tiếp đón khách dưới Tháp.",
-      image: equipmentImg,
+      image: "DanT'rung_cards.webp",
       icon: "stroller",
       details: "Liên hệ quầy hỗ trợ để biết thêm thông tin",
     },
@@ -415,7 +391,7 @@ const VisitInfo = () => {
       title: "Wi-Fi Miễn phí",
       description:
         "Mạng 'Musée Du Pin' có sẵn dưới Tháp và trong các phòng trưng bày. Kết nối Wi-Fi miễn phí có giới hạn một giờ và có thể được gia hạn nhiều lần theo nhu cầu.",
-      image: wifiImg,
+      image: "LongDaDa_cards.webp",
       icon: "wifi",
       details: "Tốc độ kết nối: 50 Mbps",
     },
@@ -424,7 +400,7 @@ const VisitInfo = () => {
       title: "Nhà vệ sinh",
       description:
         "Nhà vệ sinh có thể được tìm thấy tại khu vực đón tiếp dưới Tháp và khắp bảo tàng. Có bàn thay tã cho em bé.",
-      image: toiletsImg,
+      image: "noidat_cards.webp",
       icon: "toilet",
       details: "Tất cả nhà vệ sinh đều tiếp cận được cho người khuyết tật",
     },
@@ -433,17 +409,27 @@ const VisitInfo = () => {
       title: "Bãi đậu xe",
       description:
         "Bãi đậu xe ngầm nằm tại số 1 Đại lộ Général Lemonnier, từ đó bạn có thể vào bảo tàng qua lối vào Carrousel. Mở cửa 7 ngày một tuần từ 7:00 đến 23:00.",
-      image: parkingImg,
+      image: "phunu_cards.webp",
       icon: "parking",
       details:
         "Khách tham quan khuyết tật được hưởng giá đậu xe ưu đãi. Giá này có thể được thương lượng tại quầy thanh toán trước khi trả tiền.",
+    },
+    {
+      id: "lost-found",
+      title: "Đồ thất lạc",
+      description:
+        "Bị mất đồ? Nếu bạn vẫn còn trong bảo tàng, hãy đến Quầy Hỗ trợ dưới Tháp và nhân viên sẽ giúp bạn.",
+      image: "Bauholo_cards.webp",
+      icon: "help",
+      details:
+        "Đối với đồ vật tìm thấy sau chuyến thăm, hãy điền vào mẫu báo cáo trên trang web của chúng tôi",
     },
     {
       id: "baby-space",
       title: "Khu vực cho em bé",
       description:
         "Studio – khu vực đặc biệt được thiết kế dành cho gia đình, nằm ở tầng trệt của cánh Richelieu – có khu vực dành cho em bé được trang bị máy hâm sữa, lò vi sóng và ghế cho con bú.",
-      image: babySpaceImg,
+      image: "Lehoi_cards.webp",
       icon: "baby",
       details: "Mọi thứ bạn cần cho sự thoải mái và chăm sóc em bé",
     },
@@ -454,7 +440,8 @@ const VisitInfo = () => {
     {
       id: "traditional",
       title: "Nhà nghỉ truyền thống",
-      description: "Nhà ở địa phương đích thực...",
+      description:
+        "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
       image: "Lehoi_cards.webp",
       price: 2800000,
       rating: 4.8,
@@ -473,7 +460,12 @@ const VisitInfo = () => {
       ],
       rules: ["Không hút thuốc", "Không thú cưng", "Không tổ chức tiệc"],
       cancellation: "Hủy miễn phí đến 48 giờ trước khi nhận phòng",
-      gallery: [traditionalImg, room1, room2, room3],
+      gallery: [
+        "Lehoi_cards.webp",
+        "LongDaDa_cards.webp",
+        "noidat_cards.webp",
+        "phunu_cards.webp",
+      ],
       reviews: [
         {
           author: "Jean-Pierre",
@@ -492,7 +484,7 @@ const VisitInfo = () => {
       title: "Căn hộ hiện đại",
       description:
         "Căn hộ sang trọng với đầy đủ tiện nghi, cách bảo tàng 10 phút đi bộ.",
-      image: modernImg,
+      image: "congchien_cards.webp",
       price: 4200000,
       rating: 4.9,
       tags: ["Đánh giá cao", "Sang trọng", "Vị trí trung tâm"],
@@ -511,7 +503,12 @@ const VisitInfo = () => {
       ],
       rules: ["Không hút thuốc", "Cho phép thú cưng", "Không tổ chức tiệc"],
       cancellation: "Hủy miễn phí đến 24 giờ trước khi nhận phòng",
-      gallery: [modernImg, room4, room1, room2],
+      gallery: [
+        "congchien_cards.webp",
+        "phunu_cards.webp",
+        "LongDaDa_cards.webp",
+        "noidat_cards.webp",
+      ],
       reviews: [
         {
           author: "Lisa",
@@ -530,7 +527,7 @@ const VisitInfo = () => {
       title: "Biệt thự sang trọng",
       description:
         "Biệt thự tuyệt đẹp với vườn riêng, dịch vụ cao cấp và view thành phố ngoạn mục.",
-      image: luxuryImg,
+      image: "DanT'rung_cards.webp",
       price: 8200000,
       rating: 5.0,
       tags: ["Cao cấp", "Riêng tư", "Dịch vụ đầy đủ"],
@@ -554,7 +551,12 @@ const VisitInfo = () => {
         "Cho phép tổ chức sự kiện với sự đồng ý trước",
       ],
       cancellation: "Hủy miễn phí đến 7 ngày trước khi nhận phòng",
-      gallery: [luxuryImg, room3, room4, room2],
+      gallery: [
+        "DanT'rung_cards.webp",
+        "phunu_cards.webp",
+        "phunu_cards.webp",
+        "noidat_cards.webp",
+      ],
       reviews: [
         {
           author: "James",
@@ -574,7 +576,7 @@ const VisitInfo = () => {
       title: "Phòng giá rẻ",
       description:
         "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
-      image: budgetImg,
+      image: "Gui_cards.webp",
       price: 1750000,
       rating: 4.5,
       tags: ["Giá tốt", "Thuận tiện", "Đáng giá"],
@@ -592,7 +594,12 @@ const VisitInfo = () => {
       ],
       rules: ["Không hút thuốc", "Không thú cưng", "Yên tĩnh sau 22:00"],
       cancellation: "Hủy miễn phí đến 24 giờ trước khi nhận phòng",
-      gallery: [budgetImg, room1, room3, room4],
+      gallery: [
+        "Gui_cards.webp",
+        "LongDaDa_cards.webp",
+        "phunu_cards.webp",
+        "phunu_cards.webp",
+      ],
       reviews: [
         {
           author: "Michael",
@@ -644,22 +651,12 @@ const VisitInfo = () => {
     },
   ];
 
-  // Map amenitiesData and homestayData to use asset URLs
-  const amenitiesDataWithAssets = amenitiesData.map((item) => {
-    const asset = assets.find(
-      (a) => a.filename && item.image.includes(a.filename)
-    );
-    return asset
-      ? { ...item, image: asset.url || getAssetUrl(asset.filename) }
-      : item;
-  });
-
   // Render Hero Section
   const renderHero = () => (
     <div className="visitinfo-hero" ref={heroRef}>
       <div className="visitinfo-hero-image-container">
         <img
-          src={heroImage}
+          src={getAssetUrl("louvre-sunset.webp")}
           alt="Nội thất bảo tàng"
           className="visitinfo-hero-image"
         />
@@ -800,7 +797,7 @@ const VisitInfo = () => {
         </div>
 
         <div className="amenities-container">
-          {amenitiesDataWithAssets.map((amenity, index) => (
+          {amenitiesData.map((amenity, index) => (
             <div
               className={`amenity-card desktop-enhanced ${
                 index % 3 === 0 ? "wide" : ""
@@ -973,7 +970,7 @@ const VisitInfo = () => {
           {filteredHomestays.map((homestay) => (
             <div className="homestay-card modern" key={homestay.id}>
               <div className="homestay-card-image">
-                <img src={homestay.image} alt={homestay.title} />
+                <img src={getAssetUrl(homestay.image)} alt={homestay.title} />
                 {homestay.tags.map(
                   (tag, index) =>
                     index < 1 && (
@@ -1137,7 +1134,7 @@ const VisitInfo = () => {
           <div className="homestay-gallery">
             <div className="gallery-main" onClick={() => openGalleryModal(0)}>
               <img
-                src={gallery[0] || selectedHomestay.image}
+                src={getAssetUrl(gallery[0] || selectedHomestay.image)}
                 alt={selectedHomestay.title}
               />
               <div className="gallery-zoom-icon">
@@ -1165,7 +1162,7 @@ const VisitInfo = () => {
                   }}
                 >
                   <img
-                    src={img}
+                    src={getAssetUrl(img)}
                     alt={`${selectedHomestay.title} - hình ${index + 1}`}
                   />
                 </div>
@@ -1315,7 +1312,10 @@ const VisitInfo = () => {
           )}
 
           <div className="booking-homestay-info modern">
-            <img src={selectedHomestay.image} alt={selectedHomestay.title} />
+            <img
+              src={getAssetUrl(selectedHomestay.image)}
+              alt={selectedHomestay.title}
+            />
             <div>
               <h3>
                 <TranslatedText>{selectedHomestay.title}</TranslatedText>
@@ -1909,7 +1909,7 @@ const VisitInfo = () => {
           </button>
 
           <img
-            src={gallery[activeImageIndex]}
+            src={getAssetUrl(gallery[activeImageIndex])}
             alt={`${selectedHomestay.title} - hình ${activeImageIndex + 1}`}
           />
 
@@ -1936,7 +1936,7 @@ const VisitInfo = () => {
               onClick={() => setActiveImageIndex(index)}
             >
               <img
-                src={img}
+                src={getAssetUrl(img)}
                 alt={`${selectedHomestay.title} - thumbnail ${index + 1}`}
               />
             </div>

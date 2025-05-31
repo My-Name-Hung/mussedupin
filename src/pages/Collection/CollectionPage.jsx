@@ -1,12 +1,18 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import TranslatedText from "../../components/TranslatedText";
-import { useAssets } from "../../hooks/useAssets";
+import { getAssetUrl } from "../../utils/getAssetUrl";
 import "./CollectionPage.css";
 
 // Collection data
 const collectionData = {
-  heroImages: [],
+  heroImages: [
+    "Cồng Chiên.webp",
+    "Thông 2.webp",
+    "Lồng Đa Đa.webp",
+    "Điêu Khắc.webp",
+    "Hoa Ban Trắng.webp",
+  ],
 
   artworks: [
     {
@@ -14,7 +20,7 @@ const collectionData = {
       title: "Dụng cụ âm nhạc Tây Nguyên",
       artist: "Cồng chiêng",
       year: "2024",
-      image: "",
+      image: "Cồng Chiên.webp",
       description:
         "Musée Du Pin trưng bày các nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, tiêu biểu là cồng chiêng – biểu tượng văn hóa và tín ngưỡng thiêng liêng. Âm thanh vang vọng của cồng chiêng thể hiện sự kết nối sâu sắc giữa con người và thế giới tâm linh.",
       location: "Khu trưng bày nhạc cụ",
@@ -25,7 +31,7 @@ const collectionData = {
       title: "K'ho chăn nuôi",
       artist: "Lồng đa đa",
       year: "2024",
-      image: "",
+      image: "Lồng Đa Đa.webp",
       description:
         "Lồng đa đa của người K'ho hiện đang được trưng bày tại Musée Du Pin như một biểu tượng mộc mạc nhưng đầy tính văn hóa của đời sống dân tộc Tây Nguyên. Được đan thủ công từ tre nứa, chiếc lồng không chỉ phục vụ mục đích chăn nuôi mà còn phản ánh sự khéo léo, tỉ mỉ và mối liên kết bền chặt giữa con người với thiên nhiên núi rừng.",
       location: "Khu trưng bày đời sống",
@@ -36,7 +42,7 @@ const collectionData = {
       title: "K'ho điêu khắc",
       artist: "Tượng phụ nữ",
       year: "2024",
-      image: "",
+      image: "Điêu Khắc.webp",
       description:
         "Tác phẩm điêu khắc người dân tộc K'ho đang được trưng bày tại Musée Du Pin thể hiện hình ảnh phụ nữ Tây Nguyên trong dáng đứng trang nghiêm, tay cầm chiếc chiêng nhỏ – biểu tượng của âm nhạc và tín ngưỡng bản địa.",
       location: "Khu trưng bày điêu khắc",
@@ -47,7 +53,7 @@ const collectionData = {
       title: "K'ho lễ hội",
       artist: "Ché Ghò Sành",
       year: "2024",
-      image: "",
+      image: "36 (2).webp",
       description:
         "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, hiện đang được trưng bày tại Musée Du Pin, đây là biểu tượng của sự giàu có, quyền uy và tín ngưỡng tâm linh trong đời sống người bản địa.",
       location: "Khu trưng bày lễ hội",
@@ -58,7 +64,7 @@ const collectionData = {
       title: "K'ho sinh hoạt thường nhật",
       artist: "Nồi đất",
       year: "2024",
-      image: "",
+      image: "Nồi Đất.webp",
       description:
         "Muée Du Pin trưng bày nồi đất của người K'ho, đây là biểu tượng của sự phát triển và tiến bộ của dân tộc Tây Nguyên.",
       location: "Khu trưng bày đời sống",
@@ -69,7 +75,7 @@ const collectionData = {
       title: "K'ho sinh hoạt thường nhật",
       artist: "Bầu hồ lô",
       year: "2024",
-      image: "",
+      image: "46.webp",
       description:
         "Được khoét rỗng từ quả hồ lô khô, vật phẩm này thường được dùng để đựng nước, rượu cần hoặc làm nhạc cụ truyền thống",
       location: "Khu trưng bày đời sống",
@@ -80,7 +86,7 @@ const collectionData = {
       title: "Phức Tầng",
       artist: "Thông 2",
       year: "2025",
-      image: "",
+      image: "Thông 2.webp",
       description:
         "Được Musée Du Pin bắt trọn khoảng khắc các hình ảnh thiên nhiên đậm sắc dân tộc K'ho, tạo nên bức tranh đẹp về đất nước Tây Nguyên.",
       location: "Khu trưng bày đời sống",
@@ -91,7 +97,7 @@ const collectionData = {
       title: "Vật liệu",
       artist: "Chất liệu K'ho",
       year: "2024",
-      image: "",
+      image: "Hoa Ban Trắng.webp",
       description:
         "Tại Musée Du Pin, mỗi chất liệu được chọn lựa kỹ lưỡng nhằm tôn vinh vẻ đẹp tự nhiên và bản sắc văn hóa Tây Nguyên. Các vật liệu truyền thống như gỗ, đá, đất và sợi tự nhiên không chỉ là phương tiện sáng tạo mà còn là cầu nối giữa nghệ thuật và đời sống bản địa.",
       location: "Khu trưng bày vật liệu",
@@ -100,18 +106,18 @@ const collectionData = {
   ],
 
   categories: [
-    { id: 1, title: "Dụng cụ âm nhạc Tây Nguyên", image: "" },
-    { id: 2, title: "K'ho chăn nuôi", image: "" },
-    { id: 3, title: "K'ho lễ hội", image: "" },
-    { id: 4, title: "K'ho điêu khắc", image: "" },
+    { id: 1, title: "Dụng cụ âm nhạc Tây Nguyên", image: "Cồng Chiên.webp" },
+    { id: 2, title: "K'ho chăn nuôi", image: "46.webp" },
+    { id: 3, title: "K'ho lễ hội", image: "36 (2).webp" },
+    { id: 4, title: "K'ho điêu khắc", image: "Lồng Đa Đa.webp" },
     {
       id: 5,
       title: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
-      image: "",
+      image: "Chiếc Gùi.webp",
     },
-    { id: 6, title: "K'ho sinh hoạt thường nhật", image: "" },
-    { id: 7, title: "Phức Tầng", image: "" },
-    { id: 8, title: "Vật liệu", image: "" },
+    { id: 6, title: "K'ho sinh hoạt thường nhật", image: "Nồi Đất.webp" },
+    { id: 7, title: "Phức Tầng", image: "Thông 2.webp" },
+    { id: 8, title: "Vật liệu", image: "Hoa Ban Trắng.webp" },
   ],
 
   highlights: [
@@ -119,7 +125,7 @@ const collectionData = {
       id: 1,
       title: "Nhạc cụ truyền thống",
       category: "Nhạc cụ",
-      image: "",
+      image: "Cồng Chiên.webp",
       type: "video",
       youtubeId: "dQw4w9WgXcQ",
       description:
@@ -129,7 +135,7 @@ const collectionData = {
       id: 2,
       title: "Điêu khắc K'ho",
       category: "Điêu khắc",
-      image: "",
+      image: "Điêu Khắc.webp",
       type: "image",
       artwork: 1,
       description:
@@ -139,7 +145,7 @@ const collectionData = {
       id: 3,
       title: "Đời sống thường nhật",
       category: "Đời sống",
-      image: "",
+      image: "46.webp",
       type: "video",
       youtubeId: "dQw4w9WgXcQ",
       description:
@@ -149,7 +155,7 @@ const collectionData = {
       id: 4,
       title: "Lễ hội truyền thống",
       category: "Lễ hội",
-      image: "",
+      image: "36 (2).webp",
       type: "image",
       artwork: 4,
       description:
@@ -159,7 +165,7 @@ const collectionData = {
       id: 5,
       title: "Chăn nuôi K'ho",
       category: "Chăn nuôi",
-      image: "",
+      image: "Lồng Đa Đa.webp",
       type: "video",
       youtubeId: "dQw4w9WgXcQ",
       description:
@@ -169,7 +175,7 @@ const collectionData = {
       id: 6,
       title: "Sinh hoạt văn hóa",
       category: "Sinh hoạt",
-      image: "",
+      image: "Chiếc Gùi.webp",
       type: "image",
       artwork: 2,
       description:
@@ -179,7 +185,7 @@ const collectionData = {
       id: 7,
       title: "Vật liệu",
       category: "Vật liệu",
-      image: "",
+      image: "Hoa Ban Trắng.webp",
       type: "image",
       artwork: 1,
       description:
@@ -190,7 +196,8 @@ const collectionData = {
 
 const CollectionPage = () => {
   const location = useLocation();
-  const { assets, loading, error, getAssetUrl } = useAssets();
+  const navigate = useNavigate();
+
   // State for hero section slideshow
   const [activeHeroSlide, setActiveHeroSlide] = useState(0);
 
@@ -209,12 +216,12 @@ const CollectionPage = () => {
   const [videoModalClosing, setVideoModalClosing] = useState(false);
   const [modalContent, setModalContent] = useState(null);
 
-  // State for auto-scrolling functionality
-  const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
+  // State for auto-scrolling functionality - DISABLED
+  // const [autoScrollEnabled, setAutoScrollEnabled] = useState(true);
   const [containerWidth, setContainerWidth] = useState(0);
   const [contentWidth, setContentWidth] = useState(0);
   const [showScrollIndicator, setShowScrollIndicator] = useState(true);
-  const [manualInteraction, setManualInteraction] = useState(false);
+  // const [manualInteraction, setManualInteraction] = useState(false);
   const userInteractionTimeout = useRef(null);
 
   // State for parallax effect on category cards
@@ -226,6 +233,10 @@ const CollectionPage = () => {
   const [lastTouchTime, setLastTouchTime] = useState(0);
   const [touchVelocity, setTouchVelocity] = useState(0);
 
+  // State for discover section video background
+  const [isDiscoverVideoLoaded, setIsDiscoverVideoLoaded] = useState(false);
+  const discoverVideoRef = useRef(null);
+
   // Handle auto-rotating hero slideshow
   useEffect(() => {
     const interval = setInterval(() => {
@@ -236,6 +247,11 @@ const CollectionPage = () => {
 
     return () => clearInterval(interval);
   }, []);
+
+  // Go to specific slide
+  const goToHeroSlide = (index) => {
+    setActiveHeroSlide(index);
+  };
 
   // Handle section animations with debounce for better performance
   useEffect(() => {
@@ -347,9 +363,8 @@ const CollectionPage = () => {
 
     // Use setTimeout to allow the animation to complete before navigation
     setTimeout(() => {
-      window.location.href = `/collection/category/${
-        category.id
-      }/${category.title.toLowerCase().replace(/\s+/g, "-")}`;
+      // Navigate to the correct route that matches App.jsx: /collection/:category
+      navigate(`/collection/${category.id}`);
     }, 400);
   };
 
@@ -472,7 +487,7 @@ const CollectionPage = () => {
   // Handle download artwork
   const handleDownload = (artwork) => {
     const link = document.createElement("a");
-    link.href = getAssetUrl(artwork.image);
+    link.href = artwork.image;
     link.download = `${artwork.title.replace(/\s+/g, "-").toLowerCase()}.jpg`;
     document.body.appendChild(link);
     link.click();
@@ -484,7 +499,6 @@ const CollectionPage = () => {
     setIsDragging(true);
     setStartX(e.pageX - discoverWorksRef.current.offsetLeft);
     setScrollLeft(discoverWorksRef.current.scrollLeft);
-    setManualInteraction(true);
     setShowScrollIndicator(false);
   };
 
@@ -496,7 +510,7 @@ const CollectionPage = () => {
       clearTimeout(userInteractionTimeout.current);
     }
     userInteractionTimeout.current = setTimeout(() => {
-      setManualInteraction(false);
+      setShowScrollIndicator(true);
     }, 2000);
   };
 
@@ -522,8 +536,6 @@ const CollectionPage = () => {
     setIsDragging(true);
     setStartX(e.touches[0].clientX);
     setScrollLeft(discoverWorksRef.current.scrollLeft);
-    setManualInteraction(true);
-    setAutoScrollEnabled(false);
     setShowScrollIndicator(false);
     setLastTouchX(e.touches[0].clientX);
     setLastTouchTime(Date.now());
@@ -608,13 +620,7 @@ const CollectionPage = () => {
         } else {
           // Resume auto-scroll after momentum ends and 1s delay
           setTimeout(() => {
-            setManualInteraction(false);
-            // Ensure we're starting from the current position
-            if (discoverWorksRef.current) {
-              const finalScroll = discoverWorksRef.current.scrollLeft;
-              discoverWorksRef.current.scrollLeft = finalScroll;
-            }
-            setAutoScrollEnabled(true);
+            setShowScrollIndicator(true);
           }, 1000);
         }
       };
@@ -623,26 +629,19 @@ const CollectionPage = () => {
     } else {
       // If no momentum, resume auto-scroll after 1s
       setTimeout(() => {
-        setManualInteraction(false);
-        // Ensure we're starting from the current position
-        if (discoverWorksRef.current) {
-          const finalScroll = discoverWorksRef.current.scrollLeft;
-          discoverWorksRef.current.scrollLeft = finalScroll;
-        }
-        setAutoScrollEnabled(true);
+        setShowScrollIndicator(true);
       }, 1000);
     }
   };
 
   // Handle pause on hover handlers
   const handleMouseEnter = () => {
-    setAutoScrollEnabled(false);
     setShowScrollIndicator(false);
   };
 
   const handleMouseLeave = () => {
     if (!isDragging) {
-      setAutoScrollEnabled(true);
+      setShowScrollIndicator(true);
     }
 
     // Reset manual interaction flag after timeout
@@ -651,59 +650,12 @@ const CollectionPage = () => {
         clearTimeout(userInteractionTimeout.current);
       }
       userInteractionTimeout.current = setTimeout(() => {
-        setManualInteraction(false);
+        setShowScrollIndicator(true);
       }, 2000);
     }
   };
 
-  // Optimize auto-scrolling
-  useEffect(() => {
-    if (
-      !discoverWorksRef.current ||
-      !autoScrollEnabled ||
-      isDragging ||
-      manualInteraction
-    ) {
-      return () => {};
-    }
-
-    let startTime = null;
-    let animationFrameId = null;
-    const scrollDuration = 50000;
-    const containerWidth = discoverWorksRef.current.clientWidth;
-    const contentWidth = discoverWorksRef.current.scrollWidth;
-    const maxScroll = contentWidth - containerWidth;
-    const currentScroll = discoverWorksRef.current.scrollLeft;
-
-    const animateScroll = (timestamp) => {
-      if (!startTime) {
-        // Calculate the appropriate startTime based on current scroll position
-        const progress = currentScroll / maxScroll;
-        startTime = timestamp - progress * scrollDuration;
-      }
-      const elapsed = timestamp - startTime;
-      const progress = (elapsed / scrollDuration) * maxScroll;
-
-      if (progress >= maxScroll) {
-        startTime = timestamp;
-        if (discoverWorksRef.current) {
-          discoverWorksRef.current.scrollLeft = 0;
-        }
-      } else if (discoverWorksRef.current) {
-        discoverWorksRef.current.scrollLeft = progress;
-      }
-
-      animationFrameId = requestAnimationFrame(animateScroll);
-    };
-
-    animationFrameId = requestAnimationFrame(animateScroll);
-
-    return () => {
-      if (animationFrameId) {
-        cancelAnimationFrame(animationFrameId);
-      }
-    };
-  }, [autoScrollEnabled, isDragging, manualInteraction]);
+  // Auto-scrolling functionality DISABLED - Users will manually drag/swipe
 
   // Optimize resize handling
   useEffect(() => {
@@ -802,22 +754,73 @@ const CollectionPage = () => {
     }
   }, [location.state]);
 
+  // Handle discover section video loading
+  useEffect(() => {
+    if (discoverVideoRef.current) {
+      discoverVideoRef.current.addEventListener("loadeddata", () => {
+        setIsDiscoverVideoLoaded(true);
+      });
+    }
+  }, []);
+
   return (
     <div className="collection-page">
       {/* Hero Section */}
-      <section className="cp-hero visible">
-        <div className="cp-hero-slides-container">
+      <section className="cp-hero animate-section">
+        <div
+          className="cp-hero-slides-container"
+          style={{
+            display: "flex",
+            width: "500%",
+            height: "100%",
+            position: "absolute",
+            top: "0",
+            left: "0",
+            transform: `translateX(-${activeHeroSlide * 20}%)`,
+            transition: "transform 0.8s cubic-bezier(0.4, 0, 0.2, 1)",
+          }}
+        >
           {collectionData.heroImages.map((image, index) => (
             <div
               key={index}
               className={`cp-hero-slide ${
                 activeHeroSlide === index ? "active" : ""
               }`}
-              style={{ backgroundImage: `url(${getAssetUrl(image)})` }}
-            />
+              style={{
+                width: "20%",
+                height: "100%",
+                flexShrink: 0,
+                position: "relative",
+                zIndex: index === activeHeroSlide ? 10 : 1,
+              }}
+            >
+              <div className="cp-hero-image-container">
+                <img
+                  src={getAssetUrl(image)}
+                  alt={`Hero slide ${index + 1}`}
+                  className="cp-hero-image"
+                  loading={index === 0 ? "eager" : "lazy"}
+                />
+              </div>
+            </div>
           ))}
         </div>
         <div className="cp-hero-overlay"></div>
+
+        {/* Hero Slide Indicators */}
+        <div className="cp-hero-indicators">
+          {collectionData.heroImages.map((_, index) => (
+            <button
+              key={index}
+              className={`cp-hero-indicator ${
+                activeHeroSlide === index ? "active" : ""
+              }`}
+              onClick={() => goToHeroSlide(index)}
+              aria-label={`Go to slide ${index + 1}`}
+            />
+          ))}
+        </div>
+
         <div className="cp-hero-content">
           <h1 className="cp-hero-title">
             <span className="translated-text">KHÁM PHÁ BỘ SƯU TẬP</span>
@@ -829,19 +832,7 @@ const CollectionPage = () => {
             </span>
           </p>
         </div>
-        <div className="cp-hero-scroll-indicator">
-          <div
-            className="cp-hero-scroll-mouse"
-            onClick={() => {
-              document.querySelector(".cp-discover-section").scrollIntoView({
-                behavior: "smooth",
-              });
-            }}
-          >
-            <div className="cp-hero-scroll-wheel"></div>
-          </div>
-          <span>CUỘN XUỐNG</span>
-        </div>
+
         <div
           className="diagonal-divider bottom enhanced"
           style={{ backgroundColor: "transparent" }}
@@ -849,90 +840,74 @@ const CollectionPage = () => {
       </section>
 
       {/* Discover the Works Section */}
-      <section className="cp-discover-section visible">
-        <div className="cp-section-header">
-          <h2 className="cp-section-title">
-            <TranslatedText>Khám Phá Tác Phẩm</TranslatedText>
-          </h2>
-          <div className="cp-section-divider"></div>
+      <section className="cp-discover-section animate-section">
+        <div className="cp-discover-video-container">
+          <video
+            ref={discoverVideoRef}
+            autoPlay
+            muted
+            loop
+            playsInline
+            className={`cp-discover-video ${
+              isDiscoverVideoLoaded ? "loaded" : ""
+            }`}
+          >
+            <source
+              src={getAssetUrl("Hero_Abouts_Resize.mp4")}
+              type="video/mp4"
+            />
+          </video>
+          <div className="cp-discover-overlay"></div>
         </div>
 
-        <div className="cp-discover-container">
-          <div className="cp-discover-gradient-left"></div>
-          <div className="cp-discover-gradient-right"></div>
-
-          <div className="cp-scroll-arrows">
-            {/* <button
-              className="cp-scroll-arrow cp-scroll-left"
-              onClick={() => handleScroll("left")}
-              aria-label="Scroll left"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polyline points="15 18 9 12 15 6"></polyline>
-              </svg>
-            </button> */}
-            {/* <button
-              className="cp-scroll-arrow cp-scroll-right"
-              onClick={() => handleScroll("right")}
-              aria-label="Scroll right"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <polyline points="9 18 15 12 9 6"></polyline>
-              </svg>
-            </button> */}
+        <div className="cp-discover-content">
+          <div className="cp-section-header">
+            <h2 className="cp-section-title">
+              <TranslatedText>Khám Phá Tác Phẩm</TranslatedText>
+            </h2>
+            <div className="cp-section-divider"></div>
           </div>
 
-          <div
-            className={`cp-discover-works cp-wavy-gallery ${
-              isDragging ? "dragging" : ""
-            }`}
-            ref={discoverWorksRef}
-            onMouseDown={handleMouseDown}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={(e) => {
-              handleMouseUp();
-              handleMouseLeave(e);
-            }}
-            onMouseMove={handleMouseMove}
-            onTouchStart={handleTouchStart}
-            onTouchMove={handleTouchMove}
-            onTouchEnd={handleTouchEnd}
-            onMouseEnter={handleMouseEnter}
-          >
-            <div className="cp-discover-inner-container">
-              {collectionData.artworks.map((artwork, index) =>
-                renderDiscoverWorkItem(artwork, index)
-              )}
-            </div>
-          </div>
+          <div className="cp-discover-container">
+            <div className="cp-discover-gradient-left"></div>
+            <div className="cp-discover-gradient-right"></div>
 
-          <div
-            className={`cp-scroll-indicator ${
-              !showScrollIndicator ? "hidden" : ""
-            }`}
-          >
-            <div className="cp-scroll-text">
-              <TranslatedText>Scroll or drag to explore</TranslatedText>
+            <div
+              className={`cp-discover-works cp-wavy-gallery ${
+                isDragging ? "dragging" : ""
+              }`}
+              ref={discoverWorksRef}
+              onMouseDown={handleMouseDown}
+              onMouseUp={handleMouseUp}
+              onMouseLeave={(e) => {
+                handleMouseUp();
+                handleMouseLeave(e);
+              }}
+              onMouseMove={handleMouseMove}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
+              onMouseEnter={handleMouseEnter}
+            >
+              <div className="cp-discover-inner-container">
+                {collectionData.artworks.map((artwork, index) =>
+                  renderDiscoverWorkItem(artwork, index)
+                )}
+              </div>
             </div>
-            <div className="cp-scroll-arrows-indicator">
-              <span></span>
-              <span></span>
+
+            <div
+              className={`cp-scroll-indicator ${
+                !showScrollIndicator ? "hidden" : ""
+              }`}
+            >
+              <div className="cp-scroll-text">
+                <TranslatedText>Trượt để khám phá</TranslatedText>
+              </div>
+              <div className="cp-scroll-arrows-indicator">
+                <span></span>
+                <span></span>
+              </div>
             </div>
           </div>
         </div>

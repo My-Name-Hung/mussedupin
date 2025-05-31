@@ -1,7 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import TranslatedText from "../../components/TranslatedText";
-import { useAssets } from "../../hooks/useAssets";
+import { getAssetUrl } from "../../utils/getAssetUrl";
 import "./SupportPage.css";
 
 import {
@@ -19,7 +19,6 @@ const SupportPage = () => {
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const videoRef = useRef(null);
   const navigate = useNavigate();
-  const { assets, loading, error, getAssetUrl } = useAssets();
 
   const sectionRefs = {
     intro: useRef(null),
@@ -140,7 +139,10 @@ const SupportPage = () => {
             playsInline
             className={`heross-video ${isVideoLoaded ? "loaded" : ""}`}
           >
-            <source src={herosssVideo} type="video/mp4" />
+            <source
+              src={getAssetUrl("Hero_Abouts_Resize.mp4")}
+              type="video/mp4"
+            />
           </video>
           <div className="heross-overlay"></div>
         </div>
@@ -177,23 +179,6 @@ const SupportPage = () => {
           </div>
         </div>
       </section>
-
-      {/* Hero section */}
-      <div className="support-hero">
-        {loading && <div>Đang tải ảnh...</div>}
-        {error && <div>Lỗi tải ảnh: {error}</div>}
-        {assets.find((a) => a.filename === "louvre-sunset.webp") &&
-          !loading &&
-          !error && (
-            <img
-              src={getAssetUrl("louvre-sunset.webp")}
-              alt="Bảo tàng Du Pin"
-            />
-          )}
-        <div className="hero-overlay">
-          <h1>{translations.support || "HỖ TRỢ"}</h1>
-        </div>
-      </div>
     </div>
   );
 };

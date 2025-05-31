@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { useTranslation } from "../../contexts/TranslationContext";
-import { useAssets } from "../../hooks/useAssets";
+import { getAssetUrl } from "../../utils/getAssetUrl";
 import "./MuseumMapPage.css";
 
 // SVG Icons
@@ -78,10 +79,6 @@ const MuseumMapPage = () => {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [translations, setTranslations] = useState({});
   const { translate } = useTranslation();
-  const { assets, loading, error, getAssetUrl } = useAssets();
-
-  // Find the hero image by filename
-  const heroAsset = assets.find((a) => a.filename === "louvre-sunset.webp");
 
   useEffect(() => {
     const loadTranslations = async () => {
@@ -436,14 +433,28 @@ const MuseumMapPage = () => {
   return (
     <div className="museum-map-page">
       {/* Hero Section */}
-      <div className="museum-map-hero">
-        {loading && <div>Đang tải ảnh...</div>}
-        {error && <div>Lỗi tải ảnh: {error}</div>}
-        {heroAsset && !loading && !error && (
-          <img src={getAssetUrl(heroAsset.filename)} alt="Bảo tàng Du Pin" />
-        )}
-        <div className="hero-overlay">
-          <h1>{translations.mapDirections || "BẢN ĐỒ & CHỈ ĐƯỜNG"}</h1>
+      <div className="map-hero">
+        <div
+          className="map-hero-image"
+          style={{
+            backgroundImage: `url(${getAssetUrl("louvre-sunset.webp")})`,
+          }}
+        >
+          <div className="map-hero-overlay"></div>
+        </div>
+
+        <Link to="/" className="map-back-button">
+          <BackIcon /> {translations.back || "Quay lại"}
+        </Link>
+
+        <div className="map-hero-content">
+          <p className="map-hero-subtitle">
+            {translations.mapDirections || "BẢN ĐỒ & CHỈ ĐƯỜNG"}
+          </p>
+          <h1 className="map-hero-title">
+            {translations.howToReachMuséeDuPin ||
+              "Làm thế nào để đến Musée Du Pin"}
+          </h1>
         </div>
       </div>
 
@@ -462,25 +473,6 @@ const MuseumMapPage = () => {
 
       {/* Content */}
       <div className="map-content">{renderContent()}</div>
-
-      {/* Google Map Section - always visible at bottom */}
-      <section className="museum-map-google-section">
-        <div className="museum-map-google-container">
-          <h2 className="museum-map-google-title">Vị trí bảo tàng</h2>
-          <div className="museum-map-google-content">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.6347163633855!2d108.44256451806218!3d11.923690928634585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317113472aaa2ceb%3A0xb2d96d24754e2a02!2zMjkgxJDhu5FuZyDEkGEsIFBoxrDhu51uZyAzLCDEkMOgIEzhuqF0LCBMw6JtIMSQ4buTbmcsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1748493614119!5m2!1svi!2s"
-              width="100%"
-              height="400"
-              style={{ border: 0 }}
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Bản đồ bảo tàng Musée Du Pin"
-            ></iframe>
-          </div>
-        </div>
-      </section>
     </div>
   );
 };

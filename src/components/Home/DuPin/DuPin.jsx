@@ -9,9 +9,9 @@ const videoData = [
     id: 1,
     title:
       "Góc nhìn từ Bảo Tàng Thông – Một lát cắt Đà Lạt trọn vẹn trong ánh chiều tà!",
-    subtitle: "Nguồn: Bảo Tàng Thông",
+    subtitle: "Góc nhìn từ Bảo Tàng Thông",
     youtubeId: "aozcRuYVPKw", // Replace with actual YouTube ID
-    duration: "",
+    duration: "11s",
     thumbnail:
       "https://i.ytimg.com/vi/aozcRuYVPKw/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG2CIAC0AWKAgwIABABGD4gQihyMA8=&rs=AOn4CLCybz6fVtK17RW4ZlrHrBfDMcmiPw", // This will be replaced with actual thumbnails
     category: "Thiên nhiên",
@@ -20,9 +20,9 @@ const videoData = [
     id: 2,
     title:
       "Góc nhìn từ Bảo Tàng Thông – Một lát cắt Đà Lạt trọn vẹn trong ánh chiều tà!",
-    subtitle: "Nguồn: Bảo Tàng Thông",
+    subtitle: "Góc nhìn từ Bảo Tàng Thông",
     youtubeId: "aozcRuYVPKw", // Replace with actual YouTube ID
-    duration: "",
+    duration: "11s",
     thumbnail:
       "https://i.ytimg.com/vi/aozcRuYVPKw/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG2CIAC0AWKAgwIABABGD4gQihyMA8=&rs=AOn4CLCybz6fVtK17RW4ZlrHrBfDMcmiPw", // This will be replaced with actual thumbnails
     category: "Thiên nhiên",
@@ -31,9 +31,9 @@ const videoData = [
     id: 3,
     title:
       "Góc nhìn từ Bảo Tàng Thông – Một lát cắt Đà Lạt trọn vẹn trong ánh chiều tà!",
-    subtitle: "Nguồn: Bảo Tàng Thông",
+    subtitle: "Góc nhìn từ Bảo Tàng Thông",
     youtubeId: "aozcRuYVPKw", // Replace with actual YouTube ID
-    duration: "",
+    duration: "11s",
     thumbnail:
       "https://i.ytimg.com/vi/aozcRuYVPKw/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG2CIAC0AWKAgwIABABGD4gQihyMA8=&rs=AOn4CLCybz6fVtK17RW4ZlrHrBfDMcmiPw", // This will be replaced with actual thumbnails
     category: "Thiên nhiên",
@@ -42,9 +42,9 @@ const videoData = [
     id: 4,
     title:
       "Góc nhìn từ Bảo Tàng Thông – Một lát cắt Đà Lạt trọn vẹn trong ánh chiều tà!",
-    subtitle: "Nguồn: Bảo Tàng Thông",
+    subtitle: "Góc nhìn từ Bảo Tàng Thông",
     youtubeId: "aozcRuYVPKw", // Replace with actual YouTube ID
-    duration: "",
+    duration: "11s",
     thumbnail:
       "https://i.ytimg.com/vi/aozcRuYVPKw/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG2CIAC0AWKAgwIABABGD4gQihyMA8=&rs=AOn4CLCybz6fVtK17RW4ZlrHrBfDMcmiPw", // This will be replaced with actual thumbnails
     category: "Thiên nhiên",
@@ -252,7 +252,6 @@ const DuPin = () => {
     contentWidth,
     isPaused,
     isMobile,
-    scrollProgress,
     isUserInteracting,
   ]);
 
@@ -424,7 +423,7 @@ const DuPin = () => {
         )}
 
         <div
-          className="dupin-gallery"
+          className="dupin-gallerys"
           ref={scrollContainerRef}
           onMouseLeave={handleMouseLeave}
           onTouchStart={handleTouchStart}

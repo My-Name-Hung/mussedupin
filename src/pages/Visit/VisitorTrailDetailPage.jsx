@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useAssets } from "../../hooks/useAssets";
+import { getAssetUrl } from "../../utils/getAssetUrl";
 import "./VisitorTrailDetailPage.css";
-
-// Import thumbnails for each category
-import dungcuThumb from "../../assets/home/Collections/DungcuAmNhacTayNguyen/Cồng Chiên.webp";
-import channuoiThumb from "../../assets/home/Collections/K_hoChanNuoi/Lồng Đa Đa.webp";
-import dieukhacThumb from "../../assets/home/Collections/K_hoDieuKhac/Điêu Khắc.webp";
-import lehoiThumb from "../../assets/home/Collections/K_hoLeHoi/Lễ Hội.webp";
-import sanbanThumb from "../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/Chiếc Gùi.webp";
-import sinhoatThumb from "../../assets/home/Collections/K_hoSinhHoatThuongNhat/Nồi Đất.webp";
-import phuctangThumb from "../../assets/home/Collections/PhucTang/Thông 2.webp";
-import vatlieuThumb from "../../assets/home/Collections/VatLieu/Hoa Ban Trắng.webp";
 
 // SVG icons
 const ClockIcon = () => (
@@ -125,12 +115,26 @@ const trailsData = [
       "Khám phá âm nhạc truyền thống của người Tây Nguyên qua các nhạc cụ độc đáo.",
     fullDescription:
       "Khám phá âm nhạc truyền thống của người Tây Nguyên qua các nhạc cụ độc đáo như cồng chiêng - biểu tượng văn hóa và tín ngưỡng thiêng liêng.",
-    image: dungcuThumb,
+    image: "Cồng Chiên.webp",
     duration: "1H30",
     audioGuide: true,
     accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
     introduction:
       "Cồng chiêng là nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, là biểu tượng văn hóa và tín ngưỡng thiêng liêng.",
+    images: [
+      "Cồng Chiên.webp",
+      "DSC_2473.webp",
+      "DSC_2475.webp",
+      "DSC_2486.webp",
+      "DSC_2498.webp",
+      "17 (2).webp",
+      "17 (3).webp",
+      "17 (4).webp",
+      "17 (5).webp",
+      "17 (7).webp",
+      "38 (1).webp",
+      "38 (2).webp",
+    ],
   },
   {
     id: 2,
@@ -139,12 +143,21 @@ const trailsData = [
       "Khám phá các công cụ và phương thức chăn nuôi truyền thống của người K'ho.",
     fullDescription:
       "Khám phá các công cụ và phương thức chăn nuôi truyền thống của người K'ho, từ lồng đa đa đến các vật dụng chăn nuôi khác.",
-    image: channuoiThumb,
+    image: "Lồng Đa Đa.webp",
     duration: "1H30",
     audioGuide: true,
     accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
     introduction:
       "Lồng đa đa của người K'ho được đan thủ công từ tre nứa, thể hiện sự khéo léo và mối liên kết với thiên nhiên.",
+    images: [
+      "Lồng Đa Đa.webp",
+      "3 (1).webp",
+      "3 (2).webp",
+      "3 (3).webp",
+      "3 (4).webp",
+      "3.webp",
+      "4 (2).webp",
+    ],
   },
   {
     id: 3,
@@ -153,12 +166,20 @@ const trailsData = [
       "Tìm hiểu về các lễ hội truyền thống và nghi thức văn hóa của người K'ho.",
     fullDescription:
       "Tìm hiểu về các lễ hội truyền thống và nghi thức văn hóa của người K'ho thông qua các hiện vật như Ché Ghò Sành.",
-    image: lehoiThumb,
+    image: "36 (2).webp",
     duration: "1H",
     audioGuide: true,
     accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
     introduction:
       "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, là biểu tượng của sự giàu có và tín ngưỡng.",
+    images: [
+      "36 (1).webp",
+      "36 (2).webp",
+      "18 (2).webp",
+      "18 (3).webp",
+      "18 (4).webp",
+      "Lễ Hội.webp",
+    ],
   },
   {
     id: 4,
@@ -167,12 +188,55 @@ const trailsData = [
       "Chiêm ngưỡng nghệ thuật điêu khắc truyền thống của người K'ho.",
     fullDescription:
       "Chiêm ngưỡng nghệ thuật điêu khắc truyền thống của người K'ho qua các tác phẩm tượng và điêu khắc tinh xảo.",
-    image: dieukhacThumb,
+    image: "Điêu Khắc.webp",
     duration: "1H30",
     audioGuide: true,
     accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
     introduction:
       "Nghệ thuật điêu khắc K'ho thể hiện đặc trưng văn hóa và đời sống tinh thần của dân tộc.",
+    images: [
+      "Điêu Khắc.webp",
+      "20 (1).webp",
+      "20 (2).webp",
+      "20 (3).webp",
+      "20 (4).webp",
+      "20 (5).webp",
+      "21 (1).webp",
+      "21 (2).webp",
+      "21 (3).webp",
+      "21 (4).webp",
+      "21 (5).webp",
+      "22 (1).webp",
+      "22 (2).webp",
+      "22 (3).webp",
+      "22 (4).webp",
+      "22 (5).webp",
+      "23 (1).webp",
+      "23 (2).webp",
+      "23 (3).webp",
+      "23 (4).webp",
+      "23 (5).webp",
+      "24 (1).webp",
+      "24 (2).webp",
+      "24 (3).webp",
+      "24 (4).webp",
+      "25 (1).webp",
+      "25 (2).webp",
+      "25 (3).webp",
+      "26  (1).webp",
+      "26  (2).webp",
+      "26  (3).webp",
+      "26  (4).webp",
+      "26  (5).webp",
+      "26  (6).webp",
+      "27 (1).webp",
+      "27 (2).webp",
+      "27 (3).webp",
+      "27 (4).webp",
+      "27 (5).webp",
+      "28 (1).webp",
+      "28 (2).webp",
+    ],
   },
   {
     id: 5,
@@ -181,12 +245,54 @@ const trailsData = [
       "Khám phá các công cụ săn bắn, hái lượm và canh tác truyền thống.",
     fullDescription:
       "Khám phá các công cụ săn bắn, hái lượm và canh tác truyền thống của người K'ho.",
-    image: sanbanThumb,
+    image: "Chiếc Gùi.webp",
     duration: "1H",
     audioGuide: true,
     accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
     introduction:
       "Chiếc gùi - vật dụng không thể thiếu trong đời sống của người K'ho, dùng để đựng nông sản và đồ đạc.",
+    images: [
+      "Chiếc Gùi.webp",
+      "1 (2).webp",
+      "1(3).webp",
+      "1(4).webp",
+      "1.webp",
+      "2 (1).webp",
+      "2 (3).webp",
+      "2 .webp",
+      "5.webp",
+      "6.webp",
+      "7 (1).webp",
+      "7 (2).webp",
+      "7 (3).webp",
+      "8 (1).webp",
+      "8 (2).webp",
+      "8 (3).webp",
+      "9 (1).webp",
+      "9 (2).webp",
+      "9 (3).webp",
+      "10 (1).webp",
+      "10 (2).webp",
+      "10 (3).webp",
+      "11.webp",
+      "12 (1).webp",
+      "12 (2).webp",
+      "13 (1).webp",
+      "13 (2).webp",
+      "13 (3).webp",
+      "14 (1).webp",
+      "14 (2).webp",
+      "14 (3).webp",
+      "15 (1).webp",
+      "15 (2).webp",
+      "15 (3).webp",
+      "30 (1).webp",
+      "30 (2).webp",
+      "37 (2).webp",
+      "37 (3).webp",
+      "37 (4).webp",
+      "45 (1).webp",
+    ],
   },
   {
     id: 6,
@@ -194,12 +300,37 @@ const trailsData = [
     description: "Tìm hiểu về đời sống hàng ngày của người K'ho.",
     fullDescription:
       "Tìm hiểu về đời sống hàng ngày của người K'ho qua các vật dụng sinh hoạt như nồi đất, bầu hồ lô.",
-    image: sinhoatThumb,
+    image: "Nồi Đất.webp",
     duration: "1H30",
     audioGuide: true,
     accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
     introduction:
       "Nồi đất và bầu hồ lô là những vật dụng thiết yếu trong sinh hoạt hàng ngày của người K'ho.",
+    images: [
+      "Nồi Đất.webp",
+      "16 (1).webp",
+      "16 (2).webp",
+      "19 (1).webp",
+      "19 (2).webp",
+      "31 (1).webp",
+      "31 (2).webp",
+      "32 (1).webp",
+      "32 (2).webp",
+      "32 (3).webp",
+      "33 (1).webp",
+      "33 (2).webp",
+      "34 (1).webp",
+      "34 (2).webp",
+      "35 (1).webp",
+      "35 (2).webp",
+      "39.webp",
+      "40.webp",
+      "41.webp",
+      "42.webp",
+      "43 (1).webp",
+      "43 (2).webp",
+      "46.webp",
+    ],
   },
   {
     id: 7,
@@ -207,23 +338,46 @@ const trailsData = [
     description: "Tham quan trải nghiệm thiên nhiên của đồi thông.",
     fullDescription:
       "Tham quan trải nghiệm thiên nhiên của đồi thông, từ các đồi thông đến các đồi thông khác.",
-    image: phuctangThumb,
+    image: "Thông 2.webp",
     duration: "1H",
     audioGuide: true,
     accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
     introduction:
       "Đồi thông là biểu tượng của sự bền vững và tín ngưỡng thiêng liêng trong đời sống người dân Tây Nguyên.",
+    images: [
+      "Thông 1.webp",
+      "Thông 2.webp",
+      "Thông 3.webp",
+      "Thông 4.webp",
+      "Cô đơn.webp",
+      "Gào thét.webp",
+      "Lãng du.webp",
+      "Mênh mang.webp",
+      "Trầm mặc.webp",
+    ],
   },
   {
     id: 8,
     title: "VẬT LIỆU",
     description: "Tham quan vật liệu của người Tây Nguyên.",
-    image: vatlieuThumb,
+    image: "Hoa Ban Trắng.webp",
     duration: "30P",
     audioGuide: true,
     accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
     introduction:
       "Vật liệu là biểu tượng của sự bền vững và tín ngưỡng thiêng liêng trong đời sống người dân Tây Nguyên.",
+    images: [
+      "Hoa Ban Trắng.webp",
+      "Bình yên 1.webp",
+      "Bình Yên 2.webp",
+      "Dâu tây.webp",
+      "Hoài Niệm.webp",
+      "Hoàng hôn.webp",
+      "Thác đổ.webp",
+      "Toa Tàu.webp",
+      "Tuổi ấu thơ.webp",
+      "Ống khói.webp",
+    ],
   },
 ];
 
@@ -231,7 +385,6 @@ const VisitorTrailDetailPage = () => {
   const { id } = useParams();
   const [trail, setTrail] = useState(null);
   const [imageLoaded, setImageLoaded] = useState(false);
-  const { assets, loading, error, getAssetUrl } = useAssets();
 
   useEffect(() => {
     // Find the trail by id and preload image
@@ -240,7 +393,7 @@ const VisitorTrailDetailPage = () => {
     if (foundTrail) {
       // Preload hero image
       const img = new Image();
-      img.src = foundTrail.image;
+      img.src = getAssetUrl(foundTrail.image);
       img.onload = () => setImageLoaded(true);
 
       setTrail(foundTrail);
@@ -280,7 +433,7 @@ const VisitorTrailDetailPage = () => {
           <h1 className="trail-detail-title">{trail.title}</h1>
           <p className="trail-detail-description">{trail.fullDescription}</p>
           <Link
-            to={`/visitor-trails/${id}/experience/1`}
+            to={`/trail-experience/${id}`}
             className="trail-detail-start-btn"
           >
             Bắt đầu <ArrowRightIcon />

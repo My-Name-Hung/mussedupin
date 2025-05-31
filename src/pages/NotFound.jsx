@@ -1,6 +1,6 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/Logo/icon.jpg";
+import logo from "../assets/Logo/icon.webp";
 import TranslatedText from "../components/TranslatedText";
 import "../styles/NotFound.css";
 

@@ -1,59 +1,98 @@
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+import useImageCache from "./useImageCache";
 
-const useImagePreload = (images) => {
+const PRIORITY_PATTERNS = ["hero", "background", "logo", "banner", "thumbnail"];
+
+const useImagePreload = (images, options = {}) => {
+  const { preload, isLoaded: isCached } = useImageCache();
   const [loadedImages, setLoadedImages] = useState(new Set());
   const [progress, setProgress] = useState(0);
+  const [priorityDone, setPriorityDone] = useState(false);
+
+  const getPriority = useCallback((src) => {
+    return PRIORITY_PATTERNS.some((pattern) =>
+      src.toLowerCase().includes(pattern)
+    )
+      ? "high"
+      : "low";
+  }, []);
 
   useEffect(() => {
-    if (!images || images.length === 0) return;
+    if (!images || images.length === 0) {
+      setProgress(100);
+      setPriorityDone(true);
+      return;
+    }
 
-    const totalImages = images.length;
+    let isMounted = true;
     let loadedCount = 0;
+    const totalImages = images.length;
 
-    const preloadImage = (src) => {
-      return new Promise((resolve, reject) => {
-        const img = new Image();
+    // Split images into priority groups
+    const priorityImages = images.filter((src) => getPriority(src) === "high");
+    const regularImages = images.filter((src) => getPriority(src) === "low");
 
-        img.onload = () => {
-          loadedCount++;
-          setLoadedImages((prev) => new Set([...prev, src]));
-          setProgress((loadedCount / totalImages) * 100);
-          resolve();
-        };
-
-        img.onerror = () => {
-          loadedCount++;
-          setProgress((loadedCount / totalImages) * 100);
-          reject();
-        };
-
-        // Set loading priority
-        if (src.includes("hero") || src.includes("background")) {
-          img.fetchPriority = "high";
-        } else {
-          img.fetchPriority = "low";
-        }
-
-        img.src = src;
-      });
+    const updateProgress = (count) => {
+      if (!isMounted) return;
+      loadedCount = count;
+      setProgress(Math.round((loadedCount / totalImages) * 100));
     };
 
-    // Sort images by priority
-    const sortedImages = [...images].sort((a, b) => {
-      const aIsPriority = a.includes("hero") || a.includes("background");
-      const bIsPriority = b.includes("hero") || b.includes("background");
-      return bIsPriority - aIsPriority;
+    const loadImage = async (src) => {
+      if (isCached(src)) {
+        setLoadedImages((prev) => new Set([...prev, src]));
+        return true;
+      }
+
+      try {
+        await preload(src);
+        if (isMounted) {
+          setLoadedImages((prev) => new Set([...prev, src]));
+        }
+        return true;
+      } catch (error) {
+        console.error(`Failed to preload: ${src}`, error);
+        return false;
+      }
+    };
+
+    // Load priority images first
+    const loadPriorityImages = async () => {
+      await Promise.all(priorityImages.map((src) => loadImage(src)));
+      if (isMounted) {
+        setPriorityDone(true);
+        updateProgress(priorityImages.length);
+      }
+    };
+
+    // Load regular images in chunks
+    const loadRegularImages = async () => {
+      const CHUNK_SIZE = 4;
+      for (let i = 0; i < regularImages.length; i += CHUNK_SIZE) {
+        const chunk = regularImages.slice(i, i + CHUNK_SIZE);
+        await Promise.all(chunk.map((src) => loadImage(src)));
+        if (isMounted) {
+          updateProgress(priorityImages.length + i + chunk.length);
+        }
+      }
+    };
+
+    // Start loading process
+    loadPriorityImages().then(() => {
+      if (regularImages.length > 0) {
+        loadRegularImages();
+      }
     });
 
-    // Preload images in parallel with priority
-    Promise.allSettled(sortedImages.map(preloadImage)).catch((error) =>
-      console.error("Error preloading images:", error)
-    );
-  }, [images]);
+    return () => {
+      isMounted = false;
+    };
+  }, [images, preload, isCached, getPriority]);
 
   return {
     progress,
     isLoaded: loadedImages.size === images.length,
+    priorityDone,
     loadedImages,
   };
 };

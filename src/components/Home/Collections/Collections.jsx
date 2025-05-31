@@ -1,18 +1,95 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Link } from "react-router-dom";
 import TranslatedText from "../../../components/TranslatedText";
-import { useAssets } from "../../../hooks/useAssets";
+import OptimizedImage from "../../OptimizedImage/OptimizedImage";
 import "./Collections.css";
 
-// Define wave pattern offsets for each item
-const getWaveOffset = (index) => {
-  // Create a wavy pattern with alternating up and down positions
-  const patterns = [-25, 35, -15, 20, -30, 40, -20, 30, -10, 25];
+// Collections data - memoized to prevent unnecessary re-creation
+const collectionsData = [
+  {
+    id: 1,
+    title: "Dụng cụ âm nhạc Tây Nguyên",
+    artist: "Trưng bày",
+    image: "Cồng Chiên.webp",
+    alt: "Dụng cụ âm nhạc Tây Nguyên",
+    description:
+      "Musée Du Pin trưng bày các nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, tiêu biểu là cồng chiêng – biểu tượng văn hóa và tín ngưỡng thiêng liêng. Âm thanh vang vọng của cồng chiêng thể hiện sự kết nối sâu sắc giữa con người và thế giới tâm linh.",
+  },
+  {
+    id: 2,
+    title: "K'ho chăn nuôi",
+    artist: "Trưng bày",
+    image: "Lồng Đa Đa.webp",
+    alt: "K'ho chăn nuôi",
+    description:
+      "Lồng đa đa của người K'ho hiện đang được trưng bày tại Musée Du Pin như một biểu tượng mộc mạc nhưng đầy tính văn hóa của đời sống dân tộc Tây Nguyên. Được đan thủ công từ tre nứa, chiếc lồng không chỉ phục vụ mục đích chăn nuôi mà còn phản ánh sự khéo léo, tỉ mỉ và mối liên kết bền chặt giữa con người với thiên nhiên núi rừng.",
+  },
+  {
+    id: 3,
+    title: "K'ho điêu khắc",
+    artist: "Trưng bày",
+    image: "Điêu Khắc.webp",
+    alt: "K'ho điêu khắc",
+    description:
+      "Tác phẩm điêu khắc người dân tộc K'ho đang được trưng bày tại Musée Du Pin thể hiện hình ảnh phụ nữ Tây Nguyên trong dáng đứng trang nghiêm, tay cầm chiếc chiêng nhỏ – biểu tượng của âm nhạc và tín ngưỡng bản địa. Tác phẩm mang đậm phong cách mộc mạc nhưng đầy chiều sâu văn hóa, phản ánh vẻ đẹp nội tâm, tinh thần kiên cường và vai trò quan trọng của người phụ nữ trong đời sống cộng đồng K'ho.",
+  },
+  {
+    id: 4,
+    title: "K'ho lễ hội",
+    artist: "Trưng bày",
+    image: "36 (2).webp",
+    alt: "K'ho lễ hội",
+    description:
+      "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, hiện đang được trưng bày tại Musée Du Pin, đây là biểu tượng của sự giàu có, quyền uy và tín ngưỡng tâm linh trong đời sống người bản địa.",
+  },
+  {
+    id: 5,
+    title: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
+    artist: "Tham quan",
+    image: "Nồi Đất.webp",
+    alt: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
+    description:
+      "Được chế tác thủ công từ đất nung, nồi có hình dáng đơn giản nhưng chắc chắn, thường dùng để nấu ăn trong các dịp lễ hội hoặc sinh hoạt gia đình",
+  },
+  {
+    id: 6,
+    title: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
+    artist: "Tham quan",
+    image: "Chiếc Gùi.webp",
+    alt: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
+    description: "Chiếc gùi",
+  },
+  {
+    id: 7,
+    title: "Phức Tầng",
+    artist: "Tham quan",
+    image: "Thông 2.webp",
+    alt: "Phức Tầng",
+    description:
+      "Được Musée Du Pin bắt trọn khoảng khắc các hình ảnh thiên nhiên đậm sắc dân tộc K'ho, tạo nên bức tranh đẹp về đất nước Tây Nguyên.",
+  },
+  {
+    id: 8,
+    title: "Vật liệu",
+    artist: "Tham quan",
+    image: "Hoa Ban Trắng.webp",
+    alt: "Vật liệu",
+    description: "Vật liệu",
+  },
+];
 
+// Memoized utility functions
+const getWaveOffset = (index) => {
+  const patterns = [-25, 35, -15, 20, -30, 40, -20, 30, -10, 25];
   return patterns[index % patterns.length];
 };
 
-// Define varied sizes for more artistic layout
 const getItemSize = (index) => {
   const sizes = [
     { width: 280, height: 320 },
@@ -21,7 +98,6 @@ const getItemSize = (index) => {
     { width: 270, height: 330 },
     { width: 300, height: 310 },
   ];
-
   return sizes[index % sizes.length];
 };
 
@@ -43,24 +119,23 @@ const Collections = () => {
   const [lastTouchX, setLastTouchX] = useState(0);
   const [lastTouchTime, setLastTouchTime] = useState(0);
   const [touchVelocity, setTouchVelocity] = useState(0);
-  const { assets, getAssetUrl } = useAssets();
 
-  const collectionsData = [
-    // ... define your collection items here with image as string filename ...
-  ];
-
-  // Check device type
+  // Optimized device type detection with debounce
   useEffect(() => {
+    let timeoutId;
     const handleResize = () => {
-      const width = window.innerWidth;
-      setIsMobile(width <= 768);
-      setIsDesktop(width >= 1200);
+      clearTimeout(timeoutId);
+      timeoutId = setTimeout(() => {
+        const width = window.innerWidth;
+        setIsMobile(width <= 768);
+        setIsDesktop(width >= 1200);
+      }, 100);
     };
 
     handleResize();
     window.addEventListener("resize", handleResize);
 
-    // Hide swipe hint after 5 seconds
+    // Hide swipe hint after 5 seconds on mobile
     if (isMobile) {
       const timer = setTimeout(() => {
         setShowSwipeHint(false);
@@ -70,27 +145,27 @@ const Collections = () => {
 
     return () => {
       window.removeEventListener("resize", handleResize);
+      clearTimeout(timeoutId);
     };
   }, [isMobile]);
 
-  // Handle visibility detection with smoother threshold
+  // Optimized intersection observer
+  const handleVisibilityChange = useCallback((entries) => {
+    const entry = entries[0];
+    if (entry.isIntersecting) {
+      const ratio = Math.min(entry.intersectionRatio * 1.5, 1);
+      if (ratio > 0.2) {
+        setIsVisible(true);
+      }
+    } else if (entry.intersectionRatio === 0) {
+      setIsVisible(false);
+    }
+  }, []);
+
   useEffect(() => {
     const options = {
       threshold: [0.1, 0.2, 0.5, 0.8],
-      rootMargin: "0px 0px 100px 0px", // Preload before fully visible
-    };
-
-    const handleVisibilityChange = (entries) => {
-      const entry = entries[0];
-      if (entry.isIntersecting) {
-        // Gradually fade in based on intersection ratio
-        const ratio = Math.min(entry.intersectionRatio * 1.5, 1);
-        if (ratio > 0.2) {
-          setIsVisible(true);
-        }
-      } else if (entry.intersectionRatio === 0) {
-        setIsVisible(false);
-      }
+      rootMargin: "0px 0px 100px 0px",
     };
 
     const observer = new IntersectionObserver(handleVisibilityChange, options);
@@ -104,9 +179,9 @@ const Collections = () => {
         observer.unobserve(scrollContainerRef.current);
       }
     };
-  }, []);
+  }, [handleVisibilityChange]);
 
-  // Calculate widths for scroll animation with debounce
+  // Calculate widths for scroll animation with ResizeObserver
   useEffect(() => {
     if (!scrollContainerRef.current) return;
 
@@ -120,7 +195,6 @@ const Collections = () => {
       }
     };
 
-    // Use ResizeObserver for more precise updates
     if (window.ResizeObserver) {
       const resizeObserver = new ResizeObserver(calculateWidths);
       resizeObserver.observe(scrollContainerRef.current);
@@ -129,7 +203,6 @@ const Collections = () => {
         resizeObserver.disconnect();
       };
     } else {
-      // Fallback for browsers without ResizeObserver
       calculateWidths();
 
       let debounceTimer;
@@ -147,7 +220,7 @@ const Collections = () => {
     }
   }, []);
 
-  // Enhanced auto-scroll animation with variable speed and smoother transitions
+  // Enhanced auto-scroll animation with performance optimization
   useEffect(() => {
     if (!isVisible || isPaused) {
       if (animationRef.current) {
@@ -157,12 +230,10 @@ const Collections = () => {
       return;
     }
 
-    // On desktop with enough width, don't scroll automatically
     if (isDesktop && contentWidth <= containerWidth * 1.5) {
       return;
     }
 
-    // Enhanced scroll speed for desktop
     const baseScrollSpeed = isMobile ? 0.5 : isDesktop ? 0.8 : 1.2;
     const maxScroll = contentWidth - containerWidth;
 
@@ -170,23 +241,17 @@ const Collections = () => {
       if (!lastTimestampRef.current) lastTimestampRef.current = timestamp;
       const elapsed = timestamp - lastTimestampRef.current;
 
-      // Optimized speed calculation for desktop
       let scrollSpeed = baseScrollSpeed;
 
       if (isDesktop) {
-        // Slower, more elegant scrolling for desktop users
         scrollSpeed =
-          baseScrollSpeed *
-          (Math.min(contentWidth / 4000, 1.2) + (isDesktop ? 0.3 : 0.5));
+          baseScrollSpeed * (Math.min(contentWidth / 4000, 1.2) + 0.3);
       } else {
-        // Original speed calculation for other devices
         scrollSpeed =
-          baseScrollSpeed *
-          (Math.min(contentWidth / 3000, 1.5) + (isMobile ? 0.2 : 0.5));
+          baseScrollSpeed * (Math.min(contentWidth / 3000, 1.5) + 0.2);
       }
 
       setScrollPosition((prevPosition) => {
-        // Enhanced easing function for desktop
         const easing = isDesktop
           ? 1 - Math.sin((prevPosition / maxScroll) * Math.PI) * 0.15
           : 1 - Math.sin((prevPosition / maxScroll) * Math.PI) * 0.1;
@@ -194,9 +259,7 @@ const Collections = () => {
         const newPosition =
           prevPosition + scrollSpeed * (elapsed / 16) * easing;
 
-        // Smooth loop with improved transition
         if (newPosition >= maxScroll) {
-          // Enhanced transition for desktop
           return isDesktop ? 0.05 : 0.1;
         }
         return newPosition;
@@ -217,10 +280,9 @@ const Collections = () => {
     };
   }, [isVisible, containerWidth, contentWidth, isPaused, isMobile, isDesktop]);
 
-  // Update scroll position on DOM with performance optimization
+  // Update scroll position with hardware acceleration
   useEffect(() => {
     if (scrollContainerRef.current) {
-      // Use hardware-accelerated transforms for better performance
       if (isMobile) {
         scrollContainerRef.current.style.transform = `translateX(-${scrollPosition}px)`;
       } else {
@@ -229,42 +291,42 @@ const Collections = () => {
     }
   }, [scrollPosition, isMobile]);
 
-  // Enhanced item hover handlers for desktop
-  const handleItemHover = (index) => {
-    if (isDesktop) {
-      setHoverItemIndex(index);
-    }
-  };
+  // Memoized event handlers for better performance
+  const handleItemHover = useCallback(
+    (index) => {
+      if (isDesktop) {
+        setHoverItemIndex(index);
+      }
+    },
+    [isDesktop]
+  );
 
-  const handleItemLeave = () => {
+  const handleItemLeave = useCallback(() => {
     if (isDesktop) {
       setHoverItemIndex(null);
     }
-  };
+  }, [isDesktop]);
 
-  // Pause scrolling on hover or touch with improved mobile handling
-  const handleMouseEnter = () => setIsPaused(true);
-  const handleMouseLeave = () => setIsPaused(false);
+  const handleMouseEnter = useCallback(() => setIsPaused(true), []);
+  const handleMouseLeave = useCallback(() => setIsPaused(false), []);
 
-  // Enhanced touch handling
-  const handleTouchStart = (e) => {
+  // Enhanced touch handling with better performance
+  const handleTouchStart = useCallback((e) => {
     setIsPaused(true);
     setIsUserInteracting(true);
     setTouchStartX(e.touches[0].clientX);
     setLastTouchX(e.touches[0].clientX);
     setLastTouchTime(Date.now());
-    setShowSwipeHint(false); // Hide hint when user interacts
-  };
+    setShowSwipeHint(false);
+  }, []);
 
-  const handleTouchEnd = () => {
+  const handleTouchEnd = useCallback(() => {
     setIsUserInteracting(false);
 
-    // Apply momentum scrolling
     if (Math.abs(touchVelocity) > 0.5) {
       const momentum = touchVelocity * 100;
       const targetScroll = scrollPosition + momentum;
 
-      // Animate to target with easing
       const startScroll = scrollPosition;
       const startTime = Date.now();
       const duration = 500;
@@ -273,7 +335,6 @@ const Collections = () => {
         const elapsed = Date.now() - startTime;
         const progress = Math.min(elapsed / duration, 1);
 
-        // Easing function
         const easeOut = (t) => 1 - Math.pow(1 - t, 3);
         const currentProgress = easeOut(progress);
 
@@ -287,7 +348,6 @@ const Collections = () => {
         if (progress < 1) {
           requestAnimationFrame(animateMomentum);
         } else {
-          // Resume auto-scroll after momentum ends and 1s delay
           setTimeout(() => {
             setIsPaused(false);
           }, 1000);
@@ -296,57 +356,102 @@ const Collections = () => {
 
       requestAnimationFrame(animateMomentum);
     } else {
-      // If no momentum, resume auto-scroll after 1s
       setTimeout(() => {
         setIsPaused(false);
       }, 1000);
     }
-  };
+  }, [touchVelocity, scrollPosition, contentWidth, containerWidth]);
 
-  const handleTouchMove = (e) => {
-    if (isUserInteracting && scrollContainerRef.current) {
-      const touchX = e.touches[0].clientX;
-      const diff = touchStartX - touchX;
+  const handleTouchMove = useCallback(
+    (e) => {
+      if (isUserInteracting && scrollContainerRef.current) {
+        const touchX = e.touches[0].clientX;
+        const diff = touchStartX - touchX;
 
-      // Calculate velocity
-      const now = Date.now();
-      const deltaTime = now - lastTouchTime;
-      const deltaX = touchX - lastTouchX;
-      setTouchVelocity(deltaX / deltaTime);
+        const now = Date.now();
+        const deltaTime = now - lastTouchTime;
+        const deltaX = touchX - lastTouchX;
+        setTouchVelocity(deltaX / deltaTime);
 
-      // Update last position and time
-      setLastTouchX(touchX);
-      setLastTouchTime(now);
+        setLastTouchX(touchX);
+        setLastTouchTime(now);
 
-      // Update scroll position with improved sensitivity and smoothing
-      setScrollPosition((prev) => {
-        const sensitivity = 1.2;
-        const newPosition = prev + diff * sensitivity;
-        setTouchStartX(touchX);
+        setScrollPosition((prev) => {
+          const sensitivity = 1.2;
+          const newPosition = prev + diff * sensitivity;
+          setTouchStartX(touchX);
 
-        // Add resistance at edges
-        if (newPosition < 0) {
-          return Math.max(newPosition * 0.5, -containerWidth * 0.1);
-        }
-        if (newPosition > contentWidth - containerWidth) {
-          const overscroll = newPosition - (contentWidth - containerWidth);
-          return contentWidth - containerWidth + overscroll * 0.5;
-        }
+          if (newPosition < 0) {
+            return Math.max(newPosition * 0.5, -containerWidth * 0.1);
+          }
+          if (newPosition > contentWidth - containerWidth) {
+            const overscroll = newPosition - (contentWidth - containerWidth);
+            return contentWidth - containerWidth + overscroll * 0.5;
+          }
 
-        return newPosition;
-      });
-    }
-  };
+          return newPosition;
+        });
+      }
+    },
+    [
+      isUserInteracting,
+      touchStartX,
+      lastTouchTime,
+      lastTouchX,
+      containerWidth,
+      contentWidth,
+    ]
+  );
 
-  // Map collectionsData to use asset URLs
-  const collectionsDataWithAssets = collectionsData.map((item) => {
-    const asset = assets.find(
-      (a) => a.filename && item.image.includes(a.filename)
-    );
-    return asset
-      ? { ...item, image: asset.url || getAssetUrl(asset.filename) }
-      : item;
-  });
+  // Memoized collection items
+  const collectionItems = useMemo(() => {
+    return collectionsData.map((item, index) => {
+      const waveOffset = getWaveOffset(index);
+      const itemSize = getItemSize(index);
+
+      return (
+        <div
+          key={item.id}
+          className={`collection-item ${
+            hoverItemIndex === index ? "item-hovered" : ""
+          }`}
+          style={{
+            animationDelay: `${index * 0.1}s`,
+            transform: `translateY(${waveOffset}px)`,
+            width: `${itemSize.width}px`,
+            height: `${itemSize.height}px`,
+            transition: "transform 0.5s ease, scale 0.3s ease",
+          }}
+          onMouseEnter={() => handleItemHover(index)}
+          onMouseLeave={handleItemLeave}
+        >
+          <Link to="/collection" className="collection-link">
+            <div className="collection-image-wrapper">
+              <OptimizedImage
+                src={item.image}
+                alt={item.alt}
+                className="collection-image"
+                priority={index < 5}
+                width={itemSize.width}
+                height={itemSize.height}
+                sizes="(max-width: 768px) 280px, (max-width: 1200px) 320px, 350px"
+              />
+              <div className="collection-overlay">
+                <div className="collection-info">
+                  <h3 className="collection-title">
+                    <TranslatedText>{item.title}</TranslatedText>
+                  </h3>
+                  <p className="collection-artist">
+                    <TranslatedText>{item.artist}</TranslatedText>
+                  </p>
+                </div>
+              </div>
+            </div>
+          </Link>
+        </div>
+      );
+    });
+  }, [hoverItemIndex, handleItemHover, handleItemLeave]);
 
   return (
     <section className="collections-section" id="collections">
@@ -402,51 +507,7 @@ const Collections = () => {
             onTouchMove={handleTouchMove}
             style={isMobile ? { overflow: "visible" } : {}}
           >
-            <div className="collection-inner-container">
-              {collectionsDataWithAssets.map((item, index) => {
-                const waveOffset = getWaveOffset(index);
-                const itemSize = getItemSize(index);
-
-                return (
-                  <div
-                    key={item.id}
-                    className={`collection-item ${
-                      hoverItemIndex === index ? "item-hovered" : ""
-                    }`}
-                    style={{
-                      animationDelay: `${index * 0.1}s`,
-                      transform: `translateY(${waveOffset}px)`,
-                      width: `${itemSize.width}px`,
-                      height: `${itemSize.height}px`,
-                      transition: "transform 0.5s ease, scale 0.3s ease",
-                    }}
-                    onMouseEnter={() => handleItemHover(index)}
-                    onMouseLeave={handleItemLeave}
-                  >
-                    <Link to="/collection" className="collection-link">
-                      <div className="collection-image-wrapper">
-                        <img
-                          src={item.image}
-                          alt={item.alt}
-                          className="collection-image"
-                          loading={index < 5 ? "eager" : "lazy"}
-                        />
-                        <div className="collection-overlay">
-                          <div className="collection-info">
-                            <h3 className="collection-title">
-                              <TranslatedText>{item.title}</TranslatedText>
-                            </h3>
-                            <p className="collection-artist">
-                              <TranslatedText>{item.artist}</TranslatedText>
-                            </p>
-                          </div>
-                        </div>
-                      </div>
-                    </Link>
-                  </div>
-                );
-              })}
-            </div>
+            <div className="collection-inner-container">{collectionItems}</div>
           </div>
         </div>
 
@@ -461,4 +522,4 @@ const Collections = () => {
   );
 };
 
-export default Collections;
+export default React.memo(Collections);

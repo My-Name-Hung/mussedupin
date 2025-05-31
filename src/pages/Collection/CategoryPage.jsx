@@ -1,44 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import TranslatedText from "../../components/TranslatedText";
-import useImageCache from "../../hooks/useImageCache";
+import { getAssetUrl } from "../../utils/getAssetUrl";
 import "./CategoryPage.css";
 
-// Import category thumbnails
-import dungcuThumb from "../../assets/home/Collections/DungcuAmNhacTayNguyen/Cồng Chiên.webp";
-import channuoiThumb from "../../assets/home/Collections/K_hoChanNuoi/Lồng Đa Đa.webp";
-import dieukhacThumb from "../../assets/home/Collections/K_hoDieuKhac/Điêu Khắc.webp";
-import lehoiThumb from "../../assets/home/Collections/K_hoLeHoi/Lễ Hội.webp";
-import sanbanThumb from "../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/Chiếc Gùi.webp";
-import sinhoatThumb from "../../assets/home/Collections/K_hoSinhHoatThuongNhat/Nồi Đất.webp";
-import phuctangThumb from "../../assets/home/Collections/PhucTang/Thông 2.webp";
-import vatlieuThumb from "../../assets/home/Collections/VatLieu/Hoa Ban Trắng.webp";
-
-// Import all images for each category
-const dungcuImages = import.meta.glob(
-  "../../assets/home/Collections/DungcuAmNhacTayNguyen/*.webp"
-);
-const khoChanNuoiImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoChanNuoi/*.webp"
-);
-const khoDieuKhacImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoDieuKhac/*.webp"
-);
-const khoLeHoiImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoLeHoi/*.webp"
-);
-const khoSanBanImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/*.webp"
-);
-const khoSinhHoatImages = import.meta.glob(
-  "../../assets/home/Collections/K_hoSinhHoatThuongNhat/*.webp"
-);
-const phucTangImages = import.meta.glob(
-  "../../assets/home/Collections/PhucTang/*.webp"
-);
-const vatLieuImages = import.meta.glob(
-  "../../assets/home/Collections/VatLieu/*.webp"
-);
+// Import thumbnails for each category
 
 // Sample collection data
 const collectionData = {
@@ -46,246 +12,328 @@ const collectionData = {
     {
       id: 1,
       title: "Dụng cụ âm nhạc Tây Nguyên",
-      image: dungcuThumb,
-      images: dungcuImages,
+      description: "Bộ sưu tập nhạc cụ truyền thống của các dân tộc Tây Nguyên",
+      image: "Cồng Chiên.webp",
+      artworks: [
+        {
+          id: "dungcu-1",
+          title: "Cồng Chiên",
+          artist: "Musée Du Pin",
+          year: "2024",
+          image: "Cồng Chiên.webp",
+          description: "Dụng cụ âm nhạc truyền thống của người Tây Nguyên",
+          location: "Khu trưng bày nhạc cụ",
+          tags: ["Nhạc cụ"],
+          images: [
+            "Cồng Chiên.webp",
+            "DSC_2473.webp",
+            "DSC_2475.webp",
+            "DSC_2486.webp",
+            "DSC_2498.webp",
+            "17 (2).webp",
+            "17 (3).webp",
+            "17 (4).webp",
+            "17 (5).webp",
+            "17 (7).webp",
+            "38 (1).webp",
+            "38 (2).webp",
+          ],
+        },
+      ],
     },
     {
       id: 2,
       title: "K'ho chăn nuôi",
-      image: channuoiThumb,
-      images: khoChanNuoiImages,
+      description: "Bộ sưu tập vật dụng chăn nuôi truyền thống của người K'ho",
+      image: "Lồng Đa Đa.webp",
+      artworks: [
+        {
+          id: "channuoi-1",
+          title: "Lồng Đa Đa",
+          artist: "Musée Du Pin",
+          year: "2024",
+          image: "Lồng Đa Đa.webp",
+          description: "Vật dụng chăn nuôi truyền thống của người K'ho",
+          location: "Khu trưng bày đời sống",
+          tags: ["Đời sống", "Văn hóa"],
+          images: [
+            "Lồng Đa Đa.webp",
+            "3 (1).webp",
+            "3 (2).webp",
+            "3 (3).webp",
+            "3 (4).webp",
+            "3.webp",
+            "4 (2).webp",
+          ],
+        },
+      ],
     },
     {
       id: 3,
       title: "K'ho điêu khắc",
-      image: dieukhacThumb,
-      images: khoDieuKhacImages,
+      description: "Bộ sưu tập tác phẩm điêu khắc truyền thống của người K'ho",
+      image: "Điêu Khắc.webp",
+      artworks: [
+        {
+          id: "dieukhac-1",
+          title: "Điêu Khắc",
+          artist: "Musée Du Pin",
+          year: "2024",
+          image: "Điêu Khắc.webp",
+          description: "Tác phẩm điêu khắc truyền thống của người K'ho",
+          location: "Khu trưng bày điêu khắc",
+          tags: ["Điêu khắc"],
+          images: [
+            "Điêu Khắc.webp",
+            "20 (1).webp",
+            "20 (2).webp",
+            "20 (3).webp",
+            "20 (4).webp",
+            "20 (5).webp",
+            "21 (1).webp",
+            "21 (2).webp",
+            "21 (3).webp",
+            "21 (4).webp",
+            "21 (5).webp",
+            "22 (1).webp",
+            "22 (2).webp",
+            "22 (3).webp",
+            "22 (4).webp",
+            "22 (5).webp",
+            "23 (1).webp",
+            "23 (2).webp",
+            "23 (3).webp",
+            "23 (4).webp",
+            "23 (5).webp",
+            "24 (1).webp",
+            "24 (2).webp",
+            "24 (3).webp",
+            "24 (4).webp",
+            "25 (1).webp",
+            "25 (2).webp",
+            "25 (3).webp",
+            "26  (1).webp",
+            "26  (2).webp",
+            "26  (3).webp",
+            "26  (4).webp",
+            "26  (5).webp",
+            "26  (6).webp",
+            "27 (1).webp",
+            "27 (2).webp",
+            "27 (3).webp",
+            "27 (4).webp",
+            "27 (5).webp",
+            "28 (1).webp",
+            "28 (2).webp",
+          ],
+        },
+      ],
     },
     {
       id: 4,
       title: "K'ho lễ hội",
-      image: lehoiThumb,
-      images: khoLeHoiImages,
+      description: "Bộ sưu tập về lễ hội truyền thống của người K'ho",
+      image: "36 (2).webp",
+      artworks: [
+        {
+          id: "lehoi-1",
+          title: "Lễ Hội",
+          artist: "Musée Du Pin",
+          year: "2024",
+          image: "36 (2).webp",
+          description: "Lễ hội truyền thống của người K'ho",
+          location: "Khu trưng bày lễ hội",
+          tags: ["Lễ hội"],
+          images: [
+            "36 (1).webp",
+            "36 (2).webp",
+            "18 (2).webp",
+            "18 (3).webp",
+            "18 (4).webp",
+            "Lễ Hội.webp",
+          ],
+        },
+      ],
     },
     {
       id: 5,
-      title: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
-      image: sanbanThumb,
-      images: khoSanBanImages,
+      title: "K'ho săn bắn & hái lượm",
+      description: "Bộ sưu tập công cụ săn bắn và hái lượm của người K'ho",
+      image: "Chiếc Gùi.webp",
+      artworks: [
+        {
+          id: "sanban-1",
+          title: "Chiếc Gùi",
+          artist: "Musée Du Pin",
+          year: "2024",
+          image: "Chiếc Gùi.webp",
+          description: "Công cụ săn bắn và hái lượm của người K'ho",
+          location: "Khu trưng bày đời sống",
+          tags: ["Đời sống", "Văn hóa"],
+          images: [
+            "Chiếc Gùi.webp",
+            "1 (2).webp",
+            "1(3).webp",
+            "1(4).webp",
+            "1.webp",
+            "2 (1).webp",
+            "2 (3).webp",
+            "2 .webp",
+            "5.webp",
+            "6.webp",
+            "7 (1).webp",
+            "7 (2).webp",
+            "7 (3).webp",
+            "8 (1).webp",
+            "8 (2).webp",
+            "8 (3).webp",
+            "9 (1).webp",
+            "9 (2).webp",
+            "9 (3).webp",
+            "10 (1).webp",
+            "10 (2).webp",
+            "10 (3).webp",
+            "11.webp",
+            "12 (1).webp",
+            "12 (2).webp",
+            "13 (1).webp",
+            "13 (2).webp",
+            "13 (3).webp",
+            "14 (1).webp",
+            "14 (2).webp",
+            "14 (3).webp",
+            "15 (1).webp",
+            "15 (2).webp",
+            "15 (3).webp",
+            "30 (1).webp",
+            "30 (2).webp",
+            "37 (2).webp",
+            "37 (3).webp",
+            "37 (4).webp",
+            "45 (1).webp",
+          ],
+        },
+      ],
     },
     {
       id: 6,
       title: "K'ho sinh hoạt thường nhật",
-      image: sinhoatThumb,
-      images: khoSinhHoatImages,
+      description: "Bộ sưu tập về sinh hoạt thường nhật của người K'ho",
+      image: "Nồi Đất.webp",
+      artworks: [
+        {
+          id: "sinhoat-1",
+          title: "Nồi Đất",
+          artist: "Musée Du Pin",
+          year: "2024",
+          image: "Nồi Đất.webp",
+          description: "Sinh hoạt thường nhật của người K'ho",
+          location: "Khu trưng bày đời sống",
+          tags: ["Đời sống", "K'ho"],
+          images: [
+            "Nồi Đất.webp",
+            "16 (1).webp",
+            "16 (2).webp",
+            "19 (1).webp",
+            "19 (2).webp",
+            "31 (1).webp",
+            "31 (2).webp",
+            "32 (1).webp",
+            "32 (2).webp",
+            "32 (3).webp",
+            "33 (1).webp",
+            "33 (2).webp",
+            "34 (1).webp",
+            "34 (2).webp",
+            "35 (1).webp",
+            "35 (2).webp",
+            "39.webp",
+            "40.webp",
+            "41.webp",
+            "42.webp",
+            "43 (1).webp",
+            "43 (2).webp",
+            "46.webp",
+          ],
+        },
+      ],
     },
     {
       id: 7,
-      title: "Phức Tầng",
-      image: phuctangThumb,
-      images: phucTangImages,
+      title: "Phức tầng",
+      description: "Bộ sưu tập phức tầng văn hóa K'ho",
+      image: "Thông 2.webp",
+      artworks: [
+        {
+          id: "phuctang-1",
+          title: "Thông 2",
+          artist: "Musée Du Pin",
+          year: "2024",
+          image: "Thông 2.webp",
+          description: "Phức tầng văn hóa K'ho",
+          location: "Khu trưng bày phức tầng",
+          tags: ["Phức tầng"],
+          images: [
+            "Thông 1.webp",
+            "Thông 2.webp",
+            "Thông 3.webp",
+            "Thông 4.webp",
+            "Cô đơn.webp",
+            "Gào thét.webp",
+            "Lãng du.webp",
+            "Mênh mang.webp",
+            "Trầm mặc.webp",
+          ],
+        },
+      ],
     },
     {
       id: 8,
       title: "Vật liệu",
-      image: vatlieuThumb,
-      images: vatLieuImages,
-    },
-  ],
-
-  // Tự động tạo artworks từ các hình ảnh đã import
-  artworks: [
-    ...Object.entries(dungcuImages).map(([path, loader], index) => ({
-      id: `dungcu-${index + 1}`,
-      title: path.split("/").pop().replace(".webp", ""),
-      artist: "Musée Du Pin",
-      year: "2024",
-      image: path,
-      imageLoader: loader,
-      description: "Dụng cụ âm nhạc truyền thống của người Tây Nguyên",
-      location: "Khu trưng bày nhạc cụ",
-      tags: ["Nhạc cụ"],
-    })),
-    ...Object.entries(khoChanNuoiImages).map(([path, loader], index) => ({
-      id: `channuoi-${index + 1}`,
-      title: path.split("/").pop().replace(".webp", ""),
-      artist: "Musée Du Pin",
-      year: "2024",
-      image: path,
-      imageLoader: loader,
-      description: "Vật dụng chăn nuôi truyền thống của người K'ho",
-      location: "Khu trưng bày đời sống",
-      tags: ["Đời sống", "Văn hóa"],
-    })),
-    ...Object.entries(khoDieuKhacImages).map(([path, loader], index) => ({
-      id: `dieukhac-${index + 1}`,
-      title: path.split("/").pop().replace(".webp", ""),
-      artist: "Musée Du Pin",
-      year: "2024",
-      image: path,
-      imageLoader: loader,
-      description: "Tác phẩm điêu khắc truyền thống của người K'ho",
-      location: "Khu trưng bày điêu khắc",
-      tags: ["Điêu khắc"],
-    })),
-    ...Object.entries(khoLeHoiImages).map(([path, loader], index) => ({
-      id: `lehoi-${index + 1}`,
-      title: path.split("/").pop().replace(".webp", ""),
-      artist: "Musée Du Pin",
-      year: "2024",
-      image: path,
-      imageLoader: loader,
-      description: "Lễ hội truyền thống của người K'ho",
-      location: "Khu trưng bày lễ hội",
-      tags: ["Lễ hội"],
-    })),
-    ...Object.entries(khoSanBanImages).map(([path, loader], index) => ({
-      id: `sanban-${index + 1}`,
-      title: path.split("/").pop().replace(".webp", ""),
-      artist: "Musée Du Pin",
-      year: "2024",
-      image: path,
-      imageLoader: loader,
-      description: "Công cụ săn bắn và hái lượm của người K'ho",
-      location: "Khu trưng bày đời sống",
-      tags: ["Đời sống", "Văn hóa"],
-    })),
-    ...Object.entries(khoSinhHoatImages).map(([path, loader], index) => ({
-      id: `sinhoat-${index + 1}`,
-      title: path.split("/").pop().replace(".webp", ""),
-      artist: "Musée Du Pin",
-      year: "2024",
-      image: path,
-      imageLoader: loader,
-      description: "Sinh hoạt thường nhật của người K'ho",
-      location: "Khu trưng bày đời sống",
-      tags: ["Đời sống", "K'ho"],
-    })),
-    ...Object.entries(phucTangImages).map(([path, loader], index) => ({
-      id: `phuctang-${index + 1}`,
-      title: path.split("/").pop().replace(".webp", ""),
-      artist: "Musée Du Pin",
-      year: "2024",
-      image: path,
-      imageLoader: loader,
-      description: "Phức tầng văn hóa K'ho",
-      location: "Khu trưng bày phức tầng",
-      tags: ["Phức tầng"],
-    })),
-  ],
-
-  highlights: [
-    {
-      id: 1,
-      title: "Nhạc cụ truyền thống",
-      category: "Nhạc cụ",
-      image: dungcuThumb,
-      type: "video",
-      youtubeId: "dQw4w9WgXcQ",
-      description:
-        "Khám phá âm nhạc truyền thống của người Tây Nguyên qua các nhạc cụ độc đáo.",
-    },
-    {
-      id: 2,
-      title: "Điêu khắc K'ho",
-      category: "Điêu khắc",
-      image: dieukhacThumb,
-      type: "image",
-      artwork: 1,
-      description:
-        "Nghệ thuật điêu khắc truyền thống của người K'ho qua các tác phẩm tiêu biểu.",
-    },
-    {
-      id: 3,
-      title: "Đời sống thường nhật",
-      category: "Đời sống",
-      image: sinhoatThumb,
-      type: "video",
-      youtubeId: "dQw4w9WgXcQ",
-      description:
-        "Tìm hiểu về cuộc sống hàng ngày của người K'ho qua các vật dụng sinh hoạt.",
-    },
-    {
-      id: 4,
-      title: "Lễ hội truyền thống",
-      category: "Lễ hội",
-      image: lehoiThumb,
-      type: "image",
-      artwork: 4,
-      description:
-        "Khám phá các lễ hội truyền thống và ý nghĩa văn hóa của người K'ho.",
-    },
-    {
-      id: 5,
-      title: "Chăn nuôi K'ho",
-      category: "Chăn nuôi",
-      image: channuoiThumb,
-      type: "video",
-      youtubeId: "dQw4w9WgXcQ",
-      description:
-        "Tìm hiểu về hoạt động chăn nuôi và các công cụ truyền thống của người K'ho.",
-    },
-    {
-      id: 6,
-      title: "Sinh hoạt văn hóa",
-      category: "Sinh hoạt",
-      image: sanbanThumb,
-      type: "image",
-      artwork: 2,
-      description:
-        "Khám phá các hoạt động sinh hoạt văn hóa đặc trưng của người K'ho.",
-    },
-    {
-      id: 7,
-      title: "Vật liệu K'ho",
-      category: "Vật liệu",
-      image: vatlieuThumb,
-      type: "image",
-      artwork: 1,
-      description:
-        "Khám phá các chất liệu truyền thống và ý nghĩa văn hóa của người K'ho.",
-    },
-  ],
-
-  relatedArtworks: [
-    {
-      id: 1,
-      title: "Tác phẩm tương tự",
-      description:
-        "Khám phá các tác phẩm có phong cách, chủ đề hoặc thời kỳ tương tự",
-      items: [2, 5, 8],
-    },
-    {
-      id: 2,
-      title: "Cùng nghệ nhân",
-      description: "Khám phá thêm các tác phẩm của cùng nghệ nhân",
-      items: [3, 7, 1],
-    },
-    {
-      id: 3,
-      title: "Có thể bạn quan tâm",
-      description: "Dựa trên sở thích của bạn về danh mục này",
-      items: [4, 6, 2],
+      description: "Bộ sưu tập vật liệu văn hóa K'ho",
+      image: "Hoa Ban Trắng.webp",
+      artworks: [
+        {
+          id: "vatlieu-1",
+          title: "Vật liệu",
+          artist: "Musée Du Pin",
+          year: "2024",
+          image: "Hoa Ban Trắng.webp",
+          description: "Vật liệu văn hóa K'ho",
+          location: "Khu trưng bày vật liệu",
+          tags: ["Vật liệu"],
+          images: [
+            "Hoa Ban Trắng.webp",
+            "Bình yên 1.webp",
+            "Bình Yên 2.webp",
+            "Dâu tây.webp",
+            "Hoài Niệm.webp",
+            "Hoàng hôn.webp",
+            "Thác đổ.webp",
+            "Toa Tàu.webp",
+            "Tuổi ấu thơ.webp",
+            "Ống khói.webp",
+          ],
+        },
+      ],
     },
   ],
 };
 
 const CategoryPage = () => {
-  const { id } = useParams();
-  const [category, setCategory] = useState(null);
+  const { category } = useParams();
+  const [categoryData, setCategoryData] = useState(null);
   const [artworks, setArtworks] = useState([]);
-  const [selectedArtwork, setSelectedArtwork] = useState(null);
+  const [selectedImageId, setSelectedImageId] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isLoaded, setIsLoaded] = useState(false);
-  const [modalSlide, setModalSlide] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [allModalImages, setAllModalImages] = useState([]);
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [heroLoaded, setHeroLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [loadedImages, setLoadedImages] = useState({});
-  const [modalLoading, setModalLoading] = useState(false);
   const artworksRef = useRef(null);
-  const modalContentRef = useRef(null);
   const heroImageRef = useRef(null);
-  const { preloadAll } = useImageCache();
 
   // Check if device is mobile
   useEffect(() => {
@@ -305,155 +353,138 @@ const CategoryPage = () => {
 
   // Load images for the current category (only preload thumbnail, not all images)
   useEffect(() => {
-    const loadCategoryImages = async () => {
+    // Reset state for new category
+    setIsLoaded(false);
+    setCategoryData(null);
+    setArtworks([]);
+
+    // Get trail data
+    try {
+      console.log("Loading category with ID:", category);
+      console.log("Available categories:", collectionData.categories);
+
       const foundCategory = collectionData.categories.find(
-        (cat) => cat.id === parseInt(id)
+        (cat) => cat.id === parseInt(category)
       );
 
+      console.log("Found category:", foundCategory);
+
       if (foundCategory) {
-        setCategory(foundCategory);
+        setCategoryData(foundCategory);
 
-        // Load all images for the category
-        const imageEntries = Object.entries(foundCategory.images);
-        const loadedImageUrls = {};
+        // Create artwork entries with all images
+        const categoryArtworks = foundCategory.artworks.map((artwork) => {
+          // Get all images for this artwork
+          const allImages = artwork.images.map((imageName) => ({
+            id: `${artwork.id}-${imageName}`,
+            title: imageName.split(".")[0],
+            artist: artwork.artist,
+            year: artwork.year,
+            image: imageName,
+            description: artwork.description,
+            location: artwork.location,
+            tags: artwork.tags,
+          }));
 
-        // Load all images
-        for (const [path, loader] of imageEntries) {
-          try {
-            const module = await loader();
-            loadedImageUrls[path] = module.default;
-          } catch (error) {
-            console.error(`Error loading image ${path}:`, error);
-          }
-        }
-
-        // Get tags based on category
-        const getCategoryTags = (categoryId) => {
-          switch (categoryId) {
-            case 1:
-              return ["Nhạc cụ", "Văn hóa", "Tây Nguyên"];
-            case 2:
-              return ["Đời sống", "Văn hóa"];
-            case 3:
-              return ["Điêu khắc"];
-            case 4:
-              return ["Lễ hội"];
-            case 5:
-              return ["Đời sống", "Văn hóa"];
-            case 6:
-              return ["Đời sống", "K'ho"];
-            case 7:
-              return ["Phức tầng"];
-            case 8:
-              return ["Vật liệu"];
-            default:
-              return ["K'ho"];
-          }
-        };
-
-        // Create artwork entries with loaded images
-        const categoryArtworks = imageEntries.map(([path], index) => ({
-          id: `${foundCategory.id}-${index + 1}`,
-          title: path.split("/").pop().replace(".webp", ""),
-          artist: "Musée Du Pin",
-          year: "2024",
-          image: loadedImageUrls[path] || null,
-          imagePath: path,
-          imageLoader: foundCategory.images[path],
-          description: `${foundCategory.title} - ${path
-            .split("/")
-            .pop()
-            .replace(".webp", "")}`,
-          location: "Khu trưng bày",
-          tags: getCategoryTags(foundCategory.id),
-        }));
+          return {
+            ...artwork,
+            allImages: allImages,
+          };
+        });
 
         setArtworks(categoryArtworks);
-        setLoadedImages(loadedImageUrls);
+        setIsLoaded(true);
+        document.title = `${foundCategory.title} | Musée Du Pin`;
+        console.log("Category loaded successfully");
+      } else {
+        // Handle case when category is not found
+        console.warn(`Category with ID ${category} not found`);
+        setCategoryData(null);
         setIsLoaded(true);
       }
-    };
-
-    loadCategoryImages();
-  }, [id]);
-
-  // Lazy-load image for modal when needed
-  const ensureImageLoaded = async (artwork, idx) => {
-    if (artwork.image) return artwork.image;
-    if (loadedImages[artwork.imagePath]) return loadedImages[artwork.imagePath];
-
-    setModalLoading(true);
-    try {
-      const module = await artwork.imageLoader();
-      const imageUrl = module.default;
-
-      setLoadedImages((prev) => ({
-        ...prev,
-        [artwork.imagePath]: imageUrl,
-      }));
-
-      setArtworks((prev) => {
-        const newArr = [...prev];
-        newArr[idx] = { ...newArr[idx], image: imageUrl };
-        return newArr;
-      });
-
-      setModalLoading(false);
-      return imageUrl;
-    } catch (error) {
-      console.error("Error loading image:", error);
-      setModalLoading(false);
-      return null;
+    } catch (err) {
+      console.error("Error loading category data:", err);
+      setCategoryData(null);
+      setIsLoaded(true);
     }
-  };
+  }, [category]);
 
-  // Open modal and lazy-load image if needed
-  const openArtworkModal = async (artwork) => {
-    const idx = artworks.findIndex((art) => art.id === artwork.id);
-    setModalSlide(idx);
+  const openModal = (imageId) => {
+    // Find all images for the modal
+    const allImages = [];
+    Object.values(artworks).forEach((artwork) => {
+      allImages.push(...artwork.allImages);
+    });
+
+    setAllModalImages(allImages);
+
+    // Find current image index
+    const imageIndex = allImages.findIndex((img) => img.id === imageId);
+    setCurrentImageIndex(imageIndex >= 0 ? imageIndex : 0);
+
+    setSelectedImageId(imageId);
     setIsModalOpen(true);
-    setSelectedArtwork(artwork);
     document.body.style.overflow = "hidden";
-    if (!artwork.image) {
-      await ensureImageLoaded(artwork, idx);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+    setSelectedImageId(null);
+    document.body.style.overflow = "auto";
+  };
+
+  const navigateModal = (direction) => {
+    if (allModalImages.length === 0) return;
+
+    let newIndex = currentImageIndex + direction;
+
+    if (newIndex < 0) {
+      newIndex = allModalImages.length - 1;
+    } else if (newIndex >= allModalImages.length) {
+      newIndex = 0;
+    }
+
+    setCurrentImageIndex(newIndex);
+    setSelectedImageId(allModalImages[newIndex].id);
+  };
+
+  const goToImage = (index) => {
+    if (index >= 0 && index < allModalImages.length) {
+      setCurrentImageIndex(index);
+      setSelectedImageId(allModalImages[index].id);
     }
   };
 
-  // Navigate between artworks in modal (lazy-load image if needed)
-  const navigateModal = async (direction) => {
-    const newIndex =
-      (modalSlide + direction + artworks.length) % artworks.length;
-    setModalSlide(newIndex);
-    setSelectedArtwork(artworks[newIndex]);
-    if (!artworks[newIndex].image) {
-      await ensureImageLoaded(artworks[newIndex], newIndex);
+  // Handle download functionality
+  const handleDownload = (imageData) => {
+    const link = document.createElement("a");
+    link.href = getAssetUrl(imageData.image);
+    link.download = `${imageData.title
+      .replace(/\s+/g, "-")
+      .toLowerCase()}-musee-du-pin.webp`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const handleKeyDown = (e) => {
+    if (!isModalOpen) return;
+
+    if (e.key === "ArrowLeft") {
+      navigateModal(-1);
+    } else if (e.key === "ArrowRight") {
+      navigateModal(1);
+    } else if (e.key === "Escape") {
+      closeModal();
     }
   };
 
-  // Dot navbar click (lazy-load image if needed)
-  const handleDotClick = async (idx) => {
-    setModalSlide(idx);
-    setSelectedArtwork(artworks[idx]);
-    if (!artworks[idx].image) {
-      await ensureImageLoaded(artworks[idx], idx);
-    }
-  };
-
-  // Close modal when pressing escape key
   useEffect(() => {
-    const handleKeyDown = (e) => {
-      if (e.key === "Escape") {
-        closeModal();
-      } else if (e.key === "ArrowRight" && isModalOpen && selectedArtwork) {
-        navigateModal(1);
-      } else if (e.key === "ArrowLeft" && isModalOpen && selectedArtwork) {
-        navigateModal(-1);
-      }
-    };
-
     window.addEventListener("keydown", handleKeyDown);
-    return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isModalOpen, selectedArtwork]);
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [isModalOpen, currentImageIndex, allModalImages.length]);
 
   // Handle mouse movement for parallax effect - only on non-mobile
   const handleMouseMove = (e) => {
@@ -463,15 +494,14 @@ const CategoryPage = () => {
     const x = (e.clientX - width / 2) / (width / 2);
     const y = (e.clientY - height / 2) / (height / 2);
 
-    // Handle mouse movement for parallax effect - only on non-mobile
-    // ... existing code ...
+    setMousePosition({ x, y });
   };
 
   // Handle touch start for items (to improve touch experience)
   const handleTouchStart = (artwork, e) => {
     // Set a timeout to determine if it's a tap (not a scroll)
     const touchTimeout = setTimeout(() => {
-      openArtworkModal(artwork);
+      openModal(artwork.id);
     }, 200);
 
     // Store timeout ID on the element
@@ -492,94 +522,64 @@ const CategoryPage = () => {
     }
   };
 
-  const closeModal = () => {
-    // Add closing animation class
-    if (modalContentRef.current) {
-      modalContentRef.current.classList.add("closing");
-
-      setTimeout(() => {
-        setIsModalOpen(false);
-        document.body.style.overflow = "auto";
-      }, 400);
-    } else {
-      setIsModalOpen(false);
-      document.body.style.overflow = "auto";
-    }
-  };
-
-  // Separate handler for close button to ensure it works
-  const handleCloseButtonClick = () => {
-    setIsModalOpen(false);
-    document.body.style.overflow = "auto";
-  };
-
   // Handle hero image loaded
   const handleHeroImageLoaded = () => {
     setHeroLoaded(true);
   };
 
-  // Download artwork image
-  const handleDownload = (artwork) => {
-    const link = document.createElement("a");
-    link.href = artwork.image;
-    link.download = `${artwork.title.replace(/\s+/g, "-").toLowerCase()}.jpg`;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
+  // Handle visit button click
+  const handleVisitClick = () => {
+    console.log("Visit button clicked - navigating to /visit#tickets");
+    closeModal();
   };
 
-  // Handle swipe in modal for mobile navigation
-  const handleSwipeStart = useRef({ x: 0, y: 0, time: 0 });
-
-  const handleTouchStartModal = (e) => {
-    const touch = e.touches[0];
-    handleSwipeStart.current = {
-      x: touch.clientX,
-      y: touch.clientY,
-      time: Date.now(),
-    };
-  };
-
-  const handleTouchEndModal = (e) => {
-    if (e.changedTouches.length === 0) return;
-
-    const touch = e.changedTouches[0];
-    const distX = touch.clientX - handleSwipeStart.current.x;
-    const distY = touch.clientY - handleSwipeStart.current.y;
-    const time = Date.now() - handleSwipeStart.current.time;
-
-    // Check if it's a horizontal swipe
-    if (Math.abs(distX) > 50 && Math.abs(distY) < 100 && time < 300) {
-      // Right to left swipe
-      if (distX < 0) {
-        navigateModal(1);
-      }
-      // Left to right swipe
-      else {
-        navigateModal(-1);
-      }
-    }
-  };
-
-  // Preload toàn bộ ảnh gallery khi mở modal đầu tiên (nếu có nhiều ảnh)
-  useEffect(() => {
-    if (isModalOpen && artworks.length > 0) {
-      const unloaded = artworks.filter((a) => !a.image && a.imageLoader);
-      if (unloaded.length > 0) {
-        const srcArr = unloaded.map((a) => a.imagePath);
-        // Preload tất cả ảnh chưa có
-        preloadAll(srcArr);
-      }
-    }
-  }, [isModalOpen, artworks, preloadAll]);
-
-  if (!category) {
+  if (!isLoaded) {
     return (
       <div className="category-loading">
         <div className="spinner"></div>
         <p>
           <TranslatedText>Loading category...</TranslatedText>
         </p>
+      </div>
+    );
+  }
+
+  if (!categoryData) {
+    return (
+      <div className="category-page">
+        <div className="category-not-found">
+          <Link to="/collection" className="category-back-button">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="20"
+              height="20"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M19 12H5M12 19l-7-7 7-7"></path>
+            </svg>
+            <span>
+              <TranslatedText>Quay lại Bộ sưu tập</TranslatedText>
+            </span>
+          </Link>
+          <div className="not-found-content">
+            <h1>
+              <TranslatedText>Không tìm thấy danh mục</TranslatedText>
+            </h1>
+            <p>
+              <TranslatedText>
+                Danh mục bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.
+              </TranslatedText>
+            </p>
+            <Link to="/collection" className="btn-primary">
+              <TranslatedText>Xem tất cả bộ sưu tập</TranslatedText>
+            </Link>
+          </div>
+        </div>
       </div>
     );
   }
@@ -594,11 +594,11 @@ const CategoryPage = () => {
       >
         <div className="category-hero-slides-container">
           <div className="category-hero-slide active">
-            {category && (
+            {categoryData && (
               <img
                 ref={heroImageRef}
-                src={category.image}
-                alt={category.title}
+                src={getAssetUrl(categoryData.image)}
+                alt={categoryData.title}
                 className="category-hero-img"
                 onLoad={handleHeroImageLoaded}
               />
@@ -627,7 +627,7 @@ const CategoryPage = () => {
         <div className="category-hero-content">
           <h1
             className={`category-hero-title ${
-              category?.title.length > 30 ? "long-title" : ""
+              categoryData?.title.length > 30 ? "long-title" : ""
             }`}
           ></h1>
         </div>
@@ -649,276 +649,272 @@ const CategoryPage = () => {
           <header className="category-artworks-header">
             <h2 className="category-artworks-title">
               <TranslatedText>
-                Khám phá bộ sưu tập {category?.title}
+                Khám phá bộ sưu tập {categoryData?.title}
               </TranslatedText>
             </h2>
             <p className="category-artworks-count">
-              <span>{artworks.length}</span>{" "}
+              <span>
+                {artworks.reduce(
+                  (total, artwork) => total + artwork.images.length,
+                  0
+                )}
+              </span>{" "}
               <TranslatedText>tác phẩm</TranslatedText>
             </p>
           </header>
 
           <div className="category-artworks-grid">
-            {artworks.map((artwork, index) => (
-              <div
-                key={artwork.id}
-                className={`category-artwork-card`}
-                onClick={() => openArtworkModal(artwork)}
-                onTouchStart={(e) => handleTouchStart(artwork, e)}
-                onTouchEnd={handleTouchEnd}
-                onTouchMove={handleTouchMove}
-              >
-                <div className="category-artwork-image-container">
-                  <img
-                    src={artwork.image}
-                    alt={artwork.title}
-                    className="category-artwork-image"
-                    loading="lazy"
-                  />
-                  <div className="category-artwork-overlay">
-                    <div className="artwork-quick-info">
-                      <h3 className="artwork-overlay-title">{artwork.title}</h3>
-                      <p className="artwork-overlay-artist">{artwork.artist}</p>
+            {artworks.map((artwork) =>
+              artwork.images.map((image, imageIndex) => (
+                <div
+                  key={`${artwork.id}-${imageIndex}`}
+                  className={`category-artwork-card ${
+                    isLoaded ? "appear" : ""
+                  }`}
+                  onClick={() => openModal(image)}
+                  onTouchStart={(e) => handleTouchStart(artwork, e)}
+                  onTouchEnd={handleTouchEnd}
+                  onTouchMove={handleTouchMove}
+                  style={{
+                    "--index": imageIndex,
+                    animationDelay: `${100 + imageIndex * 120}ms`,
+                    transform: !isMobile
+                      ? `perspective(1000px) 
+                       rotateX(${mousePosition.y * 5}deg) 
+                       rotateY(${-mousePosition.x * 5}deg)
+                       translateZ(10px)`
+                      : "none",
+                  }}
+                >
+                  <div className="category-artwork-image-container">
+                    <img
+                      src={getAssetUrl(image)}
+                      alt={artwork.title}
+                      className="category-artwork-image"
+                      loading={imageIndex < 12 ? "eager" : "lazy"}
+                      style={{
+                        transform: !isMobile
+                          ? `translateX(${mousePosition.x * -15}px) 
+                           translateY(${mousePosition.y * -15}px)`
+                          : "none",
+                      }}
+                    />
+                    <div className="category-artwork-overlay">
+                      <div className="artwork-quick-info">
+                        <h3 className="artwork-overlay-title">
+                          {artwork.title}
+                        </h3>
+                        <p className="artwork-overlay-artist">
+                          {artwork.artist}
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="category-artwork-info">
+                    <h3 className="category-artwork-title">{artwork.title}</h3>
+                    <p className="category-artwork-artist">{artwork.artist}</p>
+                    <p className="category-artwork-year">{artwork.year}</p>
+                    <div className="category-artwork-tags">
+                      {artwork.tags.slice(0, 3).map((tag, i) => (
+                        <span key={i} className="category-artwork-tag">
+                          {tag}
+                        </span>
+                      ))}
                     </div>
                   </div>
                 </div>
-                <div className="category-artwork-info">
-                  <h3 className="category-artwork-title">{artwork.title}</h3>
-                  <p className="category-artwork-artist">{artwork.artist}</p>
-                  <p className="category-artwork-year">{artwork.year}</p>
-                  <div className="category-artwork-tags">
-                    {artwork.tags.slice(0, 3).map((tag, i) => (
-                      <span key={i} className="category-artwork-tag">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </div>
-            ))}
+              ))
+            )}
           </div>
         </div>
       </section>
 
-      {/* Artwork Modal */}
-      {isModalOpen && selectedArtwork && (
-        <div
-          className="artwork-modal"
-          onTouchStart={handleTouchStartModal}
-          onTouchEnd={handleTouchEndModal}
-        >
-          <div className="artwork-modal-content" ref={modalContentRef}>
-            <div className="artwork-modal-close-wrapper">
-              <button
-                type="button"
-                className="artwork-modal-close"
-                onClick={handleCloseButtonClick}
-                aria-label="Đóng"
+      {/* Enhanced Modal with navigation */}
+      {isModalOpen && selectedImageId && (
+        <div className="modal-overlay" onClick={closeModal}>
+          <div className="modal-content" onClick={(e) => e.stopPropagation()}>
+            {/* Close button */}
+            <button className="modal-close" onClick={closeModal}>
+              <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
               >
-                <svg viewBox="0 0 24 24" width="20" height="20">
-                  <path
-                    d="M18 6L6 18M6 6l12 12"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  ></path>
-                </svg>
-              </button>
-            </div>
+                <line x1="18" y1="6" x2="6" y2="18"></line>
+                <line x1="6" y1="6" x2="18" y2="18"></line>
+              </svg>
+            </button>
 
-            <div className="artwork-modal-body">
-              <div className="artwork-modal-image-container">
-                <div className="artwork-image-frame">
-                  {/* Left navigation button */}
-                  {artworks.length > 1 && (
-                    <button
-                      className="artwork-modal-nav-btn left"
-                      onClick={() => navigateModal(-1)}
-                      aria-label="Previous image"
+            {/* Image section with black background */}
+            <div className="modal-image-section">
+              {/* Navigation arrows */}
+              {allModalImages.length > 1 && (
+                <>
+                  <button
+                    className="modal-nav modal-prev"
+                    onClick={() => navigateModal(-1)}
+                    aria-label="Previous image"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
                     >
-                      <svg
-                        width="32"
-                        height="32"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <polyline points="15 18 9 12 15 6"></polyline>
-                      </svg>
-                    </button>
-                  )}
-                  {modalLoading ? (
-                    <div className="artwork-modal-img-loading">
-                      <div className="spinner"></div>
-                      <p>
-                        <TranslatedText>Đang tải ảnh...</TranslatedText>
-                      </p>
-                    </div>
-                  ) : (
-                    <img
-                      src={selectedArtwork.image}
-                      alt={selectedArtwork.title}
-                      className="artwork-modal-image"
-                      onError={(e) => {
-                        console.error(
-                          "Error loading image:",
-                          selectedArtwork.image
-                        );
-                        e.target.src = "path/to/fallback-image.jpg"; // Add a fallback image
-                      }}
+                      <polyline points="15,18 9,12 15,6"></polyline>
+                    </svg>
+                  </button>
+
+                  <button
+                    className="modal-nav modal-next"
+                    onClick={() => navigateModal(1)}
+                    aria-label="Next image"
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <polyline points="9,18 15,12 9,6"></polyline>
+                    </svg>
+                  </button>
+                </>
+              )}
+
+              {/* Main image */}
+              <div className="modal-image-container">
+                {allModalImages[currentImageIndex] && (
+                  <img
+                    src={getAssetUrl(allModalImages[currentImageIndex].image)}
+                    alt={allModalImages[currentImageIndex].title}
+                    className="modal-image"
+                  />
+                )}
+              </div>
+
+              {/* Dots navigation */}
+              {allModalImages.length > 1 && (
+                <div className="modal-dots-navigation">
+                  {allModalImages.map((_, index) => (
+                    <button
+                      key={index}
+                      className={`modal-dot ${
+                        index === currentImageIndex ? "active" : ""
+                      }`}
+                      onClick={() => goToImage(index)}
+                      aria-label={`Go to image ${index + 1}`}
                     />
-                  )}
-                  {/* Right navigation button */}
-                  {artworks.length > 1 && (
-                    <button
-                      className="artwork-modal-nav-btn right"
-                      onClick={() => navigateModal(1)}
-                      aria-label="Next image"
-                    >
-                      <svg
-                        width="32"
-                        height="32"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                      >
-                        <polyline points="9 18 15 12 9 6"></polyline>
-                      </svg>
-                    </button>
-                  )}
+                  ))}
                 </div>
+              )}
 
+              {/* Download button */}
+              {allModalImages[currentImageIndex] && (
                 <button
-                  className="cp-artwork-download-button"
-                  onClick={() => handleDownload(selectedArtwork)}
+                  className="modal-download-btn"
+                  onClick={() =>
+                    handleDownload(allModalImages[currentImageIndex])
+                  }
+                  title="Tải ảnh"
                 >
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
                   >
                     <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-                    <polyline points="7 10 12 15 17 10"></polyline>
+                    <polyline points="7,10 12,15 17,10"></polyline>
                     <line x1="12" y1="15" x2="12" y2="3"></line>
                   </svg>
-                  <span>
-                    <TranslatedText>Tải ảnh</TranslatedText>
-                  </span>
+                  <span>Tải ảnh</span>
                 </button>
+              )}
 
-                {/* Dot navbar */}
-                {artworks.length > 1 && (
-                  <div className="artwork-modal-dot-navbar">
-                    {artworks.map((_, idx) => (
-                      <button
-                        key={idx}
-                        className={`artwork-modal-dot${
-                          modalSlide === idx ? " active" : ""
-                        }`}
-                        onClick={() => handleDotClick(idx)}
-                        aria-label={`Xem ảnh ${idx + 1}`}
-                      />
-                    ))}
-                  </div>
-                )}
+              {/* Counter */}
+              <div className="modal-counter">
+                {currentImageIndex + 1} / {allModalImages.length}
               </div>
+            </div>
 
-              <div className="artwork-modal-details">
-                <div className="artwork-modal-nav">
-                  <div className="modal-nav-indicator">
-                    <span>{modalSlide + 1}</span>/<span>{artworks.length}</span>
+            {/* Info section with white background */}
+            {allModalImages[currentImageIndex] && (
+              <div className="modal-info-section">
+                <div className="modal-title-main">
+                  {allModalImages[currentImageIndex].title}
+                </div>
+
+                <div className="modal-metadata-grid">
+                  <div className="modal-meta-item">
+                    <div className="modal-meta-label">TÁC GIẢ</div>
+                    <div className="modal-meta-value">
+                      {allModalImages[currentImageIndex].artist}
+                    </div>
+                  </div>
+                  <div className="modal-meta-item">
+                    <div className="modal-meta-label">NĂM</div>
+                    <div className="modal-meta-value">
+                      {allModalImages[currentImageIndex].year}
+                    </div>
+                  </div>
+                  <div className="modal-meta-item">
+                    <div className="modal-meta-label">ĐỊA ĐIỂM</div>
+                    <div className="modal-meta-value">
+                      {allModalImages[currentImageIndex].location}
+                    </div>
                   </div>
                 </div>
 
-                <h2 className="artwork-modal-title">{selectedArtwork.title}</h2>
-
-                <div className="artwork-modal-metadata">
-                  <div className="artwork-metadata-item">
-                    <div className="metadata-label">TÁC GIẢ</div>
-                    <div className="metadata-value">
-                      {selectedArtwork.artist}
-                    </div>
-                  </div>
-
-                  <div className="artwork-metadata-item">
-                    <div className="metadata-label">NĂM</div>
-                    <div className="metadata-value">{selectedArtwork.year}</div>
-                  </div>
-
-                  <div className="artwork-metadata-item">
-                    <div className="metadata-label">ĐỊA ĐIỂM</div>
-                    <div className="metadata-value">
-                      {selectedArtwork.location}
-                    </div>
-                  </div>
-                </div>
-
-                <div className="artwork-modal-tags">
-                  {selectedArtwork.tags.map((tag, index) => (
-                    <span key={index} className="artwork-modal-tag">
+                <div className="modal-tags-section">
+                  {allModalImages[currentImageIndex].tags?.map((tag, index) => (
+                    <span key={index} className="modal-tag-item">
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <div className="artwork-modal-description">
-                  <p>{selectedArtwork.description}</p>
+                <div className="modal-description-text">
+                  {allModalImages[currentImageIndex].description}
                 </div>
 
-                <div className="artwork-modal-location">
-                  <div className="location-icon">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="20"
-                      height="20"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M12 22s-8-4.5-8-11.8A8 8 0 0 1 12 2a8 8 0 0 1 8 8.2c0 7.3-8 11.8-8 11.8z"></path>
-                      <circle cx="12" cy="10" r="3"></circle>
-                    </svg>
-                  </div>
-                  <div className="location-details">
-                    <h4 className="location-title">Địa điểm</h4>
-                    <p className="location-info">{selectedArtwork.location}</p>
-                  </div>
-                </div>
-
-                <a href="/visit" className="artwork-visit-button">
-                  Lập lịch thăm viếng
+                <div className="modal-location-section">
                   <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="18"
-                    height="18"
+                    className="modal-location-icon"
                     viewBox="0 0 24 24"
                     fill="none"
                     stroke="currentColor"
                     strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
+                  >
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                    <circle cx="12" cy="10" r="3"></circle>
+                  </svg>
+                  <div className="modal-location-content">
+                    <div className="modal-location-title">Địa điểm</div>
+                    <div className="modal-location-text">
+                      {allModalImages[currentImageIndex].location}
+                    </div>
+                  </div>
+                </div>
+
+                <Link
+                  to="/visit#tickets"
+                  className="modal-visit-button"
+                  onClick={handleVisitClick}
+                >
+                  Lập lịch thăm viếng
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
                   >
                     <path d="M5 12h14M12 5l7 7-7 7"></path>
                   </svg>
-                </a>
+                </Link>
               </div>
-            </div>
+            )}
           </div>
         </div>
       )}

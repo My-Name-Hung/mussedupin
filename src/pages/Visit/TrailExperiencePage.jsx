@@ -1,17 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { useAssets } from "../../hooks/useAssets";
+import { getAssetUrl } from "../../utils/getAssetUrl";
 import "./TrailExperiencePage.css";
-
-// Import thumbnails for each category
-import dungcuThumb from "../../assets/home/Collections/DungcuAmNhacTayNguyen/Cồng Chiên.webp";
-import channuoiThumb from "../../assets/home/Collections/K_hoChanNuoi/Lồng Đa Đa.webp";
-import dieukhacThumb from "../../assets/home/Collections/K_hoDieuKhac/Điêu Khắc.webp";
-import lehoiThumb from "../../assets/home/Collections/K_hoLeHoi/Lễ Hội.webp";
-import sanbanThumb from "../../assets/home/Collections/K_hoSanBan_HaiLuomTrongTrotChanNuoi/Chiếc Gùi.webp";
-import sinhoatThumb from "../../assets/home/Collections/K_hoSinhHoatThuongNhat/Nồi Đất.webp";
-import phuctangThumb from "../../assets/home/Collections/PhucTang/Thông 2.webp";
-import vatlieuThumb from "../../assets/home/Collections/VatLieu/Hoa Ban Trắng.webp";
 
 // SVG Icons
 const KeyIcon = () => (
@@ -200,7 +190,7 @@ const BackIcon = () => (
   </svg>
 );
 
-// Sample artworks data structure for the trail
+// Get artwork data based on trail ID
 const getArtworkData = (trailId) => {
   const trails = {
     1: [
@@ -208,11 +198,24 @@ const getArtworkData = (trailId) => {
         id: 1,
         title: "DỤNG CỤ ÂM NHẠC TÂY NGUYÊN",
         artist: "Nghệ nhân Tây Nguyên",
-        image: dungcuThumb,
+        image: "Cồng Chiên.webp",
         description:
           "Cồng chiêng là nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, là biểu tượng văn hóa và tín ngưỡng thiêng liêng.",
         room: "Khu trưng bày nhạc cụ",
-        images: dungcuThumb,
+        images: [
+          "Cồng Chiên.webp",
+          "DSC_2473.webp",
+          "DSC_2475.webp",
+          "DSC_2486.webp",
+          "DSC_2498.webp",
+          "17 (2).webp",
+          "17 (3).webp",
+          "17 (4).webp",
+          "17 (5).webp",
+          "17 (7).webp",
+          "38 (1).webp",
+          "38 (2).webp",
+        ],
         access: [
           {
             icon: <LocationIcon />,
@@ -230,11 +233,19 @@ const getArtworkData = (trailId) => {
         id: 1,
         title: "K'HO CHĂN NUÔI",
         artist: "Nghệ nhân K'ho",
-        image: channuoiThumb,
+        image: "Lồng Đa Đa.webp",
         description:
           "Lồng đa đa của người K'ho được đan thủ công từ tre nứa, thể hiện sự khéo léo và mối liên kết với thiên nhiên.",
         room: "Khu trưng bày đời sống",
-        images: channuoiThumb,
+        images: [
+          "Lồng Đa Đa.webp",
+          "3 (1).webp",
+          "3 (2).webp",
+          "3 (3).webp",
+          "3 (4).webp",
+          "3.webp",
+          "4 (2).webp",
+        ],
         access: [
           {
             icon: <LocationIcon />,
@@ -252,11 +263,18 @@ const getArtworkData = (trailId) => {
         id: 1,
         title: "K'HO LỄ HỘI",
         artist: "Cộng đồng K'ho",
-        image: lehoiThumb,
+        image: "36 (2).webp",
         description:
           "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, là biểu tượng của sự giàu có và tín ngưỡng.",
         room: "Khu trưng bày lễ hội",
-        images: lehoiThumb,
+        images: [
+          "36 (1).webp",
+          "36 (2).webp",
+          "18 (2).webp",
+          "18 (3).webp",
+          "18 (4).webp",
+          "Lễ Hội.webp",
+        ],
         access: [
           {
             icon: <LocationIcon />,
@@ -274,11 +292,53 @@ const getArtworkData = (trailId) => {
         id: 1,
         title: "K'HO ĐIÊU KHẮC",
         artist: "Nghệ nhân K'ho",
-        image: dieukhacThumb,
+        image: "Điêu Khắc.webp",
         description:
           "Nghệ thuật điêu khắc K'ho thể hiện đặc trưng văn hóa và đời sống tinh thần của dân tộc.",
         room: "Khu trưng bày điêu khắc",
-        images: dieukhacThumb,
+        images: [
+          "Điêu Khắc.webp",
+          "20 (1).webp",
+          "20 (2).webp",
+          "20 (3).webp",
+          "20 (4).webp",
+          "20 (5).webp",
+          "21 (1).webp",
+          "21 (2).webp",
+          "21 (3).webp",
+          "21 (4).webp",
+          "21 (5).webp",
+          "22 (1).webp",
+          "22 (2).webp",
+          "22 (3).webp",
+          "22 (4).webp",
+          "22 (5).webp",
+          "23 (1).webp",
+          "23 (2).webp",
+          "23 (3).webp",
+          "23 (4).webp",
+          "23 (5).webp",
+          "24 (1).webp",
+          "24 (2).webp",
+          "24 (3).webp",
+          "24 (4).webp",
+          "25 (1).webp",
+          "25 (2).webp",
+          "25 (3).webp",
+          "26  (1).webp",
+          "26  (2).webp",
+          "26  (3).webp",
+          "26  (4).webp",
+          "26  (5).webp",
+          "26  (6).webp",
+          "27 (1).webp",
+          "27 (2).webp",
+          "27 (3).webp",
+          "27 (4).webp",
+          "27 (5).webp",
+          "28 (1).webp",
+          "28 (2).webp",
+        ],
         access: [
           {
             icon: <LocationIcon />,
@@ -296,11 +356,52 @@ const getArtworkData = (trailId) => {
         id: 1,
         title: "K'HO SĂN BẮN & HÁI LƯỢM",
         artist: "Cộng đồng K'ho",
-        image: sanbanThumb,
+        image: "Chiếc Gùi.webp",
         description:
           "Chiếc gùi - vật dụng không thể thiếu trong đời sống của người K'ho, dùng để đựng nông sản và đồ đạc.",
         room: "Khu trưng bày đời sống",
-        images: sanbanThumb,
+        images: [
+          "Chiếc Gùi.webp",
+          "1 (2).webp",
+          "1(3).webp",
+          "1(4).webp",
+          "1.webp",
+          "2 (1).webp",
+          "2 (3).webp",
+          "2 .webp",
+          "5.webp",
+          "6.webp",
+          "7 (1).webp",
+          "7 (2).webp",
+          "7 (3).webp",
+          "8 (1).webp",
+          "8 (2).webp",
+          "8 (3).webp",
+          "9 (1).webp",
+          "9 (2).webp",
+          "9 (3).webp",
+          "10 (1).webp",
+          "10 (2).webp",
+          "10 (3).webp",
+          "11.webp",
+          "12 (1).webp",
+          "12 (2).webp",
+          "13 (1).webp",
+          "13 (2).webp",
+          "13 (3).webp",
+          "14 (1).webp",
+          "14 (2).webp",
+          "14 (3).webp",
+          "15 (1).webp",
+          "15 (2).webp",
+          "15 (3).webp",
+          "30 (1).webp",
+          "30 (2).webp",
+          "37 (2).webp",
+          "37 (3).webp",
+          "37 (4).webp",
+          "45 (1).webp",
+        ],
         access: [
           {
             icon: <LocationIcon />,
@@ -318,11 +419,35 @@ const getArtworkData = (trailId) => {
         id: 1,
         title: "K'HO SINH HOẠT THƯỜNG NHẬT",
         artist: "Cộng đồng K'ho",
-        image: sinhoatThumb,
+        image: "Nồi Đất.webp",
         description:
           "Nồi đất và bầu hồ lô là những vật dụng thiết yếu trong sinh hoạt hàng ngày của người K'ho.",
         room: "Khu trưng bày đời sống",
-        images: sinhoatThumb,
+        images: [
+          "Nồi Đất.webp",
+          "16 (1).webp",
+          "16 (2).webp",
+          "19 (1).webp",
+          "19 (2).webp",
+          "31 (1).webp",
+          "31 (2).webp",
+          "32 (1).webp",
+          "32 (2).webp",
+          "32 (3).webp",
+          "33 (1).webp",
+          "33 (2).webp",
+          "34 (1).webp",
+          "34 (2).webp",
+          "35 (1).webp",
+          "35 (2).webp",
+          "39.webp",
+          "40.webp",
+          "41.webp",
+          "42.webp",
+          "43 (1).webp",
+          "43 (2).webp",
+          "46.webp",
+        ],
         access: [
           {
             icon: <LocationIcon />,
@@ -340,11 +465,21 @@ const getArtworkData = (trailId) => {
         id: 1,
         title: "PHỨC TẦNG",
         artist: "Cộng đồng K'ho",
-        image: phuctangThumb,
+        image: "Thông 2.webp",
         description:
           "Đồi thông là biểu tượng của sự bền vững và tín ngưỡng thiêng liêng trong đời sống người dân Tây Nguyên.",
         room: "Khu trưng bày phức tầng",
-        images: phuctangThumb,
+        images: [
+          "Thông 1.webp",
+          "Thông 2.webp",
+          "Thông 3.webp",
+          "Thông 4.webp",
+          "Cô đơn.webp",
+          "Gào thét.webp",
+          "Lãng du.webp",
+          "Mênh mang.webp",
+          "Trầm mặc.webp",
+        ],
         access: [
           {
             icon: <LocationIcon />,
@@ -362,11 +497,22 @@ const getArtworkData = (trailId) => {
         id: 1,
         title: "VẬT LIỆU",
         artist: "Cộng đồng K'ho",
-        image: vatlieuThumb,
+        image: "Hoa Ban Trắng.webp",
         description:
           "Tại Musée Du Pin, mỗi chất liệu được chọn lựa kỹ lưỡng nhằm tôn vinh vẻ đẹp tự nhiên và bản sắc văn hóa Tây Nguyên.",
         room: "Khu trưng bày vật liệu",
-        images: vatlieuThumb,
+        images: [
+          "Hoa Ban Trắng.webp",
+          "Bình yên 1.webp",
+          "Bình Yên 2.webp",
+          "Dâu tây.webp",
+          "Hoài Niệm.webp",
+          "Hoàng hôn.webp",
+          "Thác đổ.webp",
+          "Toa Tàu.webp",
+          "Tuổi ấu thơ.webp",
+          "Ống khói.webp",
+        ],
         access: [
           {
             icon: <LocationIcon />,
@@ -385,8 +531,9 @@ const getArtworkData = (trailId) => {
 };
 
 const TrailExperiencePage = () => {
-  const { assets, loading, error, getAssetUrl } = useAssets();
   const { trailId, artworkId = 1 } = useParams();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [allImages, setAllImages] = useState([]);
   const [showAccess, setShowAccess] = useState(false);
@@ -404,48 +551,20 @@ const TrailExperiencePage = () => {
       if (currentArtwork) {
         setAccessInfo(currentArtwork.access || []);
 
-        // Load all images for the current artwork
-        const loadImages = async () => {
-          if (currentArtwork && currentArtwork.images) {
-            const imageModules = Object.entries(currentArtwork.images);
-            const loadedImages = await Promise.all(
-              imageModules.map(async ([path, loader]) => {
-                try {
-                  const module = await loader();
-                  return {
-                    path,
-                    url: getAssetUrl(path),
-                    title: path.split("/").pop().replace(".webp", ""),
-                    artist: currentArtwork.artist,
-                    description: currentArtwork.description,
-                    additionalSections: currentArtwork.additionalSections,
-                  };
-                } catch (error) {
-                  console.error(`Error loading image ${path}:`, error);
-                  return null;
-                }
-              })
-            );
+        // Set up images array
+        if (currentArtwork && currentArtwork.images) {
+          const imageData = currentArtwork.images.map((filename) => ({
+            path: filename,
+            url: filename,
+            title: filename.split(".")[0],
+            artist: currentArtwork.artist,
+            description: currentArtwork.description,
+          }));
 
-            // Filter out any failed loads and add the main thumbnail
-            const validImages = loadedImages.filter((img) => img !== null);
-            setAllImages([
-              {
-                path: "main",
-                url: currentArtwork.image,
-                title: currentArtwork.title,
-                artist: currentArtwork.artist,
-                description: currentArtwork.description,
-                additionalSections: currentArtwork.additionalSections,
-              },
-              ...validImages,
-            ]);
-            setCurrentImageIndex(0);
-          }
-        };
-
-        loadImages();
-        setLoading(false);
+          setAllImages(imageData);
+          setCurrentImageIndex(0);
+          setLoading(false);
+        }
       }
 
       // Set trail name based on trail ID
@@ -468,7 +587,7 @@ const TrailExperiencePage = () => {
       setError("Không thể tải dữ liệu. Vui lòng thử lại.");
       setLoading(false);
     }
-  }, [trailId, artworkId, getAssetUrl]);
+  }, [trailId, artworkId]);
 
   const navigateImages = (direction) => {
     const newIndex =
@@ -481,7 +600,6 @@ const TrailExperiencePage = () => {
     title: "",
     artist: "",
     description: "",
-    additionalSections: [],
   };
 
   if (loading) {
@@ -559,7 +677,7 @@ const TrailExperiencePage = () => {
         <div className="trail-exp-artwork-container">
           {currentImage && currentImage.url && (
             <img
-              src={currentImage.url}
+              src={getAssetUrl(currentImage.url)}
               alt={currentImage.title}
               className="trail-exp-artwork main-artwork"
             />
@@ -670,7 +788,7 @@ const TrailExperiencePage = () => {
                     {String(index + 1).padStart(2, "0")}
                   </div>
                   <img
-                    src={image.url}
+                    src={getAssetUrl(image.url)}
                     alt={image.title}
                     className="trail-exp-modal-item-image"
                   />

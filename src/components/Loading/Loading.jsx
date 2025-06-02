@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "../../assets/Logo/logo-icon.webp";
 import "./Loading.css";
 
 const Loading = ({ progress, priorityDone, children }) => {
@@ -8,7 +7,7 @@ const Loading = ({ progress, priorityDone, children }) => {
       <div className="loading-content">
         <div className="logo-container">
           <img
-            src={logo}
+            src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784841/logo/icon.png"
             alt="Musée Du Pin Logo"
             className="loading-logo"
             fetchPriority="high"

@@ -1,9 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAssetUrl } from "../../utils/getAssetUrl";
+import { getImageUrl } from "../../utils/cloudinary";
 import "./VisitorTrailsPage.css";
-
-
 
 // SVG icons
 const ClockIcon = () => (
@@ -170,7 +168,7 @@ const VisitorTrailsPage = () => {
 
     // Preload hero image
     const heroImg = new Image();
-    heroImg.src = getAssetUrl("louvre-sunset.webp");
+    heroImg.src = getImageUrl("louvre-sunset.webp");
 
     // Optimize observer options
     const observer = new IntersectionObserver(observerCallback, {
@@ -202,7 +200,7 @@ const VisitorTrailsPage = () => {
         <div
           className="vt-hero-image"
           style={{
-            backgroundImage: `url(${getAssetUrl("louvre-sunset.webp")})`,
+            backgroundImage: `url(${getImageUrl("louvre-sunset.webp")})`,
             willChange: "transform",
             transform: "translateZ(0)",
           }}
@@ -275,7 +273,7 @@ const VisitorTrailsPage = () => {
               <Link to={`/visitor-trails/${trail.id}`}>
                 <div className="vt-trail-image-container">
                   <img
-                    src={getAssetUrl(trail.image)}
+                    src={getImageUrl(trail.image)}
                     alt={trail.title}
                     className="vt-trail-image"
                     loading="lazy"

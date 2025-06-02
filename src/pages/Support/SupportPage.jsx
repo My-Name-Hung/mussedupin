@@ -1,7 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import TranslatedText from "../../components/TranslatedText";
-import { getAssetUrl } from "../../utils/getAssetUrl";
 import "./SupportPage.css";
 
 import {
@@ -140,21 +138,17 @@ const SupportPage = () => {
             className={`heross-video ${isVideoLoaded ? "loaded" : ""}`}
           >
             <source
-              src={getAssetUrl("Hero_Abouts_Resize.mp4")}
+              src="https://res.cloudinary.com/dn0br7hj0/video/upload/v1748787810/about/Hero_Abouts_Resize.mp4"
               type="video/mp4"
             />
           </video>
           <div className="heross-overlay"></div>
         </div>
         <div className="heross-content">
-          <h1 className="heross-title">
-            <TranslatedText>Hỗ trợ khách tham quan</TranslatedText>
-          </h1>
+          <h1 className="heross-title">Hỗ trợ khách tham quan</h1>
           <p className="heross-subtitle">
-            <TranslatedText>
-              Chúng tôi luôn sẵn sàng hỗ trợ để bạn có trải nghiệm tốt nhất tại
-              Bảo tàng Du Pin
-            </TranslatedText>
+            Chúng tôi luôn sẵn sàng hỗ trợ để bạn có trải nghiệm tốt nhất tại
+            Bảo tàng Du Pin
           </p>
         </div>
       </section>

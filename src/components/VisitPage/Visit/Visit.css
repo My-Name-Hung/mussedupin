@@ -15,7 +15,7 @@
 .visit-page {
   width: 100%;
   color: #1a1a1a;
-  background-image: url("../../../assets/Background/Background2.webp");
+  background-image: url("https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784842/background/Background2.webp");
   background-repeat: repeat;
   background-position: center;
   background-size: 300px;
@@ -104,10 +104,10 @@
 .visit-hero-title {
   font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
     serif;
-  font-size: 3.5rem;
+  font-size: 3rem;
   font-weight: 500;
   margin: 0 0 1.5rem;
-  max-width: 70%;
+  max-width: 80%;
   color: #fff;
   line-height: 1.2;
   animation: fadeInUp 1s ease 0.2s forwards;
@@ -133,7 +133,7 @@
   font-weight: 300;
   color: #ffffff;
   margin: 20px 0 0;
-  max-width: 60%;
+  max-width: 100%;
   opacity: 0;
   animation: fadeInUp 1s ease-out 0.5s forwards;
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
@@ -269,7 +269,7 @@
 
   /* First section needs extra padding without the fixed nav */
   .visit-section:first-of-type {
-    padding-top: 20px; /* Reduced padding since nav is hidden */
+    padding-top: 10px; /* Reduced padding since nav is hidden */
   }
 
   /* Mobile-view class no longer needs special padding for the fixed nav */
@@ -376,7 +376,7 @@
 
   /* Optimized hours display */
   .museum-hours {
-    margin-bottom: 10px; /* Reduced from 15px */
+    margin-bottom: 5px; /* Reduced from 15px */
     border-radius: 8px;
   }
 
@@ -671,7 +671,7 @@
 
 /* Museum status bar */
 .museum-status-bar {
-  margin-bottom: 40px;
+  margin-bottom: 10px;
   width: 100%;
 }
 
@@ -820,60 +820,43 @@
 
 /* Ticket section styles */
 .ticket-intro {
-  max-width: 850px;
-  margin-bottom: 60px;
-  padding: 30px;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+}
+
+.ticket-image-container {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.ticket-illustration {
+  max-width: 100%;
+  height: auto;
   border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
 }
 
-.ticket-heading {
-  font-family: "Montserrat", sans-serif;
-  font-size: 2.2rem;
-  font-weight: 400;
-  color: #000;
-  margin: 0 0 25px;
-  position: relative;
-  display: inline-block;
-}
-
-.ticket-heading::after {
-  display: none;
+.ticket-illustration:hover {
+  transform: scale(1.02);
 }
 
 .ticket-description {
-  font-family: "Roboto", sans-serif;
   font-size: 1.1rem;
-  line-height: 1.7;
-  color: #555;
-  margin-bottom: 30px;
-  max-width: 80%;
+  line-height: 1.6;
+  color: #2c2f11;
+  margin-bottom: 1rem;
 }
 
 .ticket-note {
-  font-family: "Roboto", sans-serif;
-  font-size: 1rem;
-  color: #555;
-  padding: 20px 25px;
+  font-size: 0.95rem;
+  color: #666;
+  font-style: italic;
+  padding: 0.75rem;
+  background: rgba(149, 161, 37, 0.1);
   border-radius: 8px;
-  margin-top: 30px;
-  border-left: 3px solid #00695c;
-  position: relative;
-}
-
-.ticket-note::before {
-  content: "ℹ️";
-  position: absolute;
-  left: -15px;
-  top: 50%;
-  transform: translateY(-50%);
-  background: transparent;
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: none;
+  border-left: 4px solid #95a125;
 }
 
 /* Ticket options */
@@ -1527,6 +1510,16 @@
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
 }
 
+.mobile-nav-list {
+  display: flex;
+  list-style: none;
+  background: #2c2f11;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  justify-content: space-around;
+}
+
 .mobile-info-box::before {
   content: "";
   position: absolute;
@@ -1679,6 +1672,58 @@
   display: none;
 }
 
+.visit-page .mobile-nav-button {
+  background: none;
+  border: none;
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.3s ease, transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.visit-page .mobile-button-item.active .mobile-nav-button {
+  color: #ffffff;
+}
+
+.visit-page .mobile-nav-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  height: 24px;
+}
+
+.visit-page .mobile-nav-icon svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.visit-page .mobile-nav-label {
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+  padding: 0 5px;
+}
+
+/* Glow effect for active nav item */
+.visit-page .mobile-button-item.active .mobile-nav-icon {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+}
+.mobile-button-item.active .mobile-nav-label {
+  color: yellowgreen !important;
+}
+
 /* Enhanced Mobile Bottom Navigation */
 @media (max-width: 768px) {
   .visit-page .mobile-bottom-nav {
@@ -1709,68 +1754,6 @@
     align-items: center;
     width: 33.333%;
     position: relative;
-  }
-
-  .mobile-nav-list {
-    display: flex;
-    list-style: none;
-    background-image: url(../../../assets//Background/Background2.webp);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    margin: 0;
-    padding: 0;
-    width: 100%;
-    justify-content: space-around;
-  }
-
-  .visit-page .mobile-nav-button {
-    background: none !important;
-    border: none;
-    padding: 12px 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    cursor: pointer;
-    color: rgba(255, 255, 255, 0.6);
-    transition: color 0.3s ease, transform 0.2s ease;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .visit-page .mobile-button-item.active .mobile-nav-button {
-    color: #ffffff;
-  }
-
-  .visit-page .mobile-nav-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 5px;
-    height: 24px;
-  }
-
-  .visit-page .mobile-nav-icon svg {
-    width: 24px;
-    height: 24px;
-    display: block;
-  }
-
-  .visit-page .mobile-nav-label {
-    font-size: 12px;
-    font-weight: 500;
-    text-align: center;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
-    max-width: 100%;
-    padding: 0 5px;
-  }
-
-  /* Glow effect for active nav item */
-  .visit-page .mobile-button-item.active .mobile-nav-icon {
-    filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
   }
 
   /* Make sure bottom padding is adjusted for the navbar */
@@ -1905,7 +1888,7 @@
   .visit-section-title {
     font-size: 2rem;
     padding-bottom: 15px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   .visit-section-title::before {

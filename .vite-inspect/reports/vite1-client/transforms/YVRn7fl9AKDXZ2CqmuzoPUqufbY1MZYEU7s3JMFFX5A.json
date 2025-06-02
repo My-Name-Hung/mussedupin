@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/baotangnghethuat/node_modules/lucide-react/dist/esm/icons/cloud-lightning.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M6 16.326A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 .5 8.973\", key: \"1cez44\" }],\n  [\"path\", { d: \"m13 12-3 5h4l-3 5\", key: \"1t22er\" }]\n];\nconst CloudLightning = createLucideIcon(\"cloud-lightning\", __iconNode);\n\nexport { __iconNode, CloudLightning as default };\n//# sourceMappingURL=cloud-lightning.js.map\n",
+      "start": 1748859748737,
+      "end": 1748859748786,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1748859748786,
+      "end": 1748859748786,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1748859748786,
+      "end": 1748859748786,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1748859748786,
+      "end": 1748859748786,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1748859748786,
+      "end": 1748859748786,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1748859748786,
+      "end": 1748859748786,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1748859748786,
+      "end": 1748859748786,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1748859748786,
+      "end": 1748859748786,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1748859748788,
+      "end": 1748859748788,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1748859748788,
+      "end": 1748859748788,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1748859748788,
+      "end": 1748859748788,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1748859748788,
+      "end": 1748859748788,
+      "order": "normal"
+    }
+  ]
+}

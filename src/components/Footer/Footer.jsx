@@ -1,9 +1,7 @@
 import React, { useState } from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
-import logoImage from "../../assets/Logo/icon.webp";
 import FeedbackModal from "../FeedbackModal/FeedbackModal";
-import TranslatedText from "../TranslatedText";
 import "./Footer.css";
 
 const Footer = () => {
@@ -44,20 +42,14 @@ const Footer = () => {
               }`}
             >
               <h3 className="footer-heading" onClick={() => toggleSection(0)}>
-                <TranslatedText>GIỚI THIỆU</TranslatedText>
+                GIỚI THIỆU
               </h3>
               <ul className="footer-links">
                 <li>
-                  <Link to="/about">
-                    <TranslatedText>
-                      Bảo tàng Du Pin tại Việt Nam
-                    </TranslatedText>
-                  </Link>
+                  <Link to="/about">Bảo tàng Du Pin tại Việt Nam</Link>
                 </li>
                 <li>
-                  <Link to="/visitor-rules">
-                    <TranslatedText>Nội quy tham quan</TranslatedText>
-                  </Link>
+                  <Link to="/visitor-rules">Nội quy tham quan</Link>
                 </li>
               </ul>
             </div>
@@ -69,23 +61,19 @@ const Footer = () => {
               }`}
             >
               <h3 className="footer-heading" onClick={() => toggleSection(1)}>
-                <TranslatedText>TRANG WEB CỦA CHÚNG TÔI</TranslatedText>
+                TRANG WEB CỦA CHÚNG TÔI
               </h3>
               <ul className="footer-links">
                 <li>
-                  <Link to="/tickets">
-                    <TranslatedText>Dịch vụ đặt vé trực tuyến</TranslatedText>
-                  </Link>
+                  <Link to="/tickets">Dịch vụ đặt vé trực tuyến</Link>
                 </li>
                 <li>
                   <Link to="https://online-museeduphin.netlify.app/">
-                    <TranslatedText>Cửa hàng trực tuyến</TranslatedText>
+                    Cửa hàng trực tuyến
                   </Link>
                 </li>
                 <li>
-                  <Link to="/collection">
-                    <TranslatedText>Bộ sưu tập</TranslatedText>
-                  </Link>
+                  <Link to="/collection">Bộ sưu tập</Link>
                 </li>
               </ul>
             </div>
@@ -97,7 +85,7 @@ const Footer = () => {
               }`}
             >
               <h3 className="footer-heading" onClick={() => toggleSection(2)}>
-                <TranslatedText>LIÊN HỆ</TranslatedText>
+                LIÊN HỆ
               </h3>
               <ul className="footer-links">
                 <li>
@@ -108,12 +96,12 @@ const Footer = () => {
                       navigate("/visit-info#faq");
                     }}
                   >
-                    <TranslatedText>Câu hỏi thường gặp</TranslatedText>
+                    Câu hỏi thường gặp
                   </Link>
                 </li>
                 <li>
                   <a href="#" onClick={handleContactClick}>
-                    <TranslatedText>Liên hệ với chúng tôi</TranslatedText>
+                    Liên hệ với chúng tôi
                   </a>
                 </li>
                 <li>
@@ -124,7 +112,7 @@ const Footer = () => {
                       setIsFeedbackModalOpen(true);
                     }}
                   >
-                    <TranslatedText>Gửi phản hồi cho chúng tôi!</TranslatedText>
+                    Gửi phản hồi cho chúng tôi!
                   </a>
                 </li>
               </ul>
@@ -137,7 +125,7 @@ const Footer = () => {
               }`}
             >
               <h3 className="footer-heading" onClick={() => toggleSection(3)}>
-                <TranslatedText>THEO DÕI CHÚNG TÔI</TranslatedText>
+                THEO DÕI CHÚNG TÔI
               </h3>
               <div className="social-icons">
                 <a
@@ -179,22 +167,19 @@ const Footer = () => {
           {/* Bottom Legal Links */}
           <div className="footer-legal">
             <div className="legal-links">
-              <Link to="/legal-notice">
-                <TranslatedText>Thông báo pháp lý</TranslatedText>
-              </Link>
-              <Link to="/privacy-policy">
-                <TranslatedText>Chính sách bảo mật</TranslatedText>
-              </Link>
-              <Link to="/copyrights">
-                <TranslatedText>Bản quyền</TranslatedText>
-              </Link>
+              <Link to="/legal-notice">Thông báo pháp lý</Link>
+              <Link to="/privacy-policy">Chính sách bảo mật</Link>
+              <Link to="/copyrights">Bản quyền</Link>
             </div>
           </div>
 
           {/* Logo */}
           <div className="footer-logo">
             <Link to="/">
-              <img src={logoImage} alt="Logo Bảo tàng Du Pin" />
+              <img
+                src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/icon.png"
+                alt="Logo Bảo tàng Du Pin"
+              />
             </Link>
           </div>
         </div>

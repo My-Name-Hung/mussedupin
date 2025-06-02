@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/baotangnghethuat/node_modules/lucide-react/dist/esm/icons/align-start-horizontal.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"rect\", { width: \"6\", height: \"16\", x: \"4\", y: \"6\", rx: \"2\", key: \"1n4dg1\" }],\n  [\"rect\", { width: \"6\", height: \"9\", x: \"14\", y: \"6\", rx: \"2\", key: \"17khns\" }],\n  [\"path\", { d: \"M22 2H2\", key: \"fhrpnj\" }]\n];\nconst AlignStartHorizontal = createLucideIcon(\"align-start-horizontal\", __iconNode);\n\nexport { __iconNode, AlignStartHorizontal as default };\n//# sourceMappingURL=align-start-horizontal.js.map\n",
+      "start": 1748859747762,
+      "end": 1748859747832,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1748859747832,
+      "end": 1748859747832,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1748859747832,
+      "end": 1748859747832,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1748859747832,
+      "end": 1748859747832,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1748859747832,
+      "end": 1748859747833,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1748859747833,
+      "end": 1748859747833,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1748859747833,
+      "end": 1748859747833,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1748859747833,
+      "end": 1748859747833,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1748859747836,
+      "end": 1748859747836,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1748859747837,
+      "end": 1748859747837,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1748859747837,
+      "end": 1748859747837,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1748859747837,
+      "end": 1748859747837,
+      "order": "normal"
+    }
+  ]
+}

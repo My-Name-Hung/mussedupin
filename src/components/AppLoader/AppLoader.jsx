@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import useImageCache from "../../hooks/useImageCache";
 import usePreloadAssets from "../../hooks/usePreloadAssets";
-import { getCriticalAssets, getSecondaryAssets } from "../../utils/assetsList";
 import Loading from "../Loading/Loading";
 
 const AppLoader = ({ children }) => {
@@ -12,8 +11,8 @@ const AppLoader = ({ children }) => {
 
   // Initialize assets
   useEffect(() => {
-    const critical = getCriticalAssets();
-    const secondary = getSecondaryAssets();
+    const critical = [];
+    const secondary = [];
 
     setCriticalAssets(critical);
     setAllAssets([...critical, ...secondary]);
@@ -34,15 +33,10 @@ const AppLoader = ({ children }) => {
 
   // Show content when priority assets are loaded
   useEffect(() => {
-    if (priorityDone && criticalAssets.length > 0) {
-      // Small delay to ensure smooth transition
-      const timer = setTimeout(() => {
-        setShowContent(true);
-      }, 500);
-
-      return () => clearTimeout(timer);
+    if (priorityDone) {
+      setShowContent(true);
     }
-  }, [priorityDone, criticalAssets.length]);
+  }, [priorityDone]);
 
   if (!showContent) {
     return <Loading progress={progress} priorityDone={priorityDone} />;

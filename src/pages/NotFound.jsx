@@ -1,7 +1,5 @@
 import React from "react";
 import { Link, useLocation } from "react-router-dom";
-import logo from "../assets/Logo/icon.webp";
-import TranslatedText from "../components/TranslatedText";
 import "../styles/NotFound.css";
 
 const NotFound = () => {
@@ -13,54 +11,36 @@ const NotFound = () => {
       <div className="not-found-container">
         <div className="breadcrumb">
           <Link to="/">
-            <img src={logo} alt="Logo" className="breadcrumb-logo" />
+            <img
+              src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.webp"
+              alt="Logo"
+              className="breadcrumb-logo"
+            />
           </Link>
           <span className="breadcrumb-separator">›</span>
-          <span className="breadcrumb-label">
-            <TranslatedText>Kết quả tìm kiếm</TranslatedText>
-          </span>
+          <span className="breadcrumb-label">Kết quả tìm kiếm</span>
         </div>
 
         <div className="not-found-content">
-          <h1 className="not-found-title">
-            <TranslatedText>Không tìm thấy kết quả</TranslatedText>
-          </h1>
+          <h1 className="not-found-title">Không tìm thấy kết quả</h1>
 
           <p className="not-found-message">
-            <TranslatedText>
-              Chúng tôi không thể tìm thấy kết quả nào cho tìm kiếm của bạn: «{" "}
-              {query} »
-            </TranslatedText>
+            Chúng tôi không thể tìm thấy kết quả nào cho tìm kiếm của bạn: «{" "}
+            {query} »
           </p>
 
           <div className="not-found-suggestions">
-            <h2>
-              <TranslatedText>Gợi ý:</TranslatedText>
-            </h2>
+            <h2>Gợi ý:</h2>
             <ul>
-              <li>
-                <TranslatedText>
-                  Kiểm tra chính tả của từ khóa tìm kiếm
-                </TranslatedText>
-              </li>
-              <li>
-                <TranslatedText>Thử sử dụng từ khóa chung hơn</TranslatedText>
-              </li>
-              <li>
-                <TranslatedText>Thử sử dụng từ khóa khác</TranslatedText>
-              </li>
-              <li>
-                <TranslatedText>
-                  Duyệt bộ sưu tập của chúng tôi theo danh mục
-                </TranslatedText>
-              </li>
+              <li>Kiểm tra chính tả của từ khóa tìm kiếm</li>
+              <li>Thử sử dụng từ khóa chung hơn</li>
+              <li>Thử sử dụng từ khóa khác</li>
+              <li>Duyệt bộ sưu tập của chúng tôi theo danh mục</li>
             </ul>
           </div>
 
           <div className="search-again-container">
-            <h3 className="search-again-title">
-              <TranslatedText>Thử tìm kiếm khác</TranslatedText>
-            </h3>
+            <h3 className="search-again-title">Thử tìm kiếm khác</h3>
 
             <div className="search-bar">
               <input
@@ -111,7 +91,7 @@ const NotFound = () => {
 
           <div className="back-to-home">
             <Link to="/" className="home-link">
-              <TranslatedText>Quay lại trang chủ</TranslatedText>
+              Quay lại trang chủ
             </Link>
           </div>
         </div>

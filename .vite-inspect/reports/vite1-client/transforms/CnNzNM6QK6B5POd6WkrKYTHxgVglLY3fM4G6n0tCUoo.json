@@ -1,0 +1,90 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/baotangnghethuat/src/pages/ArtStay/ArtStay.jsx",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import React from \"react\";\nimport { FaFileDownload } from \"react-icons/fa\";\nimport \"./ArtStay.css\";\n\nconst ARTSTAY_IMAGE =\n  \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748841943/collections/luutrunghethuat.jpg\";\nconst PDF_LINK =\n  \"https://docs.google.com/forms/d/e/1FAIpQLScvCQ5gjYPldSRI43U9qN0tGlk4Pl-nCd71rlpUb57UJF2Fog/viewform\";\n\nconst ArtStay = () => {\n  return (\n    <div className=\"artstay-container\">\n      <h1 className=\"artstay-title\">Lưu trú nghệ thuật tại Musée Du Pin</h1>\n      <img src={ARTSTAY_IMAGE} alt=\"Lưu trú nghệ thuật\" loading=\"lazy\" />\n\n      <div className=\"intro-section\">\n        <h2>Thư ngỏ</h2>\n        <p>\n          Chào mừng bạn đến với trải nghiệm lưu trú nghệ thuật độc đáo tại các\n          căn phòng của bảo tàng Thông - Musée Du Pin. Mỗi căn phòng là một\n          không gian nghệ thuật sống động, nơi bạn có thể hòa mình vào không khí\n          sáng tạo, cảm nhận giá trị lịch sử và nghệ thuật độc đáo của từng hiện\n          vật.\n        </p>\n        <p>\n          Chúng tôi mong muốn mang đến cho bạn một đêm lưu trú đáng nhớ, đầy cảm\n          hứng và an toàn, nơi nghệ thuật và cuộc sống giao hòa trong một không\n          gian đậm chất Đà Lạt.\n        </p>\n      </div>\n\n      <div className=\"rules-section\">\n        <h2>Quy định lưu trú</h2>\n        <ul>\n          <li>Không hút thuốc trong phòng và khu vực bảo tàng</li>\n          <li>\n            Không làm hỏng, di chuyển hoặc chạm vào hiện vật đang trưng bày\n          </li>\n          <li>Không mang thức ăn, đồ uống vào phòng trưng bày</li>\n          <li>Giữ gìn vệ sinh, trật tự và tôn trọng không gian chung</li>\n          <li>\n            Mọi hành vi vi phạm quy chế sẽ bị xử lý theo quy định của bảo tàng\n          </li>\n        </ul>\n      </div>\n\n      <a\n        href={PDF_LINK}\n        target=\"_blank\"\n        rel=\"noopener noreferrer\"\n        className=\"pdf-link\"\n      >\n        <FaFileDownload /> Tải tài liệu chi tiết về căn phòng\n      </a>\n\n      <h2>Đăng ký trải nghiệm lưu trú</h2>\n\n      <iframe\n        src=\"https://docs.google.com/forms/d/e/1FAIpQLScvCQ5gjYPldSRI43U9qN0tGlk4Pl-nCd71rlpUb57UJF2Fog/viewform?embedded=true\"\n        width=\"100%\"\n        height=\"1200\"\n        frameBorder=\"0\"\n        marginHeight=\"0\"\n        marginWidth=\"0\"\n        title=\"Đăng ký lưu trú\"\n      >\n        Đang tải...\n      </iframe>\n    </div>\n  );\n};\n\nexport default ArtStay;\n",
+      "start": 1748859736858,
+      "end": 1748859737019,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1748859737019,
+      "end": 1748859737019,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { FaFileDownload } from \"react-icons/fa\";\nimport \"./ArtStay.css\";\nconst ARTSTAY_IMAGE = \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748841943/collections/luutrunghethuat.jpg\";\nconst PDF_LINK = \"https://docs.google.com/forms/d/e/1FAIpQLScvCQ5gjYPldSRI43U9qN0tGlk4Pl-nCd71rlpUb57UJF2Fog/viewform\";\nconst ArtStay = () => {\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"artstay-container\", children: [\n    /* @__PURE__ */ jsx(\"h1\", { className: \"artstay-title\", children: \"Lưu trú nghệ thuật tại Musée Du Pin\" }),\n    /* @__PURE__ */ jsx(\"img\", { src: ARTSTAY_IMAGE, alt: \"Lưu trú nghệ thuật\", loading: \"lazy\" }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"intro-section\", children: [\n      /* @__PURE__ */ jsx(\"h2\", { children: \"Thư ngỏ\" }),\n      /* @__PURE__ */ jsx(\"p\", { children: \"Chào mừng bạn đến với trải nghiệm lưu trú nghệ thuật độc đáo tại các căn phòng của bảo tàng Thông - Musée Du Pin. Mỗi căn phòng là một không gian nghệ thuật sống động, nơi bạn có thể hòa mình vào không khí sáng tạo, cảm nhận giá trị lịch sử và nghệ thuật độc đáo của từng hiện vật.\" }),\n      /* @__PURE__ */ jsx(\"p\", { children: \"Chúng tôi mong muốn mang đến cho bạn một đêm lưu trú đáng nhớ, đầy cảm hứng và an toàn, nơi nghệ thuật và cuộc sống giao hòa trong một không gian đậm chất Đà Lạt.\" })\n    ] }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"rules-section\", children: [\n      /* @__PURE__ */ jsx(\"h2\", { children: \"Quy định lưu trú\" }),\n      /* @__PURE__ */ jsxs(\"ul\", { children: [\n        /* @__PURE__ */ jsx(\"li\", { children: \"Không hút thuốc trong phòng và khu vực bảo tàng\" }),\n        /* @__PURE__ */ jsx(\"li\", { children: \"Không làm hỏng, di chuyển hoặc chạm vào hiện vật đang trưng bày\" }),\n        /* @__PURE__ */ jsx(\"li\", { children: \"Không mang thức ăn, đồ uống vào phòng trưng bày\" }),\n        /* @__PURE__ */ jsx(\"li\", { children: \"Giữ gìn vệ sinh, trật tự và tôn trọng không gian chung\" }),\n        /* @__PURE__ */ jsx(\"li\", { children: \"Mọi hành vi vi phạm quy chế sẽ bị xử lý theo quy định của bảo tàng\" })\n      ] })\n    ] }),\n    /* @__PURE__ */ jsxs(\n      \"a\",\n      {\n        href: PDF_LINK,\n        target: \"_blank\",\n        rel: \"noopener noreferrer\",\n        className: \"pdf-link\",\n        children: [\n          /* @__PURE__ */ jsx(FaFileDownload, {}),\n          \" Tải tài liệu chi tiết về căn phòng\"\n        ]\n      }\n    ),\n    /* @__PURE__ */ jsx(\"h2\", { children: \"Đăng ký trải nghiệm lưu trú\" }),\n    /* @__PURE__ */ jsx(\n      \"iframe\",\n      {\n        src: \"https://docs.google.com/forms/d/e/1FAIpQLScvCQ5gjYPldSRI43U9qN0tGlk4Pl-nCd71rlpUb57UJF2Fog/viewform?embedded=true\",\n        width: \"100%\",\n        height: \"1200\",\n        frameBorder: \"0\",\n        marginHeight: \"0\",\n        marginWidth: \"0\",\n        title: \"Đăng ký lưu trú\",\n        children: \"Đang tải...\"\n      }\n    )\n  ] });\n};\nexport default ArtStay;\n",
+      "start": 1748859737019,
+      "end": 1748859737149,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/baotangnghethuat/src/pages/ArtStay/ArtStay.jsx"
+        ],
+        "sourcesContent": [
+          "import React from \"react\";\nimport { FaFileDownload } from \"react-icons/fa\";\nimport \"./ArtStay.css\";\n\nconst ARTSTAY_IMAGE =\n  \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748841943/collections/luutrunghethuat.jpg\";\nconst PDF_LINK =\n  \"https://docs.google.com/forms/d/e/1FAIpQLScvCQ5gjYPldSRI43U9qN0tGlk4Pl-nCd71rlpUb57UJF2Fog/viewform\";\n\nconst ArtStay = () => {\n  return (\n    <div className=\"artstay-container\">\n      <h1 className=\"artstay-title\">Lưu trú nghệ thuật tại Musée Du Pin</h1>\n      <img src={ARTSTAY_IMAGE} alt=\"Lưu trú nghệ thuật\" loading=\"lazy\" />\n\n      <div className=\"intro-section\">\n        <h2>Thư ngỏ</h2>\n        <p>\n          Chào mừng bạn đến với trải nghiệm lưu trú nghệ thuật độc đáo tại các\n          căn phòng của bảo tàng Thông - Musée Du Pin. Mỗi căn phòng là một\n          không gian nghệ thuật sống động, nơi bạn có thể hòa mình vào không khí\n          sáng tạo, cảm nhận giá trị lịch sử và nghệ thuật độc đáo của từng hiện\n          vật.\n        </p>\n        <p>\n          Chúng tôi mong muốn mang đến cho bạn một đêm lưu trú đáng nhớ, đầy cảm\n          hứng và an toàn, nơi nghệ thuật và cuộc sống giao hòa trong một không\n          gian đậm chất Đà Lạt.\n        </p>\n      </div>\n\n      <div className=\"rules-section\">\n        <h2>Quy định lưu trú</h2>\n        <ul>\n          <li>Không hút thuốc trong phòng và khu vực bảo tàng</li>\n          <li>\n            Không làm hỏng, di chuyển hoặc chạm vào hiện vật đang trưng bày\n          </li>\n          <li>Không mang thức ăn, đồ uống vào phòng trưng bày</li>\n          <li>Giữ gìn vệ sinh, trật tự và tôn trọng không gian chung</li>\n          <li>\n            Mọi hành vi vi phạm quy chế sẽ bị xử lý theo quy định của bảo tàng\n          </li>\n        </ul>\n      </div>\n\n      <a\n        href={PDF_LINK}\n        target=\"_blank\"\n        rel=\"noopener noreferrer\"\n        className=\"pdf-link\"\n      >\n        <FaFileDownload /> Tải tài liệu chi tiết về căn phòng\n      </a>\n\n      <h2>Đăng ký trải nghiệm lưu trú</h2>\n\n      <iframe\n        src=\"https://docs.google.com/forms/d/e/1FAIpQLScvCQ5gjYPldSRI43U9qN0tGlk4Pl-nCd71rlpUb57UJF2Fog/viewform?embedded=true\"\n        width=\"100%\"\n        height=\"1200\"\n        frameBorder=\"0\"\n        marginHeight=\"0\"\n        marginWidth=\"0\"\n        title=\"Đăng ký lưu trú\"\n      >\n        Đang tải...\n      </iframe>\n    </div>\n  );\n};\n\nexport default ArtStay;\n"
+        ],
+        "mappings": "AAYM,cAGA,YAHA;AAZN,OAAO,WAAW;AAClB,SAAS,sBAAsB;AAC/B,OAAO;AAEP,MAAM,gBACJ;AACF,MAAM,WACJ;AAEF,MAAM,UAAU,MAAM;AACpB,SACE,qBAAC,SAAI,WAAU,qBACb;AAAA,wBAAC,QAAG,WAAU,iBAAgB,iDAAmC;AAAA,IACjE,oBAAC,SAAI,KAAK,eAAe,KAAI,sBAAqB,SAAQ,QAAO;AAAA,IAEjE,qBAAC,SAAI,WAAU,iBACb;AAAA,0BAAC,QAAG,qBAAO;AAAA,MACX,oBAAC,OAAE,uSAMH;AAAA,MACA,oBAAC,OAAE,gLAIH;AAAA,OACF;AAAA,IAEA,qBAAC,SAAI,WAAU,iBACb;AAAA,0BAAC,QAAG,8BAAgB;AAAA,MACpB,qBAAC,QACC;AAAA,4BAAC,QAAG,6DAA+C;AAAA,QACnD,oBAAC,QAAG,6EAEJ;AAAA,QACA,oBAAC,QAAG,6DAA+C;AAAA,QACnD,oBAAC,QAAG,oEAAsD;AAAA,QAC1D,oBAAC,QAAG,gFAEJ;AAAA,SACF;AAAA,OACF;AAAA,IAEA;AAAA,MAAC;AAAA;AAAA,QACC,MAAM;AAAA,QACN,QAAO;AAAA,QACP,KAAI;AAAA,QACJ,WAAU;AAAA,QAEV;AAAA,8BAAC,kBAAe;AAAA,UAAE;AAAA;AAAA;AAAA,IACpB;AAAA,IAEA,oBAAC,QAAG,yCAA2B;AAAA,IAE/B;AAAA,MAAC;AAAA;AAAA,QACC,KAAI;AAAA,QACJ,OAAM;AAAA,QACN,QAAO;AAAA,QACP,aAAY;AAAA,QACZ,cAAa;AAAA,QACb,aAAY;AAAA,QACZ,OAAM;AAAA,QACP;AAAA;AAAA,IAED;AAAA,KACF;AAEJ;AAEA,eAAe;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1748859737149,
+      "end": 1748859737149,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1748859737149,
+      "end": 1748859737149,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1748859737149,
+      "end": 1748859737149,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1748859737149,
+      "end": 1748859737149,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1748859737149,
+      "end": 1748859737149,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1748859737150,
+      "end": 1748859737150,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1748859737150,
+      "end": 1748859737150,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1748859737150,
+      "end": 1748859737151,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1748859737151,
+      "end": 1748859737151,
+      "order": "normal"
+    }
+  ]
+}

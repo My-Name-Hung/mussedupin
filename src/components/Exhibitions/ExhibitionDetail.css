@@ -21,7 +21,7 @@
 /* Main layout with dramatic aesthetic */
 .exhibition-detail-page {
   width: 100%;
-  background-image: url("../../assets/Background/Background2.webp");
+  background-image: url("https://res.cloudinary.com/dn0br7hj0/image/upload/background/Background2.webp");
   background-repeat: repeat;
   background-position: center;
   background-size: 300px;

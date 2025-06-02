@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { getAssetUrl } from "../../utils/getAssetUrl";
-import TranslatedText from "../TranslatedText";
+import { getImageUrl } from "../../utils/cloudinary";
 
 // Import hero image
 
@@ -18,7 +17,7 @@ const exhibitionsData = [
     description:
       "Khi nghệ thuật không chỉ để ngắm, mà để sống cùng và sống trong. Không có tủ kính ngăn cách. Không có rào chắn giữa người và hiện vật. Langbiang không đơn thuần là một căn phòng, mà là một vùng ký ức sống, nơi hồn cốt của núi rừng thở trong từng vật phẩm, cháy trong từng ngọn lửa bếp, ngân nga trong từng tiếng cồng chiêng.",
     date: "30 tháng 4 - 28 tháng 7 2025",
-    image: "nha.webp",
+    image: "langbiang.webp",
     alt: "Không gian nghệ thuật Langbiang",
     tag: "Trưng bày",
     link: "/exhibition-details/langbiang-khong-gian",
@@ -233,20 +232,16 @@ const Exhibitions = () => {
       {/* Hero Section with background image */}
       <div className="exhibitions-hero" ref={heroRef}>
         <div className="exhibitions-hero-overlay">
-          <img src={getAssetUrl("louvre-sunset.webp")} alt="Bảo tàng" />
+          <img src={getImageUrl("louvre-sunset.jpg")} alt="Bảo tàng" />
         </div>
         <div className="exhibitions-hero-content">
           <h1 className="exhibitions-hero-title">
-            <TranslatedText>
-              {activeTab === "exhibitions" ? "TRƯNG BÀY" : "THAM QUAN"}
-            </TranslatedText>
+            {activeTab === "exhibitions" ? "TRƯNG BÀY" : "THAM QUAN"}
           </h1>
           <p className="exhibitions-hero-subtitle">
-            <TranslatedText>
-              {activeTab === "exhibitions"
-                ? "Khám phá các cuộc trưng bày hiện tại và sắp tới"
-                : "Khám phá bảo tàng cùng hướng dẫn viên chuyên nghiệp"}
-            </TranslatedText>
+            {activeTab === "exhibitions"
+              ? "Khám phá các cuộc trưng bày hiện tại và sắp tới"
+              : "Khám phá bảo tàng cùng hướng dẫn viên chuyên nghiệp"}
           </p>
         </div>
       </div>
@@ -261,7 +256,7 @@ const Exhibitions = () => {
             onClick={() => handleTabChange("exhibitions")}
             aria-label="Hiển thị trưng bày"
           >
-            <TranslatedText>TRƯNG BÀY</TranslatedText>
+            TRƯNG BÀY
           </button>
           <button
             className={`tab-button ${
@@ -270,7 +265,7 @@ const Exhibitions = () => {
             onClick={() => handleTabChange("guided-tours")}
             aria-label="Hiển thị tham quan"
           >
-            <TranslatedText>THAM QUAN</TranslatedText>
+            THAM QUAN
           </button>
         </div>
       </div>
@@ -294,36 +289,31 @@ const Exhibitions = () => {
                 >
                   <div className="exhibition-card featured-card">
                     <div className="card-tag">
-                      <span>
-                        <TranslatedText>{item.tag}</TranslatedText>
-                      </span>
+                      <span>{item.tag}</span>
                     </div>
                     <Link to={item.link} className="card-link-wrapper">
                       <div className="card-image-container">
                         <img
-                          src={getAssetUrl(item.image)}
+                          src={getImageUrl(item.image)}
                           alt={item.alt}
                           className="card-image"
                           loading="eager"
+                          style={{
+                            objectFit: item.id === 1 ? "contain" : "cover",
+                          }}
                         />
                       </div>
                       <div className="card-content">
-                        <h2 className="card-title">
-                          <TranslatedText>{item.title}</TranslatedText>
-                        </h2>
+                        <h2 className="card-title">{item.title}</h2>
                         {/* <h3 className="card-subtitle">
-                          <TranslatedText>{item.subtitle}</TranslatedText>
+                          {item.subtitle}
                         </h3> */}
-                        <p className="card-description">
-                          <TranslatedText>{item.description}</TranslatedText>
-                        </p>
+                        <p className="card-description">{item.description}</p>
                         <div className="card-footer">
                           <span className="card-date">
-                            <TranslatedText>
-                              {activeTab === "exhibitions"
-                                ? item.date
-                                : `Thời gian: ${item.duration}`}
-                            </TranslatedText>
+                            {activeTab === "exhibitions"
+                              ? item.date
+                              : `Thời gian: ${item.duration}`}
                           </span>
                         </div>
                       </div>
@@ -353,36 +343,34 @@ const Exhibitions = () => {
               >
                 <div className="exhibition-card">
                   <div className="card-tag">
-                    <span>
-                      <TranslatedText>{item.tag}</TranslatedText>
-                    </span>
+                    <span>{item.tag}</span>
                   </div>
                   <Link to={item.link} className="card-link-wrapper">
                     <div className="card-image-container">
                       <img
-                        src={getAssetUrl(item.image)}
+                        src={getImageUrl(item.image)}
                         alt={item.alt}
                         className="card-image"
                         loading={index < 5 ? "eager" : "lazy"}
+                        style={{
+                          objectFit:
+                            item.id === "langbiang-khong-gian"
+                              ? "contain"
+                              : "cover",
+                        }}
                       />
                     </div>
                     <div className="card-content">
-                      <h2 className="card-title">
-                        <TranslatedText>{item.title}</TranslatedText>
-                      </h2>
+                      <h2 className="card-title">{item.title}</h2>
                       {/* <h3 className="card-subtitle">
-                        <TranslatedText>{item.subtitle}</TranslatedText>
+                        {item.subtitle}
                       </h3> */}
-                      <p className="card-description">
-                        <TranslatedText>{item.description}</TranslatedText>
-                      </p>
+                      <p className="card-description">{item.description}</p>
                       <div className="card-footer">
                         <span className="card-date">
-                          <TranslatedText>
-                            {activeTab === "exhibitions"
-                              ? item.date
-                              : `Thời gian: ${item.duration}`}
-                          </TranslatedText>
+                          {activeTab === "exhibitions"
+                            ? item.date
+                            : `Thời gian: ${item.duration}`}
                         </span>
                       </div>
                     </div>
@@ -401,11 +389,11 @@ const Exhibitions = () => {
                 : "/past-guided-tours"
             }
           >
-            <TranslatedText>
+            
               {activeTab === "exhibitions"
                 ? "Xem các trưng bày trước"
                 : "Xem các chuyến tham quan trước"}
-            </TranslatedText>
+            
             <span className="arrow-icon">→</span>
           </Link>
         </div> */}

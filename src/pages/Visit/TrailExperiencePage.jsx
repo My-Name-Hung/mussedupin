@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getAssetUrl } from "../../utils/getAssetUrl";
+import { getImageUrl } from "../../utils/cloudinary";
 import "./TrailExperiencePage.css";
 
 // SVG Icons
@@ -677,7 +677,7 @@ const TrailExperiencePage = () => {
         <div className="trail-exp-artwork-container">
           {currentImage && currentImage.url && (
             <img
-              src={getAssetUrl(currentImage.url)}
+              src={getImageUrl(currentImage.url)}
               alt={currentImage.title}
               className="trail-exp-artwork main-artwork"
             />
@@ -788,7 +788,7 @@ const TrailExperiencePage = () => {
                     {String(index + 1).padStart(2, "0")}
                   </div>
                   <img
-                    src={getAssetUrl(image.url)}
+                    src={getImageUrl(image.url)}
                     alt={image.title}
                     className="trail-exp-modal-item-image"
                   />

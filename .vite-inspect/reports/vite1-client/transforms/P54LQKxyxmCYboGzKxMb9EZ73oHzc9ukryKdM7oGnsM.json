@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/baotangnghethuat/node_modules/lucide-react/dist/esm/icons/chevrons-left.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"m11 17-5-5 5-5\", key: \"13zhaf\" }],\n  [\"path\", { d: \"m18 17-5-5 5-5\", key: \"h8a8et\" }]\n];\nconst ChevronsLeft = createLucideIcon(\"chevrons-left\", __iconNode);\n\nexport { __iconNode, ChevronsLeft as default };\n//# sourceMappingURL=chevrons-left.js.map\n",
+      "start": 1748859748573,
+      "end": 1748859748637,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1748859748637,
+      "end": 1748859748637,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1748859748637,
+      "end": 1748859748637,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1748859748637,
+      "end": 1748859748637,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1748859748637,
+      "end": 1748859748637,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1748859748637,
+      "end": 1748859748637,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1748859748637,
+      "end": 1748859748637,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1748859748637,
+      "end": 1748859748637,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1748859748637,
+      "end": 1748859748637,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1748859748637,
+      "end": 1748859748637,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1748859748637,
+      "end": 1748859748637,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1748859748637,
+      "end": 1748859748637,
+      "order": "normal"
+    }
+  ]
+}

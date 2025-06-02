@@ -9,11 +9,6 @@ import Home from "./components/Home/Home";
 import Navbar from "./components/Navbar/Navbar";
 import ScrollToTop from "./components/ScrollToTop";
 import ScrollToTopButton from "./components/ScrollToTopButton/ScrollToTopButton";
-import TranslatedText from "./components/TranslatedText";
-
-import Visit from "./components/VisitPage/Visit/Visit";
-import VisitInfo from "./components/VisitPage/Visit/VisitInfo";
-import { TranslationProvider } from "./contexts/TranslationContext";
 import "./index.css";
 import AboutPage from "./pages/About/AboutPage";
 import CategoryPage from "./pages/Collection/CategoryPage";
@@ -23,10 +18,12 @@ import LegalNotice from "./pages/Footer/LegalNotice/LegalNotice";
 import PrivacyPolicy from "./pages/Footer/PrivacyPolicy/PrivacyPolicy";
 import DuPinPlus from "./pages/Home/DuPinPlus/DuPinPlus";
 // import ExplorePage from "./pages/Home/ExplorePage/ExplorePage";
+import Visit from "../src/components/VisitPage/Visit/Visit";
+import VisitInfo from "../src/components/VisitPage/Visit/VisitInfo";
+import ArtStay from "./pages/ArtStay/ArtStay";
 import LifeAtMuseumPage from "./pages/Museum/LifeAtMuseumPage";
 import NewsDetailPage from "./pages/Museum/NewsDetailPage";
 import NotFound from "./pages/NotFound";
-import SearchResults from "./pages/SearchResults";
 import SupportPage from "./pages/Support/SupportPage";
 import MuseumMapPage from "./pages/Visit/MuseumMapPage";
 import TrailExperiencePage from "./pages/Visit/TrailExperiencePage";
@@ -38,43 +35,23 @@ import VisitorTrailsPage from "./pages/Visit/VisitorTrailsPage";
 const HomePage = () => (
   <>
     <div className="hero-section">
-      <h1>
-        <TranslatedText>Welcome to the Art Museum</TranslatedText>
-      </h1>
+      <h1>Welcome to the Art Museum</h1>
     </div>
     <div className="content-section">
       <div className="card">
-        <h2>
-          <TranslatedText>VISIT</TranslatedText>
-        </h2>
-        <p>
-          <TranslatedText>Visit Page</TranslatedText>
-        </p>
-        <button>
-          <TranslatedText>SEE MORE</TranslatedText>
-        </button>
+        <h2>VISIT</h2>
+        <p>Visit Page</p>
+        <button>SEE MORE</button>
       </div>
       <div className="card">
-        <h2>
-          <TranslatedText>EXHIBITIONS AND EVENTS</TranslatedText>
-        </h2>
-        <p>
-          <TranslatedText>Exhibitions and Events Page</TranslatedText>
-        </p>
-        <button>
-          <TranslatedText>SEE MORE</TranslatedText>
-        </button>
+        <h2>EXHIBITIONS AND EVENTS</h2>
+        <p>Exhibitions and Events Page</p>
+        <button>SEE MORE</button>
       </div>
       <div className="card">
-        <h2>
-          <TranslatedText>EXPLORE</TranslatedText>
-        </h2>
-        <p>
-          <TranslatedText>Explore Page</TranslatedText>
-        </p>
-        <button>
-          <TranslatedText>SEE MORE</TranslatedText>
-        </button>
+        <h2>EXPLORE</h2>
+        <p>Explore Page</p>
+        <button>SEE MORE</button>
       </div>
     </div>
   </>
@@ -83,98 +60,85 @@ const HomePage = () => (
 // Trang Tham quan
 const VisitPage = () => (
   <div className="page-container">
-    <h1>
-      <TranslatedText>VISIT</TranslatedText>
-    </h1>
-    <p>
-      <TranslatedText>This is the Visit page content</TranslatedText>
-    </p>
+    <h1>VISIT</h1>
+    <p>This is the Visit page content</p>
   </div>
 );
 
 // Trang Vé
 const TicketsPage = () => (
   <div className="page-container">
-    <h1>
-      <TranslatedText>Tickets</TranslatedText>
-    </h1>
-    <p>
-      <TranslatedText>This is the Tickets page content</TranslatedText>
-    </p>
+    <h1>Tickets</h1>
+    <p>This is the Tickets page content</p>
   </div>
 );
 
 // Trang Cửa hàng Trực tuyến
 const BoutiquePage = () => (
   <div className="page-container">
-    <h1>
-      <TranslatedText>Online Boutique Shop</TranslatedText>
-    </h1>
-    <p>
-      <TranslatedText>This is the Online Boutique page content</TranslatedText>
-    </p>
+    <h1>Online Boutique Shop</h1>
+    <p>This is the Online Boutique page content</p>
   </div>
 );
 
 function App() {
   return (
-    <TranslationProvider>
-      <AppLoader>
-        <Router>
-          <ScrollToTop />
-          <div className="app">
-            <Navbar />
-            <main>
-              <Routes>
-                <Route path="/" element={<Home />} />
-                <Route path="/about" element={<AboutPage />} />
-                <Route path="/visit" element={<Visit />} />
-                <Route path="/visit-info" element={<VisitInfo />} />
+    <AppLoader>
+      <Router>
+        <ScrollToTop />
+        <div className="app">
+          <Navbar />
+          <main>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/about" element={<AboutPage />} />
+              <Route path="/visit" element={<Visit />} />
+              <Route path="/visit-info" element={<VisitInfo />} />
 
-                <Route path="/exhibitions" element={<Exhibitions />} />
+              <Route path="/exhibitions" element={<Exhibitions />} />
 
-                <Route path="/tickets" element={<TicketsPage />} />
-                <Route path="/boutique" element={<BoutiquePage />} />
-                <Route path="/dupinplus" element={<DuPinPlus />} />
-                <Route path="/legal-notice" element={<LegalNotice />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="/copyrights" element={<Copyrights />} />
-                <Route path="/visitor-rules" element={<VisitorRules />} />
-                <Route path="/support" element={<SupportPage />} />
-                <Route path="/search-results" element={<SearchResults />} />
-                <Route path="/collection" element={<CollectionPage />} />
-                <Route
-                  path="/life-at-the-museum"
-                  element={<LifeAtMuseumPage />}
-                />
-                <Route path="/visitor-trails" element={<VisitorTrailsPage />} />
-                <Route
-                  path="/visitor-trails/:id"
-                  element={<VisitorTrailDetailPage />}
-                />
-                <Route
-                  path="/trail-experience/:trailId"
-                  element={<TrailExperiencePage />}
-                />
-                <Route path="/museum-map" element={<MuseumMapPage />} />
-                <Route
-                  path="/exhibition-details/:id"
-                  element={<ExhibitionDetail />}
-                />
-                <Route path="/news/:id" element={<NewsDetailPage />} />
-                <Route
-                  path="/collection/:category"
-                  element={<CategoryPage />}
-                />
-                <Route path="*" element={<NotFound />} />
-              </Routes>
-            </main>
-            <Footer />
-            <ScrollToTopButton />
-          </div>
-        </Router>
-      </AppLoader>
-    </TranslationProvider>
+              <Route path="/tickets" element={<TicketsPage />} />
+              <Route path="/boutique" element={<BoutiquePage />} />
+              <Route path="/dupinplus" element={<DuPinPlus />} />
+              <Route path="/legal-notice" element={<LegalNotice />} />
+              <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+              <Route path="/copyrights" element={<Copyrights />} />
+              <Route path="/visitor-rules" element={<VisitorRules />} />
+              <Route path="/support" element={<SupportPage />} />
+              <Route path="/collection" element={<CollectionPage />} />
+              <Route
+                path="/life-at-the-museum"
+                element={<LifeAtMuseumPage />}
+              />
+              <Route path="/visitor-trails" element={<VisitorTrailsPage />} />
+              <Route
+                path="/visitor-trails/:id"
+                element={<VisitorTrailDetailPage />}
+              />
+              <Route
+                path="/trail-experience/:trailId"
+                element={<TrailExperiencePage />}
+              />
+              <Route path="/museum-map" element={<MuseumMapPage />} />
+              <Route
+                path="/exhibition-details/:id"
+                element={<ExhibitionDetail />}
+              />
+              <Route path="/news/:id" element={<NewsDetailPage />} />
+              <Route path="/collection/:category" element={<CategoryPage />} />
+              <Route
+                path="/life-at-the-museum/:slug"
+                element={<NewsDetailPage />}
+              />
+              <Route path="/luu-tru-nghe-thuat" element={<ArtStay />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+          <Footer />
+          <ScrollToTopButton />
+        </div>
+      </Router>
+    </AppLoader>
   );
 }
 

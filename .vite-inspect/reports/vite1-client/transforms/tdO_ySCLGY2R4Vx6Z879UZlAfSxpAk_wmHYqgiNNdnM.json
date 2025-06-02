@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/baotangnghethuat/node_modules/react-icons/lib/index.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "export * from \"./iconsManifest.mjs\";\nexport * from \"./iconBase.mjs\";\nexport * from \"./iconContext.mjs\";",
+      "start": 1748859737516,
+      "end": 1748859738594,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1748859738594,
+      "end": 1748859738594,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1748859738594,
+      "end": 1748859738594,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1748859738594,
+      "end": 1748859738594,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1748859738594,
+      "end": 1748859738594,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1748859738594,
+      "end": 1748859738594,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1748859738594,
+      "end": 1748859738594,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1748859738594,
+      "end": 1748859738594,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1748859738594,
+      "end": 1748859738594,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1748859738594,
+      "end": 1748859738594,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1748859738594,
+      "end": 1748859738594,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1748859738594,
+      "end": 1748859738594,
+      "order": "normal"
+    }
+  ]
+}

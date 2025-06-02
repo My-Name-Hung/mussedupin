@@ -6,7 +6,7 @@ import React, {
   useState,
 } from "react";
 import { Link } from "react-router-dom";
-import TranslatedText from "../../../components/TranslatedText";
+import { getImageUrl } from "../../../utils/cloudinary";
 import OptimizedImage from "../../OptimizedImage/OptimizedImage";
 import "./Collections.css";
 
@@ -81,6 +81,15 @@ const collectionsData = [
     image: "Hoa Ban Trắng.webp",
     alt: "Vật liệu",
     description: "Vật liệu",
+  },
+  {
+    id: 9,
+    title: "Redpine Art Studio",
+    artist: "Lưu trú",
+    image: "luutrunghethuat.jpg",
+    alt: "Redpine Art Studio - Lưu trú nghệ thuật giữa rừng thông Đà Lạt",
+    description:
+      "Redpine Art Studio là không gian lưu trú nghệ thuật độc đáo giữa rừng thông, nơi bạn có thể trải nghiệm nghệ thuật và thiên nhiên Đà Lạt.",
   },
 ];
 
@@ -428,7 +437,7 @@ const Collections = () => {
           <Link to="/collection" className="collection-link">
             <div className="collection-image-wrapper">
               <OptimizedImage
-                src={item.image}
+                src={getImageUrl(item.image)}
                 alt={item.alt}
                 className="collection-image"
                 priority={index < 5}
@@ -438,12 +447,8 @@ const Collections = () => {
               />
               <div className="collection-overlay">
                 <div className="collection-info">
-                  <h3 className="collection-title">
-                    <TranslatedText>{item.title}</TranslatedText>
-                  </h3>
-                  <p className="collection-artist">
-                    <TranslatedText>{item.artist}</TranslatedText>
-                  </p>
+                  <h3 className="collection-title">{item.title}</h3>
+                  <p className="collection-artist">{item.artist}</p>
                 </div>
               </div>
             </div>
@@ -457,12 +462,10 @@ const Collections = () => {
     <section className="collections-section" id="collections">
       <div className="collections-content-container">
         <div className="collections-header">
-          <h2 className="collections-title">
-            <TranslatedText>Bộ sưu tập</TranslatedText>
-          </h2>
+          <h2 className="collections-title">Bộ sưu tập</h2>
           {isDesktop && (
             <p className="collections-subtitle">
-              <TranslatedText>Khám phá bộ sưu tập nghệ thuật</TranslatedText>
+              Khám phá bộ sưu tập nghệ thuật
             </p>
           )}
         </div>
@@ -478,7 +481,7 @@ const Collections = () => {
           {isMobile && showSwipeHint && (
             <div className="swipe-hint">
               <span className="swipe-text">
-                <TranslatedText>Trượt để khám phá</TranslatedText>
+                Trượt để khám phá
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"
@@ -513,7 +516,7 @@ const Collections = () => {
 
         <div className="collections-footer">
           <Link to="/collection" className="view-all-link">
-            <TranslatedText>Xem tất cả bộ sưu tập</TranslatedText>
+            Xem tất cả bộ sưu tập
             <span className="arrow-icon">→</span>
           </Link>
         </div>

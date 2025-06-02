@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import TranslatedText from "../../../components/TranslatedText";
 import "./DuPin.css";
 
 // Sample video data - replace with your actual YouTube videos
@@ -390,12 +389,12 @@ const DuPin = () => {
         style={{ transform: `translateY(${scrollProgress * -20}px)` }}
       >
         <h2 className="dupin-title">
-          <TranslatedText>MUSÉE DU PIN +</TranslatedText>
+          MUSÉE DU PIN +
         </h2>
         <div className="dupin-subtitle">
-          <TranslatedText>
+          
             Khám phá nội dung kỹ thuật số độc quyền của chúng tôi
-          </TranslatedText>
+          
         </div>
       </div>
 
@@ -403,7 +402,7 @@ const DuPin = () => {
         {isMobile && showSwipeHint && (
           <div className="swipe-hint">
             <span className="swipe-text">
-              <TranslatedText>Swipe to explore</TranslatedText>
+              Swipe to explore
               <svg
                 viewBox="0 0 24 24"
                 fill="none"
@@ -474,17 +473,10 @@ const DuPin = () => {
                   </div>
                   <div className="dupin-overlay">
                     <div className="dupin-info">
-                      <h3 className="dupin-video-title">
-                        {video.title}{" "}
-                        {video.subtitle && (
-                          <span className="dupin-subtitle">
-                            {video.subtitle}
-                          </span>
-                        )}
-                      </h3>
+                     
                       <div className="dupin-meta">
                         <span className="video-tag">
-                          <TranslatedText>VIDEO</TranslatedText>
+                          VIDEO
                         </span>
                         <span className="video-duration">{video.duration}</span>
                       </div>
@@ -514,7 +506,7 @@ const DuPin = () => {
         style={{ transform: `translateY(${scrollProgress * -10}px)` }}
       >
         <Link to="/dupinplus" className="view-all-link">
-          <TranslatedText>Nội dung thêm trên Musée Du Pin+</TranslatedText>
+          Nội dung thêm trên Musée Du Pin+
           <span className="arrow-icon">→</span>
         </Link>
       </div>

@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { getAssetUrl } from "../../../utils/getAssetUrl";
-import TranslatedText from "../../TranslatedText";
+import { getImageUrl } from "../../../utils/cloudinary";
 import "./VisitInfo.css";
 
 import { FaBaby, FaCar, FaSearch } from "react-icons/fa";
@@ -363,7 +362,7 @@ const VisitInfo = () => {
       title: "Quầy thông tin",
       description:
         "Hai quầy thông tin, nơi du khách có thể hỏi đáp với nhân viên và nhận bản đồ bảo tàng. Tài liệu hướng dẫn bằng 8 ngôn ngữ có sẵn dưới Tháp.",
-      image: "Bauholo_cards.webp",
+      image: "room1.jpg",
       icon: "info",
       details: "Nhân viên đa ngôn ngữ làm việc từ 9:00 đến 19:00 hàng ngày.",
     },
@@ -372,7 +371,7 @@ const VisitInfo = () => {
       title: "Phòng gửi đồ",
       description:
         "Tủ khóa tự phục vụ miễn phí dưới Tháp. Khách tham quan nên sử dụng tủ khóa tại lối vào. Tất cả các vật dụng gửi trong tủ khóa phải được lấy lại trong cùng ngày.",
-      image: "congchien_cards.webp",
+      image: "room2.jpg",
       icon: "hanger",
       details:
         "Gửi miễn phí cho túi có kích thước tối đa 55×35×20 cm. Không nhận vật dụng lớn hơn.",
@@ -382,7 +381,7 @@ const VisitInfo = () => {
       title: "Cho mượn thiết bị",
       description:
         "Gậy chống, ghế xếp, xe đẩy trẻ em, địu em bé, ghế đa năng có bánh xe và xe lăn được cung cấp miễn phí tại khu vực tiếp đón khách dưới Tháp.",
-      image: "DanT'rung_cards.webp",
+      image: "room3.jpg",
       icon: "stroller",
       details: "Liên hệ quầy hỗ trợ để biết thêm thông tin",
     },
@@ -391,7 +390,7 @@ const VisitInfo = () => {
       title: "Wi-Fi Miễn phí",
       description:
         "Mạng 'Musée Du Pin' có sẵn dưới Tháp và trong các phòng trưng bày. Kết nối Wi-Fi miễn phí có giới hạn một giờ và có thể được gia hạn nhiều lần theo nhu cầu.",
-      image: "LongDaDa_cards.webp",
+      image: "room4.jpg",
       icon: "wifi",
       details: "Tốc độ kết nối: 50 Mbps",
     },
@@ -400,7 +399,7 @@ const VisitInfo = () => {
       title: "Nhà vệ sinh",
       description:
         "Nhà vệ sinh có thể được tìm thấy tại khu vực đón tiếp dưới Tháp và khắp bảo tàng. Có bàn thay tã cho em bé.",
-      image: "noidat_cards.webp",
+      image: "room5.jpg",
       icon: "toilet",
       details: "Tất cả nhà vệ sinh đều tiếp cận được cho người khuyết tật",
     },
@@ -409,7 +408,7 @@ const VisitInfo = () => {
       title: "Bãi đậu xe",
       description:
         "Bãi đậu xe ngầm nằm tại số 1 Đại lộ Général Lemonnier, từ đó bạn có thể vào bảo tàng qua lối vào Carrousel. Mở cửa 7 ngày một tuần từ 7:00 đến 23:00.",
-      image: "phunu_cards.webp",
+      image: "room6.jpg",
       icon: "parking",
       details:
         "Khách tham quan khuyết tật được hưởng giá đậu xe ưu đãi. Giá này có thể được thương lượng tại quầy thanh toán trước khi trả tiền.",
@@ -419,7 +418,7 @@ const VisitInfo = () => {
       title: "Đồ thất lạc",
       description:
         "Bị mất đồ? Nếu bạn vẫn còn trong bảo tàng, hãy đến Quầy Hỗ trợ dưới Tháp và nhân viên sẽ giúp bạn.",
-      image: "Bauholo_cards.webp",
+      image: "room7.jpg",
       icon: "help",
       details:
         "Đối với đồ vật tìm thấy sau chuyến thăm, hãy điền vào mẫu báo cáo trên trang web của chúng tôi",
@@ -429,7 +428,7 @@ const VisitInfo = () => {
       title: "Khu vực cho em bé",
       description:
         "Studio – khu vực đặc biệt được thiết kế dành cho gia đình, nằm ở tầng trệt của cánh Richelieu – có khu vực dành cho em bé được trang bị máy hâm sữa, lò vi sóng và ghế cho con bú.",
-      image: "Lehoi_cards.webp",
+      image: "room8.jpg",
       icon: "baby",
       details: "Mọi thứ bạn cần cho sự thoải mái và chăm sóc em bé",
     },
@@ -439,10 +438,10 @@ const VisitInfo = () => {
   const homestayData = [
     {
       id: "traditional",
-      title: "Nhà nghỉ truyền thống",
+      title: "The ChildHood",
       description:
         "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
-      image: "Lehoi_cards.webp",
+      image: "thechillhood.jpg",
       price: 2800000,
       rating: 4.8,
       tags: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
@@ -461,10 +460,10 @@ const VisitInfo = () => {
       rules: ["Không hút thuốc", "Không thú cưng", "Không tổ chức tiệc"],
       cancellation: "Hủy miễn phí đến 48 giờ trước khi nhận phòng",
       gallery: [
-        "Lehoi_cards.webp",
-        "LongDaDa_cards.webp",
-        "noidat_cards.webp",
-        "phunu_cards.webp",
+        "whitebauhinia.jpg",
+        "thechill1.jpg",
+        "thechill2.jpg",
+        "thememory.jpg",
       ],
       reviews: [
         {
@@ -481,10 +480,10 @@ const VisitInfo = () => {
     },
     {
       id: "modern",
-      title: "Căn hộ hiện đại",
+      title: "White Bauhunia",
       description:
         "Căn hộ sang trọng với đầy đủ tiện nghi, cách bảo tàng 10 phút đi bộ.",
-      image: "congchien_cards.webp",
+      image: "whitebauhinia.jpg",
       price: 4200000,
       rating: 4.9,
       tags: ["Đánh giá cao", "Sang trọng", "Vị trí trung tâm"],
@@ -504,10 +503,10 @@ const VisitInfo = () => {
       rules: ["Không hút thuốc", "Cho phép thú cưng", "Không tổ chức tiệc"],
       cancellation: "Hủy miễn phí đến 24 giờ trước khi nhận phòng",
       gallery: [
-        "congchien_cards.webp",
-        "phunu_cards.webp",
-        "LongDaDa_cards.webp",
-        "noidat_cards.webp",
+        "thesunset.jpg",
+        "thetrain.jpg",
+        "thechill1.jpg",
+        "thechill2.jpg",
       ],
       reviews: [
         {
@@ -524,10 +523,10 @@ const VisitInfo = () => {
     },
     {
       id: "luxury",
-      title: "Biệt thự sang trọng",
+      title: "The chill 1",
       description:
         "Biệt thự tuyệt đẹp với vườn riêng, dịch vụ cao cấp và view thành phố ngoạn mục.",
-      image: "DanT'rung_cards.webp",
+      image: "thechill1.jpg",
       price: 8200000,
       rating: 5.0,
       tags: ["Cao cấp", "Riêng tư", "Dịch vụ đầy đủ"],
@@ -552,10 +551,10 @@ const VisitInfo = () => {
       ],
       cancellation: "Hủy miễn phí đến 7 ngày trước khi nhận phòng",
       gallery: [
-        "DanT'rung_cards.webp",
-        "phunu_cards.webp",
-        "phunu_cards.webp",
-        "noidat_cards.webp",
+        "thesunset.jpg",
+        "thetrain.jpg",
+        "thechillhood.jpg",
+        "thememory.jpg",
       ],
       reviews: [
         {
@@ -573,10 +572,10 @@ const VisitInfo = () => {
     },
     {
       id: "budget",
-      title: "Phòng giá rẻ",
+      title: "The Chill 2",
       description:
         "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
-      image: "Gui_cards.webp",
+      image: "thechill2.jpg",
       price: 1750000,
       rating: 4.5,
       tags: ["Giá tốt", "Thuận tiện", "Đáng giá"],
@@ -595,10 +594,139 @@ const VisitInfo = () => {
       rules: ["Không hút thuốc", "Không thú cưng", "Yên tĩnh sau 22:00"],
       cancellation: "Hủy miễn phí đến 24 giờ trước khi nhận phòng",
       gallery: [
-        "Gui_cards.webp",
-        "LongDaDa_cards.webp",
-        "phunu_cards.webp",
-        "phunu_cards.webp",
+        "thesunset.jpg",
+        "thetrain.jpg",
+        "thechillhood.jpg",
+        "thememory.jpg",
+      ],
+      reviews: [
+        {
+          author: "Michael",
+          rating: 4.3,
+          comment: "Giá trị tuyệt vời và vị trí thuận tiện gần tàu điện ngầm.",
+        },
+        {
+          author: "Anna",
+          rating: 4.7,
+          comment:
+            "Phòng sạch sẽ và thoải mái. Claire là một chủ nhà rất nhiệt tình!",
+        },
+      ],
+    },
+    {
+      id: "budget",
+      title: "The Memory",
+      description:
+        "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
+      image: "thememory.jpg",
+      price: 1750000,
+      rating: 4.5,
+      tags: ["Giá tốt", "Thuận tiện", "Đáng giá"],
+      category: ["recommended", "budget-friendly"],
+      location: "Cách bảo tàng 20 phút đi tàu điện ngầm",
+      host: "Musée Du Pin",
+      roomType: "Phòng riêng trong căn hộ chung",
+      beds: "1 giường đôi",
+      amenities: [
+        "Wi-Fi miễn phí",
+        "Phòng tắm chung",
+        "Bếp chung",
+        "Máy giặt",
+        "Gần ga tàu điện ngầm",
+      ],
+      rules: ["Không hút thuốc", "Không thú cưng", "Yên tĩnh sau 22:00"],
+      cancellation: "Hủy miễn phí đến 24 giờ trước khi nhận phòng",
+      gallery: [
+        "thesunset.jpg",
+        "thetrain.jpg",
+        "thechillhood.jpg",
+        "whitebauhinia.jpg",
+      ],
+      reviews: [
+        {
+          author: "Michael",
+          rating: 4.3,
+          comment: "Giá trị tuyệt vời và vị trí thuận tiện gần tàu điện ngầm.",
+        },
+        {
+          author: "Anna",
+          rating: 4.7,
+          comment:
+            "Phòng sạch sẽ và thoải mái. Claire là một chủ nhà rất nhiệt tình!",
+        },
+      ],
+    },
+    {
+      id: "budget",
+      title: "The Sunset",
+      description:
+        "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
+      image: "thesunset.jpg",
+      price: 1750000,
+      rating: 4.5,
+      tags: ["Giá tốt", "Thuận tiện", "Đáng giá"],
+      category: ["recommended", "budget-friendly"],
+      location: "Cách bảo tàng 20 phút đi tàu điện ngầm",
+      host: "Musée Du Pin",
+      roomType: "Phòng riêng trong căn hộ chung",
+      beds: "1 giường đôi",
+      amenities: [
+        "Wi-Fi miễn phí",
+        "Phòng tắm chung",
+        "Bếp chung",
+        "Máy giặt",
+        "Gần ga tàu điện ngầm",
+      ],
+      rules: ["Không hút thuốc", "Không thú cưng", "Yên tĩnh sau 22:00"],
+      cancellation: "Hủy miễn phí đến 24 giờ trước khi nhận phòng",
+      gallery: [
+        "thechill1.jpg",
+        "thetrain.jpg",
+        "thechillhood.jpg",
+        "thememory.jpg",
+      ],
+      reviews: [
+        {
+          author: "Michael",
+          rating: 4.3,
+          comment: "Giá trị tuyệt vời và vị trí thuận tiện gần tàu điện ngầm.",
+        },
+        {
+          author: "Anna",
+          rating: 4.7,
+          comment:
+            "Phòng sạch sẽ và thoải mái. Claire là một chủ nhà rất nhiệt tình!",
+        },
+      ],
+    },
+    {
+      id: "budget",
+      title: "The Train",
+      description:
+        "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
+      image: "thetrain.jpg",
+      price: 1750000,
+      rating: 4.5,
+      tags: ["Giá tốt", "Thuận tiện", "Đáng giá"],
+      category: ["recommended", "budget-friendly"],
+      location: "Cách bảo tàng 20 phút đi tàu điện ngầm",
+      host: "Musée Du Pin",
+      roomType: "Phòng riêng trong căn hộ chung",
+      beds: "1 giường đôi",
+      amenities: [
+        "Wi-Fi miễn phí",
+        "Phòng tắm chung",
+        "Bếp chung",
+        "Máy giặt",
+        "Gần ga tàu điện ngầm",
+      ],
+      rules: ["Không hút thuốc", "Không thú cưng", "Yên tĩnh sau 22:00"],
+      cancellation: "Hủy miễn phí đến 24 giờ trước khi nhận phòng",
+      gallery: [
+        "thesunset.jpg",
+        "thechill2.jpg",
+        "thechillhood.jpg",
+        "thememory.jpg",
       ],
       reviews: [
         {
@@ -656,22 +784,24 @@ const VisitInfo = () => {
     <div className="visitinfo-hero" ref={heroRef}>
       <div className="visitinfo-hero-image-container">
         <img
-          src={getAssetUrl("louvre-sunset.webp")}
+          src={getImageUrl("luutrunghethuat.jpg", {
+            width: 1920,
+            height: 1080,
+            crop: "fill",
+          })}
           alt="Nội thất bảo tàng"
           className="visitinfo-hero-image"
         />
       </div>
-      <div className="visitinfo-hero-overlay"></div>
-      <div className="visitinfo-hero-content">
+      {/* <div className="visitinfo-hero-overlay"></div> */}
+      {/* <div className="visitinfo-hero-content">
         <h1 className="visitinfo-hero-title">
-          <TranslatedText>TIỆN ÍCH CHO KHÁCH THAM QUAN</TranslatedText>
+          LƯU TRÚ TRONG CÁC CĂN PHÒNG NGHỆ THUẬT
         </h1>
         <p className="visitinfo-hero-subtitle">
-          <TranslatedText>
             Mọi thứ bạn cần cho một chuyến tham quan thoải mái
-          </TranslatedText>
         </p>
-      </div>
+      </div> */}
     </div>
   );
 
@@ -704,7 +834,7 @@ const VisitInfo = () => {
                   onClick={() => scrollToSection("amenities")}
                   className="visitinfo-nav-button"
                 >
-                  <TranslatedText>Tiện ích</TranslatedText>
+                  Tiện ích
                 </button>
                 <span className="visitinfo-nav-indicator"></span>
               </li>
@@ -717,7 +847,7 @@ const VisitInfo = () => {
                   onClick={() => scrollToSection("homestay")}
                   className="visitinfo-nav-button"
                 >
-                  <TranslatedText>Lưu trú</TranslatedText>
+                  Lưu trú
                 </button>
                 <span className="visitinfo-nav-indicator"></span>
               </li>
@@ -730,7 +860,7 @@ const VisitInfo = () => {
                   onClick={() => scrollToSection("faq")}
                   className="visitinfo-nav-button"
                 >
-                  <TranslatedText>Hỏi đáp</TranslatedText>
+                  Hỏi đáp
                 </button>
                 <span className="visitinfo-nav-indicator"></span>
               </li>
@@ -782,17 +912,13 @@ const VisitInfo = () => {
       <div className="visitinfo-section-container">
         <div className="visitinfo-section-header">
           <h2 className="visitinfo-section-title">
-            <span>
-              <TranslatedText>Tiện nghi và thoải mái</TranslatedText>
-            </span>
+            <span>Tiện nghi và thoải mái</span>
             <span className="title-underline"></span>
           </h2>
           <p className="visitinfo-section-description">
-            <TranslatedText>
               Bảo tàng cung cấp nhiều dịch vụ để đảm bảo điều kiện tham quan tốt
               nhất. Nhân viên luôn sẵn sàng trong bảo tàng để cung cấp thông tin
               cập nhật về bảo tàng và các hoạt động.
-            </TranslatedText>
           </p>
         </div>
 
@@ -846,15 +972,9 @@ const VisitInfo = () => {
                   <div className="amenity-icon-backdrop"></div>
                 </div>
                 <div className="amenity-card-content">
-                  <h3 className="amenity-title">
-                    <TranslatedText>{amenity.title}</TranslatedText>
-                  </h3>
-                  <p className="amenity-description">
-                    <TranslatedText>{amenity.description}</TranslatedText>
-                  </p>
-                  <div className="amenity-card-details">
-                    <TranslatedText>{amenity.details}</TranslatedText>
-                  </div>
+                  <h3 className="amenity-title">{amenity.title}</h3>
+                  <p className="amenity-description">{amenity.description}</p>
+                  <div className="amenity-card-details">{amenity.details}</div>
                 </div>
               </div>
               <div className="amenity-card-decorations">
@@ -896,19 +1016,13 @@ const VisitInfo = () => {
       <div className="visitinfo-section-container">
         <div className="visitinfo-section-header">
           <h2 className="visitinfo-section-title modern">
-            <span>
-              <TranslatedText>
-                Trải nghiệm cuộc sống địa phương gần bảo tàng
-              </TranslatedText>
-            </span>
+            <span>Trải nghiệm cuộc sống địa phương gần bảo tàng</span>
             <span className="title-accent"></span>
           </h2>
           <p className="visitinfo-section-description">
-            <TranslatedText>
               Hòa mình vào văn hóa địa phương với các lựa chọn lưu trú được chọn
-              lọc kỹ càng gần bảo tàng. Trải nghiệm sự hiếu khách đích thực
-              trong những không gian được thiết kế nghệ thuật.
-            </TranslatedText>
+            lọc kỹ càng gần bảo tàng. Trải nghiệm sự hiếu khách đích thực trong
+            những không gian được thiết kế nghệ thuật.
           </p>
         </div>
 
@@ -929,7 +1043,7 @@ const VisitInfo = () => {
               }`}
               onClick={() => handleCategoryChange("all")}
             >
-              <TranslatedText>Tất cả lựa chọn</TranslatedText>
+              Tất cả lựa chọn
             </div>
             <div
               className={`homestay-category ${
@@ -937,7 +1051,7 @@ const VisitInfo = () => {
               }`}
               onClick={() => handleCategoryChange("popular")}
             >
-              <TranslatedText>Phổ biến</TranslatedText>
+              Phổ biến
             </div>
             <div
               className={`homestay-category ${
@@ -945,7 +1059,7 @@ const VisitInfo = () => {
               }`}
               onClick={() => handleCategoryChange("top-rated")}
             >
-              <TranslatedText>Đánh giá cao</TranslatedText>
+              Đánh giá cao
             </div>
             <div
               className={`homestay-category ${
@@ -953,7 +1067,7 @@ const VisitInfo = () => {
               }`}
               onClick={() => handleCategoryChange("recommended")}
             >
-              <TranslatedText>Đề xuất</TranslatedText>
+              Đề xuất
             </div>
             <div
               className={`homestay-category ${
@@ -961,7 +1075,7 @@ const VisitInfo = () => {
               }`}
               onClick={() => handleCategoryChange("budget-friendly")}
             >
-              <TranslatedText>Giá tốt</TranslatedText>
+              Giá tốt
             </div>
           </div>
         </div>
@@ -970,22 +1084,20 @@ const VisitInfo = () => {
           {filteredHomestays.map((homestay) => (
             <div className="homestay-card modern" key={homestay.id}>
               <div className="homestay-card-image">
-                <img src={getAssetUrl(homestay.image)} alt={homestay.title} />
+                <img src={getImageUrl(homestay.image)} alt={homestay.title} />
                 {homestay.tags.map(
                   (tag, index) =>
                     index < 1 && (
                       <div className="homestay-card-tag" key={index}>
-                        <TranslatedText>{tag}</TranslatedText>
+                        {tag}
                       </div>
                     )
                 )}
               </div>
               <div className="homestay-card-content">
-                <h3 className="homestay-card-title">
-                  <TranslatedText>{homestay.title}</TranslatedText>
-                </h3>
+                <h3 className="homestay-card-title">{homestay.title}</h3>
                 <p className="homestay-card-description">
-                  <TranslatedText>{homestay.description}</TranslatedText>
+                  {homestay.description}
                 </p>
                 <div className="homestay-card-location">
                   <svg viewBox="0 0 24 24" width="16" height="16">
@@ -994,31 +1106,27 @@ const VisitInfo = () => {
                       fill="currentColor"
                     />
                   </svg>
-                  <span>
-                    <TranslatedText>{homestay.location}</TranslatedText>
-                  </span>
+                  <span>{homestay.location}</span>
                 </div>
                 <div className="homestay-card-footer">
                   <div className="homestay-card-price">
                     <span className="price-value">
                       {formatPrice(homestay.price)}
                     </span>
-                    <span className="price-unit">
-                      <TranslatedText>mỗi đêm</TranslatedText>
-                    </span>
+                    <span className="price-unit">mỗi đêm</span>
                   </div>
                   <div className="homestay-card-actions">
                     <button
                       className="btn-view"
                       onClick={() => openDetailsSidebar(homestay)}
                     >
-                      <TranslatedText>Xem chi tiết</TranslatedText>
+                      Xem chi tiết
                     </button>
                     <button
                       className="btn-book"
                       onClick={() => openBookingSidebar(homestay)}
                     >
-                      <TranslatedText>Đặt ngay</TranslatedText>
+                      Đặt ngay
                     </button>
                   </div>
                 </div>
@@ -1045,13 +1153,9 @@ const VisitInfo = () => {
                 "'Mythical-Prince', 'LouvreSerif', Georgia, 'Times New Roman', serif",
             }}
           >
-            <span>
-              <TranslatedText>Câu hỏi thường gặp</TranslatedText>
-            </span>
+            <span>Câu hỏi thường gặp</span>
           </h2>
-          <p className="faq-subtitle">
-            <TranslatedText>Câu trả lời từ Bảo tàng Du Pin.</TranslatedText>
-          </p>
+          <p className="faq-subtitle">Câu trả lời từ Bảo tàng Du Pin.</p>
         </div>
 
         <div className="faq-list">
@@ -1063,27 +1167,19 @@ const VisitInfo = () => {
             >
               <div className="faq-highlight"></div>
               <div className="faq-question" onClick={() => toggleFaq(index)}>
-                <span>
-                  <TranslatedText>{faq.question}</TranslatedText>
-                </span>
+                <span>{faq.question}</span>
               </div>
               <div className="faq-answer">
-                <p>
-                  <TranslatedText>{faq.answer}</TranslatedText>
-                </p>
+                <p>{faq.answer}</p>
               </div>
             </div>
           ))}
         </div>
 
         <div className="faq-footer">
-          <h3 className="faq-footer-title">
-            <TranslatedText>Didn't find your answer?</TranslatedText>
-          </h3>
+          <h3 className="faq-footer-title">Didn't find your answer?</h3>
           <p className="faq-footer-text">
-            <TranslatedText>
               Contact our support team for more information.
-            </TranslatedText>
           </p>
           <button className="contact-btn">
             <svg viewBox="0 0 24 24" width="18" height="18">
@@ -1092,7 +1188,7 @@ const VisitInfo = () => {
                 d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
               />
             </svg>
-            <TranslatedText>Contact Us</TranslatedText>
+            Contact Us
           </button>
         </div>
       </div>
@@ -1134,7 +1230,7 @@ const VisitInfo = () => {
           <div className="homestay-gallery">
             <div className="gallery-main" onClick={() => openGalleryModal(0)}>
               <img
-                src={getAssetUrl(gallery[0] || selectedHomestay.image)}
+                src={getImageUrl(gallery[0] || selectedHomestay.image)}
                 alt={selectedHomestay.title}
               />
               <div className="gallery-zoom-icon">
@@ -1162,7 +1258,7 @@ const VisitInfo = () => {
                   }}
                 >
                   <img
-                    src={getAssetUrl(img)}
+                    src={getImageUrl(img)}
                     alt={`${selectedHomestay.title} - hình ${index + 1}`}
                   />
                 </div>
@@ -1196,10 +1292,7 @@ const VisitInfo = () => {
                   fill="currentColor"
                 />
               </svg>
-              <span>
-                <TranslatedText>Chủ sở hữu</TranslatedText>:{" "}
-                {selectedHomestay.host}
-              </span>
+              <span>Chủ sở hữu: {selectedHomestay.host}</span>
             </div>
 
             <div className="homestay-details-beds">
@@ -1213,9 +1306,7 @@ const VisitInfo = () => {
             </div>
 
             <div className="homestay-details-section">
-              <h3>
-                <TranslatedText>Tiện nghi</TranslatedText>
-              </h3>
+              <h3>Tiện nghi</h3>
               <ul className="amenities-list">
                 {selectedHomestay.amenities.map((amenity, index) => (
                   <li key={index}>
@@ -1225,32 +1316,24 @@ const VisitInfo = () => {
                         fill="currentColor"
                       />
                     </svg>
-                    <TranslatedText>{amenity}</TranslatedText>
+                    {amenity}
                   </li>
                 ))}
               </ul>
             </div>
 
             <div className="homestay-details-section">
-              <h3>
-                <TranslatedText>Nội quy</TranslatedText>
-              </h3>
+              <h3>Nội quy</h3>
               <ul className="rules-list">
                 {selectedHomestay.rules.map((rule, index) => (
-                  <li key={index}>
-                    <TranslatedText>{rule}</TranslatedText>
-                  </li>
+                  <li key={index}>{rule}</li>
                 ))}
               </ul>
             </div>
 
             <div className="homestay-details-section">
-              <h3>
-                <TranslatedText>Chính sách hủy phòng</TranslatedText>
-              </h3>
-              <p>
-                <TranslatedText>{selectedHomestay.cancellation}</TranslatedText>
-              </p>
+              <h3>Chính sách hủy phòng</h3>
+              <p>{selectedHomestay.cancellation}</p>
             </div>
           </div>
 
@@ -1259,15 +1342,13 @@ const VisitInfo = () => {
               <span className="price-value">
                 {formatPrice(selectedHomestay.price)}
               </span>
-              <span className="price-unit">
-                <TranslatedText>mỗi đêm</TranslatedText>
-              </span>
+              <span className="price-unit">mỗi đêm</span>
             </div>
             <button
               className="btn-book-now"
               onClick={() => openBookingSidebar(selectedHomestay)}
             >
-              <TranslatedText>Đặt ngay</TranslatedText>
+              Đặt ngay
             </button>
           </div>
         </div>
@@ -1296,9 +1377,7 @@ const VisitInfo = () => {
               />
             </svg>
           </button>
-          <h2>
-            <TranslatedText>Đặt phòng</TranslatedText>
-          </h2>
+          <h2>Đặt phòng</h2>
           <div></div>
         </div>
 
@@ -1313,13 +1392,11 @@ const VisitInfo = () => {
 
           <div className="booking-homestay-info modern">
             <img
-              src={getAssetUrl(selectedHomestay.image)}
+              src={getImageUrl(selectedHomestay.image)}
               alt={selectedHomestay.title}
             />
             <div>
-              <h3>
-                <TranslatedText>{selectedHomestay.title}</TranslatedText>
-              </h3>
+              <h3>{selectedHomestay.title}</h3>
               <div className="booking-homestay-location">
                 <svg viewBox="0 0 24 24" width="14" height="14">
                   <path
@@ -1327,17 +1404,13 @@ const VisitInfo = () => {
                     fill="currentColor"
                   />
                 </svg>
-                <span>
-                  <TranslatedText>{selectedHomestay.location}</TranslatedText>
-                </span>
+                <span>{selectedHomestay.location}</span>
               </div>
               <div className="booking-homestay-price">
                 <span className="price-value">
                   {formatPrice(selectedHomestay.price)}
                 </span>
-                <span className="price-unit">
-                  <TranslatedText>mỗi đêm</TranslatedText>
-                </span>
+                <span className="price-unit">mỗi đêm</span>
               </div>
             </div>
           </div>
@@ -1346,9 +1419,7 @@ const VisitInfo = () => {
             {updateBookingForm()}
 
             <div className={`form-group ${formErrors.name ? "has-error" : ""}`}>
-              <label htmlFor="name">
-                <TranslatedText>Họ và tên</TranslatedText>
-              </label>
+              <label htmlFor="name">Họ và tên</label>
               <input
                 type="text"
                 id="name"
@@ -1365,9 +1436,7 @@ const VisitInfo = () => {
             <div
               className={`form-group ${formErrors.email ? "has-error" : ""}`}
             >
-              <label htmlFor="email">
-                <TranslatedText>Email</TranslatedText>
-              </label>
+              <label htmlFor="email">Email</label>
               <input
                 type="email"
                 id="email"
@@ -1384,9 +1453,7 @@ const VisitInfo = () => {
             <div
               className={`form-group ${formErrors.phone ? "has-error" : ""}`}
             >
-              <label htmlFor="phone">
-                <TranslatedText>Số điện thoại</TranslatedText>
-              </label>
+              <label htmlFor="phone">Số điện thoại</label>
               <input
                 type="tel"
                 id="phone"
@@ -1403,9 +1470,7 @@ const VisitInfo = () => {
             <div
               className={`form-group ${formErrors.guests ? "has-error" : ""}`}
             >
-              <label htmlFor="guests">
-                <TranslatedText>Số lượng khách</TranslatedText>
-              </label>
+              <label htmlFor="guests">Số lượng khách</label>
               <input
                 type="number"
                 id="guests"
@@ -1421,9 +1486,7 @@ const VisitInfo = () => {
             </div>
 
             <div className="form-group">
-              <label htmlFor="specialRequests">
-                <TranslatedText>Yêu cầu</TranslatedText>
-              </label>
+              <label htmlFor="specialRequests">Yêu cầu</label>
               <textarea
                 id="specialRequests"
                 name="specialRequests"
@@ -1436,18 +1499,14 @@ const VisitInfo = () => {
 
             <div className="booking-summary modern">
               <div className="summary-row">
-                <span>
-                  <TranslatedText>Giá mỗi đêm</TranslatedText>
-                </span>
+                <span>Giá mỗi đêm</span>
                 <span>{formatPrice(selectedHomestay.price)}</span>
               </div>
 
               {bookingFormData.checkIn && bookingFormData.checkOut && (
                 <>
                   <div className="summary-row">
-                    <span>
-                      <TranslatedText>Số đêm</TranslatedText>
-                    </span>
+                    <span>Số đêm</span>
                     <span>
                       {Math.max(
                         1,
@@ -1461,9 +1520,7 @@ const VisitInfo = () => {
                   </div>
 
                   <div className="summary-row total">
-                    <span>
-                      <TranslatedText>Tổng cộng</TranslatedText>
-                    </span>
+                    <span>Tổng cộng</span>
                     <span>
                       {formatPrice(
                         selectedHomestay.price *
@@ -1490,12 +1547,10 @@ const VisitInfo = () => {
               {isSubmitting ? (
                 <>
                   <div className="spinner"></div>
-                  <span>
-                    <TranslatedText>Đang xử lý...</TranslatedText>
-                  </span>
+                  <span>Đang xử lý...</span>
                 </>
               ) : (
-                <TranslatedText>Hoàn tất đặt phòng</TranslatedText>
+                "Hoàn tất đặt phòng"
               )}
             </button>
           </form>
@@ -1525,9 +1580,7 @@ const VisitInfo = () => {
             </svg>
           </div>
 
-          <h2 className="success-title">
-            <TranslatedText>Đặt phòng thành công!</TranslatedText>
-          </h2>
+          <h2 className="success-title">Đặt phòng thành công!</h2>
 
           <div className="success-animation">
             {[...Array(10)].map((_, i) => (
@@ -1553,11 +1606,9 @@ const VisitInfo = () => {
           </div>
 
           <p className="success-message">
-            <TranslatedText>
               Cảm ơn bạn đã đặt phòng. Chúng tôi đã gửi xác nhận đến email của
-              bạn. Bộ phận chăm sóc khách hàng sẽ sớm liên hệ với bạn để cung
-              cấp thêm thông tin chi tiết.
-            </TranslatedText>
+            bạn. Bộ phận chăm sóc khách hàng sẽ sớm liên hệ với bạn để cung cấp
+            thêm thông tin chi tiết.
           </p>
 
           <div className="success-details">
@@ -1568,10 +1619,7 @@ const VisitInfo = () => {
                   fill="currentColor"
                 />
               </svg>
-              <span>
-                <TranslatedText>Chủ sỡ hữu</TranslatedText>:{" "}
-                {successBookingData.host}
-              </span>
+              <span>Chủ sỡ hữu: {successBookingData.host}</span>
             </div>
 
             <div className="success-detail-item">
@@ -1581,9 +1629,7 @@ const VisitInfo = () => {
                   fill="currentColor"
                 />
               </svg>
-              <span>
-                <TranslatedText>{successBookingData.location}</TranslatedText>
-              </span>
+              <span>{successBookingData.location}</span>
             </div>
 
             <div className="success-detail-item">
@@ -1610,14 +1656,13 @@ const VisitInfo = () => {
                 />
               </svg>
               <span>
-                <TranslatedText>Tổng</TranslatedText>:{" "}
-                <span className="total-price">${totalPrice}</span>
+                Tổng: <span className="total-price">${totalPrice}</span>
               </span>
             </div>
           </div>
 
           <button className="btn-close-success" onClick={closeSuccessModal}>
-            <TranslatedText>Đóng</TranslatedText>
+            Đóng
           </button>
         </div>
       </div>
@@ -1822,9 +1867,7 @@ const VisitInfo = () => {
     return (
       <div className="booking-form-fields">
         <div className="form-group">
-          <label htmlFor="checkIn">
-            <TranslatedText>Ngày nhận phòng</TranslatedText>
-          </label>
+          <label htmlFor="checkIn">Ngày nhận phòng</label>
           <input
             type="date"
             id="checkIn"
@@ -1839,9 +1882,7 @@ const VisitInfo = () => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="checkOut">
-            <TranslatedText>Ngày trả phòng</TranslatedText>
-          </label>
+          <label htmlFor="checkOut">Ngày trả phòng</label>
           <input
             type="date"
             id="checkOut"
@@ -1909,7 +1950,7 @@ const VisitInfo = () => {
           </button>
 
           <img
-            src={getAssetUrl(gallery[activeImageIndex])}
+            src={getImageUrl(gallery[activeImageIndex])}
             alt={`${selectedHomestay.title} - hình ${activeImageIndex + 1}`}
           />
 
@@ -1936,7 +1977,7 @@ const VisitInfo = () => {
               onClick={() => setActiveImageIndex(index)}
             >
               <img
-                src={getAssetUrl(img)}
+                src={getImageUrl(img)}
                 alt={`${selectedHomestay.title} - thumbnail ${index + 1}`}
               />
             </div>

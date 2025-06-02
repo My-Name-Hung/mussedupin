@@ -1,7 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import { getCurrentLanguage, translateText } from "../../../utils/translate";
-import OptimizedVideo from "../../OptimizedVideo/OptimizedVideo";
+import CloudinaryPlayer from "../../CloudinaryPlayer/CloudinaryPlayer";
 import "./Hero.css";
 
 // SVG Icons
@@ -82,78 +81,7 @@ const ChevronUp = () => (
 const Hero = () => {
   const [isPrepareOpen, setIsPrepareOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
-  const [translations, setTranslations] = useState({});
-  const [currentLanguage, setCurrentLanguage] = useState(getCurrentLanguage());
-  const [isVideoLoaded, setIsVideoLoaded] = useState(false);
   const heroRef = useRef(null);
-
-  // Handle video loading
-  const handleVideoCanPlay = () => {
-    console.log("Hero video loaded successfully");
-    setIsVideoLoaded(true);
-  };
-
-  const handleVideoError = () => {
-    console.error("Hero video failed to load");
-  };
-
-  // Load translations with optimization
-  useEffect(() => {
-    const loadTranslations = async () => {
-      const language = getCurrentLanguage();
-      setCurrentLanguage(language);
-
-      // Use Promise.all for parallel translation loading
-      const [
-        titleText,
-        welcomeText,
-        museumOpenText,
-        bookTicketText,
-        prepareVisitText,
-        prepareVisitCapsText,
-        timeStartText,
-        timeEndText,
-      ] = await Promise.all([
-        translateText("Escape with the", language),
-        translateText("Welcome to the", language),
-        translateText("The museum is open today", language),
-        translateText("Book a ticket", language),
-        translateText("Prepare your visit", language),
-        translateText("Chuẩn bị tham quan", language),
-        translateText("7:00 AM", language),
-        translateText("21:00 PM", language),
-      ]);
-
-      const translatedTexts = {
-        title: titleText + " Musée Du Pin",
-        welcomeTitle: welcomeText + " Musée Du Pin",
-        museumOpen: museumOpenText,
-        bookTicket: bookTicketText,
-        prepareVisit: prepareVisitText,
-        prepareVisitCaps: prepareVisitCapsText,
-        imgAlt: "Bảo tàng hoạt động từ - Musée Du Pin",
-        timeStart: timeStartText,
-        timeEnd: timeEndText,
-      };
-
-      setTranslations(translatedTexts);
-    };
-
-    loadTranslations();
-
-    // Listen for language changes
-    const handleLanguageChange = () => {
-      const newLanguage = getCurrentLanguage();
-      if (newLanguage !== currentLanguage) {
-        setCurrentLanguage(newLanguage);
-      }
-    };
-
-    window.addEventListener("storage", handleLanguageChange);
-    return () => {
-      window.removeEventListener("storage", handleLanguageChange);
-    };
-  }, [currentLanguage]);
 
   // Check mobile with debounce
   useEffect(() => {
@@ -182,25 +110,12 @@ const Hero = () => {
     <>
       <section className="hero-container" ref={heroRef}>
         <div className="hero-image-container">
-          <OptimizedVideo
-            src="0531_resize.mp4"
-            poster="hero-poster.webp"
-            autoPlay={true}
-            muted={true}
-            loop={true}
-            playsInline={true}
-            priority={true}
-            width="1920"
-            height="1080"
-            onCanPlay={handleVideoCanPlay}
-            onError={handleVideoError}
-            className={`hero-video ${isVideoLoaded ? "loaded" : ""}`}
-            style={{
-              width: "100%",
-              height: "100%",
-            }}
+          <CloudinaryPlayer
+            cloudName="dn0br7hj0"
+            publicId="hero/LANGBIANG_RESIZE"
+            width="100%"
+            height="100%"
           />
-          <div className="hero-overlay"></div>
           <div className="hero-content">
             {/* Add structured data for SEO */}
             <script type="application/ld+json">
@@ -227,7 +142,7 @@ const Hero = () => {
       {isMobile && (
         <div className="mobile-hero-controller">
           <div className="mobile-prepare-visit" onClick={togglePrepareVisit}>
-            <span>{translations.prepareVisitCaps || "Chuẩn bị tham quan"}</span>
+            <span>Chuẩn bị tham quan</span>
             {isPrepareOpen ? <ChevronDown /> : <ChevronUp />}
           </div>
         </div>
@@ -243,9 +158,9 @@ const Hero = () => {
             <h2 className="info-panel-title">Chào mừng đến với Musée Du Pin</h2>
             <p className="info-panel-status">Bảo tàng đang mở cửa</p>
             <p className="info-panel-hours">
-              <span>{translations.timeStart || "7:00 AM"}</span>
+              <span>7:00 AM</span>
               <ArrowIcon />
-              <span>{translations.timeEnd || "21:00 PM"}</span>
+              <span>21:00 PM</span>
             </p>
           </div>
 

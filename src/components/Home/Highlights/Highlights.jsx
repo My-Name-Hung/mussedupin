@@ -1,8 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
-import TranslatedText from "../../../components/TranslatedText";
 import useCachedAsset from "../../../hooks/useCachedAsset";
-import { getAssetUrl } from "../../../utils/getAssetUrl";
+import { getImageUrl } from "../../../utils/cloudinary";
 import "./Highlights.css";
 
 // Sample highlight data - in a real app, this would come from an API or CMS
@@ -12,7 +11,7 @@ const highlightsData = [
     title: "Không gian nghệ thuật Langbiang",
     description:
       "Khi nghệ thuật không chỉ để ngắm, mà để sống cùng và sống trong. Không có tủ kính ngăn cách. Không có rào chắn giữa người và hiện vật. Langbiang không đơn thuần là một căn phòng, mà là một vùng ký ức sống, nơi hồn cốt của núi rừng thở trong từng vật phẩm, cháy trong từng ngọn lửa bếp, ngân nga trong từng tiếng cồng chiêng.",
-    image: "Langbiang.webp",
+    image: "Langbiang.jpg",
     alt: "Langbiang",
     tag: "Trưng bày",
     link: "/exhibition-details/langbiang-khong-gian",
@@ -32,8 +31,14 @@ const highlightsData = [
 ];
 
 // Component for cached image
-const CachedImage = ({ src, alt, className, loading = "eager" }) => {
-  const { url: cachedUrl, isLoaded } = useCachedAsset(getAssetUrl(src));
+const CachedImage = ({
+  src,
+  alt,
+  className,
+  loading = "eager",
+  highlightId,
+}) => {
+  const { url: cachedUrl, isLoaded } = useCachedAsset(getImageUrl(src));
 
   return (
     <img
@@ -44,6 +49,7 @@ const CachedImage = ({ src, alt, className, loading = "eager" }) => {
       style={{
         opacity: isLoaded ? 1 : 0.9,
         transition: "opacity 0.2s ease",
+        objectFit: highlightId === 1 ? "contain" : "cover",
       }}
     />
   );
@@ -104,9 +110,7 @@ const Highlights = ({ onVisible, onHidden }) => {
   return (
     <section id="highlights" className="highlights-section" ref={highlightsRef}>
       <div className="highlights-header">
-        <h2 className="highlights-title">
-          <TranslatedText>ĐIỂM NỔI BẬT</TranslatedText>
-        </h2>
+        <h2 className="highlights-title">ĐIỂM NỔI BẬT</h2>
       </div>
 
       {/* Mobile layout */}
@@ -123,9 +127,7 @@ const Highlights = ({ onVisible, onHidden }) => {
           >
             <div className="highlight-card">
               <div className="card-tag">
-                <span>
-                  <TranslatedText>{item.tag}</TranslatedText>
-                </span>
+                <span>{item.tag}</span>
               </div>
               <Link to={item.link} className="card-link-wrapper">
                 <div className="card-image-container">
@@ -134,17 +136,14 @@ const Highlights = ({ onVisible, onHidden }) => {
                     alt={item.alt}
                     className="card-image"
                     loading="eager"
+                    highlightId={item.id}
                   />
                 </div>
                 <div className="card-content">
                   <h3 className="card-title">
-                    <span className="card-title-text">
-                      <TranslatedText>{item.title}</TranslatedText>
-                    </span>
+                    <span className="card-title-text">{item.title}</span>
                   </h3>
-                  <p className="card-description">
-                    <TranslatedText>{item.description}</TranslatedText>
-                  </p>
+                  <p className="card-description">{item.description}</p>
                 </div>
               </Link>
             </div>
@@ -164,9 +163,7 @@ const Highlights = ({ onVisible, onHidden }) => {
           >
             <div className="highlight-card">
               <div className="card-tag">
-                <span>
-                  <TranslatedText>{highlightsData[0].tag}</TranslatedText>
-                </span>
+                <span>{highlightsData[0].tag}</span>
               </div>
               <Link to={highlightsData[0].link} className="card-link-wrapper">
                 <div className="card-image-container">
@@ -175,18 +172,17 @@ const Highlights = ({ onVisible, onHidden }) => {
                     alt={highlightsData[0].alt}
                     className="card-image"
                     loading="eager"
+                    highlightId={highlightsData[0].id}
                   />
                 </div>
                 <div className="card-content">
                   <h3 className="card-title">
                     <span className="card-title-text">
-                      <TranslatedText>{highlightsData[0].title}</TranslatedText>
+                      {highlightsData[0].title}
                     </span>
                   </h3>
                   <p className="card-description">
-                    <TranslatedText>
-                      {highlightsData[0].description}
-                    </TranslatedText>
+                    {highlightsData[0].description}
                   </p>
                 </div>
               </Link>
@@ -206,9 +202,7 @@ const Highlights = ({ onVisible, onHidden }) => {
             >
               <div className="highlight-card">
                 <div className="card-tag">
-                  <span>
-                    <TranslatedText>{highlightsData[1].tag}</TranslatedText>
-                  </span>
+                  <span>{highlightsData[1].tag}</span>
                 </div>
                 <Link to={highlightsData[1].link} className="card-link-wrapper">
                   <div className="card-image-container">
@@ -217,20 +211,17 @@ const Highlights = ({ onVisible, onHidden }) => {
                       alt={highlightsData[1].alt}
                       className="card-image"
                       loading="eager"
+                      highlightId={highlightsData[1].id}
                     />
                   </div>
                   <div className="card-content">
                     <h3 className="card-title">
                       <span className="card-title-text">
-                        <TranslatedText>
-                          {highlightsData[1].title}
-                        </TranslatedText>
+                        {highlightsData[1].title}
                       </span>
                     </h3>
                     <p className="card-description">
-                      <TranslatedText>
-                        {highlightsData[1].description}
-                      </TranslatedText>
+                      {highlightsData[1].description}
                     </p>
                   </div>
                 </Link>

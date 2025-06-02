@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
-import { getAssetUrl } from "../../utils/getAssetUrl";
+import { getImageUrl } from "../../utils/cloudinary";
 import "./VisitorTrailDetailPage.css";
 
 // SVG icons
@@ -393,7 +393,7 @@ const VisitorTrailDetailPage = () => {
     if (foundTrail) {
       // Preload hero image
       const img = new Image();
-      img.src = getAssetUrl(foundTrail.image);
+      img.src = getImageUrl(foundTrail.image);
       img.onload = () => setImageLoaded(true);
 
       setTrail(foundTrail);
@@ -410,7 +410,7 @@ const VisitorTrailDetailPage = () => {
       {/* Hero Section - Optimized with loading state */}
       <div className={`trail-detail-hero ${imageLoaded ? "loaded" : ""}`}>
         <img
-          src={getAssetUrl(trail.image)}
+          src={getImageUrl(trail.image)}
           alt={trail.title}
           className="trail-detail-hero-image"
           loading="eager"

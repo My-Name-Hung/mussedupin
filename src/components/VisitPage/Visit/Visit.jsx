@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
-import { getAssetUrl } from "../../../utils/getAssetUrl";
-import TranslatedText from "../../TranslatedText";
+import { getImageUrl } from "../../../utils/cloudinary";
 import "./Visit.css";
 
 // Hero section background image
@@ -386,19 +385,19 @@ const Visit = () => {
     <div className="visit-hero" ref={heroRef}>
       <div className="visit-hero-image-container">
         <img
-          src={getAssetUrl("louvre-sunset.webp")}
+          src={getImageUrl("Thông 4.webp", {
+            width: 1920,
+            height: 1080,
+            crop: "fill",
+          })}
           alt="Musée Du Pin"
           className="visit-hero-image"
         />
         <div className="visit-hero-overlay"></div>
       </div>
       <div className="visit-hero-content">
-        <h1 className="visit-hero-title">
-          <TranslatedText>GIỜ MỞ CỬA & VÉ VÀO CỬA</TranslatedText>
-        </h1>
-        <p className="visit-hero-subtitle">
-          <TranslatedText>Lên kế hoạch và đặt vé tham quan</TranslatedText>
-        </p>
+        <h1 className="visit-hero-title">GIỜ MỞ CỬA VÀ CÁC GÓI TRẢI NGHIỆM</h1>
+        <p className="visit-hero-subtitle">Lên kế hoạch và đặt vé tham quan</p>
       </div>
     </div>
   );
@@ -434,7 +433,7 @@ const Visit = () => {
                 }}
                 className="visit-nav-button"
               >
-                <TranslatedText>Thời gian tham quan</TranslatedText>
+                Thời gian tham quan
                 {ripples.map((ripple) => (
                   <span
                     key={ripple.id}
@@ -462,7 +461,7 @@ const Visit = () => {
                 }}
                 className="visit-nav-button"
               >
-                <TranslatedText>Giá vé</TranslatedText>
+                Giá vé
                 {ripples.map((ripple) => (
                   <span
                     key={ripple.id}
@@ -490,7 +489,7 @@ const Visit = () => {
                 }}
                 className="visit-nav-button"
               >
-                <TranslatedText>Thành viên</TranslatedText>
+                Thành viên
                 {ripples.map((ripple) => (
                   <span
                     key={ripple.id}
@@ -516,7 +515,10 @@ const Visit = () => {
   const renderMuseumInfo = () => (
     <div className="museum-info-wrapper">
       <div className="museum-info-image">
-        <img src={getAssetUrl("louvre-sunset.webp")} alt="Musée Du Pin" />
+        <img
+          src="https://scontent.fsgn5-12.fna.fbcdn.net/v/t39.30808-6/475005503_122135717756476582_3999824126778630748_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEEzq62LNhBII4YPz4y8vzHKTr0LI5nxT0pOvQsjmfFPcono5QWqsJZ5X1xeaMQAsxZO9nHTVw3RVjopc_CObft&_nc_ohc=oTEyYDZnfAIQ7kNvwGO8zcC&_nc_oc=AdmfX-I5Pk81vQKR7JRp2x-7eMqCFUwXe4xBH3KKLX02qI2o7LPSGDbj0fENglHdIRI&_nc_zt=23&_nc_ht=scontent.fsgn5-12.fna&_nc_gid=eg1SVxsLccaJ3OUbc4LAZA&oh=00_AfLwDVQH4jsNWFFEiwdntQxpqgh9RoTrq2Ym2ORQarytSw&oe=6842E118"
+          alt="Musée Du Pin"
+        />
         {isMobile && <div className="info-image-overlay"></div>}
       </div>
 
@@ -524,74 +526,50 @@ const Visit = () => {
         <div className="museum-status-bar">
           <div className={`museum-status ${statusClass}`}>
             <span className="status-dot"></span>
-            <TranslatedText>Bảo tàng {statusText}</TranslatedText>
+            Bảo tàng {statusText}
           </div>
         </div>
 
         <div className="museum-hours">
           <div className={`hours-row ${isMobile ? "touch-friendly" : ""}`}>
             <div className="hours-time">
-              <span>
-                <TranslatedText>7:00 → 21:00</TranslatedText>
-              </span>
+              <span>7:00 → 21:00</span>
             </div>
             <div className="hours-days">
-              <span>
-                <TranslatedText>Thứ Hai đến Chủ Nhật</TranslatedText>
-              </span>
+              <span>Thứ Hai đến Chủ Nhật</span>
             </div>
           </div>
         </div>
 
         <div className="museum-notes">
           <div className={`note-item ${isMobile ? "touch-friendly" : ""}`}>
-            <div className="note-label">
-              <TranslatedText>Giờ vào cuối:</TranslatedText>
-            </div>
-            <div className="note-value">
-              <TranslatedText>1 tiếng trước giờ đóng cửa</TranslatedText>
-            </div>
+            <div className="note-label">Giờ vào cuối:</div>
+            <div className="note-value">1 tiếng trước giờ đóng cửa</div>
           </div>
 
           <div className={`note-item ${isMobile ? "touch-friendly" : ""}`}>
-            <div className="note-label">
-              <TranslatedText>Dọn dẹp phòng:</TranslatedText>
-            </div>
-            <div className="note-value">
-              <TranslatedText>30 phút trước giờ đóng cửa</TranslatedText>
-            </div>
+            <div className="note-label">Dọn dẹp phòng:</div>
+            <div className="note-value">30 phút trước giờ đóng cửa</div>
           </div>
 
           <div className={`note-item ${isMobile ? "touch-friendly" : ""}`}>
-            <div className="note-label">
-              <TranslatedText>Ngày lễ:</TranslatedText>
-            </div>
+            <div className="note-label">Ngày lễ:</div>
             <div className="note-value">
-              <TranslatedText>
                 Musée Du Pin đóng cửa vào ngày 1 tháng 1, 1 tháng 5 và 25 tháng
                 12. Bảo tàng vẫn mở cửa vào các ngày lễ khác trừ khi rơi vào thứ
                 Ba, ngày nghỉ định kỳ của bảo tàng.
-              </TranslatedText>
             </div>
           </div>
 
           <div className={`note-item ${isMobile ? "touch-friendly" : ""}`}>
-            <div className="note-label">
-              <TranslatedText>Sân Carrée</TranslatedText>
-            </div>
-            <div className="note-value">
-              <TranslatedText>đóng cửa lúc 23:00.</TranslatedText>
-            </div>
+            <div className="note-label">Sân Carrée</div>
+            <div className="note-value">đóng cửa lúc 23:00.</div>
           </div>
 
           <div className={`note-item ${isMobile ? "touch-friendly" : ""}`}>
-            <div className="note-label">
-              <TranslatedText>Sân Carrée</TranslatedText>
-            </div>
+            <div className="note-label">Sân Carrée</div>
             <div className="note-value">
-              <TranslatedText>
                 sẽ đóng cửa từ ngày 7 tháng 4 đến 25 tháng 6 năm 2025.
-              </TranslatedText>
             </div>
           </div>
         </div>
@@ -605,41 +583,31 @@ const Visit = () => {
       <div className={`ticket-option ${isMobile ? "touch-card" : ""}`}>
         <div className="ticket-option-details">
           <div className="ticket-type">
-            <TranslatedText>Vé phổ thông</TranslatedText>
+            GIÁ TRỊ - Guided tours, storytime và học tập
           </div>
         </div>
-        <div className="ticket-price">
-          <TranslatedText>500.000đ</TranslatedText>
-        </div>
+        <div className="ticket-price">500.000đ</div>
       </div>
 
       <div className={`ticket-option ${isMobile ? "touch-card" : ""}`}>
         <div className="ticket-option-details">
           <div className="ticket-type">
-            <TranslatedText>
               Người dưới 18 tuổi, cư dân EEA dưới 26 tuổi
-            </TranslatedText>
           </div>
           <a href="#" className="ticket-link" onClick={handleFullListClick}>
-            <TranslatedText>
               Xem danh sách đầy đủ khách tham quan được miễn phí vé vào cửa
-            </TranslatedText>
           </a>
         </div>
-        <div className="ticket-price highlighted">
-          <TranslatedText>MIỄN PHÍ</TranslatedText>
-        </div>
+        <div className="ticket-price highlighted">MIỄN PHÍ</div>
       </div>
 
       <div className={`ticket-option ${isMobile ? "touch-card" : ""}`}>
         <div className="ticket-option-details">
           <div className="ticket-type">
-            <TranslatedText>
               Bạn đến theo nhóm (từ 7 người trở lên)?
-            </TranslatedText>
           </div>
           <a href="#" className="ticket-link" onClick={handleGroupPricesClick}>
-            <TranslatedText>Xem giá vé nhóm</TranslatedText>
+            Xem giá vé nhóm
           </a>
         </div>
         <div className="ticket-price"></div>
@@ -709,9 +677,7 @@ const Visit = () => {
                   <polyline points="12 6 12 12 16 14"></polyline>
                 </svg>
               </span>
-              <span className="mobile-nav-label">
-                <TranslatedText>Thời gian</TranslatedText>
-              </span>
+              <span className="mobile-nav-label">Thời gian</span>
             </button>
           </li>
           <li
@@ -742,9 +708,7 @@ const Visit = () => {
                   <line x1="1" y1="10" x2="23" y2="10"></line>
                 </svg>
               </span>
-              <span className="mobile-nav-label">
-                <TranslatedText>Vé</TranslatedText>
-              </span>
+              <span className="mobile-nav-label">Vé</span>
             </button>
           </li>
           <li
@@ -777,9 +741,7 @@ const Visit = () => {
                   <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
                 </svg>
               </span>
-              <span className="mobile-nav-label">
-                <TranslatedText>Thành viên</TranslatedText>
-              </span>
+              <span className="mobile-nav-label">Thành viên</span>
             </button>
           </li>
         </ul>
@@ -865,16 +827,12 @@ const Visit = () => {
       >
         <div className="visit-section-container">
           <h2 className="visit-section-title">
-            <span>
-              <TranslatedText>THỜI GIAN THAM QUAN</TranslatedText>
-            </span>
+            <span>THỜI GIAN THAM QUAN</span>
           </h2>
 
           <div className="museum-location-tabs">
             <div className="location-tab active">
-              <button className="location-tab-button">
-                <TranslatedText>Musée Du Pin</TranslatedText>
-              </button>
+              <button className="location-tab-button">Musée Du Pin</button>
             </div>
           </div>
 
@@ -884,31 +842,33 @@ const Visit = () => {
 
       {/* Ticket Prices Section */}
       <section
-        className={`visit-section ${visibleSections.tickets ? "visible" : ""}`}
+        className={` ${visibleSections.tickets ? "visible" : ""}`}
         id="tickets"
         ref={sectionRefs.tickets}
       >
         <div className="visit-section-container">
           <h2 className="visit-section-title">
-            <span>
-              <TranslatedText>GIÁ VÉ</TranslatedText>
-            </span>
+            <span>CHI PHÍ CÁC GÓI TRẢI NGHIỆM</span>
           </h2>
 
           <div className="ticket-intro">
+            <div className="ticket-image-container">
+              <img
+                src="https://live.staticflickr.com/2308/2427636873_0b9c299803_c.jpg"
+                alt="Vé tham quan Musée Du Pin"
+                className="ticket-illustration"
+                loading="lazy"
+              />
+            </div>
             <p className="ticket-description">
-              <TranslatedText>
                 Một vé cho phép bạn truy cập vào các bộ sưu tập vĩnh viễn và các
                 triển lãm tạm thời của Musée Du Pin, cũng như đến bảo tàng
                 Eugène-Delacroix cùng ngày và ngày sau ngày thăm của bạn tại bảo
                 tàng Musée Du Pin.
-              </TranslatedText>
             </p>
             <div className="ticket-note">
-              <TranslatedText>
-                Vé có thể được mua trực tiếp tại điểm khi số lượng khách tham
-                quan ở bảo tàng thấp (tùy theo sẵn có).
-              </TranslatedText>
+              Vé có thể được mua trực tiếp tại điểm khi số lượng khách tham quan
+              ở bảo tàng thấp (tùy theo sẵn có).
             </div>
           </div>
 
@@ -921,9 +881,7 @@ const Visit = () => {
           >
             <div className="section-header" onClick={toggleAdmissionSection}>
               <h3 className="section-titles">
-                <TranslatedText>
                   NGƯỜI THAM QUAN ĐƯỢC MIỄN PHÍ VÉ
-                </TranslatedText>
               </h3>
               <button className="expand-button">
                 <span
@@ -941,113 +899,77 @@ const Visit = () => {
               style={{ display: isAdmissionExpanded ? "block" : "none" }}
             >
               <p className="section-intro">
-                <TranslatedText>
-                  Đặt giờ tham quan được khuyến nghị, bao gồm cho khách tham
-                  quan được miễn phí vé.
-                </TranslatedText>
+                Đặt giờ tham quan được khuyến nghị, bao gồm cho khách tham quan
+                được miễn phí vé.
               </p>
 
               <p className="section-subtitle">
-                <TranslatedText>
                   Miễn phí cho các khách tham quan sau:
-                </TranslatedText>
               </p>
 
               <div className="visitor-category">
-                <h4 className="category-title">
-                  <TranslatedText>Dưới 18 tuổi</TranslatedText>
-                </h4>
-                <p className="category-details">
-                  <TranslatedText>Chứng minh ID yêu cầu.</TranslatedText>
-                </p>
+                <h4 className="category-title">Dưới 18 tuổi</h4>
+                <p className="category-details">Chứng minh ID yêu cầu.</p>
               </div>
 
               <div className="visitor-category">
                 <h4 className="category-title">
-                  <TranslatedText>
                     Cư dân khu vực kinh tế châu Âu (EU, Na Uy, Iceland, và
                     Liechtenstein) dưới 26 tuổi
-                  </TranslatedText>
                 </h4>
                 <p className="category-details">
-                  <TranslatedText>
                     Chứng minh ID và sống tại địa phương.
-                  </TranslatedText>
                 </p>
               </div>
 
               <div className="visitor-category">
-                <h4 className="category-title">
-                  <TranslatedText>Tất cả khách tham quan</TranslatedText>
-                </h4>
+                <h4 className="category-title">Tất cả khách tham quan</h4>
                 <p className="category-details">
-                  <TranslatedText>
-                    Vào ngày thứ năm đầu tiên của tháng sau 6 giờ chiều (trừ
-                    tháng 7 và tháng 8)
-                  </TranslatedText>
+                  Vào ngày thứ năm đầu tiên của tháng sau 6 giờ chiều (trừ tháng
+                  7 và tháng 8)
                 </p>
               </div>
 
-              <div className="visitor-category-separator">
-                <TranslatedText>Và:</TranslatedText>
-              </div>
+              <div className="visitor-category-separator">Và:</div>
 
               <div className="visitor-categories-grid">
                 <div className="visitor-category">
                   <h4 className="category-title">
-                    <TranslatedText>
                       Khách tham quan không mạnh mẽ và người đi cùng họ
-                    </TranslatedText>
                   </h4>
                 </div>
 
                 <div className="visitor-category">
                   <h4 className="category-title">
-                    <TranslatedText>
-                      Giáo viên nghệ thuật (nghệ thuật mỹ thuật, khảo cổ học,
-                      nghệ thuật ứng dụng, kiến trúc và lịch sử nghệ thuật)
-                    </TranslatedText>
+                    Giáo viên nghệ thuật (nghệ thuật mỹ thuật, khảo cổ học, nghệ
+                    thuật ứng dụng, kiến trúc và lịch sử nghệ thuật)
                   </h4>
                   <p className="category-details">
-                    <TranslatedText>
                       Trình bày chứng minh môn học đã dạy.
-                    </TranslatedText>
                   </p>
                 </div>
 
                 <div className="visitor-category">
                   <h4 className="category-title">
-                    <TranslatedText>
                       Nghệ sĩ liên kết với AIAP (Hiệp hội Quốc tế Nghệ thuật Mỹ
                       thuật)
-                    </TranslatedText>
                   </h4>
                   <p className="category-details">
-                    <TranslatedText>
                       Trình bày thẻ thành viên hợp lệ hoặc chứng chỉ.
-                    </TranslatedText>
                   </p>
                 </div>
 
                 <div className="visitor-category">
-                  <h4 className="category-title">
-                    <TranslatedText>Thành viên ICOM và ICOMOS</TranslatedText>
-                  </h4>
+                  <h4 className="category-title">Thành viên ICOM và ICOMOS</h4>
                   <p className="category-details">
-                    <TranslatedText>
                       Trình bày thẻ thành viên hợp lệ.
-                    </TranslatedText>
                   </p>
                 </div>
 
                 <div className="visitor-category">
-                  <h4 className="category-title">
-                    <TranslatedText>Nhà báo</TranslatedText>
-                  </h4>
+                  <h4 className="category-title">Nhà báo</h4>
                   <p className="category-details">
-                    <TranslatedText>
                       Trình bày thẻ báo chí quốc tế hoặc quốc gia.
-                    </TranslatedText>
                   </p>
                 </div>
               </div>
@@ -1055,157 +977,99 @@ const Visit = () => {
           </div>
 
           <div className="tours-activities-section">
-            <h3 className="section-subtitle">
-              <TranslatedText>Chuyến đi và hoạt động</TranslatedText>
-            </h3>
+            <h3 className="section-subtitle">Chuyến đi và hoạt động</h3>
 
             <div className="ticket-options">
               <div className="ticket-option">
                 <div className="ticket-option-details">
                   <div className="ticket-type">
-                    <TranslatedText>
                       GIÁ TRỊ - Guided tours, storytime và học tập
-                    </TranslatedText>
                   </div>
                   <p className="ticket-details">
-                    <TranslatedText>
                       Giá này không bao gồm vé vào bảo tàng.
-                    </TranslatedText>
                   </p>
                 </div>
-                <div className="ticket-price">
-                  <TranslatedText>12.00 €</TranslatedText>
-                </div>
+                <div className="ticket-price">12.00 €</div>
               </div>
 
               <div className="ticket-option">
                 <div className="ticket-option-details">
                   <div className="ticket-type">
-                    <TranslatedText>
-                      VÉ KẾT HỢP - Tham quan có hướng dẫn, kể chuyện và hội thảo
-                      + Musée Du Pin
-                    </TranslatedText>
+                    VÉ KẾT HỢP - Tham quan có hướng dẫn, kể chuyện và hội thảo +
+                    Musée Du Pin
                   </div>
-                  <p className="ticket-details">
-                    <TranslatedText>Bao gồm vé vào bảo tàng</TranslatedText>
-                  </p>
+                  <p className="ticket-details">Bao gồm vé vào bảo tàng</p>
                 </div>
-                <div className="ticket-price">
-                  <TranslatedText>750.000đ</TranslatedText>
-                </div>
+                <div className="ticket-price">750.000đ</div>
               </div>
 
               <div className="ticket-option">
                 <div className="ticket-option-details">
                   <div className="ticket-type">
-                    <TranslatedText>
                       GIÁ ƯU ĐÃI - Tham quan có hướng dẫn, kể chuyện và hội thảo
-                    </TranslatedText>
                   </div>
-                  <p className="ticket-details">
-                    <TranslatedText>Giá ưu đãi có điều kiện</TranslatedText>
-                  </p>
+                  <p className="ticket-details">Giá ưu đãi có điều kiện</p>
                 </div>
-                <div className="ticket-price">
-                  <TranslatedText>220.000đ</TranslatedText>
-                </div>
+                <div className="ticket-price">220.000đ</div>
               </div>
 
               <div className="ticket-option">
                 <div className="ticket-option-details">
                   <div className="ticket-type">
-                    <TranslatedText>
                       GIÁ NHÓM (7-25 người) - Tham quan có hướng dẫn
-                    </TranslatedText>
                   </div>
                   <p className="ticket-details">
-                    <TranslatedText>
                       Giá mỗi người, yêu cầu đặt trước
-                    </TranslatedText>
                   </p>
                 </div>
-                <div className="ticket-price">
-                  <TranslatedText>200.000đ</TranslatedText>
-                </div>
+                <div className="ticket-price">200.000đ</div>
               </div>
 
               <div className="ticket-option">
                 <div className="ticket-option-details">
                   <div className="ticket-type">
-                    <TranslatedText>
                       NHÓM HỌC SINH - Tham quan giáo dục có hướng dẫn
-                    </TranslatedText>
                   </div>
                   <p className="ticket-details">
-                    <TranslatedText>
                       Dành cho các nhóm học sinh tiểu học và trung học, bao gồm
                       tài liệu giáo dục
-                    </TranslatedText>
                   </p>
                 </div>
-                <div className="ticket-price">
-                  <TranslatedText>120.000đ</TranslatedText>
-                </div>
+                <div className="ticket-price">120.000đ</div>
               </div>
             </div>
           </div>
 
           <div className="payment-section">
-            <h3 className="section-subtitle">
-              <TranslatedText>Phương thức thanh toán</TranslatedText>
-            </h3>
+            <h3 className="section-subtitle">Phương thức thanh toán</h3>
             <p className="payment-details">
-              <TranslatedText>
-                Các phương thức thanh toán được chấp nhận tại quầy vé bảo tàng
-                bao gồm tiền mặt, thẻ ngân hàng và phiếu du lịch
-                'Chèques-Vacances'.
-              </TranslatedText>
+              Các phương thức thanh toán được chấp nhận tại quầy vé bảo tàng bao
+              gồm tiền mặt, thẻ ngân hàng và phiếu du lịch 'Chèques-Vacances'.
             </p>
-            <div className="payment-image">
-              <img
-                src={getAssetUrl("louvre-sunset.webp")}
-                alt="Thanh toán tại Musée Du Pin"
-              />
-            </div>
           </div>
         </div>
       </section>
 
       {/* Membership Section */}
       <section
-        className={`visit-section ${
-          visibleSections.membership ? "visible" : ""
-        }`}
+        className={` ${visibleSections.membership ? "visible" : ""}`}
         id="membership"
         ref={sectionRefs.membership}
       >
         <div className="visit-section-container">
           <h2 className="visit-section-title">
-            <span>
-              <TranslatedText>THÀNH VIÊN</TranslatedText>
-            </span>
+            <span>THÀNH VIÊN</span>
           </h2>
 
           <div className="membership-info">
             <h3 className="membership-heading">
-              <TranslatedText>
                 Trở thành thành viên của Hội Bạn bè Musée Du Pin
-              </TranslatedText>
             </h3>
             <p className="membership-description">
-              <TranslatedText>
                 Hội Bạn bè Musée Du Pin cung cấp nhiều chương trình thành viên
-                khác nhau (thanh niên, cá nhân và cặp đôi, gia đình), với mức
-                giá từ 350.000đ đến 2.800.000đ.
-              </TranslatedText>
+              khác nhau (thanh niên, cá nhân và cặp đôi, gia đình), với mức giá
+              từ 350.000đ đến 2.800.000đ.
             </p>
-
-            <div className="membership-card-image">
-              <img
-                src={getAssetUrl("louvre-sunset.webp")}
-                alt="Thẻ thành viên Hội Bạn bè Musée Du Pin"
-              />
-            </div>
           </div>
         </div>
       </section>
@@ -1230,14 +1094,10 @@ const Visit = () => {
           </svg>
         </div>
         <div className="visit-info-content">
-          <h3 className="visit-info-title">
-            <TranslatedText>VÀO VÀ RA</TranslatedText>
-          </h3>
+          <h3 className="visit-info-title">VÀO VÀ RA</h3>
           <p className="visit-info-text">
-            <TranslatedText>
-              Hãy lên kế hoạch trước những gì bạn muốn làm tại bảo tàng vì khi
-              đã ra khỏi bảo tàng sẽ không được vào lại.
-            </TranslatedText>
+            Hãy lên kế hoạch trước những gì bạn muốn làm tại bảo tàng vì khi đã
+            ra khỏi bảo tàng sẽ không được vào lại.
           </p>
         </div>
       </div>

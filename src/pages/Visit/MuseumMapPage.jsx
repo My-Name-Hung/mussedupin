@@ -1,7 +1,5 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { useTranslation } from "../../contexts/TranslationContext";
-import { getAssetUrl } from "../../utils/getAssetUrl";
 import "./MuseumMapPage.css";
 
 // SVG Icons
@@ -78,165 +76,54 @@ const MuseumMapPage = () => {
   const [selectedTransport, setSelectedTransport] = useState("air");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [translations, setTranslations] = useState({});
-  const { translate } = useTranslation();
-
-  useEffect(() => {
-    const loadTranslations = async () => {
-      const translatedTexts = {
-        pageTitle: await translate("Bản đồ, Chỉ đường & Vị trí | Musée Du Pin"),
-        gettingHere: await translate("Đường đến bảo tàng"),
-        toCentralMarket: await translate("Đến Chợ Đà Lạt"),
-        museumMap: await translate("Bản đồ bảo tàng"),
-        byAir: await translate("Bằng máy bay"),
-        byCarFromSouth: await translate("Bằng ô tô (Từ phía Nam)"),
-        byCarFromNorthCentral: await translate("Bằng ô tô (Từ phía Bắc/Trung)"),
-        byBus: await translate("Bằng xe khách"),
-        fromLienKhuongAirport: await translate("Từ sân bay Liên Khương"),
-        takeATaxiOrUseTheMuseumsShuttleService: await translate(
-          "Đi taxi hoặc sử dụng dịch vụ xe đưa đón của bảo tàng"
-        ),
-        followTheDaLatLienKhuongHighway: await translate(
-          "Đi theo đường cao tốc Đà Lạt - Liên Khương"
-        ),
-        afterPrennPassTurnLeftAt34RoadOntoDongDaStreet: await translate(
-          "Sau đèo Prenn, rẽ trái tại đường 3/4 vào đường Đống Đa"
-        ),
-        continuePastCuuLongElementarySchool: await translate(
-          "Đi tiếp qua trường Tiểu học Cửu Long"
-        ),
-        lookForAGreenStrawberryGardenNextToAPineTreeShapedBuildingThatsMuséeDuPin:
-          await translate(
-            "Tìm vườn dâu tây xanh bên cạnh tòa nhà hình cây thông - đó là Musée Du Pin"
-          ),
-        multipleRoutesAvailableFromSouthernProvincesAndHoChiMinhCity:
-          await translate(
-            "Nhiều tuyến đường từ các tỉnh phía Nam và TP. Hồ Chí Minh:"
-          ),
-        route1: await translate("Tuyến 1"),
-        route2: await translate("Tuyến 2"),
-        route3: await translate("Tuyến 3"),
-        route4: await translate("Tuyến 4"),
-        fromNhaTrang: await translate("Từ Nha Trang"),
-        fromHanoi: await translate("Từ Hà Nội"),
-        khanhLePassOffersMagnificentNaturalBeautyWithMistyForestsAndPineTrees:
-          await translate(
-            "Đèo Khánh Lê mang đến vẻ đẹp thiên nhiên tuyệt vời với rừng thông và sương mù"
-          ),
-        busServicesAvailableFromVariousLocations: await translate(
-          "Dịch vụ xe khách có sẵn từ nhiều địa điểm:"
-        ),
-        fromSouthVietnamPhuongTrangAndThanhBuoiBusesOfferTransferServiceToTheMuseum:
-          await translate(
-            "Từ Nam Việt Nam: Xe Phương Trang và Thành Bưởi có dịch vụ đưa đón đến bảo tàng"
-          ),
-        fromNorthVietnamMinhThuTaiThangVanNamHiepDucNgocHungVanNhanDienLinhAndDaoVanBuses:
-          await translate(
-            "Từ Bắc Việt Nam: Xe Minh Thu, Tài Thắng, Vân Nam, Hiệp Đức, Ngọc Hưng Vân Nhân, Diên Linh và Đào Vân"
-          ),
-        forBusesWithoutTransferServiceTakeATaxiFromHaHuyTapOrToHienThanhStreetToDongDaToHienThanhIntersection:
-          await translate(
-            "Đối với xe không có dịch vụ đưa đón, đi taxi từ đường Hà Huy Tập hoặc Tô Hiến Thành đến ngã tư Đống Đa - Tô Hiến Thành"
-          ),
-        theMuseumIsOnly100mFromThisIntersection: await translate(
-          "Bảo tàng chỉ cách ngã tư này 100m"
-        ),
-        muséeDuPinIsLocatedAt2931DongDaStreetWard3DaLatCity: await translate(
-          "Musée Du Pin tọa lạc tại 29-31 đường Đống Đa, Phường 3, Thành phố Đà Lạt"
-        ),
-        chooseYourPreferredModeOfTransportationToReachMuséeDuPin:
-          await translate(
-            "Chọn phương tiện di chuyển ưa thích để đến Musée Du Pin"
-          ),
-        selectTransportationMode: await translate("Chọn phương tiện di chuyển"),
-        toCentralMarketXuangHuongLake: await translate(
-          "ĐẾN CHỢ ĐÀ LẠT & HỒ XUÂN HƯƠNG"
-        ),
-        distanceToCentralNightMarket12km: await translate(
-          "Khoảng cách đến Chợ Đêm Đà Lạt: 1.2km"
-        ),
-        distanceToXuanHuongLake900m: await translate(
-          "Khoảng cách đến Hồ Xuân Hương: 900m"
-        ),
-        directions: await translate("Chỉ đường:"),
-        takeHaHuyTapStreetToTranPhuStreetToReachBothTheDaLatMarketAndXuanHuongLake:
-          await translate(
-            "Đi theo đường Hà Huy Tập đến đường Trần Phú để đến cả Chợ Đà Lạt và Hồ Xuân Hương"
-          ),
-        importantUseONLYHaHuyTapStreetRouteForTheBestAccess: await translate(
-          "Quan trọng: CHỈ sử dụng tuyến đường Hà Huy Tập để tiếp cận tốt nhất"
-        ),
-        interactiveMuseumFloorPlanWouldBeDisplayedHere: await translate(
-          "Sơ đồ tầng bảo tàng tương tác sẽ được hiển thị tại đây"
-        ),
-        downloadPDFMap: await translate("Tải bản đồ PDF"),
-        mapDirections: await translate("BẢN ĐỒ & CHỈ ĐƯỜNG"),
-        howToReachMuséeDuPin: await translate(
-          "Làm thế nào để đến Musée Du Pin"
-        ),
-        back: await translate("Quay lại"),
-      };
-      setTranslations(translatedTexts);
-      document.title = translatedTexts.pageTitle;
-    };
-
-    loadTranslations();
-  }, [translate]);
 
   const tabs = [
     {
       id: "getting-here",
-      label: translations.gettingHere || "Đường đến bảo tàng",
+      label: "Đường đến bảo tàng",
     },
     {
       id: "from-central",
-      label: translations.toCentralMarket || "Đến Chợ Đà Lạt",
+      label: "Đến Chợ Đà Lạt",
     },
-    { id: "museum-map", label: translations.museumMap || "Bản đồ bảo tàng" },
+    { id: "museum-map", label: "Bản đồ bảo tàng" },
   ];
 
   const transportModes = [
     {
       id: "air",
-      name: translations.byAir || "Bằng máy bay",
-      description:
-        translations.fromLienKhuongAirport || "Từ sân bay Liên Khương",
+      name: "Bằng máy bay",
+      description: "Từ sân bay Liên Khương",
       details: [
-        translations.takeATaxiOrUseTheMuseumsShuttleService ||
-          "Đi taxi hoặc sử dụng dịch vụ xe đưa đón của bảo tàng",
-        translations.followTheDaLatLienKhuongHighway ||
-          "Đi theo đường cao tốc Đà Lạt - Liên Khương",
-        translations.afterPrennPassTurnLeftAt34RoadOntoDongDaStreet ||
-          "Sau đèo Prenn, rẽ trái tại đường 3/4 vào đường Đống Đa",
-        translations.continuePastCuuLongElementarySchool ||
-          "Đi tiếp qua trường Tiểu học Cửu Long",
-        translations.lookForAGreenStrawberryGardenNextToAPineTreeShapedBuildingThatsMuséeDuPin ||
-          "Tìm vườn dâu tây xanh bên cạnh tòa nhà hình cây thông - đó là Musée Du Pin",
+        "Đi taxi hoặc sử dụng dịch vụ xe đưa đón của bảo tàng",
+        "Đi theo đường cao tốc Đà Lạt - Liên Khương",
+        "Sau đèo Prenn, rẽ trái tại đường 3/4 vào đường Đống Đa",
+        "Đi tiếp qua trường Tiểu học Cửu Long",
+        "Tìm vườn dâu tây xanh bên cạnh tòa nhà hình cây thông - đó là Musée Du Pin",
       ],
     },
     {
       id: "car-south",
-      name: translations.byCarFromSouth || "Bằng ô tô (Từ Nam)",
-      description:
-        translations.multipleRoutesAvailableFromSouthernProvincesAndHoChiMinhCity ||
-        "Nhiều tuyến đường từ các tỉnh phía Nam và TP. Hồ Chí Minh:",
+      name: "Bằng ô tô (Từ Nam)",
+      description: "Nhiều tuyến đường từ các tỉnh phía Nam và TP. Hồ Chí Minh:",
       routes: [
         {
-          name: translations.route1 || "Tuyến 1",
+          name: "Tuyến 1",
           path: "QL1A → Dầu Giây → QL20 → Đèo Chuối → Đèo Bảo Lộc → Đèo Prenn",
           note: "Đèo Bảo Lộc tương đối hẹp với nhiều xe buýt và xe tải. Nếu đi xe máy, hãy kiểm tra phương tiện và lái xe cẩn thận.",
         },
         {
-          name: translations.route2 || "Tuyến 2",
+          name: "Tuyến 2",
           path: "QL1A → TP. Phan Thiết → QL28B → Đèo Đại Ninh → QL20 (đoạn Đức Trọng) → Đèo Prenn",
           note: "Đèo Đại Ninh cung cấp một tuyến đường yên tĩnh, phong cảnh đẹp, hoàn hảo cho những người yêu thiên nhiên.",
         },
         {
-          name: translations.route3 || "Tuyến 3",
+          name: "Tuyến 3",
           path: "QL1A → TP. Phan Thiết → QL28 → Đèo Gia Bắc → QL20 (đoạn Di Linh) → Đèo Prenn",
           note: "Lý tưởng cho những người đam mê xe máy, Đèo Gia Bắc mang đến trải nghiệm thú vị với phong cảnh thiên nhiên tuyệt đẹp.",
         },
         {
-          name: translations.route4 || "Tuyến 4",
+          name: "Tuyến 4",
           path: "QL1A → Phan Rang (Tháp Chàm) → QL27 → Đèo Ngoạn Mục → QL20 → Đèo Prenn",
           note: "Trải nghiệm cảnh quan ngoạn mục của sườn núi xanh, thác nước và thảm thực vật đa dạng.",
         },
@@ -244,39 +131,29 @@ const MuseumMapPage = () => {
     },
     {
       id: "car-north",
-      name: translations.byCarFromNorthCentral || "Bằng ô tô (Từ Bắc/Trung)",
-      description:
-        translations.routesFromNorthernAndCentralProvinces ||
-        "Các tuyến đường từ các tỉnh phía Bắc và Trung:",
+      name: "Bằng ô tô (Từ Bắc/Trung)",
+      description: "Các tuyến đường từ các tỉnh phía Bắc và Trung:",
       routes: [
         {
-          name: translations.fromNhaTrang || "Từ Nha Trang",
+          name: "Từ Nha Trang",
           path: "QL1A → TP. Nha Trang → QL27C → Đèo Khánh Lê → Lạc Dương → Đà Lạt",
-          note:
-            translations.khanhLePassOffersMagnificentNaturalBeautyWithMistyForestsAndPineTrees ||
-            "Đèo Khánh Lê mang đến vẻ đẹp thiên nhiên tuyệt vời với rừng thông và sương mù.",
+          note: "Đèo Khánh Lê mang đến vẻ đẹp thiên nhiên tuyệt vời với rừng thông và sương mù.",
         },
         {
-          name: translations.fromHanoi || "Từ Hà Nội",
+          name: "Từ Hà Nội",
           path: "Đường Hà Nội → Ngã tư Vũng Tàu → QL51 → Võ Nguyên Giáp → QL1A → Ngã tư Dầu Giây → QL20 → Đèo Prenn",
         },
       ],
     },
     {
       id: "bus",
-      name: translations.byBus || "Bằng xe khách",
-      description:
-        translations.busServicesAvailableFromVariousLocations ||
-        "Dịch vụ xe khách có sẵn từ nhiều địa điểm:",
+      name: "Bằng xe khách",
+      description: "Dịch vụ xe khách có sẵn từ nhiều địa điểm:",
       details: [
-        translations.fromSouthVietnamPhuongTrangAndThanhBuoiBusesOfferTransferServiceToTheMuseum ||
-          "Từ Nam Việt Nam: Xe Phương Trang và Thành Bưởi có dịch vụ đưa đón đến bảo tàng",
-        translations.fromNorthVietnamMinhThuTaiThangVanNamHiepDucNgocHungVanNhanDienLinhAndDaoVanBuses ||
-          "Từ Bắc Việt Nam: Xe Minh Thu, Tài Thắng, Vân Nam, Hiệp Đức, Ngọc Hưng Vân Nhân, Diên Linh và Đào Vân",
-        translations.forBusesWithoutTransferServiceTakeATaxiFromHaHuyTapOrToHienThanhStreetToDongDaToHienThanhIntersection ||
-          "Đối với xe không có dịch vụ đưa đón, đi taxi từ đường Hà Huy Tập hoặc Tô Hiến Thành đến ngã tư Đống Đa - Tô Hiến Thành",
-        translations.theMuseumIsOnly100mFromThisIntersection ||
-          "Bảo tàng chỉ cách ngã tư này 100m",
+        "Từ Nam Việt Nam: Xe Phương Trang và Thành Bưởi có dịch vụ đưa đón đến bảo tàng",
+        "Từ Bắc Việt Nam: Xe Minh Thu, Tài Thắng, Vân Nam, Hiệp Đức, Ngọc Hưng Vân Nhân, Diên Linh và Đào Vân",
+        "Đối với xe không có dịch vụ đưa đón, đi taxi từ đường Hà Huy Tập hoặc Tô Hiến Thành đến ngã tư Đống Đa - Tô Hiến Thành",
+        "Bảo tàng chỉ cách ngã tư này 100m",
       ],
     },
   ];
@@ -285,18 +162,15 @@ const MuseumMapPage = () => {
     <div className="map-content-section">
       <div className="map-notice">
         <p>
-          {translations.muséeDuPinIsLocatedAt2931DongDaStreetWard3DaLatCity ||
-            "Musée Du Pin tọa lạc tại 29-31 đường Đống Đa, Phường 3, Thành phố Đà Lạt"}
+          "Musée Du Pin tọa lạc tại 29-31 đường Đống Đa, Phường 3, Thành phố Đà
+          Lạt"
         </p>
       </div>
 
       <div className="map-getting-here-section">
-        <h3 className="map-section-title">
-          {translations.gettingHere || "Đường đến bảo tàng"}
-        </h3>
+        <h3 className="map-section-title">"Đường đến bảo tàng"</h3>
         <p className="map-section-description">
-          {translations.chooseYourPreferredModeOfTransportationToReachMuséeDuPin ||
-            "Chọn phương tiện di chuyển ưa thích để đến Musée Du Pin."}
+          "Chọn phương tiện di chuyển ưa thích để đến Musée Du Pin."
         </p>
       </div>
 
@@ -306,8 +180,7 @@ const MuseumMapPage = () => {
             className="map-dropdown-button"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
-            {translations.selectTransportationMode ||
-              "Chọn phương tiện di chuyển"}
+            "Chọn phương tiện di chuyển"
             <ChevronDownIcon />
           </button>
           {isDropdownOpen && (
@@ -368,29 +241,20 @@ const MuseumMapPage = () => {
   const renderFromCentral = () => (
     <div className="map-content-section">
       <div className="map-central-info">
-        <h3 className="map-section-title">
-          {translations.toCentralMarketXuangHuongLake ||
-            "ĐẾN CHỢ ĐÀ LẠT & HỒ XUÂN HƯƠNG"}
-        </h3>
+        <h3 className="map-section-title">"ĐẾN CHỢ ĐÀ LẠT & HỒ XUÂN HƯƠNG"</h3>
         <div className="map-distances">
-          <p>
-            {translations.distanceToCentralNightMarket12km ||
-              "Khoảng cách đến Chợ Đêm Đà Lạt: 1.2km"}
-          </p>
-          <p>
-            {translations.distanceToXuanHuongLake900m ||
-              "Khoảng cách đến Hồ Xuân Hương: 900m"}
-          </p>
+          <p>"Khoảng cách đến Chợ Đêm Đà Lạt: 1.2km"</p>
+          <p>"Khoảng cách đến Hồ Xuân Hương: 900m"</p>
         </div>
         <div className="map-directions">
-          <h4>{translations.directions || "Chỉ đường:"}</h4>
+          <h4>"Chỉ đường:"</h4>
           <p>
-            {translations.takeHaHuyTapStreetToTranPhuStreetToReachBothTheDaLatMarketAndXuanHuongLake ||
-              "Đi theo đường Hà Huy Tập đến đường Trần Phú để đến cả Chợ Đà Lạt và Hồ Xuân Hương."}
+            "Đi theo đường Hà Huy Tập đến đường Trần Phú để đến cả Chợ Đà Lạt và
+            Hồ Xuân Hương."
           </p>
           <p className="map-direction-note">
-            {translations.importantUseONLYHaHuyTapStreetRouteForTheBestAccess ||
-              "Quan trọng: CHỈ sử dụng tuyến đường Hà Huy Tập để tiếp cận tốt nhất."}
+            "Quan trọng: CHỈ sử dụng tuyến đường Hà Huy Tập để tiếp cận tốt
+            nhất."
           </p>
         </div>
       </div>
@@ -400,18 +264,11 @@ const MuseumMapPage = () => {
   const renderMuseumMap = () => (
     <div className="map-content-section">
       <div className="map-section">
-        <h3 className="map-section-title">
-          {translations.museumMap || "Bản đồ bảo tàng"}
-        </h3>
+        <h3 className="map-section-title">"Bản đồ bảo tàng"</h3>
         <div className="map-placeholder large">
           <MapIcon />
-          <p>
-            {translations.interactiveMuseumFloorPlanWouldBeDisplayedHere ||
-              "Sơ đồ tầng bảo tàng tương tác sẽ được hiển thị tại đây"}
-          </p>
-          <button className="map-download-btn">
-            {translations.downloadPDFMap || "Tải bản đồ PDF"}
-          </button>
+          <p>"Sơ đồ tầng bảo tàng tương tác sẽ được hiển thị tại đây"</p>
+          <button className="map-download-btn">"Tải bản đồ PDF"</button>
         </div>
       </div>
     </div>
@@ -434,27 +291,22 @@ const MuseumMapPage = () => {
     <div className="museum-map-page">
       {/* Hero Section */}
       <div className="map-hero">
-        <div
-          className="map-hero-image"
-          style={{
-            backgroundImage: `url(${getAssetUrl("louvre-sunset.webp")})`,
-          }}
-        >
+        <div>
+          <img
+            className="map-hero-image"
+            src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784642/collections/louvre-sunset.jpg"
+            alt="Bảo tàng Thông - Hero"
+          />
           <div className="map-hero-overlay"></div>
         </div>
 
         <Link to="/" className="map-back-button">
-          <BackIcon /> {translations.back || "Quay lại"}
+          <BackIcon /> "Quay lại"
         </Link>
 
         <div className="map-hero-content">
-          <p className="map-hero-subtitle">
-            {translations.mapDirections || "BẢN ĐỒ & CHỈ ĐƯỜNG"}
-          </p>
-          <h1 className="map-hero-title">
-            {translations.howToReachMuséeDuPin ||
-              "Làm thế nào để đến Musée Du Pin"}
-          </h1>
+          <p className="map-hero-subtitle">"BẢN ĐỒ & CHỈ ĐƯỜNG"</p>
+          <h1 className="map-hero-title">"Làm thế nào để đến Musée Du Pin"</h1>
         </div>
       </div>
 

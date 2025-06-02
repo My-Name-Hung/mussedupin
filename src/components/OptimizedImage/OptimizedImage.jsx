@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { getAssetUrl } from "../../utils/getAssetUrl";
 
 const OptimizedImage = ({
   src,
@@ -27,11 +26,11 @@ const OptimizedImage = ({
     const extension = imageSrc.match(/\.[^/.]+$/)?.[0] || ".webp";
 
     return [
-      `${getAssetUrl(`${baseName}_480w${extension}`)} 480w`,
-      `${getAssetUrl(`${baseName}_768w${extension}`)} 768w`,
-      `${getAssetUrl(`${baseName}_1024w${extension}`)} 1024w`,
-      `${getAssetUrl(`${baseName}_1200w${extension}`)} 1200w`,
-      `${getAssetUrl(imageSrc)} 1920w`,
+      `${baseName}_480w${extension} 480w`,
+      `${baseName}_768w${extension} 768w`,
+      `${baseName}_1024w${extension} 1024w`,
+      `${baseName}_1200w${extension} 1200w`,
+      `${imageSrc} 1920w`,
     ].join(", ");
   };
 
@@ -71,9 +70,7 @@ const OptimizedImage = ({
   };
 
   // Generate low quality placeholder
-  const placeholderSrc = getAssetUrl(
-    `${src.replace(/\.[^/.]+$/, "")}_placeholder.webp`
-  );
+  const placeholderSrc = `${src.replace(/\.[^/.]+$/, "")}_placeholder.webp`;
 
   return (
     <div
@@ -128,7 +125,7 @@ const OptimizedImage = ({
 
           <img
             ref={imgRef}
-            src={getAssetUrl(src)}
+            src={src}
             alt={alt}
             width={width}
             height={height}
@@ -188,7 +185,7 @@ const OptimizedImage = ({
         </div>
       )}
 
-      <style jsx>{`
+      <style>{`
         @keyframes spin {
           0% {
             transform: translate(-50%, -50%) rotate(0deg);

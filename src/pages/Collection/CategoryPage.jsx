@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
-import { Link, useParams } from "react-router-dom";
-import TranslatedText from "../../components/TranslatedText";
-import { getAssetUrl } from "../../utils/getAssetUrl";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import { getImageUrl } from "../../utils/cloudinary";
 import "./CategoryPage.css";
 
 // Import thumbnails for each category
@@ -69,7 +68,7 @@ const collectionData = {
       ],
     },
     {
-      id: 3,
+      id: 4,
       title: "K'ho điêu khắc",
       description: "Bộ sưu tập tác phẩm điêu khắc truyền thống của người K'ho",
       image: "Điêu Khắc.webp",
@@ -130,7 +129,7 @@ const collectionData = {
       ],
     },
     {
-      id: 4,
+      id: 3,
       title: "K'ho lễ hội",
       description: "Bộ sưu tập về lễ hội truyền thống của người K'ho",
       image: "36 (2).webp",
@@ -317,6 +316,33 @@ const collectionData = {
         },
       ],
     },
+    {
+      id: 9,
+      title: "Redpine Art Studio",
+      description: "Không gian lưu trú nghệ thuật giữa rừng thông Đà Lạt",
+      image: "luutrunghethuat.jpg",
+      artworks: [
+        {
+          id: "redpine-1",
+          title: "Redpine Art Studio",
+          artist: "Musée Du Pin",
+          year: "2024",
+          image: "luutrunghethuat.jpg",
+          description:
+            "Redpine Art Studio là không gian lưu trú nghệ thuật độc đáo giữa rừng thông, nơi bạn có thể trải nghiệm nghệ thuật và thiên nhiên Đà Lạt.",
+          location: "Khu lưu trú nghệ thuật",
+          tags: ["Lưu trú", "Nghệ thuật", "Đà Lạt"],
+          images: ["thechillhood.jpg",
+            "thechill1.jpg",
+            "thechill2.jpg",
+            "whitebauhinia.jpg",
+            "thememory.jpg",
+            "thesunset.jpg",
+            "thetrain.jpg",
+          ],
+        },
+      ],
+    },
   ],
 };
 
@@ -334,6 +360,7 @@ const CategoryPage = () => {
   const [isMobile, setIsMobile] = useState(false);
   const artworksRef = useRef(null);
   const heroImageRef = useRef(null);
+  const navigate = useNavigate();
 
   // Check if device is mobile
   useEffect(() => {
@@ -458,7 +485,7 @@ const CategoryPage = () => {
   // Handle download functionality
   const handleDownload = (imageData) => {
     const link = document.createElement("a");
-    link.href = getAssetUrl(imageData.image);
+    link.href = getImageUrl(imageData.image);
     link.download = `${imageData.title
       .replace(/\s+/g, "-")
       .toLowerCase()}-musee-du-pin.webp`;
@@ -537,9 +564,7 @@ const CategoryPage = () => {
     return (
       <div className="category-loading">
         <div className="spinner"></div>
-        <p>
-          <TranslatedText>Loading category...</TranslatedText>
-        </p>
+        <p>Loading category...</p>
       </div>
     );
   }
@@ -548,7 +573,13 @@ const CategoryPage = () => {
     return (
       <div className="category-page">
         <div className="category-not-found">
-          <Link to="/collection" className="category-back-button">
+          <Link
+            to="/collection#complete-collection"
+            onClick={() => {
+              navigate("/collection#complete-collection");
+            }}
+            className="category-back-button"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="20"
@@ -562,21 +593,13 @@ const CategoryPage = () => {
             >
               <path d="M19 12H5M12 19l-7-7 7-7"></path>
             </svg>
-            <span>
-              <TranslatedText>Quay lại Bộ sưu tập</TranslatedText>
-            </span>
+            <span>Quay lại Bộ sưu tập</span>
           </Link>
           <div className="not-found-content">
-            <h1>
-              <TranslatedText>Không tìm thấy danh mục</TranslatedText>
-            </h1>
-            <p>
-              <TranslatedText>
-                Danh mục bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.
-              </TranslatedText>
-            </p>
+            <h1>Không tìm thấy danh mục</h1>
+            <p>Danh mục bạn đang tìm kiếm không tồn tại hoặc đã bị xóa.</p>
             <Link to="/collection" className="btn-primary">
-              <TranslatedText>Xem tất cả bộ sưu tập</TranslatedText>
+              Xem tất cả bộ sưu tập
             </Link>
           </div>
         </div>
@@ -597,7 +620,7 @@ const CategoryPage = () => {
             {categoryData && (
               <img
                 ref={heroImageRef}
-                src={getAssetUrl(categoryData.image)}
+                src={getImageUrl(categoryData.image)}
                 alt={categoryData.title}
                 className="category-hero-img"
                 onLoad={handleHeroImageLoaded}
@@ -606,7 +629,13 @@ const CategoryPage = () => {
           </div>
         </div>
         <div className="category-hero-overlay"></div>
-        <Link to="/collection" className="category-back-button">
+        <Link
+          to="/collection#complete-collection"
+          className="category-back-button"
+          onClick={() => {
+            navigate("/collection#complete-collection");
+          }}
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             width="20"
@@ -620,9 +649,7 @@ const CategoryPage = () => {
           >
             <path d="M19 12H5M12 19l-7-7 7-7"></path>
           </svg>
-          <span>
-            <TranslatedText>Quay lại Bộ sưu tập</TranslatedText>
-          </span>
+          <span>Quay lại Bộ sưu tập</span>
         </Link>
         <div className="category-hero-content">
           <h1
@@ -648,9 +675,7 @@ const CategoryPage = () => {
         <div className="category-artworks-container">
           <header className="category-artworks-header">
             <h2 className="category-artworks-title">
-              <TranslatedText>
-                Khám phá bộ sưu tập {categoryData?.title}
-              </TranslatedText>
+              Khám phá bộ sưu tập {categoryData?.title}
             </h2>
             <p className="category-artworks-count">
               <span>
@@ -659,7 +684,7 @@ const CategoryPage = () => {
                   0
                 )}
               </span>{" "}
-              <TranslatedText>tác phẩm</TranslatedText>
+              tác phẩm
             </p>
           </header>
 
@@ -688,7 +713,7 @@ const CategoryPage = () => {
                 >
                   <div className="category-artwork-image-container">
                     <img
-                      src={getAssetUrl(image)}
+                      src={getImageUrl(image)}
                       alt={artwork.title}
                       className="category-artwork-image"
                       loading={imageIndex < 12 ? "eager" : "lazy"}
@@ -787,7 +812,7 @@ const CategoryPage = () => {
               <div className="modal-image-container">
                 {allModalImages[currentImageIndex] && (
                   <img
-                    src={getAssetUrl(allModalImages[currentImageIndex].image)}
+                    src={getImageUrl(allModalImages[currentImageIndex].image)}
                     alt={allModalImages[currentImageIndex].title}
                     className="modal-image"
                   />

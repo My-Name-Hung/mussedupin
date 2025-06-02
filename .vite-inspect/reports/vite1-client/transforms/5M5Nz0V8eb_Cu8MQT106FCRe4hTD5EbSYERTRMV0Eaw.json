@@ -1,0 +1,80 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/baotangnghethuat/node_modules/scheduler/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "'use strict';\n\nif (process.env.NODE_ENV === 'production') {\n  module.exports = require('./cjs/scheduler.production.js');\n} else {\n  module.exports = require('./cjs/scheduler.development.js');\n}\n",
+      "start": 1748859736996,
+      "end": 1748859737022,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1748859737023,
+      "end": 1748859737023,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1748859737023,
+      "end": 1748859737023,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1748859737023,
+      "end": 1748859737023,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "result": "\"use strict\";\nif (true) {\n  module.exports = require(\"./cjs/scheduler.production.js\");\n} else {\n  module.exports = require(\"./cjs/scheduler.development.js\");\n}\n",
+      "start": 1748859737023,
+      "end": 1748859737153,
+      "order": "normal-normal",
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1748859737153,
+      "end": 1748859737153,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1748859737153,
+      "end": 1748859737153,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1748859737153,
+      "end": 1748859737153,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1748859737594,
+      "end": 1748859737594,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1748859737594,
+      "end": 1748859737594,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1748859737594,
+      "end": 1748859737594,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1748859737594,
+      "end": 1748859737594,
+      "order": "normal"
+    }
+  ]
+}

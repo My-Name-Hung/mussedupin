@@ -1,6 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import TranslatedText from "../../components/TranslatedText";
-import { getAssetUrl } from "../../utils/getAssetUrl";
 import "./AboutPage.css";
 
 import { FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
@@ -8,7 +6,6 @@ import { FaEnvelope, FaMapMarkerAlt, FaPhone } from "react-icons/fa";
 const AboutPage = () => {
   const [activeSection, setActiveSection] = useState("intro");
   const [isVideoLoaded, setIsVideoLoaded] = useState(false);
-  const [currentLanguage, setCurrentLanguage] = useState("vi");
   const [isVideoMuted, setIsVideoMuted] = useState(true);
   const videoRef = useRef(null);
   const nhaMatThongVideoRef = useRef(null);
@@ -50,13 +47,6 @@ const AboutPage = () => {
 
   const scrollToSection = (sectionId) => {
     sectionRefs[sectionId].current?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const toggleVideoMute = () => {
-    if (nhaMatThongVideoRef.current) {
-      nhaMatThongVideoRef.current.muted = !isVideoMuted;
-      setIsVideoMuted(!isVideoMuted);
-    }
   };
 
   return (
@@ -105,28 +95,72 @@ const AboutPage = () => {
           <video
             ref={videoRef}
             autoPlay
-            muted
+            muted={isVideoMuted}
             loop
             playsInline
             className={`heros-video ${isVideoLoaded ? "loaded" : ""}`}
           >
             <source
-              src={getAssetUrl("Hero_Abouts_Resize.mp4")}
+              src={
+                "https://res.cloudinary.com/dn0br7hj0/video/upload/v1748830865/about/TVC001_resize.mp4"
+              }
               type="video/mp4"
             />
           </video>
-          <div className="heros-overlay"></div>
+          <button
+            className="video-mute-button heros-mute-button"
+            onClick={() => {
+              if (videoRef.current) {
+                videoRef.current.muted = !isVideoMuted;
+                setIsVideoMuted(!isVideoMuted);
+              }
+            }}
+            aria-label={isVideoMuted ? "Unmute video" : "Mute video"}
+            style={{ position: "absolute", top: 20, right: 20, zIndex: 10 }}
+          >
+            {isVideoMuted ? (
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M16.5 12C16.5 10.23 15.5 8.71 14 7.97V10.18L16.45 12.63C16.48 12.43 16.5 12.22 16.5 12Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M19 12C19 12.94 18.8 13.82 18.46 14.64L19.97 16.15C20.63 14.91 21 13.5 21 12C21 7.72 18 4.14 14 3.23V5.29C16.89 6.15 19 8.83 19 12Z"
+                  fill="currentColor"
+                />
+                <path
+                  d="M4.27 3L3 4.27L7.73 9H3V15H7L12 20V13.27L16.25 17.52C15.58 18.04 14.83 18.46 14 18.7V20.77C15.38 20.45 16.63 19.82 17.68 18.96L19.73 21L21 19.73L12 10.73L4.27 3ZM12 4L9.91 6.09L12 8.18V4Z"
+                  fill="currentColor"
+                />
+              </svg>
+            ) : (
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M3 9V15H7L12 20V4L7 9H3ZM16.5 12C16.5 10.23 15.5 8.71 14 7.97V16.02C15.5 15.29 16.5 13.77 16.5 12ZM14 3.23V5.29C16.89 6.15 19 8.83 19 12C19 15.17 16.89 17.85 14 18.71V20.77C18.01 19.86 21 16.28 21 12C21 7.72 18.01 4.14 14 3.23Z"
+                  fill="currentColor"
+                />
+              </svg>
+            )}
+          </button>
         </div>
-        <div className="heros-content">
-          <h1 className="heros-title">
-            <TranslatedText>Bảo tàng Thông - Musée Du Pin</TranslatedText>
-          </h1>
+        {/* <div className="heros-content">
+          <h1 className="heros-title">Bảo tàng Thông - Musée Du Pin</h1>
           <p className="heros-subtitle">
-            <TranslatedText>
               Nơi gìn giữ, nâng niu, những giá trị Đà Lạt
-            </TranslatedText>
           </p>
-        </div>
+        </div> */}
       </section>
 
       {/* About Section */}
@@ -189,30 +223,11 @@ const AboutPage = () => {
             </div>
             {/* FLIP CARD */}
             <div className="about-images">
-              <div className="flip-card">
-                <div className="flip-card-inner">
-                  <div className="flip-card-front">
-                    <img
-                      src={getAssetUrl("khonggian.webp")}
-                      alt="Không gian bảo tàng"
-                    />
-                    <div className="card-overlay">
-                      <h3>Không gian trưng bày nghệ thuật</h3>
-                      <p>Khám phá không gian</p>
-                    </div>
-                  </div>
-                  <div className="flip-card-back">
-                    <img
-                      src={getAssetUrl("nha.webp")}
-                      alt="Kiến trúc bảo tàng"
-                    />
-                    <div className="card-overlay">
-                      <h3>Kiến trúc độc đáo của bảo tàng</h3>
-                      <p>Kiến trúc độc đáo</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+              <img
+                src="https://res.cloudinary.com/dn0br7hj0/image/upload/about/museumday.png"
+                alt="Không gian bảo tàng"
+                className="about-museumday-img"
+              />
             </div>
           </div>
         </div>
@@ -228,170 +243,54 @@ const AboutPage = () => {
             <div className="nhamatthong-video">
               <video ref={nhaMatThongVideoRef} autoPlay muted loop playsInline>
                 <source
-                  src={getAssetUrl("TVC001_Resize.mp4")}
+                  src="https://res.cloudinary.com/dn0br7hj0/video/upload/v1748849997/NMT.mp4"
                   type="video/mp4"
                 />
               </video>
-              <button
-                className="video-mute-button"
-                onClick={toggleVideoMute}
-                aria-label={isVideoMuted ? "Unmute video" : "Mute video"}
-              >
-                {isVideoMuted ? (
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M16.5 12C16.5 10.23 15.5 8.71 14 7.97V10.18L16.45 12.63C16.48 12.43 16.5 12.22 16.5 12Z"
-                      fill="currentColor"
-                    />
-                    <path
-                      d="M19 12C19 12.94 18.8 13.82 18.46 14.64L19.97 16.15C20.63 14.91 21 13.5 21 12C21 7.72 18 4.14 14 3.23V5.29C16.89 6.15 19 8.83 19 12Z"
-                      fill="currentColor"
-                    />
-                    <path
-                      d="M4.27 3L3 4.27L7.73 9H3V15H7L12 20V13.27L16.25 17.52C15.58 18.04 14.83 18.46 14 18.7V20.77C15.38 20.45 16.63 19.82 17.68 18.96L19.73 21L21 19.73L12 10.73L4.27 3ZM12 4L9.91 6.09L12 8.18V4Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                ) : (
-                  <svg
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                  >
-                    <path
-                      d="M3 9V15H7L12 20V4L7 9H3ZM16.5 12C16.5 10.23 15.5 8.71 14 7.97V16.02C15.5 15.29 16.5 13.77 16.5 12ZM14 3.23V5.29C16.89 6.15 19 8.83 19 12C19 15.17 16.89 17.85 14 18.71V20.77C18.01 19.86 21 16.28 21 12C21 7.72 18.01 4.14 14 3.23Z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                )}
-              </button>
             </div>
             <div className="nhamatthong-text">
-              <div className="language-toggle">
-                <button
-                  className={`language-btn ${
-                    currentLanguage === "vi" ? "active" : ""
-                  }`}
-                  onClick={() => setCurrentLanguage("vi")}
-                >
-                  Tiếng Việt
-                </button>
-                <button
-                  className={`language-btn ${
-                    currentLanguage === "en" ? "active" : ""
-                  }`}
-                  onClick={() => setCurrentLanguage("en")}
-                >
-                  English
-                </button>
+              <div className="text-content vietnamese-content">
+                <p>
+                  Có những nơi không chỉ để ngắm nhìn, mà để cảm nhận bằng tất
+                  cả giác quan. Bảo Tàng Thông là một nơi như thế—nơi kiến trúc,
+                  thiên nhiên và con người giao thoa, nơi từng đường nét khoáng
+                  đạt ôm trọn những xúc cảm lắng sâu, nơi sự tinh tế hiện hữu
+                  trong từng chi tiết nhỏ nhất.
+                </p>
+                <p>
+                  Dưới mái vòm cao rộng, ánh sáng len lỏi qua từng góc cạnh,
+                  chiếu rọi lên những bức tường mang màu thời gian, phản chiếu
+                  lên dáng hình con người trong không gian sang trọng mà vẫn đầy
+                  cá tính. Một chiếc ghế trầm mặc đặt bên ô cửa sổ rộng mở, nơi
+                  có thể lặng yên nhìn ra đồi thông xa thẳm. Một bậc thang uốn
+                  lượn, nơi bước chân ta nhẹ nhàng in lên sàn gỗ mát lành, như
+                  bước vào một dòng chảy cảm xúc bất tận.
+                </p>
+                <p>
+                  Ở đây, từng góc nhỏ đều có thể trở thành một khuôn hình hoàn
+                  hảo. Một dáng đứng bên vách tường hổ phách lấp lánh, một ánh
+                  mắt lặng lẽ soi mình vào tấm kính phản chiếu cả trời xanh.
+                  Bước chân đi qua hành lang dài, giữa những mảng sáng tối đan
+                  xen, ta như bước qua những mạch truyện đầy suy tư của thời
+                  gian.
+                </p>
+                <p>
+                  Bảo Tàng Thông không chỉ là một không gian để ghé thăm. Mà là
+                  một nơi để hòa mình, để chiêm nghiệm, để thấy chính mình trong
+                  những khoảng lặng rất riêng.
+                </p>
               </div>
-
-              {currentLanguage === "vi" && (
-                <div className="text-content vietnamese-content">
-                  <p>
-                    Có những nơi không chỉ để ngắm nhìn, mà để cảm nhận bằng tất
-                    cả giác quan. Bảo Tàng Thông là một nơi như thế—nơi kiến
-                    trúc, thiên nhiên và con người giao thoa, nơi từng đường nét
-                    khoáng đạt ôm trọn những xúc cảm lắng sâu, nơi sự tinh tế
-                    hiện hữu trong từng chi tiết nhỏ nhất.
-                  </p>
-                  <p>
-                    Dưới mái vòm cao rộng, ánh sáng len lỏi qua từng góc cạnh,
-                    chiếu rọi lên những bức tường mang màu thời gian, phản chiếu
-                    lên dáng hình con người trong không gian sang trọng mà vẫn
-                    đầy cá tính. Một chiếc ghế trầm mặc đặt bên ô cửa sổ rộng
-                    mở, nơi có thể lặng yên nhìn ra đồi thông xa thẳm. Một bậc
-                    thang uốn lượn, nơi bước chân ta nhẹ nhàng in lên sàn gỗ mát
-                    lành, như bước vào một dòng chảy cảm xúc bất tận.
-                  </p>
-                  <p>
-                    Ở đây, từng góc nhỏ đều có thể trở thành một khuôn hình hoàn
-                    hảo. Một dáng đứng bên vách tường hổ phách lấp lánh, một ánh
-                    mắt lặng lẽ soi mình vào tấm kính phản chiếu cả trời xanh.
-                    Bước chân đi qua hành lang dài, giữa những mảng sáng tối đan
-                    xen, ta như bước qua những mạch truyện đầy suy tư của thời
-                    gian.
-                  </p>
-                  <p>
-                    Bảo Tàng Thông không chỉ là một không gian để ghé thăm. Mà
-                    là một nơi để hòa mình, để chiêm nghiệm, để thấy chính mình
-                    trong những khoảng lặng rất riêng.
-                  </p>
-                </div>
-              )}
-
-              {currentLanguage === "en" && (
-                <div className="text-content english-content">
-                  <p>
-                    There are places not only to see, but to feel with all
-                    senses. Musee Du Pin is such a place—where architecture,
-                    nature and people intersect, where each generous line
-                    embraces deep emotions, where sophistication exists in every
-                    smallest detail.
-                  </p>
-                  <p>
-                    Under the high and wide dome, light creeps through every
-                    corner, illuminating the walls colored by time, reflecting
-                    the human figure in a luxurious yet personality-filled
-                    space. A quiet chair is placed next to a wide open window,
-                    where you can quietly look out at the pine hills far away. A
-                    winding staircase, where our footsteps gently imprint on the
-                    cool wooden floor, is like stepping into an endless flow of
-                    emotions.
-                  </p>
-                  <p>
-                    Here, every small corner can become a perfect frame. A
-                    figure stood next to the sparkling amber wall, a silent gaze
-                    reflected into the glass reflecting the blue sky. Walking
-                    through the long hallway, amidst the alternating patches of
-                    light and dark, we seem to step through thoughtful story
-                    lines of time.
-                  </p>
-                  <p>
-                    Musee Du Pin is more than just a space to visit. It's a
-                    place to immerse yourself, to contemplate, to see yourself
-                    in your very own silence.
-                  </p>
-                </div>
-              )}
-
               <div className="project-info">
                 <div className="project-details">
                   <p>
-                    <strong>
-                      {currentLanguage === "vi" ? "Dự án:" : "Project:"}
-                    </strong>{" "}
-                    Musée Du Pin
+                    <strong>Dự án:</strong> Musée Du Pin
                   </p>
                   <p>
-                    <strong>
-                      {currentLanguage === "vi" ? "Địa điểm:" : "Location:"}
-                    </strong>{" "}
-                    Dalat, Vietnam
+                    <strong>Địa điểm:</strong> Dalat, Vietnam
                   </p>
                   <p>
-                    <strong>
-                      {currentLanguage === "vi"
-                        ? "Tác giả thiết kế:"
-                        : "Architecture Design:"}
-                    </strong>{" "}
-                    Hanoi Amsterdam International Company
-                  </p>
-                  <p>
-                    <strong>
-                      {currentLanguage === "vi"
-                        ? "Tác giả hình ảnh:"
-                        : "Photographer:"}
-                    </strong>{" "}
-                    Lý Hoàng Long
+                    <strong>Tác giả thiết kế:</strong> Hanoi Amsterdam
+                    International Company
                   </p>
                 </div>
               </div>

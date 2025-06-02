@@ -616,7 +616,7 @@
   padding: 0;
   outline: none;
   font-family: Roboto, "Open Sans", Arial, Helvetica, sans-serif;
-  color: #333 !important;
+  color: #fff !important;
   width: 100%;
   background-color: white;
   border-radius: 0;
@@ -1094,7 +1094,7 @@
   position: absolute;
   top: calc(100% + 10px);
   right: 0;
-  background-color: #121212;
+  background-color: #45491b;
   border: 1px solid rgba(255, 255, 255, 0.2);
   border-radius: 4px;
   width: 160px;
@@ -2318,7 +2318,7 @@
 /* Fix for input text color on desktop */
 .search-input,
 .mobile-search-input input {
-  color: #333 !important;
+  color: #fff !important;
 }
 
 /* Style for search results container */

@@ -1,0 +1,90 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/baotangnghethuat/src/main.jsx",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { StrictMode } from \"react\";\nimport { createRoot } from \"react-dom/client\";\nimport App from \"./App.jsx\";\nimport \"./index.css\";\n\ncreateRoot(document.getElementById(\"root\")).render(\n  <StrictMode>\n      <App />\n  </StrictMode>\n);\n",
+      "start": 1748859736736,
+      "end": 1748859736737,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1748859736737,
+      "end": 1748859736737,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsx } from \"react/jsx-runtime\";\nimport { StrictMode } from \"react\";\nimport { createRoot } from \"react-dom/client\";\nimport App from \"./App.jsx\";\nimport \"./index.css\";\ncreateRoot(document.getElementById(\"root\")).render(\n  /* @__PURE__ */ jsx(StrictMode, { children: /* @__PURE__ */ jsx(App, {}) })\n);\n",
+      "start": 1748859736737,
+      "end": 1748859736743,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/baotangnghethuat/src/main.jsx"
+        ],
+        "sourcesContent": [
+          "import { StrictMode } from \"react\";\nimport { createRoot } from \"react-dom/client\";\nimport App from \"./App.jsx\";\nimport \"./index.css\";\n\ncreateRoot(document.getElementById(\"root\")).render(\n  <StrictMode>\n      <App />\n  </StrictMode>\n);\n"
+        ],
+        "mappings": "AAOM;AAPN,SAAS,kBAAkB;AAC3B,SAAS,kBAAkB;AAC3B,OAAO,SAAS;AAChB,OAAO;AAEP,WAAW,SAAS,eAAe,MAAM,CAAC,EAAE;AAAA,EAC1C,oBAAC,cACG,8BAAC,OAAI,GACT;AACF;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1748859736744,
+      "end": 1748859736744,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1748859736744,
+      "end": 1748859736744,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1748859736744,
+      "end": 1748859736744,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1748859736744,
+      "end": 1748859736744,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1748859736744,
+      "end": 1748859736745,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1748859736745,
+      "end": 1748859736745,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1748859736745,
+      "end": 1748859736745,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1748859736745,
+      "end": 1748859736748,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1748859736748,
+      "end": 1748859736749,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import TranslatedText from "../TranslatedText";
 import "./ScrollToTopButton.css";
 
 const ScrollToTopButton = () => {
@@ -114,7 +113,7 @@ const ScrollToTopButton = () => {
         visible ? "visible" : ""
       }`}
       onClick={scrollToTop}
-      aria-label={<TranslatedText>Scroll to top</TranslatedText>}
+      aria-label="Scroll to top"
     >
       <svg
         viewBox="0 0 16 16"

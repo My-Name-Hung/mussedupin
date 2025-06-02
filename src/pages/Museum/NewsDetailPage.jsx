@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import { getAssetUrl } from "../../utils/getAssetUrl";
+import { getImageUrl } from "../../utils/cloudinary";
 import "./NewsDetailPage.css";
 
 // Import images (these should match the ones in LifeAtMuseumPage.jsx)
@@ -183,7 +183,7 @@ const NewsDetailPage = () => {
       <div className="news-detail-hero">
         <div
           className="news-detail-hero-image"
-          style={{ backgroundImage: `url(${getAssetUrl(newsItem.image)})` }}
+          style={{ backgroundImage: `url(${getImageUrl(newsItem.image)})` }}
         >
           <div className="news-detail-hero-overlay"></div>
         </div>
@@ -227,7 +227,7 @@ const NewsDetailPage = () => {
                   <a href={`/life-at-the-museum/${createSlug(item.title)}`}>
                     <div className="related-news-image-container">
                       <img
-                        src={getAssetUrl(item.image)}
+                        src={getImageUrl(item.image)}
                         alt={item.title}
                         className="related-news-image"
                       />

@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { getAssetUrl } from "../../utils/getAssetUrl";
+import { getImageUrl } from "../../utils/cloudinary";
 import "./LifeAtMuseumPage.css";
 
 // Import images (you'll need to replace these with your actual images)
-const heroImage1 = getAssetUrl("Cồng Chiên.webp");
-const heroImage3 = getAssetUrl("Điêu Khắc.webp");
-const heroImage4 = getAssetUrl("Chiếc Gùi.webp");
-const heroImage2 = getAssetUrl("46.webp");
-
+const heroImage1 ="Cồng Chiên.webp";
+const heroImage3 = "Điêu Khắc.webp";
+const heroImage4 = "Chiếc Gùi.webp";
+const heroImage2 = "46.webp";
 // Helper function to create URL-friendly slugs from titles
 const createSlug = (title) => {
   return title
@@ -52,7 +51,7 @@ const newsData = [
     id: 3,
     title: "Triển lãm Kiệt tác từ Thế giới Cổ đại",
     date: "18 THÁNG 11 2024",
-    image: heroImage4,
+    image: "Chiếc Gùi.webp",
     excerpt:
       "Khám phá vẻ đẹp và những bí ẩn của các nền văn minh cổ đại trong triển lãm tạm thời mới của chúng tôi với các hiện vật từ Ai Cập, Hy Lạp và La Mã.",
     category: "Triển lãm",
@@ -133,11 +132,8 @@ const additionalNewsData = [
 ];
 
 const LifeAtMuseumPage = () => {
-  // State for hero section slideshow
-  const [activeHeroSlide, setActiveHeroSlide] = useState(0);
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [showMoreNews, setShowMoreNews] = useState(false);
-  const heroImages = [heroImage1, heroImage2, heroImage3, heroImage4];
 
   // Get all unique categories and subcategories from news data
   const getCategories = () => {
@@ -157,15 +153,6 @@ const LifeAtMuseumPage = () => {
   };
 
   const categories = getCategories();
-
-  // Handle auto-rotating hero slideshow
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setActiveHeroSlide((prev) => (prev + 1) % heroImages.length);
-    }, 5000);
-
-    return () => clearInterval(interval);
-  }, [heroImages.length]);
 
   // Intersection observer for animations
   useEffect(() => {
@@ -232,33 +219,16 @@ const LifeAtMuseumPage = () => {
     <div className="life-museum-page">
       {/* Hero Section */}
       <section className="lm-hero animate-section">
-        <div className="lm-hero-slides-container">
-          {heroImages.map((image, index) => (
-            <div
-              key={index}
-              className={`lm-hero-slide ${
-                activeHeroSlide === index ? "active" : ""
-              }`}
-              style={{ backgroundImage: `url(${image})` }}
-            />
-          ))}
+        <div className="lm-hero-img-wrapper">
+          <img
+            className="lm-hero-img"
+            src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784642/collections/louvre-sunset.jpg"
+            alt="Bảo tàng Thông - Hero"
+          />
         </div>
         <div className="lm-hero-overlay"></div>
         <div className="lm-hero-content">
           <h1 className="lm-hero-title">TIN TỨC</h1>
-        </div>
-        <div className="lm-hero-scroll-indicator">
-          <div
-            className="lm-hero-scroll-mouse"
-            onClick={() => {
-              document.querySelector(".lm-news-section").scrollIntoView({
-                behavior: "smooth",
-              });
-            }}
-          >
-            <div className="lm-hero-scroll-wheel"></div>
-          </div>
-          <span>CUỘN XUỐNG</span>
         </div>
       </section>
 
@@ -293,7 +263,7 @@ const LifeAtMuseumPage = () => {
               <Link to={`/life-at-the-museum/${createSlug(newsItem.title)}`}>
                 <div className="lm-news-image-container">
                   <img
-                    src={getAssetUrl(newsItem.image)}
+                    src={getImageUrl(newsItem.image)}
                     alt={newsItem.title}
                     className="lm-news-image"
                   />
@@ -327,7 +297,7 @@ const LifeAtMuseumPage = () => {
               <Link to={`/life-at-the-museum/${createSlug(newsItem.title)}`}>
                 <div className="lm-news-image-container">
                   <img
-                    src={getAssetUrl(newsItem.image)}
+                    src={getImageUrl(newsItem.image)}
                     alt={newsItem.title}
                     className="lm-news-image"
                   />

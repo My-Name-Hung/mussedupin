@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { Helmet } from "react-helmet";
-import TranslatedText from "../../../components/TranslatedText";
 import "./DuPinPlus.css";
 
 // Sample data for videos - replace with your actual content
@@ -16,7 +15,6 @@ const allVideos = [
       "https://i.ytimg.com/vi/aozcRuYVPKw/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG2CIAC0AWKAgwIABABGD4gQihyMA8=&rs=AOn4CLCybz6fVtK17RW4ZlrHrBfDMcmiPw", // This will be replaced with actual thumbnails
     category: "Thiên nhiên",
   },
-  
 ];
 
 // Extract unique categories for the filter
@@ -90,10 +88,8 @@ const DuPinPlus = () => {
         <div className="header-content">
           <h1 className="page-title">Musée Du Pin +</h1>
           <p className="page-subtitle">
-            <TranslatedText>
-              Khám phá nội dung video độc quyền, tour ảo và các tính năng hậu
-              trường
-            </TranslatedText>
+            Khám phá nội dung video độc quyền, tour ảo và các tính năng hậu
+            trường
           </p>
         </div>
       </header>
@@ -170,9 +166,7 @@ const DuPinPlus = () => {
               <div className="video-info">
                 <span className="video-category">{video.category}</span>
                 <h3 className="video-title">{video.title}</h3>
-                {video.subtitle && (
-                  <span className="video-subtitle"></span>
-                )}
+                {video.subtitle && <span className="video-subtitle"></span>}
                 <p className="video-description">{video.description}</p>
               </div>
             </div>

@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/baotangnghethuat/node_modules/lucide-react/dist/esm/icons/file-json.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M15 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7Z\", key: \"1rqfz7\" }],\n  [\"path\", { d: \"M14 2v4a2 2 0 0 0 2 2h4\", key: \"tnqrlb\" }],\n  [\n    \"path\",\n    { d: \"M10 12a1 1 0 0 0-1 1v1a1 1 0 0 1-1 1 1 1 0 0 1 1 1v1a1 1 0 0 0 1 1\", key: \"1oajmo\" }\n  ],\n  [\n    \"path\",\n    { d: \"M14 18a1 1 0 0 0 1-1v-1a1 1 0 0 1 1-1 1 1 0 0 1-1-1v-1a1 1 0 0 0-1-1\", key: \"mpwhp6\" }\n  ]\n];\nconst FileJson = createLucideIcon(\"file-json\", __iconNode);\n\nexport { __iconNode, FileJson as default };\n//# sourceMappingURL=file-json.js.map\n",
+      "start": 1748859749106,
+      "end": 1748859749412,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1748859749412,
+      "end": 1748859749412,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1748859749412,
+      "end": 1748859749412,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1748859749412,
+      "end": 1748859749412,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1748859749412,
+      "end": 1748859749412,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1748859749412,
+      "end": 1748859749412,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1748859749412,
+      "end": 1748859749412,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1748859749412,
+      "end": 1748859749412,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1748859749414,
+      "end": 1748859749414,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1748859749416,
+      "end": 1748859749416,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1748859749416,
+      "end": 1748859749416,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1748859749416,
+      "end": 1748859749425,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import TranslatedText from "../../../components/TranslatedText";
-import { getAssetUrl } from "../../../utils/getAssetUrl";
+import { getImageUrl } from "../../../utils/cloudinary";
 import "./DelveInto.css";
 
 const DelveInto = () => {
@@ -42,13 +41,13 @@ const DelveInto = () => {
     <section className="delve-into-section">
       <div className="delve-into-container">
         <h2 className="delve-into-title">
-          <TranslatedText>Khám phá Musée Du Pin</TranslatedText>
+          Khám phá Musée Du Pin
         </h2>
 
         <div className="delve-into-grid" ref={gridRef}>
           <div className="grid-item grid-item-1">
             <img
-              src={getAssetUrl("Thông 2.webp")}
+              src={getImageUrl("Thông 2.webp")}
               alt="Thông 2"
               className="grid-image"
             />
@@ -56,7 +55,7 @@ const DelveInto = () => {
 
           <div className="grid-item grid-item-2">
             <img
-              src={getAssetUrl("DanT'rung_hero.webp")}
+              src={getImageUrl("DanTrung_hero.webp")}
               alt="Đàn T'rưng"
               className="grid-image"
             />
@@ -64,7 +63,7 @@ const DelveInto = () => {
 
           <div className="grid-item grid-item-3">
             <img
-              src={getAssetUrl("Gui_hero.webp")}
+              src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784650/collections/Gui_hero.webp"
               alt="Chiếc Gùi Tây Nguyên"
               className="grid-image"
             />
@@ -72,7 +71,7 @@ const DelveInto = () => {
 
           <div className="grid-item grid-item-4">
             <img
-              src={getAssetUrl("LongDaDa_hero.webp")}
+              src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784647/collections/LongDaDa_hero.webp"
               alt="Lồng Đa Đa"
               className="grid-image"
             />
@@ -80,7 +79,7 @@ const DelveInto = () => {
 
           <div className="grid-item grid-item-5">
             <img
-              src={getAssetUrl("phunu_hero.webp")}
+              src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784644/collections/phunu_hero.webp"
               alt="Điêu Khắc"
               className="grid-image"
             />
@@ -88,7 +87,7 @@ const DelveInto = () => {
 
           <div className="grid-item grid-item-6">
             <img
-              src={getAssetUrl("congchien_hero.webp")}
+              src={getImageUrl("Cồng chiên.webp")}
               alt="Cồng Chiên"
               className="grid-image"
             />
@@ -97,7 +96,7 @@ const DelveInto = () => {
 
         <div className="explore-button-container">
           <button className="explore-button" onClick={handleExploreClick}>
-            <TranslatedText>Khám phá</TranslatedText>
+            Khám phá
           </button>
         </div>
       </div>

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import TranslatedText from "../../components/TranslatedText";
 import Collections from "./Collections/Collections";
 import DelveInto from "./DelveInto/DelveInto";
 import DuPin from "./DuPin/DuPin";
@@ -98,14 +97,15 @@ function Home() {
             <div
               className="prepare-visit-left"
               style={{
-                fontFamily: "Mythical-Prince, LouvreSerif, Georgia, Times New Roman, serif",
+                fontFamily:
+                  "Mythical-Prince, LouvreSerif, Georgia, Times New Roman, serif",
               }}
             >
-              <TranslatedText>Chuẩn bị tham quan</TranslatedText>
+              Chuẩn bị tham quan
             </div>
             <div className="prepare-visit-center">
               <div className="prepare-visit-museum-status">
-                <TranslatedText>Bảo tàng đang mở cửa</TranslatedText>
+                Bảo tàng đang mở cửa
               </div>
               <div className="prepare-visit-time">
                 <span>7:00 AM</span>

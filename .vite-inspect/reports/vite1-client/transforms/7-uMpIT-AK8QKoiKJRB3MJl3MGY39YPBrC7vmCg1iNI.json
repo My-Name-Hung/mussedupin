@@ -1,0 +1,79 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/baotangnghethuat/index.html",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "<!DOCTYPE html>\n<html lang=\"vi\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <link\n      rel=\"icon\" \n      type=\"image/svg+xml\"\n      href=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png\"\n      sizes=\"86x86\"\n    />\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n    <meta name=\"description\" content=\"Bảo tàng Thông - Khám phá nghệ thuật và lịch sử qua các bộ sưu tập độc đáo. Tham quan trực tuyến, sự kiện văn hóa và triển lãm đặc sắc.\" />\n    <meta name=\"keywords\" content=\"bảo tàng thông, musee du pin, nghệ thuật, triển lãm, văn hóa, lịch sử, bảo tàng việt nam\" />\n    <meta property=\"og:title\" content=\"Bảo tàng Thông | Musee Du Pin - Khám phá nghệ thuật và văn hóa\" />\n    <meta property=\"og:description\" content=\"Khám phá các bộ sưu tập nghệ thuật độc đáo, triển lãm và sự kiện văn hóa tại Bảo tàng Thông. Tham quan trực tuyến ngay hôm nay!\" />\n    <meta property=\"og:image\" content=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png\" />\n    <meta property=\"og:url\" content=\"https://museedupin.com\" />\n    <meta name=\"robots\" content=\"index, follow\" />\n    <link rel=\"canonical\" href=\"https://museedupin.com\" />\n    <title>Bảo tàng Thông | Musee Du Pin - Khám phá nghệ thuật và văn hóa Việt Nam</title>\n  </head>\n  <body>\n    <div id=\"root\"></div>\n    <script type=\"module\" src=\"/src/main.jsx\"></script>\n  </body>\n</html>\n",
+      "start": 1748859736698,
+      "end": 1748859736702,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1748859736704,
+      "end": 1748859736707,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1748859736708,
+      "end": 1748859736708,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1748859736708,
+      "end": 1748859736708,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1748859736708,
+      "end": 1748859736709,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "result": "import \"vite/modulepreload-polyfill\";\n\nimport \"/src/main.jsx\"",
+      "start": 1748859736709,
+      "end": 1748859736754,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1748859736754,
+      "end": 1748859736755,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1748859736757,
+      "end": 1748859736757,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1748859736758,
+      "end": 1748859736758,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1748859736758,
+      "end": 1748859736758,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1748859736758,
+      "end": 1748859736758,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1748859736758,
+      "end": 1748859736758,
+      "order": "normal"
+    }
+  ]
+}

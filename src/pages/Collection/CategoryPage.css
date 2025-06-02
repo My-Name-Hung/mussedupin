@@ -51,7 +51,7 @@
 .category-page {
   width: 100%;
   overflow-x: hidden;
-  background-image: url("../../assets/Background/Background2.webp");
+  background-image: url("https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784842/background/Background2.webp");
   background-repeat: repeat;
   background-position: center;
   background-size: 300px;
@@ -1301,7 +1301,7 @@
       0 0 0 1px rgba(179, 135, 65, 0.08);
     transition: transform 0.5s var(--mobile-transition),
       box-shadow 0.5s var(--mobile-transition);
-    background-image: url("../../assets/Background/Background2.webp");
+    background-image: url("https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784842/background/Background2.webp");
     background-repeat: repeat;
     background-position: center;
     background-size: 300px;

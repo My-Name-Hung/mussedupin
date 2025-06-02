@@ -1,12 +1,6 @@
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import logo from "../../assets/Logo/logo-icon.webp";
-
-import TranslatedText from "../../components/TranslatedText";
-import { useTranslation } from "../../context/TranslationContext";
-import useCachedAsset from "../../hooks/useCachedAsset";
-import { getAssetUrl } from "../../utils/getAssetUrl";
 import "./Navbar.css";
 
 // Icon components
@@ -295,261 +289,205 @@ const searchData = [
   // Visit page sections
   {
     id: 1,
-    title: "Hours & Admission",
-    description: "Opening hours and admission information",
-    category: "Visit",
-    image: "Thông 2.webp",
+    title: "Giờ mở cửa & vé vào cửa",
+    description: "Thông tin về giờ mở cửa và vé vào cửa bảo tàng",
+    category: "Trải nghiệm",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/Th%C3%B4ng%202.webp",
     path: "/visit#hours",
   },
   {
     id: 2,
-    title: "When to Visit",
-    description: "Best times to visit the museum",
-    category: "Visit",
-    image: "Thông 2.webp",
-    path: "/visit#hours",
+    title: "Giá vé",
+    description: "Thông tin về giá vé và các loại vé",
+    category: "Trải nghiệm",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/Th%C3%B4ng%202.webp",
+    path: "/visit#tickets",
   },
   {
     id: 3,
-    title: "Ticket Prices",
-    description: "Admission fees and ticket information",
-    category: "Visit",
-    image: "Thông 2.webp",
-    path: "/visit#tickets",
-  },
-  {
-    id: 4,
-    title: "Free Admission",
-    description: "Visitors eligible for free entry",
-    category: "Visit",
-    image: "Thông 2.webp",
-    path: "/visit#tickets",
-  },
-  {
-    id: 5,
-    title: "Membership",
-    description: "Become a member of the Musée Du Pin",
-    category: "Visit",
-    image: "Thông 2.webp",
+    title: "Thành viên",
+    description: "Thông tin về chương trình thành viên và đặc quyền",
+    category: "Trải nghiệm",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/Th%C3%B4ng%202.webp",
     path: "/visit#membership",
   },
   {
+    id: 4,
+    title: "Nội quy tham quan",
+    description: "Quy định và nội quy khi tham quan bảo tàng",
+    category: "Trải nghiệm",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/Th%C3%B4ng%202.webp",
+    path: "/visitor-rules",
+  },
+
+  // Exhibitions sections
+  {
+    id: 5,
+    title: "Triển lãm",
+    description: "Các triển lãm hiện tại và sắp tới",
+    category: "Triển lãm",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784685/collections/N%E1%BB%93i%20%C4%90%E1%BA%A5t.webp",
+    path: "/exhibitions",
+  },
+  {
     id: 6,
-    title: "Tours & Activities",
-    description: "Guided tours and museum activities",
-    category: "Visit",
-    image: "Thông 2.webp",
-    path: "/visit#tickets",
-  },
-  {
-    id: 7,
-    title: "Payment Methods",
-    description: "Accepted payment methods at the ticket office",
-    category: "Visit",
-    image: "Thông 2.webp",
-    path: "/visit#tickets",
-  },
-
-  // Exhibitions page sections
-  {
-    id: 8,
-    title: "Current Exhibitions",
-    description: "Exhibitions currently on display",
-    category: "Exhibitions",
-    image: "noidat_cards.webp",
-    path: "/exhibitions#current",
-  },
-  {
-    id: 9,
-    title: "Upcoming Exhibitions",
-    description: "Future exhibitions at the museum",
-    category: "Exhibitions",
-    image: "noidat_cards.webp",
-    path: "/exhibitions#upcoming",
-  },
-  {
-    id: 10,
-    title: "Past Exhibitions",
-    description: "Previous exhibitions at the museum",
-    category: "Exhibitions",
-    image: "noidat_cards.webp",
-    path: "/exhibitions#past",
-  },
-  {
-    id: 11,
-    title: "Guided Tours",
-    description: "Expert-led tours through the collections",
-    category: "Exhibitions",
-    image: "LongDaDa_cards.webp",
+    title: "Trải nghiệm có hướng dẫn",
+    description: "Các tour tham quan có hướng dẫn viên",
+    category: "Triển lãm",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784685/collections/N%E1%BB%93i%20%C4%90%E1%BA%A5t.webp",
     path: "/exhibitions?tab=guided-tours",
-  },
-  {
-    id: 12,
-    title: "Louvre Couture",
-    description: "Art and fashion: statement pieces",
-    category: "Exhibitions",
-    image: "noidat_cards.webp",
-    path: "/louvre-couture",
-  },
-  {
-    id: 13,
-    title: "Another Musée Du Pin",
-    description: "Discover lesser-known treasures",
-    category: "Exhibitions",
-    image: "LongDaDa_cards.webp",
-    path: "/exhibitions?tab=guided-tours",
-  },
-
-  // Collections sections
-  {
-    id: 14,
-    title: "Collection Highlights",
-    description: "Masterpieces from our permanent collection",
-    category: "Collections",
-    image: "phunu_cards.webp",
-    path: "/collections#highlights",
-  },
-  {
-    id: 15,
-    title: "European Paintings",
-    description: "Renaissance to Modern European art",
-    category: "Collections",
-    image: "phunu_cards.webp",
-    path: "/collections/european-paintings",
-  },
-  {
-    id: 16,
-    title: "Sculptures",
-    description: "Ancient to contemporary sculptures",
-    category: "Collections",
-    image: "phunu_cards.webp",
-    path: "/collections/sculptures",
-  },
-  {
-    id: 17,
-    title: "Decorative Arts",
-    description: "Furniture, ceramics and decorative objects",
-    category: "Collections",
-    image: "phunu_cards.webp",
-    path: "/collections/decorative-arts",
   },
 
   // Explore sections
   {
-    id: 18,
-    title: "The Palace",
-    description: "History and architecture of the palace",
-    category: "Explore",
-    image: "Thông 2.webp",
-    path: "/the-palace",
+    id: 7,
+    title: "Bộ sưu tập",
+    description: "Khám phá bộ sưu tập nghệ thuật của bảo tàng",
+    category: "Khám phá",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/room2.jpg",
+    path: "/collection",
   },
   {
-    id: 19,
-    title: "The Gardens",
-    description: "Landscaped gardens and outdoor sculptures",
-    category: "Explore",
-    image: "noidat_cards.webp",
-    path: "/the-gardens",
-  },
-  {
-    id: 20,
-    title: "Visitor Trails",
-    description: "Curated routes through the museum",
-    category: "Explore",
-    image: "LongDaDa_cards.webp",
+    id: 8,
+    title: "Lộ trình tham quan",
+    description: "Các lộ trình tham quan được đề xuất",
+    category: "Khám phá",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/room2.jpg",
     path: "/visitor-trails",
   },
-
-  // Support and Shop
   {
-    id: 21,
-    title: "Online Boutique",
-    description: "Museum shop with art-inspired items",
-    category: "Shop",
-    image: "phunu_cards.webp",
-    path: "/boutique",
+    id: 9,
+    title: "Vườn",
+    description: "Khám phá khu vườn của bảo tàng",
+    category: "Khám phá",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784685/collections/N%E1%BB%93i%20%C4%90%E1%BA%A5t.webp",
+    path: "/the-gardens",
   },
+
+  // Support sections
   {
-    id: 22,
-    title: "Support the Museum",
-    description: "Ways to contribute to the museum",
-    category: "Support",
-    image: "phunu_cards.webp",
+    id: 10,
+    title: "Hỗ trợ khách tham quan",
+    description: "Thông tin hỗ trợ và hướng dẫn cho khách tham quan",
+    category: "Hỗ trợ",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/room3.jpg",
     path: "/support",
   },
   {
-    id: 23,
-    title: "Become a Patron",
-    description: "Individual, company and foundation support",
-    category: "Support",
-    image: "phunu_cards.webp",
+    id: 11,
+    title: "FAQ",
+    description: "Câu hỏi thường gặp và giải đáp",
+    category: "Hỗ trợ",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/room3.jpg",
+    path: "/visit-info#faq",
+  },
+  {
+    id: 12,
+    title: "Trở thành Nhà bảo trợ",
+    description: "Thông tin về chương trình bảo trợ bảo tàng",
+    category: "Hỗ trợ",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/room3.jpg",
     path: "/support#patron",
   },
 
-  // Practical information
+  // Shop sections
   {
-    id: 24,
-    title: "Map & Directions",
-    description: "How to find and navigate the museum",
-    category: "Practical Info",
-    image: "Thông 2.webp",
-    path: "/museum-map",
+    id: 13,
+    title: "Cửa hàng trực tuyến",
+    description: "Mua sắm các sản phẩm lưu niệm từ bảo tàng",
+    category: "Mua sắm",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/room3.jpg",
+    path: "https://online-museeduphin.netlify.app/",
+  },
+
+  // Add room search data
+  {
+    id: "room-traditional",
+    title: "The ChildHood",
+    description:
+      "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
+    category: "Lưu trú",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748840047/collections/thechillhood.jpg",
+    path: "/visit-info#homestay",
   },
   {
-    id: 25,
-    title: "Accessibility",
-    description: "Services for visitors with disabilities",
-    category: "Practical Info",
-    image: "Thông 2.webp",
-    path: "/accessibility",
+    id: "room-modern",
+    title: "White Bauhunia",
+    description:
+      "Căn hộ sang trọng với đầy đủ tiện nghi, cách bảo tàng 10 phút đi bộ.",
+    category: "Lưu trú",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846791/collections/whitebauhinia.jpg",
+    path: "/visit-info#homestay",
   },
   {
-    id: 26,
-    title: "FAQ",
-    description: "Frequently asked questions",
-    category: "Practical Info",
-    image: "Thông 2.webp",
-    path: "/faq",
+    id: "room-luxury",
+    title: "The chill 1",
+    description:
+      "Biệt thự tuyệt đẹp với vườn riêng, dịch vụ cao cấp và view thành phố ngoạn mục.",
+    category: "Lưu trú",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846791/collections/thechill1.jpg",
+    path: "/visit-info#homestay",
   },
   {
-    id: 27,
-    title: "Restaurants & Cafés",
-    description: "Dining options at the museum",
-    category: "Practical Info",
-    image: "Thông 2.webp",
-    path: "/restaurants",
+    id: "room-budget1",
+    title: "The Chill 2",
+    description:
+      "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
+    category: "Lưu trú",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846791/collections/thechill2.jpg",
+    path: "/visit-info#homestay",
   },
   {
-    id: 28,
-    title: "Visitor Amenities",
-    description: "Facilities and services for visitors",
-    category: "Practical Info",
-    image: "Thông 2.webp",
-    path: "/visit-info",
+    id: "room-budget2",
+    title: "The Memory",
+    description:
+      "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
+    category: "Lưu trú",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846791/collections/thememory.jpg",
+    path: "/visit-info#homestay",
+  },
+  {
+    id: "room-budget3",
+    title: "The Sunset",
+    description:
+      "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
+    category: "Lưu trú",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846791/collections/thesunset.jpg",
+    path: "/visit-info#homestay",
+  },
+  {
+    id: "room-budget4",
+    title: "The Train",
+    description:
+      "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
+    category: "Lưu trú",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846791/collections/thetrain.jpg",
+    path: "/visit-info#homestay",
   },
 ];
 
-// Component for cached navbar images
-const CachedNavbarImage = ({ src, alt, className, loading = "lazy" }) => {
-  const { url: cachedUrl, isLoaded } = useCachedAsset(getAssetUrl(src));
-
-  return (
-    <img
-      src={cachedUrl}
-      alt={alt}
-      className={className}
-      loading={loading}
-      style={{
-        opacity: isLoaded ? 1 : 0.9,
-        transition: "opacity 0.3s ease",
-      }}
-    />
-  );
-};
-
 const Navbar = () => {
-  const { currentLanguage, changeLanguage, supportedLanguages, isTranslating } =
-    useTranslation();
+  const [currentLanguage, setCurrentLanguage] = useState("vi");
   const [showLangDropdown, setShowLangDropdown] = useState(false);
   const [showMobileLangDropdown, setShowMobileLangDropdown] = useState(false);
   const [showSearchBox, setShowSearchBox] = useState(false);
@@ -583,6 +521,25 @@ const Navbar = () => {
   const mobileSubmenuRef = useRef(null);
   const searchResultsRef = useRef(null);
 
+  // Add supported languages
+  const supportedLanguages = [
+    { code: "vi", name: "Tiếng Việt" },
+    { code: "en", name: "English" },
+  ];
+
+  // Get current language name
+  const getCurrentLanguageName = () => {
+    const lang = supportedLanguages.find((l) => l.code === currentLanguage);
+    return lang ? lang.name : "Tiếng Việt";
+  };
+
+  // Handle language change
+  const handleLanguageChange = (langCode) => {
+    setCurrentLanguage(langCode);
+    setShowMobileLangDropdown(false);
+    setShowLangDropdown(false);
+  };
+
   // Handle search functionality
   const handleSearchInputChange = (e) => {
     const value = e.target.value;
@@ -614,36 +571,34 @@ const Navbar = () => {
     setIsSearching(true);
     setShowSearchResults(true);
 
-    // Simulate scanning all project content
-    setTimeout(() => {
-      const results = searchData.filter((item) => {
-        const searchTermLower = query.toLowerCase();
-        const titleMatch = item.title.toLowerCase().includes(searchTermLower);
-        const descriptionMatch = item.description
-          .toLowerCase()
-          .includes(searchTermLower);
-        const categoryMatch = item.category
-          .toLowerCase()
-          .includes(searchTermLower);
+    // Search in real-time without delay
+    const results = searchData.filter((item) => {
+      const searchTermLower = query.toLowerCase();
+      const titleMatch = item.title.toLowerCase().includes(searchTermLower);
+      const descriptionMatch = item.description
+        .toLowerCase()
+        .includes(searchTermLower);
+      const categoryMatch = item.category
+        .toLowerCase()
+        .includes(searchTermLower);
 
-        return titleMatch || descriptionMatch || categoryMatch;
-      });
+      return titleMatch || descriptionMatch || categoryMatch;
+    });
 
-      // Sort results with exact title matches first
-      results.sort((a, b) => {
-        const aExactMatch = a.title.toLowerCase() === query.toLowerCase();
-        const bExactMatch = b.title.toLowerCase() === query.toLowerCase();
+    // Sort results with exact title matches first
+    results.sort((a, b) => {
+      const aExactMatch = a.title.toLowerCase() === query.toLowerCase();
+      const bExactMatch = b.title.toLowerCase() === query.toLowerCase();
 
-        if (aExactMatch && !bExactMatch) return -1;
-        if (!aExactMatch && bExactMatch) return 1;
+      if (aExactMatch && !bExactMatch) return -1;
+      if (!aExactMatch && bExactMatch) return 1;
 
-        // Sort by category as secondary criteria
-        return a.category.localeCompare(b.category);
-      });
+      // Sort by category as secondary criteria
+      return a.category.localeCompare(b.category);
+    });
 
-      setSearchResults(results);
-      setIsSearching(false);
-    }, 300);
+    setSearchResults(results);
+    setIsSearching(false);
   };
 
   // Improved search result navigation with hash-based routing
@@ -652,8 +607,15 @@ const Navbar = () => {
     setShowSearchResults(false);
     setSearchTerm("");
     setMobileSearchTerm("");
+    setShowMobileMenu(false); // Close mobile menu
 
-    // Handle navigation with hash fragments
+    // Handle external links
+    if (path.startsWith("http")) {
+      window.open(path, "_blank");
+      return;
+    }
+
+    // Handle internal navigation with hash fragments
     if (path.includes("#")) {
       const [pagePath, sectionId] = path.split("#");
 
@@ -662,7 +624,6 @@ const Navbar = () => {
         window.location.pathname === pagePath ||
         (pagePath === "/" && window.location.pathname === "")
       ) {
-        // Find the element and scroll to it
         setTimeout(() => {
           const element = document.getElementById(sectionId);
           if (element) {
@@ -670,7 +631,7 @@ const Navbar = () => {
           }
         }, 100);
       } else {
-        // Otherwise navigate to the page, then scroll to section
+        // Navigate to the page, then scroll to section
         navigate(path);
       }
     } else {
@@ -701,18 +662,6 @@ const Navbar = () => {
     };
   }, []);
 
-  // Lấy tên hiển thị của ngôn ngữ hiện tại
-  const getCurrentLanguageName = () => {
-    // Nếu chưa có currentLanguage, trả về "Tiếng Việt"
-    if (!currentLanguage) return "Tiếng Việt";
-
-    const lang = supportedLanguages.find(
-      (lang) => lang.code === currentLanguage
-    );
-    // Nếu không tìm thấy ngôn ngữ hoặc là ngôn ngữ mặc định, trả về "Tiếng Việt"
-    return lang ? lang.name : "Tiếng Việt";
-  };
-
   // Thêm hàm xử lý khi nhấp vào liên kết trong mobile menu
   const handleNavItemClick = (path) => {
     setShowMobileMenu(false);
@@ -728,20 +677,24 @@ const Navbar = () => {
 
     // Thiết lập các mục cho từng loại submenu
     switch (menuType) {
-      case "THAM QUAN":
+      case "Trải nghiệm":
         items = [
-          { title: "Giờ mở cửa & vé vào cửa", path: "/visit" },
+          { title: "Giờ mở cửa và các gói trải nghiệm", path: "/visit" },
           { title: "Bản đồ, lối vào & chỉ dẫn", path: "/museum-map" },
-          { title: "Giá vé", path: "/visit#tickets" },
+          { title: "Chi phí các gói trải nghiệm", path: "/visit#tickets" },
           { title: "Thành viên", path: "/visit#membership" },
-          { title: "Tiện ích cho khách tham quan", path: "/visit-info" },
+          {
+            title: "Lưu trú trong các căn phòng nghệ thuật",
+            path: "/visit-info",
+          },
           { title: "Cuộc sống tại bảo tàng", path: "/visit-info#homestay" },
           { title: "Câu hỏi thường gặp", path: "/visit-info#faq" },
         ];
         featured = {
           title: "Chuẩn bị cho chuyến tham quan",
           path: "/visit-info",
-          image: "Thông 2.webp",
+          image:
+            "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/Th%C3%B4ng%202.webp",
           description:
             "Tất cả những điều bạn cần biết trước khi tham quan bảo tàng",
         };
@@ -751,14 +704,19 @@ const Navbar = () => {
         items = [
           { title: "Triển lãm", path: "/exhibitions" },
           {
-            title: "Tham quan có hướng dẫn",
+            title: "Trải nghiệm có hướng dẫn",
             path: "/exhibitions?tab=guided-tours",
+          },
+          {
+            title: "Lưu trú nghệ thuật",
+            path: "/luu-tru-nghe-thuat",
           },
         ];
         featured = {
           title: "Một Musée Du Pin khác",
           path: "/exhibitions?tab=guided-tours",
-          image: "LongDaDa_cards.webp",
+          image:
+            "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/room2.jpg",
           description:
             "Tận hưởng chuyến tham quan tránh xa đám đông và khám phá những kho báu ít người biết đến và khung cảnh tuyệt đẹp của 'một Musée Du Pin khác'",
         };
@@ -773,7 +731,8 @@ const Navbar = () => {
         featured = {
           title: "Điểm nổi bật",
           path: "/visitor-trails",
-          image: "LongDaDa_cards.webp",
+          image:
+            "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/room2.jpg",
           description: "Các tác phẩm nổi bật",
         };
         break;
@@ -792,7 +751,8 @@ const Navbar = () => {
         featured = {
           title: "Trở thành Nhà bảo trợ!",
           path: "/support",
-          image: "phunu_cards.webp",
+          image:
+            "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/room3.jpg",
           description: "Cá nhân, công ty hoặc tổ chức",
         };
         break;
@@ -824,16 +784,6 @@ const Navbar = () => {
       }, 300);
     } else {
       setShowMobileSubmenu(false);
-    }
-  };
-
-  // Cải thiện hàm xử lý thay đổi ngôn ngữ
-  const handleLanguageChange = (langCode) => {
-    setShowLangDropdown(false);
-    setShowMobileLangDropdown(false);
-
-    if (langCode !== currentLanguage) {
-      changeLanguage(langCode);
     }
   };
 
@@ -1036,16 +986,16 @@ const Navbar = () => {
               <div className="search-loading"></div>
             ) : (
               <div className="search-results-title">
-                <TranslatedText>
+                <div className="search-results-count">
                   {`${searchResults.length} kết quả tìm kiếm cho "${
                     searchTerm || mobileSearchTerm
                   }"`}
-                </TranslatedText>
+                </div>
                 <button
                   type="button"
                   className="search-results-close-button"
                   onClick={() => setShowSearchResults(false)}
-                  aria-label="Close search results"
+                  aria-label="Đóng kết quả tìm kiếm"
                 >
                   <CloseIcon />
                 </button>
@@ -1065,9 +1015,10 @@ const Navbar = () => {
                   }`}
                   onClick={() => handleSearchResultClick(result.path)}
                 >
-                  <CachedNavbarImage
+                  <img
                     src={result.image}
                     alt={result.title}
+                    loading="lazy"
                     className="search-result-image"
                   />
                   <div className="search-result-content">
@@ -1084,14 +1035,10 @@ const Navbar = () => {
             </div>
           ) : (
             <div className="search-no-results">
-              <h3>
-                <TranslatedText>Không tìm thấy kết quả</TranslatedText>
-              </h3>
+              <h3>Không tìm thấy kết quả</h3>
               <p>
-                <TranslatedText>
-                  Chúng tôi không thể tìm thấy kết quả nào cho tìm kiếm của bạn.
-                  Vui lòng thử từ khóa khác.
-                </TranslatedText>
+                Chúng tôi không thể tìm thấy kết quả nào cho tìm kiếm của bạn.
+                Vui lòng thử từ khóa khác.
               </p>
             </div>
           )}
@@ -1111,9 +1058,7 @@ const Navbar = () => {
             onClick={() => setShowSearchBox(true)}
           >
             <SearchIcon />
-            <span>
-              <TranslatedText>Tìm kiếm</TranslatedText>
-            </span>
+            <span>Tìm kiếm</span>
           </div>
 
           <div className="language-dropdown" ref={dropdownRef}>
@@ -1122,23 +1067,11 @@ const Navbar = () => {
               onClick={() => setShowLangDropdown(!showLangDropdown)}
             >
               {getCurrentLanguageName()}
-              {showLangDropdown ? <ChevronUp /> : <ChevronDown />}
             </div>
 
             {showLangDropdown && (
               <div className="language-options">
                 <div className="language-header">Ngôn ngữ</div>
-                {supportedLanguages.map((lang) => (
-                  <div
-                    key={lang.code}
-                    className={`language-option ${
-                      currentLanguage === lang.code ? "active" : ""
-                    }`}
-                    onClick={() => handleLanguageChange(lang.code)}
-                  >
-                    {lang.name}
-                  </div>
-                ))}
               </div>
             )}
           </div>
@@ -1147,7 +1080,12 @@ const Navbar = () => {
         {/* Center section with logo */}
         <div className="logo-container">
           <Link to="/">
-            <img className="logo" src={logo} alt="Museum Logo" />
+            <img
+              className="logo"
+              src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.webp"
+              alt="Museum Logo"
+              loading="lazy"
+            />
           </Link>
         </div>
 
@@ -1185,9 +1123,10 @@ const Navbar = () => {
         <div className="mobile-logo">
           <div onClick={() => setShowMobileMenu(true)}>
             <img
-              src={logo}
+              src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.webp"
               alt="Musée Du Pin Logo"
               className="mobile-logo-image"
+              loading="lazy"
             />
           </div>
           <a href="/">
@@ -1230,7 +1169,7 @@ const Navbar = () => {
                   }
                 }}
               >
-                <TranslatedText>THAM QUAN</TranslatedText>
+                Trải nghiệm
                 <div className="underline"></div>
               </Link>
             </li>
@@ -1255,7 +1194,7 @@ const Navbar = () => {
                   }
                 }}
               >
-                <TranslatedText>TRIỂN LÃM VÀ SỰ KIỆN</TranslatedText>
+                Lưu trú nghệ thuật và Triển lãm
                 <div className="underline"></div>
               </Link>
             </li>
@@ -1281,7 +1220,7 @@ const Navbar = () => {
                   }
                 }}
               >
-                <TranslatedText>KHÁM PHÁ</TranslatedText>
+                KHÁM PHÁ
                 <div className="underline"></div>
               </Link>
             </li>
@@ -1304,9 +1243,7 @@ const Navbar = () => {
             }
           }}
         >
-          <span>
-            <TranslatedText>XEM THÊM</TranslatedText>
-          </span>
+          <span>XEM THÊM</span>
           <MenuIcon />
           <div className="underline"></div>
         </div>
@@ -1323,9 +1260,7 @@ const Navbar = () => {
                 }`}
               >
                 <SearchIcon />
-                <div className="search-input-label">
-                  <TranslatedText>Tìm kiếm</TranslatedText>
-                </div>
+                <div className="search-input-label">Tìm kiếm</div>
                 <input
                   type="text"
                   placeholder={isFocused ? "" : "Tìm kiếm"}
@@ -1388,9 +1323,7 @@ const Navbar = () => {
             <div className="dropdown-main-content">
               <div className="dropdown-left-section">
                 <div className="dropdown-menu-section">
-                  <h3>
-                    <TranslatedText>Cửa hàng trực tuyến</TranslatedText>
-                  </h3>
+                  <h3>Cửa hàng trực tuyến</h3>
                   <Link
                     to="https://online-museeduphin.netlify.app/"
                     className="dropdown-link"
@@ -1400,9 +1333,7 @@ const Navbar = () => {
                       navigate("https://online-museeduphin.netlify.app/");
                     }}
                   >
-                    <TranslatedText>
-                      Ghé thăm cửa hàng trực tuyến của chúng tôi
-                    </TranslatedText>
+                    Ghé thăm cửa hàng trực tuyến của chúng tôi
                   </Link>
                 </div>
 
@@ -1410,9 +1341,7 @@ const Navbar = () => {
                   className="dropdown-menu-section"
                   style={{ marginTop: "30px" }}
                 >
-                  <h3>
-                    <TranslatedText>Hỗ trợ Musée Du Pin</TranslatedText>
-                  </h3>
+                  <h3>Hỗ trợ Musée Du Pin</h3>
                   <Link
                     to="/support"
                     className="dropdown-link"
@@ -1422,17 +1351,16 @@ const Navbar = () => {
                       navigate("/support");
                     }}
                   >
-                    <TranslatedText>
-                      Cá nhân, công ty hoặc tổ chức
-                    </TranslatedText>
+                    Cá nhân, công ty hoặc tổ chức
                   </Link>
                 </div>
               </div>
 
               <div className="dropdown-right-section">
-                <CachedNavbarImage
-                  src="phunu_cards.webp"
+                <img
+                  src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/room3.jpg"
                   alt="Classical Artwork"
+                  loading="lazy"
                   className="dropdown-image"
                 />
 
@@ -1446,7 +1374,7 @@ const Navbar = () => {
                   }}
                 >
                   <PatronIcon />
-                  <TranslatedText>Trở thành Nhà bảo trợ!</TranslatedText>
+                  Trở thành Nhà bảo trợ!
                 </Link>
 
                 <div className="dropdown-image-caption">
@@ -1459,12 +1387,10 @@ const Navbar = () => {
                       navigate("/support");
                     }}
                   >
-                    <TranslatedText>Hỗ trợ Musée Du Pin →</TranslatedText>
+                    Hỗ trợ Musée Du Pin →
                   </Link>
                   <p className="dropdown-description">
-                    <TranslatedText>
-                      Cá nhân, công ty hoặc tổ chức
-                    </TranslatedText>
+                    Cá nhân, công ty hoặc tổ chức
                   </p>
                 </div>
               </div>
@@ -1502,7 +1428,7 @@ const Navbar = () => {
                       setShowVisitDropdown(false);
                     }}
                   >
-                    <TranslatedText>Giờ mở cửa & vé vào cửa</TranslatedText>
+                    Giờ mở cửa & vé vào cửa
                   </Link>
                   <Link
                     to="/visit#tickets"
@@ -1512,7 +1438,7 @@ const Navbar = () => {
                       setShowVisitDropdown(false);
                     }}
                   >
-                    <TranslatedText>Giá vé</TranslatedText>
+                    Chi phí các gói trải nghiệm
                   </Link>
                   <Link
                     to="/visit#membership"
@@ -1522,7 +1448,7 @@ const Navbar = () => {
                       setShowVisitDropdown(false);
                     }}
                   >
-                    <TranslatedText>Thành viên</TranslatedText>
+                    Thành viên
                   </Link>
                 </div>
               </div>
@@ -1538,9 +1464,7 @@ const Navbar = () => {
                       navigate("/visit-info");
                     }}
                   >
-                    <TranslatedText>
-                      Tiện ích cho khách tham quan
-                    </TranslatedText>
+                    Tiện ích cho khách tham quan
                   </Link>
                   <Link
                     to="/homestay"
@@ -1551,7 +1475,7 @@ const Navbar = () => {
                       navigate("/visit-info#homestay");
                     }}
                   >
-                    <TranslatedText>Lưu trú</TranslatedText>
+                    Lưu trú
                   </Link>
                   <Link
                     to="/visit-info#faq"
@@ -1562,15 +1486,16 @@ const Navbar = () => {
                       navigate("/visit-info#faq");
                     }}
                   >
-                    <TranslatedText>Câu hỏi thường gặp</TranslatedText>
+                    Câu hỏi thường gặp
                   </Link>
                 </div>
               </div>
 
               <div className="dropdown-right-section">
-                <CachedNavbarImage
-                  src="Thông 2.webp"
+                <img
+                  src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/Th%C3%B4ng%202.webp"
                   alt="Museum Gallery"
+                  loading="lazy"
                   className="dropdown-image"
                 />
 
@@ -1584,28 +1509,23 @@ const Navbar = () => {
                       navigate("/visit-info");
                     }}
                   >
-                    <TranslatedText>
-                      Chuẩn bị cho chuyến tham quan
-                    </TranslatedText>
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M5 12h14"></path>
-                      <path d="M12 5l7 7-7 7"></path>
-                    </svg>
+                    Chuẩn bị cho chuyến tham quan
                   </Link>
+                  <svg
+                    width="16"
+                    height="16"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  >
+                    <path d="M5 12h14"></path>
+                    <path d="M12 5l7 7-7 7"></path>
+                  </svg>
                   <p className="dropdown-description">
-                    <TranslatedText>
-                      Tất cả những điều bạn cần biết trước khi tham quan bảo
-                      tàng
-                    </TranslatedText>
+                    Tất cả những điều bạn cần biết trước khi tham quan bảo tàng
                   </p>
                 </div>
               </div>
@@ -1643,7 +1563,7 @@ const Navbar = () => {
                       setShowExhibitionsDropdown(false);
                     }}
                   >
-                    <TranslatedText>Triển lãm</TranslatedText>
+                    Triển lãm
                   </button>
                   <button
                     type="button"
@@ -1653,7 +1573,17 @@ const Navbar = () => {
                       setShowExhibitionsDropdown(false);
                     }}
                   >
-                    <TranslatedText>Tham quan có hướng dẫn</TranslatedText>
+                    Trải nghiệm có hướng dẫn
+                  </button>
+                  <button
+                    type="button"
+                    className="nav-button"
+                    onClick={() => {
+                      navigate("/luu-tru-nghe-thuat");
+                      setShowExhibitionsDropdown(false);
+                    }}
+                  >
+                    Lưu trú nghệ thuật
                   </button>
                 </div>
               </div>
@@ -1661,13 +1591,12 @@ const Navbar = () => {
               <div className="dropdown-right-section exhibitions-features">
                 <div className="exhibition-feature">
                   <div className="exhibition-feature-image">
-                    <CachedNavbarImage
-                      src="LongDaDa_cards.webp"
+                    <img
+                      src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/room2.jpg"
                       alt="Another"
+                      loading="lazy"
                     />
-                    <div className="feature-tag">
-                      <TranslatedText>Một Musée Du Pin khác</TranslatedText>
-                    </div>
+                    <div className="feature-tag">Một Musée Du Pin khác</div>
                   </div>
                   <button
                     type="button"
@@ -1677,7 +1606,7 @@ const Navbar = () => {
                       setShowExhibitionsDropdown(false);
                     }}
                   >
-                    <TranslatedText>Một Musée Du Pin khác</TranslatedText>
+                    Một Musée Du Pin khác
                     <svg
                       width="16"
                       height="16"
@@ -1693,20 +1622,20 @@ const Navbar = () => {
                     </svg>
                   </button>
                   <p className="exhibition-feature-description">
-                    <TranslatedText>
-                      Tận hưởng chuyến tham quan tránh xa đám đông và khám phá
-                      những kho báu ít người biết đến và khung cảnh tuyệt đẹp
-                      của 'một Musée Du Pin khác'
-                    </TranslatedText>
+                    Tận hưởng chuyến tham quan tránh xa đám đông và khám phá
+                    những kho báu ít người biết đến và khung cảnh tuyệt đẹp của
+                    'một Musée Du Pin khác'
                   </p>
                 </div>
 
                 <div className="exhibition-feature">
                   <div className="exhibition-feature-image">
-                    <CachedNavbarImage src="noidat_cards.webp" alt="Couture" />
-                    <div className="feature-tag">
-                      <TranslatedText>Musée Du Pin Couture</TranslatedText>
-                    </div>
+                    <img
+                      src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784685/collections/N%E1%BB%93i%20%C4%90%E1%BA%A5t.webp"
+                      alt="Couture"
+                      loading="lazy"
+                    />
+                    <div className="feature-tag">Musée Du Pin Couture</div>
                   </div>
                   <button
                     type="button"
@@ -1716,7 +1645,7 @@ const Navbar = () => {
                       setShowExhibitionsDropdown(false);
                     }}
                   >
-                    <TranslatedText>Musée Du Pin Couture</TranslatedText>
+                    Musée Du Pin Couture
                     <svg
                       width="16"
                       height="16"
@@ -1732,10 +1661,7 @@ const Navbar = () => {
                     </svg>
                   </button>
                   <p className="exhibition-feature-description">
-                    <TranslatedText>
-                      Art and fashion: statement pieces. 24 January – 21 July
-                      2025
-                    </TranslatedText>
+                    Art and fashion: statement pieces. 24 January – 21 July 2025
                   </p>
                 </div>
               </div>
@@ -1773,7 +1699,7 @@ const Navbar = () => {
                       setShowExploreDropdown(false);
                     }}
                   >
-                    <TranslatedText>Bộ sưu tập</TranslatedText>
+                    Bộ sưu tập
                   </button>
                   <button
                     type="button"
@@ -1783,7 +1709,7 @@ const Navbar = () => {
                       setShowExploreDropdown(false);
                     }}
                   >
-                    <TranslatedText>Cuộc sống tại bảo tàng</TranslatedText>
+                    Cuộc sống tại bảo tàng
                   </button>
                   <button
                     type="button"
@@ -1793,7 +1719,7 @@ const Navbar = () => {
                       directNavigate("/visitor-trails");
                     }}
                   >
-                    <TranslatedText>Lộ trình tham quan</TranslatedText>
+                    Lộ trình tham quan
                   </button>
 
                   <button
@@ -1804,7 +1730,7 @@ const Navbar = () => {
                       directNavigate("/the-gardens");
                     }}
                   >
-                    <TranslatedText>Vườn</TranslatedText>
+                    Vườn
                   </button>
                 </div>
               </div>
@@ -1812,13 +1738,12 @@ const Navbar = () => {
               <div className="dropdown-right-section exhibitions-features">
                 <div className="exhibition-feature">
                   <div className="exhibition-feature-image">
-                    <CachedNavbarImage
-                      src="LongDaDa_cards.webp"
+                    <img
+                      src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/room2.jpg"
                       alt="Beyoncé"
+                      loading="lazy"
                     />
-                    <div className="feature-tag">
-                      <TranslatedText>Điểm nổi bật</TranslatedText>
-                    </div>
+                    <div className="feature-tag">Điểm nổi bật</div>
                   </div>
                   <button
                     type="button"
@@ -1828,9 +1753,7 @@ const Navbar = () => {
                       directNavigate("/beyonce-jayz-louvre");
                     }}
                   >
-                    <TranslatedText>
-                      Beyoncé and Jay-Z's Louvre Highlights
-                    </TranslatedText>
+                    Beyoncé and Jay-Z's Louvre Highlights
                     <svg
                       width="16"
                       height="16"
@@ -1846,19 +1769,18 @@ const Navbar = () => {
                     </svg>
                   </button>
                   <p className="exhibition-feature-description">
-                    <TranslatedText>Các tác phẩm video nổi bật</TranslatedText>
+                    Các tác phẩm video nổi bật
                   </p>
                 </div>
 
                 <div className="exhibition-feature">
                   <div className="exhibition-feature-image">
-                    <CachedNavbarImage
-                      src="noidat_cards.webp"
+                    <img
+                      src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784685/collections/N%E1%BB%93i%20%C4%90%E1%BA%A5t.webp"
                       alt="Restoration"
+                      loading="lazy"
                     />
-                    <div className="feature-tag">
-                      <TranslatedText>Video</TranslatedText>
-                    </div>
+                    <div className="feature-tag">Video</div>
                   </div>
                   <button
                     type="button"
@@ -1868,9 +1790,7 @@ const Navbar = () => {
                       directNavigate("/dupinplus");
                     }}
                   >
-                    <TranslatedText>
-                      Restoration of the Arc de Triomphe du Carrousel
-                    </TranslatedText>
+                    Restoration of the Arc de Triomphe du Carrousel
                     <svg
                       width="16"
                       height="16"
@@ -1886,10 +1806,7 @@ const Navbar = () => {
                     </svg>
                   </button>
                   <p className="exhibition-feature-description">
-                    <TranslatedText>
-                      Discover the restoration of the Arc de Triomphe du
-                      Carrousel
-                    </TranslatedText>
+                    Discover the restoration of the Arc de Triomphe du Carrousel
                   </p>
                 </div>
               </div>
@@ -1913,9 +1830,8 @@ const Navbar = () => {
             onClick={() => setShowMobileLangDropdown(!showMobileLangDropdown)}
             ref={mobileLangDropdownRef}
           >
-            {getCurrentLanguageName()}{" "}
+            {getCurrentLanguageName()}
             {showMobileLangDropdown ? <ChevronUp /> : <ChevronDown />}
-            {/* Mobile Language Dropdown */}
             {showMobileLangDropdown && (
               <div className="mobile-language-options">
                 {supportedLanguages.map((lang) => (
@@ -1929,7 +1845,7 @@ const Navbar = () => {
                       handleLanguageChange(lang.code);
                     }}
                   >
-                    {lang.code === "vi" ? "Tiếng Việt" : "English"}
+                    {lang.name}
                   </div>
                 ))}
               </div>
@@ -1962,23 +1878,23 @@ const Navbar = () => {
         <div className="mobile-nav-links">
           <div
             className="mobile-nav-item"
-            onClick={() => openMobileSubmenu("THAM QUAN")}
+            onClick={() => openMobileSubmenu("Trải nghiệm")}
           >
-            <TranslatedText>THAM QUAN</TranslatedText>
+            Trải nghiệm
             <ChevronRight />
           </div>
           <div
             className="mobile-nav-item"
             onClick={() => openMobileSubmenu("TRIỂN LÃM")}
           >
-            <TranslatedText>TRIỂN LÃM VÀ SỰ KIỆN</TranslatedText>
+            Lưu trú nghệ thuật và Triển lãm
             <ChevronRight />
           </div>
           <div
             className="mobile-nav-item"
             onClick={() => openMobileSubmenu("KHÁM PHÁ")}
           >
-            <TranslatedText>KHÁM PHÁ</TranslatedText>
+            KHÁM PHÁ
             <ChevronRight />
           </div>
         </div>
@@ -1990,13 +1906,13 @@ const Navbar = () => {
             className="mobile-secondary-item"
             onClick={() => handleNavItemClick("/boutique")}
           >
-            <TranslatedText>Cửa hàng Lưu niệm</TranslatedText>
+            Cửa hàng Lưu niệm
           </div>
           <div
             className="mobile-secondary-item"
             onClick={() => handleNavItemClick("/support")}
           >
-            <TranslatedText>Hỗ trợ Musée Du Pin</TranslatedText>
+            Hỗ trợ Musée Du Pin
           </div>
         </div>
 
@@ -2088,11 +2004,9 @@ const Navbar = () => {
               >
                 <path d="M15 18l-6-6 6-6" />
               </svg>
-              <TranslatedText>Quay lại</TranslatedText>
+              Quay lại
             </button>
-            <h2 className="submenu-title">
-              <TranslatedText>{currentMobileSubmenu}</TranslatedText>
-            </h2>
+            <h2 className="submenu-title">{currentMobileSubmenu}</h2>
           </div>
 
           <div className="submenu-items">
@@ -2137,9 +2051,10 @@ const Navbar = () => {
                   <path d="M12 5l7 7-7 7"></path>
                 </svg>
               </Link>
-              <CachedNavbarImage
+              <img
                 src={submenuFeatured.image}
                 alt={submenuFeatured.title}
+                loading="lazy"
                 className="featured-image"
               />
               <p className="featured-description">
@@ -2147,15 +2062,6 @@ const Navbar = () => {
               </p>
             </div>
           )}
-        </div>
-      )}
-
-      {/* Overlay during translation */}
-      {isTranslating && (
-        <div className="language-translation-overlay">
-          <div className="translation-message">
-            <span>Đang chuyển đổi ngôn ngữ...</span>
-          </div>
         </div>
       )}
     </header>

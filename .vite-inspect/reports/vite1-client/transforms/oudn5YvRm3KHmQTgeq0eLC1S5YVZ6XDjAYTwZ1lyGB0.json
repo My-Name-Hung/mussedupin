@@ -1,0 +1,90 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/baotangnghethuat/src/pages/Visit/VisitorRules.jsx",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import React from \"react\";\nimport { Helmet } from \"react-helmet\";\nimport { getImageUrl } from \"../../utils/cloudinary\";\nimport \"./VisitorRules.css\";\n\nconst VisitorRules = () => {\n  const headerImage = getImageUrl(\"louvre-sunset.jpg\");\n  return (\n    <div className=\"visitor-rules-container\">\n      <Helmet>\n        <title>Nội quy tham quan | Bảo tàng Du Pin</title>\n        <meta\n          name=\"description\"\n          content=\"Nội quy và quy định tham quan dành cho khách tham quan Bảo tàng Du Pin.\"\n        />\n      </Helmet>\n\n      {/* Header Banner */}\n      <div className=\"rules-banner\">\n        <img src={headerImage} alt=\"Bảo tàng Du Pin\" />\n        <div className=\"banner-overlay\">\n          <h1>NỘI QUY THAM QUAN</h1>\n        </div>\n      </div>\n\n      <div className=\"rules-content\">\n        {/* General Rules Section */}\n        <div className=\"section\">\n          <h2>QUY ĐỊNH CHUNG</h2>\n          <p>\n            Để đảm bảo trải nghiệm tham quan tốt nhất cho tất cả du khách và bảo\n            vệ các tác phẩm nghệ thuật, quý khách vui lòng tuân thủ các quy định\n            sau đây khi tham quan Bảo tàng Du Pin.\n          </p>\n        </div>\n\n        {/* Prohibited Items Section */}\n        <div className=\"section\">\n          <h2>VẬT DỤNG KHÔNG ĐƯỢC MANG VÀO BẢO TÀNG</h2>\n          <ul>\n            <li>Thức ăn và đồ uống các loại</li>\n            <li>Thuốc lá, thuốc lá điện tử và các sản phẩm tương tự</li>\n            <li>Vũ khí, chất nổ và các vật sắc nhọn</li>\n            <li>Balo cỡ lớn, vali và túi xách quá khổ</li>\n            <li>\n              Dù, gậy selfie và các thiết bị có thể gây nguy hiểm cho tác phẩm\n            </li>\n          </ul>\n        </div>\n\n        {/* Photography Rules Section */}\n        <div className=\"section\">\n          <h2>QUY ĐỊNH VỀ CHỤP ẢNH VÀ QUAY PHIM</h2>\n          <ul>\n            <li>Không sử dụng đèn flash khi chụp ảnh</li>\n            <li>Không sử dụng chân máy hoặc thiết bị ổn định</li>\n            <li>Không chụp ảnh tại các khu vực có biển cấm</li>\n            <li>Chỉ chụp ảnh cho mục đích cá nhân, không thương mại</li>\n          </ul>\n        </div>\n\n        {/* Behavior Rules Section */}\n        <div className=\"section\">\n          <h2>QUY ĐỊNH VỀ HÀNH VI</h2>\n          <ul>\n            <li>Giữ khoảng cách tối thiểu 50cm với tác phẩm nghệ thuật</li>\n            <li>\n              Không chạm vào tác phẩm nghệ thuật và các thiết bị trưng bày\n            </li>\n            <li>Không gây ồn ào, la hét trong khuôn viên bảo tàng</li>\n            <li>Tuân thủ hướng dẫn của nhân viên bảo tàng</li>\n            <li>Giữ trật tự và không chen lấn khi xem tác phẩm</li>\n          </ul>\n        </div>\n\n        {/* Children Rules Section */}\n        <div className=\"section\">\n          <h2>QUY ĐỊNH VỀ TRẺ EM</h2>\n          <ul>\n            <li>Trẻ em dưới 12 tuổi phải có người lớn đi kèm</li>\n            <li>Không để trẻ em chạy nhảy trong khuôn viên bảo tàng</li>\n            <li>Giám sát trẻ em để đảm bảo an toàn cho tác phẩm</li>\n          </ul>\n        </div>\n\n        {/* Dress Code Section */}\n        <div className=\"section\">\n          <h2>TRANG PHỤC</h2>\n          <ul>\n            <li>Trang phục lịch sự, phù hợp với không gian văn hóa</li>\n            <li>Không mang dép lê hoặc trang phục quá hở hang</li>\n          </ul>\n        </div>\n\n        {/* Consequences Section */}\n        <div className=\"section\">\n          <h2>XỬ LÝ VI PHẠM</h2>\n          <p>\n            Khách tham quan vi phạm các quy định trên có thể bị yêu cầu rời khỏi\n            bảo tàng mà không được hoàn tiền vé. Trong trường hợp gây thiệt hại\n            cho tác phẩm nghệ thuật, khách tham quan phải chịu trách nhiệm bồi\n            thường theo quy định của pháp luật.\n          </p>\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default VisitorRules;\n",
+      "start": 1748859736994,
+      "end": 1748859737022,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1748859737022,
+      "end": 1748859737022,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { Helmet } from \"react-helmet\";\nimport { getImageUrl } from \"../../utils/cloudinary\";\nimport \"./VisitorRules.css\";\nconst VisitorRules = () => {\n  const headerImage = getImageUrl(\"louvre-sunset.jpg\");\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"visitor-rules-container\", children: [\n    /* @__PURE__ */ jsxs(Helmet, { children: [\n      /* @__PURE__ */ jsx(\"title\", { children: \"Nội quy tham quan | Bảo tàng Du Pin\" }),\n      /* @__PURE__ */ jsx(\n        \"meta\",\n        {\n          name: \"description\",\n          content: \"Nội quy và quy định tham quan dành cho khách tham quan Bảo tàng Du Pin.\"\n        }\n      )\n    ] }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"rules-banner\", children: [\n      /* @__PURE__ */ jsx(\"img\", { src: headerImage, alt: \"Bảo tàng Du Pin\" }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"banner-overlay\", children: /* @__PURE__ */ jsx(\"h1\", { children: \"NỘI QUY THAM QUAN\" }) })\n    ] }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"rules-content\", children: [\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"QUY ĐỊNH CHUNG\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Để đảm bảo trải nghiệm tham quan tốt nhất cho tất cả du khách và bảo vệ các tác phẩm nghệ thuật, quý khách vui lòng tuân thủ các quy định sau đây khi tham quan Bảo tàng Du Pin.\" })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"VẬT DỤNG KHÔNG ĐƯỢC MANG VÀO BẢO TÀNG\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Thức ăn và đồ uống các loại\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Thuốc lá, thuốc lá điện tử và các sản phẩm tương tự\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Vũ khí, chất nổ và các vật sắc nhọn\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Balo cỡ lớn, vali và túi xách quá khổ\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Dù, gậy selfie và các thiết bị có thể gây nguy hiểm cho tác phẩm\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"QUY ĐỊNH VỀ CHỤP ẢNH VÀ QUAY PHIM\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Không sử dụng đèn flash khi chụp ảnh\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Không sử dụng chân máy hoặc thiết bị ổn định\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Không chụp ảnh tại các khu vực có biển cấm\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Chỉ chụp ảnh cho mục đích cá nhân, không thương mại\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"QUY ĐỊNH VỀ HÀNH VI\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Giữ khoảng cách tối thiểu 50cm với tác phẩm nghệ thuật\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Không chạm vào tác phẩm nghệ thuật và các thiết bị trưng bày\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Không gây ồn ào, la hét trong khuôn viên bảo tàng\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Tuân thủ hướng dẫn của nhân viên bảo tàng\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Giữ trật tự và không chen lấn khi xem tác phẩm\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"QUY ĐỊNH VỀ TRẺ EM\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Trẻ em dưới 12 tuổi phải có người lớn đi kèm\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Không để trẻ em chạy nhảy trong khuôn viên bảo tàng\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Giám sát trẻ em để đảm bảo an toàn cho tác phẩm\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"TRANG PHỤC\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Trang phục lịch sự, phù hợp với không gian văn hóa\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Không mang dép lê hoặc trang phục quá hở hang\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"XỬ LÝ VI PHẠM\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Khách tham quan vi phạm các quy định trên có thể bị yêu cầu rời khỏi bảo tàng mà không được hoàn tiền vé. Trong trường hợp gây thiệt hại cho tác phẩm nghệ thuật, khách tham quan phải chịu trách nhiệm bồi thường theo quy định của pháp luật.\" })\n      ] })\n    ] })\n  ] });\n};\nexport default VisitorRules;\n",
+      "start": 1748859737022,
+      "end": 1748859737253,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/baotangnghethuat/src/pages/Visit/VisitorRules.jsx"
+        ],
+        "sourcesContent": [
+          "import React from \"react\";\nimport { Helmet } from \"react-helmet\";\nimport { getImageUrl } from \"../../utils/cloudinary\";\nimport \"./VisitorRules.css\";\n\nconst VisitorRules = () => {\n  const headerImage = getImageUrl(\"louvre-sunset.jpg\");\n  return (\n    <div className=\"visitor-rules-container\">\n      <Helmet>\n        <title>Nội quy tham quan | Bảo tàng Du Pin</title>\n        <meta\n          name=\"description\"\n          content=\"Nội quy và quy định tham quan dành cho khách tham quan Bảo tàng Du Pin.\"\n        />\n      </Helmet>\n\n      {/* Header Banner */}\n      <div className=\"rules-banner\">\n        <img src={headerImage} alt=\"Bảo tàng Du Pin\" />\n        <div className=\"banner-overlay\">\n          <h1>NỘI QUY THAM QUAN</h1>\n        </div>\n      </div>\n\n      <div className=\"rules-content\">\n        {/* General Rules Section */}\n        <div className=\"section\">\n          <h2>QUY ĐỊNH CHUNG</h2>\n          <p>\n            Để đảm bảo trải nghiệm tham quan tốt nhất cho tất cả du khách và bảo\n            vệ các tác phẩm nghệ thuật, quý khách vui lòng tuân thủ các quy định\n            sau đây khi tham quan Bảo tàng Du Pin.\n          </p>\n        </div>\n\n        {/* Prohibited Items Section */}\n        <div className=\"section\">\n          <h2>VẬT DỤNG KHÔNG ĐƯỢC MANG VÀO BẢO TÀNG</h2>\n          <ul>\n            <li>Thức ăn và đồ uống các loại</li>\n            <li>Thuốc lá, thuốc lá điện tử và các sản phẩm tương tự</li>\n            <li>Vũ khí, chất nổ và các vật sắc nhọn</li>\n            <li>Balo cỡ lớn, vali và túi xách quá khổ</li>\n            <li>\n              Dù, gậy selfie và các thiết bị có thể gây nguy hiểm cho tác phẩm\n            </li>\n          </ul>\n        </div>\n\n        {/* Photography Rules Section */}\n        <div className=\"section\">\n          <h2>QUY ĐỊNH VỀ CHỤP ẢNH VÀ QUAY PHIM</h2>\n          <ul>\n            <li>Không sử dụng đèn flash khi chụp ảnh</li>\n            <li>Không sử dụng chân máy hoặc thiết bị ổn định</li>\n            <li>Không chụp ảnh tại các khu vực có biển cấm</li>\n            <li>Chỉ chụp ảnh cho mục đích cá nhân, không thương mại</li>\n          </ul>\n        </div>\n\n        {/* Behavior Rules Section */}\n        <div className=\"section\">\n          <h2>QUY ĐỊNH VỀ HÀNH VI</h2>\n          <ul>\n            <li>Giữ khoảng cách tối thiểu 50cm với tác phẩm nghệ thuật</li>\n            <li>\n              Không chạm vào tác phẩm nghệ thuật và các thiết bị trưng bày\n            </li>\n            <li>Không gây ồn ào, la hét trong khuôn viên bảo tàng</li>\n            <li>Tuân thủ hướng dẫn của nhân viên bảo tàng</li>\n            <li>Giữ trật tự và không chen lấn khi xem tác phẩm</li>\n          </ul>\n        </div>\n\n        {/* Children Rules Section */}\n        <div className=\"section\">\n          <h2>QUY ĐỊNH VỀ TRẺ EM</h2>\n          <ul>\n            <li>Trẻ em dưới 12 tuổi phải có người lớn đi kèm</li>\n            <li>Không để trẻ em chạy nhảy trong khuôn viên bảo tàng</li>\n            <li>Giám sát trẻ em để đảm bảo an toàn cho tác phẩm</li>\n          </ul>\n        </div>\n\n        {/* Dress Code Section */}\n        <div className=\"section\">\n          <h2>TRANG PHỤC</h2>\n          <ul>\n            <li>Trang phục lịch sự, phù hợp với không gian văn hóa</li>\n            <li>Không mang dép lê hoặc trang phục quá hở hang</li>\n          </ul>\n        </div>\n\n        {/* Consequences Section */}\n        <div className=\"section\">\n          <h2>XỬ LÝ VI PHẠM</h2>\n          <p>\n            Khách tham quan vi phạm các quy định trên có thể bị yêu cầu rời khỏi\n            bảo tàng mà không được hoàn tiền vé. Trong trường hợp gây thiệt hại\n            cho tác phẩm nghệ thuật, khách tham quan phải chịu trách nhiệm bồi\n            thường theo quy định của pháp luật.\n          </p>\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default VisitorRules;\n"
+        ],
+        "mappings": "AASM,SACE,KADF;AATN,OAAO,WAAW;AAClB,SAAS,cAAc;AACvB,SAAS,mBAAmB;AAC5B,OAAO;AAEP,MAAM,eAAe,MAAM;AACzB,QAAM,cAAc,YAAY,mBAAmB;AACnD,SACE,qBAAC,SAAI,WAAU,2BACb;AAAA,yBAAC,UACC;AAAA,0BAAC,WAAM,iDAAmC;AAAA,MAC1C;AAAA,QAAC;AAAA;AAAA,UACC,MAAK;AAAA,UACL,SAAQ;AAAA;AAAA,MACV;AAAA,OACF;AAAA,IAGA,qBAAC,SAAI,WAAU,gBACb;AAAA,0BAAC,SAAI,KAAK,aAAa,KAAI,mBAAkB;AAAA,MAC7C,oBAAC,SAAI,WAAU,kBACb,8BAAC,QAAG,+BAAiB,GACvB;AAAA,OACF;AAAA,IAEA,qBAAC,SAAI,WAAU,iBAEb;AAAA,2BAAC,SAAI,WAAU,WACb;AAAA,4BAAC,QAAG,4BAAc;AAAA,QAClB,oBAAC,OAAE,8LAIH;AAAA,SACF;AAAA,MAGA,qBAAC,SAAI,WAAU,WACb;AAAA,4BAAC,QAAG,mDAAqC;AAAA,QACzC,qBAAC,QACC;AAAA,8BAAC,QAAG,yCAA2B;AAAA,UAC/B,oBAAC,QAAG,iEAAmD;AAAA,UACvD,oBAAC,QAAG,iDAAmC;AAAA,UACvC,oBAAC,QAAG,mDAAqC;AAAA,UACzC,oBAAC,QAAG,8EAEJ;AAAA,WACF;AAAA,SACF;AAAA,MAGA,qBAAC,SAAI,WAAU,WACb;AAAA,4BAAC,QAAG,+CAAiC;AAAA,QACrC,qBAAC,QACC;AAAA,8BAAC,QAAG,kDAAoC;AAAA,UACxC,oBAAC,QAAG,0DAA4C;AAAA,UAChD,oBAAC,QAAG,wDAA0C;AAAA,UAC9C,oBAAC,QAAG,iEAAmD;AAAA,WACzD;AAAA,SACF;AAAA,MAGA,qBAAC,SAAI,WAAU,WACb;AAAA,4BAAC,QAAG,iCAAmB;AAAA,QACvB,qBAAC,QACC;AAAA,8BAAC,QAAG,oEAAsD;AAAA,UAC1D,oBAAC,QAAG,0EAEJ;AAAA,UACA,oBAAC,QAAG,+DAAiD;AAAA,UACrD,oBAAC,QAAG,uDAAyC;AAAA,UAC7C,oBAAC,QAAG,4DAA8C;AAAA,WACpD;AAAA,SACF;AAAA,MAGA,qBAAC,SAAI,WAAU,WACb;AAAA,4BAAC,QAAG,gCAAkB;AAAA,QACtB,qBAAC,QACC;AAAA,8BAAC,QAAG,0DAA4C;AAAA,UAChD,oBAAC,QAAG,iEAAmD;AAAA,UACvD,oBAAC,QAAG,6DAA+C;AAAA,WACrD;AAAA,SACF;AAAA,MAGA,qBAAC,SAAI,WAAU,WACb;AAAA,4BAAC,QAAG,wBAAU;AAAA,QACd,qBAAC,QACC;AAAA,8BAAC,QAAG,gEAAkD;AAAA,UACtD,oBAAC,QAAG,2DAA6C;AAAA,WACnD;AAAA,SACF;AAAA,MAGA,qBAAC,SAAI,WAAU,WACb;AAAA,4BAAC,QAAG,2BAAa;AAAA,QACjB,oBAAC,OAAE,6PAKH;AAAA,SACF;AAAA,OACF;AAAA,KACF;AAEJ;AAEA,eAAe;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1748859737253,
+      "end": 1748859737253,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1748859737253,
+      "end": 1748859737253,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1748859737253,
+      "end": 1748859737253,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1748859737253,
+      "end": 1748859737253,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1748859737253,
+      "end": 1748859737253,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1748859737253,
+      "end": 1748859737253,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1748859737253,
+      "end": 1748859737253,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1748859737253,
+      "end": 1748859737254,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1748859737254,
+      "end": 1748859737254,
+      "order": "normal"
+    }
+  ]
+}

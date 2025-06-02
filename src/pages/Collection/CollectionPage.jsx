@@ -1,7 +1,6 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import TranslatedText from "../../components/TranslatedText";
-import { getAssetUrl } from "../../utils/getAssetUrl";
+import { getImageUrl } from "../../utils/cloudinary";
 import "./CollectionPage.css";
 
 // Collection data
@@ -12,6 +11,7 @@ const collectionData = {
     "Lồng Đa Đa.webp",
     "Điêu Khắc.webp",
     "Hoa Ban Trắng.webp",
+    "luutrunghethuat.jpg",
   ],
 
   artworks: [
@@ -103,13 +103,24 @@ const collectionData = {
       location: "Khu trưng bày vật liệu",
       tags: ["Vật liệu", "Văn hóa", "K'ho"],
     },
+    {
+      id: "redpine-1",
+      title: "Redpine Art Studio",
+      artist: "Musée Du Pin",
+      year: "2024",
+      image: "luutrunghethuat.jpg",
+      description:
+        "Redpine Art Studio là không gian lưu trú nghệ thuật độc đáo giữa rừng thông, nơi bạn có thể trải nghiệm nghệ thuật và thiên nhiên Đà Lạt.",
+      location: "Khu lưu trú nghệ thuật",
+      tags: ["Lưu trú", "Nghệ thuật", "Đà Lạt"],
+    },
   ],
 
   categories: [
     { id: 1, title: "Dụng cụ âm nhạc Tây Nguyên", image: "Cồng Chiên.webp" },
-    { id: 2, title: "K'ho chăn nuôi", image: "46.webp" },
+    { id: 2, title: "K'ho chăn nuôi", image: "Lồng Đa Đa.webp" },
     { id: 3, title: "K'ho lễ hội", image: "36 (2).webp" },
-    { id: 4, title: "K'ho điêu khắc", image: "Lồng Đa Đa.webp" },
+    { id: 4, title: "K'ho điêu khắc", image: "phunu_hero.webp" },
     {
       id: 5,
       title: "K'ho săn bắn, hái lượm, trồng trọt, chăn nuôi",
@@ -118,6 +129,7 @@ const collectionData = {
     { id: 6, title: "K'ho sinh hoạt thường nhật", image: "Nồi Đất.webp" },
     { id: 7, title: "Phức Tầng", image: "Thông 2.webp" },
     { id: 8, title: "Vật liệu", image: "Hoa Ban Trắng.webp" },
+    { id: 9, title: "Redpine Art Studio", image: "luutrunghethuat.jpg" },
   ],
 
   highlights: [
@@ -191,6 +203,12 @@ const collectionData = {
       description:
         "Khám phá các chất liệu truyền thống và ý nghĩa văn hóa của người K'ho.",
     },
+    {
+      id: 8,
+      title: "Redpine Art Studio",
+      category: "Redpine Art Studio",
+      image: "luutrunghethuat.jpg",
+    },
   ],
 };
 
@@ -236,6 +254,9 @@ const CollectionPage = () => {
   // State for discover section video background
   const [isDiscoverVideoLoaded, setIsDiscoverVideoLoaded] = useState(false);
   const discoverVideoRef = useRef(null);
+
+  // Add new state for current slide
+  const [currentSlide, setCurrentSlide] = useState(1);
 
   // Handle auto-rotating hero slideshow
   useEffect(() => {
@@ -487,7 +508,7 @@ const CollectionPage = () => {
   // Handle download artwork
   const handleDownload = (artwork) => {
     const link = document.createElement("a");
-    link.href = artwork.image;
+    link.href = getImageUrl(artwork.image);
     link.download = `${artwork.title.replace(/\s+/g, "-").toLowerCase()}.jpg`;
     document.body.appendChild(link);
     link.click();
@@ -693,6 +714,38 @@ const CollectionPage = () => {
     };
   };
 
+  // Update scroll position handler
+  const handleScroll = useCallback(() => {
+    if (!discoverWorksRef.current) return;
+
+    const scrollLeft = discoverWorksRef.current.scrollLeft;
+    const itemWidth = 300; // Width of each item
+    const currentItem = Math.round(scrollLeft / itemWidth) + 1;
+    setCurrentSlide(currentItem);
+  }, []);
+
+  // Add scroll event listener
+  useEffect(() => {
+    const scrollContainer = discoverWorksRef.current;
+    if (scrollContainer) {
+      scrollContainer.addEventListener("scroll", handleScroll);
+      return () => scrollContainer.removeEventListener("scroll", handleScroll);
+    }
+  }, [handleScroll]);
+
+  // Update navigation handlers
+  const handlePrevClick = () => {
+    if (!discoverWorksRef.current) return;
+    const itemWidth = 300;
+    discoverWorksRef.current.scrollLeft -= itemWidth;
+  };
+
+  const handleNextClick = () => {
+    if (!discoverWorksRef.current) return;
+    const itemWidth = 300;
+    discoverWorksRef.current.scrollLeft += itemWidth;
+  };
+
   // Optimize image loading in discover works section
   const renderDiscoverWorkItem = useCallback(
     (artwork, index) => (
@@ -701,18 +754,13 @@ const CollectionPage = () => {
         className="cp-discover-artwork-item"
         style={{
           animationDelay: `${index * 0.1}s`,
-          transform: `translateY(${
-            index % 2 === 0 ? -35 - (index % 5) * 5 : 20 + (index % 4) * 12
-          }px) rotate(${index % 2 === 0 ? -1 : 1}deg)`,
-          width: `${250 + (index % 5) * 18}px`,
-          height: `${320 + (index % 4) * 25}px`,
         }}
         onClick={() => handleArtworkSelect(index)}
       >
         <div className="artwork-frame">
           <div className="artwork-image-container">
             <img
-              src={getAssetUrl(artwork.image)}
+              src={getImageUrl(artwork.image)}
               alt={artwork.title}
               className="artwork-image"
               loading={index < 4 ? "eager" : "lazy"}
@@ -720,11 +768,15 @@ const CollectionPage = () => {
               width="100%"
               height="100%"
             />
+            <div className="artwork-info-overlay">
+              <h3 className="artwork-title">{artwork.title}</h3>
+              <p className="artwork-year">{artwork.year}</p>
+            </div>
           </div>
         </div>
       </div>
     ),
-    []
+    [handleArtworkSelect]
   );
 
   // Optimize mouse movement handler with throttling to improve performance
@@ -796,7 +848,7 @@ const CollectionPage = () => {
             >
               <div className="cp-hero-image-container">
                 <img
-                  src={getAssetUrl(image)}
+                  src={getImageUrl(image)}
                   alt={`Hero slide ${index + 1}`}
                   className="cp-hero-image"
                   loading={index === 0 ? "eager" : "lazy"}
@@ -853,7 +905,7 @@ const CollectionPage = () => {
             }`}
           >
             <source
-              src={getAssetUrl("Hero_Abouts_Resize.mp4")}
+              src="https://res.cloudinary.com/dn0br7hj0/video/upload/v1748787810/about/Hero_Abouts_Resize.mp4"
               type="video/mp4"
             />
           </video>
@@ -862,15 +914,51 @@ const CollectionPage = () => {
 
         <div className="cp-discover-content">
           <div className="cp-section-header">
-            <h2 className="cp-section-title">
-              <TranslatedText>Khám Phá Tác Phẩm</TranslatedText>
-            </h2>
+            <h2 className="cp-section-title">Khám Phá Tác Phẩm</h2>
             <div className="cp-section-divider"></div>
           </div>
 
           <div className="cp-discover-container">
             <div className="cp-discover-gradient-left"></div>
             <div className="cp-discover-gradient-right"></div>
+
+            <button
+              className="cp-discover-nav cp-discover-prev"
+              onClick={handlePrevClick}
+              aria-label="Previous artworks"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M15 18l-6-6 6-6" />
+              </svg>
+            </button>
+
+            <button
+              className="cp-discover-nav cp-discover-next"
+              onClick={handleNextClick}
+              aria-label="Next artworks"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+              >
+                <path d="M9 18l6-6-6-6" />
+              </svg>
+            </button>
+
+            <div className="cp-discover-counter">
+              <span className="current">{currentSlide}</span>
+              <span className="separator">/</span>
+              <span className="total">{collectionData.artworks.length}</span>
+            </div>
 
             <div
               className={`cp-discover-works cp-wavy-gallery ${
@@ -901,9 +989,7 @@ const CollectionPage = () => {
                 !showScrollIndicator ? "hidden" : ""
               }`}
             >
-              <div className="cp-scroll-text">
-                <TranslatedText>Trượt để khám phá</TranslatedText>
-              </div>
+              <div className="cp-scroll-text">Trượt để khám phá</div>
               <div className="cp-scroll-arrows-indicator">
                 <span></span>
                 <span></span>
@@ -917,14 +1003,10 @@ const CollectionPage = () => {
       <section className="cp-categories-section" id="complete-collection">
         <div className="cp-categories-container">
           <div className="cp-categories-header">
-            <h2 className="cp-categories-title">
-              <TranslatedText>Bộ Sưu Tập Hoàn Chỉnh</TranslatedText>
-            </h2>
+            <h2 className="cp-categories-title">Bộ Sưu Tập Hoàn Chỉnh</h2>
             <p className="cp-categories-description">
-              <TranslatedText>
-                Khám phá bộ sưu tập đa dạng của chúng tôi được tổ chức theo từng
-                danh mục
-              </TranslatedText>
+              Khám phá bộ sưu tập đa dạng của chúng tôi được tổ chức theo từng
+              danh mục
             </p>
           </div>
 
@@ -938,25 +1020,13 @@ const CollectionPage = () => {
                 key={category.id}
                 className="cp-category-card"
                 onClick={(e) => handleCategorySelect(category, e)}
-                style={{
-                  transform: `perspective(1000px) 
-                              rotateX(${mousePosition.y * 5}deg) 
-                              rotateY(${-mousePosition.x * 5}deg)
-                              translateZ(10px)`,
-                  transition: "transform 0.1s ease",
-                  animationDelay: `${index * 0.1}s`,
-                }}
               >
                 <div className="cp-category-image-container">
                   <img
-                    src={getAssetUrl(category.image)}
+                    src={getImageUrl(category.image)}
                     alt={category.title}
                     className="cp-category-image"
                     loading="lazy"
-                    style={{
-                      transform: `translateX(${mousePosition.x * -15}px) 
-                                 translateY(${mousePosition.y * -15}px)`,
-                    }}
                   />
                   <div className="cp-category-overlay"></div>
                 </div>
@@ -973,7 +1043,7 @@ const CollectionPage = () => {
           <div className="cp-featured-left">
             <div className="cp-featured-image-container">
               <img
-                src={getAssetUrl(
+                src={getImageUrl(
                   collectionData.artworks[selectedArtwork].image
                 )}
                 alt={collectionData.artworks[selectedArtwork].title}
@@ -1129,14 +1199,10 @@ const CollectionPage = () => {
       {/* Immersive Collection Highlights Section */}
       <section className="cp-highlights-section">
         <div className="cp-highlights-container">
-          <h2 className="cp-categories-title">
-            <TranslatedText>Điểm Nhấn Bộ Sưu Tập</TranslatedText>
-          </h2>
+          <h2 className="cp-categories-title">Điểm Nhấn Bộ Sưu Tập</h2>
           <p className="cp-highlights-description">
-            <TranslatedText>
-              Khám phá những tác phẩm nghệ thuật tiêu biểu nhất của chúng tôi
-              thông qua video và hình ảnh chi tiết
-            </TranslatedText>
+            Khám phá những tác phẩm nghệ thuật tiêu biểu nhất của chúng tôi
+            thông qua video và hình ảnh chi tiết
           </p>
 
           <div className="cp-highlights-grid">
@@ -1153,7 +1219,7 @@ const CollectionPage = () => {
               >
                 <div className="cp-highlight-thumbnail">
                   <img
-                    src={getAssetUrl(highlight.image)}
+                    src={getImageUrl(highlight.image)}
                     alt={highlight.title}
                     className="cp-highlight-img"
                     loading="lazy"
@@ -1229,7 +1295,7 @@ const CollectionPage = () => {
             <div
               className="cp-category-hero"
               style={{
-                backgroundImage: `url(${getAssetUrl(
+                backgroundImage: `url(${getImageUrl(
                   modalContent.category.image
                 )})`,
               }}
@@ -1250,20 +1316,16 @@ const CollectionPage = () => {
                   >
                     <path d="M19 12H5M12 19l-7-7 7-7"></path>
                   </svg>
-                  <span>
-                    <TranslatedText>Back to Collections</TranslatedText>
-                  </span>
+                  <span>Back to Collections</span>
                 </button>
 
                 <h2 className="cp-category-hero-title">
                   {modalContent.category.title}
                 </h2>
                 <p className="cp-category-hero-description">
-                  <TranslatedText>
-                    Discover masterpieces of{" "}
-                    {modalContent.category.title.toLowerCase()} from ancient to
-                    modern times
-                  </TranslatedText>
+                  Discover masterpieces of{" "}
+                  {modalContent.category.title.toLowerCase()} from ancient to
+                  modern times
                 </p>
               </div>
             </div>
@@ -1273,11 +1335,10 @@ const CollectionPage = () => {
               <div className="cp-category-artworks-container">
                 <div className="cp-category-artworks-header">
                   <h3 className="cp-category-artworks-title">
-                    <TranslatedText>Browse Collection</TranslatedText>
+                    Browse Collection
                   </h3>
                   <p className="cp-category-artworks-count">
-                    <span>{modalContent.artworks.length}</span>{" "}
-                    <TranslatedText>items</TranslatedText>
+                    <span>{modalContent.artworks.length}</span> items
                   </p>
                 </div>
 
@@ -1291,7 +1352,7 @@ const CollectionPage = () => {
                     >
                       <div className="cp-category-artwork-image-container">
                         <img
-                          src={getAssetUrl(artwork.image)}
+                          src={getImageUrl(artwork.image)}
                           alt={artwork.title}
                           loading="lazy"
                         />
@@ -1346,7 +1407,7 @@ const CollectionPage = () => {
             <div className="cp-artwork-modal-body">
               <div className="cp-artwork-modal-image-container">
                 <img
-                  src={getAssetUrl(modalContent.image)}
+                  src={getImageUrl(modalContent.image)}
                   alt={modalContent.title}
                   className="cp-artwork-modal-image"
                 />
@@ -1390,27 +1451,21 @@ const CollectionPage = () => {
 
                 <div className="cp-artwork-modal-metadata">
                   <div className="cp-artwork-modal-artist">
-                    <span className="cp-metadata-label">
-                      <TranslatedText>Nghệ sĩ</TranslatedText>:
-                    </span>
+                    <span className="cp-metadata-label">Nghệ sĩ:</span>
                     <span className="cp-metadata-value">
                       {modalContent.artist}
                     </span>
                   </div>
 
                   <div className="cp-artwork-modal-year">
-                    <span className="cp-metadata-label">
-                      <TranslatedText>Năm</TranslatedText>:
-                    </span>
+                    <span className="cp-metadata-label">Năm:</span>
                     <span className="cp-metadata-value">
                       {modalContent.year}
                     </span>
                   </div>
 
                   <div className="cp-artwork-modal-location">
-                    <span className="cp-metadata-label">
-                      <TranslatedText>Vị trí</TranslatedText>:
-                    </span>
+                    <span className="cp-metadata-label">Vị trí:</span>
                     <span className="cp-metadata-value">
                       {modalContent.location}
                     </span>
@@ -1449,9 +1504,7 @@ const CollectionPage = () => {
                   </div>
 
                   <div className="cp-artwork-modal-visit-info">
-                    <h4 className="cp-visit-title">
-                      <TranslatedText>Vị trí trưng bày</TranslatedText>
-                    </h4>
+                    <h4 className="cp-visit-title">Vị trí trưng bày</h4>
                     <p className="cp-visit-description">
                       {modalContent.location}
                     </p>
@@ -1459,7 +1512,7 @@ const CollectionPage = () => {
                 </div>
 
                 <a href="/visit" className="cp-artwork-modal-cta">
-                  <TranslatedText>Lên kế hoạch tham quan</TranslatedText>
+                  Lên kế hoạch tham quan
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
                     width="18"
@@ -1539,9 +1592,7 @@ const CollectionPage = () => {
 
                 {/* Related Videos Section */}
                 <div className="cp-video-related">
-                  <h4 className="cp-video-related-title">
-                    <TranslatedText>Video Liên Quan</TranslatedText>
-                  </h4>
+                  <h4 className="cp-video-related-title">Video Liên Quan</h4>
                   <div className="cp-video-related-items">
                     {collectionData.highlights
                       .filter(
@@ -1558,7 +1609,7 @@ const CollectionPage = () => {
                             setModalContent(item);
                           }}
                         >
-                          <img src={getAssetUrl(item.image)} alt={item.title} />
+                          <img src={getImageUrl(item.image)} alt={item.title} />
                           <p className="cp-video-related-item-title">
                             {item.title}
                           </p>

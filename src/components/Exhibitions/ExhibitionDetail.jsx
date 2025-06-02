@@ -1,7 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { getAssetUrl } from "../../utils/getAssetUrl";
-import TranslatedText from "../TranslatedText";
+import {
+  getGalleryImageUrl,
+  getImageUrl,
+  getThumbnailUrl,
+} from "../../utils/cloudinary";
 import "./ExhibitionDetail.css";
 
 // Import optimized images
@@ -135,7 +138,7 @@ const allItemsData = {
       "Khi nghệ thuật không chỉ để ngắm, mà để sống cùng và sống trong. Không có tủ kính ngăn cách. Không có rào chắn giữa người và hiện vật.",
     date: "30 tháng 4 - 28 tháng 7 2025",
     location: "Tầng 1",
-    image: "Langbiang.webp",
+    image: "Langbiang.jpg",
     alt: "Không gian nghệ thuật Langbiang",
     tag: "Trưng bày",
     longDescription: [
@@ -376,7 +379,7 @@ const ExhibitionDetail = () => {
       const loadPromises = item.gallery.map((g) => {
         return new Promise((resolve) => {
           const img = new window.Image();
-          img.src = getAssetUrl(g.image);
+          img.src = getGalleryImageUrl(g.image);
           if (img.complete) {
             resolve();
           } else {
@@ -411,9 +414,7 @@ const ExhibitionDetail = () => {
     return (
       <div className="exhibition-detail-loading">
         <div className="loading-spinner"></div>
-        <p>
-          <TranslatedText>Loading...</TranslatedText>
-        </p>
+        <p>Loading...</p>
       </div>
     );
   }
@@ -421,16 +422,10 @@ const ExhibitionDetail = () => {
   if (error || !item) {
     return (
       <div className="exhibition-detail-error">
-        <h2>
-          <TranslatedText>Item Not Found</TranslatedText>
-        </h2>
-        <p>
-          <TranslatedText>
-            Sorry, we couldn't find the requested item.
-          </TranslatedText>
-        </p>
+        <h2>Item Not Found</h2>
+        <p>Sorry, we couldn't find the requested item.</p>
         <Link to="/exhibitions" className="back-button">
-          <TranslatedText>Quay lại Trưng bày</TranslatedText>
+          Quay lại Trưng bày
         </Link>
       </div>
     );
@@ -441,22 +436,25 @@ const ExhibitionDetail = () => {
       {/* Hero Section */}
       <div className="exhibition-detail-hero" ref={heroRef}>
         <div className="exhibition-detail-hero-image">
-          <img src={getAssetUrl(item.image)} alt={item.alt} />
+          <img
+            src={getImageUrl(item.image)}
+            alt={item.alt}
+            style={{
+              objectFit:
+                item.id === "langbiang-khong-gian" ? "contain" : "cover",
+            }}
+          />
           <div className="exhibition-detail-hero-overlay"></div>
         </div>
-        <div className="exhibition-detail-hero-content">
-          <div className="exhibition-detail-tag">
-            <span>
-              <TranslatedText>{item.tag}</TranslatedText>
-            </span>
+        {item.id !== "langbiang-khong-gian" && (
+          <div className="exhibition-detail-hero-content">
+            <div className="exhibition-detail-tag">
+              <span>{item.tag}</span>
+            </div>
+            <h1 className="exhibition-detail-title">{item.title}</h1>
+            <h2 className="exhibition-detail-subtitle">{item.subtitle}</h2>
           </div>
-          <h1 className="exhibition-detail-title">
-            <TranslatedText>{item.title}</TranslatedText>
-          </h1>
-          <h2 className="exhibition-detail-subtitle">
-            <TranslatedText>{item.subtitle}</TranslatedText>
-          </h2>
-        </div>
+        )}
       </div>
 
       {/* Main Content */}
@@ -470,26 +468,16 @@ const ExhibitionDetail = () => {
             {item.type === "exhibition" ? (
               <>
                 <div className="meta-item">
-                  <h3>
-                    <TranslatedText>
-                      {item.date.includes("-") ? "Ngày" : "Năm"}
-                    </TranslatedText>
-                  </h3>
-                  <p>
-                    <TranslatedText>{item.date}</TranslatedText>
-                  </p>
+                  <h3>{item.date.includes("-") ? "Ngày" : "Năm"}</h3>
+                  <p>{item.date}</p>
                 </div>
                 <div className="meta-item">
-                  <h3>
-                    <TranslatedText>Vị trí</TranslatedText>
-                  </h3>
-                  <p>
-                    <TranslatedText>{item.location}</TranslatedText>
-                  </p>
+                  <h3>Vị trí</h3>
+                  <p>{item.location}</p>
                 </div>
                 <div className="meta-button">
                   <Link to="/tickets" className="cta-button">
-                    <TranslatedText>Mua vé</TranslatedText>
+                    Mua vé
                   </Link>
                   {item.id === "phuc-tang-tram-mac" && (
                     <>
@@ -497,9 +485,7 @@ const ExhibitionDetail = () => {
                         className="cta-button gallery-button"
                         onClick={() => setShowGallery(!showGallery)}
                       >
-                        <TranslatedText>
-                          {showGallery ? "Ẩn bộ sưu tập" : "Xem bộ sưu tập"}
-                        </TranslatedText>
+                        {showGallery ? "Ẩn bộ sưu tập" : "Xem bộ sưu tập"}
                       </button>
                       {showGallery && (
                         <div className="gallery-slideshow">
@@ -521,13 +507,13 @@ const ExhibitionDetail = () => {
                                     }
                                   >
                                     <img
-                                      src={getAssetUrl(galleryItem.image)}
+                                      src={getGalleryImageUrl(
+                                        galleryItem.image
+                                      )}
                                       alt={galleryItem.title}
                                     />
                                     <div className="gallery-slide-title">
-                                      <TranslatedText>
-                                        {galleryItem.title}
-                                      </TranslatedText>
+                                      {galleryItem.title}
                                     </div>
                                   </div>
                                 ))}
@@ -542,28 +528,16 @@ const ExhibitionDetail = () => {
             ) : (
               <>
                 <div className="meta-item">
-                  <h3>
-                    <TranslatedText>Thời gian</TranslatedText>
-                  </h3>
-                  <p>
-                    <TranslatedText>{item.duration}</TranslatedText>
-                  </p>
+                  <h3>Thời gian</h3>
+                  <p>{item.duration}</p>
                 </div>
                 <div className="meta-item">
-                  <h3>
-                    <TranslatedText>Lịch trình</TranslatedText>
-                  </h3>
-                  <p>
-                    <TranslatedText>{item.schedule}</TranslatedText>
-                  </p>
+                  <h3>Lịch trình</h3>
+                  <p>{item.schedule}</p>
                 </div>
                 <div className="meta-item">
-                  <h3>
-                    <TranslatedText>Giá</TranslatedText>
-                  </h3>
-                  <p>
-                    <TranslatedText>{item.price}</TranslatedText>
-                  </p>
+                  <h3>Giá</h3>
+                  <p>{item.price}</p>
                 </div>
               </>
             )}
@@ -571,21 +545,15 @@ const ExhibitionDetail = () => {
 
           <div className="exhibition-detail-description">
             {item.longDescription.map((paragraph, index) => (
-              <p key={index}>
-                <TranslatedText>{paragraph}</TranslatedText>
-              </p>
+              <p key={index}>{paragraph}</p>
             ))}
 
             {item.type === "exhibition" && (
               <div className="exhibition-detail-curators">
-                <h3>
-                  <TranslatedText>Tác giả</TranslatedText>
-                </h3>
+                <h3>Tác giả</h3>
                 <ul>
                   {item.curators.map((curator, index) => (
-                    <li key={index}>
-                      <TranslatedText>{curator}</TranslatedText>
-                    </li>
+                    <li key={index}>{curator}</li>
                   ))}
                 </ul>
               </div>
@@ -593,14 +561,10 @@ const ExhibitionDetail = () => {
 
             {item.type === "tour" && (
               <div className="exhibition-detail-highlights">
-                <h3>
-                  <TranslatedText>Điểm nổi bật</TranslatedText>
-                </h3>
+                <h3>Điểm nổi bật</h3>
                 <ul>
                   {item.highlights.map((highlight, index) => (
-                    <li key={index}>
-                      <TranslatedText>{highlight}</TranslatedText>
-                    </li>
+                    <li key={index}>{highlight}</li>
                   ))}
                 </ul>
               </div>
@@ -614,9 +578,7 @@ const ExhibitionDetail = () => {
           ref={relatedRef}
           data-id="related-section"
         >
-          <h2>
-            <TranslatedText>Bạn có thể thích</TranslatedText>
-          </h2>
+          <h2>Bạn có thể thích</h2>
           <div className="related-items-grid">
             {Object.values(allItemsData)
               .filter(
@@ -639,20 +601,16 @@ const ExhibitionDetail = () => {
                   >
                     <div className="related-item-image">
                       <img
-                        src={getAssetUrl(relatedItem.image)}
+                        src={getThumbnailUrl(relatedItem.image)}
                         alt={relatedItem.alt}
                       />
                     </div>
                     <div className="related-item-content">
-                      <h3>
-                        <TranslatedText>{relatedItem.title}</TranslatedText>
-                      </h3>
+                      <h3>{relatedItem.title}</h3>
                       <p>
-                        <TranslatedText>
-                          {relatedItem.type === "exhibition"
-                            ? relatedItem.date
-                            : relatedItem.duration}
-                        </TranslatedText>
+                        {relatedItem.type === "exhibition"
+                          ? relatedItem.date
+                          : relatedItem.duration}
                       </p>
                     </div>
                   </Link>
@@ -665,9 +623,7 @@ const ExhibitionDetail = () => {
         <div className="back-link">
           <a href="#" onClick={handleBackClick} className="back-button">
             <span className="arrow-icon">←</span>
-            <TranslatedText>
-              Trở về {item.type === "exhibition" ? "Trưng bày" : "Tham quan"}
-            </TranslatedText>
+            Trở về {item.type === "exhibition" ? "Trưng bày" : "Tham quan"}
           </a>
         </div>
       </div>
@@ -686,12 +642,13 @@ const ExhibitionDetail = () => {
             onClick={(e) => e.stopPropagation()}
           >
             <img
-              src={getAssetUrl(selectedImage.image)}
+              src={getGalleryImageUrl(selectedImage.image, {
+                width: 1200,
+                height: 800,
+              })}
               alt={selectedImage.title}
             />
-            <div className="image-modal-title">
-              <TranslatedText>{selectedImage.title}</TranslatedText>
-            </div>
+            <div className="image-modal-title">{selectedImage.title}</div>
           </div>
         </div>
       )}

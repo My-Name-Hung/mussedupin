@@ -91,6 +91,14 @@ const collectionsData = [
     description:
       "Redpine Art Studio là không gian lưu trú nghệ thuật độc đáo giữa rừng thông, nơi bạn có thể trải nghiệm nghệ thuật và thiên nhiên Đà Lạt.",
   },
+  {
+    id: 10,
+    title: "Bề mặt ký ức",
+    artist: "Tham quan",
+    image: "Lửa.webp",
+    alt: "Bề mặt ký ức",
+    description: "Bề mặt ký ức.",
+  },
 ];
 
 // Memoized utility functions

@@ -138,7 +138,7 @@ const allItemsData = {
       "Khi nghệ thuật không chỉ để ngắm, mà để sống cùng và sống trong. Không có tủ kính ngăn cách. Không có rào chắn giữa người và hiện vật.",
     date: "30 tháng 4 - 28 tháng 7 2025",
     location: "Tầng 1",
-    image: "Langbiang.jpg",
+    image: "Langbiang2.png",
     alt: "Không gian nghệ thuật Langbiang",
     tag: "Trưng bày",
     longDescription: [
@@ -424,7 +424,7 @@ const ExhibitionDetail = () => {
       <div className="exhibition-detail-error">
         <h2>Item Not Found</h2>
         <p>Sorry, we couldn't find the requested item.</p>
-        <Link to="/exhibitions" className="back-button">
+        <Link to="/exhibitions" className="back-buttons">
           Quay lại Trưng bày
         </Link>
       </div>
@@ -620,8 +620,8 @@ const ExhibitionDetail = () => {
         </div>
 
         {/* Back Button */}
-        <div className="back-link">
-          <a href="#" onClick={handleBackClick} className="back-button">
+        <div className="back-links">
+          <a href="#" onClick={handleBackClick} className="back-buttons">
             <span className="arrow-icon">←</span>
             Trở về {item.type === "exhibition" ? "Trưng bày" : "Tham quan"}
           </a>

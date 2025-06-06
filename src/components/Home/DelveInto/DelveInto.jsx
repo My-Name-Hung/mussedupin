@@ -34,15 +34,31 @@ const DelveInto = () => {
   }, []);
 
   const handleExploreClick = () => {
-    navigate("/collection", { state: { scrollTo: "complete-collection" } });
+    // Get the navbar component's functions
+    const navbarElement = document.querySelector("header.navbar-container");
+    if (navbarElement) {
+      // Show mobile menu first
+      const mobileMenu = navbarElement.querySelector(".mobile-menu-overlay");
+      if (mobileMenu) {
+        mobileMenu.classList.add("show");
+      }
+
+      // Find and click the "KHÁM PHÁ" menu item to trigger its submenu
+      setTimeout(() => {
+        const khamPhaMenuItem = Array.from(
+          navbarElement.querySelectorAll(".mobile-nav-item")
+        ).find((item) => item.textContent.includes("KHÁM PHÁ"));
+        if (khamPhaMenuItem) {
+          khamPhaMenuItem.click();
+        }
+      }, 100);
+    }
   };
 
   return (
     <section className="delve-into-section">
       <div className="delve-into-container">
-        <h2 className="delve-into-title">
-          Khám phá Musée Du Pin
-        </h2>
+        <h2 className="delve-into-title">Khám phá Musée Du Pin</h2>
 
         <div className="delve-into-grid" ref={gridRef}>
           <div className="grid-item grid-item-1">

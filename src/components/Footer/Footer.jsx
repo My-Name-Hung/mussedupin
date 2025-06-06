@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
+import { SiTiktok } from "react-icons/si";
 import { Link, useNavigate } from "react-router-dom";
 import FeedbackModal from "../FeedbackModal/FeedbackModal";
 import "./Footer.css";
@@ -65,7 +66,9 @@ const Footer = () => {
               </h3>
               <ul className="footer-links">
                 <li>
-                  <Link to="/tickets">Dịch vụ đặt vé trực tuyến</Link>
+                  <Link to="https://online-museeduphin.netlify.app/">
+                    Dịch vụ đặt vé trực tuyến
+                  </Link>
                 </li>
                 <li>
                   <Link to="https://online-museeduphin.netlify.app/">
@@ -137,28 +140,20 @@ const Footer = () => {
                   <FaFacebook />
                 </a>
                 <a
-                  href="https://instagram.com"
+                  href="https://www.tiktok.com/@baotangthongdalat?_t=ZS-8wcfw9TGrnm&_r=1"
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Instagram"
+                  aria-label="TikTok"
                 >
-                  <FaInstagram />
+                  <SiTiktok />
                 </a>
                 <a
-                  href="https://youtube.com"
+                  href="https://www.youtube.com/channel/UCyxLbhgBPZ3KnGD_KeLCo9A"
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="YouTube"
                 >
                   <FaYoutube />
-                </a>
-                <a
-                  href="https://linkedin.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  aria-label="LinkedIn"
-                >
-                  <FaLinkedin />
                 </a>
               </div>
             </div>

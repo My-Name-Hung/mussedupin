@@ -15,6 +15,74 @@ const VisitInfo = () => {
   const lastScrollTop = useRef(0);
   const scrollTimeout = useRef(null);
 
+  // Add new state for slideshow
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const autoPlayRef = useRef(null);
+  const slideShowImages = [
+    "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748932474/hxeghpjapx0q1lnd9of7.png",
+    "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748932472/ljwetq9g8dmz5edvbuxp.png",
+    "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748932465/xcuejk2gd0rqykopuexl.png",
+    "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748932465/trpbrtxdkgipem7yn72y.png",
+    "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748932462/kgr44fu7ifporveofmhf.png",
+    "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748932462/b2qkklmo1grw1ushz83d.png",
+    "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748932457/wnggxcv1dn4b6meviasq.png",
+  ];
+
+  // Handle autoplay
+  useEffect(() => {
+    if (isAutoPlaying) {
+      autoPlayRef.current = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % slideShowImages.length);
+      }, 5000); // Change slide every 5 seconds
+    }
+    return () => {
+      if (autoPlayRef.current) {
+        clearInterval(autoPlayRef.current);
+      }
+    };
+  }, [isAutoPlaying, slideShowImages.length]);
+
+  // Handle manual navigation
+  const nextSlide = () => {
+    setCurrentSlide((prev) => (prev + 1) % slideShowImages.length);
+    setIsAutoPlaying(false);
+  };
+
+  const prevSlide = () => {
+    setCurrentSlide((prev) =>
+      prev === 0 ? slideShowImages.length - 1 : prev - 1
+    );
+    setIsAutoPlaying(false);
+  };
+
+  const goToSlide = (index) => {
+    setCurrentSlide(index);
+    setIsAutoPlaying(false);
+  };
+
+  // Handle touch events for mobile
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!touchStartX) return;
+
+    const touchEndX = e.touches[0].clientX;
+    const diff = touchStartX - touchEndX;
+
+    if (Math.abs(diff) > 50) {
+      // Minimum swipe distance
+      if (diff > 0) {
+        nextSlide(); // Swipe left
+      } else {
+        prevSlide(); // Swipe right
+      }
+      setTouchStartX(0);
+    }
+  };
+
   // Homestay filter and detail states
   const [activeCategory, setActiveCategory] = useState("all");
   const [filteredHomestays, setFilteredHomestays] = useState([]);
@@ -136,27 +204,6 @@ const VisitInfo = () => {
     if (section && section.current) {
       section.current.scrollIntoView({ behavior: "smooth" });
       window.history.pushState(null, "", `#${sectionId}`);
-    }
-  };
-
-  // Handle touch events for horizontal nav scrolling on mobile
-  const handleNavTouchStart = (e) => {
-    setTouchStartX(e.touches[0].clientX);
-  };
-
-  const handleNavTouchMove = (e) => {
-    if (!horizontalNavRef.current) return;
-
-    const touchX = e.touches[0].clientX;
-    const diff = touchStartX - touchX;
-    const scrollLeft = horizontalNavRef.current.scrollLeft;
-
-    if (diff > 5) {
-      // Scrolling right
-      setNavScrolled(true);
-    } else if (diff < -5 && scrollLeft === 0) {
-      // Scrolling left and at the beginning
-      setNavScrolled(false);
     }
   };
 
@@ -614,7 +661,7 @@ const VisitInfo = () => {
       ],
     },
     {
-      id: "budget",
+      id: "budgets",
       title: "The Memory",
       description:
         "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
@@ -657,7 +704,7 @@ const VisitInfo = () => {
       ],
     },
     {
-      id: "budget",
+      id: "budgetss",
       title: "The Sunset",
       description:
         "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
@@ -700,7 +747,7 @@ const VisitInfo = () => {
       ],
     },
     {
-      id: "budget",
+      id: "budgetssss",
       title: "The Train",
       description:
         "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
@@ -747,61 +794,222 @@ const VisitInfo = () => {
   // FAQ data with more detailed answers
   const faqData = [
     {
+      question: "Tôi muốn biết giờ hoạt động của Bảo Tàng Thông?",
+      answer: (
+        <>
+          Bạn có thể tìm hiểu giờ mở cửa của Bảo Tàng trong mục{" "}
+          <a href="/visit">
+            <strong style={{ cursor: "pointer", color: "#00695c" }}>
+              Giờ mở cửa & chi phí các gói trải nghiệm
+            </strong>
+          </a>
+        </>
+      ),
+    },
+    {
+      question: "Tôi muốn biết đường đi tới Bảo tàng Thông?",
+      answer: (
+        <>
+          Bạn có thể tìm hiểu đường đi đến Bảo Tàng và từ Bảo Tàng đi đến các
+          địa điểm khác trong mục{" "}
+          <a href="/museum-map">
+            <strong style={{ cursor: "pointer", color: "#00695c" }}>
+              Bản đồ, đường đi & chỉ dẫn
+            </strong>
+          </a>
+        </>
+      ),
+    },
+    {
       question:
-        "Tôi có thể tham quan bảo tàng miễn phí không? Tôi có cần đặt vé không?",
-      answer:
-        "Bảo tàng miễn phí vé vào cửa cho một số đối tượng bao gồm người dưới 18 tuổi, cư dân EU dưới 26 tuổi và khách tham quan khuyết tật cùng người đi kèm. Vào cửa miễn phí cũng được áp dụng cho tất cả mọi người vào thứ Sáu đầu tiên của mỗi tháng từ 18:00 (trừ tháng 7 và tháng 8). Chúng tôi khuyến nghị đặt khung giờ trước, kể cả đối với khách được miễn phí vé, đặc biệt là trong mùa cao điểm.",
+        "Tôi muốn trải nghiệm ở Bảo Tàng Thông thì trả phí như thế nào?",
+      answer: (
+        <>
+          Bạn có thể tìm hiểu chi tiết các gói trải nghiệm và chi phí tham khảo
+          tại mục{" "}
+          <a href="/visit#tickets">
+            <strong style={{ cursor: "pointer", color: "#00695c" }}>
+              Giờ mở cửa & chi phí các gói trải nghiệm
+            </strong>
+          </a>
+        </>
+      ),
     },
     {
-      question: "Làm thế nào để mua vé ưu đãi?",
-      answer:
-        "Vé ưu đãi dành cho thanh niên từ 18-25 tuổi đến từ các nước ngoài EU, người có Thẻ Giáo dục, và thành viên của các tổ chức đối tác. Bạn phải xuất trình CMND/CCCD hợp lệ hoặc thẻ thành viên tại cổng vào. Vé ưu đãi có thể được mua trực tuyến hoặc tại quầy vé.",
+      question: "Bảo Tàng Thông có những hoạt động nào?",
+      answer: (
+        <>
+          Bảo Tàng Thông có rất nhiều hoạt động, bạn có thể tham khảo mục{" "}
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              const navbarElement = document.querySelector(
+                "header.navbar-container"
+              );
+              if (navbarElement) {
+                // Show mobile menu first
+                const mobileMenu = navbarElement.querySelector(
+                  ".mobile-menu-overlay"
+                );
+                if (mobileMenu) {
+                  mobileMenu.classList.add("show");
+                }
+
+                // Find and click the "KHÁM PHÁ" menu item to trigger its submenu
+                setTimeout(() => {
+                  const khamPhaMenuItem = Array.from(
+                    navbarElement.querySelectorAll(".mobile-nav-item")
+                  ).find((item) => item.textContent.includes("KHÁM PHÁ"));
+                  if (khamPhaMenuItem) {
+                    khamPhaMenuItem.click();
+                  }
+                }, 100);
+              }
+            }}
+          >
+            <strong style={{ cursor: "pointer", color: "#00695c" }}>
+              Khám phá
+            </strong>
+          </a>{" "}
+          và mục{" "}
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              const navbarElement = document.querySelector(
+                "header.navbar-container"
+              );
+              if (navbarElement) {
+                // Show mobile menu first
+                const mobileMenu = navbarElement.querySelector(
+                  ".mobile-menu-overlay"
+                );
+                if (mobileMenu) {
+                  mobileMenu.classList.add("show");
+                }
+
+                // Find and click the "Trải nghiệm" menu item to trigger its submenu
+                setTimeout(() => {
+                  const traiNghiemMenuItem = Array.from(
+                    navbarElement.querySelectorAll(".mobile-nav-item")
+                  ).find((item) => item.textContent.includes("Trải nghiệm"));
+                  if (traiNghiemMenuItem) {
+                    traiNghiemMenuItem.click();
+                  }
+                }, 100);
+              }
+            }}
+          >
+            <strong style={{ cursor: "pointer", color: "#00695c" }}>
+              Trải Nghiệm
+            </strong>
+          </a>
+        </>
+      ),
     },
     {
-      question: "Tôi có thể được hoàn tiền không?",
-      answer:
-        "Vé không được hoàn tiền sau khi mua. Tuy nhiên, trong trường hợp bảo tàng đóng cửa vì lý do đặc biệt, chúng tôi sẽ hoàn tiền hoặc đổi ngày khác. Đối với các trường hợp đặc biệt, vui lòng liên hệ dịch vụ khách tham quan tại visitor@museedupin.com kèm mã đặt chỗ và lý do yêu cầu hoàn tiền.",
+      question: "Bảo Tàng Thông có các hoạt động nào cho trẻ em?",
+      answer: (
+        <>
+          Có rất nhiều hoạt động workshop giáo dục cho trẻ em, bạn có thể tham
+          khảo tại mục{" "}
+          <a href="/visit">
+            <strong style={{ cursor: "pointer", color: "#00695c" }}>
+              Các Chương Trình Định Kỳ
+            </strong>
+          </a>
+        </>
+      ),
     },
     {
-      question: "Tôi sử dụng lối vào nào nếu đã mua vé trực tuyến?",
-      answer:
-        "Khách có vé điện tử có thể vào qua lối vào Tháp (lối vào chính) hoặc lối vào Porte des Lions. Lối vào Carrousel dành cho các đoàn và người có thẻ bảo tàng. Vé điện tử của bạn có mã QR sẽ được quét tại lối vào. Chúng tôi khuyến nghị đến trước 15 phút so với khung giờ đã đặt.",
-    },
-    {
-      question: "Có cho phép xe đẩy em bé vào bảo tàng không?",
-      answer:
-        "Có, xe đẩy và nôi em bé được phép vào bảo tàng. Tuy nhiên, trong thời điểm đông khách, bạn có thể được yêu cầu gửi xe đẩy lớn tại phòng gửi đồ và sử dụng địu em bé thay thế, được cung cấp miễn phí. Tất cả các phòng trưng bày và không gian triển lãm đều có thể tiếp cận bằng xe đẩy thông qua thang máy.",
+      question: "Lưu trú nghệ thuật là gì?",
+      answer: (
+        <>
+          Đây là một hành trình thăng hoa cảm xúc. Bạn có thể tìm hiểu chi tiết
+          hơn trong mục{" "}
+          <a href="/luu-tru-nghe-thuat">
+            <strong style={{ cursor: "pointer", color: "#00695c" }}>
+              Lưu trú nghệ thuật.
+            </strong>
+          </a>
+        </>
+      ),
     },
     {
       question: "Những vật dụng nào không được phép mang vào bảo tàng?",
       answer:
-        "Các vật dụng không được phép mang vào bảo tàng bao gồm túi xách và vali lớn (kích thước lớn hơn 55×35×20 cm), giá ba chân, gậy selfie, thiết bị chụp ảnh có đèn flash, đồ ăn thức uống (trừ chai nước), và các vật sắc nhọn. Những vật dụng này phải được gửi tại phòng gửi đồ. Chúng tôi cũng cấm chạm vào tác phẩm nghệ thuật, hút thuốc, và sử dụng điện thoại di động trong phòng trưng bày.",
+        "Các vật dụng không được phép mang vào bảo tàng gồm đồ ăn thức uống(trừ chai nước), và các vật sắc nhọn. Những vật dụng này phải được gửi tại phòng gửi đồ. Chúng tôi cũng cấm chạm vào tác phẩm nghệ thuật, hút thuốc trong không gian trưng bày.",
+    },
+    {
+      question: "Có cho phép xe đẩy em bé vào bảo tàng không?",
+      answer:
+        "Có, xe đẩy và nôi em bé được phép vào bảo tàng. Tuy nhiên, trong thời điểm đông khách, bạn có thể được yêu cầu gửi xe đẩy lớn tại phòng gửi đồ và sử dụng địu em bé thay thế. Tất cả các phòng trưng bày và không gian triển lãm đều có thể tiếp cận bằng xe đẩy thông qua thang máy.",
     },
   ];
 
-  // Render Hero Section
+  // Render Hero Section with Slideshow
   const renderHero = () => (
     <div className="visitinfo-hero" ref={heroRef}>
-      <div className="visitinfo-hero-image-container">
-        <img
-          src={getImageUrl("luutrunghethuat.jpg", {
-            width: 1920,
-            height: 1080,
-            crop: "fill",
-          })}
-          alt="Nội thất bảo tàng"
-          className="visitinfo-hero-image"
-        />
+      <div
+        className="visitinfo-hero-image-container"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+      >
+        {/* Navigation Buttons */}
+        <button className="slide-nav prev" onClick={prevSlide}>
+          <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+            <path
+              d="M15 18l-6-6 6-6"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+        <button className="slide-nav next" onClick={nextSlide}>
+          <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+            <path
+              d="M9 18l6-6-6-6"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </button>
+
+        {/* Slides */}
+        <div
+          className="slides-container"
+          style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+        >
+          {slideShowImages.map((image, index) => (
+            <div
+              key={index}
+              className={`slide ${index === currentSlide ? "active" : ""}`}
+            >
+              <img
+                src={image}
+                alt={`Slide ${index + 1}`}
+                className="visitinfo-hero-image"
+              />
+            </div>
+          ))}
+        </div>
+
+        {/* Slide Indicators */}
+        <div className="slide-indicators">
+          {slideShowImages.map((_, index) => (
+            <button
+              key={index}
+              className={`indicator ${index === currentSlide ? "active" : ""}`}
+              onClick={() => goToSlide(index)}
+            />
+          ))}
+        </div>
       </div>
-      {/* <div className="visitinfo-hero-overlay"></div> */}
-      {/* <div className="visitinfo-hero-content">
-        <h1 className="visitinfo-hero-title">
-          LƯU TRÚ TRONG CÁC CĂN PHÒNG NGHỆ THUẬT
-        </h1>
-        <p className="visitinfo-hero-subtitle">
-            Mọi thứ bạn cần cho một chuyến tham quan thoải mái
-        </p>
-      </div> */}
     </div>
   );
 
@@ -874,24 +1082,44 @@ const VisitInfo = () => {
   // Function to create ripple effect on touch
   const createRippleEffect = (event) => {
     const button = event.currentTarget;
+
+    // Check if button is still in the DOM
+    if (!button || !document.body.contains(button)) {
+      return;
+    }
+
     const ripple = document.createElement("span");
+    ripple.className = "ripple-circle";
 
     const rect = button.getBoundingClientRect();
     const size = Math.max(rect.width, rect.height);
 
-    const x = event.clientX - rect.left - size / 2;
-    const y = event.clientY - rect.top - size / 2;
+    // Handle touch events
+    const clientX =
+      event.clientX || (event.touches && event.touches[0].clientX);
+    const clientY =
+      event.clientY || (event.touches && event.touches[0].clientY);
+
+    if (!clientX || !clientY) return;
+
+    const offsetX = clientX - rect.left - size / 2;
+    const offsetY = clientY - rect.top - size / 2;
 
     ripple.style.width = ripple.style.height = `${size}px`;
-    ripple.style.left = `${x}px`;
-    ripple.style.top = `${y}px`;
-    ripple.className = "ripple-circle";
+    ripple.style.left = `${offsetX}px`;
+    ripple.style.top = `${offsetY}px`;
 
+    // Add ripple to button
     button.appendChild(ripple);
 
-    setTimeout(() => {
-      ripple.remove();
-    }, 800);
+    // Remove ripple after animation
+    const removeRipple = () => {
+      if (ripple && document.body.contains(ripple)) {
+        ripple.remove();
+      }
+    };
+
+    setTimeout(removeRipple, 800);
   };
 
   // Render Amenities Section
@@ -916,9 +1144,9 @@ const VisitInfo = () => {
             <span className="title-underline"></span>
           </h2>
           <p className="visitinfo-section-description">
-              Bảo tàng cung cấp nhiều dịch vụ để đảm bảo điều kiện tham quan tốt
-              nhất. Nhân viên luôn sẵn sàng trong bảo tàng để cung cấp thông tin
-              cập nhật về bảo tàng và các hoạt động.
+            Bảo tàng cung cấp nhiều dịch vụ để đảm bảo điều kiện tham quan tốt
+            nhất. Nhân viên luôn sẵn sàng trong bảo tàng để cung cấp thông tin
+            cập nhật về bảo tàng và các hoạt động.
           </p>
         </div>
 
@@ -1016,13 +1244,24 @@ const VisitInfo = () => {
       <div className="visitinfo-section-container">
         <div className="visitinfo-section-header">
           <h2 className="visitinfo-section-title modern">
-            <span>Trải nghiệm cuộc sống địa phương gần bảo tàng</span>
+            <span>
+              TRẢI NGHIỆM CẢM GIÁC THĂNG HOA KHI SỐNG TRONG MỘT TÁC PHẨM NGHỆ
+              THUẬT
+            </span>
             <span className="title-accent"></span>
           </h2>
           <p className="visitinfo-section-description">
-              Hòa mình vào văn hóa địa phương với các lựa chọn lưu trú được chọn
-            lọc kỹ càng gần bảo tàng. Trải nghiệm sự hiếu khách đích thực trong
-            những không gian được thiết kế nghệ thuật.
+            🛏️ 16 căn phòng - là 16 mảnh cảm xúc của Đà Lạt: <br />
+            <div className="room-feature">🌲 Sắc xanh Đồi Thông</div>
+            <div className="room-feature">🌅 Ánh chiều Hoàng Hôn</div>
+            <div className="room-feature">🌸 Nét dịu dàng của Oải Hương</div>
+            <div className="room-feature">
+              🚂 Hay Toa Xe Lửa cũ gợi Ký Ức xưa...
+            </div>
+            <div className="room-feature">
+              RedPine là nơi lý tưởng để bạn trốn khỏi nhịp sống và sạc lại năng
+              lượng.
+            </div>
           </p>
         </div>
 
@@ -1088,7 +1327,10 @@ const VisitInfo = () => {
                 {homestay.tags.map(
                   (tag, index) =>
                     index < 1 && (
-                      <div className="homestay-card-tag" key={index}>
+                      <div
+                        className="homestay-card-tag"
+                        key={`${homestay.id}-tag-${index}`}
+                      >
                         {tag}
                       </div>
                     )
@@ -1141,9 +1383,6 @@ const VisitInfo = () => {
   // Render FAQ Section
   const renderFAQSection = () => (
     <section className="faq-section" id="faq" ref={sectionRefs.faq}>
-      <div className="decorative-circle large"></div>
-      <div className="decorative-circle medium"></div>
-
       <div className="faq-container">
         <div className="faq-header">
           <h2
@@ -1170,16 +1409,20 @@ const VisitInfo = () => {
                 <span>{faq.question}</span>
               </div>
               <div className="faq-answer">
-                <p>{faq.answer}</p>
+                {typeof faq.answer === "string" ? (
+                  <p>{faq.answer}</p>
+                ) : (
+                  faq.answer
+                )}
               </div>
             </div>
           ))}
         </div>
 
         <div className="faq-footer">
-          <h3 className="faq-footer-title">Didn't find your answer?</h3>
+          <h3 className="faq-footer-title">Không tìm thấy câu trả lời?</h3>
           <p className="faq-footer-text">
-              Contact our support team for more information.
+            Liên hệ với đội hỗ trợ của chúng tôi để biết thêm thông tin.
           </p>
           <button className="contact-btn">
             <svg viewBox="0 0 24 24" width="18" height="18">
@@ -1188,7 +1431,7 @@ const VisitInfo = () => {
                 d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
               />
             </svg>
-            Contact Us
+            <a href="baotangthong2024@gmail.com">Liên hệ với chúng tôi</a>
           </button>
         </div>
       </div>
@@ -1606,7 +1849,7 @@ const VisitInfo = () => {
           </div>
 
           <p className="success-message">
-              Cảm ơn bạn đã đặt phòng. Chúng tôi đã gửi xác nhận đến email của
+            Cảm ơn bạn đã đặt phòng. Chúng tôi đã gửi xác nhận đến email của
             bạn. Bộ phận chăm sóc khách hàng sẽ sớm liên hệ với bạn để cung cấp
             thêm thông tin chi tiết.
           </p>
@@ -1991,6 +2234,78 @@ const VisitInfo = () => {
     );
   };
 
+  // Handle horizontal nav scrolling on mobile
+  const handleNavTouchStart = (e) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleNavTouchMove = (e) => {
+    if (!horizontalNavRef.current) return;
+
+    const touchX = e.touches[0].clientX;
+    const diff = touchStartX - touchX;
+    const scrollLeft = horizontalNavRef.current.scrollLeft;
+
+    if (diff > 5) {
+      // Scrolling right
+      setNavScrolled(true);
+    } else if (diff < -5 && scrollLeft === 0) {
+      // Scrolling left and at the beginning
+      setNavScrolled(false);
+    }
+  };
+
+  // Add renderMobileBottomNav function
+  const renderMobileBottomNav = () => {
+    if (!isMobile) return null;
+
+    return (
+      <nav className="mobile-bottom-nav">
+        <ul className="mobile-nav-list">
+          <li
+            className={`mobile-button-item ${
+              activeSection === "amenities" ? "active" : ""
+            }`}
+          >
+            <button
+              onClick={() => scrollToSection("amenities")}
+              className="mobile-nav-button"
+            >
+              <div className="mobile-nav-icon">{renderIcon("amenities")}</div>
+              <span className="mobile-nav-label">Tiện ích</span>
+            </button>
+          </li>
+          <li
+            className={`mobile-button-item ${
+              activeSection === "homestay" ? "active" : ""
+            }`}
+          >
+            <button
+              onClick={() => scrollToSection("homestay")}
+              className="mobile-nav-button"
+            >
+              <div className="mobile-nav-icon">{renderIcon("homestay")}</div>
+              <span className="mobile-nav-label">Lưu trú</span>
+            </button>
+          </li>
+          <li
+            className={`mobile-button-item ${
+              activeSection === "faq" ? "active" : ""
+            }`}
+          >
+            <button
+              onClick={() => scrollToSection("faq")}
+              className="mobile-nav-button"
+            >
+              <div className="mobile-nav-icon">{renderIcon("faq")}</div>
+              <span className="mobile-nav-label">Hỏi đáp</span>
+            </button>
+          </li>
+        </ul>
+      </nav>
+    );
+  };
+
   return (
     <div className="visitinfo-container">
       {renderHero()}
@@ -2002,6 +2317,7 @@ const VisitInfo = () => {
       {renderBookingSidebar()}
       {renderSuccessModal()}
       {renderGalleryModal()}
+      {renderMobileBottomNav()}
     </div>
   );
 };

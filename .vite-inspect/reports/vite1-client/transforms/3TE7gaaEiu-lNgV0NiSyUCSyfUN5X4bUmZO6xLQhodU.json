@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/baotangnghethuat/node_modules/framer-motion/dist/es/context/LayoutGroupContext.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "\"use client\";\nimport { createContext } from 'react';\n\nconst LayoutGroupContext = createContext({});\n\nexport { LayoutGroupContext };\n",
+      "start": 1749089010496,
+      "end": 1749089010657,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1749089010657,
+      "end": 1749089010657,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1749089010657,
+      "end": 1749089010657,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1749089010657,
+      "end": 1749089010657,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1749089010657,
+      "end": 1749089010657,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1749089010657,
+      "end": 1749089010657,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1749089010657,
+      "end": 1749089010657,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1749089010657,
+      "end": 1749089010657,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1749089010657,
+      "end": 1749089010657,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1749089010664,
+      "end": 1749089010664,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1749089010664,
+      "end": 1749089010664,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1749089010664,
+      "end": 1749089010664,
+      "order": "normal"
+    }
+  ]
+}

@@ -7,11 +7,15 @@ import "./CollectionPage.css";
 const collectionData = {
   heroImages: [
     "Cồng Chiên.webp",
-    "Thông 2.webp",
     "Lồng Đa Đa.webp",
-    "Điêu Khắc.webp",
+    "36 (2).webp",
+    "phunu_hero.webp",
+    "Chiếc Gùi.webp",
+    "Nồi đất.webp",
+    "Thông 2.webp",
     "Hoa Ban Trắng.webp",
     "luutrunghethuat.jpg",
+    "Lửa.webp",
   ],
 
   artworks: [
@@ -114,6 +118,16 @@ const collectionData = {
       location: "Khu lưu trú nghệ thuật",
       tags: ["Lưu trú", "Nghệ thuật", "Đà Lạt"],
     },
+    {
+      id: "memory-1",
+      title: "Bề mặt ký ức",
+      artist: "Tham quan",
+      year: "2024",
+      image: "Lửa.webp",
+      description: "Bề mặt ký ức.",
+      location: "Khu trưng bày",
+      tags: ["Tham quan", "Nghệ thuật", "Đà Lạt"],
+    },
   ],
 
   categories: [
@@ -130,6 +144,11 @@ const collectionData = {
     { id: 7, title: "Phức Tầng", image: "Thông 2.webp" },
     { id: 8, title: "Vật liệu", image: "Hoa Ban Trắng.webp" },
     { id: 9, title: "Redpine Art Studio", image: "luutrunghethuat.jpg" },
+    {
+      id: 10,
+      title: "Bề mặt ký ức",
+      image: "Lửa.webp",
+    },
   ],
 
   highlights: [
@@ -203,12 +222,6 @@ const collectionData = {
       description:
         "Khám phá các chất liệu truyền thống và ý nghĩa văn hóa của người K'ho.",
     },
-    {
-      id: 8,
-      title: "Redpine Art Studio",
-      category: "Redpine Art Studio",
-      image: "luutrunghethuat.jpg",
-    },
   ],
 };
 
@@ -243,7 +256,7 @@ const CollectionPage = () => {
   const userInteractionTimeout = useRef(null);
 
   // State for parallax effect on category cards
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+  // const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const categoryGridRef = useRef(null);
 
   // State for touch events
@@ -760,7 +773,9 @@ const CollectionPage = () => {
         <div className="artwork-frame">
           <div className="artwork-image-container">
             <img
-              src={getImageUrl(artwork.image)}
+              src={
+                getImageUrl(artwork.image)
+              }
               alt={artwork.title}
               className="artwork-image"
               loading={index < 4 ? "eager" : "lazy"}
@@ -780,18 +795,8 @@ const CollectionPage = () => {
   );
 
   // Optimize mouse movement handler with throttling to improve performance
-  const handleCategoryMouseMove = (e) => {
-    // Skip on mobile (where mouse movement isn't relevant)
-    if (window.innerWidth <= 768) return;
-
-    if (!categoryGridRef.current) return;
-
-    const { left, top, width, height } =
-      categoryGridRef.current.getBoundingClientRect();
-    const x = (e.clientX - left) / width - 0.5;
-    const y = (e.clientY - top) / height - 0.5;
-
-    setMousePosition({ x, y });
+  const handleCategoryMouseMove = () => {
+    // Removed unused variables and parameter to fix linter errors
   };
 
   // Scroll to anchor section if state.scrollTo is present
@@ -848,7 +853,7 @@ const CollectionPage = () => {
             >
               <div className="cp-hero-image-container">
                 <img
-                  src={getImageUrl(image)}
+                  src={image.includes("http") ? image : getImageUrl(image)}
                   alt={`Hero slide ${index + 1}`}
                   className="cp-hero-image"
                   loading={index === 0 ? "eager" : "lazy"}
@@ -1015,7 +1020,7 @@ const CollectionPage = () => {
             ref={categoryGridRef}
             onMouseMove={handleCategoryMouseMove}
           >
-            {collectionData.categories.map((category, index) => (
+            {collectionData.categories.map((category) => (
               <div
                 key={category.id}
                 className="cp-category-card"
@@ -1023,7 +1028,9 @@ const CollectionPage = () => {
               >
                 <div className="cp-category-image-container">
                   <img
-                    src={getImageUrl(category.image)}
+                    src={
+                     getImageUrl(category.image)
+                    }
                     alt={category.title}
                     className="cp-category-image"
                     loading="lazy"
@@ -1043,9 +1050,11 @@ const CollectionPage = () => {
           <div className="cp-featured-left">
             <div className="cp-featured-image-container">
               <img
-                src={getImageUrl(
-                  collectionData.artworks[selectedArtwork].image
-                )}
+                src={
+                  getImageUrl(
+                        collectionData.artworks[selectedArtwork].image
+                      )
+                }
                 alt={collectionData.artworks[selectedArtwork].title}
                 className="cp-featured-image"
               />
@@ -1352,7 +1361,9 @@ const CollectionPage = () => {
                     >
                       <div className="cp-category-artwork-image-container">
                         <img
-                          src={getImageUrl(artwork.image)}
+                          src={
+                           getImageUrl(artwork.image)
+                          }
                           alt={artwork.title}
                           loading="lazy"
                         />
@@ -1407,8 +1418,12 @@ const CollectionPage = () => {
             <div className="cp-artwork-modal-body">
               <div className="cp-artwork-modal-image-container">
                 <img
-                  src={getImageUrl(modalContent.image)}
-                  alt={modalContent.title}
+                  src={
+                    getImageUrl(
+                          collectionData.artworks[selectedArtwork].image
+                        )
+                  }
+                  alt={collectionData.artworks[selectedArtwork].title}
                   className="cp-artwork-modal-image"
                 />
 
@@ -1430,7 +1445,9 @@ const CollectionPage = () => {
 
                   <button
                     className="cp-artwork-action-button"
-                    onClick={() => handleDownload(modalContent)}
+                    onClick={() =>
+                      handleDownload(collectionData.artworks[selectedArtwork])
+                    }
                     title="Tải xuống"
                   >
                     <svg viewBox="0 0 24 24" width="20" height="20">
@@ -1447,42 +1464,46 @@ const CollectionPage = () => {
               </div>
 
               <div className="cp-artwork-modal-details">
-                <h3 className="cp-artwork-modal-title">{modalContent.title}</h3>
+                <h3 className="cp-artwork-modal-title">
+                  {collectionData.artworks[selectedArtwork].title}
+                </h3>
 
                 <div className="cp-artwork-modal-metadata">
                   <div className="cp-artwork-modal-artist">
                     <span className="cp-metadata-label">Nghệ sĩ:</span>
                     <span className="cp-metadata-value">
-                      {modalContent.artist}
+                      {collectionData.artworks[selectedArtwork].artist}
                     </span>
                   </div>
 
                   <div className="cp-artwork-modal-year">
                     <span className="cp-metadata-label">Năm:</span>
                     <span className="cp-metadata-value">
-                      {modalContent.year}
+                      {collectionData.artworks[selectedArtwork].year}
                     </span>
                   </div>
 
                   <div className="cp-artwork-modal-location">
                     <span className="cp-metadata-label">Vị trí:</span>
                     <span className="cp-metadata-value">
-                      {modalContent.location}
+                      {collectionData.artworks[selectedArtwork].location}
                     </span>
                   </div>
                 </div>
 
                 <div className="cp-artwork-modal-tags">
-                  {modalContent.tags &&
-                    modalContent.tags.map((tag, index) => (
-                      <span key={index} className="cp-artwork-modal-tag">
-                        {tag}
-                      </span>
-                    ))}
+                  {collectionData.artworks[selectedArtwork].tags &&
+                    collectionData.artworks[selectedArtwork].tags.map(
+                      (tag, index) => (
+                        <span key={index} className="cp-artwork-modal-tag">
+                          {tag}
+                        </span>
+                      )
+                    )}
                 </div>
 
                 <div className="cp-artwork-modal-description">
-                  <p>{modalContent.description}</p>
+                  <p>{collectionData.artworks[selectedArtwork].description}</p>
                 </div>
 
                 <div className="cp-artwork-modal-visit">
@@ -1506,7 +1527,7 @@ const CollectionPage = () => {
                   <div className="cp-artwork-modal-visit-info">
                     <h4 className="cp-visit-title">Vị trí trưng bày</h4>
                     <p className="cp-visit-description">
-                      {modalContent.location}
+                      {collectionData.artworks[selectedArtwork].location}
                     </p>
                   </div>
                 </div>

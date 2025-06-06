@@ -3,22 +3,22 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "import React from \"react\";\n\nconst CloudinaryPlayer = ({\n  cloudName,\n  publicId,\n  profile = \"cld-looping\",\n  width = \"100%\",\n  height = \"100%\",\n}) => {\n  const url = `https://player.cloudinary.com/embed/?cloud_name=${cloudName}&public_id=${encodeURIComponent(\n    publicId\n  )}&profile=${profile}`;\n  return (\n    <iframe\n      title=\"Cloudinary Video Player\"\n      src={url}\n      width={width}\n      height={height}\n      allow=\"autoplay; fullscreen\"\n      allowFullScreen\n      frameBorder=\"0\"\n      style={{ border: \"none\", width, height }}\n    />\n  );\n};\n\nexport default CloudinaryPlayer;\n",
-      "start": 1748859738408,
-      "end": 1748859738757,
+      "result": "import React from \"react\";\r\n\r\nconst CloudinaryPlayer = ({\r\n  cloudName,\r\n  publicId,\r\n  profile = \"cld-looping\",\r\n  width = \"100%\",\r\n  height = \"100%\",\r\n}) => {\r\n  const url = `https://player.cloudinary.com/embed/?cloud_name=${cloudName}&public_id=${encodeURIComponent(\r\n    publicId\r\n  )}&profile=${profile}`;\r\n  return (\r\n    <iframe\r\n      title=\"Cloudinary Video Player\"\r\n      src={url}\r\n      width={width}\r\n      height={height}\r\n      allow=\"autoplay; fullscreen\"\r\n      allowFullScreen\r\n      frameBorder=\"0\"\r\n      style={{ border: \"none\", width, height }}\r\n    />\r\n  );\r\n};\r\n\r\nexport default CloudinaryPlayer;\r\n",
+      "start": 1749089004635,
+      "end": 1749089005010,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1748859738757,
-      "end": 1748859738757,
+      "start": 1749089005010,
+      "end": 1749089005010,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx } from \"react/jsx-runtime\";\nimport React from \"react\";\nconst CloudinaryPlayer = ({\n  cloudName,\n  publicId,\n  profile = \"cld-looping\",\n  width = \"100%\",\n  height = \"100%\"\n}) => {\n  const url = `https://player.cloudinary.com/embed/?cloud_name=${cloudName}&public_id=${encodeURIComponent(\n    publicId\n  )}&profile=${profile}`;\n  return /* @__PURE__ */ jsx(\n    \"iframe\",\n    {\n      title: \"Cloudinary Video Player\",\n      src: url,\n      width,\n      height,\n      allow: \"autoplay; fullscreen\",\n      allowFullScreen: true,\n      frameBorder: \"0\",\n      style: { border: \"none\", width, height }\n    }\n  );\n};\nexport default CloudinaryPlayer;\n",
-      "start": 1748859738757,
-      "end": 1748859738807,
+      "start": 1749089005010,
+      "end": 1749089005181,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -26,7 +26,7 @@
           "C:/Users/.Freelancer/baotangnghethuat/src/components/CloudinaryPlayer/CloudinaryPlayer.jsx"
         ],
         "sourcesContent": [
-          "import React from \"react\";\n\nconst CloudinaryPlayer = ({\n  cloudName,\n  publicId,\n  profile = \"cld-looping\",\n  width = \"100%\",\n  height = \"100%\",\n}) => {\n  const url = `https://player.cloudinary.com/embed/?cloud_name=${cloudName}&public_id=${encodeURIComponent(\n    publicId\n  )}&profile=${profile}`;\n  return (\n    <iframe\n      title=\"Cloudinary Video Player\"\n      src={url}\n      width={width}\n      height={height}\n      allow=\"autoplay; fullscreen\"\n      allowFullScreen\n      frameBorder=\"0\"\n      style={{ border: \"none\", width, height }}\n    />\n  );\n};\n\nexport default CloudinaryPlayer;\n"
+          "import React from \"react\";\r\n\r\nconst CloudinaryPlayer = ({\r\n  cloudName,\r\n  publicId,\r\n  profile = \"cld-looping\",\r\n  width = \"100%\",\r\n  height = \"100%\",\r\n}) => {\r\n  const url = `https://player.cloudinary.com/embed/?cloud_name=${cloudName}&public_id=${encodeURIComponent(\r\n    publicId\r\n  )}&profile=${profile}`;\r\n  return (\r\n    <iframe\r\n      title=\"Cloudinary Video Player\"\r\n      src={url}\r\n      width={width}\r\n      height={height}\r\n      allow=\"autoplay; fullscreen\"\r\n      allowFullScreen\r\n      frameBorder=\"0\"\r\n      style={{ border: \"none\", width, height }}\r\n    />\r\n  );\r\n};\r\n\r\nexport default CloudinaryPlayer;\r\n"
         ],
         "mappings": "AAaI;AAbJ,OAAO,WAAW;AAElB,MAAM,mBAAmB,CAAC;AAAA,EACxB;AAAA,EACA;AAAA,EACA,UAAU;AAAA,EACV,QAAQ;AAAA,EACR,SAAS;AACX,MAAM;AACJ,QAAM,MAAM,mDAAmD,SAAS,cAAc;AAAA,IACpF;AAAA,EACF,CAAC,YAAY,OAAO;AACpB,SACE;AAAA,IAAC;AAAA;AAAA,MACC,OAAM;AAAA,MACN,KAAK;AAAA,MACL;AAAA,MACA;AAAA,MACA,OAAM;AAAA,MACN,iBAAe;AAAA,MACf,aAAY;AAAA,MACZ,OAAO,EAAE,QAAQ,QAAQ,OAAO,OAAO;AAAA;AAAA,EACzC;AAEJ;AAEA,eAAe;",
         "names": []
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1748859738807,
-      "end": 1748859738807,
+      "start": 1749089005181,
+      "end": 1749089005181,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1748859738807,
-      "end": 1748859738807,
+      "start": 1749089005181,
+      "end": 1749089005181,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1748859738807,
-      "end": 1748859738807,
+      "start": 1749089005182,
+      "end": 1749089005182,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1748859738807,
-      "end": 1748859738807,
+      "start": 1749089005182,
+      "end": 1749089005182,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1748859738807,
-      "end": 1748859738807,
+      "start": 1749089005182,
+      "end": 1749089005182,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1748859738807,
-      "end": 1748859738807,
+      "start": 1749089005190,
+      "end": 1749089005190,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1748859738807,
-      "end": 1748859738807,
+      "start": 1749089005190,
+      "end": 1749089005190,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1748859738807,
-      "end": 1748859738808,
+      "start": 1749089005191,
+      "end": 1749089005191,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1748859738808,
-      "end": 1748859738808,
+      "start": 1749089005191,
+      "end": 1749089005191,
       "order": "normal"
     }
   ]

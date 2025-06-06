@@ -168,57 +168,71 @@ const AboutPage = () => {
         <div className="about-container">
           <h2 className="section-title">Về chúng tôi</h2>
           <div className="about-content">
-            <div className="about-text">
-              <p className="intro-paragraph">
-                <strong>Bảo Tàng Thông</strong> là đề án tôn vinh gìn giữ các
-                giá trị thiên nhiên khí hậu, kiến trúc văn hóa lịch sử độc đáo
-                của Đà Lạt, nơi tập trung phát triển các chương trình triển lãm
-                không gian nghệ thuật, các tác phẩm nghệ thuật đặc sắc, các hiện
-                vật dân tộc bản địa vùng cao nguyên. Các chương trình talkshow
-                tọa đàm giáo dục liên quan sẽ diễn ra song hành.
-              </p>
-
-              <p className="highlight-paragraph">
-                Bên cạnh đó Bảo Tàng Thông cũng là nơi đầu tiên triển khai{" "}
-                <em>mô hình lưu trú nghệ thuật</em> trong chính các căn phòng
-                trưng bày của Bảo Tàng. Với <strong>16 chủ đề trưng bày</strong>{" "}
-                liên quan đến những giá trị của vùng đất này.
-              </p>
-
+            <div className="text-contents">
               <p>
-                Bảo Tàng Thông còn phát triển các sản phẩm nhằm giữ gìn bảo tồn
-                Thông như <strong>Nhà Mắt Thông</strong>,{" "}
-                <strong>Sân khấu Tình Yêu Thông</strong>, kết nối nghệ thuật và
-                rừng Thông đại ngàn bằng những chuyến du khảo đầy cảm xúc.
+                <strong>Bảo Tàng Thông</strong> – một dự án nghệ thuật độc lập
+                và tiên phong – được kiến tạo để tôn vinh, gìn giữ và kể lại
+                những giá trị nguyên bản của Đà Lạt:
               </p>
-
-              <p className="experience-paragraph">
-                Mỗi 1 chuyên đề 1 giá trị sẽ gắn liền với những hoạt động trải
-                nghiệm nghệ thuật như:{" "}
-                <span className="activities">
-                  Khám phá cảm xúc 5 giác quan, Tay Nặn Tay Vẽ, Vị Tinh Hoa, Hồn
-                  Thổ Cẩm, Thì Thầm Langbiang, Tiếng Chày Khuya
-                </span>
-                ... là nơi mà du khách có thể được thả hồn trong không gian đẳng
-                cấp của thế giới nghệ thuật đương đại nhưng đầy bản sắc văn hóa.
+              <ul>
+                <li>Từ khí hậu, rừng Thông và cảnh quan thiên nhiên,</li>
+                <li>
+                  Đến kiến trúc, lịch sử và văn hóa dân tộc bản địa vùng cao
+                  nguyên.
+                </li>
+              </ul>
+              <p>
+                Nơi nghệ thuật không nằm trong khung kính – mà sống cùng con
+                người.
               </p>
-
-              <p className="special-program">
-                Đặc biệt với chương trình <strong>Vin Acoustique Art</strong>{" "}
-                trong khán phòng trang âm view toàn cảnh thành phố hằng đêm cùng
-                men say của vị giác sẽ là nơi hội tụ những rung cảm sâu lắng
-                nhất.
+              <p>
+                <strong>Bảo Tàng Thông</strong> là bảo tàng đầu tiên triển khai{" "}
+                <em>mô hình lưu trú nghệ thuật</em> – nơi du khách ngủ lại giữa
+                không gian trưng bày, thở cùng ánh sáng, bóng nắng, và từng hiện
+                vật biết kể chuyện.
               </p>
-
-              <p className="mission-paragraph">
-                Mỗi 1 chương trình 1 câu chuyện 1 thông điệp giáo dục mà BTT
-                mong muốn qua đó gửi đi những giá trị cần thiết phải gìn giữ và
-                nâng niu trong thời đại này.{" "}
+              <p>
+                Với <strong>16 căn phòng - 16 chuyên đề</strong>, mỗi không gian
+                là một lát cắt của vùng đất: từ cồng chiêng, bếp lửa, thổ cẩm,
+                dược liệu… đến kiến trúc gỗ, khí hậu lạnh, văn hóa cư trú cao
+                nguyên.
+              </p>
+              <p>
+                Là nơi tạo ra các đề án bảo tồn Thông, lấy cảm hứng từ Thông như{" "}
+                <strong>Nhà Mắt Thông</strong>,{" "}
+                <strong>Sân khấu Tình Yêu Thông</strong>, đến những tour du khảo
+                kết nối nghệ thuật & rừng đại ngàn...
+              </p>
+              <p>
+                <strong>Bảo Tàng Thông</strong> cũng là điểm đến của cảm xúc. Là
+                nơi bạn có thể trải nghiệm:
+              </p>
+              <ul>
+                <li>Khám phá cảm xúc 5 giác quan</li>
+                <li>Tay Nặn Tay Vẽ</li>
+                <li>Vị Tinh Hoa</li>
+                <li>Hồn Thổ Cẩm</li>
+                <li>Thì Thầm Langbiang</li>
+                <li>Tiếng Chày Khuya</li>
+              </ul>
+              <p>
+                🎶 Và mỗi đêm, lắng nghe tiếng Thông Hát trong chương trình{" "}
+                <strong>Vin Acoustique Art</strong> – nơi nghệ thuật và men rượu
+                cùng ngân vang giữa lưng trời Đà Lạt trong 1 khán phòng mở được
+                thiết kế đặc biệt.
+              </p>
+              <p>
+                ✨ Mỗi chương trình – một thông điệp giáo dục. Chúng tôi tin
+                rằng:{" "}
                 <em>
-                  Sự phát triển hiện đại không có nghĩa là phá hủy lịch sử, hủy
-                  hoại thiên nhiên. Tĩnh lặng hồi ức để chữa lành, cảnh thức sẽ
-                  bừng tỉnh.
+                  "Hiện đại không có nghĩa là xóa bỏ lịch sử. Phát triển không
+                  đồng nghĩa với phá hủy thiên nhiên."
                 </em>
+              </p>
+              <p>
+                Giữa nhịp sống vội vã, <strong>Bảo Tàng Thông</strong> là một
+                khoảng lặng để tĩnh – hồi – chữa lành, để mỗi người tự bước vào
+                cuộc gặp gỡ sâu sắc với chính mình và vùng đất này.
               </p>
             </div>
             {/* FLIP CARD */}
@@ -249,7 +263,7 @@ const AboutPage = () => {
               </video>
             </div>
             <div className="nhamatthong-text">
-              <div className="text-content vietnamese-content">
+              <div className="text-content">
                 <p>
                   Có những nơi không chỉ để ngắm nhìn, mà để cảm nhận bằng tất
                   cả giác quan. Bảo Tàng Thông là một nơi như thế—nơi kiến trúc,
@@ -313,15 +327,19 @@ const AboutPage = () => {
                 <h3>Bảo tàng Thông - Musée Du Pin</h3>
                 <p>
                   <FaMapMarkerAlt className="contact-icon" />
-                  <span>29-31 Đống Đa, Phường 3, Đà Lạt</span>
+                  <a href="https://www.google.com/maps?ll=11.923688,108.444684&z=16&t=m&hl=vi&gl=US&mapclient=embed&q=29+%C4%90%E1%BB%91ng+%C4%90a+Ph%C6%B0%E1%BB%9Dng+3+%C4%90%C3%A0+L%E1%BA%A1t+L%C3%A2m+%C4%90%E1%BB%93ng">
+                    29-31 Đống Đa, Phường 3, Đà Lạt
+                  </a>
                 </p>
                 <p>
                   <FaPhone className="contact-icon" />
-                  <span>862356368</span>
+                  <a href="tel:0862356368">+84 862 356 368</a>
                 </p>
                 <p>
                   <FaEnvelope className="contact-icon" />
-                  <span>baotangthong2024@gmail.com</span>
+                  <a href="mailto:baotangthong2024@gmail.com">
+                    baotangthong2024@gmail.com
+                  </a>
                 </p>
               </div>
             </div>

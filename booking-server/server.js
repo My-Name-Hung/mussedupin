@@ -216,6 +216,98 @@ const sendFeedbackConfirmation = (feedbackData) => {
   return transporter.sendMail(mailOptions);
 };
 
+// Send experience booking confirmation email to customer
+const sendExperienceBookingEmail = (bookingData) => {
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: bookingData.email,
+    subject: "Xác nhận đặt vé trải nghiệm tại Bảo tàng Thông (Musée Du Pin)",
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e6e6e6; border-radius: 10px;">
+        <div style="background: linear-gradient(135deg, #2c2f11, #3d4016); padding: 20px; text-align: center; color: white; border-radius: 10px 10px 0 0;">
+          <h1 style="margin: 0;">Xác nhận đặt vé trải nghiệm</h1>
+        </div>
+        <div style="padding: 20px;">
+          <p>Xin chào <strong>${bookingData.name}</strong>,</p>
+          <p>Cảm ơn bạn đã đặt vé trải nghiệm tại Bảo tàng Thông (Musée Du Pin). Dưới đây là thông tin đặt vé của bạn:</p>
+          
+          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #2c2f11; margin-top: 0;">Chi tiết đặt vé</h3>
+            <p><strong>Gói trải nghiệm:</strong> ${bookingData.package}</p>
+            <p><strong>Ngày tham quan:</strong> ${new Date(
+              bookingData.date
+            ).toLocaleDateString("vi-VN")}</p>
+            <p><strong>Giờ tham quan:</strong> ${bookingData.time}</p>
+            <p><strong>Số lượng khách:</strong> ${bookingData.guests} người</p>
+            <p><strong>Giá vé:</strong> ${bookingData.price}</p>
+            ${
+              bookingData.specialRequests
+                ? `<p><strong>Yêu cầu đặc biệt:</strong> ${bookingData.specialRequests}</p>`
+                : ""
+            }
+          </div>
+          
+          <p>Chúng tôi rất mong được đón tiếp bạn tại Bảo tàng Thông (Musée Du Pin).</p>
+          <p>Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi qua:</p>
+          <ul style="list-style: none; padding-left: 0;">
+            <li>📞 Hotline: +84 86 235 6368</li>
+            <li>📧 Email: info@museedupin.com</li>
+          </ul>
+          
+          <p style="margin-top: 30px;">Trân trọng,<br>Đội ngũ Bảo tàng Thông (Musée Du Pin)</p>
+        </div>
+        <div style="background-color: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #64748b; border-radius: 0 0 10px 10px;">
+          © 2024 Bảo tàng Thông (Musée Du Pin). Tất cả các quyền được bảo lưu.
+        </div>
+      </div>
+    `,
+  };
+
+  return transporter.sendMail(mailOptions);
+};
+
+// Send experience booking notification to admin
+const sendExperienceBookingAdminEmail = (bookingData) => {
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
+    subject: "Có đặt vé trải nghiệm mới tại Bảo tàng Thông",
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e6e6e6; border-radius: 10px;">
+        <div style="background: linear-gradient(135deg, #2c2f11, #3d4016); padding: 20px; text-align: center; color: white; border-radius: 10px 10px 0 0;">
+          <h1 style="margin: 0;">Đặt vé trải nghiệm mới</h1>
+        </div>
+        <div style="padding: 20px;">
+          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #2c2f11; margin-top: 0;">Thông tin khách hàng</h3>
+            <p><strong>Tên:</strong> ${bookingData.name}</p>
+            <p><strong>Email:</strong> ${bookingData.email}</p>
+            <p><strong>Số điện thoại:</strong> ${bookingData.phone}</p>
+          </div>
+          
+          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #2c2f11; margin-top: 0;">Chi tiết đặt vé</h3>
+            <p><strong>Gói trải nghiệm:</strong> ${bookingData.package}</p>
+            <p><strong>Ngày tham quan:</strong> ${new Date(
+              bookingData.date
+            ).toLocaleDateString("vi-VN")}</p>
+            <p><strong>Giờ tham quan:</strong> ${bookingData.time}</p>
+            <p><strong>Số lượng khách:</strong> ${bookingData.guests} người</p>
+            <p><strong>Giá vé:</strong> ${bookingData.price}</p>
+            ${
+              bookingData.specialRequests
+                ? `<p><strong>Yêu cầu đặc biệt:</strong> ${bookingData.specialRequests}</p>`
+                : ""
+            }
+          </div>
+        </div>
+      </div>
+    `,
+  };
+
+  return transporter.sendMail(mailOptions);
+};
+
 // API endpoint để xử lý đặt phòng
 app.post("/api/bookings", async (req, res) => {
   const bookingData = req.body;
@@ -469,6 +561,60 @@ app.get("/api/assets", async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Failed to list files",
+    });
+  }
+});
+
+// API endpoint for experience package bookings
+app.post("/api/experience-bookings", async (req, res) => {
+  const bookingData = req.body;
+
+  try {
+    // Save to Google Sheets
+    const row = [
+      new Date().toISOString(), // Timestamp
+      bookingData.package, // Experience package name
+      bookingData.name, // Customer name
+      bookingData.email, // Email
+      bookingData.phone, // Phone
+      bookingData.date, // Visit date
+      bookingData.guests, // Number of guests
+      bookingData.price, // Price
+      bookingData.specialRequests || "", // Special requests
+      "New", // Status
+    ];
+
+    const request = {
+      spreadsheetId: SPREADSHEET_ID,
+      range: "Bookings!A:M",
+      valueInputOption: "RAW",
+      insertDataOption: "INSERT_ROWS",
+      resource: {
+        values: [row],
+      },
+    };
+
+    // Send data to Google Sheets
+    const sheetsResponse = await sheets.spreadsheets.values.append(request);
+
+    // Send confirmation emails
+    await Promise.all([
+      sendExperienceBookingEmail(bookingData),
+      sendExperienceBookingAdminEmail(bookingData),
+    ]);
+
+    res.status(200).json({
+      success: true,
+      message:
+        "Experience booking saved successfully and email notifications sent.",
+      sheetsResponse: sheetsResponse.data,
+    });
+  } catch (error) {
+    console.error("Error processing experience booking:", error);
+    res.status(500).json({
+      success: false,
+      message: "Failed to process experience booking",
+      error: error.message,
     });
   }
 });

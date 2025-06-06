@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { getImageUrl } from "../../../utils/cloudinary";
 import "./Visit.css";
 
@@ -7,9 +7,9 @@ import "./Visit.css";
 
 const Visit = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState("hours");
   const [isNavSticky, setIsNavSticky] = useState(false);
-  const [isAdmissionExpanded, setIsAdmissionExpanded] = useState(false);
   const [visibleSections, setVisibleSections] = useState({
     hours: false,
     tickets: false,
@@ -35,6 +35,9 @@ const Visit = () => {
   const horizontalNavRef = useRef(null);
   const [isScrollingDown, setIsScrollingDown] = useState(false);
   const lastScrollTop = useRef(0);
+  const [playingVideo, setPlayingVideo] = useState({});
+  const [hoveredBlock, setHoveredBlock] = useState(null);
+  const tooltipTimeout = useRef();
 
   // Handle hash links when component mounts
   useEffect(() => {
@@ -53,16 +56,8 @@ const Visit = () => {
     }
   }, [location]);
 
-  // Current day and time display
-  const getCurrentDayTimeInfo = () => {
-    // Cập nhật: mở cửa tất cả các ngày trong tuần đến 21h tối
-    const statusText = "mở cửa hôm nay từ 7:00 đến 21:00";
-    const statusClass = "open";
-
-    return { statusText, statusClass };
-  };
-
-  const { statusText, statusClass } = getCurrentDayTimeInfo();
+  // Update getCurrentDayTimeInfo function
+  // Remove: const getCurrentDayTimeInfo = () => { ... };
 
   // Enhanced handleScroll to track scroll direction for hiding navbar
   const handleScroll = useCallback(() => {
@@ -260,32 +255,6 @@ const Visit = () => {
     smoothScrollTo(section);
   };
 
-  const toggleAdmissionSection = () => {
-    setIsAdmissionExpanded(!isAdmissionExpanded);
-  };
-
-  // Thêm hàm xử lý khi click vào Full List
-  const handleFullListClick = (e) => {
-    e.preventDefault();
-    setIsAdmissionExpanded(true);
-    // Scroll đến vị trí của section sau khi mở rộng
-    setTimeout(() => {
-      const element = document.querySelector(".free-admission-section");
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth", block: "center" });
-      }
-    }, 100);
-  };
-
-  // Thêm hàm xử lý khi click vào See group prices
-  const handleGroupPricesClick = (e) => {
-    e.preventDefault();
-    const element = document.querySelector(".tours-activities-section");
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
-  };
-
   // Hàm điều hướng về trang chủ
   const navigateToHome = () => {
     window.location.href = "/";
@@ -394,10 +363,6 @@ const Visit = () => {
           className="visit-hero-image"
         />
         <div className="visit-hero-overlay"></div>
-      </div>
-      <div className="visit-hero-content">
-        <h1 className="visit-hero-title">GIỜ MỞ CỬA VÀ CÁC GÓI TRẢI NGHIỆM</h1>
-        <p className="visit-hero-subtitle">Lên kế hoạch và đặt vé tham quan</p>
       </div>
     </div>
   );
@@ -511,106 +476,430 @@ const Visit = () => {
     );
   };
 
-  // Enhanced mobile-friendly museum info
-  const renderMuseumInfo = () => (
-    <div className="museum-info-wrapper">
-      <div className="museum-info-image">
-        <img
-          src="https://scontent.fsgn5-12.fna.fbcdn.net/v/t39.30808-6/475005503_122135717756476582_3999824126778630748_n.jpg?_nc_cat=103&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeEEzq62LNhBII4YPz4y8vzHKTr0LI5nxT0pOvQsjmfFPcono5QWqsJZ5X1xeaMQAsxZO9nHTVw3RVjopc_CObft&_nc_ohc=oTEyYDZnfAIQ7kNvwGO8zcC&_nc_oc=AdmfX-I5Pk81vQKR7JRp2x-7eMqCFUwXe4xBH3KKLX02qI2o7LPSGDbj0fENglHdIRI&_nc_zt=23&_nc_ht=scontent.fsgn5-12.fna&_nc_gid=eg1SVxsLccaJ3OUbc4LAZA&oh=00_AfLwDVQH4jsNWFFEiwdntQxpqgh9RoTrq2Ym2ORQarytSw&oe=6842E118"
-          alt="Musée Du Pin"
-        />
-        {isMobile && <div className="info-image-overlay"></div>}
+  // Update ticket options data
+  const experiencePackages = {
+    nonResidential: [
+      {
+        id: "loi-rung",
+        title: "LỐI RỪNG",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/image.png?updatedAt=1749008666857",
+        description: "Bước chân đầu tiên vào không gian ký ức Đà Lạt xưa.",
+        details: [
+          "Thưởng thức trà Atiso chào mừng",
+          "Tham quan tự do các không gian bảo tàng: hiện vật K'Ho, chân dung Yersin bằng vỏ thông, bộ sưu tập tranh Đà Lạt",
+          "1 phần nước uống tự chọn",
+        ],
+        price: "150.000VND - 250.000VND/người",
+        childPrice: "50% giá người lớn",
+        note: "Trẻ em phải có cha mẹ, người giám hộ đi kèm",
+        video: {
+          id: "aozcRuYVPKw",
+          title: "Trải nghiệm Lối Rừng",
+          thumbnail: "https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg",
+        },
+      },
+      {
+        id: "dang-suong",
+        title: "DÁNG SƯƠNG",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/image.png?updatedAt=1749008666857",
+        description:
+          "Nhẹ nhàng chạm vào không gian nghệ thuật để lắng nghe và cảm nhận",
+        details: [
+          "Thưởng thức trà atiso chào mừng",
+          "Tham quan có hướng dẫn viên các không gian bảo tàng",
+          "Chụp ảnh nghệ thuật tại bảo tàng với trang phục dân tộc (30 phút)",
+          "1 phần nước uống tự chọn",
+        ],
+        price: "350.000VND - 450.000VND/người",
+        childPrice: "50% giá người lớn",
+        note: "Trẻ em phải có cha mẹ, người giám hộ đi kèm",
+        video: {
+          id: "aozcRuYVPKw",
+          title: "Trải nghiệm Dáng Sương",
+          thumbnail: "https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg",
+        },
+      },
+      {
+        id: "nghe-nhan",
+        title: "NGHỆ NHÂN",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/image.png?updatedAt=1749008666857",
+        description:
+          "Hòa mình vào thế giới sáng tạo với workshop thổ cẩm, vẽ tranh cùng nghệ nhân, họa sỹ",
+        details: [
+          "Thưởng thức trà atiso chào mừng",
+          "Tham quan có hướng dẫn viên các không gian bảo tàng",
+          "Workshop vẽ tranh, dệt thổ cẩm hoặc nặn gốm (120 phút)",
+          "Tặng gói chụp ảnh nghệ thuật (1 tiếng)",
+        ],
+        price: "399.000VND - 599.000VND/người",
+        childPrice: "50% giá người lớn",
+        note: "Trẻ em phải có cha mẹ, người giám hộ đi kèm",
+        video: {
+          id: "aozcRuYVPKw",
+          title: "Trải nghiệm Nghệ Nhân",
+          thumbnail: "https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg",
+        },
+      },
+      {
+        id: "hon-nui",
+        title: "HỒN NÚI",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/Leaflet%20H%E1%BB%93n%20N%C3%BAi.png?updatedAt=1749083706305",
+        description:
+          "Trọn vẹn trải nghiệm văn hóa và thiên nhiên Đà Lạt, như tinh thần núi rừng thấm vào từng giác quan",
+        details: [
+          "Thưởng thức trà atiso chào mừng",
+          "Tham quan có hướng dẫn viên các không gian bảo tàng",
+          "Chụp ảnh nghệ thuật tại bảo tàng với trang phục dân tộc (30 phút)",
+          "Lựa chọn Tour Khám phá rừng nguyên sinh hoặc Worshop",
+          "Bữa trưa nhẹ gồm 01 món ăn và 01 thức uống",
+        ],
+        price: "799.000VND - 999.000VND/người",
+        childPrice: "50% giá người lớn",
+        note: "Trẻ em phải có cha mẹ, người giám hộ đi kèm. Tour rừng tối thiểu 5 khách để đảm bảo an toàn",
+        video: {
+          id: "aozcRuYVPKw",
+          title: "Trải nghiệm Hồn Núi",
+          thumbnail: "https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg",
+        },
+      },
+      {
+        id: "lua-thieng",
+        title: "LỬA THIÊNG / Pind' Amour",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/fe26e39c6384d7da8e95.jpg?updatedAt=1749083704253",
+        description:
+          "Buổi tối bùng cháy với âm nhạc, nghệ thuật, văn hóa, rượu và không gian view toàn cảnh Đà Lạt về đêm",
+        details: [
+          "Thưởng thức welcome drink chào mừng",
+          "Tham quan có hướng dẫn viên các không gian bảo tàng",
+          "Chụp ảnh nghệ thuật tại bảo tàng (30 phút)",
+          'Trải nghiệm sân khấu Pind\'amour với chương trình Vin Acoustic "Thông Hát" và rượu vang thượng hạng và 01 phần ăn nhẹ',
+        ],
+        time: "18h - 22h30",
+        price: "999.000VND - 1.999.000VND/người",
+        note: "Không áp dụng cho trẻ em",
+        video: {
+          id: "aozcRuYVPKw",
+          title: "Trải nghiệm Lửa Thiêng",
+          thumbnail: "https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg",
+        },
+      },
+    ],
+    residential: [
+      {
+        id: "dem-thong",
+        title: "ĐÊM THÔNG",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/image.png?updatedAt=1749008666857",
+        description:
+          "Không gian tĩnh lặng để nghỉ ngơi, kết nối nội tâm với thiên nhiên.",
+        details: [
+          "Thưởng thức trà atiso chào mừng",
+          "Tham quan và nghe thuyết minh về phòng nghệ thuật sẽ lưu trú",
+          "Lưu trú 1 đêm",
+          "Bữa sáng với đặc sản địa phương",
+        ],
+        price: "499.000VND - 899.000VND/người",
+        video: {
+          id: "aozcRuYVPKw",
+          title: "Trải nghiệm Đêm Thông",
+          thumbnail: "https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg",
+        },
+      },
+      {
+        id: "bong-cay-konia",
+        title: "BÓNG CÂY KƠNIA",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/image.png?updatedAt=1749008666857",
+        description:
+          "Hành trình khám phá rừng nguyên sinh ngàn năm, kết hợp nghỉ dưỡng đẳng cấp",
+        details: [
+          "Thưởng thức trà atiso chào mừng",
+          "Tham quan và nghe thuyết minh về phòng nghệ thuật sẽ lưu trú",
+          "Lưu trú 1 đêm",
+          "Bữa sáng với đặc sản địa phương",
+          "Tham quan có hướng dẫn viên các không gian bảo tàng",
+          "Tour khám phá rừng nguyên sinh ngàn năm",
+          "Tặng gói chụp ảnh nghệ thuật (1 tiếng)",
+        ],
+        price: "Liên hệ trực tiếp +84 86 235 6368",
+        video: {
+          id: "aozcRuYVPKw",
+          title: "Trải nghiệm Bóng Cây Kônia",
+          thumbnail: "https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg",
+        },
+      },
+      {
+        id: "truong-ca-langbiang",
+        title: "TRƯỜNG CA LANGBIANG",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/daa23646b65e02005b4f.jpg?updatedAt=1749083704100",
+        description:
+          "Trải nghiệm toàn diện như bản trường ca sống động nhất về Đà Lạt – từ nghệ thuật, thiên nhiên đến âm nhạc. Trọn vẹn cảm xúc 5 giác quan",
+        details: [
+          "Đưa đón từ sân bay Liên Khương bằng xe VIP",
+          "Lưu trú 1 đêm tại phòng nghệ thuật",
+          "Tour VIP tham quan toàn bộ bảo tàng + Rừng nguyên sinh",
+          'Chương trình "Thông Hát" riêng tư + Rượu vang hảo hạng',
+          "Workshop Vẽ tranh, dệt thổ cẩm hoặc nấu ăn cùng nghệ nhân",
+          "Bộ ảnh nghệ thuật chuyên nghiệp",
+        ],
+        price: "Liên hệ trực tiếp +84 86 235 6368",
+        video: {
+          id: "aozcRuYVPKw",
+          title: "Trải nghiệm Trường Ca Langbiang",
+          thumbnail: "https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg",
+        },
+      },
+    ],
+    regular: [
+      {
+        id: "dem-huyen-thoai",
+        title: "TOUR ĐÊM HUYỀN THOẠI LANGBIANG",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/image.png?updatedAt=1749008666857",
+        description:
+          "Mini-show tương tác đưa khách vào vai nhân vật khám phá bí ẩn văn hóa",
+        details: [
+          "Tham quan có hướng dẫn viên các không gian bảo tàng",
+          "Trải nghiệm sân khấu tương tác điện ảnh với câu chuyện K'Ho",
+          "01 thức uống + 01 snack",
+          "Thước phim điện ảnh",
+        ],
+        time: "19h - 21h (T3-T5 hàng tuần)",
+        price: "499.000VND/người",
+        video: {
+          id: "aozcRuYVPKw",
+          title: "Tour Đêm Huyền Thoại Langbiang",
+          thumbnail: "https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg",
+        },
+      },
+      {
+        id: "giai-dieu-dai-ngan",
+        title: "GIAI ĐIỆU ĐẠI NGÀN - LẮNG NGHE THÔNG HÁT",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/image.png?updatedAt=1749008666857",
+        description: "Hòa nhạc acoustic với chủ đề thay đổi hàng tháng",
+        details: ["Rượu vang", "Thức ăn nhẹ", "Âm nhạc theo chủ đề"],
+        time: "19h - 22h30 (Thứ 6-T7-CN)",
+        price: "799.000VND/người",
+        video: {
+          id: "aozcRuYVPKw",
+          title: "Giai Điệu Đại Ngàn - Lắng Nghe Thông Hát",
+          thumbnail: "https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg",
+        },
+      },
+      {
+        id: "uom-mam-sang-tao",
+        title: "ƯƠM MẦM SÁNG TẠO",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/image.png?updatedAt=1749008666857",
+        description: "Các gói trải nghiệm cho bé",
+        details: [
+          "Workshop: Tay nặn tay vẽ hoặc chế tác đồ thủ công từ thông",
+          "Chụp ảnh nghệ thuật tại bảo tàng",
+          "01 thức uống + 01 snack",
+        ],
+        time: "Sáng: 8h - 12h, Chiều: 14h - 18h",
+        price: "299.000VND/người",
+        video: {
+          id: "aozcRuYVPKw",
+          title: "Ươm Mầm Sáng Tạo",
+          thumbnail: "https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg",
+        },
+      },
+    ],
+  };
+
+  // Update renderTicketOptions function
+  const handlePlayVideo = (pkgId) => {
+    setPlayingVideo((prev) => ({ ...prev, [pkgId]: true }));
+  };
+
+  // Helper to extract Youtube videoId from url or id
+  const getYoutubeId = (urlOrId) => {
+    if (!urlOrId) return "";
+    if (urlOrId.length === 11 && !urlOrId.includes("http")) return urlOrId;
+    const match =
+      urlOrId.match(/[?&]v=([^&#]+)/) || urlOrId.match(/youtu\.be\/([^?&#]+)/);
+    return match ? match[1] : urlOrId;
+  };
+
+  const renderPackage = (pkg) => {
+    const videoId = pkg.video?.id || "";
+    return (
+      <div key={pkg.id} className="package-block">
+        <h2 className="package-main-title">{pkg.mainTitle}</h2>
+        <h3 className="package-title">{pkg.title}</h3>
+        <div className="package-image-block">
+          <img className="package-image-full" src={pkg.image} alt={pkg.title} />
+        </div>
+        <div className="package-content-block">
+          <div className="package-description">{pkg.description}</div>
+          <ul className="package-details-list">
+            {pkg.details.map((detail, idx) => (
+              <li key={idx}>{detail}</li>
+            ))}
+          </ul>
+          {pkg.time && (
+            <div className="package-time">Thời gian: {pkg.time}</div>
+          )}
+          <div className="package-price-block">
+            <span className="package-price-label">Chi phí tham khảo:</span>
+            <span className="package-price-value">{pkg.price}</span>
+            {pkg.childPrice && (
+              <span className="package-child-price">
+                Trẻ em: {pkg.childPrice}
+              </span>
+            )}
+          </div>
+          {pkg.note && <div className="package-note">{pkg.note}</div>}
+        </div>
+        {pkg.video && (
+          <div className="package-video-block">
+            {!playingVideo[pkg.id] ? (
+              <div
+                className="video-thumbnail-wrapper"
+                onClick={() => handlePlayVideo(pkg.id)}
+              >
+                <img
+                  className="video-thumbnail"
+                  src={
+                    pkg.video.thumbnail ||
+                    `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`
+                  }
+                  alt={`Video về ${pkg.title}`}
+                  loading="lazy"
+                />
+                <div className="play-button-overlay">
+                  <svg viewBox="0 0 100 100">
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="45"
+                      fill="rgba(255,255,255,0.2)"
+                    />
+                    <circle
+                      cx="50"
+                      cy="50"
+                      r="40"
+                      fill="rgba(255,255,255,0.3)"
+                    />
+                    <polygon
+                      points="40,30 70,50 40,70"
+                      fill="#ffffff"
+                      transform="translate(0,0)"
+                    />
+                  </svg>
+                </div>
+              </div>
+            ) : (
+              <div className="video-iframe-wrapper">
+                <iframe
+                  src={`https://www.youtube.com/embed/${videoId}?autoplay=1&rel=0&modestbranding=1`}
+                  title={`Video về ${pkg.title}`}
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            )}
+          </div>
+        )}
       </div>
+    );
+  };
 
-      <div className="museum-info-content">
-        <div className="museum-status-bar">
-          <div className={`museum-status ${statusClass}`}>
-            <span className="status-dot"></span>
-            Bảo tàng {statusText}
-          </div>
-        </div>
-
-        <div className="museum-hours">
-          <div className={`hours-row ${isMobile ? "touch-friendly" : ""}`}>
-            <div className="hours-time">
-              <span>7:00 → 21:00</span>
-            </div>
-            <div className="hours-days">
-              <span>Thứ Hai đến Chủ Nhật</span>
-            </div>
-          </div>
-        </div>
-
-        <div className="museum-notes">
-          <div className={`note-item ${isMobile ? "touch-friendly" : ""}`}>
-            <div className="note-label">Giờ vào cuối:</div>
-            <div className="note-value">1 tiếng trước giờ đóng cửa</div>
-          </div>
-
-          <div className={`note-item ${isMobile ? "touch-friendly" : ""}`}>
-            <div className="note-label">Dọn dẹp phòng:</div>
-            <div className="note-value">30 phút trước giờ đóng cửa</div>
-          </div>
-
-          <div className={`note-item ${isMobile ? "touch-friendly" : ""}`}>
-            <div className="note-label">Ngày lễ:</div>
-            <div className="note-value">
-                Musée Du Pin đóng cửa vào ngày 1 tháng 1, 1 tháng 5 và 25 tháng
-                12. Bảo tàng vẫn mở cửa vào các ngày lễ khác trừ khi rơi vào thứ
-                Ba, ngày nghỉ định kỳ của bảo tàng.
-            </div>
-          </div>
-
-          <div className={`note-item ${isMobile ? "touch-friendly" : ""}`}>
-            <div className="note-label">Sân Carrée</div>
-            <div className="note-value">đóng cửa lúc 23:00.</div>
-          </div>
-
-          <div className={`note-item ${isMobile ? "touch-friendly" : ""}`}>
-            <div className="note-label">Sân Carrée</div>
-            <div className="note-value">
-                sẽ đóng cửa từ ngày 7 tháng 4 đến 25 tháng 6 năm 2025.
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-
-  // Enhanced ticket option cards
   const renderTicketOptions = () => (
     <div className="ticket-options">
-      <div className={`ticket-option ${isMobile ? "touch-card" : ""}`}>
-        <div className="ticket-option-details">
-          <div className="ticket-type">
-            GIÁ TRỊ - Guided tours, storytime và học tập
+      <h2 className="package-main-title">Các gói trải nghiệm</h2>
+      <div className="visit-cards">
+        <div
+          className="visit-card visit-card-horizontal"
+          onClick={() => navigate("/visit/non-residential")}
+        >
+          <div className="visit-card-img-wrap">
+            <img
+              src="https://ik.imagekit.io/8u8lkoqkkm/Leaflet%20H%E1%BB%93n%20N%C3%BAi.png?updatedAt=1749083706305"
+              alt="Gói không lưu trú"
+              className="visit-card-img"
+            />
+            <div className="visit-card-overlay" />
+            <div className="visit-card-content">
+              <h2>Gói không lưu trú</h2>
+              <p>
+                Trải nghiệm nghệ thuật và văn hóa trong ngày tại Musée Du Pin
+              </p>
+            </div>
           </div>
         </div>
-        <div className="ticket-price">500.000đ</div>
+
+        <div
+          className="visit-card visit-card-vertical"
+          onClick={() => navigate("/visit/residential")}
+        >
+          <div className="visit-card-img-wrap">
+            <img
+              src="https://ik.imagekit.io/8u8lkoqkkm/daa23646b65e02005b4f.jpg?updatedAt=1749083704100"
+              alt="Gói lưu trú"
+              className="visit-card-img"
+            />
+            <div className="visit-card-overlay" />
+            <div className="visit-card-content">
+              <h2>Gói lưu trú</h2>
+              <p>
+                Nghỉ dưỡng và trải nghiệm nghệ thuật trọn vẹn tại Musée Du Pin
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="visit-card visit-card-vertical"
+          onClick={() => navigate("/visit/regular")}
+        >
+          <div className="visit-card-img-wrap">
+            <img
+              src="https://ik.imagekit.io/8u8lkoqkkm/6899dd753542811cd853.jpg?updatedAt=1749175097859"
+              alt="Chương trình định kỳ"
+              className="visit-card-img"
+            />
+            <div className="visit-card-overlay" />
+            <div className="visit-card-content">
+              <h2>Chương trình định kỳ</h2>
+              <p>
+                Các sự kiện nghệ thuật đặc sắc diễn ra thường xuyên tại Musée Du
+                Pin
+              </p>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div className={`ticket-option ${isMobile ? "touch-card" : ""}`}>
-        <div className="ticket-option-details">
-          <div className="ticket-type">
-              Người dưới 18 tuổi, cư dân EEA dưới 26 tuổi
-          </div>
-          <a href="#" className="ticket-link" onClick={handleFullListClick}>
-              Xem danh sách đầy đủ khách tham quan được miễn phí vé vào cửa
-          </a>
-        </div>
-        <div className="ticket-price highlighted">MIỄN PHÍ</div>
+      <div
+        className={`package-group-content ${
+          visibleSections.nonResidential ? "open" : ""
+        }`}
+      >
+        {experiencePackages.nonResidential.map((pkg) => renderPackage(pkg))}
       </div>
-
-      <div className={`ticket-option ${isMobile ? "touch-card" : ""}`}>
-        <div className="ticket-option-details">
-          <div className="ticket-type">
-              Bạn đến theo nhóm (từ 7 người trở lên)?
-          </div>
-          <a href="#" className="ticket-link" onClick={handleGroupPricesClick}>
-            Xem giá vé nhóm
-          </a>
-        </div>
-        <div className="ticket-price"></div>
+      <div
+        className={`package-group-content ${
+          visibleSections.residential ? "open" : ""
+        }`}
+      >
+        {experiencePackages.residential.map((pkg) => renderPackage(pkg))}
+      </div>
+      <div
+        className={`package-group-content ${
+          visibleSections.regular ? "open" : ""
+        }`}
+      >
+        {experiencePackages.regular.map((pkg) => renderPackage(pkg))}
       </div>
     </div>
   );
@@ -648,7 +937,7 @@ const Visit = () => {
           isScrollingDown ? "hidden" : ""
         }`}
       >
-        <ul className="mobile-nav-list">
+        <ul className="mobile-nav-lists">
           <li
             className={`mobile-button-item ${
               activeSection === "hours" ? "active" : ""
@@ -708,7 +997,9 @@ const Visit = () => {
                   <line x1="1" y1="10" x2="23" y2="10"></line>
                 </svg>
               </span>
-              <span className="mobile-nav-label">Vé</span>
+              <span className="mobile-nav-label">
+                Giờ mở cửa & <br /> Chi phí
+              </span>
             </button>
           </li>
           <li
@@ -788,6 +1079,16 @@ const Visit = () => {
     };
   }, [handleScroll]);
 
+  const handleBlockHover = (block) => {
+    setHoveredBlock(block);
+    clearTimeout(tooltipTimeout.current);
+    tooltipTimeout.current = setTimeout(() => setHoveredBlock(null), 3000);
+  };
+  const handleBlockLeave = () => {
+    setHoveredBlock(null);
+    clearTimeout(tooltipTimeout.current);
+  };
+
   // return updated component with enhanced mobile support
   return (
     <div
@@ -819,24 +1120,90 @@ const Visit = () => {
 
       {/* Hours & Admission Section */}
       <section
-        className={`visit-section hours-section ${
-          visibleSections.hours ? "visible" : ""
-        }`}
+        className={`hours-section ${visibleSections.hours ? "visible" : ""}`}
         id="hours"
         ref={sectionRefs.hours}
       >
         <div className="visit-section-container">
-          <h2 className="visit-section-title">
-            <span>THỜI GIAN THAM QUAN</span>
-          </h2>
-
-          <div className="museum-location-tabs">
-            <div className="location-tab active">
-              <button className="location-tab-button">Musée Du Pin</button>
+          <h2 className="visit-section-title main-title">Giờ mở cửa</h2>
+          <div className="hours-blocks">
+            <div
+              className="hours-block"
+              onMouseEnter={() => handleBlockHover("nonres")}
+              onMouseLeave={handleBlockLeave}
+              onClick={() => navigate("/visit/non-residential")}
+              tabIndex={0}
+              style={{ cursor: "pointer" }}
+            >
+              <div className="hours-block-icon">
+                <svg width="36" height="36" fill="none" viewBox="0 0 36 36">
+                  <circle
+                    cx="18"
+                    cy="18"
+                    r="16"
+                    stroke="#95a125"
+                    strokeWidth="2"
+                    fill="#f8f8f3"
+                  />
+                  <path
+                    d="M18 10v8l6 3"
+                    stroke="#95a125"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3 className="hours-block-title">Gói không lưu trú</h3>
+              <ul className="hours-block-list">
+                <li>
+                  Giờ mở cửa từ <b>8h-23h</b> hằng ngày
+                </li>
+                <li>Chi phí theo từng gói dưới đây</li>
+              </ul>
+              {hoveredBlock === "nonres" && (
+                <div className="hours-tooltip">Click để xem chi tiết</div>
+              )}
+            </div>
+            <div
+              className="hours-block"
+              onMouseEnter={() => handleBlockHover("res")}
+              onMouseLeave={handleBlockLeave}
+              onClick={() => navigate("/visit/residential")}
+              tabIndex={0}
+              style={{ cursor: "pointer" }}
+            >
+              <div className="hours-block-icon">
+                <svg width="36" height="36" fill="none" viewBox="0 0 36 36">
+                  <circle
+                    cx="18"
+                    cy="18"
+                    r="16"
+                    stroke="#00695c"
+                    strokeWidth="2"
+                    fill="#f8f8f3"
+                  />
+                  <path
+                    d="M18 8v10l7 4"
+                    stroke="#00695c"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <h3 className="hours-block-title">Gói có lưu trú</h3>
+              <ul className="hours-block-list">
+                <li>
+                  Giờ mở cửa: <b>24/24</b>
+                </li>
+                <li>Chi phí theo từng gói dưới đây</li>
+              </ul>
+              {hoveredBlock === "res" && (
+                <div className="hours-tooltip">Click để xem chi tiết</div>
+              )}
             </div>
           </div>
-
-          {renderMuseumInfo()}
         </div>
       </section>
 
@@ -861,10 +1228,9 @@ const Visit = () => {
               />
             </div>
             <p className="ticket-description">
-                Một vé cho phép bạn truy cập vào các bộ sưu tập vĩnh viễn và các
-                triển lãm tạm thời của Musée Du Pin, cũng như đến bảo tàng
-                Eugène-Delacroix cùng ngày và ngày sau ngày thăm của bạn tại bảo
-                tàng Musée Du Pin.
+              Một vé cho phép bạn truy cập vào các bộ sưu tập và các chương
+              trình triển lãm của Musée Du Pin, cũng như đến bảo tàng để trải
+              nghiệm các gói lưu trú tuyệt vời.
             </p>
             <div className="ticket-note">
               Vé có thể được mua trực tiếp tại điểm khi số lượng khách tham quan
@@ -873,178 +1239,11 @@ const Visit = () => {
           </div>
 
           {renderTicketOptions()}
-
-          <div
-            className={`free-admission-section expandable ${
-              isAdmissionExpanded ? "expanded" : ""
-            }`}
-          >
-            <div className="section-header" onClick={toggleAdmissionSection}>
-              <h3 className="section-titles">
-                  NGƯỜI THAM QUAN ĐƯỢC MIỄN PHÍ VÉ
-              </h3>
-              <button className="expand-button">
-                <span
-                  className={`expand-icon ${
-                    isAdmissionExpanded ? "rotated" : ""
-                  }`}
-                >
-                  ↓
-                </span>
-              </button>
-            </div>
-
-            <div
-              className="section-content"
-              style={{ display: isAdmissionExpanded ? "block" : "none" }}
-            >
-              <p className="section-intro">
-                Đặt giờ tham quan được khuyến nghị, bao gồm cho khách tham quan
-                được miễn phí vé.
-              </p>
-
-              <p className="section-subtitle">
-                  Miễn phí cho các khách tham quan sau:
-              </p>
-
-              <div className="visitor-category">
-                <h4 className="category-title">Dưới 18 tuổi</h4>
-                <p className="category-details">Chứng minh ID yêu cầu.</p>
-              </div>
-
-              <div className="visitor-category">
-                <h4 className="category-title">
-                    Cư dân khu vực kinh tế châu Âu (EU, Na Uy, Iceland, và
-                    Liechtenstein) dưới 26 tuổi
-                </h4>
-                <p className="category-details">
-                    Chứng minh ID và sống tại địa phương.
-                </p>
-              </div>
-
-              <div className="visitor-category">
-                <h4 className="category-title">Tất cả khách tham quan</h4>
-                <p className="category-details">
-                  Vào ngày thứ năm đầu tiên của tháng sau 6 giờ chiều (trừ tháng
-                  7 và tháng 8)
-                </p>
-              </div>
-
-              <div className="visitor-category-separator">Và:</div>
-
-              <div className="visitor-categories-grid">
-                <div className="visitor-category">
-                  <h4 className="category-title">
-                      Khách tham quan không mạnh mẽ và người đi cùng họ
-                  </h4>
-                </div>
-
-                <div className="visitor-category">
-                  <h4 className="category-title">
-                    Giáo viên nghệ thuật (nghệ thuật mỹ thuật, khảo cổ học, nghệ
-                    thuật ứng dụng, kiến trúc và lịch sử nghệ thuật)
-                  </h4>
-                  <p className="category-details">
-                      Trình bày chứng minh môn học đã dạy.
-                  </p>
-                </div>
-
-                <div className="visitor-category">
-                  <h4 className="category-title">
-                      Nghệ sĩ liên kết với AIAP (Hiệp hội Quốc tế Nghệ thuật Mỹ
-                      thuật)
-                  </h4>
-                  <p className="category-details">
-                      Trình bày thẻ thành viên hợp lệ hoặc chứng chỉ.
-                  </p>
-                </div>
-
-                <div className="visitor-category">
-                  <h4 className="category-title">Thành viên ICOM và ICOMOS</h4>
-                  <p className="category-details">
-                      Trình bày thẻ thành viên hợp lệ.
-                  </p>
-                </div>
-
-                <div className="visitor-category">
-                  <h4 className="category-title">Nhà báo</h4>
-                  <p className="category-details">
-                      Trình bày thẻ báo chí quốc tế hoặc quốc gia.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="tours-activities-section">
-            <h3 className="section-subtitle">Chuyến đi và hoạt động</h3>
-
-            <div className="ticket-options">
-              <div className="ticket-option">
-                <div className="ticket-option-details">
-                  <div className="ticket-type">
-                      GIÁ TRỊ - Guided tours, storytime và học tập
-                  </div>
-                  <p className="ticket-details">
-                      Giá này không bao gồm vé vào bảo tàng.
-                  </p>
-                </div>
-                <div className="ticket-price">12.00 €</div>
-              </div>
-
-              <div className="ticket-option">
-                <div className="ticket-option-details">
-                  <div className="ticket-type">
-                    VÉ KẾT HỢP - Tham quan có hướng dẫn, kể chuyện và hội thảo +
-                    Musée Du Pin
-                  </div>
-                  <p className="ticket-details">Bao gồm vé vào bảo tàng</p>
-                </div>
-                <div className="ticket-price">750.000đ</div>
-              </div>
-
-              <div className="ticket-option">
-                <div className="ticket-option-details">
-                  <div className="ticket-type">
-                      GIÁ ƯU ĐÃI - Tham quan có hướng dẫn, kể chuyện và hội thảo
-                  </div>
-                  <p className="ticket-details">Giá ưu đãi có điều kiện</p>
-                </div>
-                <div className="ticket-price">220.000đ</div>
-              </div>
-
-              <div className="ticket-option">
-                <div className="ticket-option-details">
-                  <div className="ticket-type">
-                      GIÁ NHÓM (7-25 người) - Tham quan có hướng dẫn
-                  </div>
-                  <p className="ticket-details">
-                      Giá mỗi người, yêu cầu đặt trước
-                  </p>
-                </div>
-                <div className="ticket-price">200.000đ</div>
-              </div>
-
-              <div className="ticket-option">
-                <div className="ticket-option-details">
-                  <div className="ticket-type">
-                      NHÓM HỌC SINH - Tham quan giáo dục có hướng dẫn
-                  </div>
-                  <p className="ticket-details">
-                      Dành cho các nhóm học sinh tiểu học và trung học, bao gồm
-                      tài liệu giáo dục
-                  </p>
-                </div>
-                <div className="ticket-price">120.000đ</div>
-              </div>
-            </div>
-          </div>
-
           <div className="payment-section">
             <h3 className="section-subtitle">Phương thức thanh toán</h3>
             <p className="payment-details">
               Các phương thức thanh toán được chấp nhận tại quầy vé bảo tàng bao
-              gồm tiền mặt, thẻ ngân hàng và phiếu du lịch 'Chèques-Vacances'.
+              gồm tiền mặt, thẻ ngân hàng và chuyển khoản.
             </p>
           </div>
         </div>
@@ -1063,10 +1262,10 @@ const Visit = () => {
 
           <div className="membership-info">
             <h3 className="membership-heading">
-                Trở thành thành viên của Hội Bạn bè Musée Du Pin
+              Trở thành thành viên của Hội Bạn bè Musée Du Pin
             </h3>
             <p className="membership-description">
-                Hội Bạn bè Musée Du Pin cung cấp nhiều chương trình thành viên
+              Hội Bạn bè Musée Du Pin cung cấp nhiều chương trình thành viên
               khác nhau (thanh niên, cá nhân và cặp đôi, gia đình), với mức giá
               từ 350.000đ đến 2.800.000đ.
             </p>

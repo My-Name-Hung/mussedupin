@@ -20,20 +20,6 @@ const OptimizedImage = ({
   const imgRef = useRef(null);
   const placeholderRef = useRef(null);
 
-  // Generate responsive image URLs
-  const generateSrcSet = (imageSrc) => {
-    const baseName = imageSrc.replace(/\.[^/.]+$/, "");
-    const extension = imageSrc.match(/\.[^/.]+$/)?.[0] || ".webp";
-
-    return [
-      `${baseName}_480w${extension} 480w`,
-      `${baseName}_768w${extension} 768w`,
-      `${baseName}_1024w${extension} 1024w`,
-      `${baseName}_1200w${extension} 1200w`,
-      `${imageSrc} 1920w`,
-    ].join(", ");
-  };
-
   // Intersection Observer for lazy loading
   useEffect(() => {
     if (priority || isInView) return;
@@ -69,9 +55,6 @@ const OptimizedImage = ({
     onError?.();
   };
 
-  // Generate low quality placeholder
-  const placeholderSrc = `${src.replace(/\.[^/.]+$/, "")}_placeholder.webp`;
-
   return (
     <div
       ref={placeholderRef}
@@ -85,43 +68,14 @@ const OptimizedImage = ({
       }}
       {...props}
     >
-      {/* Low quality placeholder */}
-      {!priority && !isInView && (
-        <div
-          className="image-placeholder"
-          style={{
-            position: "absolute",
-            top: 0,
-            left: 0,
-            width: "100%",
-            height: "100%",
-            backgroundImage: `url(${placeholderSrc})`,
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            filter: "blur(10px)",
-            transform: "scale(1.1)",
-            transition: "opacity 0.3s ease",
-            opacity: isLoaded ? 0 : 1,
-          }}
-        />
-      )}
-
       {/* Main image */}
       {(priority || isInView) && (
         <picture>
           {/* WebP source */}
-          <source
-            srcSet={generateSrcSet(src.replace(/\.[^/.]+$/, ".webp"))}
-            sizes={sizes}
-            type="image/webp"
-          />
+          <source srcSet={src} sizes={sizes} type="image/webp" />
 
           {/* Fallback source */}
-          <source
-            srcSet={generateSrcSet(src)}
-            sizes={sizes}
-            type="image/jpeg"
-          />
+          <source srcSet={src} sizes={sizes} type="image/jpeg" />
 
           <img
             ref={imgRef}

@@ -108,15 +108,15 @@ const Hero = () => {
 
   return (
     <>
-      <section className="hero-container" ref={heroRef}>
-        <div className="hero-image-container">
+      <section className="hero-container-home" ref={heroRef}>
+        <div className="hero-image-container-home">
           <CloudinaryPlayer
             cloudName="dn0br7hj0"
             publicId="hero/LANGBIANG_RESIZE"
             width="100%"
             height="100%"
           />
-          <div className="hero-content">
+          <div className="hero-content-home">
             {/* Add structured data for SEO */}
             <script type="application/ld+json">
               {JSON.stringify({
@@ -155,7 +155,7 @@ const Hero = () => {
       >
         <div className="info-panel-content">
           <div className="info-panel-left">
-            <h2 className="info-panel-title">Chào mừng đến với Musée Du Pin</h2>
+            <h2 className="info-panel-titles">Chào mừng đến với Musée Du Pin</h2>
             <p className="info-panel-status">Bảo tàng đang mở cửa</p>
             <p className="info-panel-hours">
               <span>7:00 AM</span>

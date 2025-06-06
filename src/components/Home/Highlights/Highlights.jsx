@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import useCachedAsset from "../../../hooks/useCachedAsset";
-import { getImageUrl } from "../../../utils/cloudinary";
 import "./Highlights.css";
 
 // Sample highlight data - in a real app, this would come from an API or CMS
@@ -11,7 +10,8 @@ const highlightsData = [
     title: "Không gian nghệ thuật Langbiang",
     description:
       "Khi nghệ thuật không chỉ để ngắm, mà để sống cùng và sống trong. Không có tủ kính ngăn cách. Không có rào chắn giữa người và hiện vật. Langbiang không đơn thuần là một căn phòng, mà là một vùng ký ức sống, nơi hồn cốt của núi rừng thở trong từng vật phẩm, cháy trong từng ngọn lửa bếp, ngân nga trong từng tiếng cồng chiêng.",
-    image: "Langbiang.jpg",
+    image:
+      "https://ik.imagekit.io/8u8lkoqkkm/image.png?updatedAt=1749008666857",
     alt: "Langbiang",
     tag: "Trưng bày",
     link: "/exhibition-details/langbiang-khong-gian",
@@ -22,7 +22,8 @@ const highlightsData = [
     title: "Phức Tầng",
     description:
       "Được Musée Du Pin bắt trọn khoảng khắc các hình ảnh thiên nhiên đậm sắc dân tộc K'ho, tạo nên bức tranh đẹp về đất nước Tây Nguyên.",
-    image: "Thông 2.webp",
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/Th%C3%B4ng%202.webp",
     alt: "Phức Tầng",
     tag: "Tham Quan",
     link: "/exhibition-details/phuc-tang-tram-mac",
@@ -38,7 +39,7 @@ const CachedImage = ({
   loading = "eager",
   highlightId,
 }) => {
-  const { url: cachedUrl, isLoaded } = useCachedAsset(getImageUrl(src));
+  const { url: cachedUrl, isLoaded } = useCachedAsset(src);
 
   return (
     <img

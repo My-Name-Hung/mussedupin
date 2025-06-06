@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "@import url(\"https://fonts.googleapis.com/css2?family=Roboto:wght@400;500&family=Montserrat:wght@600&display=swap\");\n@import url(\"https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&display=swap\");\n@import url(\"https://fonts.googleapis.com/css2?family=Crimson+Text:wght@400;600;700&display=swap\");\n\n:root {\n  font-family: Roboto, \"Open Sans\", Arial, Helvetica, sans-serif;\n  line-height: 1.5;\n  font-weight: 400;\n\n  color-scheme: dark;\n  color: rgba(255, 255, 255, 0.87);\n  background-color: #020216;\n\n  font-synthesis: none;\n  text-rendering: optimizeLegibility;\n  -webkit-font-smoothing: antialiased;\n  -moz-osx-font-smoothing: grayscale;\n}\n\n* {\n  margin: 0;\n  padding: 0;\n  box-sizing: border-box;\n}\n\nhtml,\nbody {\n  overflow-x: hidden;\n  position: relative;\n  width: 100%;\n  \n}\n\nbody {\n  margin: 0;\n  padding: 0;\n  min-width: 320px;\n  min-height: 100vh;\n  background-color: #020216;\n  isolation: isolate;\n}\n\n/* Fix for fixed positioned elements - enhanced version */\n.fixed-mobile-element {\n  position: fixed !important;\n  z-index: 9900 !important;\n  transform: translateZ(0) !important;\n  -webkit-transform-style: preserve-3d !important;\n  transform-style: preserve-3d !important;\n  backface-visibility: hidden !important;\n  -webkit-backface-visibility: hidden !important;\n  will-change: transform, opacity !important;\n  isolation: isolate !important;\n}\n\n/* Specific element positioning fixes */\n.fixed-mobile-element.mobile-bottom-nav {\n  bottom: 0 !important;\n  left: 0 !important;\n  right: 0 !important;\n  width: 100vw !important;\n  z-index: 9940 !important;\n}\n\n.fixed-mobile-element.mobile-scroll-top {\n  bottom: 80px !important;\n  right: 20px !important;\n  z-index: 9950 !important;\n}\n\n.fixed-mobile-element.homestay-details-sidebar,\n.fixed-mobile-element.booking-sidebar {\n  top: 0 !important;\n  right: -100% !important;\n  height: 100vh !important;\n  z-index: 9945 !important;\n}\n\n.fixed-mobile-element.homestay-details-sidebar.open,\n.fixed-mobile-element.booking-sidebar.open {\n  right: 0 !important;\n}\n\n.fixed-mobile-element.details-sidebar-header,\n.fixed-mobile-element.booking-sidebar-header {\n  top: 0 !important;\n  z-index: 9946 !important;\n}\n\n.app {\n  width: 100%;\n  min-height: 100vh;\n  isolation: isolate;\n  position: relative;\n  overflow-x: hidden;\n}\n\na {\n  text-decoration: none;\n  color: inherit;\n}\n\nimg {\n  max-width: 100%;\n  height: auto;\n}\n\n/* Translation Progress Overlay */\n.translation-progress-overlay {\n  position: fixed;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  background-color: rgba(0, 0, 0, 0.8);\n  z-index: 10000;\n  padding: 0;\n}\n\n.translation-progress-container {\n  width: 100%;\n  position: relative;\n  height: 40px;\n  overflow: hidden;\n  background-color: rgba(0, 0, 0, 0.2);\n}\n\n.translation-progress-bar {\n  position: absolute;\n  top: 0;\n  left: 0;\n  height: 100%;\n  background-color: #00695c;\n  transition: width 0.2s ease-in-out;\n}\n\n.translation-progress-text {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: #ffffff;\n  font-weight: 500;\n  font-size: 14px;\n  font-family: Roboto, sans-serif;\n  z-index: 1;\n}\n\n/* Translated Text Styling */\n.translated-text.loading {\n  opacity: 0.7;\n  position: relative;\n}\n\n.translated-text.loading::after {\n  content: \"\";\n  position: absolute;\n  width: 100%;\n  height: 2px;\n  background-color: #00695c;\n  bottom: -2px;\n  left: 0;\n  animation: pulse 1.5s infinite;\n}\n\n@keyframes pulse {\n  0% {\n    opacity: 0.2;\n  }\n  50% {\n    opacity: 1;\n  }\n  100% {\n    opacity: 0.2;\n  }\n}\n\n/* Fix for mobile quirks */\n@media (max-width: 768px) {\n  /* Force hardware acceleration and proper stacking for all fixed elements */\n  body .fixed-mobile-element {\n    -webkit-transform: translate3d(0, 0, 0) !important;\n    transform: translate3d(0, 0, 0) !important;\n    -webkit-backface-visibility: hidden !important;\n    backface-visibility: hidden !important;\n  }\n\n  /* Fixed position must be respected */\n  body .fixed-mobile-element.mobile-bottom-nav {\n    position: fixed !important;\n    bottom: 0 !important;\n    left: 0 !important;\n    right: 0 !important;\n    width: 100% !important;\n  }\n}\n",
-      "start": 1748859736760,
-      "end": 1748859736771,
+      "start": 1749089001247,
+      "end": 1749089001329,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1748859736771,
-      "end": 1748859736771,
+      "start": 1749089001329,
+      "end": 1749089001329,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1748859737357,
-      "end": 1748859737357,
+      "start": 1749089003312,
+      "end": 1749089003312,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1748859737359,
-      "end": 1748859737359,
+      "start": 1749089003313,
+      "end": 1749089003313,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1748859737359,
-      "end": 1748859737359,
+      "start": 1749089003313,
+      "end": 1749089003313,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1748859737359,
-      "end": 1748859737359,
+      "start": 1749089003313,
+      "end": 1749089003313,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1748859737359,
-      "end": 1748859737359,
+      "start": 1749089003313,
+      "end": 1749089003313,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1748859737359,
-      "end": 1748859737359,
+      "start": 1749089003313,
+      "end": 1749089003313,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1748859737359,
-      "end": 1748859737359,
+      "start": 1749089003314,
+      "end": 1749089003314,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1748859737359,
-      "end": 1748859737359,
+      "start": 1749089003314,
+      "end": 1749089003314,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1748859737359,
-      "end": 1748859737359,
+      "start": 1749089003314,
+      "end": 1749089003314,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1748859737359,
-      "end": 1748859737359,
+      "start": 1749089003314,
+      "end": 1749089003314,
       "order": "normal"
     }
   ]

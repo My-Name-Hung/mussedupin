@@ -1219,7 +1219,7 @@
   justify-content: center;
   gap: 15px;
   margin-top: auto;
-  padding-top: 30px;
+  padding-top: 10px;
 }
 
 .social-icon {
@@ -1715,7 +1715,7 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-.back-buttons {
+.back-buttonss {
   display: flex;
   align-items: center;
   background: none;

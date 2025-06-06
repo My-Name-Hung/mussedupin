@@ -92,8 +92,8 @@ const Copyrights = () => {
               hoặc người thừa kế
             </li>
             <li>
-              Hình ảnh có giấy phép Creative Commons: Có thể sử dụng theo điều
-              khoản của giấy phép
+              Hình ảnh có giấy phép: Có thể sử dụng theo điều khoản của giấy
+              phép
             </li>
           </ul>
         </div>
@@ -156,11 +156,11 @@ const Copyrights = () => {
           <p>
             Phòng Bản quyền - Bảo tàng Thông - Musée Du Pin
             <br />
-            Email: copyright@dupin.vn
+            Email: baotangthong2024@gmail.com
             <br />
-            Điện thoại: XXX XXX XXX
+            Điện thoại: +84 2633 818 968; +84 86 235 6368
             <br />
-            Địa chỉ: XXX XXX XXX
+            Địa chỉ: 29-31 Đống Đa, phường 3, tp. Đà Lạt, Lâm Đồng
           </p>
         </div>
       </div>

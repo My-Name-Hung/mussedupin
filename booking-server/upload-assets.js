@@ -77,15 +77,7 @@ const uploadAllAssets = async () => {
 
   // Define directories to process
   const directories = [
-    { path: path.join(assetsDir, "Home/Exhibitions"), folder: "exhibitions" },
-    { path: path.join(assetsDir, "Home/Highlights"), folder: "highlights" },
-    { path: path.join(assetsDir, "Home/Hero"), folder: "hero" },
-    { path: path.join(assetsDir, "Home/DelveInto"), folder: "delve-into" },
     { path: path.join(assetsDir, "Home/Collections"), folder: "collections" },
-    { path: path.join(assetsDir, "Home/About"), folder: "about" },
-    { path: path.join(assetsDir, "Logo"), folder: "logo" },
-    { path: path.join(assetsDir, "Background"), folder: "background" },
-    { path: path.join(assetsDir, "textures"), folder: "textures" },
   ];
 
   console.log("🚀 Starting Cloudinary upload process...\n");

@@ -1,5 +1,6 @@
 // Cloudinary configuration
 const CLOUD_NAME = "dn0br7hj0";
+const VERSION = "v1748784653"; // Add version number
 
 // Base URL for Cloudinary
 const CLOUDINARY_BASE_URL = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload`;
@@ -19,8 +20,8 @@ const buildCloudinaryUrl = (publicId, options = {}) => {
     })
     .join(",");
 
-  // Build the final URL
-  return `${CLOUDINARY_BASE_URL}/${
+  // Build the final URL with version number
+  return `${CLOUDINARY_BASE_URL}/${VERSION}/${
     transformations ? transformations + "/" : ""
   }${publicId}`;
 };

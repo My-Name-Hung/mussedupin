@@ -3,75 +3,75 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "// Cloudinary configuration\nconst CLOUD_NAME = \"dn0br7hj0\";\n\n// Base URL for Cloudinary\nconst CLOUDINARY_BASE_URL = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload`;\n\n// Helper function to build Cloudinary URL with transformations\nconst buildCloudinaryUrl = (publicId, options = {}) => {\n  if (!publicId) return \"\";\n\n  // Convert options to Cloudinary transformation string\n  const transformations = Object.entries(options)\n    .filter(([, value]) => value !== undefined)\n    .map(([key, value]) => {\n      if (key === \"width\" || key === \"height\" || key === \"crop\") {\n        return `${key}_${value}`;\n      }\n      return `${key},${value}`;\n    })\n    .join(\",\");\n\n  // Build the final URL\n  return `${CLOUDINARY_BASE_URL}/${\n    transformations ? transformations + \"/\" : \"\"\n  }${publicId}`;\n};\n\n// Helper function to get exhibition image URL\nexport const getImageUrl = (filename) => {\n  if (!filename) return \"\";\n  const publicId = `collections/${filename}`;\n  return buildCloudinaryUrl(publicId);\n};\n\n// Helper function to get gallery image URL\nexport const getGalleryImageUrl = (filename) => {\n  if (!filename) return \"\";\n  const publicId = `collections/${filename}`;\n  return buildCloudinaryUrl(publicId);\n};\n\n// Helper function to get thumbnail URL\nexport const getThumbnailUrl = (filename) => {\n  if (!filename) return \"\";\n  const publicId = `collections/${filename}`;\n  return buildCloudinaryUrl(publicId);\n};\n\n// Helper function to get about image URL\nexport const getAboutImageUrl = (filename) => {\n  if (!filename) return \"\";\n  const publicId = `about/${filename}`;\n  return buildCloudinaryUrl(publicId);\n};\n\n// Helper function to get logo image URL\nexport const getLogoImageUrl = (filename, options = {}) => {\n  if (!filename) return \"\";\n  const publicId = `logo/${filename}`;\n  return buildCloudinaryUrl(publicId, {\n    ...options,\n  });\n};\n\n// Helper function to get background image URL\nexport const getBackgroundImageUrl = (filename, options = {}) => {\n  if (!filename) return \"\";\n  const publicId = `background/${filename}`;\n  return buildCloudinaryUrl(publicId, {\n    ...options,\n  });\n};\n\n// Helper function to get any image URL with custom transformations\nexport const getImagebuildUrl = (publicId, options = {}) => {\n  return buildCloudinaryUrl(publicId, options);\n};\n\n// Helper function to get hero video URL\nexport const getHeroVideoUrl = (filename) => {\n  if (!filename) return \"\";\n  const publicId = `hero/${filename}`;\n  return buildCloudinaryUrl(publicId);\n};\n",
-      "start": 1748859737075,
-      "end": 1748859737187,
+      "result": "// Cloudinary configuration\r\nconst CLOUD_NAME = \"dn0br7hj0\";\r\nconst VERSION = \"v1748784653\"; // Add version number\r\n\r\n// Base URL for Cloudinary\r\nconst CLOUDINARY_BASE_URL = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload`;\r\n\r\n// Helper function to build Cloudinary URL with transformations\r\nconst buildCloudinaryUrl = (publicId, options = {}) => {\r\n  if (!publicId) return \"\";\r\n\r\n  // Convert options to Cloudinary transformation string\r\n  const transformations = Object.entries(options)\r\n    .filter(([, value]) => value !== undefined)\r\n    .map(([key, value]) => {\r\n      if (key === \"width\" || key === \"height\" || key === \"crop\") {\r\n        return `${key}_${value}`;\r\n      }\r\n      return `${key},${value}`;\r\n    })\r\n    .join(\",\");\r\n\r\n  // Build the final URL with version number\r\n  return `${CLOUDINARY_BASE_URL}/${VERSION}/${\r\n    transformations ? transformations + \"/\" : \"\"\r\n  }${publicId}`;\r\n};\r\n\r\n// Helper function to get exhibition image URL\r\nexport const getImageUrl = (filename) => {\r\n  if (!filename) return \"\";\r\n  const publicId = `collections/${filename}`;\r\n  return buildCloudinaryUrl(publicId);\r\n};\r\n\r\n// Helper function to get gallery image URL\r\nexport const getGalleryImageUrl = (filename) => {\r\n  if (!filename) return \"\";\r\n  const publicId = `collections/${filename}`;\r\n  return buildCloudinaryUrl(publicId);\r\n};\r\n\r\n// Helper function to get thumbnail URL\r\nexport const getThumbnailUrl = (filename) => {\r\n  if (!filename) return \"\";\r\n  const publicId = `collections/${filename}`;\r\n  return buildCloudinaryUrl(publicId);\r\n};\r\n\r\n// Helper function to get about image URL\r\nexport const getAboutImageUrl = (filename) => {\r\n  if (!filename) return \"\";\r\n  const publicId = `about/${filename}`;\r\n  return buildCloudinaryUrl(publicId);\r\n};\r\n\r\n// Helper function to get logo image URL\r\nexport const getLogoImageUrl = (filename, options = {}) => {\r\n  if (!filename) return \"\";\r\n  const publicId = `logo/${filename}`;\r\n  return buildCloudinaryUrl(publicId, {\r\n    ...options,\r\n  });\r\n};\r\n\r\n// Helper function to get background image URL\r\nexport const getBackgroundImageUrl = (filename, options = {}) => {\r\n  if (!filename) return \"\";\r\n  const publicId = `background/${filename}`;\r\n  return buildCloudinaryUrl(publicId, {\r\n    ...options,\r\n  });\r\n};\r\n\r\n// Helper function to get any image URL with custom transformations\r\nexport const getImagebuildUrl = (publicId, options = {}) => {\r\n  return buildCloudinaryUrl(publicId, options);\r\n};\r\n\r\n// Helper function to get hero video URL\r\nexport const getHeroVideoUrl = (filename) => {\r\n  if (!filename) return \"\";\r\n  const publicId = `hero/${filename}`;\r\n  return buildCloudinaryUrl(publicId);\r\n};\r\n",
+      "start": 1749089002192,
+      "end": 1749089003394,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1748859737188,
-      "end": 1748859737188,
+      "start": 1749089003394,
+      "end": 1749089003394,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1748859737188,
-      "end": 1748859737188,
+      "start": 1749089003395,
+      "end": 1749089003395,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1748859737188,
-      "end": 1748859737188,
+      "start": 1749089003395,
+      "end": 1749089003395,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1748859737188,
-      "end": 1748859737188,
+      "start": 1749089003395,
+      "end": 1749089003395,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1748859737188,
-      "end": 1748859737188,
+      "start": 1749089003395,
+      "end": 1749089003395,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1748859737188,
-      "end": 1748859737188,
+      "start": 1749089003395,
+      "end": 1749089003395,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1748859737188,
-      "end": 1748859737188,
+      "start": 1749089003395,
+      "end": 1749089003395,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1748859737188,
-      "end": 1748859737188,
+      "start": 1749089003395,
+      "end": 1749089003395,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1748859737188,
-      "end": 1748859737188,
+      "start": 1749089003395,
+      "end": 1749089003395,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1748859737188,
-      "end": 1748859737188,
+      "start": 1749089003395,
+      "end": 1749089003395,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1748859737188,
-      "end": 1748859737188,
+      "start": 1749089003395,
+      "end": 1749089003395,
       "order": "normal"
     }
   ]

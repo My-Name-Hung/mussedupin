@@ -3,22 +3,22 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "import React, { useEffect, useState } from \"react\";\nimport useImageCache from \"../../hooks/useImageCache\";\nimport usePreloadAssets from \"../../hooks/usePreloadAssets\";\nimport Loading from \"../Loading/Loading\";\n\nconst AppLoader = ({ children }) => {\n  const [allAssets, setAllAssets] = useState([]);\n  const [criticalAssets, setCriticalAssets] = useState([]);\n  const [showContent, setShowContent] = useState(false);\n  const { preloadAll } = useImageCache();\n\n  // Initialize assets\n  useEffect(() => {\n    const critical = [];\n    const secondary = [];\n\n    setCriticalAssets(critical);\n    setAllAssets([...critical, ...secondary]);\n  }, []);\n\n  // Use our preload hook for all assets\n  const { progress, done, priorityDone } = usePreloadAssets(allAssets);\n\n  // Preload critical assets with high priority\n  useEffect(() => {\n    if (criticalAssets.length > 0) {\n      // Preload critical assets immediately\n      preloadAll(criticalAssets).catch((error) => {\n        console.error(\"Error preloading critical assets:\", error);\n      });\n    }\n  }, [criticalAssets, preloadAll]);\n\n  // Show content when priority assets are loaded\n  useEffect(() => {\n    if (priorityDone) {\n      setShowContent(true);\n    }\n  }, [priorityDone]);\n\n  if (!showContent) {\n    return <Loading progress={progress} priorityDone={priorityDone} />;\n  }\n\n  return (\n    <>\n      {children}\n      {/* Continue loading secondary assets in background */}\n      {!done && (\n        <div style={{ display: \"none\" }}>\n          Loading secondary assets: {Math.round(progress)}%\n        </div>\n      )}\n    </>\n  );\n};\n\nexport default AppLoader;\n",
-      "start": 1748859736823,
-      "end": 1748859736991,
+      "result": "import React, { useEffect, useState } from \"react\";\r\nimport useImageCache from \"../../hooks/useImageCache\";\r\nimport usePreloadAssets from \"../../hooks/usePreloadAssets\";\r\nimport Loading from \"../Loading/Loading\";\r\n\r\nconst AppLoader = ({ children }) => {\r\n  const [allAssets, setAllAssets] = useState([]);\r\n  const [criticalAssets, setCriticalAssets] = useState([]);\r\n  const [showContent, setShowContent] = useState(false);\r\n  const { preloadAll } = useImageCache();\r\n\r\n  // Initialize assets\r\n  useEffect(() => {\r\n    const critical = [];\r\n    const secondary = [];\r\n\r\n    setCriticalAssets(critical);\r\n    setAllAssets([...critical, ...secondary]);\r\n  }, []);\r\n\r\n  // Use our preload hook for all assets\r\n  const { progress, done, priorityDone } = usePreloadAssets(allAssets);\r\n\r\n  // Preload critical assets with high priority\r\n  useEffect(() => {\r\n    if (criticalAssets.length > 0) {\r\n      // Preload critical assets immediately\r\n      preloadAll(criticalAssets).catch((error) => {\r\n        console.error(\"Error preloading critical assets:\", error);\r\n      });\r\n    }\r\n  }, [criticalAssets, preloadAll]);\r\n\r\n  // Show content when priority assets are loaded\r\n  useEffect(() => {\r\n    if (priorityDone) {\r\n      setShowContent(true);\r\n    }\r\n  }, [priorityDone]);\r\n\r\n  if (!showContent) {\r\n    return <Loading progress={progress} priorityDone={priorityDone} />;\r\n  }\r\n\r\n  return (\r\n    <>\r\n      {children}\r\n      {/* Continue loading secondary assets in background */}\r\n      {!done && (\r\n        <div style={{ display: \"none\" }}>\r\n          Loading secondary assets: {Math.round(progress)}%\r\n        </div>\r\n      )}\r\n    </>\r\n  );\r\n};\r\n\r\nexport default AppLoader;\r\n",
+      "start": 1749089001401,
+      "end": 1749089001734,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1748859736991,
-      "end": 1748859736991,
+      "start": 1749089001735,
+      "end": 1749089001735,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { Fragment, jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect, useState } from \"react\";\nimport useImageCache from \"../../hooks/useImageCache\";\nimport usePreloadAssets from \"../../hooks/usePreloadAssets\";\nimport Loading from \"../Loading/Loading\";\nconst AppLoader = ({ children }) => {\n  const [allAssets, setAllAssets] = useState([]);\n  const [criticalAssets, setCriticalAssets] = useState([]);\n  const [showContent, setShowContent] = useState(false);\n  const { preloadAll } = useImageCache();\n  useEffect(() => {\n    const critical = [];\n    const secondary = [];\n    setCriticalAssets(critical);\n    setAllAssets([...critical, ...secondary]);\n  }, []);\n  const { progress, done, priorityDone } = usePreloadAssets(allAssets);\n  useEffect(() => {\n    if (criticalAssets.length > 0) {\n      preloadAll(criticalAssets).catch((error) => {\n        console.error(\"Error preloading critical assets:\", error);\n      });\n    }\n  }, [criticalAssets, preloadAll]);\n  useEffect(() => {\n    if (priorityDone) {\n      setShowContent(true);\n    }\n  }, [priorityDone]);\n  if (!showContent) {\n    return /* @__PURE__ */ jsx(Loading, { progress, priorityDone });\n  }\n  return /* @__PURE__ */ jsxs(Fragment, { children: [\n    children,\n    !done && /* @__PURE__ */ jsxs(\"div\", { style: { display: \"none\" }, children: [\n      \"Loading secondary assets: \",\n      Math.round(progress),\n      \"%\"\n    ] })\n  ] });\n};\nexport default AppLoader;\n",
-      "start": 1748859736991,
-      "end": 1748859737006,
+      "start": 1749089001735,
+      "end": 1749089002375,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -26,7 +26,7 @@
           "C:/Users/.Freelancer/baotangnghethuat/src/components/AppLoader/AppLoader.jsx"
         ],
         "sourcesContent": [
-          "import React, { useEffect, useState } from \"react\";\nimport useImageCache from \"../../hooks/useImageCache\";\nimport usePreloadAssets from \"../../hooks/usePreloadAssets\";\nimport Loading from \"../Loading/Loading\";\n\nconst AppLoader = ({ children }) => {\n  const [allAssets, setAllAssets] = useState([]);\n  const [criticalAssets, setCriticalAssets] = useState([]);\n  const [showContent, setShowContent] = useState(false);\n  const { preloadAll } = useImageCache();\n\n  // Initialize assets\n  useEffect(() => {\n    const critical = [];\n    const secondary = [];\n\n    setCriticalAssets(critical);\n    setAllAssets([...critical, ...secondary]);\n  }, []);\n\n  // Use our preload hook for all assets\n  const { progress, done, priorityDone } = usePreloadAssets(allAssets);\n\n  // Preload critical assets with high priority\n  useEffect(() => {\n    if (criticalAssets.length > 0) {\n      // Preload critical assets immediately\n      preloadAll(criticalAssets).catch((error) => {\n        console.error(\"Error preloading critical assets:\", error);\n      });\n    }\n  }, [criticalAssets, preloadAll]);\n\n  // Show content when priority assets are loaded\n  useEffect(() => {\n    if (priorityDone) {\n      setShowContent(true);\n    }\n  }, [priorityDone]);\n\n  if (!showContent) {\n    return <Loading progress={progress} priorityDone={priorityDone} />;\n  }\n\n  return (\n    <>\n      {children}\n      {/* Continue loading secondary assets in background */}\n      {!done && (\n        <div style={{ display: \"none\" }}>\n          Loading secondary assets: {Math.round(progress)}%\n        </div>\n      )}\n    </>\n  );\n};\n\nexport default AppLoader;\n"
+          "import React, { useEffect, useState } from \"react\";\r\nimport useImageCache from \"../../hooks/useImageCache\";\r\nimport usePreloadAssets from \"../../hooks/usePreloadAssets\";\r\nimport Loading from \"../Loading/Loading\";\r\n\r\nconst AppLoader = ({ children }) => {\r\n  const [allAssets, setAllAssets] = useState([]);\r\n  const [criticalAssets, setCriticalAssets] = useState([]);\r\n  const [showContent, setShowContent] = useState(false);\r\n  const { preloadAll } = useImageCache();\r\n\r\n  // Initialize assets\r\n  useEffect(() => {\r\n    const critical = [];\r\n    const secondary = [];\r\n\r\n    setCriticalAssets(critical);\r\n    setAllAssets([...critical, ...secondary]);\r\n  }, []);\r\n\r\n  // Use our preload hook for all assets\r\n  const { progress, done, priorityDone } = usePreloadAssets(allAssets);\r\n\r\n  // Preload critical assets with high priority\r\n  useEffect(() => {\r\n    if (criticalAssets.length > 0) {\r\n      // Preload critical assets immediately\r\n      preloadAll(criticalAssets).catch((error) => {\r\n        console.error(\"Error preloading critical assets:\", error);\r\n      });\r\n    }\r\n  }, [criticalAssets, preloadAll]);\r\n\r\n  // Show content when priority assets are loaded\r\n  useEffect(() => {\r\n    if (priorityDone) {\r\n      setShowContent(true);\r\n    }\r\n  }, [priorityDone]);\r\n\r\n  if (!showContent) {\r\n    return <Loading progress={progress} priorityDone={priorityDone} />;\r\n  }\r\n\r\n  return (\r\n    <>\r\n      {children}\r\n      {/* Continue loading secondary assets in background */}\r\n      {!done && (\r\n        <div style={{ display: \"none\" }}>\r\n          Loading secondary assets: {Math.round(progress)}%\r\n        </div>\r\n      )}\r\n    </>\r\n  );\r\n};\r\n\r\nexport default AppLoader;\r\n"
         ],
         "mappings": "AAyCW,SAIP,UAJO,KAQH,YARG;AAzCX,OAAO,SAAS,WAAW,gBAAgB;AAC3C,OAAO,mBAAmB;AAC1B,OAAO,sBAAsB;AAC7B,OAAO,aAAa;AAEpB,MAAM,YAAY,CAAC,EAAE,SAAS,MAAM;AAClC,QAAM,CAAC,WAAW,YAAY,IAAI,SAAS,CAAC,CAAC;AAC7C,QAAM,CAAC,gBAAgB,iBAAiB,IAAI,SAAS,CAAC,CAAC;AACvD,QAAM,CAAC,aAAa,cAAc,IAAI,SAAS,KAAK;AACpD,QAAM,EAAE,WAAW,IAAI,cAAc;AAGrC,YAAU,MAAM;AACd,UAAM,WAAW,CAAC;AAClB,UAAM,YAAY,CAAC;AAEnB,sBAAkB,QAAQ;AAC1B,iBAAa,CAAC,GAAG,UAAU,GAAG,SAAS,CAAC;AAAA,EAC1C,GAAG,CAAC,CAAC;AAGL,QAAM,EAAE,UAAU,MAAM,aAAa,IAAI,iBAAiB,SAAS;AAGnE,YAAU,MAAM;AACd,QAAI,eAAe,SAAS,GAAG;AAE7B,iBAAW,cAAc,EAAE,MAAM,CAAC,UAAU;AAC1C,gBAAQ,MAAM,qCAAqC,KAAK;AAAA,MAC1D,CAAC;AAAA,IACH;AAAA,EACF,GAAG,CAAC,gBAAgB,UAAU,CAAC;AAG/B,YAAU,MAAM;AACd,QAAI,cAAc;AAChB,qBAAe,IAAI;AAAA,IACrB;AAAA,EACF,GAAG,CAAC,YAAY,CAAC;AAEjB,MAAI,CAAC,aAAa;AAChB,WAAO,oBAAC,WAAQ,UAAoB,cAA4B;AAAA,EAClE;AAEA,SACE,iCACG;AAAA;AAAA,IAEA,CAAC,QACA,qBAAC,SAAI,OAAO,EAAE,SAAS,OAAO,GAAG;AAAA;AAAA,MACJ,KAAK,MAAM,QAAQ;AAAA,MAAE;AAAA,OAClD;AAAA,KAEJ;AAEJ;AAEA,eAAe;",
         "names": []
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1748859737006,
-      "end": 1748859737006,
+      "start": 1749089002375,
+      "end": 1749089002375,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1748859737006,
-      "end": 1748859737006,
+      "start": 1749089002375,
+      "end": 1749089002375,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1748859737006,
-      "end": 1748859737006,
+      "start": 1749089002375,
+      "end": 1749089002375,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1748859737006,
-      "end": 1748859737006,
+      "start": 1749089002375,
+      "end": 1749089002375,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1748859737006,
-      "end": 1748859737006,
+      "start": 1749089002375,
+      "end": 1749089002375,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1748859737006,
-      "end": 1748859737006,
+      "start": 1749089002375,
+      "end": 1749089002375,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1748859737006,
-      "end": 1748859737006,
+      "start": 1749089002375,
+      "end": 1749089002375,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1748859737006,
-      "end": 1748859737006,
+      "start": 1749089002375,
+      "end": 1749089002376,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1748859737006,
-      "end": 1748859737006,
+      "start": 1749089002376,
+      "end": 1749089002376,
       "order": "normal"
     }
   ]

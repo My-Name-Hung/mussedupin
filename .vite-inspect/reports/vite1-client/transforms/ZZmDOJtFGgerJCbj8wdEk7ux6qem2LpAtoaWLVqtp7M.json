@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/baotangnghethuat/node_modules/framer-motion/dist/es/context/SwitchLayoutGroupContext.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "\"use client\";\nimport { createContext } from 'react';\n\n/**\n * Internal, exported only for usage in Framer\n */\nconst SwitchLayoutGroupContext = createContext({});\n\nexport { SwitchLayoutGroupContext };\n",
+      "start": 1749089010517,
+      "end": 1749089010679,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1749089010679,
+      "end": 1749089010679,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1749089010679,
+      "end": 1749089010679,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1749089010679,
+      "end": 1749089010679,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1749089010680,
+      "end": 1749089010680,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1749089010680,
+      "end": 1749089010680,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1749089010680,
+      "end": 1749089010680,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1749089010680,
+      "end": 1749089010680,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1749089010680,
+      "end": 1749089010680,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1749089010680,
+      "end": 1749089010680,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1749089010680,
+      "end": 1749089010680,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1749089010680,
+      "end": 1749089010680,
+      "order": "normal"
+    }
+  ]
+}

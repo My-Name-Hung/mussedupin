@@ -1,5 +1,7 @@
 import React from "react";
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import Visit from "../src/components/VisitPage/Visit/Visit";
+import VisitInfo from "../src/components/VisitPage/Visit/VisitInfo";
 import "./App.css";
 import AppLoader from "./components/AppLoader/AppLoader";
 import ExhibitionDetail from "./components/Exhibitions/ExhibitionDetail";
@@ -11,75 +13,32 @@ import ScrollToTop from "./components/ScrollToTop";
 import ScrollToTopButton from "./components/ScrollToTopButton/ScrollToTopButton";
 import "./index.css";
 import AboutPage from "./pages/About/AboutPage";
+import ArtStay from "./pages/ArtStay/ArtStay";
 import CategoryPage from "./pages/Collection/CategoryPage";
 import CollectionPage from "./pages/Collection/CollectionPage";
 import Copyrights from "./pages/Footer/Copyrights/Copyrights";
 import LegalNotice from "./pages/Footer/LegalNotice/LegalNotice";
 import PrivacyPolicy from "./pages/Footer/PrivacyPolicy/PrivacyPolicy";
 import DuPinPlus from "./pages/Home/DuPinPlus/DuPinPlus";
-// import ExplorePage from "./pages/Home/ExplorePage/ExplorePage";
-import Visit from "../src/components/VisitPage/Visit/Visit";
-import VisitInfo from "../src/components/VisitPage/Visit/VisitInfo";
-import ArtStay from "./pages/ArtStay/ArtStay";
 import LifeAtMuseumPage from "./pages/Museum/LifeAtMuseumPage";
 import NewsDetailPage from "./pages/Museum/NewsDetailPage";
 import NotFound from "./pages/NotFound";
 import SupportPage from "./pages/Support/SupportPage";
+import TheAcoustic from "./pages/TheAcoustic/TheAcoustic";
+import TheAcousticDetail from "./pages/TheAcoustic/TheAcousticDetail";
+import ThePlace from "./pages/ThePlace/ThePlace";
+import ThePlaceDetail from "./pages/ThePlace/ThePlaceDetail";
+import TheTaste from "./pages/TheTaste/TheTaste";
+import TheTasteDetail from "./pages/TheTaste/TheTasteDetail";
 import MuseumMapPage from "./pages/Visit/MuseumMapPage";
 import TrailExperiencePage from "./pages/Visit/TrailExperiencePage";
 import VisitorRules from "./pages/Visit/VisitorRules";
 import VisitorTrailDetailPage from "./pages/Visit/VisitorTrailDetailPage";
 import VisitorTrailsPage from "./pages/Visit/VisitorTrailsPage";
-
-// Trang chính của ứng dụng
-const HomePage = () => (
-  <>
-    <div className="hero-section">
-      <h1>Welcome to the Art Museum</h1>
-    </div>
-    <div className="content-section">
-      <div className="card">
-        <h2>VISIT</h2>
-        <p>Visit Page</p>
-        <button>SEE MORE</button>
-      </div>
-      <div className="card">
-        <h2>EXHIBITIONS AND EVENTS</h2>
-        <p>Exhibitions and Events Page</p>
-        <button>SEE MORE</button>
-      </div>
-      <div className="card">
-        <h2>EXPLORE</h2>
-        <p>Explore Page</p>
-        <button>SEE MORE</button>
-      </div>
-    </div>
-  </>
-);
-
-// Trang Tham quan
-const VisitPage = () => (
-  <div className="page-container">
-    <h1>VISIT</h1>
-    <p>This is the Visit page content</p>
-  </div>
-);
-
-// Trang Vé
-const TicketsPage = () => (
-  <div className="page-container">
-    <h1>Tickets</h1>
-    <p>This is the Tickets page content</p>
-  </div>
-);
-
-// Trang Cửa hàng Trực tuyến
-const BoutiquePage = () => (
-  <div className="page-container">
-    <h1>Online Boutique Shop</h1>
-    <p>This is the Online Boutique page content</p>
-  </div>
-);
+import NonResidentialPackages from "./pages/VisitPackages/NonResidentialPackages";
+import PackageDetail from "./pages/VisitPackages/PackageDetail";
+import RegularPackages from "./pages/VisitPackages/RegularPackages";
+import ResidentialPackages from "./pages/VisitPackages/ResidentialPackages";
 
 function App() {
   return (
@@ -94,11 +53,7 @@ function App() {
               <Route path="/about" element={<AboutPage />} />
               <Route path="/visit" element={<Visit />} />
               <Route path="/visit-info" element={<VisitInfo />} />
-
               <Route path="/exhibitions" element={<Exhibitions />} />
-
-              <Route path="/tickets" element={<TicketsPage />} />
-              <Route path="/boutique" element={<BoutiquePage />} />
               <Route path="/dupinplus" element={<DuPinPlus />} />
               <Route path="/legal-notice" element={<LegalNotice />} />
               <Route path="/privacy-policy" element={<PrivacyPolicy />} />
@@ -131,6 +86,22 @@ function App() {
                 element={<NewsDetailPage />}
               />
               <Route path="/luu-tru-nghe-thuat" element={<ArtStay />} />
+              <Route path="/the-place" element={<ThePlace />} />
+              <Route path="/the-place/:id" element={<ThePlaceDetail />} />
+              <Route path="/the-taste" element={<TheTaste />} />
+              <Route path="/the-taste/:id" element={<TheTasteDetail />} />
+              <Route path="/the-acoustic" element={<TheAcoustic />} />
+              <Route path="/the-acoustic/:id" element={<TheAcousticDetail />} />
+              <Route
+                path="/visit/non-residential"
+                element={<NonResidentialPackages />}
+              />
+              <Route
+                path="/visit/residential"
+                element={<ResidentialPackages />}
+              />
+              <Route path="/visit/regular" element={<RegularPackages />} />
+              <Route path="/visit/package/:id" element={<PackageDetail />} />
               <Route path="*" element={<NotFound />} />
             </Routes>
           </main>

@@ -1,55 +1,28 @@
 import gsap from "gsap";
 import { useEffect, useRef, useState } from "react";
+import {
+  FaArrowRight,
+  FaBars,
+  FaChevronDown,
+  FaChevronRight,
+  FaChevronUp,
+  FaFacebook,
+  FaGift,
+  FaInstagram,
+  FaSearch,
+  FaShoppingBag,
+  FaTicketAlt,
+  FaTimes,
+  FaYoutube,
+} from "react-icons/fa";
+import { SiTiktok } from "react-icons/si";
 import { Link, useNavigate } from "react-router-dom";
 import "./Navbar.css";
 
-// Icon components
-const SearchIcon = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <circle cx="11" cy="11" r="8"></circle>
-    <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
-  </svg>
-);
-
-const ChevronDown = () => (
-  <svg
-    width="14"
-    height="14"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <polyline points="6 9 12 15 18 9"></polyline>
-  </svg>
-);
-
-const ChevronRight = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <polyline points="9 18 15 12 9 6"></polyline>
-  </svg>
-);
-
+// Icon components using react-icons
+const SearchIcon = () => <FaSearch size={16} />;
+const ChevronDown = () => <FaChevronDown size={14} />;
+const ChevronRight = () => <FaChevronRight size={16} />;
 const MenuIcon = () => (
   <div className="menu-icon">
     <div className="line"></div>
@@ -57,232 +30,20 @@ const MenuIcon = () => (
     <div className="line"></div>
   </div>
 );
+const HamburgerIcon = () => <FaBars size={24} />;
+const ArrowRightIcon = () => <FaArrowRight size={20} />;
+const CloseIcon = () => <FaTimes size={24} />;
+const BoutiqueIcon = () => <FaShoppingBag className="btn-icon" />;
+const TicketIcon = () => <FaTicketAlt className="btn-icon" />;
+const CloseDropdownIcon = () => <FaTimes size={24} />;
+const PatronIcon = () => <FaGift size={24} />;
 
-const HamburgerIcon = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <line x1="3" y1="12" x2="21" y2="12"></line>
-    <line x1="3" y1="6" x2="21" y2="6"></line>
-    <line x1="3" y1="18" x2="21" y2="18"></line>
-  </svg>
-);
-
-const ArrowRightIcon = () => (
-  <svg
-    width="20"
-    height="20"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M5 12h14"></path>
-    <path d="M12 5l7 7-7 7"></path>
-  </svg>
-);
-
-const CloseIcon = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <line x1="18" y1="6" x2="6" y2="18"></line>
-    <line x1="6" y1="6" x2="18" y2="18"></line>
-  </svg>
-);
-
-// Icon cho Online Boutique
-const BoutiqueIcon = () => (
-  <svg
-    className="btn-icon"
-    viewBox="0 0 24 24"
-    width="1em"
-    height="1em"
-    focusable="false"
-    aria-hidden="true"
-  >
-    <path d="M11.57 2c-1.78 0-3.2 1.28-3.2 2.86V7H5.14a.71.71 0 0 0-.72.64L3 21.21a.72.72 0 0 0 .72.79h15.71a.71.71 0 0 0 .72-.79L18.72 7.64A.71.71 0 0 0 18 7h-3.22V4.86c0-1.58-1.43-2.86-3.21-2.86zM9.8 4.86c0-.8.8-1.43 1.78-1.43 1 0 1.8.64 1.8 1.43V7h-3.6V4.86zm7.57 3.57 1.28 12.14H4.51L5.79 8.43h2.57v1.43a.71.71 0 1 0 1.43 0V8.43h3.57v1.43a.71.71 0 1 0 1.43 0V8.43h2.57z"></path>
-  </svg>
-);
-
-// Icon cho Tickets
-const TicketIcon = () => (
-  <svg
-    className="btn-icon"
-    viewBox="0 0 16 16"
-    width="1em"
-    height="1em"
-    focusable="false"
-    aria-hidden="true"
-  >
-    <path d="M9.13.5a.9.9 0 0 1 1.28 0l1.17 1.18c.2.2.3.5.25.79a1.48 1.48 0 0 0 1.7 1.7c.3-.04.59.05.79.25l1.17 1.17a.9.9 0 0 1 0 1.28L6.87 15.5a.9.9 0 0 1-1.28 0L.51 10.41a.9.9 0 0 1 0-1.28zm.64.78L1.28 9.77l4.95 4.95 8.49-8.49-1.1-1.1c-.74.15-1.52-.1-2.08-.67s-.82-1.34-.7-2.14L9.77 1.28zm.53 5.13c.1-.1.25-.1.35 0l.35.35c.1.1.1.26 0 .36l-4.59 4.6a.27.27 0 0 1-.36 0l-.35-.36a.25.25 0 0 1 0-.36l4.6-4.59zm-2.24-.59c.1-.1.26-.1.35 0l.36.35c.1.1.1.26 0 .36L5 10.3c-.1.1-.26.1-.36 0l-.35-.35a.25.25 0 0 1 0-.36l3.77-3.77z"></path>
-  </svg>
-);
-
-// Icon cho close dropdown
-const CloseDropdownIcon = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <line x1="18" y1="6" x2="6" y2="18"></line>
-    <line x1="6" y1="6" x2="18" y2="18"></line>
-  </svg>
-);
-
-// Icon cho patron
-const PatronIcon = () => (
-  <svg
-    width="24"
-    height="24"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-    <path d="M2 17l10 5 10-5"></path>
-    <path d="M2 12l10 5 10-5"></path>
-  </svg>
-);
-
-// Biểu tượng mạng xã hội
-const FacebookIcon = () => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
-  </svg>
-);
-
-const InstagramIcon = () => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
-    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
-    <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"></line>
-  </svg>
-);
-
-const TwitterIcon = () => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"></path>
-  </svg>
-);
-
-const YoutubeIcon = () => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M22.54 6.42a2.78 2.78 0 0 0-1.94-2C18.88 4 12 4 12 4s-6.88 0-8.6.46a2.78 2.78 0 0 0-1.94 2A29 29 0 0 0 1 11.75a29 29 0 0 0 .46 5.33A2.78 2.78 0 0 0 3.4 19c1.72.46 8.6.46 8.6.46s6.88 0 8.6-.46a2.78 2.78 0 0 0 1.94-2 29 29 0 0 0 .46-5.25 29 29 0 0 0-.46-5.33z"></path>
-    <polygon points="9.75 15.02 15.5 11.75 9.75 8.48 9.75 15.02"></polygon>
-  </svg>
-);
-
-const PinterestIcon = () => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M8 12h8"></path>
-    <path d="M12 8v8"></path>
-    <circle cx="12" cy="12" r="10"></circle>
-  </svg>
-);
-
-const LinkedInIcon = () => (
-  <svg
-    width="18"
-    height="18"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
-    <rect x="2" y="9" width="4" height="12"></rect>
-    <circle cx="4" cy="4" r="2"></circle>
-  </svg>
-);
-
-// Thêm ChevronUp icon
-const ChevronUp = () => (
-  <svg
-    width="14"
-    height="14"
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-  >
-    <polyline points="18 15 12 9 6 15"></polyline>
-  </svg>
-);
+// Social media icons
+const FacebookIcon = () => <FaFacebook size={18} />;
+const InstagramIcon = () => <FaInstagram size={18} />;
+const TikTokIcon = () => <SiTiktok size={18} />;
+const YoutubeIcon = () => <FaYoutube size={18} />;
+const ChevronUp = () => <FaChevronUp size={14} />;
 
 // Comprehensive search data - scans all content in the project
 const searchData = [
@@ -351,7 +112,7 @@ const searchData = [
     description: "Khám phá bộ sưu tập nghệ thuật của bảo tàng",
     category: "Khám phá",
     image:
-      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/room2.jpg",
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/thesunset.jpg",
     path: "/collection",
   },
   {
@@ -360,7 +121,7 @@ const searchData = [
     description: "Các lộ trình tham quan được đề xuất",
     category: "Khám phá",
     image:
-      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/room2.jpg",
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/thesunset.jpg",
     path: "/visitor-trails",
   },
   {
@@ -380,7 +141,7 @@ const searchData = [
     description: "Thông tin hỗ trợ và hướng dẫn cho khách tham quan",
     category: "Hỗ trợ",
     image:
-      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/room3.jpg",
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/thechildhood.jpg",
     path: "/support",
   },
   {
@@ -389,7 +150,7 @@ const searchData = [
     description: "Câu hỏi thường gặp và giải đáp",
     category: "Hỗ trợ",
     image:
-      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/room3.jpg",
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/thechildhood.jpg",
     path: "/visit-info#faq",
   },
   {
@@ -398,7 +159,7 @@ const searchData = [
     description: "Thông tin về chương trình bảo trợ bảo tàng",
     category: "Hỗ trợ",
     image:
-      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/room3.jpg",
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/thechildhood.jpg",
     path: "/support#patron",
   },
 
@@ -409,7 +170,7 @@ const searchData = [
     description: "Mua sắm các sản phẩm lưu niệm từ bảo tàng",
     category: "Mua sắm",
     image:
-      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/room3.jpg",
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/thechildhood.jpg",
     path: "https://online-museeduphin.netlify.app/",
   },
 
@@ -421,7 +182,7 @@ const searchData = [
       "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
     category: "Lưu trú",
     image:
-      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748840047/collections/thechillhood.jpg",
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/thechildhood.jpg",
     path: "/visit-info#homestay",
   },
   {
@@ -431,7 +192,7 @@ const searchData = [
       "Căn hộ sang trọng với đầy đủ tiện nghi, cách bảo tàng 10 phút đi bộ.",
     category: "Lưu trú",
     image:
-      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846791/collections/whitebauhinia.jpg",
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/thesunset.jpg",
     path: "/visit-info#homestay",
   },
   {
@@ -441,7 +202,7 @@ const searchData = [
       "Biệt thự tuyệt đẹp với vườn riêng, dịch vụ cao cấp và view thành phố ngoạn mục.",
     category: "Lưu trú",
     image:
-      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846791/collections/thechill1.jpg",
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/thechildhood.jpg",
     path: "/visit-info#homestay",
   },
   {
@@ -451,7 +212,7 @@ const searchData = [
       "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
     category: "Lưu trú",
     image:
-      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846791/collections/thechill2.jpg",
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/thesunset.jpg",
     path: "/visit-info#homestay",
   },
   {
@@ -461,7 +222,7 @@ const searchData = [
       "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
     category: "Lưu trú",
     image:
-      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846791/collections/thememory.jpg",
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/thechildhood.jpg",
     path: "/visit-info#homestay",
   },
   {
@@ -471,7 +232,7 @@ const searchData = [
       "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
     category: "Lưu trú",
     image:
-      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846791/collections/thesunset.jpg",
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/thesunset.jpg",
     path: "/visit-info#homestay",
   },
   {
@@ -481,7 +242,7 @@ const searchData = [
       "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
     category: "Lưu trú",
     image:
-      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846791/collections/thetrain.jpg",
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/thechildhood.jpg",
     path: "/visit-info#homestay",
   },
 ];
@@ -716,7 +477,7 @@ const Navbar = () => {
           title: "Một Musée Du Pin khác",
           path: "/exhibitions?tab=guided-tours",
           image:
-            "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/room2.jpg",
+            "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/thesunset.jpg",
           description:
             "Tận hưởng chuyến tham quan tránh xa đám đông và khám phá những kho báu ít người biết đến và khung cảnh tuyệt đẹp của 'một Musée Du Pin khác'",
         };
@@ -727,12 +488,18 @@ const Navbar = () => {
           { title: "Bộ sưu tập", path: "/collection" },
           { title: "Tin tức", path: "/life-at-the-museum" },
           { title: "Lộ trình tham quan", path: "/visitor-trails" },
+          { title: "Âm Thanh Đẹp", path: "/the-acoustic" },
+          { title: "Nghệ thuật vị giác", path: "/the-taste" },
+          {
+            title: "Không gian nghệ thuật và vườn trong Bảo Tàng",
+            path: "/the-place",
+          },
         ];
         featured = {
           title: "Điểm nổi bật",
           path: "/visitor-trails",
           image:
-            "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/room2.jpg",
+            "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/thesunset.jpg",
           description: "Các tác phẩm nổi bật",
         };
         break;
@@ -752,7 +519,7 @@ const Navbar = () => {
           title: "Trở thành Nhà bảo trợ!",
           path: "/support",
           image:
-            "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/room3.jpg",
+            "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/thechildhood.jpg",
           description: "Cá nhân, công ty hoặc tổ chức",
         };
         break;
@@ -1047,6 +814,76 @@ const Navbar = () => {
     );
   };
 
+  // Add effect to handle external mobile menu triggers
+  useEffect(() => {
+    const handleMobileMenuShow = () => {
+      setShowMobileMenu(true);
+    };
+
+    const handleMobileMenuHide = () => {
+      setShowMobileMenu(false);
+    };
+
+    // Listen for mobile menu class changes
+    const mobileMenuOverlay = document.querySelector(".mobile-menu-overlay");
+    if (mobileMenuOverlay) {
+      const observer = new MutationObserver((mutations) => {
+        mutations.forEach((mutation) => {
+          if (
+            mutation.type === "attributes" &&
+            mutation.attributeName === "class"
+          ) {
+            if (mobileMenuOverlay.classList.contains("show")) {
+              handleMobileMenuShow();
+            } else {
+              handleMobileMenuHide();
+            }
+          }
+        });
+      });
+
+      observer.observe(mobileMenuOverlay, {
+        attributes: true,
+      });
+
+      return () => observer.disconnect();
+    }
+  }, []);
+
+  // Add event listener for opening dropdowns
+  useEffect(() => {
+    const handleOpenNavDropdown = (event) => {
+      const dropdownType = event.detail.type;
+
+      // Close all dropdowns first
+      setShowVisitDropdown(false);
+      setShowExhibitionsDropdown(false);
+      setShowExploreDropdown(false);
+      setShowSeeMoreDropdown(false);
+      setShowMobileMenu(false);
+
+      // Scroll to top
+      window.scrollTo(0, 0);
+
+      // Open the requested dropdown
+      switch (dropdownType) {
+        case "KHÁM PHÁ":
+          setShowExploreDropdown(true);
+          break;
+        case "Trải nghiệm":
+          setShowVisitDropdown(true);
+          break;
+        default:
+          break;
+      }
+    };
+
+    window.addEventListener("openNavDropdown", handleOpenNavDropdown);
+    return () => {
+      window.removeEventListener("openNavDropdown", handleOpenNavDropdown);
+    };
+  }, []);
+
   return (
     <header className="navbar-container">
       {/* Desktop Navbar */}
@@ -1098,7 +935,10 @@ const Navbar = () => {
             >
               <BoutiqueIcon />
             </Link>
-            <Link to="/tickets" className="btn btn-filled">
+            <Link
+              to="https://online-museeduphin.netlify.app/"
+              className="btn btn-filled"
+            >
               <TicketIcon />
             </Link>
           </div>
@@ -1135,7 +975,10 @@ const Navbar = () => {
         </div>
 
         <div className="right-section">
-          <Link to="/tickets" className="btn btn-filled">
+          <Link
+            to="https://online-museeduphin.netlify.app/"
+            className="btn btn-filled"
+          >
             <TicketIcon />
           </Link>
         </div>
@@ -1358,7 +1201,7 @@ const Navbar = () => {
 
               <div className="dropdown-right-section">
                 <img
-                  src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/room3.jpg"
+                  src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/thechildhood.jpg"
                   alt="Classical Artwork"
                   loading="lazy"
                   className="dropdown-image"
@@ -1592,7 +1435,7 @@ const Navbar = () => {
                 <div className="exhibition-feature">
                   <div className="exhibition-feature-image">
                     <img
-                      src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/room2.jpg"
+                      src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/thesunset.jpg"
                       alt="Another"
                       loading="lazy"
                     />
@@ -1739,7 +1582,7 @@ const Navbar = () => {
                 <div className="exhibition-feature">
                   <div className="exhibition-feature-image">
                     <img
-                      src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/room2.jpg"
+                      src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/thesunset.jpg"
                       alt="Beyoncé"
                       loading="lazy"
                     />
@@ -1918,7 +1761,7 @@ const Navbar = () => {
 
         <div className="mobile-social-icons">
           <a
-            href="https://www.facebook.com/museedulouvre"
+            href="https://www.facebook.com/BaoTangThongDalat"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon"
@@ -1928,27 +1771,17 @@ const Navbar = () => {
             <FacebookIcon />
           </a>
           <a
-            href="https://www.instagram.com/museelouvre/"
+            href="https://www.tiktok.com/@baotangthongdalat?_t=ZS-8wcfw9TGrnm&_r=1"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon"
-            aria-label="Instagram"
+            aria-label="TikTok"
             onClick={() => setShowMobileMenu(false)}
           >
-            <InstagramIcon />
+            <TikTokIcon />
           </a>
           <a
-            href="https://twitter.com/MuseeLouvre"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            aria-label="Twitter"
-            onClick={() => setShowMobileMenu(false)}
-          >
-            <TwitterIcon />
-          </a>
-          <a
-            href="https://www.youtube.com/user/louvre"
+            href="https://www.youtube.com/channel/UCyxLbhgBPZ3KnGD_KeLCo9A"
             target="_blank"
             rel="noopener noreferrer"
             className="social-icon"
@@ -1956,26 +1789,6 @@ const Navbar = () => {
             onClick={() => setShowMobileMenu(false)}
           >
             <YoutubeIcon />
-          </a>
-          <a
-            href="https://www.pinterest.com/museedulouvre/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            aria-label="Pinterest"
-            onClick={() => setShowMobileMenu(false)}
-          >
-            <PinterestIcon />
-          </a>
-          <a
-            href="https://www.linkedin.com/company/musee-du-louvre/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            aria-label="LinkedIn"
-            onClick={() => setShowMobileMenu(false)}
-          >
-            <LinkedInIcon />
           </a>
         </div>
       </div>
@@ -1988,7 +1801,7 @@ const Navbar = () => {
         >
           <div className="submenu-header">
             <button
-              className="back-buttons"
+              className="back-buttonss"
               onClick={closeMobileSubmenu}
               aria-label="Back to main menu"
             >

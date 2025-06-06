@@ -17,7 +17,7 @@ const exhibitionsData = [
     description:
       "Khi nghệ thuật không chỉ để ngắm, mà để sống cùng và sống trong. Không có tủ kính ngăn cách. Không có rào chắn giữa người và hiện vật. Langbiang không đơn thuần là một căn phòng, mà là một vùng ký ức sống, nơi hồn cốt của núi rừng thở trong từng vật phẩm, cháy trong từng ngọn lửa bếp, ngân nga trong từng tiếng cồng chiêng.",
     date: "30 tháng 4 - 28 tháng 7 2025",
-    image: "langbiang.webp",
+    image: "Langbiang2.png",
     alt: "Không gian nghệ thuật Langbiang",
     tag: "Trưng bày",
     link: "/exhibition-details/langbiang-khong-gian",

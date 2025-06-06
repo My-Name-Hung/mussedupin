@@ -75,7 +75,6 @@ const MuseumMapPage = () => {
   const [activeTab, setActiveTab] = useState("getting-here");
   const [selectedTransport, setSelectedTransport] = useState("air");
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
-  const [translations, setTranslations] = useState({});
 
   const tabs = [
     {
@@ -162,15 +161,15 @@ const MuseumMapPage = () => {
     <div className="map-content-section">
       <div className="map-notice">
         <p>
-          "Musée Du Pin tọa lạc tại 29-31 đường Đống Đa, Phường 3, Thành phố Đà
-          Lạt"
+          Musée Du Pin tọa lạc tại 29-31 đường Đống Đa, Phường 3, Thành phố Đà
+          Lạt.
         </p>
       </div>
 
       <div className="map-getting-here-section">
-        <h3 className="map-section-title">"Đường đến bảo tàng"</h3>
+        <h3 className="map-section-title">Đường đến bảo tàng</h3>
         <p className="map-section-description">
-          "Chọn phương tiện di chuyển ưa thích để đến Musée Du Pin."
+          Chọn phương tiện di chuyển ưa thích để đến Musée Du Pin.
         </p>
       </div>
 
@@ -180,7 +179,7 @@ const MuseumMapPage = () => {
             className="map-dropdown-button"
             onClick={() => setIsDropdownOpen(!isDropdownOpen)}
           >
-            "Chọn phương tiện di chuyển"
+            Chọn phương tiện di chuyển
             <ChevronDownIcon />
           </button>
           {isDropdownOpen && (
@@ -231,6 +230,17 @@ const MuseumMapPage = () => {
                     ))}
                   </div>
                 )}
+                <div className="map-google-embed">
+                  <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3282.6347163633855!2d108.44256451806218!3d11.923690928634585!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317113472aaa2ceb%3A0xb2d96d24754e2a02!2zMjkgxJDhu5FuZyDEkGEsIFBoxrDhu51uZyAzLCDEkMOgIEzhuqF0LCBMw6JtIMSQ4buTbmcsIFZp4buHdCBOYW0!5e0!3m2!1svi!2s!4v1748493614119!5m2!1svi!2s"
+                    width="100%"
+                    height="450"
+                    style={{ border: 0, marginTop: "20px" }}
+                    allowFullScreen=""
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                  ></iframe>
+                </div>
               </div>
             )
         )}
@@ -301,12 +311,12 @@ const MuseumMapPage = () => {
         </div>
 
         <Link to="/" className="map-back-button">
-          <BackIcon /> "Quay lại"
+          <BackIcon /> Quay lại
         </Link>
 
         <div className="map-hero-content">
-          <p className="map-hero-subtitle">"BẢN ĐỒ & CHỈ ĐƯỜNG"</p>
-          <h1 className="map-hero-title">"Làm thế nào để đến Musée Du Pin"</h1>
+          <p className="map-hero-subtitle">BẢN ĐỒ & CHỈ ĐƯỜNG</p>
+          <h1 className="map-hero-title">Làm thế nào để đến Musée Du Pin</h1>
         </div>
       </div>
 

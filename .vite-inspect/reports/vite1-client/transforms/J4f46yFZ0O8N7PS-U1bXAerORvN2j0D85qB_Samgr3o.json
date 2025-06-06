@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/baotangnghethuat/node_modules/react-leaflet/lib/ZoomControl.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { createControlComponent } from '@react-leaflet/core';\nimport { Control } from 'leaflet';\nexport const ZoomControl = createControlComponent(function createZoomControl(props) {\n    return new Control.Zoom(props);\n});\n",
+      "start": 1749089010854,
+      "end": 1749089011100,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1749089011100,
+      "end": 1749089011100,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1749089011100,
+      "end": 1749089011100,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1749089011100,
+      "end": 1749089011100,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1749089011100,
+      "end": 1749089011101,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1749089011101,
+      "end": 1749089011101,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1749089011101,
+      "end": 1749089011101,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1749089011101,
+      "end": 1749089011101,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1749089011101,
+      "end": 1749089011101,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1749089011104,
+      "end": 1749089011104,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1749089011104,
+      "end": 1749089011104,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1749089011104,
+      "end": 1749089011104,
+      "order": "normal"
+    }
+  ]
+}

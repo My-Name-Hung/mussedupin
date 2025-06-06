@@ -34,7 +34,7 @@ const PrivacyPolicy = () => {
             Bảo tàng Thông - Musée Du Pin cam kết bảo vệ quyền riêng tư và dữ
             liệu cá nhân của quý khách. Chính sách bảo mật này mô tả cách chúng
             tôi thu thập, sử dụng, lưu trữ và bảo vệ thông tin của quý khách khi
-            truy cập website và sử dụng dịch vụ của bảo tàng.
+            truy cập website và sử dụng dịch vụ hay các sản phẩm của bảo tàng.
           </p>
         </div>
 
@@ -146,11 +146,12 @@ const PrivacyPolicy = () => {
           <p>
             Bảo tàng Thông - Musée Du Pin
             <br />
-            Email: privacy@dupin.vn
+            Email: baotangthong2024@gmail.com
             <br />
-            Điện thoại: XXX XXX XXX
+              Điện thoại: +84 2633 818 968; +84 86 235 6368
+
             <br />
-            Địa chỉ: XXX XXX XXX
+              Địa chỉ: 29-31 Đống Đa, Phường 3, Tp Đà Lạt, tỉnh Lâm Đồng, Việt Nam
           </p>
         </div>
 

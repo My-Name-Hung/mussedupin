@@ -33,11 +33,11 @@ const LegalNotice = () => {
           <p>
             Musée du Pin, Bảo tàng Thông,
             <br />
-            MST: XXX XXX XXX
+            MST: 0106157152-001
             <br />
-            Địa chỉ: XXX XXX XXX
+            Địa chỉ: 29-31 Đống Đa, phường 3, tp. Đà Lạt, Lâm Đồng
             <br />
-            Điện thoại: XXX XXX XXX
+            Điện thoại: +84 2633 818 968; +84 86 235 6368
             <br />
             Giám đốc xuất bản: Musée du Pin
           </p>
@@ -50,8 +50,6 @@ const LegalNotice = () => {
             Musée du Pin
             <br />
             Phòng Sản xuất Kỹ thuật số và Nghe nhìn
-            <br />
-            Phòng Giải thích và Lập trình Văn hóa
             <br />
             29-31 Đống Đa, phường 3, Đà Lạt
             <br />
@@ -96,23 +94,22 @@ const LegalNotice = () => {
             giả hoặc chủ sở hữu quyền.
           </p>
           <p>
-            Hình ảnh có ghi © RMN, Musée du Pin / [...] là tài sản của RMN. Việc
-            tái sử dụng phi thương mại được cho phép, với điều kiện phải ghi
-            nhận nguồn gốc và tác giả.
+            Hình ảnh có ghi © Tác giả, Musée du Pin / [...] là tài sản của Tác
+            giả. Việc tái sử dụng phi thương mại được cho phép, với điều kiện
+            phải ghi nhận nguồn gốc và tác giả.
           </p>
           <p>
             Đối với bất kỳ việc tái sử dụng thương mại và/hoặc biên tập lại hình
-            ảnh từ bộ sưu tập của Bảo tàng Du Pin và các Phòng trưng bày Quốc
-            gia khác, vui lòng liên hệ với cơ quan nhiếp ảnh Réunion des Musées
-            nationaux et du Grand Palais des Champs-Élysées (Rmn-Gp).
+            ảnh từ bộ sưu tập của Bảo tàng Thông và các Phòng trưng bày Quốc gia
+            khác, vui lòng liên hệ với Bảo Tàng qua hotline: +84 86 235 6368
+            hoặc gửi email đến hộp thư: baotangthong2024@gmail.com
           </p>
 
           <h3>Thương hiệu và logo</h3>
           <p>
-            Các thương hiệu của Bảo tàng Du Pin và đối tác của nó, cũng như các
-            logo hiển thị trên trang web, đã được đăng ký và đăng ký với INPI
-            (Viện Sở hữu Công nghiệp Quốc gia Pháp) và do đó được bảo vệ bởi
-            luật sở hữu công nghiệp.
+            Các thương hiệu của Bảo Tàng Thông và đối tác của nó, cũng như các
+            logo hiển thị trên trang web, đã được đăng ký với Cục Sở Hữu Trí Tuệ
+            Việt Nam.
           </p>
           <p>
             Mọi hình thức sao chép, toàn bộ hoặc một phần, các thương hiệu
@@ -126,20 +123,14 @@ const LegalNotice = () => {
         <div className="section">
           <h2>THÔNG TIN KHU VỰC CÔNG</h2>
           <p>
-            Nội dung thông tin và lập trình trên website này là thông tin khu
-            vực công hành chính theo Điều L.321-1 và L.322-1 của Bộ luật Quan hệ
-            giữa Công chúng và Hành chính Pháp. Thông tin này có thể được tái sử
-            dụng, với điều kiện không bị thay đổi, không bị bóp méo ý nghĩa và
-            phải ghi rõ nguồn gốc và ngày cập nhật gần nhất.
+            Nội dung thông tin và lập trình trên website này là thông tin bản
+            quyền. Thông tin này có thể được tái sử dụng, với điều kiện không bị
+            thay đổi, không bị bóp méo ý nghĩa và phải ghi rõ nguồn gốc và ngày
+            cập nhật gần nhất.
           </p>
           <p>
             Quyền đối với thông tin khu vực công hành chính không được chuyển
-            giao cho người tái sử dụng. Người tái sử dụng được hưởng quyền cá
-            nhân và không độc quyền để tái sử dụng thông tin khu vực công hành
-            chính. Bất kỳ người nào tái sử dụng thông tin khu vực công vi phạm
-            các quy định nêu trên đều có thể bị phạt bởi Ủy ban Tiếp cận Tài
-            liệu Hành chính (CADA), một cơ quan độc lập chịu trách nhiệm đảm bảo
-            quyền tự do tiếp cận tài liệu hành chính.
+            giao cho người tái sử dụng.
           </p>
         </div>
 
@@ -147,18 +138,15 @@ const LegalNotice = () => {
         <div className="section">
           <h2>LIÊN KẾT SIÊU VĂN BẢN</h2>
           <p>
-            Website Bảo tàng Du Pin (www.dupin.fr) cho phép sử dụng liên kết
-            siêu văn bản đến nội dung của mình với điều kiện:
+            Website Bảo tàng Thông (www.museedupin.com) cho phép sử dụng liên
+            kết siêu văn bản đến nội dung của mình với điều kiện:
           </p>
           <ul>
             <li>
-              không sử dụng liên kết sâu, nghĩa là các trang từ website Bảo tàng
-              Du Pin không được nhúng trong các trang của một trang web khác, mà
-              phải được mở trong cửa sổ mới.
-            </li>
-            <li>
-              phải ghi rõ nguồn gốc khi liên kết siêu văn bản dẫn trực tiếp đến
-              nội dung.
+              Không sử dụng liên kết sâu, nghĩa là các trang từ website Bảo tàng
+              Thông, không được nhúng trong các trang của một trang web khác, mà
+              phải được mở trong cửa sổ mải ghi rõ nguồn gốc khi liên kết siêu
+              văn bản dẫn trực tiếp đến nội dung.
             </li>
           </ul>
           <p>
@@ -176,13 +164,13 @@ const LegalNotice = () => {
         <div className="section">
           <h2>TRÁCH NHIỆM PHÁP LÝ</h2>
           <p>
-            Bảo tàng Du Pin nỗ lực hết sức để đảm bảo thông tin trên website
-            (www.dupin.fr) luôn sẵn có, chính xác và cập nhật, và có quyền sửa
-            đổi thông tin bất cứ lúc nào mà không cần thông báo trước. Tuy
-            nhiên, Bảo tàng Du Pin không thể đảm bảo tính sẵn có, chính xác,
-            thời sự hoặc đầy đủ của thông tin được trình bày. Việc sử dụng thông
-            tin có sẵn hoặc được cung cấp trên website này là trách nhiệm của
-            người dùng.
+            Bảo tàng Thông nỗ lực hết sức để đảm bảo thông tin trên website
+            www.museedupin.com luôn sẵn có, chính xác và cập nhật, và có quyền
+            sửa đổi thông tin bất cứ lúc nào mà không cần thông báo trước. Tuy
+            nhiên, Bảo tàng Thông không thể đảm bảo tính sẵn có, chính xác, thời
+            sự hoặc đầy đủ của thông tin được trình bày. Việc sử dụng thông tin
+            có sẵn hoặc được cung cấp trên website này là trách nhiệm của người
+            dùng.
           </p>
           <p>
             Bảo tàng Du Pin không chịu trách nhiệm về nội dung của các trang web

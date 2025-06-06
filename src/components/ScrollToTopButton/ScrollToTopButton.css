@@ -116,7 +116,7 @@
 
 @media (max-width: 480px) {
   .scroll-to-top-button {
-    bottom: 70px;
+    bottom: 120px;
     right: 20px;
     width: 44px;
     height: 44px;
@@ -157,7 +157,7 @@
 /* Ultra small screens */
 @media (max-width: 375px) {
   .scroll-to-top-button {
-    bottom: 70px !important;
+    bottom: 120px !important;
     right: 15px;
     width: 40px;
     height: 40px;

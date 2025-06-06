@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useState } from \"react\";\nimport \"./FeedbackModal.css\";\n\nconst FeedbackModal = ({ isOpen, onClose }) => {\n  const [formData, setFormData] = useState({\n    name: \"\",\n    email: \"\",\n    feedback: \"\",\n  });\n  const [isSubmitting, setIsSubmitting] = useState(false);\n  const [submitStatus, setSubmitStatus] = useState(null);\n\n  const handleChange = (e) => {\n    const { name, value } = e.target;\n    setFormData((prev) => ({\n      ...prev,\n      [name]: value,\n    }));\n  };\n\n  const handleSubmit = async (e) => {\n    e.preventDefault();\n    setIsSubmitting(true);\n    setSubmitStatus(null);\n\n    try {\n      const response = await fetch(\n        \"https://mussedupin.onrender.com/api/feedback\",\n        {\n          method: \"POST\",\n          headers: {\n            \"Content-Type\": \"application/json\",\n          },\n          body: JSON.stringify(formData),\n        }\n      );\n\n      const data = await response.json();\n\n      if (data.success) {\n        setSubmitStatus({\n          type: \"success\",\n          message:\n            \"Cảm ơn bạn đã gửi phản hồi! Chúng tôi sẽ phản hồi sớm nhất có thể.\",\n        });\n        setTimeout(() => {\n          onClose();\n          setFormData({ name: \"\", email: \"\", feedback: \"\" });\n          setSubmitStatus(null);\n        }, 3000);\n      } else {\n        throw new Error(data.message || \"Có lỗi xảy ra\");\n      }\n    } catch (error) {\n      console.error(\"Error submitting feedback:\", error);\n      setSubmitStatus({\n        type: \"error\",\n        message: \"Có lỗi xảy ra khi gửi phản hồi. Vui lòng thử lại sau.\",\n      });\n    } finally {\n      setIsSubmitting(false);\n    }\n  };\n\n  if (!isOpen) return null;\n\n  return (\n    <div className=\"feedback-modal-overlay\">\n      <div className=\"feedback-modal\">\n        <button className=\"close-button\" onClick={onClose}>\n          &times;\n        </button>\n\n        <div className=\"modal-header\">\n          <h2>Gửi phản hồi</h2>\n        </div>\n\n        {submitStatus && (\n          <div className={`submit-status ${submitStatus.type}`}>\n            {submitStatus.message}\n          </div>\n        )}\n\n        <form onSubmit={handleSubmit}>\n          <div className=\"form-group\">\n            <label htmlFor=\"name\">Họ và tên</label>\n            <div className=\"input-container\">\n              <input\n                type=\"text\"\n                id=\"name\"\n                name=\"name\"\n                value={formData.name}\n                onChange={handleChange}\n                required\n                placeholder=\"Nhập họ và tên của bạn\"\n              />\n            </div>\n          </div>\n\n          <div className=\"form-group\">\n            <label htmlFor=\"email\">Email</label>\n            <div className=\"input-container\">\n              <input\n                type=\"email\"\n                id=\"email\"\n                name=\"email\"\n                value={formData.email}\n                onChange={handleChange}\n                required\n                placeholder=\"Nhập địa chỉ email của bạn\"\n              />\n            </div>\n          </div>\n\n          <div className=\"form-group\">\n            <label htmlFor=\"feedback\">Nội dung phản hồi</label>\n            <div className=\"input-container\">\n              <textarea\n                id=\"feedback\"\n                name=\"feedback\"\n                value={formData.feedback}\n                onChange={handleChange}\n                required\n                placeholder=\"Nhập nội dung phản hồi của bạn\"\n                rows=\"5\"\n              />\n            </div>\n          </div>\n\n          <button\n            type=\"submit\"\n            className=\"submit-button\"\n            disabled={isSubmitting}\n          >\n            {isSubmitting ? \"Đang gửi...\" : \"Gửi phản hồi\"}\n          </button>\n        </form>\n      </div>\n    </div>\n  );\n};\n\nexport default FeedbackModal;\n",
-      "start": 1748859737068,
-      "end": 1748859737188,
+      "start": 1749089003626,
+      "end": 1749089004263,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1748859737188,
-      "end": 1748859737188,
+      "start": 1749089004263,
+      "end": 1749089004263,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useState } from \"react\";\nimport \"./FeedbackModal.css\";\nconst FeedbackModal = ({ isOpen, onClose }) => {\n  const [formData, setFormData] = useState({\n    name: \"\",\n    email: \"\",\n    feedback: \"\"\n  });\n  const [isSubmitting, setIsSubmitting] = useState(false);\n  const [submitStatus, setSubmitStatus] = useState(null);\n  const handleChange = (e) => {\n    const { name, value } = e.target;\n    setFormData((prev) => ({\n      ...prev,\n      [name]: value\n    }));\n  };\n  const handleSubmit = async (e) => {\n    e.preventDefault();\n    setIsSubmitting(true);\n    setSubmitStatus(null);\n    try {\n      const response = await fetch(\n        \"https://mussedupin.onrender.com/api/feedback\",\n        {\n          method: \"POST\",\n          headers: {\n            \"Content-Type\": \"application/json\"\n          },\n          body: JSON.stringify(formData)\n        }\n      );\n      const data = await response.json();\n      if (data.success) {\n        setSubmitStatus({\n          type: \"success\",\n          message: \"Cảm ơn bạn đã gửi phản hồi! Chúng tôi sẽ phản hồi sớm nhất có thể.\"\n        });\n        setTimeout(() => {\n          onClose();\n          setFormData({ name: \"\", email: \"\", feedback: \"\" });\n          setSubmitStatus(null);\n        }, 3e3);\n      } else {\n        throw new Error(data.message || \"Có lỗi xảy ra\");\n      }\n    } catch (error) {\n      console.error(\"Error submitting feedback:\", error);\n      setSubmitStatus({\n        type: \"error\",\n        message: \"Có lỗi xảy ra khi gửi phản hồi. Vui lòng thử lại sau.\"\n      });\n    } finally {\n      setIsSubmitting(false);\n    }\n  };\n  if (!isOpen) return null;\n  return /* @__PURE__ */ jsx(\"div\", { className: \"feedback-modal-overlay\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"feedback-modal\", children: [\n    /* @__PURE__ */ jsx(\"button\", { className: \"close-button\", onClick: onClose, children: \"×\" }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"modal-header\", children: /* @__PURE__ */ jsx(\"h2\", { children: \"Gửi phản hồi\" }) }),\n    submitStatus && /* @__PURE__ */ jsx(\"div\", { className: `submit-status ${submitStatus.type}`, children: submitStatus.message }),\n    /* @__PURE__ */ jsxs(\"form\", { onSubmit: handleSubmit, children: [\n      /* @__PURE__ */ jsxs(\"div\", { className: \"form-group\", children: [\n        /* @__PURE__ */ jsx(\"label\", { htmlFor: \"name\", children: \"Họ và tên\" }),\n        /* @__PURE__ */ jsx(\"div\", { className: \"input-container\", children: /* @__PURE__ */ jsx(\n          \"input\",\n          {\n            type: \"text\",\n            id: \"name\",\n            name: \"name\",\n            value: formData.name,\n            onChange: handleChange,\n            required: true,\n            placeholder: \"Nhập họ và tên của bạn\"\n          }\n        ) })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"form-group\", children: [\n        /* @__PURE__ */ jsx(\"label\", { htmlFor: \"email\", children: \"Email\" }),\n        /* @__PURE__ */ jsx(\"div\", { className: \"input-container\", children: /* @__PURE__ */ jsx(\n          \"input\",\n          {\n            type: \"email\",\n            id: \"email\",\n            name: \"email\",\n            value: formData.email,\n            onChange: handleChange,\n            required: true,\n            placeholder: \"Nhập địa chỉ email của bạn\"\n          }\n        ) })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"form-group\", children: [\n        /* @__PURE__ */ jsx(\"label\", { htmlFor: \"feedback\", children: \"Nội dung phản hồi\" }),\n        /* @__PURE__ */ jsx(\"div\", { className: \"input-container\", children: /* @__PURE__ */ jsx(\n          \"textarea\",\n          {\n            id: \"feedback\",\n            name: \"feedback\",\n            value: formData.feedback,\n            onChange: handleChange,\n            required: true,\n            placeholder: \"Nhập nội dung phản hồi của bạn\",\n            rows: \"5\"\n          }\n        ) })\n      ] }),\n      /* @__PURE__ */ jsx(\n        \"button\",\n        {\n          type: \"submit\",\n          className: \"submit-button\",\n          disabled: isSubmitting,\n          children: isSubmitting ? \"Đang gửi...\" : \"Gửi phản hồi\"\n        }\n      )\n    ] })\n  ] }) });\n};\nexport default FeedbackModal;\n",
-      "start": 1748859737188,
-      "end": 1748859737426,
+      "start": 1749089004263,
+      "end": 1749089004583,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1748859737426,
-      "end": 1748859737426,
+      "start": 1749089004583,
+      "end": 1749089004583,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1748859737426,
-      "end": 1748859737426,
+      "start": 1749089004583,
+      "end": 1749089004583,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1748859737427,
-      "end": 1748859737427,
+      "start": 1749089004583,
+      "end": 1749089004583,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1748859737427,
-      "end": 1748859737427,
+      "start": 1749089004592,
+      "end": 1749089004592,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1748859737427,
-      "end": 1748859737427,
+      "start": 1749089004592,
+      "end": 1749089004592,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1748859737432,
-      "end": 1748859737432,
+      "start": 1749089004593,
+      "end": 1749089004593,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1748859737432,
-      "end": 1748859737432,
+      "start": 1749089004593,
+      "end": 1749089004593,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1748859737433,
-      "end": 1748859737433,
+      "start": 1749089004593,
+      "end": 1749089004594,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1748859737433,
-      "end": 1748859737433,
+      "start": 1749089004594,
+      "end": 1749089004594,
       "order": "normal"
     }
   ]

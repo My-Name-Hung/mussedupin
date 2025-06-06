@@ -80,7 +80,7 @@
   max-width: 1200px;
   width: 100%;
   margin-left: 10%;
-  margin-top: 10%;
+  margin-top: 40%;
   animation: fadeSlideUp 1.2s ease;
 }
 
@@ -272,9 +272,6 @@
 
 /* Exhibition Cards Common Styles */
 .exhibition-card-wrapper {
-  opacity: 0;
-  transform: translateY(30px);
-  transition: opacity 0.3s ease, transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
   margin-bottom: 40px;
 }
 

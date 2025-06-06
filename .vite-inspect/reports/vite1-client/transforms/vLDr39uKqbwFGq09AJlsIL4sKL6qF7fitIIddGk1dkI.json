@@ -3,75 +3,75 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "import { useCallback, useEffect, useState } from \"react\";\nimport useImageCache from \"./useImageCache\";\n\nconst CONCURRENT_LOADS = 4; // Number of concurrent image loads\nconst PRIORITY_THRESHOLD = 5; // Number of high priority images to load first\n\nexport default function usePreloadAssets(assetList = [], options = {}) {\n  const { preload, isLoaded: isCached } = useImageCache();\n  const [progress, setProgress] = useState(0);\n  const [done, setDone] = useState(false);\n  const [priorityDone, setPriorityDone] = useState(false);\n\n  const loadImage = useCallback(\n    async (src) => {\n      if (isCached(src)) return true;\n      try {\n        await preload(src);\n        return true;\n      } catch (error) {\n        console.error(`Failed to preload: ${src}`, error);\n        return false;\n      }\n    },\n    [preload, isCached]\n  );\n\n  useEffect(() => {\n    let isMounted = true;\n    let loaded = 0;\n\n    if (assetList.length === 0) {\n      setDone(true);\n      setProgress(100);\n      setPriorityDone(true);\n      return;\n    }\n\n    // Split assets into priority and regular\n    const priorityAssets = assetList.slice(0, PRIORITY_THRESHOLD);\n    const regularAssets = assetList.slice(PRIORITY_THRESHOLD);\n\n    // Load priority assets first\n    const loadPriorityAssets = async () => {\n      await Promise.all(priorityAssets.map((src) => loadImage(src)));\n      if (isMounted) {\n        setPriorityDone(true);\n        loaded = priorityAssets.length;\n        setProgress(Math.round((loaded / assetList.length) * 100));\n      }\n    };\n\n    // Load regular assets in chunks\n    const loadRegularAssets = async () => {\n      for (let i = 0; i < regularAssets.length; i += CONCURRENT_LOADS) {\n        const chunk = regularAssets.slice(i, i + CONCURRENT_LOADS);\n        await Promise.all(chunk.map((src) => loadImage(src)));\n        if (isMounted) {\n          loaded += chunk.length;\n          setProgress(Math.round((loaded / assetList.length) * 100));\n        }\n      }\n      if (isMounted) setDone(true);\n    };\n\n    // Start loading process\n    loadPriorityAssets().then(() => {\n      if (regularAssets.length > 0) {\n        loadRegularAssets();\n      } else {\n        setDone(true);\n      }\n    });\n\n    return () => {\n      isMounted = false;\n    };\n  }, [assetList, loadImage]);\n\n  return { progress, done, priorityDone };\n}\n",
-      "start": 1748859737017,
-      "end": 1748859737037,
+      "result": "import { useCallback, useEffect, useState } from \"react\";\r\nimport useImageCache from \"./useImageCache\";\r\n\r\nconst CONCURRENT_LOADS = 4; // Number of concurrent image loads\r\nconst PRIORITY_THRESHOLD = 5; // Number of high priority images to load first\r\n\r\nexport default function usePreloadAssets(assetList = [], options = {}) {\r\n  const { preload, isLoaded: isCached } = useImageCache();\r\n  const [progress, setProgress] = useState(0);\r\n  const [done, setDone] = useState(false);\r\n  const [priorityDone, setPriorityDone] = useState(false);\r\n\r\n  const loadImage = useCallback(\r\n    async (src) => {\r\n      if (isCached(src)) return true;\r\n      try {\r\n        await preload(src);\r\n        return true;\r\n      } catch (error) {\r\n        console.error(`Failed to preload: ${src}`, error);\r\n        return false;\r\n      }\r\n    },\r\n    [preload, isCached]\r\n  );\r\n\r\n  useEffect(() => {\r\n    let isMounted = true;\r\n    let loaded = 0;\r\n\r\n    if (assetList.length === 0) {\r\n      setDone(true);\r\n      setProgress(100);\r\n      setPriorityDone(true);\r\n      return;\r\n    }\r\n\r\n    // Split assets into priority and regular\r\n    const priorityAssets = assetList.slice(0, PRIORITY_THRESHOLD);\r\n    const regularAssets = assetList.slice(PRIORITY_THRESHOLD);\r\n\r\n    // Load priority assets first\r\n    const loadPriorityAssets = async () => {\r\n      await Promise.all(priorityAssets.map((src) => loadImage(src)));\r\n      if (isMounted) {\r\n        setPriorityDone(true);\r\n        loaded = priorityAssets.length;\r\n        setProgress(Math.round((loaded / assetList.length) * 100));\r\n      }\r\n    };\r\n\r\n    // Load regular assets in chunks\r\n    const loadRegularAssets = async () => {\r\n      for (let i = 0; i < regularAssets.length; i += CONCURRENT_LOADS) {\r\n        const chunk = regularAssets.slice(i, i + CONCURRENT_LOADS);\r\n        await Promise.all(chunk.map((src) => loadImage(src)));\r\n        if (isMounted) {\r\n          loaded += chunk.length;\r\n          setProgress(Math.round((loaded / assetList.length) * 100));\r\n        }\r\n      }\r\n      if (isMounted) setDone(true);\r\n    };\r\n\r\n    // Start loading process\r\n    loadPriorityAssets().then(() => {\r\n      if (regularAssets.length > 0) {\r\n        loadRegularAssets();\r\n      } else {\r\n        setDone(true);\r\n      }\r\n    });\r\n\r\n    return () => {\r\n      isMounted = false;\r\n    };\r\n  }, [assetList, loadImage]);\r\n\r\n  return { progress, done, priorityDone };\r\n}\r\n",
+      "start": 1749089002774,
+      "end": 1749089003626,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1748859737037,
-      "end": 1748859737037,
+      "start": 1749089003626,
+      "end": 1749089003626,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1748859737037,
-      "end": 1748859737037,
+      "start": 1749089003626,
+      "end": 1749089003626,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1748859737037,
-      "end": 1748859737037,
+      "start": 1749089003627,
+      "end": 1749089003627,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1748859737037,
-      "end": 1748859737037,
+      "start": 1749089003627,
+      "end": 1749089003627,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1748859737037,
-      "end": 1748859737037,
+      "start": 1749089003627,
+      "end": 1749089003627,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1748859737037,
-      "end": 1748859737037,
+      "start": 1749089003627,
+      "end": 1749089003627,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1748859737037,
-      "end": 1748859737037,
+      "start": 1749089003627,
+      "end": 1749089003627,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1748859737037,
-      "end": 1748859737037,
+      "start": 1749089003627,
+      "end": 1749089003627,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1748859737037,
-      "end": 1748859737037,
+      "start": 1749089003627,
+      "end": 1749089003627,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1748859737037,
-      "end": 1748859737037,
+      "start": 1749089003627,
+      "end": 1749089003628,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1748859737038,
-      "end": 1748859737038,
+      "start": 1749089003628,
+      "end": 1749089003644,
       "order": "normal"
     }
   ]

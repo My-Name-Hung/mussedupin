@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { IoAdd } from "react-icons/io5";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { getImageUrl } from "../../utils/cloudinary";
 import "./CategoryPage.css";
@@ -332,13 +333,81 @@ const collectionData = {
             "Redpine Art Studio là không gian lưu trú nghệ thuật độc đáo giữa rừng thông, nơi bạn có thể trải nghiệm nghệ thuật và thiên nhiên Đà Lạt.",
           location: "Khu lưu trú nghệ thuật",
           tags: ["Lưu trú", "Nghệ thuật", "Đà Lạt"],
-          images: ["thechillhood.jpg",
+          images: [
+            "thechillhood.jpg",
             "thechill1.jpg",
             "thechill2.jpg",
             "whitebauhinia.jpg",
             "thememory.jpg",
             "thesunset.jpg",
             "thetrain.jpg",
+          ],
+        },
+      ],
+    },
+    {
+      id: 10,
+      title: "Bề mặt ký ức",
+      description: "Bộ sưu tập về ký ức và hoài niệm",
+      image: "Lửa.webp",
+      artworks: [
+        {
+          id: "memory-1",
+          title: "Bề mặt ký ức",
+          artist: "Musée Du Pin",
+          year: "2024",
+          image: "Lửa.webp",
+          description:
+            "Bề mặt ký ức là một tác phẩm nghệ thuật đa phương tiện, kết hợp giữa hình ảnh, âm thanh và không gian để tái hiện những ký ức và cảm xúc của con người.",
+          location: "Khu trưng bày đặc biệt",
+          tags: ["Nghệ thuật", "Ký ức", "Đa phương tiện"],
+          images: [
+            "Bidoup.webp",
+            "bình yên 1 (1).webp",
+            "bình yên 1 (2).webp",
+            "bình yên 2 (1).webp",
+            "bình yên 2 (2).webp",
+            "bình yên 2 (3).webp",
+            "chiếc tổ (1).webp",
+            "chiếc tổ (2).webp",
+            "Đạ Lạch.webp",
+            "dâu tây.webp",
+            "Dung nham.webp",
+            "ga xe lửa (1).webp",
+            "ga xe lửa (2).webp",
+            "ga xe lửa (3).webp",
+            "ga xe lửa (4).webp",
+            "ga xe lửa (5).webp",
+            "ga xe lửa (6).webp",
+            "ký ức.webp",
+            "Langbiang3.webp",
+            "Lửa.webp",
+            "Dung nham.webp",
+            "ống khói (2).webp",
+            "ống khói (3).webp",
+            "ống khói (4).webp",
+            "Rạn 1.webp",
+            "Rạn 2.webp",
+            "Rạn 3.webp",
+            "thác đổ (1).webp",
+            "thác đổ (2).webp",
+            "thác đổ (3).webp",
+            "thác đổ (4).webp",
+            "thác đổ (5).webp",
+            "The Sunrise.webp",
+            "The Sunset 1.webp",
+            "The Sunset 2.webp",
+            "Thông 1-1(1).webp",
+            "Thông 1-1.webp",
+            "Thông 1-2.webp",
+            "Thông 1-3.webp",
+            "Thông 2-1.webp",
+            "Thông 2-2.webp",
+            "Thông 3.webp",
+            "Thông bì 1.webp",
+            "Thông bì 2.webp",
+            "Thông cháy 1.webp",
+            "Thông cháy 2.webp",
           ],
         },
       ],
@@ -358,6 +427,7 @@ const CategoryPage = () => {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
   const [heroLoaded, setHeroLoaded] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  const [displayedImages, setDisplayedImages] = useState(6);
   const artworksRef = useRef(null);
   const heroImageRef = useRef(null);
   const navigate = useNavigate();
@@ -560,6 +630,11 @@ const CategoryPage = () => {
     closeModal();
   };
 
+  // Handle load more images
+  const handleLoadMore = () => {
+    setDisplayedImages((prev) => prev + 10);
+  };
+
   if (!isLoaded) {
     return (
       <div className="category-loading">
@@ -690,67 +765,76 @@ const CategoryPage = () => {
 
           <div className="category-artworks-grid">
             {artworks.map((artwork) =>
-              artwork.images.map((image, imageIndex) => (
-                <div
-                  key={`${artwork.id}-${imageIndex}`}
-                  className={`category-artwork-card ${
-                    isLoaded ? "appear" : ""
-                  }`}
-                  onClick={() => openModal(image)}
-                  onTouchStart={(e) => handleTouchStart(artwork, e)}
-                  onTouchEnd={handleTouchEnd}
-                  onTouchMove={handleTouchMove}
-                  style={{
-                    "--index": imageIndex,
-                    animationDelay: `${100 + imageIndex * 120}ms`,
-                    transform: !isMobile
-                      ? `perspective(1000px) 
+              artwork.images
+                .slice(0, displayedImages)
+                .map((image, imageIndex) => (
+                  <div
+                    key={`${artwork.id}-${imageIndex}`}
+                    className={`category-artwork-card ${
+                      isLoaded ? "appear" : ""
+                    }`}
+                    onClick={() => openModal(image)}
+                    onTouchStart={(e) => handleTouchStart(artwork, e)}
+                    onTouchEnd={handleTouchEnd}
+                    onTouchMove={handleTouchMove}
+                    style={{
+                      "--index": imageIndex,
+                      animationDelay: `${100 + imageIndex * 120}ms`,
+                      transform: !isMobile
+                        ? `perspective(1000px) 
                        rotateX(${mousePosition.y * 5}deg) 
                        rotateY(${-mousePosition.x * 5}deg)
                        translateZ(10px)`
-                      : "none",
-                  }}
-                >
-                  <div className="category-artwork-image-container">
-                    <img
-                      src={getImageUrl(image)}
-                      alt={artwork.title}
-                      className="category-artwork-image"
-                      loading={imageIndex < 12 ? "eager" : "lazy"}
-                      style={{
-                        transform: !isMobile
-                          ? `translateX(${mousePosition.x * -15}px) 
+                        : "none",
+                    }}
+                  >
+                    <div className="category-artwork-image-container">
+                      <img
+                        src={getImageUrl(image)}
+                        alt={artwork.title}
+                        className="category-artwork-image"
+                        loading={imageIndex < 12 ? "eager" : "lazy"}
+                        style={{
+                          transform: !isMobile
+                            ? `translateX(${mousePosition.x * -15}px) 
                            translateY(${mousePosition.y * -15}px)`
-                          : "none",
-                      }}
-                    />
-                    <div className="category-artwork-overlay">
-                      <div className="artwork-quick-info">
-                        <h3 className="artwork-overlay-title">
-                          {artwork.title}
-                        </h3>
-                        <p className="artwork-overlay-artist">
-                          {artwork.artist}
-                        </p>
+                            : "none",
+                        }}
+                      />
+                      <div className="category-artwork-overlay">
+                        <div className="artwork-quick-info">
+                          <h3 className="artwork-overlay-title">
+                            {artwork.title}
+                          </h3>
+                          <p className="artwork-overlay-artist">
+                            {artwork.artist}
+                          </p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  <div className="category-artwork-info">
-                    <h3 className="category-artwork-title">{artwork.title}</h3>
-                    <p className="category-artwork-artist">{artwork.artist}</p>
-                    <p className="category-artwork-year">{artwork.year}</p>
-                    <div className="category-artwork-tags">
-                      {artwork.tags.slice(0, 3).map((tag, i) => (
-                        <span key={i} className="category-artwork-tag">
-                          {tag}
-                        </span>
-                      ))}
+                    <div className="category-artwork-info">
+                      <h3 className="category-artwork-title">
+                        {artwork.title}
+                      </h3>
+                      <p className="category-artwork-artist">
+                        {artwork.artist}
+                      </p>
+                      <p className="category-artwork-year">{artwork.year}</p>
                     </div>
                   </div>
-                </div>
-              ))
+                ))
             )}
           </div>
+
+          {/* Load More Button */}
+          {artworks[0]?.images.length > displayedImages && (
+            <div className="load-more-container">
+              <button className="load-more-button" onClick={handleLoadMore}>
+                <span>Khám phá</span>
+                <IoAdd className="load-more-icon" />
+              </button>
+            </div>
+          )}
         </div>
       </section>
 

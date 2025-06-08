@@ -1,14 +1,17 @@
 /* global process, global, Buffer */
+import bcrypt from "bcryptjs";
 import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import { google } from "googleapis";
 import https from "https";
+import jwt from "jsonwebtoken";
 import { GridFSBucket } from "mongodb";
 import mongoose from "mongoose";
 import cron from "node-cron";
 import nodemailer from "nodemailer";
+import User from "./models/User.js";
 
 dotenv.config();
 
@@ -614,6 +617,247 @@ app.post("/api/experience-bookings", async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Failed to process experience booking",
+      error: error.message,
+    });
+  }
+});
+
+// Authentication APIs
+app.post("/api/auth/signup", async (req, res) => {
+  try {
+    const { email, password, fullName, phone, address } = req.body;
+
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      return res.status(400).json({
+        success: false,
+        message: "Email đã được sử dụng",
+      });
+    }
+
+    // Create new user
+    const user = new User({
+      email,
+      password,
+      fullName,
+      phone,
+      address,
+    });
+
+    await user.save();
+
+    // Generate JWT token
+    const token = jwt.sign(
+      { userId: user._id },
+      process.env.JWT_SECRET ||
+        "cf24ff8c036b8c2d16f546bcb923d7f90bc2f8d63ae8603bd525380795a6ae81185456896d4522356d250849823f28179b3c0f708a6aceeb420cf87ff863357c6a87d8b93423418803663ddd85f407580817314b8e8dbd29205ab2e27cf78cfe5e34c9fde7d6458b024696c80bff9bdf73df4b314c4d8b4f9a7a7ddf22c678700d12857a91b1b2bc3f5e803057bc9b585b02129e4bb455f6d9d7c2ac1b6df69a8d9f74c120973cf26d28e851068ca3f0d823b25c94917fa3edf6c871bd04b68c9693a7c6375307acab1688287574dca58530df0ee44ee9109c30b626d5318726774341bfd233e90c1950c4ab9ae7d373940cfb173308f5db1d697a8a1de821bf",
+      { expiresIn: "24h" }
+    );
+
+    res.status(201).json({
+      success: true,
+      message: "Đăng ký thành công",
+      token,
+      user: {
+        id: user._id,
+        email: user.email,
+        fullName: user.fullName,
+      },
+    });
+  } catch (error) {
+    console.error("Signup error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Đăng ký thất bại",
+      error: error.message,
+    });
+  }
+});
+
+app.post("/api/auth/login", async (req, res) => {
+  try {
+    const { email, password } = req.body;
+
+    // Find user
+    const user = await User.findOne({ email });
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "Email hoặc mật khẩu không đúng",
+      });
+    }
+
+    // Check password
+    const isMatch = await user.comparePassword(password);
+    if (!isMatch) {
+      return res.status(401).json({
+        success: false,
+        message: "Email hoặc mật khẩu không đúng",
+      });
+    }
+
+    // Generate JWT token
+    const token = jwt.sign(
+      { userId: user._id },
+      process.env.JWT_SECRET || "your-secret-key",
+      { expiresIn: "24h" }
+    );
+
+    res.json({
+      success: true,
+      message: "Đăng nhập thành công",
+      token,
+      user: {
+        id: user._id,
+        email: user.email,
+        fullName: user.fullName,
+      },
+    });
+  } catch (error) {
+    console.error("Login error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Đăng nhập thất bại",
+      error: error.message,
+    });
+  }
+});
+
+app.post("/api/auth/forgot-password", async (req, res) => {
+  try {
+    const { email } = req.body;
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "Email không tồn tại trong hệ thống",
+      });
+    }
+
+    // Generate 6-digit code
+    const resetCode = Math.floor(100000 + Math.random() * 900000).toString();
+    const resetToken = await bcrypt.hash(resetCode, 10);
+
+    // Save reset token
+    user.resetPasswordToken = resetToken;
+    user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+    await user.save();
+
+    // Send email with reset code
+    const mailOptions = {
+      from: process.env.EMAIL_USER,
+      to: email,
+      subject: "Đặt lại mật khẩu - Musée Du Pin",
+      html: `
+        <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+          <h2>Đặt lại mật khẩu</h2>
+          <p>Bạn đã yêu cầu đặt lại mật khẩu. Đây là mã xác nhận của bạn:</p>
+          <h1 style="color: #2c2f11; font-size: 32px; letter-spacing: 5px;">${resetCode}</h1>
+          <p>Mã này sẽ hết hạn sau 1 giờ.</p>
+          <p>Nếu bạn không yêu cầu đặt lại mật khẩu, vui lòng bỏ qua email này.</p>
+        </div>
+      `,
+    };
+
+    await transporter.sendMail(mailOptions);
+
+    res.json({
+      success: true,
+      message: "Mã xác nhận đã được gửi đến email của bạn",
+    });
+  } catch (error) {
+    console.error("Forgot password error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Không thể gửi mã xác nhận",
+      error: error.message,
+    });
+  }
+});
+
+app.post("/api/auth/verify-reset-code", async (req, res) => {
+  try {
+    const { email, resetCode } = req.body;
+    const user = await User.findOne({
+      email,
+      resetPasswordExpires: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "Mã xác nhận đã hết hạn hoặc không hợp lệ",
+      });
+    }
+
+    const isValidCode = await bcrypt.compare(
+      resetCode,
+      user.resetPasswordToken
+    );
+    if (!isValidCode) {
+      return res.status(400).json({
+        success: false,
+        message: "Mã xác nhận không đúng",
+      });
+    }
+
+    res.json({
+      success: true,
+      message: "Mã xác nhận hợp lệ",
+    });
+  } catch (error) {
+    console.error("Verify reset code error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Không thể xác thực mã",
+      error: error.message,
+    });
+  }
+});
+
+app.post("/api/auth/reset-password", async (req, res) => {
+  try {
+    const { email, resetCode, newPassword } = req.body;
+    const user = await User.findOne({
+      email,
+      resetPasswordExpires: { $gt: Date.now() },
+    });
+
+    if (!user) {
+      return res.status(400).json({
+        success: false,
+        message: "Mã xác nhận đã hết hạn hoặc không hợp lệ",
+      });
+    }
+
+    const isValidCode = await bcrypt.compare(
+      resetCode,
+      user.resetPasswordToken
+    );
+    if (!isValidCode) {
+      return res.status(400).json({
+        success: false,
+        message: "Mã xác nhận không đúng",
+      });
+    }
+
+    // Update password
+    user.password = newPassword;
+    user.resetPasswordToken = undefined;
+    user.resetPasswordExpires = undefined;
+    await user.save();
+
+    res.json({
+      success: true,
+      message: "Mật khẩu đã được cập nhật thành công",
+    });
+  } catch (error) {
+    console.error("Reset password error:", error);
+    res.status(500).json({
+      success: false,
+      message: "Không thể cập nhật mật khẩu",
       error: error.message,
     });
   }

@@ -952,8 +952,14 @@ app.put("/api/user/update-address", async (req, res) => {
 // API endpoint để tạo đơn hàng mới
 app.post("/api/orders", async (req, res) => {
   try {
-    const { userId, items, totalAmount, shippingAddress, paymentMethod } =
-      req.body;
+    const {
+      userId,
+      items,
+      totalAmount,
+      shippingAddress,
+      paymentMethod,
+      discountInfo,
+    } = req.body;
 
     // Tạo mã đơn hàng
     const orderCode = `ORDER${Date.now()}${Math.floor(Math.random() * 1000)}`;
@@ -968,11 +974,12 @@ app.post("/api/orders", async (req, res) => {
       JSON.stringify(shippingAddress), // Địa chỉ giao hàng
       paymentMethod, // Phương thức thanh toán
       "Pending", // Trạng thái
+      discountInfo ? JSON.stringify(discountInfo) : "", // Thông tin giảm giá
     ];
 
     const request = {
       spreadsheetId: SPREADSHEET_ID,
-      range: "Bookings!A:H",
+      range: "Bookings!A:I",
       valueInputOption: "RAW",
       insertDataOption: "INSERT_ROWS",
       resource: {
@@ -985,6 +992,14 @@ app.post("/api/orders", async (req, res) => {
     // Gửi email xác nhận
     const user = await User.findById(userId);
     if (user) {
+      const subtotal = items.reduce(
+        (total, item) => total + item.price * item.quantity,
+        0
+      );
+      const discountAmount = discountInfo?.applied
+        ? subtotal * discountInfo.rate
+        : 0;
+
       const mailOptions = {
         from: process.env.EMAIL_USER,
         to: user.email,
@@ -996,6 +1011,16 @@ app.post("/api/orders", async (req, res) => {
             
             <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
               <p><strong>Mã đơn hàng:</strong> ${orderCode}</p>
+              <p><strong>Tạm tính:</strong> ${subtotal.toLocaleString()}đ</p>
+              ${
+                discountInfo?.applied
+                  ? `
+              <p style="color: #28a745"><strong>Giảm giá (${
+                discountInfo.rate * 100
+              }%):</strong> -${discountAmount.toLocaleString()}đ</p>
+              `
+                  : ""
+              }
               <p><strong>Tổng tiền:</strong> ${totalAmount.toLocaleString()}đ</p>
               <p><strong>Phương thức thanh toán:</strong> ${
                 paymentMethod === "bank" ? "Chuyển khoản ngân hàng" : "Tiền mặt"
@@ -1017,6 +1042,9 @@ app.post("/api/orders", async (req, res) => {
                   <p><strong>${item.name}</strong></p>
                   <p>Số lượng: ${item.quantity}</p>
                   <p>Giá: ${item.price.toLocaleString()}đ</p>
+                  <p>Thành tiền: ${(
+                    item.price * item.quantity
+                  ).toLocaleString()}đ</p>
                 </div>
               `
                 )
@@ -1042,6 +1070,19 @@ app.post("/api/orders", async (req, res) => {
               <p><strong>Khách hàng:</strong> ${user.fullName}</p>
               <p><strong>Email:</strong> ${user.email}</p>
               <p><strong>Số điện thoại:</strong> ${user.phone}</p>
+              <p><strong>Tạm tính:</strong> ${subtotal.toLocaleString()}đ</p>
+              ${
+                discountInfo?.applied
+                  ? `
+              <p style="color: #28a745"><strong>Giảm giá (${
+                discountInfo.rate * 100
+              }%):</strong> -${discountAmount.toLocaleString()}đ</p>
+              <p><strong>Mã giảm giá đã sử dụng:</strong> ${
+                discountInfo.code
+              }</p>
+              `
+                  : ""
+              }
               <p><strong>Tổng tiền:</strong> ${totalAmount.toLocaleString()}đ</p>
               <p><strong>Phương thức thanh toán:</strong> ${
                 paymentMethod === "bank" ? "Chuyển khoản ngân hàng" : "Tiền mặt"
@@ -1063,6 +1104,9 @@ app.post("/api/orders", async (req, res) => {
                   <p><strong>${item.name}</strong></p>
                   <p>Số lượng: ${item.quantity}</p>
                   <p>Giá: ${item.price.toLocaleString()}đ</p>
+                  <p>Thành tiền: ${(
+                    item.price * item.quantity
+                  ).toLocaleString()}đ</p>
                 </div>
               `
                 )
@@ -1132,6 +1176,141 @@ app.put("/api/orders/:orderCode", async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Lỗi khi cập nhật trạng thái đơn hàng",
+      error: error.message,
+    });
+  }
+});
+
+// API endpoint để lấy danh sách đơn hàng của user
+app.get("/api/orders", async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(" ")[1];
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: "Không tìm thấy token xác thực",
+      });
+    }
+
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET || "your-secret-key"
+    );
+    const user = await User.findById(decoded.userId);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "Không tìm thấy người dùng",
+      });
+    }
+
+    // Lấy danh sách đơn hàng từ Google Sheets
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: "Orders!A:Z",
+    });
+
+    const rows = response.data.values || [];
+    const orders = rows
+      .filter((row) => row[2] === user.id.toString()) // Lọc theo userId
+      .map((row) => ({
+        orderCode: row[1],
+        items: JSON.parse(row[3] || "[]"),
+        totalAmount: parseFloat(row[4] || 0),
+        shippingAddress: JSON.parse(row[5] || "{}"),
+        paymentMethod: row[6],
+        status: row[7],
+        createdAt: row[0],
+      }))
+      .reverse(); // Sắp xếp mới nhất lên đầu
+
+    res.json({
+      success: true,
+      orders,
+    });
+  } catch (error) {
+    console.error("Error fetching orders:", error);
+    res.status(500).json({
+      success: false,
+      message: "Lỗi khi lấy danh sách đơn hàng",
+      error: error.message,
+    });
+  }
+});
+
+// API endpoint để xóa đơn hàng
+app.delete("/api/orders/:orderCode", async (req, res) => {
+  try {
+    const { orderCode } = req.params;
+    const token = req.headers.authorization?.split(" ")[1];
+
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: "Không tìm thấy token xác thực",
+      });
+    }
+
+    const decoded = jwt.verify(
+      token,
+      process.env.JWT_SECRET || "your-secret-key"
+    );
+    const user = await User.findById(decoded.userId);
+
+    if (!user) {
+      return res.status(404).json({
+        success: false,
+        message: "Không tìm thấy người dùng",
+      });
+    }
+
+    // Lấy dữ liệu hiện tại
+    const response = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: "Bookings!A:H",
+    });
+
+    const rows = response.data.values;
+    const orderIndex = rows.findIndex(
+      (row) => row[1] === orderCode && row[2] === user.id.toString()
+    );
+
+    if (orderIndex === -1) {
+      return res.status(404).json({
+        success: false,
+        message: "Không tìm thấy đơn hàng hoặc không có quyền xóa",
+      });
+    }
+
+    // Xóa dòng trong Google Sheets
+    await sheets.spreadsheets.batchUpdate({
+      spreadsheetId: SPREADSHEET_ID,
+      resource: {
+        requests: [
+          {
+            deleteDimension: {
+              range: {
+                sheetId: 0, // Giả sử sheet Orders có ID là 0
+                dimension: "ROWS",
+                startIndex: orderIndex,
+                endIndex: orderIndex + 1,
+              },
+            },
+          },
+        ],
+      },
+    });
+
+    res.json({
+      success: true,
+      message: "Đã xóa đơn hàng thành công",
+    });
+  } catch (error) {
+    console.error("Error deleting order:", error);
+    res.status(500).json({
+      success: false,
+      message: "Lỗi khi xóa đơn hàng",
       error: error.message,
     });
   }

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AddressModal from "../../components/AddressModal/AddressModal";
 import LoginModal from "../../components/Auth/LoginModal";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import OrderSteps from "../../components/OrderSteps/OrderSteps";
 import SuccessModal from "../../components/SuccessModal/SuccessModal";
 import "./CheckoutPage.css";
@@ -17,6 +18,8 @@ const CheckoutPage = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [orderCode, setOrderCode] = useState("");
   const [qrCode, setQrCode] = useState("");
+  const [discountInfo, setDiscountInfo] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -28,6 +31,11 @@ const CheckoutPage = () => {
       fetchUserInfo();
     }
     loadCartItems();
+    // Load discount info
+    const savedDiscount = localStorage.getItem("cartDiscount");
+    if (savedDiscount) {
+      setDiscountInfo(JSON.parse(savedDiscount));
+    }
   }, []);
 
   const loadCartItems = () => {
@@ -73,11 +81,15 @@ const CheckoutPage = () => {
     setPaymentMethod(method);
   };
 
-  const calculateTotal = () => {
+  const calculateSubtotal = () => {
     return cartItems.reduce(
       (total, item) => total + item.price * item.quantity,
       0
     );
+  };
+
+  const calculateTotal = () => {
+    return discountInfo ? discountInfo.total : calculateSubtotal();
   };
 
   const generateQRCode = async () => {
@@ -92,12 +104,16 @@ const CheckoutPage = () => {
         alert("Vui lòng chọn phương thức thanh toán");
         return;
       }
+      setIsLoading(true);
       if (paymentMethod === "bank") {
         await generateQRCode();
       }
       setCurrentStep(2);
+      setIsLoading(false);
     } else if (currentStep === 2) {
+      setIsLoading(true);
       await createOrder();
+      setIsLoading(false);
     }
   };
 
@@ -117,6 +133,7 @@ const CheckoutPage = () => {
             totalAmount: calculateTotal(),
             shippingAddress: userInfo.address,
             paymentMethod,
+            discountInfo: discountInfo,
           }),
         }
       );
@@ -126,6 +143,7 @@ const CheckoutPage = () => {
         setOrderCode(data.orderCode);
         setShowSuccessModal(true);
         localStorage.removeItem("cart");
+        localStorage.removeItem("cartDiscount");
       }
     } catch (error) {
       console.error("Error creating order:", error);
@@ -163,19 +181,31 @@ const CheckoutPage = () => {
 
       {isLoggedIn && userInfo && (
         <div className="checkout-content">
-          <h1 className="checkout-title">Tùy chọn thanh toán</h1>
+          {/* <h1 className="checkout-title">Tùy chọn thanh toán</h1> */}
 
           {currentStep === 1 && (
             <>
               <section className="shipping-address">
                 <h2>Địa chỉ giao hàng</h2>
                 <div className="user-info">
-                  <p>{userInfo.fullName}</p>
                   <p>
-                    {userInfo.address?.street}, {userInfo.address?.city}
+                    <strong>Họ tên:</strong> {userInfo.fullName}
                   </p>
-                  <p>{userInfo.phone}</p>
-                  <p>{userInfo.email}</p>
+                  <p>
+                    <strong>Số điện thoại:</strong> {userInfo.phone}
+                  </p>
+                  <p>
+                    <strong>Email:</strong> {userInfo.email}
+                  </p>
+                  <p>
+                    <strong>Địa chỉ:</strong> {userInfo.address?.street}
+                  </p>
+                  <p>
+                    <strong>Thành phố:</strong> {userInfo.address?.city}
+                  </p>
+                  <p>
+                    <strong>Tỉnh/Thành phố:</strong> {userInfo.address?.state}
+                  </p>
                 </div>
                 <button
                   className="change-address-btn"
@@ -185,12 +215,12 @@ const CheckoutPage = () => {
                 </button>
               </section>
 
-              <section className="cart-items">
+              <section className="cart-items-checkout">
                 <h2>Sản phẩm đã chọn</h2>
                 {cartItems.map((item) => (
-                  <div key={item.id} className="cart-item">
+                  <div key={item.id} className="cart-item-checkout">
                     <img src={item.image} alt={item.name} />
-                    <div className="item-details">
+                    <div className="item-details-checkout">
                       <h3>{item.name}</h3>
                       <p>Số lượng: {item.quantity}</p>
                       <p className="price">
@@ -199,6 +229,31 @@ const CheckoutPage = () => {
                     </div>
                   </div>
                 ))}
+
+                <div className="checkout-summary">
+                  <div className="summary-row">
+                    <span>Tạm tính:</span>
+                    <span>{calculateSubtotal().toLocaleString()}đ</span>
+                  </div>
+
+                  {discountInfo && discountInfo.applied && (
+                    <div className="summary-row discount">
+                      <span>Giảm giá ({discountInfo.rate * 100}%):</span>
+                      <span>
+                        -
+                        {(
+                          calculateSubtotal() * discountInfo.rate
+                        ).toLocaleString()}
+                        đ
+                      </span>
+                    </div>
+                  )}
+
+                  <div className="summary-row total">
+                    <span>Tổng cộng:</span>
+                    <span>{calculateTotal().toLocaleString()}đ</span>
+                  </div>
+                </div>
               </section>
 
               <section className="payment-methods">
@@ -243,7 +298,7 @@ const CheckoutPage = () => {
                   {qrCode && (
                     <img src={qrCode} alt="QR Code" className="qr-code" />
                   )}
-                  <p>Số tiền: {calculateTotal().toLocaleString()}đ</p>
+                  {/* <p>Số tiền: {calculateTotal().toLocaleString()}đ</p> */}
                 </div>
               )}
 
@@ -252,23 +307,41 @@ const CheckoutPage = () => {
                 <div className="summary-details">
                   <p>
                     <strong>Địa chỉ giao hàng:</strong>
+                    {userInfo.address?.street}
                   </p>
-                  <p>{userInfo.address?.street}</p>
                   <p>
-                    {userInfo.address?.city}, {userInfo.address?.state}
+                    <strong>Thành phố:</strong>
+                    {userInfo.address?.city}
+                  </p>
+                  <p>
+                    <strong>Tỉnh/Thành phố:</strong>
+                    {userInfo.address?.state}
                   </p>
 
                   <p>
                     <strong>Phương thức thanh toán:</strong>
-                  </p>
-                  <p>
                     {paymentMethod === "bank"
                       ? "Chuyển khoản ngân hàng"
                       : "Tiền mặt"}
                   </p>
 
                   <p>
-                    <strong>Tổng tiền:</strong>{" "}
+                    <strong>Tạm tính:</strong>
+                    {calculateSubtotal().toLocaleString()}đ
+                  </p>
+
+                  {discountInfo && discountInfo.applied && (
+                    <p>
+                      <strong>Giảm giá ({discountInfo.rate * 100}%):</strong>-
+                      {(
+                        calculateSubtotal() * discountInfo.rate
+                      ).toLocaleString()}
+                      đ
+                    </p>
+                  )}
+
+                  <p className="total-price">
+                    <strong>Tổng tiền:</strong>
                     {calculateTotal().toLocaleString()}đ
                   </p>
                 </div>
@@ -279,15 +352,22 @@ const CheckoutPage = () => {
           <button
             className="next-step-btn"
             onClick={handleNextStep}
+            disabled={isLoading}
             style={{
               color: paymentMethod === "bank" ? "yellowgreen" : "white",
             }}
           >
-            {currentStep === 1
-              ? "Bước tiếp theo"
-              : paymentMethod === "bank"
-              ? "Đã thanh toán"
-              : "Hoàn tất"}
+            {isLoading ? (
+              <LoadingSpinner
+                color={paymentMethod === "bank" ? "yellowgreen" : "white"}
+              />
+            ) : currentStep === 1 ? (
+              "Bước tiếp theo"
+            ) : paymentMethod === "bank" ? (
+              "Đã thanh toán"
+            ) : (
+              "Hoàn tất"
+            )}
           </button>
         </div>
       )}

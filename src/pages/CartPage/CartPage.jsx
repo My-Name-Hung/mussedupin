@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { FaChevronDown, FaChevronUp, FaTimes } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import Notification from "../../components/Notification/Notification";
 import "./CartPage.css";
 
@@ -17,6 +18,9 @@ const CartPage = () => {
   const [notificationMessage, setNotificationMessage] = useState("");
   const [notificationType, setNotificationType] = useState("success");
   const [orders, setOrders] = useState([]);
+  const [isLoadingConfirm, setIsLoadingConfirm] = useState(false);
+  const [isLoadingDelete, setIsLoadingDelete] = useState(null);
+  const [isLoadingCheckout, setIsLoadingCheckout] = useState(false);
 
   useEffect(() => {
     loadCartItems();
@@ -62,6 +66,7 @@ const CartPage = () => {
 
   const handleConfirmReceived = async (orderCode) => {
     try {
+      setIsLoadingConfirm(true);
       const response = await fetch(
         `https://mussedupin.onrender.com/api/orders/${orderCode}`,
         {
@@ -83,6 +88,38 @@ const CartPage = () => {
       }
     } catch (error) {
       console.error("Error confirming order:", error);
+    } finally {
+      setIsLoadingConfirm(false);
+    }
+  };
+
+  const handleDeleteOrder = async (orderCode) => {
+    try {
+      setIsLoadingDelete(orderCode);
+      const response = await fetch(
+        `https://mussedupin.onrender.com/api/orders/${orderCode}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+      if (data.success) {
+        setNotificationMessage("Đã xóa đơn hàng khỏi lịch sử");
+        setNotificationType("success");
+        setShowNotification(true);
+        setOrders(orders.filter((order) => order.orderCode !== orderCode));
+      }
+    } catch (error) {
+      console.error("Error deleting order:", error);
+      setNotificationMessage("Không thể xóa đơn hàng");
+      setNotificationType("error");
+      setShowNotification(true);
+    } finally {
+      setIsLoadingDelete(null);
     }
   };
 
@@ -158,12 +195,22 @@ const CartPage = () => {
       setNotificationMessage(promoInfo.message);
       setNotificationType("success");
       setShowNotification(true);
+
+      // Lưu thông tin giảm giá vào localStorage ngay khi áp dụng
+      const discountData = {
+        applied: true,
+        rate: promoInfo.rate,
+        total: calculateTotal() * (1 - promoInfo.rate),
+        code: promoCode,
+      };
+      localStorage.setItem("cartDiscount", JSON.stringify(discountData));
     } else {
       setDiscountApplied(false);
       setDiscountRate(0);
       setNotificationMessage("Mã giảm giá không hợp lệ");
       setNotificationType("error");
       setShowNotification(true);
+      localStorage.removeItem("cartDiscount"); // Xóa thông tin giảm giá nếu mã không hợp lệ
     }
   };
 
@@ -182,7 +229,21 @@ const CartPage = () => {
       setShowNotification(true);
       return;
     }
-    navigate("/checkout");
+    setIsLoadingCheckout(true);
+
+    // Lưu thông tin giảm giá vào localStorage
+    const discountData = {
+      applied: discountApplied,
+      rate: discountRate,
+      total: calculateTotal(),
+      code: promoCode, // Thêm mã giảm giá đã sử dụng
+    };
+
+    localStorage.setItem("cartDiscount", JSON.stringify(discountData));
+    setTimeout(() => {
+      navigate("/checkout");
+      setIsLoadingCheckout(false);
+    }, 500);
   };
 
   return (
@@ -197,8 +258,12 @@ const CartPage = () => {
       <h1 className="cart-title">Giỏ hàng của tôi</h1>
 
       <div className="cart-actions-top">
-        <button className="checkout-button" onClick={handleCheckout}>
-          Đi đến thanh toán
+        <button
+          className="checkout-button"
+          onClick={handleCheckout}
+          disabled={isLoadingCheckout}
+        >
+          {isLoadingCheckout ? <LoadingSpinner /> : "Đi đến thanh toán"}
         </button>
         <Link to="/" className="continue-shopping">
           Tiếp tục mua sắm
@@ -285,21 +350,25 @@ const CartPage = () => {
           </div>
         ))}
 
-        <div className="cart-total">
-          <div className="total-amount">
+        <div className="cart-total-product">
+          <div className="total-amount-product">
             Tổng cộng: {calculateTotal().toLocaleString()}đ
           </div>
-          <p className="shipping-note">
+          <p className="shipping-note-product">
             Không bao gồm chi phí vận chuyển, hãy chọn tùy chọn vận chuyển
             trước.
           </p>
         </div>
 
         <div className="cart-actions-bottom">
-          <button className="checkout-button" onClick={handleCheckout}>
-            Đi đến thanh toán
+          <button
+            className="checkout-button"
+            onClick={handleCheckout}
+            disabled={isLoadingCheckout}
+          >
+            {isLoadingCheckout ? <LoadingSpinner /> : "Đi đến thanh toán"}
           </button>
-          <Link to="/category" className="continue-shopping">
+          <Link to="/" className="continue-shopping">
             Tiếp tục mua sắm
           </Link>
         </div>
@@ -310,12 +379,26 @@ const CartPage = () => {
             {orders.map((order) => (
               <div key={order.orderCode} className="order-item">
                 <div className="order-header">
-                  <h3>Mã đơn hàng: {order.orderCode}</h3>
-                  <span
-                    className={`order-status ${order.status.toLowerCase()}`}
+                  <div className="order-header-left">
+                    <h3>Mã đơn hàng: {order.orderCode}</h3>
+                    <span
+                      className={`order-status ${order.status.toLowerCase()}`}
+                    >
+                      {order.status}
+                    </span>
+                  </div>
+                  <button
+                    className="delete-order-btn"
+                    onClick={() => handleDeleteOrder(order.orderCode)}
+                    disabled={isLoadingDelete === order.orderCode}
+                    title="Xóa khỏi lịch sử"
                   >
-                    {order.status}
-                  </span>
+                    {isLoadingDelete === order.orderCode ? (
+                      <LoadingSpinner size="small" color="#dc3545" />
+                    ) : (
+                      <FaTimes />
+                    )}
+                  </button>
                 </div>
 
                 <div className="order-products">
@@ -334,15 +417,26 @@ const CartPage = () => {
                 </div>
 
                 <div className="order-footer">
-                  <p className="total-amount">
-                    Tổng tiền: {order.totalAmount.toLocaleString()}đ
-                  </p>
+                  <div className="order-info">
+                    <p className="total-amount">
+                      Tổng tiền: {order.totalAmount.toLocaleString()}đ
+                    </p>
+                    <p className="order-date">
+                      Ngày đặt:{" "}
+                      {new Date(order.createdAt).toLocaleDateString("vi-VN")}
+                    </p>
+                  </div>
                   {order.status === "Pending" && (
                     <button
                       className="confirm-received-btn"
                       onClick={() => handleConfirmReceived(order.orderCode)}
+                      disabled={isLoadingConfirm}
                     >
-                      Xác nhận đã nhận hàng
+                      {isLoadingConfirm ? (
+                        <LoadingSpinner />
+                      ) : (
+                        "Xác nhận đã nhận hàng"
+                      )}
                     </button>
                   )}
                 </div>

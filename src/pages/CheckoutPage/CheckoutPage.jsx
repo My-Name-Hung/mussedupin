@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import AddressModal from "../../components/AddressModal/AddressModal";
 import LoginModal from "../../components/Auth/LoginModal";
@@ -150,6 +151,10 @@ const CheckoutPage = () => {
     }
   };
 
+  const handleStepChange = (stepNumber) => {
+    setCurrentStep(stepNumber);
+  };
+
   return (
     <div className="checkout-page">
       {showLoginModal && (
@@ -177,11 +182,19 @@ const CheckoutPage = () => {
         />
       )}
 
-      <OrderSteps currentStep={currentStep} />
+      <OrderSteps currentStep={currentStep} onStepClick={handleStepChange} />
 
       {isLoggedIn && userInfo && (
         <div className="checkout-content">
-          {/* <h1 className="checkout-title">Tùy chọn thanh toán</h1> */}
+          {currentStep > 1 && (
+            <button
+              className="back-step-btn"
+              onClick={() => setCurrentStep(currentStep - 1)}
+              disabled={isLoading}
+            >
+              <FaArrowLeft /> Quay lại
+            </button>
+          )}
 
           {currentStep === 1 && (
             <>

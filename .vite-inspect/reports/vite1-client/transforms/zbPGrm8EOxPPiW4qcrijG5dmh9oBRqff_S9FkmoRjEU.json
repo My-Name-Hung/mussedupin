@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "\"use client\";\nimport { jsx } from 'react/jsx-runtime';\nimport { useContext, useRef, useMemo } from 'react';\nimport { LayoutGroupContext } from '../../context/LayoutGroupContext.mjs';\nimport { DeprecatedLayoutGroupContext } from '../../context/DeprecatedLayoutGroupContext.mjs';\nimport { useForceUpdate } from '../../utils/use-force-update.mjs';\nimport { nodeGroup } from '../../projection/node/group.mjs';\n\nconst shouldInheritGroup = (inherit) => inherit === true;\nconst shouldInheritId = (inherit) => shouldInheritGroup(inherit === true) || inherit === \"id\";\nconst LayoutGroup = ({ children, id, inherit = true }) => {\n    const layoutGroupContext = useContext(LayoutGroupContext);\n    const deprecatedLayoutGroupContext = useContext(DeprecatedLayoutGroupContext);\n    const [forceRender, key] = useForceUpdate();\n    const context = useRef(null);\n    const upstreamId = layoutGroupContext.id || deprecatedLayoutGroupContext;\n    if (context.current === null) {\n        if (shouldInheritId(inherit) && upstreamId) {\n            id = id ? upstreamId + \"-\" + id : upstreamId;\n        }\n        context.current = {\n            id,\n            group: shouldInheritGroup(inherit)\n                ? layoutGroupContext.group || nodeGroup()\n                : nodeGroup(),\n        };\n    }\n    const memoizedContext = useMemo(() => ({ ...context.current, forceRender }), [key]);\n    return (jsx(LayoutGroupContext.Provider, { value: memoizedContext, children: children }));\n};\n\nexport { LayoutGroup };\n",
-      "start": 1749792478753,
-      "end": 1749792478885,
+      "start": 1749894720385,
+      "end": 1749894720509,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749792478885,
-      "end": 1749792478885,
+      "start": 1749894720509,
+      "end": 1749894720509,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1749792478886,
-      "end": 1749792478886,
+      "start": 1749894720509,
+      "end": 1749894720509,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1749792478886,
-      "end": 1749792478886,
+      "start": 1749894720509,
+      "end": 1749894720509,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749792478886,
-      "end": 1749792478886,
+      "start": 1749894720509,
+      "end": 1749894720509,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749792478886,
-      "end": 1749792478886,
+      "start": 1749894720509,
+      "end": 1749894720509,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749792478886,
-      "end": 1749792478886,
+      "start": 1749894720509,
+      "end": 1749894720509,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749792478886,
-      "end": 1749792478886,
+      "start": 1749894720509,
+      "end": 1749894720509,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749792478886,
-      "end": 1749792478886,
+      "start": 1749894720509,
+      "end": 1749894720509,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749792478886,
-      "end": 1749792478886,
+      "start": 1749894720509,
+      "end": 1749894720509,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749792478886,
-      "end": 1749792478886,
+      "start": 1749894720509,
+      "end": 1749894720509,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749792478886,
-      "end": 1749792478886,
+      "start": 1749894720509,
+      "end": 1749894720509,
       "order": "normal"
     }
   ]

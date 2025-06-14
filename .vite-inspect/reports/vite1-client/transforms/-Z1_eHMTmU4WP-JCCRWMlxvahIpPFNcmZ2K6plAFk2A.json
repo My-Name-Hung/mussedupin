@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "/**\n * react-router-dom v7.6.0\n *\n * Copyright (c) Remix Software Inc.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE.md file in the root directory of this source tree.\n *\n * @license MIT\n */\n\n// index.ts\nimport { HydratedRouter, RouterProvider } from \"react-router/dom\";\nexport * from \"react-router\";\nexport {\n  HydratedRouter,\n  RouterProvider\n};\n",
-      "start": 1749792471780,
-      "end": 1749792471844,
+      "start": 1749894710818,
+      "end": 1749894710855,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749792471844,
-      "end": 1749792471844,
+      "start": 1749894710855,
+      "end": 1749894710855,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1749792471844,
-      "end": 1749792471844,
+      "start": 1749894710855,
+      "end": 1749894710855,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1749792471844,
-      "end": 1749792471844,
+      "start": 1749894710855,
+      "end": 1749894710855,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749792471844,
-      "end": 1749792471844,
+      "start": 1749894710855,
+      "end": 1749894710855,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749792471844,
-      "end": 1749792471844,
+      "start": 1749894710855,
+      "end": 1749894710855,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749792471844,
-      "end": 1749792471845,
+      "start": 1749894710855,
+      "end": 1749894710855,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749792471845,
-      "end": 1749792471845,
+      "start": 1749894710855,
+      "end": 1749894710855,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749792471845,
-      "end": 1749792471845,
+      "start": 1749894710855,
+      "end": 1749894710855,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749792471845,
-      "end": 1749792471845,
+      "start": 1749894710855,
+      "end": 1749894710855,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749792471845,
-      "end": 1749792471845,
+      "start": 1749894710855,
+      "end": 1749894710856,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749792471845,
-      "end": 1749792471845,
+      "start": 1749894710856,
+      "end": 1749894710856,
       "order": "normal"
     }
   ]

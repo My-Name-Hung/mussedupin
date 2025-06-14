@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import { useEffect, useState } from \"react\";\nimport { FaPause, FaPlay } from \"react-icons/fa\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport { Link } from \"react-router-dom\";\nimport Slider from \"react-slick\";\nimport \"slick-carousel/slick/slick-theme.css\";\nimport \"slick-carousel/slick/slick.css\";\nimport \"./Hero.css\";\n\nconst slides = [\n  {\n    image:\n      \"https://ik.imagekit.io/8u8lkoqkkm/DemThong_Trong.jpg?updatedAt=1749312390412\",\n    title: \"Đêm Thông\",\n    subtitle: \"Các sản phẩm về Thông\",\n    categoryLink: \"/category/xuat-ban\",\n  },\n  {\n    image:\n      \"https://ik.imagekit.io/8u8lkoqkkm/loirung_doc.png?updatedAt=1749269173624\",\n    title: \"Lối rừng\",\n    subtitle: \"Các sản phẩm về Thông\",\n    categoryLink: \"/category/xuat-ban\",\n  },\n  {\n    image:\n      \"https://ik.imagekit.io/8u8lkoqkkm/Dangsuong_Doc.jpg?updatedAt=1749269171830\",\n    title: \"Dáng sương\",\n    subtitle: \"Các sản phẩm về Thông\",\n    categoryLink: \"/category/xuat-ban\",\n  },\n  {\n    image:\n      \"https://ik.imagekit.io/8u8lkoqkkm/Th%C3%B4ng%202.webp?updatedAt=1749523250616\",\n    title: \"Phức Tầng\",\n    subtitle: \"Các sản phẩm về Thông\",\n    categoryLink: \"/category/xuat-ban\",\n  },\n  {\n    image:\n      \"https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng.webp?updatedAt=1749523332792\",\n    title: \"Vật liệu\",\n    subtitle: \"Các sản phẩm về Thông\",\n    categoryLink: \"/category/xuat-ban\",\n  },\n  {\n    image:\n      \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/DSC_2475.webp\",\n    title: \"Dụng cục âm nhạc Tây Nguyên\",\n    subtitle: \"Các sản phẩm về đồng bào K'ho\",\n    categoryLink: \"/category/kho\",\n  },\n  {\n    image:\n      \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/L%E1%BB%93ng%20%C4%90a%20%C4%90a.webp\",\n    title: \"K'ho Chăn nuôi\",\n    subtitle: \"Các sản phẩm về đồng bào K'ho\",\n    categoryLink: \"/category/kho\",\n  },\n  {\n    image:\n      \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/b%C3%ACnh%20y%C3%AAn%201%20(2).webp\",\n    title: \"Bề mặt ký ức\",\n    subtitle: \"Các sản phẩm về đồng bào K'ho\",\n    categoryLink: \"/category/kho\",\n  },\n  {\n    image:\n      \"https://ik.imagekit.io/8u8lkoqkkm/fe26e39c6384d7da8e95.jpg?updatedAt=1749083704253\",\n    title: \"Lửa thiêng\",\n    subtitle: \"Các sản phẩm về Thông\",\n    categoryLink: \"/category/xuat-ban\",\n  },\n  {\n    image:\n      \"https://ik.imagekit.io/8u8lkoqkkm/image(1).png?updatedAt=1749394994472\",\n    title: \"Ngệ thuật vị giác\",\n    subtitle: \"Các sản phẩm về Thông\",\n    categoryLink: \"/category/xuat-ban\",\n  },\n];\n\nconst Hero = () => {\n  const [isPlaying, setIsPlaying] = useState(true);\n  const [currentSlide, setCurrentSlide] = useState(0);\n  const [randomSlides, setRandomSlides] = useState([]);\n  const [sliderRef, setSliderRef] = useState(null);\n\n  useEffect(() => {\n    // Shuffle and select 5 random slides\n    const shuffled = [...slides].sort(() => 0.5 - Math.random());\n    setRandomSlides(shuffled.slice(0, 5));\n  }, []);\n\n  const settings = {\n    dots: false,\n    infinite: true,\n    speed: 1000,\n    slidesToShow: 1,\n    slidesToScroll: 1,\n    autoplay: isPlaying,\n    autoplaySpeed: 5000,\n    pauseOnHover: false,\n    fade: true,\n    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),\n  };\n\n  const togglePlayPause = () => {\n    if (sliderRef) {\n      if (isPlaying) {\n        sliderRef.slickPause();\n      } else {\n        sliderRef.slickPlay();\n      }\n    }\n    setIsPlaying(!isPlaying);\n  };\n\n  const goToSlide = (index) => {\n    if (sliderRef) {\n      sliderRef.slickGoTo(index);\n    }\n  };\n\n  return (\n    <section className=\"hero-container-home\">\n      <div className=\"hero-slider-container\">\n        <Slider ref={(slider) => setSliderRef(slider)} {...settings}>\n          {randomSlides.map((slide, index) => (\n            <div key={index} className=\"slide\">\n              <div className=\"slide-image-container\">\n                <img\n                  src={slide.image}\n                  alt={slide.title}\n                  className=\"slide-image\"\n                />\n                <div className=\"slide-content\">\n                  <h1 className=\"slide-title-hero\">{slide.title}</h1>\n                  <Link to={slide.categoryLink} className=\"slide-subtitle\">\n                    {slide.subtitle} <IoIosArrowRoundForward />\n                  </Link>\n                </div>\n              </div>\n            </div>\n          ))}\n        </Slider>\n        <div className=\"slick-nav\">\n          {randomSlides.map((_, index) => (\n            <div\n              key={index}\n              className={`nav-item-hero ${\n                index === currentSlide ? \"active\" : \"\"\n              } ${index === currentSlide && isPlaying ? \"playing\" : \"\"}`}\n              onClick={() => goToSlide(index)}\n            />\n          ))}\n        </div>\n        <button\n          className=\"play-pause-button\"\n          onClick={togglePlayPause}\n          aria-label={isPlaying ? \"Pause slideshow\" : \"Play slideshow\"}\n        >\n          {isPlaying ? <FaPause /> : <FaPlay />}\n        </button>\n      </div>\n    </section>\n  );\n};\n\nexport default Hero;\n",
-      "start": 1749792472327,
-      "end": 1749792472496,
+      "start": 1749894711556,
+      "end": 1749894712048,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749792472496,
-      "end": 1749792472496,
+      "start": 1749894712048,
+      "end": 1749894712048,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport { useEffect, useState } from \"react\";\nimport { FaPause, FaPlay } from \"react-icons/fa\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport { Link } from \"react-router-dom\";\nimport Slider from \"react-slick\";\nimport \"slick-carousel/slick/slick-theme.css\";\nimport \"slick-carousel/slick/slick.css\";\nimport \"./Hero.css\";\nconst slides = [\n  {\n    image: \"https://ik.imagekit.io/8u8lkoqkkm/DemThong_Trong.jpg?updatedAt=1749312390412\",\n    title: \"Đêm Thông\",\n    subtitle: \"Các sản phẩm về Thông\",\n    categoryLink: \"/category/xuat-ban\"\n  },\n  {\n    image: \"https://ik.imagekit.io/8u8lkoqkkm/loirung_doc.png?updatedAt=1749269173624\",\n    title: \"Lối rừng\",\n    subtitle: \"Các sản phẩm về Thông\",\n    categoryLink: \"/category/xuat-ban\"\n  },\n  {\n    image: \"https://ik.imagekit.io/8u8lkoqkkm/Dangsuong_Doc.jpg?updatedAt=1749269171830\",\n    title: \"Dáng sương\",\n    subtitle: \"Các sản phẩm về Thông\",\n    categoryLink: \"/category/xuat-ban\"\n  },\n  {\n    image: \"https://ik.imagekit.io/8u8lkoqkkm/Th%C3%B4ng%202.webp?updatedAt=1749523250616\",\n    title: \"Phức Tầng\",\n    subtitle: \"Các sản phẩm về Thông\",\n    categoryLink: \"/category/xuat-ban\"\n  },\n  {\n    image: \"https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng.webp?updatedAt=1749523332792\",\n    title: \"Vật liệu\",\n    subtitle: \"Các sản phẩm về Thông\",\n    categoryLink: \"/category/xuat-ban\"\n  },\n  {\n    image: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/DSC_2475.webp\",\n    title: \"Dụng cục âm nhạc Tây Nguyên\",\n    subtitle: \"Các sản phẩm về đồng bào K'ho\",\n    categoryLink: \"/category/kho\"\n  },\n  {\n    image: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/L%E1%BB%93ng%20%C4%90a%20%C4%90a.webp\",\n    title: \"K'ho Chăn nuôi\",\n    subtitle: \"Các sản phẩm về đồng bào K'ho\",\n    categoryLink: \"/category/kho\"\n  },\n  {\n    image: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/b%C3%ACnh%20y%C3%AAn%201%20(2).webp\",\n    title: \"Bề mặt ký ức\",\n    subtitle: \"Các sản phẩm về đồng bào K'ho\",\n    categoryLink: \"/category/kho\"\n  },\n  {\n    image: \"https://ik.imagekit.io/8u8lkoqkkm/fe26e39c6384d7da8e95.jpg?updatedAt=1749083704253\",\n    title: \"Lửa thiêng\",\n    subtitle: \"Các sản phẩm về Thông\",\n    categoryLink: \"/category/xuat-ban\"\n  },\n  {\n    image: \"https://ik.imagekit.io/8u8lkoqkkm/image(1).png?updatedAt=1749394994472\",\n    title: \"Ngệ thuật vị giác\",\n    subtitle: \"Các sản phẩm về Thông\",\n    categoryLink: \"/category/xuat-ban\"\n  }\n];\nconst Hero = () => {\n  const [isPlaying, setIsPlaying] = useState(true);\n  const [currentSlide, setCurrentSlide] = useState(0);\n  const [randomSlides, setRandomSlides] = useState([]);\n  const [sliderRef, setSliderRef] = useState(null);\n  useEffect(() => {\n    const shuffled = [...slides].sort(() => 0.5 - Math.random());\n    setRandomSlides(shuffled.slice(0, 5));\n  }, []);\n  const settings = {\n    dots: false,\n    infinite: true,\n    speed: 1e3,\n    slidesToShow: 1,\n    slidesToScroll: 1,\n    autoplay: isPlaying,\n    autoplaySpeed: 5e3,\n    pauseOnHover: false,\n    fade: true,\n    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex)\n  };\n  const togglePlayPause = () => {\n    if (sliderRef) {\n      if (isPlaying) {\n        sliderRef.slickPause();\n      } else {\n        sliderRef.slickPlay();\n      }\n    }\n    setIsPlaying(!isPlaying);\n  };\n  const goToSlide = (index) => {\n    if (sliderRef) {\n      sliderRef.slickGoTo(index);\n    }\n  };\n  return /* @__PURE__ */ jsx(\"section\", { className: \"hero-container-home\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"hero-slider-container\", children: [\n    /* @__PURE__ */ jsx(Slider, { ref: (slider) => setSliderRef(slider), ...settings, children: randomSlides.map((slide, index) => /* @__PURE__ */ jsx(\"div\", { className: \"slide\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"slide-image-container\", children: [\n      /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: slide.image,\n          alt: slide.title,\n          className: \"slide-image\"\n        }\n      ),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"slide-content\", children: [\n        /* @__PURE__ */ jsx(\"h1\", { className: \"slide-title-hero\", children: slide.title }),\n        /* @__PURE__ */ jsxs(Link, { to: slide.categoryLink, className: \"slide-subtitle\", children: [\n          slide.subtitle,\n          \" \",\n          /* @__PURE__ */ jsx(IoIosArrowRoundForward, {})\n        ] })\n      ] })\n    ] }) }, index)) }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"slick-nav\", children: randomSlides.map((_, index) => /* @__PURE__ */ jsx(\n      \"div\",\n      {\n        className: `nav-item-hero ${index === currentSlide ? \"active\" : \"\"} ${index === currentSlide && isPlaying ? \"playing\" : \"\"}`,\n        onClick: () => goToSlide(index)\n      },\n      index\n    )) }),\n    /* @__PURE__ */ jsx(\n      \"button\",\n      {\n        className: \"play-pause-button\",\n        onClick: togglePlayPause,\n        \"aria-label\": isPlaying ? \"Pause slideshow\" : \"Play slideshow\",\n        children: isPlaying ? /* @__PURE__ */ jsx(FaPause, {}) : /* @__PURE__ */ jsx(FaPlay, {})\n      }\n    )\n  ] }) });\n};\nexport default Hero;\n",
-      "start": 1749792472496,
-      "end": 1749792472695,
+      "start": 1749894712048,
+      "end": 1749894712222,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1749792472695,
-      "end": 1749792472695,
+      "start": 1749894712222,
+      "end": 1749894712222,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749792472695,
-      "end": 1749792472695,
+      "start": 1749894712222,
+      "end": 1749894712222,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749792472695,
-      "end": 1749792472695,
+      "start": 1749894712222,
+      "end": 1749894712222,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749792472695,
-      "end": 1749792472695,
+      "start": 1749894712222,
+      "end": 1749894712222,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749792472695,
-      "end": 1749792472695,
+      "start": 1749894712222,
+      "end": 1749894712222,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749792472695,
-      "end": 1749792472695,
+      "start": 1749894712222,
+      "end": 1749894712223,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749792472695,
-      "end": 1749792472695,
+      "start": 1749894712223,
+      "end": 1749894712223,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749792472695,
-      "end": 1749792472695,
+      "start": 1749894712223,
+      "end": 1749894712223,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749792472695,
-      "end": 1749792472695,
+      "start": 1749894712223,
+      "end": 1749894712223,
       "order": "normal"
     }
   ]

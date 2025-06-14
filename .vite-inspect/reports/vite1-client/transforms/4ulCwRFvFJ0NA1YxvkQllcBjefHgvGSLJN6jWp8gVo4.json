@@ -3,22 +3,22 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "import React from \"react\";\nimport { Route, BrowserRouter as Router, Routes } from \"react-router-dom\";\nimport \"./App.css\";\nimport Footer from \"./components/Footer/Footer\";\nimport Home from \"./components/Home/Home\";\nimport Navbar from \"./components/Navbar/Navbar\";\nimport ScrollToTop from \"./components/ScrollToTop\";\nimport ScrollToTopButton from \"./components/ScrollToTopButton/ScrollToTopButton\";\nimport \"./index.css\";\nimport CartPage from \"./pages/CartPage/CartPage\";\nimport CategoryDetail from \"./pages/CategoryDetail/CategoryDetail\";\nimport Copyrights from \"./pages/Footer/Copyrights/Copyrights\";\nimport LegalNotice from \"./pages/Footer/LegalNotice/LegalNotice\";\nimport PrivacyPolicy from \"./pages/Footer/PrivacyPolicy/PrivacyPolicy\";\nimport NotFound from \"./pages/NotFound\";\nimport ProductDetails from \"./pages/ProductDetails/ProductDetails\";\n\nfunction App() {\n  return (\n    <Router>\n      <ScrollToTop />\n      <div className=\"app\">\n        <Navbar />\n        <main>\n          <Routes>\n            <Route path=\"/\" element={<Home />} />\n            <Route path=\"/cart\" element={<CartPage />} />\n            <Route path=\"/legal-notice\" element={<LegalNotice />} />\n            <Route path=\"/privacy-policy\" element={<PrivacyPolicy />} />\n            <Route path=\"/copyrights\" element={<Copyrights />} />\n            <Route path=\"/category/:categoryId\" element={<CategoryDetail />} />\n            <Route path=\"/product/:productId\" element={<ProductDetails />} />\n            <Route path=\"*\" element={<NotFound />} />\n          </Routes>\n        </main>\n        <Footer />\n        <ScrollToTopButton />\n      </div>\n    </Router>\n  );\n}\n\nexport default App;\n",
-      "start": 1749792471682,
-      "end": 1749792471694,
+      "result": "import React from \"react\";\nimport { Route, BrowserRouter as Router, Routes } from \"react-router-dom\";\nimport \"./App.css\";\nimport Footer from \"./components/Footer/Footer\";\nimport Home from \"./components/Home/Home\";\nimport Navbar from \"./components/Navbar/Navbar\";\nimport ScrollToTop from \"./components/ScrollToTop\";\nimport ScrollToTopButton from \"./components/ScrollToTopButton/ScrollToTopButton\";\nimport \"./index.css\";\nimport CartPage from \"./pages/CartPage/CartPage\";\nimport CategoryDetail from \"./pages/CategoryDetail/CategoryDetail\";\nimport CheckoutPage from \"./pages/CheckoutPage/CheckoutPage\";\nimport Copyrights from \"./pages/Footer/Copyrights/Copyrights\";\nimport LegalNotice from \"./pages/Footer/LegalNotice/LegalNotice\";\nimport PrivacyPolicy from \"./pages/Footer/PrivacyPolicy/PrivacyPolicy\";\nimport NotFound from \"./pages/NotFound\";\nimport ProductDetails from \"./pages/ProductDetails/ProductDetails\";\n\nfunction App() {\n  return (\n    <Router>\n      <ScrollToTop />\n      <div className=\"app\">\n        <Navbar />\n        <main>\n          <Routes>\n            <Route path=\"/\" element={<Home />} />\n            <Route path=\"/cart\" element={<CartPage />} />\n            <Route path=\"/checkout\" element={<CheckoutPage />} />\n            <Route path=\"/legal-notice\" element={<LegalNotice />} />\n            <Route path=\"/privacy-policy\" element={<PrivacyPolicy />} />\n            <Route path=\"/copyrights\" element={<Copyrights />} />\n            <Route path=\"/category/:categoryId\" element={<CategoryDetail />} />\n            <Route path=\"/product/:productId\" element={<ProductDetails />} />\n            <Route path=\"*\" element={<NotFound />} />\n          </Routes>\n        </main>\n        <Footer />\n        <ScrollToTopButton />\n      </div>\n    </Router>\n  );\n}\n\nexport default App;\n",
+      "start": 1749894710780,
+      "end": 1749894710800,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749792471695,
-      "end": 1749792471695,
+      "start": 1749894710800,
+      "end": 1749894710800,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { Route, BrowserRouter as Router, Routes } from \"react-router-dom\";\nimport \"./App.css\";\nimport Footer from \"./components/Footer/Footer\";\nimport Home from \"./components/Home/Home\";\nimport Navbar from \"./components/Navbar/Navbar\";\nimport ScrollToTop from \"./components/ScrollToTop\";\nimport ScrollToTopButton from \"./components/ScrollToTopButton/ScrollToTopButton\";\nimport \"./index.css\";\nimport CartPage from \"./pages/CartPage/CartPage\";\nimport CategoryDetail from \"./pages/CategoryDetail/CategoryDetail\";\nimport Copyrights from \"./pages/Footer/Copyrights/Copyrights\";\nimport LegalNotice from \"./pages/Footer/LegalNotice/LegalNotice\";\nimport PrivacyPolicy from \"./pages/Footer/PrivacyPolicy/PrivacyPolicy\";\nimport NotFound from \"./pages/NotFound\";\nimport ProductDetails from \"./pages/ProductDetails/ProductDetails\";\nfunction App() {\n  return /* @__PURE__ */ jsxs(Router, { children: [\n    /* @__PURE__ */ jsx(ScrollToTop, {}),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"app\", children: [\n      /* @__PURE__ */ jsx(Navbar, {}),\n      /* @__PURE__ */ jsx(\"main\", { children: /* @__PURE__ */ jsxs(Routes, { children: [\n        /* @__PURE__ */ jsx(Route, { path: \"/\", element: /* @__PURE__ */ jsx(Home, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"/cart\", element: /* @__PURE__ */ jsx(CartPage, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"/legal-notice\", element: /* @__PURE__ */ jsx(LegalNotice, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"/privacy-policy\", element: /* @__PURE__ */ jsx(PrivacyPolicy, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"/copyrights\", element: /* @__PURE__ */ jsx(Copyrights, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"/category/:categoryId\", element: /* @__PURE__ */ jsx(CategoryDetail, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"/product/:productId\", element: /* @__PURE__ */ jsx(ProductDetails, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"*\", element: /* @__PURE__ */ jsx(NotFound, {}) })\n      ] }) }),\n      /* @__PURE__ */ jsx(Footer, {}),\n      /* @__PURE__ */ jsx(ScrollToTopButton, {})\n    ] })\n  ] });\n}\nexport default App;\n",
-      "start": 1749792471695,
-      "end": 1749792471729,
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { Route, BrowserRouter as Router, Routes } from \"react-router-dom\";\nimport \"./App.css\";\nimport Footer from \"./components/Footer/Footer\";\nimport Home from \"./components/Home/Home\";\nimport Navbar from \"./components/Navbar/Navbar\";\nimport ScrollToTop from \"./components/ScrollToTop\";\nimport ScrollToTopButton from \"./components/ScrollToTopButton/ScrollToTopButton\";\nimport \"./index.css\";\nimport CartPage from \"./pages/CartPage/CartPage\";\nimport CategoryDetail from \"./pages/CategoryDetail/CategoryDetail\";\nimport CheckoutPage from \"./pages/CheckoutPage/CheckoutPage\";\nimport Copyrights from \"./pages/Footer/Copyrights/Copyrights\";\nimport LegalNotice from \"./pages/Footer/LegalNotice/LegalNotice\";\nimport PrivacyPolicy from \"./pages/Footer/PrivacyPolicy/PrivacyPolicy\";\nimport NotFound from \"./pages/NotFound\";\nimport ProductDetails from \"./pages/ProductDetails/ProductDetails\";\nfunction App() {\n  return /* @__PURE__ */ jsxs(Router, { children: [\n    /* @__PURE__ */ jsx(ScrollToTop, {}),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"app\", children: [\n      /* @__PURE__ */ jsx(Navbar, {}),\n      /* @__PURE__ */ jsx(\"main\", { children: /* @__PURE__ */ jsxs(Routes, { children: [\n        /* @__PURE__ */ jsx(Route, { path: \"/\", element: /* @__PURE__ */ jsx(Home, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"/cart\", element: /* @__PURE__ */ jsx(CartPage, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"/checkout\", element: /* @__PURE__ */ jsx(CheckoutPage, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"/legal-notice\", element: /* @__PURE__ */ jsx(LegalNotice, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"/privacy-policy\", element: /* @__PURE__ */ jsx(PrivacyPolicy, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"/copyrights\", element: /* @__PURE__ */ jsx(Copyrights, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"/category/:categoryId\", element: /* @__PURE__ */ jsx(CategoryDetail, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"/product/:productId\", element: /* @__PURE__ */ jsx(ProductDetails, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"*\", element: /* @__PURE__ */ jsx(NotFound, {}) })\n      ] }) }),\n      /* @__PURE__ */ jsx(Footer, {}),\n      /* @__PURE__ */ jsx(ScrollToTopButton, {})\n    ] })\n  ] });\n}\nexport default App;\n",
+      "start": 1749894710800,
+      "end": 1749894710805,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -26,64 +26,64 @@
           "C:/Users/.Freelancer/ONLINE/src/App.jsx"
         ],
         "sourcesContent": [
-          "import React from \"react\";\nimport { Route, BrowserRouter as Router, Routes } from \"react-router-dom\";\nimport \"./App.css\";\nimport Footer from \"./components/Footer/Footer\";\nimport Home from \"./components/Home/Home\";\nimport Navbar from \"./components/Navbar/Navbar\";\nimport ScrollToTop from \"./components/ScrollToTop\";\nimport ScrollToTopButton from \"./components/ScrollToTopButton/ScrollToTopButton\";\nimport \"./index.css\";\nimport CartPage from \"./pages/CartPage/CartPage\";\nimport CategoryDetail from \"./pages/CategoryDetail/CategoryDetail\";\nimport Copyrights from \"./pages/Footer/Copyrights/Copyrights\";\nimport LegalNotice from \"./pages/Footer/LegalNotice/LegalNotice\";\nimport PrivacyPolicy from \"./pages/Footer/PrivacyPolicy/PrivacyPolicy\";\nimport NotFound from \"./pages/NotFound\";\nimport ProductDetails from \"./pages/ProductDetails/ProductDetails\";\n\nfunction App() {\n  return (\n    <Router>\n      <ScrollToTop />\n      <div className=\"app\">\n        <Navbar />\n        <main>\n          <Routes>\n            <Route path=\"/\" element={<Home />} />\n            <Route path=\"/cart\" element={<CartPage />} />\n            <Route path=\"/legal-notice\" element={<LegalNotice />} />\n            <Route path=\"/privacy-policy\" element={<PrivacyPolicy />} />\n            <Route path=\"/copyrights\" element={<Copyrights />} />\n            <Route path=\"/category/:categoryId\" element={<CategoryDetail />} />\n            <Route path=\"/product/:productId\" element={<ProductDetails />} />\n            <Route path=\"*\" element={<NotFound />} />\n          </Routes>\n        </main>\n        <Footer />\n        <ScrollToTopButton />\n      </div>\n    </Router>\n  );\n}\n\nexport default App;\n"
+          "import React from \"react\";\nimport { Route, BrowserRouter as Router, Routes } from \"react-router-dom\";\nimport \"./App.css\";\nimport Footer from \"./components/Footer/Footer\";\nimport Home from \"./components/Home/Home\";\nimport Navbar from \"./components/Navbar/Navbar\";\nimport ScrollToTop from \"./components/ScrollToTop\";\nimport ScrollToTopButton from \"./components/ScrollToTopButton/ScrollToTopButton\";\nimport \"./index.css\";\nimport CartPage from \"./pages/CartPage/CartPage\";\nimport CategoryDetail from \"./pages/CategoryDetail/CategoryDetail\";\nimport CheckoutPage from \"./pages/CheckoutPage/CheckoutPage\";\nimport Copyrights from \"./pages/Footer/Copyrights/Copyrights\";\nimport LegalNotice from \"./pages/Footer/LegalNotice/LegalNotice\";\nimport PrivacyPolicy from \"./pages/Footer/PrivacyPolicy/PrivacyPolicy\";\nimport NotFound from \"./pages/NotFound\";\nimport ProductDetails from \"./pages/ProductDetails/ProductDetails\";\n\nfunction App() {\n  return (\n    <Router>\n      <ScrollToTop />\n      <div className=\"app\">\n        <Navbar />\n        <main>\n          <Routes>\n            <Route path=\"/\" element={<Home />} />\n            <Route path=\"/cart\" element={<CartPage />} />\n            <Route path=\"/checkout\" element={<CheckoutPage />} />\n            <Route path=\"/legal-notice\" element={<LegalNotice />} />\n            <Route path=\"/privacy-policy\" element={<PrivacyPolicy />} />\n            <Route path=\"/copyrights\" element={<Copyrights />} />\n            <Route path=\"/category/:categoryId\" element={<CategoryDetail />} />\n            <Route path=\"/product/:productId\" element={<ProductDetails />} />\n            <Route path=\"*\" element={<NotFound />} />\n          </Routes>\n        </main>\n        <Footer />\n        <ScrollToTopButton />\n      </div>\n    </Router>\n  );\n}\n\nexport default App;\n"
         ],
-        "mappings": "AAoBM,cAII,YAJJ;AApBN,OAAO,WAAW;AAClB,SAAS,OAAO,iBAAiB,QAAQ,cAAc;AACvD,OAAO;AACP,OAAO,YAAY;AACnB,OAAO,UAAU;AACjB,OAAO,YAAY;AACnB,OAAO,iBAAiB;AACxB,OAAO,uBAAuB;AAC9B,OAAO;AACP,OAAO,cAAc;AACrB,OAAO,oBAAoB;AAC3B,OAAO,gBAAgB;AACvB,OAAO,iBAAiB;AACxB,OAAO,mBAAmB;AAC1B,OAAO,cAAc;AACrB,OAAO,oBAAoB;AAE3B,SAAS,MAAM;AACb,SACE,qBAAC,UACC;AAAA,wBAAC,eAAY;AAAA,IACb,qBAAC,SAAI,WAAU,OACb;AAAA,0BAAC,UAAO;AAAA,MACR,oBAAC,UACC,+BAAC,UACC;AAAA,4BAAC,SAAM,MAAK,KAAI,SAAS,oBAAC,QAAK,GAAI;AAAA,QACnC,oBAAC,SAAM,MAAK,SAAQ,SAAS,oBAAC,YAAS,GAAI;AAAA,QAC3C,oBAAC,SAAM,MAAK,iBAAgB,SAAS,oBAAC,eAAY,GAAI;AAAA,QACtD,oBAAC,SAAM,MAAK,mBAAkB,SAAS,oBAAC,iBAAc,GAAI;AAAA,QAC1D,oBAAC,SAAM,MAAK,eAAc,SAAS,oBAAC,cAAW,GAAI;AAAA,QACnD,oBAAC,SAAM,MAAK,yBAAwB,SAAS,oBAAC,kBAAe,GAAI;AAAA,QACjE,oBAAC,SAAM,MAAK,uBAAsB,SAAS,oBAAC,kBAAe,GAAI;AAAA,QAC/D,oBAAC,SAAM,MAAK,KAAI,SAAS,oBAAC,YAAS,GAAI;AAAA,SACzC,GACF;AAAA,MACA,oBAAC,UAAO;AAAA,MACR,oBAAC,qBAAkB;AAAA,OACrB;AAAA,KACF;AAEJ;AAEA,eAAe;",
+        "mappings": "AAqBM,cAII,YAJJ;AArBN,OAAO,WAAW;AAClB,SAAS,OAAO,iBAAiB,QAAQ,cAAc;AACvD,OAAO;AACP,OAAO,YAAY;AACnB,OAAO,UAAU;AACjB,OAAO,YAAY;AACnB,OAAO,iBAAiB;AACxB,OAAO,uBAAuB;AAC9B,OAAO;AACP,OAAO,cAAc;AACrB,OAAO,oBAAoB;AAC3B,OAAO,kBAAkB;AACzB,OAAO,gBAAgB;AACvB,OAAO,iBAAiB;AACxB,OAAO,mBAAmB;AAC1B,OAAO,cAAc;AACrB,OAAO,oBAAoB;AAE3B,SAAS,MAAM;AACb,SACE,qBAAC,UACC;AAAA,wBAAC,eAAY;AAAA,IACb,qBAAC,SAAI,WAAU,OACb;AAAA,0BAAC,UAAO;AAAA,MACR,oBAAC,UACC,+BAAC,UACC;AAAA,4BAAC,SAAM,MAAK,KAAI,SAAS,oBAAC,QAAK,GAAI;AAAA,QACnC,oBAAC,SAAM,MAAK,SAAQ,SAAS,oBAAC,YAAS,GAAI;AAAA,QAC3C,oBAAC,SAAM,MAAK,aAAY,SAAS,oBAAC,gBAAa,GAAI;AAAA,QACnD,oBAAC,SAAM,MAAK,iBAAgB,SAAS,oBAAC,eAAY,GAAI;AAAA,QACtD,oBAAC,SAAM,MAAK,mBAAkB,SAAS,oBAAC,iBAAc,GAAI;AAAA,QAC1D,oBAAC,SAAM,MAAK,eAAc,SAAS,oBAAC,cAAW,GAAI;AAAA,QACnD,oBAAC,SAAM,MAAK,yBAAwB,SAAS,oBAAC,kBAAe,GAAI;AAAA,QACjE,oBAAC,SAAM,MAAK,uBAAsB,SAAS,oBAAC,kBAAe,GAAI;AAAA,QAC/D,oBAAC,SAAM,MAAK,KAAI,SAAS,oBAAC,YAAS,GAAI;AAAA,SACzC,GACF;AAAA,MACA,oBAAC,UAAO;AAAA,MACR,oBAAC,qBAAkB;AAAA,OACrB;AAAA,KACF;AAEJ;AAEA,eAAe;",
         "names": []
       }
     },
     {
       "name": "vite:worker",
-      "start": 1749792471729,
-      "end": 1749792471729,
+      "start": 1749894710805,
+      "end": 1749894710805,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749792471729,
-      "end": 1749792471729,
+      "start": 1749894710805,
+      "end": 1749894710805,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749792471729,
-      "end": 1749792471729,
+      "start": 1749894710805,
+      "end": 1749894710805,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749792471742,
-      "end": 1749792471742,
+      "start": 1749894710805,
+      "end": 1749894710805,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749792471742,
-      "end": 1749792471742,
+      "start": 1749894710805,
+      "end": 1749894710805,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749792471746,
-      "end": 1749792471746,
+      "start": 1749894710805,
+      "end": 1749894710805,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749792471746,
-      "end": 1749792471746,
+      "start": 1749894710805,
+      "end": 1749894710805,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749792471746,
-      "end": 1749792471748,
+      "start": 1749894710805,
+      "end": 1749894710806,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749792471748,
-      "end": 1749792471748,
+      "start": 1749894710806,
+      "end": 1749894710806,
       "order": "normal"
     }
   ]

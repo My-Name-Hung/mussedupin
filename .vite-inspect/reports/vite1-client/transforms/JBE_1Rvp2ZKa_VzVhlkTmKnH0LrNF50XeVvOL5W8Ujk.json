@@ -4,73 +4,73 @@
     {
       "name": "__load__",
       "result": "import { getDefaultExportFromCjs } from \"\u0000commonjsHelpers.js\";\nimport { __require as requireReact } from \"C:/Users/.Freelancer/ONLINE/node_modules/react/index.js\";\nvar reactExports = requireReact();\nexport { reactExports as __moduleExports };\nexport default /*@__PURE__*/getDefaultExportFromCjs(reactExports);",
-      "start": 1749792478671,
-      "end": 1749792478671
+      "start": 1749894720231,
+      "end": 1749894720231
     },
     {
       "name": "vite:react-babel",
-      "start": 1749792478671,
-      "end": 1749792478671,
+      "start": 1749894720231,
+      "end": 1749894720231,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1749792478671,
-      "end": 1749792478671,
+      "start": 1749894720231,
+      "end": 1749894720231,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1749792478671,
-      "end": 1749792478671,
+      "start": 1749894720231,
+      "end": 1749894720231,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749792478671,
-      "end": 1749792478671,
+      "start": 1749894720231,
+      "end": 1749894720232,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749792478671,
-      "end": 1749792478671,
+      "start": 1749894720232,
+      "end": 1749894720232,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749792478671,
-      "end": 1749792478671,
+      "start": 1749894720232,
+      "end": 1749894720232,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749792478671,
-      "end": 1749792478671,
+      "start": 1749894720232,
+      "end": 1749894720232,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749792478671,
-      "end": 1749792478671,
+      "start": 1749894720232,
+      "end": 1749894720232,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749792478671,
-      "end": 1749792478671,
+      "start": 1749894720232,
+      "end": 1749894720232,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749792478671,
-      "end": 1749792478671,
+      "start": 1749894720232,
+      "end": 1749894720232,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749792478671,
-      "end": 1749792478671,
+      "start": 1749894720232,
+      "end": 1749894720232,
       "order": "normal"
     }
   ]

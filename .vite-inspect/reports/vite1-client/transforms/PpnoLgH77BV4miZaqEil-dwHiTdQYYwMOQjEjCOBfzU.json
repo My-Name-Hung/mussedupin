@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { useInsertionEffect } from 'react';\n\nfunction useMotionValueEvent(value, event, callback) {\n    /**\n     * useInsertionEffect will create subscriptions before any other\n     * effects will run. Effects run upwards through the tree so it\n     * can be that binding a useLayoutEffect higher up the tree can\n     * miss changes from lower down the tree.\n     */\n    useInsertionEffect(() => value.on(event, callback), [value, event, callback]);\n}\n\nexport { useMotionValueEvent };\n",
-      "start": 1749792478895,
-      "end": 1749792480782,
+      "start": 1749894720517,
+      "end": 1749894721862,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749792480782,
-      "end": 1749792480782,
+      "start": 1749894721862,
+      "end": 1749894721862,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1749792480782,
-      "end": 1749792480782,
+      "start": 1749894721862,
+      "end": 1749894721862,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1749792480782,
-      "end": 1749792480782,
+      "start": 1749894721862,
+      "end": 1749894721862,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749792480782,
-      "end": 1749792480782,
+      "start": 1749894721862,
+      "end": 1749894721862,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749792480782,
-      "end": 1749792480782,
+      "start": 1749894721862,
+      "end": 1749894721862,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749792480782,
-      "end": 1749792480782,
+      "start": 1749894721862,
+      "end": 1749894721862,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749792480782,
-      "end": 1749792480782,
+      "start": 1749894721862,
+      "end": 1749894721862,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749792480782,
-      "end": 1749792480782,
+      "start": 1749894721862,
+      "end": 1749894721862,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749792480782,
-      "end": 1749792480782,
+      "start": 1749894721862,
+      "end": 1749894721862,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749792480782,
-      "end": 1749792480782,
+      "start": 1749894721862,
+      "end": 1749894721862,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749792480782,
-      "end": 1749792480782,
+      "start": 1749894721862,
+      "end": 1749894721862,
       "order": "normal"
     }
   ]

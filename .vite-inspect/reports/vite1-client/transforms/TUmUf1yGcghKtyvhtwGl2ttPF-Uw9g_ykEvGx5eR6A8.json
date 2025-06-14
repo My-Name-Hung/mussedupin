@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\nimport \"./BlockContent-exhibition.css\";\n\nconst BlockContentExhibition = () => {\n  const exhibitionData = {\n    image:\n      \"https://boutique.louvre.fr/files/contents/400725/697667-6ad49766-side/louvre-couture.jpg\",\n    title: \"Thời trang Louvre\",\n    subtitle: \"24 tháng 1 năm 2025 - 21 tháng 7 năm 2025\",\n    description:\n      \"Là một di tích lịch sử và là kho báu không lỗ nơi hội tụ thẩm mỹ của thế giới, Louvre truyền cảm hứng cho nhiều thế giới sáng tạo. Đối với thế giới thời trang, vốn rất thích tìm đến nghệ thuật, bảo tàng đã mở cửa cho một cuộc triển lãm dưới hình thức đối thoại...\",\n  };\n\n  const scrollToCategories = () => {\n    const categoriesSection = document.querySelector(\".categories-section\");\n    if (categoriesSection) {\n      categoriesSection.scrollIntoView({ behavior: \"smooth\" });\n    }\n  };\n\n  return (\n    <section className=\"block-content-exhibition\">\n      <div className=\"exhibition-container\">\n        <div className=\"exhibition-image-wrapper\">\n          <img\n            src={exhibitionData.image}\n            alt={exhibitionData.title}\n            className=\"exhibition-image\"\n          />\n        </div>\n        <div className=\"exhibition-content\">\n          <h2 className=\"exhibition-title\">{exhibitionData.title}</h2>\n          <div className=\"exhibition-subtitle\">{exhibitionData.subtitle}</div>\n          <p className=\"exhibition-description\">{exhibitionData.description}</p>\n          <button className=\"exhibition-button\" onClick={scrollToCategories}>\n            Khám phá tất cả sản phẩm\n          </button>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default BlockContentExhibition;\n",
-      "start": 1749792472047,
-      "end": 1749792472349,
+      "start": 1749894711361,
+      "end": 1749894711763,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749792472349,
-      "end": 1749792472349,
+      "start": 1749894711763,
+      "end": 1749894711763,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport \"./BlockContent-exhibition.css\";\nconst BlockContentExhibition = () => {\n  const exhibitionData = {\n    image: \"https://boutique.louvre.fr/files/contents/400725/697667-6ad49766-side/louvre-couture.jpg\",\n    title: \"Thời trang Louvre\",\n    subtitle: \"24 tháng 1 năm 2025 - 21 tháng 7 năm 2025\",\n    description: \"Là một di tích lịch sử và là kho báu không lỗ nơi hội tụ thẩm mỹ của thế giới, Louvre truyền cảm hứng cho nhiều thế giới sáng tạo. Đối với thế giới thời trang, vốn rất thích tìm đến nghệ thuật, bảo tàng đã mở cửa cho một cuộc triển lãm dưới hình thức đối thoại...\"\n  };\n  const scrollToCategories = () => {\n    const categoriesSection = document.querySelector(\".categories-section\");\n    if (categoriesSection) {\n      categoriesSection.scrollIntoView({ behavior: \"smooth\" });\n    }\n  };\n  return /* @__PURE__ */ jsx(\"section\", { className: \"block-content-exhibition\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"exhibition-container\", children: [\n    /* @__PURE__ */ jsx(\"div\", { className: \"exhibition-image-wrapper\", children: /* @__PURE__ */ jsx(\n      \"img\",\n      {\n        src: exhibitionData.image,\n        alt: exhibitionData.title,\n        className: \"exhibition-image\"\n      }\n    ) }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"exhibition-content\", children: [\n      /* @__PURE__ */ jsx(\"h2\", { className: \"exhibition-title\", children: exhibitionData.title }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"exhibition-subtitle\", children: exhibitionData.subtitle }),\n      /* @__PURE__ */ jsx(\"p\", { className: \"exhibition-description\", children: exhibitionData.description }),\n      /* @__PURE__ */ jsx(\"button\", { className: \"exhibition-button\", onClick: scrollToCategories, children: \"Khám phá tất cả sản phẩm\" })\n    ] })\n  ] }) });\n};\nexport default BlockContentExhibition;\n",
-      "start": 1749792472349,
-      "end": 1749792472493,
+      "start": 1749894711763,
+      "end": 1749894712133,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894712133,
+      "end": 1749894712133,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894712133,
+      "end": 1749894712133,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894712133,
+      "end": 1749894712133,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894712136,
+      "end": 1749894712136,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894712136,
+      "end": 1749894712136,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894712136,
+      "end": 1749894712136,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894712136,
+      "end": 1749894712136,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749792472493,
-      "end": 1749792472494,
+      "start": 1749894712136,
+      "end": 1749894712143,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749792472494,
-      "end": 1749792472494,
+      "start": 1749894712143,
+      "end": 1749894712143,
       "order": "normal"
     }
   ]

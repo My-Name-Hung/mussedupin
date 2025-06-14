@@ -10,7 +10,7 @@
 }
 
 .checkout-content {
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
 }
 
@@ -23,7 +23,6 @@
 }
 
 .shipping-address {
-  padding: 30px;
   margin-bottom: 30px;
   width: 100%;
   margin-left: auto;
@@ -136,7 +135,7 @@
 }
 
 .cart-items-checkout h2 {
-  font-family: "Roboto", sans-serif;
+  font-family: "Meholrax", serif;
   font-size: 1.5rem;
   color: #2c2f11;
   margin-bottom: 20px;
@@ -332,4 +331,30 @@
   .summary-details p strong {
     width: 140px;
   }
+}
+
+.back-step-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: #2c2f11;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  padding: 10px 0;
+  margin-bottom: 20px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.back-step-btn:hover {
+  color: #3d4016;
+  transform: translateX(-5px);
+}
+
+.back-step-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
 }

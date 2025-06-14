@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\nimport \"./BlockContent.css\";\n\nconst BlockContent = () => {\n  const content = {\n    title: \"Khám phá bộ sưu tập của nghệ sĩ\",\n    artists: [\n      \"Da Vinci,\",\n      \"Delacroix,\",\n      \"Vigée le Brun,\",\n      \"Ingres,Davit,\",\n      \"Canova,Botticelli,\",\n      \"Géricault,\",\n      \"Arcimboldo,\",\n      \"Lombardo,\",\n      \"Vermeer,Clouet,\",\n      \"của Tour...\",\n    ],\n    cta: \"Xem tất cả nghệ sĩ\",\n  };\n\n  return (\n    <section className=\"block-contents\">\n      <div className=\"content-container\">\n        <div className=\"content-wrapper\">\n          <h2 className=\"content-title\">{content.title}</h2>\n          <div className=\"artists-list\">\n            {content.artists.map((artist, index) => (\n              <div key={index} className=\"artist-item\">\n                {artist}\n              </div>\n            ))}\n          </div>\n          <a href=\"#\" className=\"content-cta\">\n            {content.cta}\n          </a>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default BlockContent;\n",
-      "start": 1749792472047,
-      "end": 1749792472350,
+      "start": 1749894711362,
+      "end": 1749894711775,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749792472350,
-      "end": 1749792472350,
+      "start": 1749894711775,
+      "end": 1749894711775,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport \"./BlockContent.css\";\nconst BlockContent = () => {\n  const content = {\n    title: \"Khám phá bộ sưu tập của nghệ sĩ\",\n    artists: [\n      \"Da Vinci,\",\n      \"Delacroix,\",\n      \"Vigée le Brun,\",\n      \"Ingres,Davit,\",\n      \"Canova,Botticelli,\",\n      \"Géricault,\",\n      \"Arcimboldo,\",\n      \"Lombardo,\",\n      \"Vermeer,Clouet,\",\n      \"của Tour...\"\n    ],\n    cta: \"Xem tất cả nghệ sĩ\"\n  };\n  return /* @__PURE__ */ jsx(\"section\", { className: \"block-contents\", children: /* @__PURE__ */ jsx(\"div\", { className: \"content-container\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"content-wrapper\", children: [\n    /* @__PURE__ */ jsx(\"h2\", { className: \"content-title\", children: content.title }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"artists-list\", children: content.artists.map((artist, index) => /* @__PURE__ */ jsx(\"div\", { className: \"artist-item\", children: artist }, index)) }),\n    /* @__PURE__ */ jsx(\"a\", { href: \"#\", className: \"content-cta\", children: content.cta })\n  ] }) }) });\n};\nexport default BlockContent;\n",
-      "start": 1749792472350,
-      "end": 1749792472493,
+      "start": 1749894711775,
+      "end": 1749894712133,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894712133,
+      "end": 1749894712133,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894712133,
+      "end": 1749894712133,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894712133,
+      "end": 1749894712133,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894712136,
+      "end": 1749894712136,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894712136,
+      "end": 1749894712136,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894712136,
+      "end": 1749894712136,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894712136,
+      "end": 1749894712136,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749792472493,
-      "end": 1749792472494,
+      "start": 1749894712136,
+      "end": 1749894712143,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749792472494,
-      "end": 1749792472494,
+      "start": 1749894712143,
+      "end": 1749894712143,
       "order": "normal"
     }
   ]

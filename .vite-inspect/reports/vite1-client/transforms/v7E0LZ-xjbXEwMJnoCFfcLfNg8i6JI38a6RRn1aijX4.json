@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport \"./Bestseller.css\";\n\nconst Bestseller = () => {\n  const products = [\n    {\n      image:\n        \"https://boutique.louvre.fr/files/products/14345/382707-50b91573-l/aphrodite-known-as-the-venus.jpg\",\n      title: \"Tượng thần Vệ Nữ thành Milo - Từ 16 đến 50 cm\",\n      price: \"từ 220.000đ\",\n    },\n    {\n      image:\n        \"https://boutique.louvre.fr/files/products/33085/375660-5778adc3-l/products-375660.jpg\",\n      title: \"Bảo tàng Louvre Dobble\",\n      price: \"từ 120.000đ\",\n    },\n    {\n      image:\n        \"https://boutique.louvre.fr/files/products/20306/379595-4481f68b-l/odalisque-criss-cross-bracelet.jpg\",\n      title: \"Vòng tay dạng vòng chéo Odalisque\",\n      price: \"từ 500.000đ\",\n    },\n  ];\n\n  return (\n    <section className=\"bestseller\">\n      <div className=\"bestseller-container\">\n        <div className=\"bestseller-header\">\n          <h2 className=\"bestseller-title\">Sản phẩm bán chạy nhất</h2>\n          <a href=\"#\" className=\"bestseller-view-all\">\n            Xem tất cả <IoIosArrowRoundForward />\n          </a>\n        </div>\n        <div className=\"bestseller-grid\">\n          {products.map((product, index) => (\n            <div key={index} className=\"bestseller-card\">\n              <div className=\"card-image-container\">\n                <img\n                  src={product.image}\n                  alt={product.title}\n                  className=\"card-image\"\n                />\n              </div>\n              <div className=\"card-content\">\n                <h3 className=\"card-title\">{product.title}</h3>\n                <p className=\"card-price\">{product.price}</p>\n              </div>\n            </div>\n          ))}\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default Bestseller;\n",
-      "start": 1749792472046,
-      "end": 1749792472353,
+      "start": 1749894711293,
+      "end": 1749894711743,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749792472354,
-      "end": 1749792472354,
+      "start": 1749894711743,
+      "end": 1749894711743,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport \"./Bestseller.css\";\nconst Bestseller = () => {\n  const products = [\n    {\n      image: \"https://boutique.louvre.fr/files/products/14345/382707-50b91573-l/aphrodite-known-as-the-venus.jpg\",\n      title: \"Tượng thần Vệ Nữ thành Milo - Từ 16 đến 50 cm\",\n      price: \"từ 220.000đ\"\n    },\n    {\n      image: \"https://boutique.louvre.fr/files/products/33085/375660-5778adc3-l/products-375660.jpg\",\n      title: \"Bảo tàng Louvre Dobble\",\n      price: \"từ 120.000đ\"\n    },\n    {\n      image: \"https://boutique.louvre.fr/files/products/20306/379595-4481f68b-l/odalisque-criss-cross-bracelet.jpg\",\n      title: \"Vòng tay dạng vòng chéo Odalisque\",\n      price: \"từ 500.000đ\"\n    }\n  ];\n  return /* @__PURE__ */ jsx(\"section\", { className: \"bestseller\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"bestseller-container\", children: [\n    /* @__PURE__ */ jsxs(\"div\", { className: \"bestseller-header\", children: [\n      /* @__PURE__ */ jsx(\"h2\", { className: \"bestseller-title\", children: \"Sản phẩm bán chạy nhất\" }),\n      /* @__PURE__ */ jsxs(\"a\", { href: \"#\", className: \"bestseller-view-all\", children: [\n        \"Xem tất cả \",\n        /* @__PURE__ */ jsx(IoIosArrowRoundForward, {})\n      ] })\n    ] }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"bestseller-grid\", children: products.map((product, index) => /* @__PURE__ */ jsxs(\"div\", { className: \"bestseller-card\", children: [\n      /* @__PURE__ */ jsx(\"div\", { className: \"card-image-container\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: product.image,\n          alt: product.title,\n          className: \"card-image\"\n        }\n      ) }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"card-content\", children: [\n        /* @__PURE__ */ jsx(\"h3\", { className: \"card-title\", children: product.title }),\n        /* @__PURE__ */ jsx(\"p\", { className: \"card-price\", children: product.price })\n      ] })\n    ] }, index)) })\n  ] }) });\n};\nexport default Bestseller;\n",
-      "start": 1749792472354,
-      "end": 1749792472493,
+      "start": 1749894711743,
+      "end": 1749894711797,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894711797,
+      "end": 1749894711797,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894711797,
+      "end": 1749894711797,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894711797,
+      "end": 1749894711797,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894711802,
+      "end": 1749894711802,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894711802,
+      "end": 1749894711802,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894711803,
+      "end": 1749894711803,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749792472493,
-      "end": 1749792472493,
+      "start": 1749894711803,
+      "end": 1749894711803,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749792472493,
-      "end": 1749792472494,
+      "start": 1749894711803,
+      "end": 1749894711815,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749792472494,
-      "end": 1749792472494,
+      "start": 1749894711815,
+      "end": 1749894711815,
       "order": "normal"
     }
   ]

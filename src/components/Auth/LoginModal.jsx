@@ -92,13 +92,13 @@ const LoginModal = ({ isOpen, onClose }) => {
   return (
     <>
       <div className="modal-overlay">
-        <div className="modal-container">
+        <div className="login-modal-container">
           <button className="close-button" onClick={onClose}>
             <FaTimes />
           </button>
 
-          <h2 className="modal-title">Đăng nhập</h2>
-          <p className="modal-subtitle">Bạn đã có tài khoản?</p>
+          <h2 className="login-modal-title">Đăng nhập</h2>
+          <p className="login-modal-subtitle">Bạn đã có tài khoản?</p>
 
           {error && <div className="error-message">{error}</div>}
           {success && <div className="success-message">{success}</div>}

@@ -1,59 +1,6 @@
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
 
-const addressSchema = new mongoose.Schema({
-  street: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  city: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-  state: {
-    type: String,
-    required: true,
-    trim: true,
-  },
-});
-
-const orderSchema = new mongoose.Schema({
-  orderId: {
-    type: String,
-    required: true,
-    unique: true,
-  },
-  items: [
-    {
-      id: String,
-      name: String,
-      price: Number,
-      quantity: Number,
-      image: String,
-    },
-  ],
-  totalAmount: {
-    type: Number,
-    required: true,
-  },
-  paymentMethod: {
-    type: String,
-    enum: ["zalopay", "cash"],
-    required: true,
-  },
-  status: {
-    type: String,
-    enum: ["pending", "paid", "delivered", "cancelled"],
-    default: "pending",
-  },
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
-
 const userSchema = new mongoose.Schema({
   fullName: {
     type: String,
@@ -75,8 +22,11 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  address: addressSchema,
-  orders: [orderSchema],
+  address: {
+    street: String,
+    city: String,
+    state: String,
+  },
   resetPasswordToken: String,
   resetPasswordExpires: Date,
   createdAt: {

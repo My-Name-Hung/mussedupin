@@ -255,13 +255,15 @@ const RegisterModal = ({ isOpen, onClose }) => {
   return (
     <>
       <div className="modal-overlay">
-        <div className="modal-container">
+        <div className="register-modal-container">
           <button className="close-button" onClick={onClose}>
             <FaTimes />
           </button>
 
-          <h2 className="modal-title">Đăng ký tài khoản</h2>
-          <p className="modal-subtitle">Tạo tài khoản để mua sắm dễ dàng hơn</p>
+          <h2 className="register-modal-title">Đăng ký tài khoản</h2>
+          <p className="register-modal-subtitle">
+            Tạo tài khoản để mua sắm dễ dàng hơn
+          </p>
 
           {error && <div className="error-message">{error}</div>}
           {success && <div className="success-message">{success}</div>}

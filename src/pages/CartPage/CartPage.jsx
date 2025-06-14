@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { Link } from "react-router-dom";
-import LoginModal from "../../components/Auth/LoginModal";
+import { Link, useNavigate } from "react-router-dom";
 import Notification from "../../components/Notification/Notification";
-import PaymentPage from "../PaymentPage/PaymentPage";
 import "./CartPage.css";
 
 const CartPage = () => {
+  const navigate = useNavigate();
   const [cartItems, setCartItems] = useState([]);
   const [savedItems, setSavedItems] = useState([]);
   const [promoCode, setPromoCode] = useState("");
@@ -17,20 +16,12 @@ const CartPage = () => {
   const [showNotification, setShowNotification] = useState(false);
   const [notificationMessage, setNotificationMessage] = useState("");
   const [notificationType, setNotificationType] = useState("success");
-  const [showLoginModal, setShowLoginModal] = useState(false);
-  const [showPaymentPage, setShowPaymentPage] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [orderStatus, setOrderStatus] = useState({});
+  const [orders, setOrders] = useState([]);
 
   useEffect(() => {
     loadCartItems();
-    checkLoginStatus();
+    loadOrders();
   }, []);
-
-  const checkLoginStatus = () => {
-    const token = localStorage.getItem("token");
-    setIsLoggedIn(!!token);
-  };
 
   const loadCartItems = () => {
     const cart = JSON.parse(localStorage.getItem("cart")) || [];
@@ -44,10 +35,55 @@ const CartPage = () => {
       quantityState[item.id] = item.quantity;
     });
     setQuantities(quantityState);
+  };
 
-    // Load order status
-    const status = JSON.parse(localStorage.getItem("orderStatus")) || {};
-    setOrderStatus(status);
+  const loadOrders = async () => {
+    try {
+      const token = localStorage.getItem("token");
+      if (!token) return;
+
+      const response = await fetch(
+        "https://mussedupin.onrender.com/api/orders",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+
+      const data = await response.json();
+      if (data.success) {
+        setOrders(data.orders);
+      }
+    } catch (error) {
+      console.error("Error loading orders:", error);
+    }
+  };
+
+  const handleConfirmReceived = async (orderCode) => {
+    try {
+      const response = await fetch(
+        `https://mussedupin.onrender.com/api/orders/${orderCode}`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({ status: "Completed" }),
+        }
+      );
+
+      const data = await response.json();
+      if (data.success) {
+        setNotificationMessage("Đã xác nhận nhận hàng thành công");
+        setNotificationType("success");
+        setShowNotification(true);
+        loadOrders();
+      }
+    } catch (error) {
+      console.error("Error confirming order:", error);
+    }
   };
 
   const updateQuantity = (itemId, newQuantity) => {
@@ -140,57 +176,17 @@ const CartPage = () => {
   };
 
   const handleCheckout = () => {
-    if (!isLoggedIn) {
-      setShowLoginModal(true);
-    } else {
-      setShowPaymentPage(true);
+    if (cartItems.length === 0) {
+      setNotificationMessage("Giỏ hàng của bạn đang trống");
+      setNotificationType("error");
+      setShowNotification(true);
+      return;
     }
+    navigate("/checkout");
   };
-
-  const handleLoginSuccess = () => {
-    setShowLoginModal(false);
-    setIsLoggedIn(true);
-    setShowPaymentPage(true);
-  };
-
-  const handleOrderReceived = (orderId) => {
-    const updatedStatus = { ...orderStatus };
-    delete updatedStatus[orderId];
-    setOrderStatus(updatedStatus);
-    localStorage.setItem("orderStatus", JSON.stringify(updatedStatus));
-
-    // Remove items from cart
-    const updatedCart = cartItems.filter(
-      (item) => !item.orderId || item.orderId !== orderId
-    );
-    setCartItems(updatedCart);
-    localStorage.setItem("cart", JSON.stringify(updatedCart));
-  };
-
-  if (showPaymentPage) {
-    return (
-      <PaymentPage
-        cartItems={cartItems}
-        onClose={() => setShowPaymentPage(false)}
-        onOrderComplete={(orderId) => {
-          const newStatus = { ...orderStatus, [orderId]: "ordered" };
-          setOrderStatus(newStatus);
-          localStorage.setItem("orderStatus", JSON.stringify(newStatus));
-        }}
-      />
-    );
-  }
 
   return (
     <div className="cart-page">
-      {showLoginModal && (
-        <LoginModal
-          isOpen={showLoginModal}
-          onClose={() => setShowLoginModal(false)}
-          onLoginSuccess={handleLoginSuccess}
-        />
-      )}
-
       <Notification
         message={notificationMessage}
         isVisible={showNotification}
@@ -299,30 +295,61 @@ const CartPage = () => {
           </p>
         </div>
 
-        <div className="product-payment-notes">
-          <div className="note-item">
-            <span className="checkmark">✓</span>
-            <p>Thanh toán an toàn bởi Verifone</p>
-          </div>
-          <div className="note-item">
-            <span className="checkmark">✓</span>
-            <p>
-              Hài lòng hoặc được hoàn lại tiền trong vòng 14 ngày để thay đổi
-              quyết định
-            </p>
-          </div>
-          <div className="note-item">
-            <span className="checkmark">✓</span>
-            <p>Giao hàng trong vòng 1 đến 2 ngày làm việc</p>
-          </div>
-        </div>
-
         <div className="cart-actions-bottom">
-          <button className="checkout-button">Đi đến thanh toán</button>
+          <button className="checkout-button" onClick={handleCheckout}>
+            Đi đến thanh toán
+          </button>
           <Link to="/category" className="continue-shopping">
             Tiếp tục mua sắm
           </Link>
         </div>
+
+        {orders.length > 0 && (
+          <section className="orders-section">
+            <h2>Đơn hàng của tôi</h2>
+            {orders.map((order) => (
+              <div key={order.orderCode} className="order-item">
+                <div className="order-header">
+                  <h3>Mã đơn hàng: {order.orderCode}</h3>
+                  <span
+                    className={`order-status ${order.status.toLowerCase()}`}
+                  >
+                    {order.status}
+                  </span>
+                </div>
+
+                <div className="order-products">
+                  {order.items.map((item) => (
+                    <div key={item.id} className="order-product">
+                      <img src={item.image} alt={item.name} />
+                      <div className="product-details">
+                        <h4>{item.name}</h4>
+                        <p>Số lượng: {item.quantity}</p>
+                        <p className="price">
+                          {(item.price * item.quantity).toLocaleString()}đ
+                        </p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="order-footer">
+                  <p className="total-amount">
+                    Tổng tiền: {order.totalAmount.toLocaleString()}đ
+                  </p>
+                  {order.status === "Pending" && (
+                    <button
+                      className="confirm-received-btn"
+                      onClick={() => handleConfirmReceived(order.orderCode)}
+                    >
+                      Xác nhận đã nhận hàng
+                    </button>
+                  )}
+                </div>
+              </div>
+            ))}
+          </section>
+        )}
 
         {savedItems.length > 0 && (
           <section className="related-products-payment">
@@ -349,24 +376,6 @@ const CartPage = () => {
                 </div>
               ))}
             </div>
-          </section>
-        )}
-
-        {Object.entries(orderStatus).length > 0 && (
-          <section className="order-status-section">
-            <h2>Trạng thái đơn hàng</h2>
-            {Object.entries(orderStatus).map(([orderId, status]) => (
-              <div key={orderId} className="order-status-item">
-                <p>Mã đơn hàng: {orderId}</p>
-                <p>Trạng thái: Đã đặt hàng</p>
-                <button
-                  className="confirm-received-button"
-                  onClick={() => handleOrderReceived(orderId)}
-                >
-                  Xác nhận đã nhận hàng
-                </button>
-              </div>
-            ))}
           </section>
         )}
       </div>

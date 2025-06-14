@@ -9,6 +9,7 @@ import ScrollToTopButton from "./components/ScrollToTopButton/ScrollToTopButton"
 import "./index.css";
 import CartPage from "./pages/CartPage/CartPage";
 import CategoryDetail from "./pages/CategoryDetail/CategoryDetail";
+import CheckoutPage from "./pages/CheckoutPage/CheckoutPage";
 import Copyrights from "./pages/Footer/Copyrights/Copyrights";
 import LegalNotice from "./pages/Footer/LegalNotice/LegalNotice";
 import PrivacyPolicy from "./pages/Footer/PrivacyPolicy/PrivacyPolicy";
@@ -25,6 +26,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/legal-notice" element={<LegalNotice />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/copyrights" element={<Copyrights />} />

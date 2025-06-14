@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/ONLINE/node_modules/framer-motion/dist/es/render/dom/scroll/index.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { noop } from 'motion-utils';\nimport { attachToAnimation } from './attach-animation.mjs';\nimport { attachToFunction } from './attach-function.mjs';\n\nfunction scroll(onScroll, { axis = \"y\", container = document.scrollingElement, ...options } = {}) {\n    if (!container)\n        return noop;\n    const optionsWithDefaults = { axis, container, ...options };\n    return typeof onScroll === \"function\"\n        ? attachToFunction(onScroll, optionsWithDefaults)\n        : attachToAnimation(onScroll, optionsWithDefaults);\n}\n\nexport { scroll };\n",
+      "start": 1749792481777,
+      "end": 1749792482067,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1749792482067,
+      "end": 1749792482067,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1749792482067,
+      "end": 1749792482067,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1749792482067,
+      "end": 1749792482067,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1749792482067,
+      "end": 1749792482067,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1749792482067,
+      "end": 1749792482067,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1749792482067,
+      "end": 1749792482067,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1749792482067,
+      "end": 1749792482067,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1749792482067,
+      "end": 1749792482067,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1749792482068,
+      "end": 1749792482068,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1749792482069,
+      "end": 1749792482069,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1749792482069,
+      "end": 1749792482069,
+      "order": "normal"
+    }
+  ]
+}

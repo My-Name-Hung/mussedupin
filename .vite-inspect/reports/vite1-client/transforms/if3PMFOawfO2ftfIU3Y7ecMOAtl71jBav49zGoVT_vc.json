@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/ONLINE/src/pages/CartPage/CartPage.css",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": ".cart-page {\n  padding: 40px 20px;\n  min-height: 100vh;\n  background-image: url(\"https://res.cloudinary.com/dn0br7hj0/image/upload/background/Background2.webp\");\n  background-repeat: repeat;\n  background-position: top center;\n  background-size: 300px;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: crisp-edges;\n}\n\n.cart-title {\n  font-family: \"Meholrax\", serif;\n  font-size: 2.5rem;\n  color: #2c2f11;\n  text-align: center;\n  margin-bottom: 30px;\n}\n\n.cart-actions-top,\n.cart-actions-bottom {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  gap: 15px;\n  margin-bottom: 30px;\n  width: 90%;\n  margin: 0 auto 30px;\n}\n\n.checkout-button {\n  width: 100%;\n  padding: 15px;\n  background-color: #2c2f11;\n  color: yellowgreen;\n  border: none;\n  border-radius: 30px;\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.1rem;\n  cursor: pointer;\n  transition: opacity 0.3s ease;\n}\n\n.checkout-button:hover {\n  opacity: 0.9;\n}\n\n.continue-shopping {\n  width: 100%;\n  padding: 15px;\n  background: none;\n  border: 1px solid #2c2f11;\n  color: #2c2f11;\n  border-radius: 30px;\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.1rem;\n  text-align: center;\n  text-decoration: none;\n  transition: background-color 0.3s ease;\n}\n\n.continue-shopping:hover {\n  background-color: rgba(44, 47, 17, 0.1);\n}\n\n.cart-content {\n  max-width: 1200px;\n  margin: 0 auto;\n}\n\n.cart-item {\n  display: grid;\n  grid-template-columns: 1fr 2fr;\n  gap: 30px;\n  padding: 30px;\n  margin-bottom: 20px;\n}\n\n.item-image {\n  width: 100%;\n  aspect-ratio: 1;\n  overflow: hidden;\n  border-radius: 5px;\n}\n\n.item-image img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.item-details {\n  display: flex;\n  flex-direction: column;\n  gap: 15px;\n}\n\n.item-details h3 {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.2rem;\n  color: #2c2f11;\n  margin: 0;\n}\n\n.quantity-selector {\n  position: relative;\n  width: 120px;\n}\n\n.quantity-display {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 10px;\n  border: 1px solid #000;\n  border-radius: 5px;\n  color: #2c2f11;\n  cursor: pointer;\n}\n\n.quantity-dropdown {\n  position: absolute;\n  top: 100%;\n  left: 0;\n  width: 100%;\n  max-height: 200px;\n  overflow-y: auto;\n  background: white;\n  border: 1px solid #ddd;\n  border-radius: 5px;\n  z-index: 10;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);\n}\n\n.quantity-option {\n  padding: 10px;\n  color: #2c2f11;\n  cursor: pointer;\n  transition: background-color 0.3s ease;\n}\n\n.quantity-option:hover {\n  background-color: #f5f5f5;\n}\n\n.item-price {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.2rem;\n  color: #2c2f11;\n  font-weight: bold;\n}\n\n.item-actions {\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n}\n\n.remove-item,\n.save-for-later {\n  background: none;\n  border: none;\n  color: #2c2f11;\n  text-decoration: underline;\n  cursor: pointer;\n  font-family: \"Roboto\", sans-serif;\n  text-align: left;\n  padding: 0;\n}\n\n.promo-code {\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n  margin-top: 20px;\n}\n\n.promo-code-input {\n  padding: 12px;\n  border: 1px solid #000;\n  border-radius: 5px;\n  background: none;\n  color: #000;\n  font-family: \"Roboto\", sans-serif;\n}\n\n.apply-promo {\n  width: 90%;\n  padding: 15px;\n  background-color: #2c2f11;\n  color: yellowgreen;\n  border: none;\n  border-radius: 30px;\n  font-family: \"Roboto\", sans-serif;\n  cursor: pointer;\n}\n\n.cart-total {\n  width: 90%;\n  margin: 30px auto;\n  padding: 20px;\n  background-color: #2c2f11;\n  color: white;\n  border-radius: 10px;\n  font-family: \"Roboto\", sans-serif;\n}\n\n.total-amount {\n  font-size: 1.3rem;\n  margin-bottom: 10px;\n}\n\n.shipping-note {\n  font-size: 0.9rem;\n  opacity: 0.9;\n}\n\n.product-payment-notes {\n  width: 90%;\n  margin: 30px auto;\n  display: flex;\n  flex-direction: column;\n  gap: 15px;\n}\n\n.note-item {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n}\n\n.checkmark {\n  color: #2c2f11;\n  font-weight: bold;\n}\n\n.related-products-payment {\n  margin-top: 50px;\n  padding: 30px 0;\n}\n\n.related-products-payment h2 {\n  font-family: \"Meholrax\", serif;\n  font-size: 2rem;\n  color: #2c2f11;\n  text-align: center;\n  margin-bottom: 10px;\n}\n\n.related-products-payment .subtitle {\n  font-family: \"Roboto\", sans-serif;\n  text-align: center;\n  color: #666;\n  margin-bottom: 30px;\n}\n\n.saved-items {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n  gap: 30px;\n  padding: 20px;\n}\n\n.saved-item {\n  padding: 20px;\n  text-align: center;\n}\n\n.saved-item img {\n  width: 100%;\n  aspect-ratio: 1;\n  object-fit: cover;\n  border-radius: 5px;\n  margin-bottom: 15px;\n}\n\n.saved-item h3 {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.1rem;\n  margin-bottom: 10px;\n  color: #2c2f11;\n}\n\n.saved-item .price {\n  color: #2c2f11;\n  font-weight: bold;\n  margin-bottom: 15px;\n}\n\n.saved-item-actions {\n  display: flex;\n  flex-direction: column;\n  gap: 10px;\n}\n\n.saved-item-actions button {\n  width: 100%;\n  padding: 10px;\n  border: none;\n  border-radius: 5px;\n  cursor: pointer;\n  font-family: \"Roboto\", sans-serif;\n}\n\n.saved-item-actions button:first-child {\n  background: none;\n  border: 1px solid #2c2f11;\n  color: #2c2f11;\n}\n\n.saved-item-actions button:last-child {\n  background-color: #2c2f11;\n  color: yellowgreen;\n}\n\n@media (max-width: 768px) {\n  .cart-item {\n    grid-template-columns: 1fr;\n  }\n\n  .item-image {\n    max-width: 300px;\n    margin: 0 auto;\n  }\n}\n",
+      "start": 1749792472345,
+      "end": 1749792472697,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1749792472697,
+      "end": 1749792472697,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1749792472704,
+      "end": 1749792472704,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1749792472704,
+      "end": 1749792472704,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1749792472705,
+      "end": 1749792472705,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1749792472705,
+      "end": 1749792472705,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1749792472705,
+      "end": 1749792472705,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1749792472705,
+      "end": 1749792472705,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1749792472705,
+      "end": 1749792472705,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1749792472705,
+      "end": 1749792472705,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1749792472705,
+      "end": 1749792472705,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1749792472705,
+      "end": 1749792472705,
+      "order": "normal"
+    }
+  ]
+}

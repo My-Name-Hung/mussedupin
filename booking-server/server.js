@@ -863,6 +863,372 @@ app.post("/api/auth/reset-password", async (req, res) => {
   }
 });
 
+// Send order confirmation email to customer
+const sendOrderConfirmationEmail = (orderData) => {
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: orderData.email,
+    subject: "Xác nhận đơn hàng - Musée Du Pin",
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e6e6e6; border-radius: 10px;">
+        <div style="background: linear-gradient(135deg, #1e3a8a, #2563eb); padding: 20px; text-align: center; color: white; border-radius: 10px 10px 0 0;">
+          <h1 style="margin: 0;">Xác nhận đơn hàng</h1>
+        </div>
+        <div style="padding: 20px;">
+          <p>Xin chào <strong>${orderData.fullName}</strong>,</p>
+          <p>Cảm ơn bạn đã đặt hàng tại Musée Du Pin. Dưới đây là thông tin đơn hàng của bạn:</p>
+          
+          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1e3a8a; margin-top: 0;">Chi tiết đơn hàng</h3>
+            <p><strong>Mã đơn hàng:</strong> ${orderData.orderId}</p>
+            <p><strong>Phương thức thanh toán:</strong> ${
+              orderData.paymentMethod === "zalopay"
+                ? "ZaloPay"
+                : "Thanh toán khi nhận hàng"
+            }</p>
+            <p><strong>Tổng tiền:</strong> ${orderData.totalAmount.toLocaleString()}đ</p>
+            ${
+              orderData.paymentMethod === "zalopay"
+                ? "<p><strong>Trạng thái:</strong> Đã thanh toán</p>"
+                : ""
+            }
+          </div>
+
+          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1e3a8a; margin-top: 0;">Địa chỉ giao hàng</h3>
+            <p>${orderData.address.street}</p>
+            <p>${orderData.address.city}, ${orderData.address.state}</p>
+          </div>
+          
+          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1e3a8a; margin-top: 0;">Sản phẩm</h3>
+            ${orderData.items
+              .map(
+                (item) => `
+              <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                <span>${item.name} x ${item.quantity}</span>
+                <span>${(item.price * item.quantity).toLocaleString()}đ</span>
+              </div>
+            `
+              )
+              .join("")}
+          </div>
+          
+          <p>Chúng tôi sẽ xử lý đơn hàng của bạn trong thời gian sớm nhất.</p>
+          <p>Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi.</p>
+          
+          <p style="margin-top: 30px;">Trân trọng,<br>Đội ngũ Musée Du Pin</p>
+        </div>
+      </div>
+    `,
+  };
+
+  return transporter.sendMail(mailOptions);
+};
+
+// Send order notification to admin
+const sendOrderNotificationEmail = (orderData) => {
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
+    subject: "Đơn hàng mới - Musée Du Pin",
+    html: `
+      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e6e6e6; border-radius: 10px;">
+        <div style="background: linear-gradient(135deg, #1e3a8a, #2563eb); padding: 20px; text-align: center; color: white; border-radius: 10px 10px 0 0;">
+          <h1 style="margin: 0;">Đơn hàng mới</h1>
+        </div>
+        <div style="padding: 20px;">
+          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1e3a8a; margin-top: 0;">Thông tin khách hàng</h3>
+            <p><strong>Tên:</strong> ${orderData.fullName}</p>
+            <p><strong>Email:</strong> ${orderData.email}</p>
+            <p><strong>Số điện thoại:</strong> ${orderData.phone}</p>
+          </div>
+          
+          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1e3a8a; margin-top: 0;">Chi tiết đơn hàng</h3>
+            <p><strong>Mã đơn hàng:</strong> ${orderData.orderId}</p>
+            <p><strong>Phương thức thanh toán:</strong> ${
+              orderData.paymentMethod === "zalopay"
+                ? "ZaloPay"
+                : "Thanh toán khi nhận hàng"
+            }</p>
+            <p><strong>Tổng tiền:</strong> ${orderData.totalAmount.toLocaleString()}đ</p>
+            ${
+              orderData.paymentMethod === "zalopay"
+                ? "<p><strong>Trạng thái:</strong> Đã thanh toán</p>"
+                : ""
+            }
+          </div>
+
+          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1e3a8a; margin-top: 0;">Địa chỉ giao hàng</h3>
+            <p>${orderData.address.street}</p>
+            <p>${orderData.address.city}, ${orderData.address.state}</p>
+          </div>
+          
+          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
+            <h3 style="color: #1e3a8a; margin-top: 0;">Sản phẩm</h3>
+            ${orderData.items
+              .map(
+                (item) => `
+              <div style="display: flex; justify-content: space-between; margin: 10px 0;">
+                <span>${item.name} x ${item.quantity}</span>
+                <span>${(item.price * item.quantity).toLocaleString()}đ</span>
+              </div>
+            `
+              )
+              .join("")}
+          </div>
+        </div>
+      </div>
+    `,
+  };
+
+  return transporter.sendMail(mailOptions);
+};
+
+// API endpoint for creating ZaloPay order
+app.post("/api/payment/create-order", async (req, res) => {
+  try {
+    const { items, address } = req.body;
+    const token = req.headers.authorization?.split(" ")[1];
+
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized",
+      });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.userId);
+
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    const totalAmount = items.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+    const orderId = `ORDER${Date.now()}`;
+
+    // Create order data for ZaloPay
+    const orderData = {
+      app_id: process.env.ZALOPAY_APP_ID,
+      app_trans_id: orderId,
+      app_user: user.email,
+      amount: totalAmount,
+      description: `Thanh toán đơn hàng ${orderId}`,
+      bank_code: "",
+      callback_url: `${process.env.SERVER_URL}/api/payment/callback`,
+    };
+
+    // Call ZaloPay API to create order
+    const response = await fetch("https://sb-openapi.zalopay.vn/v2/create", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(orderData),
+    });
+
+    const data = await response.json();
+
+    if (data.return_code === 1) {
+      res.json({
+        success: true,
+        order_url: data.order_url,
+        orderId: orderId,
+      });
+    } else {
+      res.status(400).json({
+        success: false,
+        message: "Failed to create ZaloPay order",
+      });
+    }
+  } catch (error) {
+    console.error("Error creating ZaloPay order:", error);
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+});
+
+// API endpoint for ZaloPay callback
+app.post("/api/payment/callback", async (req, res) => {
+  try {
+    const { app_trans_id, amount, status } = req.body;
+
+    if (status === 1) {
+      // Payment successful
+      // Update order status and send confirmation emails
+      const orderData = {
+        orderId: app_trans_id,
+        paymentMethod: "zalopay",
+        totalAmount: amount,
+        // Add other order details
+      };
+
+      await Promise.all([
+        sendOrderConfirmationEmail(orderData),
+        sendOrderNotificationEmail(orderData),
+      ]);
+    }
+
+    res.json({ return_code: 1, return_message: "success" });
+  } catch (error) {
+    console.error("Error processing ZaloPay callback:", error);
+    res.status(500).json({ return_code: 0, return_message: "error" });
+  }
+});
+
+// API endpoint for creating regular orders
+app.post("/api/orders/create", async (req, res) => {
+  try {
+    const { items, address, paymentMethod } = req.body;
+    const token = req.headers.authorization?.split(" ")[1];
+
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized",
+      });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.userId);
+
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    const totalAmount = items.reduce(
+      (total, item) => total + item.price * item.quantity,
+      0
+    );
+    const orderId = `ORDER${Date.now()}`;
+
+    const orderData = {
+      orderId,
+      fullName: user.fullName,
+      email: user.email,
+      phone: user.phone,
+      address,
+      items,
+      totalAmount,
+      paymentMethod,
+    };
+
+    // Send confirmation emails
+    await Promise.all([
+      sendOrderConfirmationEmail(orderData),
+      sendOrderNotificationEmail(orderData),
+    ]);
+
+    res.json({
+      success: true,
+      message: "Order created successfully",
+      orderId,
+    });
+  } catch (error) {
+    console.error("Error creating order:", error);
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+});
+
+// API endpoint for getting user profile
+app.get("/api/user/profile", async (req, res) => {
+  try {
+    const token = req.headers.authorization?.split(" ")[1];
+
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized",
+      });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.userId);
+
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    res.json({
+      success: true,
+      user: {
+        id: user._id,
+        fullName: user.fullName,
+        email: user.email,
+        phone: user.phone,
+        address: user.address,
+      },
+    });
+  } catch (error) {
+    console.error("Error fetching user profile:", error);
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+});
+
+// API endpoint for updating user address
+app.post("/api/user/update-address", async (req, res) => {
+  try {
+    const { address } = req.body;
+    const token = req.headers.authorization?.split(" ")[1];
+
+    if (!token) {
+      return res.status(401).json({
+        success: false,
+        message: "Unauthorized",
+      });
+    }
+
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    const user = await User.findById(decoded.userId);
+
+    if (!user) {
+      return res.status(401).json({
+        success: false,
+        message: "User not found",
+      });
+    }
+
+    user.address = address;
+    await user.save();
+
+    res.json({
+      success: true,
+      message: "Address updated successfully",
+      address: user.address,
+    });
+  } catch (error) {
+    console.error("Error updating address:", error);
+    res.status(500).json({
+      success: false,
+      message: "Internal server error",
+    });
+  }
+});
+
 // Test route
 app.get("/", (req, res) => {
   res.send("Booking Server is running!");

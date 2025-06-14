@@ -2,42 +2,221 @@
 /* Hero Container Styles */
 .hero-container-home {
   width: 100%;
-  position: relative;
-  overflow: hidden;
-  height: 30vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.hero-image-container-home {
-  width: 100vw;
   height: 100vh;
   position: relative;
   overflow: hidden;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.hero-video-home {
+.hero-slider-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+/* Add styles for slick slider */
+.slick-slider {
+  width: 100%;
+  height: 100%;
+}
+
+.slick-list,
+.slick-track {
+  height: 100%;
+}
+
+.slide {
+  width: 100%;
+  height: 100vh;
+  position: relative;
+}
+
+.slide-image-container {
+  width: 100%;
+  height: 100%;
+  position: relative;
+}
+
+.slide-image-container::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.7));
+  pointer-events: none;
+}
+
+.slide-image {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: center;
-  display: block;
-  background: #000;
-  opacity: 1;
-  transition: opacity 1.5s ease;
+}
+
+.slide-content {
+  position: absolute;
+  bottom: 15%;
+  left: 10%;
+  color: #fff;
+  z-index: 2;
+  max-width: 600px;
+}
+
+.slide-title-hero {
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s forwards;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.slide-subtitle {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  color: #fff;
+  margin-top: 1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.slide-subtitle:hover {
+  color: #f0f0f0;
+  transform: translateX(5px);
+}
+
+.slide-subtitle svg {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+}
+
+.slide-subtitle:hover svg {
+  transform: translateX(5px);
+}
+
+.play-pause-button {
+  position: absolute;
+  bottom: 30px;
+  right: 30px;
+  background: rgba(0, 0, 0, 0.5);
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  color: #fff;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: background-color 0.3s ease;
+}
+
+.play-pause-button:hover {
+  background: rgba(0, 0, 0, 0.8);
+}
+
+/* Slick Navigation Bar */
+.slick-nav {
+  position: absolute;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: 0px;
+  z-index: 5;
+}
+
+.nav-item-hero {
+  width: 50px;
+  height: 3px;
+  background: rgba(255, 255, 255, 0.3);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  margin: 0 5px;
+  margin-bottom: 60px;
+}
+
+.nav-item-hero::after {
+  content: "";
   position: absolute;
   top: 0;
   left: 0;
+  width: 100%;
+  height: 100%;
+  background: white;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
 }
 
-.hero-video-home.loaded {
-  opacity: 1;
+.nav-item-hero.active::after {
+  transform: scaleX(1);
 }
 
+.nav-item-hero.active.playing::after {
+  animation: navProgress 5s linear;
+}
+
+@keyframes navProgress {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .slide-title-hero {
+    font-size: 2.5rem;
+  }
+
+  .slide-subtitle {
+    font-size: 1rem;
+  }
+
+  .play-pause-button {
+    bottom: 20px;
+    right: 20px;
+    width: 35px;
+    height: 35px;
+  }
+
+  .slick-nav {
+    bottom: 20px;
+  }
+
+  .nav-item-hero {
+    width: 35px;
+  }
+}
+
+@media (max-width: 480px) {
+  .slide-title-hero {
+    font-size: 2rem;
+  }
+}
 
 /* Hero Content Styles */
 .hero-content-home {

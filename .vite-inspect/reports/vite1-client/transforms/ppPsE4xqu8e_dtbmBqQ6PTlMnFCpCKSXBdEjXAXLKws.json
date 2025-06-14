@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/ONLINE/node_modules/enquire.js/src/Util.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * Helper function for iterating over a collection\n *\n * @param collection\n * @param fn\n */\nfunction each(collection, fn) {\n    var i      = 0,\n        length = collection.length,\n        cont;\n\n    for(i; i < length; i++) {\n        cont = fn(collection[i], i);\n        if(cont === false) {\n            break; //allow early exit\n        }\n    }\n}\n\n/**\n * Helper function for determining whether target object is an array\n *\n * @param target the object under test\n * @return {Boolean} true if array, false otherwise\n */\nfunction isArray(target) {\n    return Object.prototype.toString.apply(target) === '[object Array]';\n}\n\n/**\n * Helper function for determining whether target object is a function\n *\n * @param target the object under test\n * @return {Boolean} true if function, false otherwise\n */\nfunction isFunction(target) {\n    return typeof target === 'function';\n}\n\nmodule.exports = {\n    isFunction : isFunction,\n    isArray : isArray,\n    each : each\n};\n",
+      "start": 1749792475031,
+      "end": 1749792475144,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1749792475144,
+      "end": 1749792475144,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1749792475144,
+      "end": 1749792475144,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1749792475144,
+      "end": 1749792475144,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1749792475144,
+      "end": 1749792475144,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1749792475144,
+      "end": 1749792475144,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1749792475144,
+      "end": 1749792475144,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1749792475144,
+      "end": 1749792475144,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1749792475145,
+      "end": 1749792475145,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1749792475145,
+      "end": 1749792475145,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1749792475145,
+      "end": 1749792475145,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1749792475145,
+      "end": 1749792475145,
+      "order": "normal"
+    }
+  ]
+}

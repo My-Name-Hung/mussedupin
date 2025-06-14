@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/ONLINE/node_modules/react-leaflet/lib/FeatureGroup.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { createElementObject, createPathComponent, extendContext } from '@react-leaflet/core';\nimport { FeatureGroup as LeafletFeatureGroup } from 'leaflet';\nexport const FeatureGroup = createPathComponent(function createFeatureGroup({ children: _c, ...options }, ctx) {\n    const group = new LeafletFeatureGroup([], options);\n    return createElementObject(group, extendContext(ctx, {\n        layerContainer: group,\n        overlayContainer: group\n    }));\n});\n",
+      "start": 1749792481790,
+      "end": 1749792482076,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1749792482076,
+      "end": 1749792482076,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1749792482076,
+      "end": 1749792482076,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1749792482076,
+      "end": 1749792482076,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1749792482076,
+      "end": 1749792482076,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1749792482076,
+      "end": 1749792482076,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1749792482076,
+      "end": 1749792482076,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1749792482076,
+      "end": 1749792482076,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1749792482076,
+      "end": 1749792482076,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1749792482076,
+      "end": 1749792482076,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1749792482076,
+      "end": 1749792482076,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1749792482076,
+      "end": 1749792482076,
+      "order": "normal"
+    }
+  ]
+}

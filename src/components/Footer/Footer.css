@@ -556,4 +556,7 @@
   .footer-section:hover {
     transform: translateX(0);
   }
+  ul li::before {
+    content: "" !important;
+  }
 }

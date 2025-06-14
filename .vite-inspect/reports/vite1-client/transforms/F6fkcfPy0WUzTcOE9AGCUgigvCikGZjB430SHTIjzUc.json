@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/ONLINE/node_modules/lucide-react/dist/esm/icons/chart-no-axes-column-increasing.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"line\", { x1: \"12\", x2: \"12\", y1: \"20\", y2: \"10\", key: \"1vz5eb\" }],\n  [\"line\", { x1: \"18\", x2: \"18\", y1: \"20\", y2: \"4\", key: \"cun8e5\" }],\n  [\"line\", { x1: \"6\", x2: \"6\", y1: \"20\", y2: \"16\", key: \"hq0ia6\" }]\n];\nconst ChartNoAxesColumnIncreasing = createLucideIcon(\"chart-no-axes-column-increasing\", __iconNode);\n\nexport { __iconNode, ChartNoAxesColumnIncreasing as default };\n//# sourceMappingURL=chart-no-axes-column-increasing.js.map\n",
+      "start": 1749792482376,
+      "end": 1749792482913,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1749792482913,
+      "end": 1749792482913,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1749792482913,
+      "end": 1749792482913,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1749792482913,
+      "end": 1749792482913,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1749792482913,
+      "end": 1749792482913,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1749792482913,
+      "end": 1749792482913,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1749792482913,
+      "end": 1749792482913,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1749792482913,
+      "end": 1749792482913,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1749792482913,
+      "end": 1749792482913,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1749792482913,
+      "end": 1749792482913,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1749792482913,
+      "end": 1749792482913,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1749792482913,
+      "end": 1749792482933,
+      "order": "normal"
+    }
+  ]
+}

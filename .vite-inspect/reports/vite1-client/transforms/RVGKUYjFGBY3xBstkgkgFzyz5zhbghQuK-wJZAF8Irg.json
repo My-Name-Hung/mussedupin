@@ -1,0 +1,90 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/ONLINE/src/components/Notification/Notification.jsx",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import React, { useEffect } from \"react\";\nimport { FaCheckCircle, FaTimesCircle } from \"react-icons/fa\";\nimport \"./Notification.css\";\n\nconst Notification = ({ message, isVisible, onClose, type = \"success\" }) => {\n  useEffect(() => {\n    if (isVisible) {\n      const timer = setTimeout(() => {\n        onClose();\n      }, 3000); // Auto close after 3 seconds\n\n      return () => clearTimeout(timer);\n    }\n  }, [isVisible, onClose]);\n\n  if (!isVisible) return null;\n\n  return (\n    <div className={`notification-container ${type}`}>\n      <div className=\"notification-content\">\n        {type === \"success\" ? (\n          <FaCheckCircle className=\"notification-icon success\" />\n        ) : (\n          <FaTimesCircle className=\"notification-icon error\" />\n        )}\n        <span>{message}</span>\n      </div>\n    </div>\n  );\n};\n\nexport default Notification;\n",
+      "start": 1749792472040,
+      "end": 1749792472344,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1749792472344,
+      "end": 1749792472344,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect } from \"react\";\nimport { FaCheckCircle, FaTimesCircle } from \"react-icons/fa\";\nimport \"./Notification.css\";\nconst Notification = ({ message, isVisible, onClose, type = \"success\" }) => {\n  useEffect(() => {\n    if (isVisible) {\n      const timer = setTimeout(() => {\n        onClose();\n      }, 3e3);\n      return () => clearTimeout(timer);\n    }\n  }, [isVisible, onClose]);\n  if (!isVisible) return null;\n  return /* @__PURE__ */ jsx(\"div\", { className: `notification-container ${type}`, children: /* @__PURE__ */ jsxs(\"div\", { className: \"notification-content\", children: [\n    type === \"success\" ? /* @__PURE__ */ jsx(FaCheckCircle, { className: \"notification-icon success\" }) : /* @__PURE__ */ jsx(FaTimesCircle, { className: \"notification-icon error\" }),\n    /* @__PURE__ */ jsx(\"span\", { children: message })\n  ] }) });\n};\nexport default Notification;\n",
+      "start": 1749792472344,
+      "end": 1749792472493,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/ONLINE/src/components/Notification/Notification.jsx"
+        ],
+        "sourcesContent": [
+          "import React, { useEffect } from \"react\";\nimport { FaCheckCircle, FaTimesCircle } from \"react-icons/fa\";\nimport \"./Notification.css\";\n\nconst Notification = ({ message, isVisible, onClose, type = \"success\" }) => {\n  useEffect(() => {\n    if (isVisible) {\n      const timer = setTimeout(() => {\n        onClose();\n      }, 3000); // Auto close after 3 seconds\n\n      return () => clearTimeout(timer);\n    }\n  }, [isVisible, onClose]);\n\n  if (!isVisible) return null;\n\n  return (\n    <div className={`notification-container ${type}`}>\n      <div className=\"notification-content\">\n        {type === \"success\" ? (\n          <FaCheckCircle className=\"notification-icon success\" />\n        ) : (\n          <FaTimesCircle className=\"notification-icon error\" />\n        )}\n        <span>{message}</span>\n      </div>\n    </div>\n  );\n};\n\nexport default Notification;\n"
+        ],
+        "mappings": "AAmBM,SAEI,KAFJ;AAnBN,OAAO,SAAS,iBAAiB;AACjC,SAAS,eAAe,qBAAqB;AAC7C,OAAO;AAEP,MAAM,eAAe,CAAC,EAAE,SAAS,WAAW,SAAS,OAAO,UAAU,MAAM;AAC1E,YAAU,MAAM;AACd,QAAI,WAAW;AACb,YAAM,QAAQ,WAAW,MAAM;AAC7B,gBAAQ;AAAA,MACV,GAAG,GAAI;AAEP,aAAO,MAAM,aAAa,KAAK;AAAA,IACjC;AAAA,EACF,GAAG,CAAC,WAAW,OAAO,CAAC;AAEvB,MAAI,CAAC,UAAW,QAAO;AAEvB,SACE,oBAAC,SAAI,WAAW,0BAA0B,IAAI,IAC5C,+BAAC,SAAI,WAAU,wBACZ;AAAA,aAAS,YACR,oBAAC,iBAAc,WAAU,6BAA4B,IAErD,oBAAC,iBAAc,WAAU,2BAA0B;AAAA,IAErD,oBAAC,UAAM,mBAAQ;AAAA,KACjB,GACF;AAEJ;AAEA,eAAe;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1749792472493,
+      "end": 1749792472494,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1749792472494,
+      "end": 1749792472494,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/ONLINE/node_modules/string-convert/camel2hyphen.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "var camel2hyphen = function (str) {\n  return str\n          .replace(/[A-Z]/g, function (match) {\n            return '-' + match.toLowerCase();\n          })\n          .toLowerCase();\n};\n\nmodule.exports = camel2hyphen;",
+      "start": 1749792474876,
+      "end": 1749792474992,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1749792474992,
+      "end": 1749792474992,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1749792474992,
+      "end": 1749792474992,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1749792474992,
+      "end": 1749792474992,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1749792474992,
+      "end": 1749792474992,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1749792474992,
+      "end": 1749792474992,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1749792474992,
+      "end": 1749792474992,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1749792474992,
+      "end": 1749792474992,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1749792474993,
+      "end": 1749792474993,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1749792474993,
+      "end": 1749792474993,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1749792474993,
+      "end": 1749792474993,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1749792474993,
+      "end": 1749792474993,
+      "order": "normal"
+    }
+  ]
+}

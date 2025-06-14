@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/ONLINE/node_modules/react-icons/lib/index.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "export * from \"./iconsManifest.mjs\";\nexport * from \"./iconBase.mjs\";\nexport * from \"./iconContext.mjs\";",
+      "start": 1749792473417,
+      "end": 1749792474232,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1749792474232,
+      "end": 1749792474232,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1749792474232,
+      "end": 1749792474232,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1749792474232,
+      "end": 1749792474232,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1749792474232,
+      "end": 1749792474232,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1749792474232,
+      "end": 1749792474232,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1749792474232,
+      "end": 1749792474232,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1749792474232,
+      "end": 1749792474232,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1749792474232,
+      "end": 1749792474233,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1749792474233,
+      "end": 1749792474233,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1749792474233,
+      "end": 1749792474233,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1749792474233,
+      "end": 1749792474233,
+      "order": "normal"
+    }
+  ]
+}

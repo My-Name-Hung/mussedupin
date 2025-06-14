@@ -1,9 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Collections from "./Collections/Collections";
-import DelveInto from "./DelveInto/DelveInto";
-import DuPin from "./DuPin/DuPin";
+import Bestseller from "./Bestseller/Bestseller";
+import BlockContentExhibition from "./BlockContent-exhibition/BlockContent-exhibition";
+import BlockContent from "./BlockContent/BlockContent";
+import BlocksWrapper from "./BlocksWrapper/BlocksWrapper";
+import Categories from "./Categories/Categories";
+import Collaborate from "./Collaborate/Collaborate";
 import Hero from "./Hero/Hero";
-import Highlights from "./Highlights/Highlights";
 
 function Home() {
   const [showPrepareVisitBar, setShowPrepareVisitBar] = useState(false);
@@ -69,21 +71,18 @@ function Home() {
       <div className={`home-content ${hideNavbar ? "hide-navbar" : ""}`}>
         {/* Phần Hero - Hiển thị banner chính của trang */}
         <Hero />
-
-        {/* Phần Highlights - Hiển thị các điểm nổi bật của bảo tàng */}
-        <Highlights
-          onVisible={handleHighlightsVisible}
-          onHidden={handleHighlightsHidden}
-        />
-
-        {/* Phần Collections - Hiển thị các bộ sưu tập */}
-        <Collections />
-
-        {/* Phần DuPin - Hiển thị thông tin về DuPin */}
-        <DuPin />
-
-        {/* Phần DelveInto - Hiển thị phần tìm hiểu thêm */}
-        <DelveInto />
+        {/* Phần Categories - Hiển thị danh mục sản phẩm */}
+        <Categories />
+        {/* Phần Blocks Wrapper - Hiển thị các khối hình ảnh */}
+        <BlocksWrapper />
+        {/* Phần Exhibition - Hiển thị thông tin triển lãm */}
+        <BlockContentExhibition />
+        {/* Phần Block Content - Hiển thị danh sách nghệ sĩ */}
+        <BlockContent />
+        {/* Phần Collaborate - Hiển thị các đối tác hợp tác */}
+        <Collaborate />
+        {/* Phần Bestseller - Hiển thị sản phẩm bán chạy */}
+        <Bestseller />
       </div>
 
       {/* Prepare your visit bar */}

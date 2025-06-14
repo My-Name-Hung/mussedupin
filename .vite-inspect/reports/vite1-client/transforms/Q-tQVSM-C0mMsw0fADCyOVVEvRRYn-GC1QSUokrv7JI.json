@@ -1,0 +1,90 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/ONLINE/src/components/Home/BlockContent/BlockContent.jsx",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import React from \"react\";\nimport \"./BlockContent.css\";\n\nconst BlockContent = () => {\n  const content = {\n    title: \"Khám phá bộ sưu tập của nghệ sĩ\",\n    artists: [\n      \"Da Vinci,\",\n      \"Delacroix,\",\n      \"Vigée le Brun,\",\n      \"Ingres,Davit,\",\n      \"Canova,Botticelli,\",\n      \"Géricault,\",\n      \"Arcimboldo,\",\n      \"Lombardo,\",\n      \"Vermeer,Clouet,\",\n      \"của Tour...\",\n    ],\n    cta: \"Xem tất cả nghệ sĩ\",\n  };\n\n  return (\n    <section className=\"block-contents\">\n      <div className=\"content-container\">\n        <div className=\"content-wrapper\">\n          <h2 className=\"content-title\">{content.title}</h2>\n          <div className=\"artists-list\">\n            {content.artists.map((artist, index) => (\n              <div key={index} className=\"artist-item\">\n                {artist}\n              </div>\n            ))}\n          </div>\n          <a href=\"#\" className=\"content-cta\">\n            {content.cta}\n          </a>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default BlockContent;\n",
+      "start": 1749792472047,
+      "end": 1749792472350,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1749792472350,
+      "end": 1749792472350,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport \"./BlockContent.css\";\nconst BlockContent = () => {\n  const content = {\n    title: \"Khám phá bộ sưu tập của nghệ sĩ\",\n    artists: [\n      \"Da Vinci,\",\n      \"Delacroix,\",\n      \"Vigée le Brun,\",\n      \"Ingres,Davit,\",\n      \"Canova,Botticelli,\",\n      \"Géricault,\",\n      \"Arcimboldo,\",\n      \"Lombardo,\",\n      \"Vermeer,Clouet,\",\n      \"của Tour...\"\n    ],\n    cta: \"Xem tất cả nghệ sĩ\"\n  };\n  return /* @__PURE__ */ jsx(\"section\", { className: \"block-contents\", children: /* @__PURE__ */ jsx(\"div\", { className: \"content-container\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"content-wrapper\", children: [\n    /* @__PURE__ */ jsx(\"h2\", { className: \"content-title\", children: content.title }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"artists-list\", children: content.artists.map((artist, index) => /* @__PURE__ */ jsx(\"div\", { className: \"artist-item\", children: artist }, index)) }),\n    /* @__PURE__ */ jsx(\"a\", { href: \"#\", className: \"content-cta\", children: content.cta })\n  ] }) }) });\n};\nexport default BlockContent;\n",
+      "start": 1749792472350,
+      "end": 1749792472493,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/ONLINE/src/components/Home/BlockContent/BlockContent.jsx"
+        ],
+        "sourcesContent": [
+          "import React from \"react\";\nimport \"./BlockContent.css\";\n\nconst BlockContent = () => {\n  const content = {\n    title: \"Khám phá bộ sưu tập của nghệ sĩ\",\n    artists: [\n      \"Da Vinci,\",\n      \"Delacroix,\",\n      \"Vigée le Brun,\",\n      \"Ingres,Davit,\",\n      \"Canova,Botticelli,\",\n      \"Géricault,\",\n      \"Arcimboldo,\",\n      \"Lombardo,\",\n      \"Vermeer,Clouet,\",\n      \"của Tour...\",\n    ],\n    cta: \"Xem tất cả nghệ sĩ\",\n  };\n\n  return (\n    <section className=\"block-contents\">\n      <div className=\"content-container\">\n        <div className=\"content-wrapper\">\n          <h2 className=\"content-title\">{content.title}</h2>\n          <div className=\"artists-list\">\n            {content.artists.map((artist, index) => (\n              <div key={index} className=\"artist-item\">\n                {artist}\n              </div>\n            ))}\n          </div>\n          <a href=\"#\" className=\"content-cta\">\n            {content.cta}\n          </a>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default BlockContent;\n"
+        ],
+        "mappings": "AAwBQ,SACE,KADF;AAxBR,OAAO,WAAW;AAClB,OAAO;AAEP,MAAM,eAAe,MAAM;AACzB,QAAM,UAAU;AAAA,IACd,OAAO;AAAA,IACP,SAAS;AAAA,MACP;AAAA,MACA;AAAA,MACA;AAAA,MACA;AAAA,MACA;AAAA,MACA;AAAA,MACA;AAAA,MACA;AAAA,MACA;AAAA,MACA;AAAA,IACF;AAAA,IACA,KAAK;AAAA,EACP;AAEA,SACE,oBAAC,aAAQ,WAAU,kBACjB,8BAAC,SAAI,WAAU,qBACb,+BAAC,SAAI,WAAU,mBACb;AAAA,wBAAC,QAAG,WAAU,iBAAiB,kBAAQ,OAAM;AAAA,IAC7C,oBAAC,SAAI,WAAU,gBACZ,kBAAQ,QAAQ,IAAI,CAAC,QAAQ,UAC5B,oBAAC,SAAgB,WAAU,eACxB,oBADO,KAEV,CACD,GACH;AAAA,IACA,oBAAC,OAAE,MAAK,KAAI,WAAU,eACnB,kBAAQ,KACX;AAAA,KACF,GACF,GACF;AAEJ;AAEA,eAAe;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1749792472493,
+      "end": 1749792472494,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1749792472494,
+      "end": 1749792472494,
+      "order": "normal"
+    }
+  ]
+}

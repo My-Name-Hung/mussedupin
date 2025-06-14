@@ -13,11 +13,16 @@ import {
   FaShoppingBag,
   FaTicketAlt,
   FaTimes,
+  FaUser,
   FaYoutube,
 } from "react-icons/fa";
+import { RiShoppingBag4Fill } from "react-icons/ri";
 import { SiTiktok } from "react-icons/si";
 import { Link, useNavigate } from "react-router-dom";
+import LoginModal from "../Auth/LoginModal";
 import "./Navbar.css";
+
+import { IoIosArrowBack } from "react-icons/io";
 
 // Icon components using react-icons
 const SearchIcon = () => <FaSearch size={16} />;
@@ -263,6 +268,10 @@ const Navbar = () => {
   const [searchResults, setSearchResults] = useState([]);
   const [isSearching, setIsSearching] = useState(false);
   const [showSearchResults, setShowSearchResults] = useState(false);
+  const [showLoginModal, setShowLoginModal] = useState(false);
+  const [showUserDropdown, setShowUserDropdown] = useState(false);
+  const [currentUser, setCurrentUser] = useState(null);
+  const [cartItemCount, setCartItemCount] = useState(0);
 
   // Mobile submenu states - Enable these features
   const [showMobileSubmenu, setShowMobileSubmenu] = useState(false);
@@ -276,11 +285,10 @@ const Navbar = () => {
   const mobileLangDropdownRef = useRef(null);
   const seeMoreRef = useRef(null);
   const visitRef = useRef(null);
-  const exhibitionsRef = useRef(null);
-  const exploreRef = useRef(null);
   const searchInputRef = useRef(null);
   const mobileSubmenuRef = useRef(null);
   const searchResultsRef = useRef(null);
+  const userDropdownRef = useRef(null);
 
   // Add supported languages
   const supportedLanguages = [
@@ -438,89 +446,26 @@ const Navbar = () => {
 
     // Thiết lập các mục cho từng loại submenu
     switch (menuType) {
-      case "Trải nghiệm":
+      case "DANH MỤC":
         items = [
-          { title: "Giờ mở cửa và các gói trải nghiệm", path: "/visit" },
-          { title: "Bản đồ, lối vào & chỉ dẫn", path: "/museum-map" },
-          { title: "Chi phí các gói trải nghiệm", path: "/visit#tickets" },
-          { title: "Thành viên", path: "/visit#membership" },
+          { title: "Xuất bản", path: "/category/xuat-ban" },
+          { title: "Hội thảo nghệ thuật", path: "/category/hoi-thao-nghe-thuat" },
+          { title: "In theo yêu cầu", path: "/category/in-theo-yeu-cau" },
           {
-            title: "Lưu trú trong các căn phòng nghệ thuật",
-            path: "/visit-info",
+            title: "Hình ảnh và văn phòng phẩm",
+            path: "/category/hinh-anh-va-van-phong-pham",
           },
-          { title: "Cuộc sống tại bảo tàng", path: "/visit-info#homestay" },
-          { title: "Câu hỏi thường gặp", path: "/visit-info#faq" },
+          { title: "Thời trang và phụ kiện", path: "/category/thoi-trang-va-phu-kien" },
+          { title: "Đồ trang sức", path: "/category/do-trang-suc" },
+          { title: "Đồ gia dụng", path: "/category/do-gia-dung" },
+          { title: "Trẻ em", path: "/category/tre-em" },
         ];
         featured = {
-          title: "Chuẩn bị cho chuyến tham quan",
-          path: "/visit-info",
+          title: "Khám phá cửa hàng trực tuyến",
+          path: "https://online-museeduphin.netlify.app/",
           image:
-            "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/Th%C3%B4ng%202.webp",
-          description:
-            "Tất cả những điều bạn cần biết trước khi tham quan bảo tàng",
-        };
-        break;
-
-      case "TRIỂN LÃM":
-        items = [
-          { title: "Triển lãm", path: "/exhibitions" },
-          {
-            title: "Trải nghiệm có hướng dẫn",
-            path: "/exhibitions?tab=guided-tours",
-          },
-          {
-            title: "Lưu trú nghệ thuật",
-            path: "/luu-tru-nghe-thuat",
-          },
-        ];
-        featured = {
-          title: "Một Musée Du Pin khác",
-          path: "/exhibitions?tab=guided-tours",
-          image:
-            "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/thesunset.jpg",
-          description:
-            "Tận hưởng chuyến tham quan tránh xa đám đông và khám phá những kho báu ít người biết đến và khung cảnh tuyệt đẹp của 'một Musée Du Pin khác'",
-        };
-        break;
-
-      case "KHÁM PHÁ":
-        items = [
-          { title: "Bộ sưu tập", path: "/collection" },
-          { title: "Tin tức", path: "/life-at-the-museum" },
-          { title: "Lộ trình tham quan", path: "/visitor-trails" },
-          { title: "Âm Thanh Đẹp", path: "/the-acoustic" },
-          { title: "Nghệ thuật vị giác", path: "/the-taste" },
-          {
-            title: "Không gian nghệ thuật và vườn trong Bảo Tàng",
-            path: "/the-place",
-          },
-        ];
-        featured = {
-          title: "Điểm nổi bật",
-          path: "/visitor-trails",
-          image:
-            "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/thesunset.jpg",
-          description: "Các tác phẩm nổi bật",
-        };
-        break;
-
-      case "XEM THÊM":
-        items = [
-          {
-            title: "Cửa hàng trực tuyến",
-            path: "https://online-museeduphin.netlify.app/",
-          },
-          {
-            title: "Ghé thăm cửa hàng trực tuyến của chúng tôi",
-            path: "/support",
-          },
-        ];
-        featured = {
-          title: "Trở thành Nhà bảo trợ!",
-          path: "/support",
-          image:
-            "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/thechildhood.jpg",
-          description: "Cá nhân, công ty hoặc tổ chức",
+            "https://boutique.louvre.fr/files/contents/400000/688652-8a3893ca-m/editions.jpg",
+          description: "Khám phá bộ sưu tập độc đáo của chúng tôi",
         };
         break;
 
@@ -736,10 +681,111 @@ const Navbar = () => {
     showExploreDropdown,
   ]);
 
-  // Thêm phương thức trực tiếp để điều hướng
-  const directNavigate = (path) => {
-    window.location.href = path;
+  // Load user data on component mount
+  useEffect(() => {
+    const userData = localStorage.getItem("user");
+    if (userData) {
+      setCurrentUser(JSON.parse(userData));
+    }
+  }, []);
+
+  // Handle logout
+  const handleLogout = () => {
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
+    localStorage.removeItem("rememberMe");
+    setCurrentUser(null);
+    setShowUserDropdown(false);
+    window.location.reload();
   };
+
+  // Close user dropdown when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (
+        userDropdownRef.current &&
+        !userDropdownRef.current.contains(event.target)
+      ) {
+        setShowUserDropdown(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
+
+  // User button component
+  const UserButton = () => {
+    if (currentUser) {
+      return (
+        <div className="user-dropdown" ref={userDropdownRef}>
+          <button
+            className="btn btn-outline user-btn"
+            onClick={() => setShowUserDropdown(!showUserDropdown)}
+          >
+            <FaUser size={16} />
+          </button>
+          {showUserDropdown && (
+            <div className="user-dropdown-menu">
+              <div className="user-info">
+                <FaUser size={24} className="user-icon" />
+                <div className="user-details">
+                  <span className="user-name">{currentUser.fullName}</span>
+                  <span className="user-email">{currentUser.email}</span>
+                </div>
+              </div>
+              <div className="dropdown-divider"></div>
+              <button className="logout-button" onClick={handleLogout}>
+                Đăng xuất
+              </button>
+            </div>
+          )}
+        </div>
+      );
+    }
+
+    return (
+      <button
+        className="btn btn-outline"
+        onClick={() => setShowLoginModal(true)}
+      >
+        <FaUser size={16} />
+      </button>
+    );
+  };
+
+  // Load cart count
+  useEffect(() => {
+    const updateCartCount = () => {
+      const savedCart = localStorage.getItem("cart");
+      if (savedCart) {
+        const cartItems = JSON.parse(savedCart);
+        const count = cartItems.reduce(
+          (total, item) => total + item.quantity,
+          0
+        );
+        setCartItemCount(count);
+      } else {
+        setCartItemCount(0);
+      }
+    };
+
+    // Update initial count
+    updateCartCount();
+
+    // Listen for storage changes
+    window.addEventListener("storage", updateCartCount);
+
+    // Custom event for cart updates
+    window.addEventListener("cartUpdated", updateCartCount);
+
+    return () => {
+      window.removeEventListener("storage", updateCartCount);
+      window.removeEventListener("cartUpdated", updateCartCount);
+    };
+  }, []);
 
   // Render search results
   const renderSearchResults = () => {
@@ -885,475 +931,385 @@ const Navbar = () => {
   }, []);
 
   return (
-    <header className="navbar-container">
-      {/* Desktop Navbar */}
-      <div className="navbar-top">
-        {/* Left section with search and language */}
-        <div className="left-section">
-          <div
-            className="search-container"
-            onClick={() => setShowSearchBox(true)}
-          >
-            <SearchIcon />
-            <span>Tìm kiếm</span>
-          </div>
-
-          <div className="language-dropdown" ref={dropdownRef}>
+    <>
+      <div className="explore-button-container">
+        <a
+          href="https://museedupin.netlify.app/"
+          className="explore-button"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <p>
+            <IoIosArrowBack />
+            Cùng khám phá chúng tôi
+          </p>
+        </a>
+      </div>
+      <header className="navbar-container">
+        {/* Desktop Navbar */}
+        <div className="navbar-top">
+          {/* Left section with search and language */}
+          <div className="left-section">
             <div
-              className="selected-language"
-              onClick={() => setShowLangDropdown(!showLangDropdown)}
+              className="search-container"
+              onClick={() => setShowSearchBox(true)}
             >
-              {getCurrentLanguageName()}
+              <SearchIcon />
+              <span>Tìm kiếm</span>
             </div>
 
-            {showLangDropdown && (
-              <div className="language-options">
-                <div className="language-header">Ngôn ngữ</div>
+            <div className="language-dropdown" ref={dropdownRef}>
+              <div
+                className="selected-language"
+                onClick={() => setShowLangDropdown(!showLangDropdown)}
+              >
+                {getCurrentLanguageName()}
               </div>
-            )}
+
+              {showLangDropdown && (
+                <div className="language-options">
+                  <div className="language-header">Ngôn ngữ</div>
+                </div>
+              )}
+            </div>
           </div>
-        </div>
 
-        {/* Center section with logo */}
-        <div className="logo-container">
-          <Link to="/">
-            <img
-              className="logo"
-              src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.webp"
-              alt="Museum Logo"
-              loading="lazy"
-            />
-          </Link>
-        </div>
+          {/* Center section with logo */}
+          <div className="logo-container">
+            <Link to="/">
+              <img
+                className="logo"
+                src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.webp"
+                alt="Museum Logo"
+                loading="lazy"
+              />
+            </Link>
+          </div>
 
-        {/* Desktop Navbar - Right Section */}
-        <div className="desktop-right-section">
-          <div className="buttons-container">
+          {/* Desktop Navbar - Right Section */}
+          <div className="desktop-right-section">
+            <div className="buttons-container">
+              <Link
+                to="https://online-museeduphin.netlify.app/"
+                className="btn btn-outline"
+              >
+                <BoutiqueIcon />
+              </Link>
+              <UserButton />
+              <Link to="/cart" className="btn btn-outline cart-btn">
+                <RiShoppingBag4Fill size={16} />
+                {cartItemCount > 0 && (
+                  <span className="cart-count">{cartItemCount}</span>
+                )}
+              </Link>
+              <Link
+                to="https://online-museeduphin.netlify.app/"
+                className="btn btn-filled"
+              >
+                <TicketIcon />
+              </Link>
+            </div>
+
+            <div
+              className="menu-toggle"
+              onClick={() => setShowSearchBox(!showSearchBox)}
+            >
+              <MenuIcon />
+            </div>
+          </div>
+
+          {/* Mobile elements */}
+          <div className="mobile-logo">
+            <div onClick={() => setShowMobileMenu(true)}>
+              <img
+                src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.webp"
+                alt="Musée Du Pin Logo"
+                className="mobile-logo-image"
+                loading="lazy"
+              />
+            </div>
+            <a href="/">
+              <span className="museum-name-mobile">Musée Du Pin</span>
+            </a>
+          </div>
+
+          <div className="right-section">
+            <UserButton />
+            <Link to="/cart" className="btn btn-outline cart-btn">
+              <RiShoppingBag4Fill size={16} />
+              {cartItemCount > 0 && (
+                <span className="cart-count">{cartItemCount}</span>
+              )}
+            </Link>
             <Link
               to="https://online-museeduphin.netlify.app/"
               className="btn btn-outline"
             >
-              <BoutiqueIcon />
-            </Link>
-            <Link
-              to="https://online-museeduphin.netlify.app/"
-              className="btn btn-filled"
-            >
               <TicketIcon />
             </Link>
           </div>
-
-          <div
-            className="menu-toggle"
-            onClick={() => setShowSearchBox(!showSearchBox)}
-          >
-            <MenuIcon />
-          </div>
         </div>
 
-        {/* Mobile elements */}
-        {/* <div
-          className="mobile-menu-toggle"
-          onClick={() => setShowMobileMenu(true)}
-          aria-label="Open menu"
-        >
+        <div className="divider"></div>
 
-        </div> */}
-
-        <div className="mobile-logo">
-          <div onClick={() => setShowMobileMenu(true)}>
-            <img
-              src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.webp"
-              alt="Musée Du Pin Logo"
-              className="mobile-logo-image"
-              loading="lazy"
-            />
-          </div>
-          <a href="/">
-            <span className="museum-name-mobile">Musée Du Pin</span>
-          </a>
-        </div>
-
-        <div className="right-section">
-          <Link
-            to="https://online-museeduphin.netlify.app/"
-            className="btn btn-filled"
-          >
-            <TicketIcon />
-          </Link>
-        </div>
-      </div>
-
-      <div className="divider"></div>
-
-      {/* Desktop Navbar Bottom Section */}
-      <div className="navbar-bottom">
-        <nav className="main-nav">
-          <ul>
-            <li
-              className="nav-item"
-              ref={(el) => {
-                navItemsRef.current[0] = el;
-                visitRef.current = el;
-              }}
-            >
-              <Link
-                to="/visit"
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (showVisitDropdown) {
-                    setShowVisitDropdown(false);
-                  } else {
-                    setShowVisitDropdown(true);
-                    if (showExhibitionsDropdown)
-                      setShowExhibitionsDropdown(false);
-                    if (showExploreDropdown) setShowExploreDropdown(false);
-                    if (showSeeMoreDropdown) setShowSeeMoreDropdown(false);
-                  }
+        {/* Desktop Navbar Bottom Section */}
+        <div className="navbar-bottom">
+          <nav className="main-nav">
+            <ul>
+              <li
+                className="nav-item"
+                ref={(el) => {
+                  navItemsRef.current[0] = el;
+                  visitRef.current = el;
                 }}
               >
-                Trải nghiệm
-                <div className="underline"></div>
-              </Link>
-            </li>
-            <li
-              className="nav-item"
-              ref={(el) => {
-                navItemsRef.current[1] = el;
-                exhibitionsRef.current = el;
-              }}
-            >
-              <Link
-                to="/exhibitions"
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (showExhibitionsDropdown) {
-                    setShowExhibitionsDropdown(false);
-                  } else {
-                    setShowExhibitionsDropdown(true);
-                    if (showVisitDropdown) setShowVisitDropdown(false);
-                    if (showExploreDropdown) setShowExploreDropdown(false);
-                    if (showSeeMoreDropdown) setShowSeeMoreDropdown(false);
-                  }
-                }}
-              >
-                Lưu trú nghệ thuật và Triển lãm
-                <div className="underline"></div>
-              </Link>
-            </li>
-            <li
-              className="nav-item"
-              ref={(el) => {
-                navItemsRef.current[2] = el;
-                exploreRef.current = el;
-              }}
-            >
-              <Link
-                to="/explore"
-                onClick={(e) => {
-                  e.preventDefault();
-                  if (showExploreDropdown) {
-                    setShowExploreDropdown(false);
-                  } else {
-                    setShowExploreDropdown(true);
-                    if (showVisitDropdown) setShowVisitDropdown(false);
-                    if (showExhibitionsDropdown)
-                      setShowExhibitionsDropdown(false);
-                    if (showSeeMoreDropdown) setShowSeeMoreDropdown(false);
-                  }
-                }}
-              >
-                KHÁM PHÁ
-                <div className="underline"></div>
-              </Link>
-            </li>
-          </ul>
-        </nav>
-
-        <div className="vertical-divider"></div>
-
-        <div
-          className="see-more"
-          ref={seeMoreRef}
-          onClick={() => {
-            if (showSeeMoreDropdown) {
-              setShowSeeMoreDropdown(false);
-            } else {
-              setShowSeeMoreDropdown(true);
-              if (showVisitDropdown) setShowVisitDropdown(false);
-              if (showExhibitionsDropdown) setShowExhibitionsDropdown(false);
-              if (showExploreDropdown) setShowExploreDropdown(false);
-            }
-          }}
-        >
-          <span>XEM THÊM</span>
-          <MenuIcon />
-          <div className="underline"></div>
+                <Link
+                  to="/danh-muc"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    openMobileSubmenu("DANH MỤC");
+                  }}
+                >
+                  DANH MỤC
+                  <div className="underline"></div>
+                </Link>
+              </li>
+            </ul>
+          </nav>
         </div>
-      </div>
 
-      {/* Search Box as Overlay */}
-      {showSearchBox && (
-        <div className="search-below-navbar">
-          <div className="search-box-container">
-            <div className="search-box-inner">
-              <div
-                className={`search-input-wrapper ${
-                  isFocused || searchTerm ? "has-value" : ""
-                }`}
-              >
-                <SearchIcon />
-                <div className="search-input-label">Tìm kiếm</div>
-                <input
-                  type="text"
-                  placeholder={isFocused ? "" : "Tìm kiếm"}
-                  value={searchTerm}
-                  onChange={handleSearchInputChange}
-                  onFocus={() => setIsFocused(true)}
-                  onBlur={() => setIsFocused(false)}
-                  ref={searchInputRef}
-                  className="search-input"
-                />
+        {/* Search Box as Overlay */}
+        {showSearchBox && (
+          <div className="search-below-navbar">
+            <div className="search-box-container">
+              <div className="search-box-inner">
+                <div
+                  className={`search-input-wrapper ${
+                    isFocused || searchTerm ? "has-value" : ""
+                  }`}
+                >
+                  <SearchIcon />
+                  <div className="search-input-label">Tìm kiếm</div>
+                  <input
+                    type="text"
+                    placeholder={isFocused ? "" : "Tìm kiếm"}
+                    value={searchTerm}
+                    onChange={handleSearchInputChange}
+                    onFocus={() => setIsFocused(true)}
+                    onBlur={() => setIsFocused(false)}
+                    ref={searchInputRef}
+                    className="search-input"
+                  />
+                </div>
+                <button
+                  type="button"
+                  className={`search-submit-button ${
+                    searchTerm.trim() ? "active" : ""
+                  }`}
+                  onClick={handleSearch}
+                  aria-label="Submit search"
+                  disabled={!searchTerm.trim()}
+                >
+                  <ArrowRightIcon />
+                </button>
               </div>
               <button
                 type="button"
-                className={`search-submit-button ${
-                  searchTerm.trim() ? "active" : ""
-                }`}
-                onClick={handleSearch}
-                aria-label="Submit search"
-                disabled={!searchTerm.trim()}
+                className="search-close-button"
+                onClick={() => {
+                  setShowSearchBox(false);
+                  // Don't close search results when closing the search box
+                  // Only the X in the search results should close them
+                }}
+                aria-label="Close search"
               >
-                <ArrowRightIcon />
+                <CloseIcon />
               </button>
+              {/* Render search results */}
+              {renderSearchResults()}
             </div>
+          </div>
+        )}
+
+        {/* Mobile Menu Overlay */}
+        <div className={`mobile-menu-overlay ${showMobileMenu ? "show" : ""}`}>
+          <div className="mobile-menu-header">
             <button
-              type="button"
-              className="search-close-button"
-              onClick={() => {
-                setShowSearchBox(false);
-                // Don't close search results when closing the search box
-                // Only the X in the search results should close them
-              }}
-              aria-label="Close search"
+              className="mobile-close-button"
+              onClick={() => setShowMobileMenu(false)}
+              aria-label="Close menu"
             >
               <CloseIcon />
             </button>
-            {/* Render search results */}
+            <div
+              className="mobile-lang-selector"
+              onClick={() => setShowMobileLangDropdown(!showMobileLangDropdown)}
+              ref={mobileLangDropdownRef}
+            >
+              {getCurrentLanguageName()}
+              {showMobileLangDropdown ? <ChevronUp /> : <ChevronDown />}
+              {showMobileLangDropdown && (
+                <div className="mobile-language-options">
+                  {supportedLanguages.map((lang) => (
+                    <div
+                      key={lang.code}
+                      className={`mobile-language-option ${
+                        currentLanguage === lang.code ? "active" : ""
+                      }`}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleLanguageChange(lang.code);
+                      }}
+                    >
+                      {lang.name}
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+
+          <div className="mobile-search">
+            <form onSubmit={handleMobileSearch}>
+              <div className="mobile-search-input">
+                <input
+                  type="text"
+                  placeholder="Tìm kiếm"
+                  value={mobileSearchTerm}
+                  onChange={handleMobileSearchInputChange}
+                />
+                <button
+                  type="submit"
+                  className="mobile-search-button"
+                  disabled={!mobileSearchTerm.trim()}
+                >
+                  <ArrowRightIcon />
+                </button>
+              </div>
+            </form>
+            {/* Render mobile search results */}
             {renderSearchResults()}
           </div>
-        </div>
-      )}
 
-      {/* See More Dropdown Menu */}
-      {showSeeMoreDropdown && (
-        <div
-          className="dropdown-container see-more-dropdown"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="dropdown-content">
-            <div className="dropdown-header">
-              <button
-                type="button"
-                className="dropdown-close-button"
-                onClick={() => setShowSeeMoreDropdown(false)}
-                aria-label="Close dropdown"
-              >
-                <CloseDropdownIcon />
-              </button>
-            </div>
-
-            <div className="dropdown-main-content">
-              <div className="dropdown-left-section">
-                <div className="dropdown-menu-section">
-                  <h3>Cửa hàng trực tuyến</h3>
-                  <Link
-                    to="https://online-museeduphin.netlify.app/"
-                    className="dropdown-link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShowSeeMoreDropdown(false);
-                      navigate("https://online-museeduphin.netlify.app/");
-                    }}
-                  >
-                    Ghé thăm cửa hàng trực tuyến của chúng tôi
-                  </Link>
-                </div>
-
-                <div
-                  className="dropdown-menu-section"
-                  style={{ marginTop: "30px" }}
-                >
-                  <h3>Hỗ trợ Musée Du Pin</h3>
-                  <Link
-                    to="/support"
-                    className="dropdown-link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShowSeeMoreDropdown(false);
-                      navigate("/support");
-                    }}
-                  >
-                    Cá nhân, công ty hoặc tổ chức
-                  </Link>
-                </div>
-              </div>
-
-              <div className="dropdown-right-section">
-                <img
-                  src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784655/collections/thechildhood.jpg"
-                  alt="Classical Artwork"
-                  loading="lazy"
-                  className="dropdown-image"
-                />
-
-                <Link
-                  to="/support"
-                  className="dropdown-patron-button"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    setShowSeeMoreDropdown(false);
-                    navigate("/support");
-                  }}
-                >
-                  <PatronIcon />
-                  Trở thành Nhà bảo trợ!
-                </Link>
-
-                <div className="dropdown-image-caption">
-                  <Link
-                    to="/support"
-                    className="dropdown-title-link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShowSeeMoreDropdown(false);
-                      navigate("/support");
-                    }}
-                  >
-                    Hỗ trợ Musée Du Pin →
-                  </Link>
-                  <p className="dropdown-description">
-                    Cá nhân, công ty hoặc tổ chức
-                  </p>
-                </div>
-              </div>
+          <div className="mobile-nav-links">
+            <div
+              className="mobile-nav-item"
+              onClick={() => openMobileSubmenu("DANH MỤC")}
+            >
+              DANH MỤC
+              <ChevronRight />
             </div>
           </div>
-        </div>
-      )}
 
-      {/* Visit Dropdown Menu */}
-      {showVisitDropdown && (
-        <div
-          className="dropdown-container visit-dropdown"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="dropdown-content">
-            <div className="dropdown-header">
+          <div className="mobile-nav-divider"></div>
+
+          <div className="mobile-secondary-links">
+            <div
+              className="mobile-secondary-item"
+              onClick={() =>
+                handleNavItemClick("https://online-museeduphin.netlify.app/")
+              }
+            >
+              Đặt vé trực tuyến
+            </div>
+            <div className="mobile-secondary-item">
+              <a href="https://museedupin.netlify.app/support" target="_blank">
+                Hỗ trợ Musée Du Pin
+              </a>
+            </div>
+          </div>
+
+          <div className="mobile-social-icons">
+            <a
+              href="https://www.facebook.com/BaoTangThongDalat"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-icon"
+              aria-label="Facebook"
+              onClick={() => setShowMobileMenu(false)}
+            >
+              <FacebookIcon />
+            </a>
+            <a
+              href="https://www.tiktok.com/@baotangthongdalat?_t=ZS-8wcfw9TGrnm&_r=1"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-icon"
+              aria-label="TikTok"
+              onClick={() => setShowMobileMenu(false)}
+            >
+              <TikTokIcon />
+            </a>
+            <a
+              href="https://www.youtube.com/channel/UCyxLbhgBPZ3KnGD_KeLCo9A"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="social-icon"
+              aria-label="YouTube"
+              onClick={() => setShowMobileMenu(false)}
+            >
+              <YoutubeIcon />
+            </a>
+          </div>
+        </div>
+
+        {/* Mobile Submenu */}
+        {showMobileSubmenu && (
+          <div
+            className={`mobile-submenu ${showMobileSubmenu ? "show" : "hide"}`}
+            ref={mobileSubmenuRef}
+          >
+            <div className="submenu-header">
               <button
-                type="button"
-                className="dropdown-close-button"
-                onClick={() => setShowVisitDropdown(false)}
-                aria-label="Close dropdown"
+                className="back-buttonss"
+                onClick={closeMobileSubmenu}
+                aria-label="Back to main menu"
               >
-                <CloseDropdownIcon />
+                <svg
+                  width="24"
+                  height="24"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                >
+                  <path d="M15 18l-6-6 6-6" />
+                </svg>
+                Quay lại
               </button>
+              <h2 className="submenu-title">{currentMobileSubmenu}</h2>
             </div>
 
-            <div className="dropdown-main-content">
-              <div className="dropdown-left-section">
-                <div className="dropdown-menu-section">
-                  <Link
-                    to="/visit"
-                    className="dropdown-link"
-                    onClick={() => {
-                      navigate("/visit");
-                      setShowVisitDropdown(false);
-                    }}
-                  >
-                    Giờ mở cửa & vé vào cửa
-                  </Link>
-                  <Link
-                    to="/visit#tickets"
-                    className="dropdown-link"
-                    onClick={() => {
-                      navigate("/visit#tickets");
-                      setShowVisitDropdown(false);
-                    }}
-                  >
-                    Chi phí các gói trải nghiệm
-                  </Link>
-                  <Link
-                    to="/visit#membership"
-                    className="dropdown-link"
-                    onClick={() => {
-                      navigate("/visit#membership");
-                      setShowVisitDropdown(false);
-                    }}
-                  >
-                    Thành viên
-                  </Link>
-                </div>
-              </div>
+            <div className="submenu-items">
+              {submenuItems.map((item, index) => (
+                <Link
+                  key={index}
+                  to={item.path}
+                  className="submenu-item"
+                  onClick={() => {
+                    setShowMobileSubmenu(false);
+                    setShowMobileMenu(false);
+                  }}
+                >
+                  {item.title}
+                  <ChevronRight />
+                </Link>
+              ))}
+            </div>
 
-              <div className="dropdown-middle-section">
-                <div className="dropdown-menu-section">
-                  <Link
-                    to="/visit-info"
-                    className="dropdown-link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShowVisitDropdown(false);
-                      navigate("/visit-info");
-                    }}
-                  >
-                    Tiện ích cho khách tham quan
-                  </Link>
-                  <Link
-                    to="/homestay"
-                    className="dropdown-link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShowVisitDropdown(false);
-                      navigate("/visit-info#homestay");
-                    }}
-                  >
-                    Lưu trú
-                  </Link>
-                  <Link
-                    to="/visit-info#faq"
-                    className="dropdown-link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShowVisitDropdown(false);
-                      navigate("/visit-info#faq");
-                    }}
-                  >
-                    Câu hỏi thường gặp
-                  </Link>
-                </div>
-              </div>
-
-              <div className="dropdown-right-section">
-                <img
-                  src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/Th%C3%B4ng%202.webp"
-                  alt="Museum Gallery"
-                  loading="lazy"
-                  className="dropdown-image"
-                />
-
-                <div className="dropdown-image-caption">
-                  <Link
-                    to="/visit-info"
-                    className="dropdown-title-link"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      setShowVisitDropdown(false);
-                      navigate("/visit-info");
-                    }}
-                  >
-                    Chuẩn bị cho chuyến tham quan
-                  </Link>
+            {/* {submenuFeatured && (
+              <div className="submenu-featured">
+                <Link
+                  to={submenuFeatured.path}
+                  className="featured-title"
+                  onClick={() => {
+                    setShowMobileSubmenu(false);
+                    setShowMobileMenu(false);
+                  }}
+                >
+                  {submenuFeatured.title}
                   <svg
                     width="16"
                     height="16"
@@ -1367,517 +1323,28 @@ const Navbar = () => {
                     <path d="M5 12h14"></path>
                     <path d="M12 5l7 7-7 7"></path>
                   </svg>
-                  <p className="dropdown-description">
-                    Tất cả những điều bạn cần biết trước khi tham quan bảo tàng
-                  </p>
-                </div>
+                </Link>
+                <img
+                  src={submenuFeatured.image}
+                  alt={submenuFeatured.title}
+                  loading="lazy"
+                  className="featured-image"
+                />
+                <p className="featured-description">
+                  {submenuFeatured.description}
+                </p>
               </div>
-            </div>
+            )} */}
           </div>
-        </div>
-      )}
+        )}
 
-      {/* Exhibitions Dropdown Menu */}
-      {showExhibitionsDropdown && (
-        <div
-          className="dropdown-container exhibitions-dropdown"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="dropdown-content">
-            <div className="dropdown-header">
-              <button
-                type="button"
-                className="dropdown-close-button"
-                onClick={() => setShowExhibitionsDropdown(false)}
-                aria-label="Close dropdown"
-              >
-                <CloseDropdownIcon />
-              </button>
-            </div>
-
-            <div className="dropdown-main-content">
-              <div className="dropdown-left-section">
-                <div className="dropdown-menu-section">
-                  <button
-                    type="button"
-                    className="nav-button"
-                    onClick={() => {
-                      navigate("/exhibitions");
-                      setShowExhibitionsDropdown(false);
-                    }}
-                  >
-                    Triển lãm
-                  </button>
-                  <button
-                    type="button"
-                    className="nav-button"
-                    onClick={() => {
-                      navigate("/exhibitions?tab=guided-tours");
-                      setShowExhibitionsDropdown(false);
-                    }}
-                  >
-                    Trải nghiệm có hướng dẫn
-                  </button>
-                  <button
-                    type="button"
-                    className="nav-button"
-                    onClick={() => {
-                      navigate("/luu-tru-nghe-thuat");
-                      setShowExhibitionsDropdown(false);
-                    }}
-                  >
-                    Lưu trú nghệ thuật
-                  </button>
-                </div>
-              </div>
-
-              <div className="dropdown-right-section exhibitions-features">
-                <div className="exhibition-feature">
-                  <div className="exhibition-feature-image">
-                    <img
-                      src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/thesunset.jpg"
-                      alt="Another"
-                      loading="lazy"
-                    />
-                    <div className="feature-tag">Một Musée Du Pin khác</div>
-                  </div>
-                  <button
-                    type="button"
-                    className="exhibition-feature-title nav-button"
-                    onClick={() => {
-                      navigate("/exhibitions?tab=guided-tours");
-                      setShowExhibitionsDropdown(false);
-                    }}
-                  >
-                    Một Musée Du Pin khác
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M5 12h14"></path>
-                      <path d="M12 5l7 7-7 7"></path>
-                    </svg>
-                  </button>
-                  <p className="exhibition-feature-description">
-                    Tận hưởng chuyến tham quan tránh xa đám đông và khám phá
-                    những kho báu ít người biết đến và khung cảnh tuyệt đẹp của
-                    'một Musée Du Pin khác'
-                  </p>
-                </div>
-
-                <div className="exhibition-feature">
-                  <div className="exhibition-feature-image">
-                    <img
-                      src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784685/collections/N%E1%BB%93i%20%C4%90%E1%BA%A5t.webp"
-                      alt="Couture"
-                      loading="lazy"
-                    />
-                    <div className="feature-tag">Musée Du Pin Couture</div>
-                  </div>
-                  <button
-                    type="button"
-                    className="exhibition-feature-title nav-button"
-                    onClick={() => {
-                      navigate("/exhibitions");
-                      setShowExhibitionsDropdown(false);
-                    }}
-                  >
-                    Musée Du Pin Couture
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M5 12h14"></path>
-                      <path d="M12 5l7 7-7 7"></path>
-                    </svg>
-                  </button>
-                  <p className="exhibition-feature-description">
-                    Art and fashion: statement pieces. 24 January – 21 July 2025
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Explore Dropdown Menu */}
-      {showExploreDropdown && (
-        <div
-          className="dropdown-container exhibitions-dropdown"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="dropdown-content">
-            <div className="dropdown-header">
-              <button
-                type="button"
-                className="dropdown-close-button"
-                onClick={() => setShowExploreDropdown(false)}
-                aria-label="Close dropdown"
-              >
-                <CloseDropdownIcon />
-              </button>
-            </div>
-
-            <div className="dropdown-main-content">
-              <div className="dropdown-left-section">
-                <div className="dropdown-menu-section">
-                  <button
-                    type="button"
-                    className="nav-button"
-                    onClick={() => {
-                      navigate("/collection");
-                      setShowExploreDropdown(false);
-                    }}
-                  >
-                    Bộ sưu tập
-                  </button>
-                  <button
-                    type="button"
-                    className="nav-button"
-                    onClick={() => {
-                      navigate("/life-at-the-museum");
-                      setShowExploreDropdown(false);
-                    }}
-                  >
-                    Cuộc sống tại bảo tàng
-                  </button>
-                  <button
-                    type="button"
-                    className="nav-button"
-                    onClick={() => {
-                      setShowExploreDropdown(false);
-                      directNavigate("/visitor-trails");
-                    }}
-                  >
-                    Lộ trình tham quan
-                  </button>
-
-                  <button
-                    type="button"
-                    className="nav-button"
-                    onClick={() => {
-                      setShowExploreDropdown(false);
-                      directNavigate("/the-gardens");
-                    }}
-                  >
-                    Vườn
-                  </button>
-                </div>
-              </div>
-
-              <div className="dropdown-right-section exhibitions-features">
-                <div className="exhibition-feature">
-                  <div className="exhibition-feature-image">
-                    <img
-                      src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784658/collections/thesunset.jpg"
-                      alt="Beyoncé"
-                      loading="lazy"
-                    />
-                    <div className="feature-tag">Điểm nổi bật</div>
-                  </div>
-                  <button
-                    type="button"
-                    className="exhibition-feature-title nav-button"
-                    onClick={() => {
-                      setShowExploreDropdown(false);
-                      directNavigate("/beyonce-jayz-louvre");
-                    }}
-                  >
-                    Beyoncé and Jay-Z's Louvre Highlights
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M5 12h14"></path>
-                      <path d="M12 5l7 7-7 7"></path>
-                    </svg>
-                  </button>
-                  <p className="exhibition-feature-description">
-                    Các tác phẩm video nổi bật
-                  </p>
-                </div>
-
-                <div className="exhibition-feature">
-                  <div className="exhibition-feature-image">
-                    <img
-                      src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784685/collections/N%E1%BB%93i%20%C4%90%E1%BA%A5t.webp"
-                      alt="Restoration"
-                      loading="lazy"
-                    />
-                    <div className="feature-tag">Video</div>
-                  </div>
-                  <button
-                    type="button"
-                    className="exhibition-feature-title nav-button"
-                    onClick={() => {
-                      setShowExploreDropdown(false);
-                      directNavigate("/dupinplus");
-                    }}
-                  >
-                    Restoration of the Arc de Triomphe du Carrousel
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    >
-                      <path d="M5 12h14"></path>
-                      <path d="M12 5l7 7-7 7"></path>
-                    </svg>
-                  </button>
-                  <p className="exhibition-feature-description">
-                    Discover the restoration of the Arc de Triomphe du Carrousel
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      )}
-
-      {/* Mobile Menu Overlay */}
-      <div className={`mobile-menu-overlay ${showMobileMenu ? "show" : ""}`}>
-        <div className="mobile-menu-header">
-          <button
-            className="mobile-close-button"
-            onClick={() => setShowMobileMenu(false)}
-            aria-label="Close menu"
-          >
-            <CloseIcon />
-          </button>
-          <div
-            className="mobile-lang-selector"
-            onClick={() => setShowMobileLangDropdown(!showMobileLangDropdown)}
-            ref={mobileLangDropdownRef}
-          >
-            {getCurrentLanguageName()}
-            {showMobileLangDropdown ? <ChevronUp /> : <ChevronDown />}
-            {showMobileLangDropdown && (
-              <div className="mobile-language-options">
-                {supportedLanguages.map((lang) => (
-                  <div
-                    key={lang.code}
-                    className={`mobile-language-option ${
-                      currentLanguage === lang.code ? "active" : ""
-                    }`}
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      handleLanguageChange(lang.code);
-                    }}
-                  >
-                    {lang.name}
-                  </div>
-                ))}
-              </div>
-            )}
-          </div>
-        </div>
-
-        <div className="mobile-search">
-          <form onSubmit={handleMobileSearch}>
-            <div className="mobile-search-input">
-              <input
-                type="text"
-                placeholder="Tìm kiếm"
-                value={mobileSearchTerm}
-                onChange={handleMobileSearchInputChange}
-              />
-              <button
-                type="submit"
-                className="mobile-search-button"
-                disabled={!mobileSearchTerm.trim()}
-              >
-                <ArrowRightIcon />
-              </button>
-            </div>
-          </form>
-          {/* Render mobile search results */}
-          {renderSearchResults()}
-        </div>
-
-        <div className="mobile-nav-links">
-          <div
-            className="mobile-nav-item"
-            onClick={() => openMobileSubmenu("Trải nghiệm")}
-          >
-            Trải nghiệm
-            <ChevronRight />
-          </div>
-          <div
-            className="mobile-nav-item"
-            onClick={() => openMobileSubmenu("TRIỂN LÃM")}
-          >
-            Lưu trú nghệ thuật và Triển lãm
-            <ChevronRight />
-          </div>
-          <div
-            className="mobile-nav-item"
-            onClick={() => openMobileSubmenu("KHÁM PHÁ")}
-          >
-            KHÁM PHÁ
-            <ChevronRight />
-          </div>
-        </div>
-
-        <div className="mobile-nav-divider"></div>
-
-        <div className="mobile-secondary-links">
-          <div
-            className="mobile-secondary-item"
-            onClick={() => handleNavItemClick("/boutique")}
-          >
-            Cửa hàng Lưu niệm
-          </div>
-          <div
-            className="mobile-secondary-item"
-            onClick={() => handleNavItemClick("/support")}
-          >
-            Hỗ trợ Musée Du Pin
-          </div>
-        </div>
-
-        <div className="mobile-social-icons">
-          <a
-            href="https://www.facebook.com/BaoTangThongDalat"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            aria-label="Facebook"
-            onClick={() => setShowMobileMenu(false)}
-          >
-            <FacebookIcon />
-          </a>
-          <a
-            href="https://www.tiktok.com/@baotangthongdalat?_t=ZS-8wcfw9TGrnm&_r=1"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            aria-label="TikTok"
-            onClick={() => setShowMobileMenu(false)}
-          >
-            <TikTokIcon />
-          </a>
-          <a
-            href="https://www.youtube.com/channel/UCyxLbhgBPZ3KnGD_KeLCo9A"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-icon"
-            aria-label="YouTube"
-            onClick={() => setShowMobileMenu(false)}
-          >
-            <YoutubeIcon />
-          </a>
-        </div>
-      </div>
-
-      {/* Mobile Submenu */}
-      {showMobileSubmenu && (
-        <div
-          className={`mobile-submenu ${showMobileSubmenu ? "show" : "hide"}`}
-          ref={mobileSubmenuRef}
-        >
-          <div className="submenu-header">
-            <button
-              className="back-buttonss"
-              onClick={closeMobileSubmenu}
-              aria-label="Back to main menu"
-            >
-              <svg
-                width="24"
-                height="24"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              >
-                <path d="M15 18l-6-6 6-6" />
-              </svg>
-              Quay lại
-            </button>
-            <h2 className="submenu-title">{currentMobileSubmenu}</h2>
-          </div>
-
-          <div className="submenu-items">
-            {submenuItems.map((item, index) => (
-              <Link
-                key={index}
-                to={item.path}
-                className="submenu-item"
-                onClick={() => {
-                  setShowMobileSubmenu(false);
-                  setShowMobileMenu(false);
-                }}
-              >
-                {item.title}
-                <ChevronRight />
-              </Link>
-            ))}
-          </div>
-
-          {submenuFeatured && (
-            <div className="submenu-featured">
-              <Link
-                to={submenuFeatured.path}
-                className="featured-title"
-                onClick={() => {
-                  setShowMobileSubmenu(false);
-                  setShowMobileMenu(false);
-                }}
-              >
-                {submenuFeatured.title}
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                >
-                  <path d="M5 12h14"></path>
-                  <path d="M12 5l7 7-7 7"></path>
-                </svg>
-              </Link>
-              <img
-                src={submenuFeatured.image}
-                alt={submenuFeatured.title}
-                loading="lazy"
-                className="featured-image"
-              />
-              <p className="featured-description">
-                {submenuFeatured.description}
-              </p>
-            </div>
-          )}
-        </div>
-      )}
-    </header>
+        {/* Login Modal */}
+        <LoginModal
+          isOpen={showLoginModal}
+          onClose={() => setShowLoginModal(false)}
+        />
+      </header>
+    </>
   );
 };
 

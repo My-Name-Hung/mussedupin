@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/ONLINE/node_modules/react-leaflet/lib/ScaleControl.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { createControlComponent } from '@react-leaflet/core';\nimport { Control } from 'leaflet';\nexport const ScaleControl = createControlComponent(function createScaleControl(props) {\n    return new Control.Scale(props);\n});\n",
+      "start": 1749792482071,
+      "end": 1749792482340,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1749792482340,
+      "end": 1749792482340,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1749792482340,
+      "end": 1749792482340,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1749792482340,
+      "end": 1749792482340,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1749792482340,
+      "end": 1749792482340,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1749792482340,
+      "end": 1749792482340,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1749792482340,
+      "end": 1749792482340,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1749792482340,
+      "end": 1749792482340,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1749792482340,
+      "end": 1749792482340,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1749792482341,
+      "end": 1749792482341,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1749792482341,
+      "end": 1749792482341,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1749792482341,
+      "end": 1749792482341,
+      "order": "normal"
+    }
+  ]
+}

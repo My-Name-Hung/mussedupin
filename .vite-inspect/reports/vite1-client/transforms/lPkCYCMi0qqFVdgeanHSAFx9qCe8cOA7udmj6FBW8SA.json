@@ -1,0 +1,90 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/ONLINE/src/components/Home/BlocksWrapper/BlocksWrapper.jsx",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import React from \"react\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport { Link } from \"react-router-dom\";\nimport \"./BlocksWrapper.css\";\n\nconst BlocksWrapper = () => {\n  const blocks = [\n    {\n      image: \"https://i.postimg.cc/Wzp7Pp94/i-u-Kh-c.webp\",\n      title: \"Điêu khắc\",\n      subtitle: \"Xem tất cả sản phẩm\",\n      categoryLink: \"/category/do-trang-suc\",\n    },\n    {\n      image:\n        \"https://boutique.louvre.fr/files/contents/400060/691026-ad27ca49-xxl/contents-691026.jpg\",\n      title: \"Những sản phẩm nổi bật\",\n      subtitle: \"Xem tất cả sản phẩm\",\n      categoryLink: \"/category/xuat-ban\",\n    },\n  ];\n\n  return (\n    <section className=\"blocks-wrapper\">\n      <div className=\"blocks-container\">\n        {blocks.map((block, index) => (\n          <Link to={block.categoryLink} key={index} className=\"block\">\n            <div className=\"block-image-container\">\n              <img\n                src={block.image}\n                alt={block.title}\n                className=\"block-image\"\n              />\n            </div>\n            <div className=\"block-content\">\n              <h2 className=\"block-title\">{block.title}</h2>\n              <div className=\"block-subtitle\">\n                {block.subtitle}\n                <IoIosArrowRoundForward className=\"arrow-icon\" />\n              </div>\n            </div>\n          </Link>\n        ))}\n      </div>\n    </section>\n  );\n};\n\nexport default BlocksWrapper;\n",
+      "start": 1749792472317,
+      "end": 1749792472376,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1749792472376,
+      "end": 1749792472376,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport { Link } from \"react-router-dom\";\nimport \"./BlocksWrapper.css\";\nconst BlocksWrapper = () => {\n  const blocks = [\n    {\n      image: \"https://i.postimg.cc/Wzp7Pp94/i-u-Kh-c.webp\",\n      title: \"Điêu khắc\",\n      subtitle: \"Xem tất cả sản phẩm\",\n      categoryLink: \"/category/do-trang-suc\"\n    },\n    {\n      image: \"https://boutique.louvre.fr/files/contents/400060/691026-ad27ca49-xxl/contents-691026.jpg\",\n      title: \"Những sản phẩm nổi bật\",\n      subtitle: \"Xem tất cả sản phẩm\",\n      categoryLink: \"/category/xuat-ban\"\n    }\n  ];\n  return /* @__PURE__ */ jsx(\"section\", { className: \"blocks-wrapper\", children: /* @__PURE__ */ jsx(\"div\", { className: \"blocks-container\", children: blocks.map((block, index) => /* @__PURE__ */ jsxs(Link, { to: block.categoryLink, className: \"block\", children: [\n    /* @__PURE__ */ jsx(\"div\", { className: \"block-image-container\", children: /* @__PURE__ */ jsx(\n      \"img\",\n      {\n        src: block.image,\n        alt: block.title,\n        className: \"block-image\"\n      }\n    ) }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"block-content\", children: [\n      /* @__PURE__ */ jsx(\"h2\", { className: \"block-title\", children: block.title }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"block-subtitle\", children: [\n        block.subtitle,\n        /* @__PURE__ */ jsx(IoIosArrowRoundForward, { className: \"arrow-icon\" })\n      ] })\n    ] })\n  ] }, index)) }) });\n};\nexport default BlocksWrapper;\n",
+      "start": 1749792472376,
+      "end": 1749792472493,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/ONLINE/src/components/Home/BlocksWrapper/BlocksWrapper.jsx"
+        ],
+        "sourcesContent": [
+          "import React from \"react\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport { Link } from \"react-router-dom\";\nimport \"./BlocksWrapper.css\";\n\nconst BlocksWrapper = () => {\n  const blocks = [\n    {\n      image: \"https://i.postimg.cc/Wzp7Pp94/i-u-Kh-c.webp\",\n      title: \"Điêu khắc\",\n      subtitle: \"Xem tất cả sản phẩm\",\n      categoryLink: \"/category/do-trang-suc\",\n    },\n    {\n      image:\n        \"https://boutique.louvre.fr/files/contents/400060/691026-ad27ca49-xxl/contents-691026.jpg\",\n      title: \"Những sản phẩm nổi bật\",\n      subtitle: \"Xem tất cả sản phẩm\",\n      categoryLink: \"/category/xuat-ban\",\n    },\n  ];\n\n  return (\n    <section className=\"blocks-wrapper\">\n      <div className=\"blocks-container\">\n        {blocks.map((block, index) => (\n          <Link to={block.categoryLink} key={index} className=\"block\">\n            <div className=\"block-image-container\">\n              <img\n                src={block.image}\n                alt={block.title}\n                className=\"block-image\"\n              />\n            </div>\n            <div className=\"block-content\">\n              <h2 className=\"block-title\">{block.title}</h2>\n              <div className=\"block-subtitle\">\n                {block.subtitle}\n                <IoIosArrowRoundForward className=\"arrow-icon\" />\n              </div>\n            </div>\n          </Link>\n        ))}\n      </div>\n    </section>\n  );\n};\n\nexport default BlocksWrapper;\n"
+        ],
+        "mappings": "AA4Bc,cAQA,YARA;AA5Bd,OAAO,WAAW;AAClB,SAAS,8BAA8B;AACvC,SAAS,YAAY;AACrB,OAAO;AAEP,MAAM,gBAAgB,MAAM;AAC1B,QAAM,SAAS;AAAA,IACb;AAAA,MACE,OAAO;AAAA,MACP,OAAO;AAAA,MACP,UAAU;AAAA,MACV,cAAc;AAAA,IAChB;AAAA,IACA;AAAA,MACE,OACE;AAAA,MACF,OAAO;AAAA,MACP,UAAU;AAAA,MACV,cAAc;AAAA,IAChB;AAAA,EACF;AAEA,SACE,oBAAC,aAAQ,WAAU,kBACjB,8BAAC,SAAI,WAAU,oBACZ,iBAAO,IAAI,CAAC,OAAO,UAClB,qBAAC,QAAK,IAAI,MAAM,cAA0B,WAAU,SAClD;AAAA,wBAAC,SAAI,WAAU,yBACb;AAAA,MAAC;AAAA;AAAA,QACC,KAAK,MAAM;AAAA,QACX,KAAK,MAAM;AAAA,QACX,WAAU;AAAA;AAAA,IACZ,GACF;AAAA,IACA,qBAAC,SAAI,WAAU,iBACb;AAAA,0BAAC,QAAG,WAAU,eAAe,gBAAM,OAAM;AAAA,MACzC,qBAAC,SAAI,WAAU,kBACZ;AAAA,cAAM;AAAA,QACP,oBAAC,0BAAuB,WAAU,cAAa;AAAA,SACjD;AAAA,OACF;AAAA,OAdiC,KAenC,CACD,GACH,GACF;AAEJ;AAEA,eAAe;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1749792472493,
+      "end": 1749792472493,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1749792472493,
+      "end": 1749792472494,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1749792472494,
+      "end": 1749792472494,
+      "order": "normal"
+    }
+  ]
+}

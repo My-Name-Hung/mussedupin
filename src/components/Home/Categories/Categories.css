@@ -1,0 +1,140 @@
+.categories-section {
+  padding: 60px 20px;
+  background-image: url("https://res.cloudinary.com/dn0br7hj0/image/upload/background/Background2.webp");
+  background-repeat: repeat;
+  background-position: top center;
+  background-size: 300px;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+.categories-title {
+  text-align: left;
+  font-family: "Meholrax", serif;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
+  color: #000;
+  padding-top: 50px;
+}
+
+.categories-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.category-card {
+  text-decoration: none;
+  color: #000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover {
+  transform: translateY(-5px);
+}
+
+.category-image-container {
+  width: 100%;
+  max-width: 250px;
+  aspect-ratio: 1;
+  overflow: hidden;
+  margin-bottom: 15px;
+}
+
+.category-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover .category-image {
+  transform: scale(1.05);
+}
+
+.category-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  text-align: center;
+  margin: 0;
+  position: relative;
+  padding: 5px 0;
+}
+
+.title-text {
+  position: relative;
+  display: inline-block;
+}
+
+.title-text::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 1px;
+  bottom: -2px;
+  left: 0;
+  background-color: #000;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.3s ease;
+}
+
+.category-card:hover .title-text::after {
+  transform: scaleX(1);
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+  .categories-grid {
+    grid-template-columns: repeat(3, 1fr);
+    max-width: 900px;
+  }
+}
+
+/* Mobile adjustments */
+@media (max-width: 768px) {
+  .categories-section {
+    padding: 40px 15px;
+  }
+
+  .categories-title {
+    font-size: 2rem;
+    margin-bottom: 30px;
+  }
+
+  .categories-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    padding: 0 10px;
+    max-width: 600px;
+  }
+
+  .category-image-container {
+    max-width: 180px;
+  }
+}
+
+@media (max-width: 480px) {
+  .categories-section {
+    padding: 30px 10px;
+  }
+
+  .categories-title {
+    font-size: 1.8rem;
+    margin-bottom: 25px;
+  }
+
+  .category-title {
+    font-size: 0.9rem;
+  }
+
+  .category-image-container {
+    max-width: 150px;
+  }
+}

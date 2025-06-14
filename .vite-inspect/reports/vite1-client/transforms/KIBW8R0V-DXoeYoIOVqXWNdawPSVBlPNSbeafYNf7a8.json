@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/ONLINE/node_modules/@babel/runtime/helpers/esm/assertThisInitialized.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "function _assertThisInitialized(e) {\n  if (void 0 === e) throw new ReferenceError(\"this hasn't been initialised - super() hasn't been called\");\n  return e;\n}\nexport { _assertThisInitialized as default };",
+      "start": 1749792475295,
+      "end": 1749792475349,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1749792475349,
+      "end": 1749792475349,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1749792475349,
+      "end": 1749792475349,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1749792475349,
+      "end": 1749792475349,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1749792475349,
+      "end": 1749792475349,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1749792475349,
+      "end": 1749792475349,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1749792475349,
+      "end": 1749792475349,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1749792475349,
+      "end": 1749792475349,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1749792475350,
+      "end": 1749792475350,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1749792475350,
+      "end": 1749792475350,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1749792475350,
+      "end": 1749792475350,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1749792475350,
+      "end": 1749792475350,
+      "order": "normal"
+    }
+  ]
+}

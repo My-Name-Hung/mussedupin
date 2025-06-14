@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/ONLINE/node_modules/react-leaflet/lib/Polyline.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { createElementObject, createPathComponent, extendContext } from '@react-leaflet/core';\nimport { Polyline as LeafletPolyline } from 'leaflet';\nexport const Polyline = createPathComponent(function createPolyline({ positions, ...options }, ctx) {\n    const polyline = new LeafletPolyline(positions, options);\n    return createElementObject(polyline, extendContext(ctx, {\n        overlayContainer: polyline\n    }));\n}, function updatePolyline(layer, props, prevProps) {\n    if (props.positions !== prevProps.positions) {\n        layer.setLatLngs(props.positions);\n    }\n});\n",
+      "start": 1749792482067,
+      "end": 1749792482286,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1749792482286,
+      "end": 1749792482286,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1749792482286,
+      "end": 1749792482286,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1749792482286,
+      "end": 1749792482286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1749792482286,
+      "end": 1749792482286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1749792482286,
+      "end": 1749792482286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1749792482286,
+      "end": 1749792482286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1749792482286,
+      "end": 1749792482286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1749792482287,
+      "end": 1749792482287,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1749792482308,
+      "end": 1749792482308,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1749792482308,
+      "end": 1749792482308,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1749792482308,
+      "end": 1749792482308,
+      "order": "normal"
+    }
+  ]
+}

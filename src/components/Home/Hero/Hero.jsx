@@ -1,194 +1,169 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
+import { FaPause, FaPlay } from "react-icons/fa";
+import { IoIosArrowRoundForward } from "react-icons/io";
 import { Link } from "react-router-dom";
-import CloudinaryPlayer from "../../CloudinaryPlayer/CloudinaryPlayer";
+import Slider from "react-slick";
+import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
 import "./Hero.css";
 
-// SVG Icons
-const ArrowIcon = () => (
-  <svg
-    viewBox="0 0 24 24"
-    width="1em"
-    height="1em"
-    fill="currentColor"
-    focusable="false"
-    aria-hidden="true"
-    className="hours-arrow"
-  >
-    <path d="M17 8v3.25H2v1.5h15V16l5.24-4z"></path>
-  </svg>
-);
-
-const TicketIcon = () => (
-  <svg
-    viewBox="0 0 16 16"
-    width="1.5em"
-    height="1.5em"
-    fill="currentColor"
-    focusable="false"
-    aria-hidden="true"
-    className="button-icon"
-  >
-    <path d="M9.13.5a.9.9 0 0 1 1.28 0l1.17 1.18c.2.2.3.5.25.79a1.48 1.48 0 0 0 1.7 1.7c.3-.04.59.05.79.25l1.17 1.17a.9.9 0 0 1 0 1.28L6.87 15.5a.9.9 0 0 1-1.28 0L.51 10.41a.9.9 0 0 1 0-1.28zm.64.78L1.28 9.77l4.95 4.95 8.49-8.49-1.1-1.1c-.74.15-1.52-.1-2.08-.67s-.82-1.34-.7-2.14L9.77 1.28zm.53 5.13c.1-.1.25-.1.35 0l.35.35c.1.1.1.26 0 .36l-4.59 4.6a.27.27 0 0 1-.36 0l-.35-.36a.25.25 0 0 1 0-.36l4.6-4.59zm-2.24-.59c.1-.1.26-.1.35 0l.36.35c.1.1.1.26 0 .36L5 10.3c-.1.1-.26.1-.36 0l-.35-.35a.25.25 0 0 1 0-.36l3.77-3.77z"></path>
-  </svg>
-);
-
-const InfoIcon = () => (
-  <svg
-    viewBox="0 0 16 16"
-    width="1.5em"
-    height="1.5em"
-    fill="currentColor"
-    focusable="false"
-    aria-hidden="true"
-    className="button-icon"
-  >
-    <path d="M8 1a7 7 0 1 1 0 14A7 7 0 0 1 8 1zm0 .97a6.03 6.03 0 1 0 0 12.06A6.03 6.03 0 0 0 8 1.97zm0 2.14c.32 0 .58.26.58.58v4.28a.58.58 0 1 1-1.16 0V4.7c0-.32.26-.58.58-.58zm0 7.78a.78.78 0 1 0 0-1.56.78.78 0 0 0 0 1.56z"></path>
-  </svg>
-);
-
-const ChevronDown = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className="prepare-visit-arrow"
-  >
-    <polyline points="6 9 12 15 18 9"></polyline>
-  </svg>
-);
-
-const ChevronUp = () => (
-  <svg
-    width="16"
-    height="16"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    stroke="currentColor"
-    strokeWidth="2"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    className="prepare-visit-arrow"
-  >
-    <polyline points="18 15 12 9 6 15"></polyline>
-  </svg>
-);
+const slides = [
+  {
+    image:
+      "https://ik.imagekit.io/8u8lkoqkkm/DemThong_Trong.jpg?updatedAt=1749312390412",
+    title: "Đêm Thông",
+    subtitle: "Các sản phẩm về Thông",
+    categoryLink: "/category/xuat-ban",
+  },
+  {
+    image:
+      "https://ik.imagekit.io/8u8lkoqkkm/loirung_doc.png?updatedAt=1749269173624",
+    title: "Lối rừng",
+    subtitle: "Các sản phẩm về Thông",
+    categoryLink: "/category/xuat-ban",
+  },
+  {
+    image:
+      "https://ik.imagekit.io/8u8lkoqkkm/Dangsuong_Doc.jpg?updatedAt=1749269171830",
+    title: "Dáng sương",
+    subtitle: "Các sản phẩm về Thông",
+    categoryLink: "/category/xuat-ban",
+  },
+  {
+    image:
+      "https://ik.imagekit.io/8u8lkoqkkm/Th%C3%B4ng%202.webp?updatedAt=1749523250616",
+    title: "Phức Tầng",
+    subtitle: "Các sản phẩm về Thông",
+    categoryLink: "/category/xuat-ban",
+  },
+  {
+    image:
+      "https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng.webp?updatedAt=1749523332792",
+    title: "Vật liệu",
+    subtitle: "Các sản phẩm về Thông",
+    categoryLink: "/category/xuat-ban",
+  },
+  {
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/DSC_2475.webp",
+    title: "Dụng cục âm nhạc Tây Nguyên",
+    subtitle: "Các sản phẩm về đồng bào K'ho",
+    categoryLink: "/category/kho",
+  },
+  {
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/L%E1%BB%93ng%20%C4%90a%20%C4%90a.webp",
+    title: "K'ho Chăn nuôi",
+    subtitle: "Các sản phẩm về đồng bào K'ho",
+    categoryLink: "/category/kho",
+  },
+  {
+    image:
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/b%C3%ACnh%20y%C3%AAn%201%20(2).webp",
+    title: "Bề mặt ký ức",
+    subtitle: "Các sản phẩm về đồng bào K'ho",
+    categoryLink: "/category/kho",
+  },
+  {
+    image:
+      "https://ik.imagekit.io/8u8lkoqkkm/fe26e39c6384d7da8e95.jpg?updatedAt=1749083704253",
+    title: "Lửa thiêng",
+    subtitle: "Các sản phẩm về Thông",
+    categoryLink: "/category/xuat-ban",
+  },
+  {
+    image:
+      "https://ik.imagekit.io/8u8lkoqkkm/image(1).png?updatedAt=1749394994472",
+    title: "Ngệ thuật vị giác",
+    subtitle: "Các sản phẩm về Thông",
+    categoryLink: "/category/xuat-ban",
+  },
+];
 
 const Hero = () => {
-  const [isPrepareOpen, setIsPrepareOpen] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
-  const heroRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [randomSlides, setRandomSlides] = useState([]);
+  const [sliderRef, setSliderRef] = useState(null);
 
-  // Check mobile with debounce
   useEffect(() => {
-    let timeoutId;
-    const checkIfMobile = () => {
-      clearTimeout(timeoutId);
-      timeoutId = setTimeout(() => {
-        setIsMobile(window.innerWidth <= 768);
-      }, 100);
-    };
-
-    checkIfMobile();
-    window.addEventListener("resize", checkIfMobile);
-
-    return () => {
-      window.removeEventListener("resize", checkIfMobile);
-      clearTimeout(timeoutId);
-    };
+    // Shuffle and select 5 random slides
+    const shuffled = [...slides].sort(() => 0.5 - Math.random());
+    setRandomSlides(shuffled.slice(0, 5));
   }, []);
 
-  const togglePrepareVisit = () => {
-    setIsPrepareOpen(!isPrepareOpen);
+  const settings = {
+    dots: false,
+    infinite: true,
+    speed: 1000,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: isPlaying,
+    autoplaySpeed: 5000,
+    pauseOnHover: false,
+    fade: true,
+    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),
+  };
+
+  const togglePlayPause = () => {
+    if (sliderRef) {
+      if (isPlaying) {
+        sliderRef.slickPause();
+      } else {
+        sliderRef.slickPlay();
+      }
+    }
+    setIsPlaying(!isPlaying);
+  };
+
+  const goToSlide = (index) => {
+    if (sliderRef) {
+      sliderRef.slickGoTo(index);
+    }
   };
 
   return (
-    <>
-      <section className="hero-container-home" ref={heroRef}>
-        <div className="hero-image-container-home">
-          <CloudinaryPlayer
-            cloudName="dn0br7hj0"
-            publicId="hero/LANGBIANG_RESIZE"
-            width="100%"
-            height="100%"
-          />
-          <div className="hero-content-home">
-            {/* Add structured data for SEO */}
-            <script type="application/ld+json">
-              {JSON.stringify({
-                "@context": "https://schema.org",
-                "@type": "Museum",
-                name: "Musée Du Pin",
-                description:
-                  "Bảo tàng Thông - Nơi gìn giữ và nâng niu những giá trị Đà Lạt",
-                openingHours: "Mo-Su 07:00-21:00",
-                address: {
-                  "@type": "PostalAddress",
-                  streetAddress: "29-31 Đống Đa, Phường 3",
-                  addressLocality: "Đà Lạt",
-                  addressCountry: "VN",
-                },
-              })}
-            </script>
-          </div>
+    <section className="hero-container-home">
+      <div className="hero-slider-container">
+        <Slider ref={(slider) => setSliderRef(slider)} {...settings}>
+          {randomSlides.map((slide, index) => (
+            <div key={index} className="slide">
+              <div className="slide-image-container">
+                <img
+                  src={slide.image}
+                  alt={slide.title}
+                  className="slide-image"
+                />
+                <div className="slide-content">
+                  <h1 className="slide-title-hero">{slide.title}</h1>
+                  <Link to={slide.categoryLink} className="slide-subtitle">
+                    {slide.subtitle} <IoIosArrowRoundForward />
+                  </Link>
+                </div>
+              </div>
+            </div>
+          ))}
+        </Slider>
+        <div className="slick-nav">
+          {randomSlides.map((_, index) => (
+            <div
+              key={index}
+              className={`nav-item-hero ${
+                index === currentSlide ? "active" : ""
+              } ${index === currentSlide && isPlaying ? "playing" : ""}`}
+              onClick={() => goToSlide(index)}
+            />
+          ))}
         </div>
-      </section>
-
-      {/* Mobile hero-info-panel khi toggle */}
-      {isMobile && (
-        <div className="mobile-hero-controller">
-          <div className="mobile-prepare-visit" onClick={togglePrepareVisit}>
-            <span>Chuẩn bị tham quan</span>
-            {isPrepareOpen ? <ChevronDown /> : <ChevronUp />}
-          </div>
-        </div>
-      )}
-
-      <div
-        className={`hero-info-panel ${
-          isPrepareOpen || !isMobile ? "open" : ""
-        }`}
-      >
-        <div className="info-panel-content">
-          <div className="info-panel-left">
-            <h2 className="info-panel-titles">Chào mừng đến với Musée Du Pin</h2>
-            <p className="info-panel-status">Bảo tàng đang mở cửa</p>
-            <p className="info-panel-hours">
-              <span>7:00 AM</span>
-              <ArrowIcon />
-              <span>21:00 PM</span>
-            </p>
-          </div>
-
-          <div className="info-panel-separator"></div>
-
-          <div className="info-panel-right">
-            <Link
-              to="/tickets"
-              className="info-panel-button btn-primary"
-              aria-label="Đặt vé tham quan bảo tàng"
-            >
-              <TicketIcon />
-              Đặt vé
-            </Link>
-            <Link
-              to="https://online-museeduphin.netlify.app/"
-              className="info-panel-button btn-secondary"
-              aria-label="Mua quà lưu niệm trực tuyến"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <InfoIcon />
-              Quà lưu niệm
-            </Link>
-          </div>
-        </div>
+        <button
+          className="play-pause-button"
+          onClick={togglePlayPause}
+          aria-label={isPlaying ? "Pause slideshow" : "Play slideshow"}
+        >
+          {isPlaying ? <FaPause /> : <FaPlay />}
+        </button>
       </div>
-    </>
+    </section>
   );
 };
 

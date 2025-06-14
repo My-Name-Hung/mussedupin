@@ -1,0 +1,325 @@
+.cart-page {
+  padding: 40px 20px;
+  min-height: 100vh;
+  background-image: url("https://res.cloudinary.com/dn0br7hj0/image/upload/background/Background2.webp");
+  background-repeat: repeat;
+  background-position: top center;
+  background-size: 300px;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
+
+.cart-title {
+  font-family: "Meholrax", serif;
+  font-size: 2.5rem;
+  color: #2c2f11;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.cart-actions-top,
+.cart-actions-bottom {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 30px;
+  width: 90%;
+  margin: 0 auto 30px;
+}
+
+.checkout-button {
+  width: 100%;
+  padding: 15px;
+  background-color: #2c2f11;
+  color: yellowgreen;
+  border: none;
+  border-radius: 30px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+.checkout-button:hover {
+  opacity: 0.9;
+}
+
+.continue-shopping {
+  width: 100%;
+  padding: 15px;
+  background: none;
+  border: 1px solid #2c2f11;
+  color: #2c2f11;
+  border-radius: 30px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  text-align: center;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.continue-shopping:hover {
+  background-color: rgba(44, 47, 17, 0.1);
+}
+
+.cart-content {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.cart-item {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 30px;
+  padding: 30px;
+  margin-bottom: 20px;
+}
+
+.item-image {
+  width: 100%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border-radius: 5px;
+}
+
+.item-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.item-details {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.item-details h3 {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  color: #2c2f11;
+  margin: 0;
+}
+
+.quantity-selector {
+  position: relative;
+  width: 120px;
+}
+
+.quantity-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  color: #2c2f11;
+  cursor: pointer;
+}
+
+.quantity-dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  max-height: 200px;
+  overflow-y: auto;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  z-index: 10;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.quantity-option {
+  padding: 10px;
+  color: #2c2f11;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.quantity-option:hover {
+  background-color: #f5f5f5;
+}
+
+.item-price {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  color: #2c2f11;
+  font-weight: bold;
+}
+
+.item-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.remove-item,
+.save-for-later {
+  background: none;
+  border: none;
+  color: #2c2f11;
+  text-decoration: underline;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+  text-align: left;
+  padding: 0;
+}
+
+.promo-code {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.promo-code-input {
+  padding: 12px;
+  border: 1px solid #000;
+  border-radius: 5px;
+  background: none;
+  color: #000;
+  font-family: "Roboto", sans-serif;
+}
+
+.apply-promo {
+  width: 90%;
+  padding: 15px;
+  background-color: #2c2f11;
+  color: yellowgreen;
+  border: none;
+  border-radius: 30px;
+  font-family: "Roboto", sans-serif;
+  cursor: pointer;
+}
+
+.cart-total {
+  width: 90%;
+  margin: 30px auto;
+  padding: 20px;
+  background-color: #2c2f11;
+  color: white;
+  border-radius: 10px;
+  font-family: "Roboto", sans-serif;
+}
+
+.total-amount {
+  font-size: 1.3rem;
+  margin-bottom: 10px;
+}
+
+.shipping-note {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+.product-payment-notes {
+  width: 90%;
+  margin: 30px auto;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.note-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.checkmark {
+  color: #2c2f11;
+  font-weight: bold;
+}
+
+.related-products-payment {
+  margin-top: 50px;
+  padding: 30px 0;
+}
+
+.related-products-payment h2 {
+  font-family: "Meholrax", serif;
+  font-size: 2rem;
+  color: #2c2f11;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.related-products-payment .subtitle {
+  font-family: "Roboto", sans-serif;
+  text-align: center;
+  color: #666;
+  margin-bottom: 30px;
+}
+
+.saved-items {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 30px;
+  padding: 20px;
+}
+
+.saved-item {
+  padding: 20px;
+  text-align: center;
+}
+
+.saved-item img {
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 5px;
+  margin-bottom: 15px;
+}
+
+.saved-item h3 {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #2c2f11;
+}
+
+.saved-item .price {
+  color: #2c2f11;
+  font-weight: bold;
+  margin-bottom: 15px;
+}
+
+.saved-item-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.saved-item-actions button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-family: "Roboto", sans-serif;
+}
+
+.saved-item-actions button:first-child {
+  background: none;
+  border: 1px solid #2c2f11;
+  color: #2c2f11;
+}
+
+.saved-item-actions button:last-child {
+  background-color: #2c2f11;
+  color: yellowgreen;
+}
+
+@media (max-width: 768px) {
+  .cart-item {
+    grid-template-columns: 1fr;
+  }
+
+  .item-image {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+}

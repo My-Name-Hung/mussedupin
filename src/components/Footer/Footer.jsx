@@ -22,7 +22,7 @@ const Footer = () => {
 
   const handleContactClick = (e) => {
     e.preventDefault();
-    navigate("/about");
+    navigate("https://museedupin.netlify.app/about");
     setTimeout(() => {
       const element = document.getElementById("contact-section");
       if (element) {
@@ -47,10 +47,20 @@ const Footer = () => {
               </h3>
               <ul className="footer-links">
                 <li>
-                  <Link to="/about">Bảo tàng Du Pin tại Việt Nam</Link>
+                  <Link
+                    to="https://museedupin.netlify.app/about"
+                    target="_blank"
+                  >
+                    Bảo tàng Du Pin tại Việt Nam
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/visitor-rules">Nội quy tham quan</Link>
+                  <Link
+                    to="https://museedupin.netlify.app/visitor-rules"
+                    target="_blank"
+                  >
+                    Nội quy tham quan
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -66,17 +76,20 @@ const Footer = () => {
               </h3>
               <ul className="footer-links">
                 <li>
-                  <Link to="https://online-museeduphin.netlify.app/">
+                  <Link
+                    to="https://online-museeduphin.netlify.app/"
+                    target="_blank"
+                  >
                     Dịch vụ đặt vé trực tuyến
                   </Link>
                 </li>
                 <li>
-                  <Link to="https://online-museeduphin.netlify.app/">
-                    Cửa hàng trực tuyến
+                  <Link
+                    to="https://museedupin.netlify.app/collection"
+                    target="_blank"
+                  >
+                    Bộ sưu tập
                   </Link>
-                </li>
-                <li>
-                  <Link to="/collection">Bộ sưu tập</Link>
                 </li>
               </ul>
             </div>
@@ -93,11 +106,8 @@ const Footer = () => {
               <ul className="footer-links">
                 <li>
                   <Link
-                    to="/visit-info#faq"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      navigate("/visit-info#faq");
-                    }}
+                    to="https://museedupin.netlify.app/visit-info#faq"
+                    target="_blank"
                   >
                     Câu hỏi thường gặp
                   </Link>

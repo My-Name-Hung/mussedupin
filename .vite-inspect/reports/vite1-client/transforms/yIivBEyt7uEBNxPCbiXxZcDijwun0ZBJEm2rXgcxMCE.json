@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/ONLINE/node_modules/@babel/runtime/helpers/esm/getPrototypeOf.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "function _getPrototypeOf(t) {\n  return _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf.bind() : function (t) {\n    return t.__proto__ || Object.getPrototypeOf(t);\n  }, _getPrototypeOf(t);\n}\nexport { _getPrototypeOf as default };",
+      "start": 1749792475148,
+      "end": 1749792475280,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1749792475280,
+      "end": 1749792475280,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1749792475280,
+      "end": 1749792475280,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1749792475280,
+      "end": 1749792475280,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1749792475280,
+      "end": 1749792475280,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1749792475281,
+      "end": 1749792475281,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1749792475281,
+      "end": 1749792475281,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1749792475281,
+      "end": 1749792475281,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1749792475281,
+      "end": 1749792475281,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1749792475281,
+      "end": 1749792475281,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1749792475281,
+      "end": 1749792475281,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1749792475281,
+      "end": 1749792475281,
+      "order": "normal"
+    }
+  ]
+}

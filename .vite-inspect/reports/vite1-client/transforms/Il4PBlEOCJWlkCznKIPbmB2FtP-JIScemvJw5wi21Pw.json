@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { createElementObject, createPathComponent, extendContext } from '@react-leaflet/core';\nimport { Rectangle as LeafletRectangle } from 'leaflet';\nexport const Rectangle = createPathComponent(function createRectangle({ bounds, ...options }, ctx) {\n    const rectangle = new LeafletRectangle(bounds, options);\n    return createElementObject(rectangle, extendContext(ctx, {\n        overlayContainer: rectangle\n    }));\n}, function updateRectangle(layer, props, prevProps) {\n    if (props.bounds !== prevProps.bounds) {\n        layer.setBounds(props.bounds);\n    }\n});\n",
-      "start": 1749894722878,
-      "end": 1749894723093,
+      "start": 1750088809876,
+      "end": 1750088810926,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749894723093,
-      "end": 1749894723093,
+      "start": 1750088810926,
+      "end": 1750088810926,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1749894723093,
-      "end": 1749894723093,
+      "start": 1750088810926,
+      "end": 1750088810926,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1749894723093,
-      "end": 1749894723093,
+      "start": 1750088810926,
+      "end": 1750088810926,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749894723093,
-      "end": 1749894723093,
+      "start": 1750088810926,
+      "end": 1750088810926,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749894723093,
-      "end": 1749894723093,
+      "start": 1750088810926,
+      "end": 1750088810926,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749894723093,
-      "end": 1749894723093,
+      "start": 1750088810926,
+      "end": 1750088810926,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749894723093,
-      "end": 1749894723093,
+      "start": 1750088810926,
+      "end": 1750088810926,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749894723093,
-      "end": 1749894723093,
+      "start": 1750088810926,
+      "end": 1750088810926,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749894723093,
-      "end": 1749894723093,
+      "start": 1750088810926,
+      "end": 1750088810926,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749894723093,
-      "end": 1749894723093,
+      "start": 1750088810926,
+      "end": 1750088810926,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749894723093,
-      "end": 1749894723093,
+      "start": 1750088810926,
+      "end": 1750088810926,
       "order": "normal"
     }
   ]

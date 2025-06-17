@@ -277,7 +277,6 @@ const Navbar = () => {
   const [showMobileSubmenu, setShowMobileSubmenu] = useState(false);
   const [currentMobileSubmenu, setCurrentMobileSubmenu] = useState("");
   const [submenuItems, setSubmenuItems] = useState([]);
-  const [submenuFeatured, setSubmenuFeatured] = useState(null);
 
   const navigate = useNavigate();
   const navItemsRef = useRef([]);
@@ -442,31 +441,29 @@ const Navbar = () => {
     setCurrentMobileSubmenu(menuType);
 
     let items = [];
-    let featured = null;
 
     // Thiết lập các mục cho từng loại submenu
     switch (menuType) {
       case "DANH MỤC":
         items = [
           { title: "Xuất bản", path: "/category/xuat-ban" },
-          { title: "Hội thảo nghệ thuật", path: "/category/hoi-thao-nghe-thuat" },
+          {
+            title: "Hội thảo nghệ thuật",
+            path: "/category/hoi-thao-nghe-thuat",
+          },
           { title: "In theo yêu cầu", path: "/category/in-theo-yeu-cau" },
           {
             title: "Hình ảnh và văn phòng phẩm",
             path: "/category/hinh-anh-va-van-phong-pham",
           },
-          { title: "Thời trang và phụ kiện", path: "/category/thoi-trang-va-phu-kien" },
+          {
+            title: "Thời trang và phụ kiện",
+            path: "/category/thoi-trang-va-phu-kien",
+          },
           { title: "Đồ trang sức", path: "/category/do-trang-suc" },
           { title: "Đồ gia dụng", path: "/category/do-gia-dung" },
           { title: "Trẻ em", path: "/category/tre-em" },
         ];
-        featured = {
-          title: "Khám phá cửa hàng trực tuyến",
-          path: "https://online-museeduphin.netlify.app/",
-          image:
-            "https://boutique.louvre.fr/files/contents/400000/688652-8a3893ca-m/editions.jpg",
-          description: "Khám phá bộ sưu tập độc đáo của chúng tôi",
-        };
         break;
 
       default:
@@ -474,7 +471,6 @@ const Navbar = () => {
     }
 
     setSubmenuItems(items);
-    setSubmenuFeatured(featured);
     setShowMobileSubmenu(true);
 
     // Tạo animation mượt mà
@@ -1199,6 +1195,34 @@ const Navbar = () => {
               DANH MỤC
               <ChevronRight />
             </div>
+            <div
+              className="mobile-nav-item"
+              onClick={() => handleNavItemClick("/contents/exhibitions")}
+            >
+              TRIỂN LÃM
+              <ChevronRight />
+            </div>
+            <div
+              className="mobile-nav-item"
+              onClick={() => handleNavItemClick("/collaborate")}
+            >
+              SỰ HỢP TÁC
+              <ChevronRight />
+            </div>
+            <div
+              className="mobile-nav-item"
+              onClick={() => handleNavItemClick("/bestseller")}
+            >
+              SẢN PHẨM BÁN CHẠY
+              <ChevronRight />
+            </div>
+            <div
+              className="mobile-nav-item"
+              onClick={() => handleNavItemClick("/news")}
+            >
+              SẢN PHẨM MỚI
+              <ChevronRight />
+            </div>
           </div>
 
           <div className="mobile-nav-divider"></div>
@@ -1298,43 +1322,6 @@ const Navbar = () => {
                 </Link>
               ))}
             </div>
-
-            {/* {submenuFeatured && (
-              <div className="submenu-featured">
-                <Link
-                  to={submenuFeatured.path}
-                  className="featured-title"
-                  onClick={() => {
-                    setShowMobileSubmenu(false);
-                    setShowMobileMenu(false);
-                  }}
-                >
-                  {submenuFeatured.title}
-                  <svg
-                    width="16"
-                    height="16"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  >
-                    <path d="M5 12h14"></path>
-                    <path d="M12 5l7 7-7 7"></path>
-                  </svg>
-                </Link>
-                <img
-                  src={submenuFeatured.image}
-                  alt={submenuFeatured.title}
-                  loading="lazy"
-                  className="featured-image"
-                />
-                <p className="featured-description">
-                  {submenuFeatured.description}
-                </p>
-              </div>
-            )} */}
           </div>
         )}
 

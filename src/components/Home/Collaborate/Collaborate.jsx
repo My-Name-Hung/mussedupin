@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { Link } from "react-router-dom";
 import "./Collaborate.css";
 
 const Collaborate = () => {
@@ -45,9 +46,9 @@ const Collaborate = () => {
       <div className="collaborate-container">
         <div className="collaborate-header">
           <h2 className="collaborate-title">Sự hợp tác</h2>
-          <a href="#" className="collaborate-view-all">
+          <Link to="/collaborate" className="collaborate-view-all">
             Xem tất cả <IoIosArrowRoundForward />
-          </a>
+          </Link>
         </div>
         <div className="slideshow-container">
           <div
@@ -56,14 +57,17 @@ const Collaborate = () => {
           >
             {collaborators.map((item, index) => (
               <div key={index} className="slide">
-                <div className="slide-image-container">
+                <Link
+                  to={`/collaborate/${encodeURIComponent(item.title)}`}
+                  className="slide-image-container"
+                >
                   <img
                     src={item.image}
                     alt={item.title}
                     className="slide-image"
                   />
                   <h3 className="slide-title">{item.title}</h3>
-                </div>
+                </Link>
               </div>
             ))}
           </div>

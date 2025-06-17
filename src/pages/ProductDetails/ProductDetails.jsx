@@ -9,10 +9,9 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Notification from "../../components/Notification/Notification";
-import "./ProductDetails.css";
-
-// Import the sample products from CategoryDetail
 import { sampleProducts } from "../CategoryDetail/CategoryDetail";
+import { exhibitionsData } from "../Exhibitions/Exhibitions";
+import "./ProductDetails.css";
 
 const ProductDetails = () => {
   const { productId } = useParams();
@@ -21,28 +20,85 @@ const ProductDetails = () => {
   const [isSpecsOpen, setIsSpecsOpen] = useState(false);
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [showNotification, setShowNotification] = useState(false);
+  const [productSource, setProductSource] = useState(null);
 
   useEffect(() => {
-    // Find the current product
-    const currentProduct = sampleProducts.find(
-      (p) => p.id === parseInt(productId)
-    );
-    setProduct(currentProduct);
+    let foundProduct = null;
+    let source = null;
 
-    // Get related products (excluding current product)
-    const related = sampleProducts
-      .filter((p) => p.id !== parseInt(productId))
-      .slice(0, 6);
-    setRelatedProducts(related);
+    // First, try to find the product in exhibitionsData
+    for (const exhibition of exhibitionsData) {
+      const exhibitionProduct = exhibition.products.find(
+        (p) => p.title === productId
+      );
+      if (exhibitionProduct) {
+        foundProduct = {
+          ...exhibitionProduct,
+          exhibitionTitle: exhibition.title,
+          exhibitionId: exhibition.id,
+          exhibitionDate: exhibition.date,
+          source: "exhibition",
+        };
+        source = {
+          type: "exhibition",
+          id: exhibition.id,
+          title: exhibition.title,
+          date: exhibition.date,
+        };
+        break;
+      }
+    }
+
+    // If not found in exhibitions, try sampleProducts
+    if (!foundProduct) {
+      const catalogProduct = sampleProducts.find(
+        (p) => p.title === productId || p.id.toString() === productId
+      );
+      if (catalogProduct) {
+        foundProduct = {
+          ...catalogProduct,
+          source: "catalog",
+        };
+        source = {
+          type: "catalog",
+          category: catalogProduct.type,
+        };
+      }
+    }
+
+    setProduct(foundProduct);
+    setProductSource(source);
+
+    // Set related products based on source
+    if (foundProduct) {
+      let related = [];
+      if (source.type === "exhibition") {
+        // Get products from the same exhibition
+        related = exhibitionsData
+          .find((e) => e.id === source.id)
+          .products.filter((p) => p.title !== foundProduct.title)
+          .slice(0, 6);
+      } else {
+        // Get products from the same category
+        related = sampleProducts
+          .filter(
+            (p) =>
+              p.type === foundProduct.type && p.title !== foundProduct.title
+          )
+          .slice(0, 6);
+      }
+      setRelatedProducts(related);
+    }
   }, [productId]);
 
   const addToCart = () => {
     const cartItem = {
-      id: product.id,
+      id: product.title, // Using title as unique identifier
       name: product.title,
       price: parseFloat(product.price.replace(/[^\d]/g, "")),
       image: product.image,
       quantity: 1,
+      source: productSource,
     };
 
     // Get existing cart from localStorage
@@ -72,7 +128,7 @@ const ProductDetails = () => {
   };
 
   const handleGoBack = () => {
-    navigate(-1); // Go back to previous page
+    navigate(-1);
   };
 
   if (!product) {
@@ -99,6 +155,21 @@ const ProductDetails = () => {
 
         <div className="product-info">
           <h1 className="product-title">{product.title}</h1>
+          {productSource?.type === "exhibition" && (
+            <>
+              <p className="product-exhibition">
+                Từ triển lãm: {productSource.title}
+              </p>
+              <p className="product-exhibition-date">
+                Thời gian: {productSource.date}
+              </p>
+            </>
+          )}
+          {productSource?.type === "catalog" && (
+            <p className="product-category">
+              Danh mục: {productSource.category}
+            </p>
+          )}
           <p className="product-price">{product.price}</p>
 
           <button className="add-to-cart" onClick={addToCart}>
@@ -111,19 +182,29 @@ const ProductDetails = () => {
               className={`specs-header ${isSpecsOpen ? "open" : ""}`}
               onClick={() => setIsSpecsOpen(!isSpecsOpen)}
             >
-              <h2>Đặc trưng</h2>
+              <h2>Thông tin sản phẩm</h2>
               <RiArrowDropDownLine />
             </div>
             {isSpecsOpen && (
               <div className="specs-content">
-                <p>Số trang : 168</p>
-                <p>Số lượng hình ảnh minh họa : 102</p>
-                <p>Kích thước : 16,5x24x2,2cm</p>
-                <p>Ngày xuất bản : 16 tháng 1 năm 2025</p>
-                <p>Tác giả : {product.artist}</p>
-                <p>Thẩm quyền giải quyết : MX037124</p>
-                <p>EAN : 9788833672724</p>
-                <p>Kích thước của cuốn sách : Bìa mềm có nắp đậy</p>
+                <p>Tên sản phẩm: {product.title}</p>
+                <p>Giá: {product.price}</p>
+                {productSource?.type === "exhibition" && (
+                  <>
+                    <p>Triển lãm: {productSource.title}</p>
+                    <p>Thời gian: {productSource.date}</p>
+                  </>
+                )}
+                {productSource?.type === "catalog" && (
+                  <>
+                    <p>Danh mục: {productSource.category}</p>
+                    <p>Nghệ sĩ: {product.artist}</p>
+                    <p>Năm xuất bản: {product.publishYear}</p>
+                  </>
+                )}
+                <p>
+                  Mã sản phẩm: {product.title.replace(/\s+/g, "").toLowerCase()}
+                </p>
               </div>
             )}
           </div>
@@ -149,7 +230,11 @@ const ProductDetails = () => {
       </div>
 
       <section className="related-products">
-        <h2>Bạn cũng có thể thích</h2>
+        <h2>
+          {productSource?.type === "exhibition"
+            ? `Sản phẩm liên quan từ triển lãm ${productSource.title}`
+            : "Sản phẩm cùng danh mục"}
+        </h2>
         <Swiper
           modules={[Navigation, Pagination]}
           spaceBetween={30}
@@ -176,9 +261,9 @@ const ProductDetails = () => {
           }}
         >
           {relatedProducts.map((relatedProduct) => (
-            <SwiperSlide key={relatedProduct.id}>
+            <SwiperSlide key={relatedProduct.title}>
               <Link
-                to={`/product/${relatedProduct.id}`}
+                to={`/product/${relatedProduct.title}`}
                 className="related-product-card"
               >
                 <div className="related-product-image">

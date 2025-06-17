@@ -3,22 +3,22 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "import React from \"react\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport \"./Bestseller.css\";\n\nconst Bestseller = () => {\n  const products = [\n    {\n      image:\n        \"https://boutique.louvre.fr/files/products/14345/382707-50b91573-l/aphrodite-known-as-the-venus.jpg\",\n      title: \"Tượng thần Vệ Nữ thành Milo - Từ 16 đến 50 cm\",\n      price: \"từ 220.000đ\",\n    },\n    {\n      image:\n        \"https://boutique.louvre.fr/files/products/33085/375660-5778adc3-l/products-375660.jpg\",\n      title: \"Bảo tàng Louvre Dobble\",\n      price: \"từ 120.000đ\",\n    },\n    {\n      image:\n        \"https://boutique.louvre.fr/files/products/20306/379595-4481f68b-l/odalisque-criss-cross-bracelet.jpg\",\n      title: \"Vòng tay dạng vòng chéo Odalisque\",\n      price: \"từ 500.000đ\",\n    },\n  ];\n\n  return (\n    <section className=\"bestseller\">\n      <div className=\"bestseller-container\">\n        <div className=\"bestseller-header\">\n          <h2 className=\"bestseller-title\">Sản phẩm bán chạy nhất</h2>\n          <a href=\"#\" className=\"bestseller-view-all\">\n            Xem tất cả <IoIosArrowRoundForward />\n          </a>\n        </div>\n        <div className=\"bestseller-grid\">\n          {products.map((product, index) => (\n            <div key={index} className=\"bestseller-card\">\n              <div className=\"card-image-container\">\n                <img\n                  src={product.image}\n                  alt={product.title}\n                  className=\"card-image\"\n                />\n              </div>\n              <div className=\"card-content\">\n                <h3 className=\"card-title\">{product.title}</h3>\n                <p className=\"card-price\">{product.price}</p>\n              </div>\n            </div>\n          ))}\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default Bestseller;\n",
-      "start": 1749894711293,
-      "end": 1749894711743,
+      "result": "import React, { useEffect, useState } from \"react\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../../../pages/CategoryDetail/CategoryDetail\";\nimport \"./Bestseller.css\";\n\nconst Bestseller = () => {\n  const [randomProducts, setRandomProducts] = useState([]);\n\n  useEffect(() => {\n    // Filter trending products\n    const trendingProducts = sampleProducts.filter(\n      (product) => product.isTrending\n    );\n\n    // Get 3 random products\n    const shuffled = [...trendingProducts].sort(() => 0.5 - Math.random());\n    setRandomProducts(shuffled.slice(0, 3));\n  }, []); // Empty dependency array means this runs once on mount\n\n  return (\n    <section className=\"bestseller\">\n      <div className=\"bestseller-container\">\n        <div className=\"bestseller-header\">\n          <h2 className=\"bestseller-title\">Sản phẩm bán chạy nhất</h2>\n          <Link to=\"/bestseller\" className=\"bestseller-view-all\">\n            Xem tất cả <IoIosArrowRoundForward />\n          </Link>\n        </div>\n        <div className=\"bestseller-grid\">\n          {randomProducts.map((product) => (\n            <div key={product.id} className=\"bestseller-card\">\n              <Link to={`/product/${product.id}`}>\n                <div className=\"card-image-container\">\n                  <img\n                    src={product.image}\n                    alt={product.title}\n                    className=\"card-image\"\n                  />\n                </div>\n                <div className=\"card-content\">\n                  <h3 className=\"card-title\">{product.title}</h3>\n                  <p className=\"card-price\">{product.price}</p>\n                </div>\n              </Link>\n            </div>\n          ))}\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default Bestseller;\n",
+      "start": 1750088801555,
+      "end": 1750088801886,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749894711743,
-      "end": 1749894711743,
+      "start": 1750088801886,
+      "end": 1750088801886,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport \"./Bestseller.css\";\nconst Bestseller = () => {\n  const products = [\n    {\n      image: \"https://boutique.louvre.fr/files/products/14345/382707-50b91573-l/aphrodite-known-as-the-venus.jpg\",\n      title: \"Tượng thần Vệ Nữ thành Milo - Từ 16 đến 50 cm\",\n      price: \"từ 220.000đ\"\n    },\n    {\n      image: \"https://boutique.louvre.fr/files/products/33085/375660-5778adc3-l/products-375660.jpg\",\n      title: \"Bảo tàng Louvre Dobble\",\n      price: \"từ 120.000đ\"\n    },\n    {\n      image: \"https://boutique.louvre.fr/files/products/20306/379595-4481f68b-l/odalisque-criss-cross-bracelet.jpg\",\n      title: \"Vòng tay dạng vòng chéo Odalisque\",\n      price: \"từ 500.000đ\"\n    }\n  ];\n  return /* @__PURE__ */ jsx(\"section\", { className: \"bestseller\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"bestseller-container\", children: [\n    /* @__PURE__ */ jsxs(\"div\", { className: \"bestseller-header\", children: [\n      /* @__PURE__ */ jsx(\"h2\", { className: \"bestseller-title\", children: \"Sản phẩm bán chạy nhất\" }),\n      /* @__PURE__ */ jsxs(\"a\", { href: \"#\", className: \"bestseller-view-all\", children: [\n        \"Xem tất cả \",\n        /* @__PURE__ */ jsx(IoIosArrowRoundForward, {})\n      ] })\n    ] }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"bestseller-grid\", children: products.map((product, index) => /* @__PURE__ */ jsxs(\"div\", { className: \"bestseller-card\", children: [\n      /* @__PURE__ */ jsx(\"div\", { className: \"card-image-container\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: product.image,\n          alt: product.title,\n          className: \"card-image\"\n        }\n      ) }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"card-content\", children: [\n        /* @__PURE__ */ jsx(\"h3\", { className: \"card-title\", children: product.title }),\n        /* @__PURE__ */ jsx(\"p\", { className: \"card-price\", children: product.price })\n      ] })\n    ] }, index)) })\n  ] }) });\n};\nexport default Bestseller;\n",
-      "start": 1749894711743,
-      "end": 1749894711797,
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect, useState } from \"react\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../../../pages/CategoryDetail/CategoryDetail\";\nimport \"./Bestseller.css\";\nconst Bestseller = () => {\n  const [randomProducts, setRandomProducts] = useState([]);\n  useEffect(() => {\n    const trendingProducts = sampleProducts.filter(\n      (product) => product.isTrending\n    );\n    const shuffled = [...trendingProducts].sort(() => 0.5 - Math.random());\n    setRandomProducts(shuffled.slice(0, 3));\n  }, []);\n  return /* @__PURE__ */ jsx(\"section\", { className: \"bestseller\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"bestseller-container\", children: [\n    /* @__PURE__ */ jsxs(\"div\", { className: \"bestseller-header\", children: [\n      /* @__PURE__ */ jsx(\"h2\", { className: \"bestseller-title\", children: \"Sản phẩm bán chạy nhất\" }),\n      /* @__PURE__ */ jsxs(Link, { to: \"/bestseller\", className: \"bestseller-view-all\", children: [\n        \"Xem tất cả \",\n        /* @__PURE__ */ jsx(IoIosArrowRoundForward, {})\n      ] })\n    ] }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"bestseller-grid\", children: randomProducts.map((product) => /* @__PURE__ */ jsx(\"div\", { className: \"bestseller-card\", children: /* @__PURE__ */ jsxs(Link, { to: `/product/${product.id}`, children: [\n      /* @__PURE__ */ jsx(\"div\", { className: \"card-image-container\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: product.image,\n          alt: product.title,\n          className: \"card-image\"\n        }\n      ) }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"card-content\", children: [\n        /* @__PURE__ */ jsx(\"h3\", { className: \"card-title\", children: product.title }),\n        /* @__PURE__ */ jsx(\"p\", { className: \"card-price\", children: product.price })\n      ] })\n    ] }) }, product.id)) })\n  ] }) });\n};\nexport default Bestseller;\n",
+      "start": 1750088801886,
+      "end": 1750088802297,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -26,64 +26,64 @@
           "C:/Users/.Freelancer/ONLINE/src/components/Home/Bestseller/Bestseller.jsx"
         ],
         "sourcesContent": [
-          "import React from \"react\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport \"./Bestseller.css\";\n\nconst Bestseller = () => {\n  const products = [\n    {\n      image:\n        \"https://boutique.louvre.fr/files/products/14345/382707-50b91573-l/aphrodite-known-as-the-venus.jpg\",\n      title: \"Tượng thần Vệ Nữ thành Milo - Từ 16 đến 50 cm\",\n      price: \"từ 220.000đ\",\n    },\n    {\n      image:\n        \"https://boutique.louvre.fr/files/products/33085/375660-5778adc3-l/products-375660.jpg\",\n      title: \"Bảo tàng Louvre Dobble\",\n      price: \"từ 120.000đ\",\n    },\n    {\n      image:\n        \"https://boutique.louvre.fr/files/products/20306/379595-4481f68b-l/odalisque-criss-cross-bracelet.jpg\",\n      title: \"Vòng tay dạng vòng chéo Odalisque\",\n      price: \"từ 500.000đ\",\n    },\n  ];\n\n  return (\n    <section className=\"bestseller\">\n      <div className=\"bestseller-container\">\n        <div className=\"bestseller-header\">\n          <h2 className=\"bestseller-title\">Sản phẩm bán chạy nhất</h2>\n          <a href=\"#\" className=\"bestseller-view-all\">\n            Xem tất cả <IoIosArrowRoundForward />\n          </a>\n        </div>\n        <div className=\"bestseller-grid\">\n          {products.map((product, index) => (\n            <div key={index} className=\"bestseller-card\">\n              <div className=\"card-image-container\">\n                <img\n                  src={product.image}\n                  alt={product.title}\n                  className=\"card-image\"\n                />\n              </div>\n              <div className=\"card-content\">\n                <h3 className=\"card-title\">{product.title}</h3>\n                <p className=\"card-price\">{product.price}</p>\n              </div>\n            </div>\n          ))}\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default Bestseller;\n"
+          "import React, { useEffect, useState } from \"react\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../../../pages/CategoryDetail/CategoryDetail\";\nimport \"./Bestseller.css\";\n\nconst Bestseller = () => {\n  const [randomProducts, setRandomProducts] = useState([]);\n\n  useEffect(() => {\n    // Filter trending products\n    const trendingProducts = sampleProducts.filter(\n      (product) => product.isTrending\n    );\n\n    // Get 3 random products\n    const shuffled = [...trendingProducts].sort(() => 0.5 - Math.random());\n    setRandomProducts(shuffled.slice(0, 3));\n  }, []); // Empty dependency array means this runs once on mount\n\n  return (\n    <section className=\"bestseller\">\n      <div className=\"bestseller-container\">\n        <div className=\"bestseller-header\">\n          <h2 className=\"bestseller-title\">Sản phẩm bán chạy nhất</h2>\n          <Link to=\"/bestseller\" className=\"bestseller-view-all\">\n            Xem tất cả <IoIosArrowRoundForward />\n          </Link>\n        </div>\n        <div className=\"bestseller-grid\">\n          {randomProducts.map((product) => (\n            <div key={product.id} className=\"bestseller-card\">\n              <Link to={`/product/${product.id}`}>\n                <div className=\"card-image-container\">\n                  <img\n                    src={product.image}\n                    alt={product.title}\n                    className=\"card-image\"\n                  />\n                </div>\n                <div className=\"card-content\">\n                  <h3 className=\"card-title\">{product.title}</h3>\n                  <p className=\"card-price\">{product.price}</p>\n                </div>\n              </Link>\n            </div>\n          ))}\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default Bestseller;\n"
         ],
-        "mappings": "AA8BU,cACA,YADA;AA9BV,OAAO,WAAW;AAClB,SAAS,8BAA8B;AACvC,OAAO;AAEP,MAAM,aAAa,MAAM;AACvB,QAAM,WAAW;AAAA,IACf;AAAA,MACE,OACE;AAAA,MACF,OAAO;AAAA,MACP,OAAO;AAAA,IACT;AAAA,IACA;AAAA,MACE,OACE;AAAA,MACF,OAAO;AAAA,MACP,OAAO;AAAA,IACT;AAAA,IACA;AAAA,MACE,OACE;AAAA,MACF,OAAO;AAAA,MACP,OAAO;AAAA,IACT;AAAA,EACF;AAEA,SACE,oBAAC,aAAQ,WAAU,cACjB,+BAAC,SAAI,WAAU,wBACb;AAAA,yBAAC,SAAI,WAAU,qBACb;AAAA,0BAAC,QAAG,WAAU,oBAAmB,oCAAsB;AAAA,MACvD,qBAAC,OAAE,MAAK,KAAI,WAAU,uBAAsB;AAAA;AAAA,QAC/B,oBAAC,0BAAuB;AAAA,SACrC;AAAA,OACF;AAAA,IACA,oBAAC,SAAI,WAAU,mBACZ,mBAAS,IAAI,CAAC,SAAS,UACtB,qBAAC,SAAgB,WAAU,mBACzB;AAAA,0BAAC,SAAI,WAAU,wBACb;AAAA,QAAC;AAAA;AAAA,UACC,KAAK,QAAQ;AAAA,UACb,KAAK,QAAQ;AAAA,UACb,WAAU;AAAA;AAAA,MACZ,GACF;AAAA,MACA,qBAAC,SAAI,WAAU,gBACb;AAAA,4BAAC,QAAG,WAAU,cAAc,kBAAQ,OAAM;AAAA,QAC1C,oBAAC,OAAE,WAAU,cAAc,kBAAQ,OAAM;AAAA,SAC3C;AAAA,SAXQ,KAYV,CACD,GACH;AAAA,KACF,GACF;AAEJ;AAEA,eAAe;",
+        "mappings": "AAwBU,cACA,YADA;AAxBV,OAAO,SAAS,WAAW,gBAAgB;AAC3C,SAAS,8BAA8B;AACvC,SAAS,YAAY;AACrB,SAAS,sBAAsB;AAC/B,OAAO;AAEP,MAAM,aAAa,MAAM;AACvB,QAAM,CAAC,gBAAgB,iBAAiB,IAAI,SAAS,CAAC,CAAC;AAEvD,YAAU,MAAM;AAEd,UAAM,mBAAmB,eAAe;AAAA,MACtC,CAAC,YAAY,QAAQ;AAAA,IACvB;AAGA,UAAM,WAAW,CAAC,GAAG,gBAAgB,EAAE,KAAK,MAAM,MAAM,KAAK,OAAO,CAAC;AACrE,sBAAkB,SAAS,MAAM,GAAG,CAAC,CAAC;AAAA,EACxC,GAAG,CAAC,CAAC;AAEL,SACE,oBAAC,aAAQ,WAAU,cACjB,+BAAC,SAAI,WAAU,wBACb;AAAA,yBAAC,SAAI,WAAU,qBACb;AAAA,0BAAC,QAAG,WAAU,oBAAmB,oCAAsB;AAAA,MACvD,qBAAC,QAAK,IAAG,eAAc,WAAU,uBAAsB;AAAA;AAAA,QAC1C,oBAAC,0BAAuB;AAAA,SACrC;AAAA,OACF;AAAA,IACA,oBAAC,SAAI,WAAU,mBACZ,yBAAe,IAAI,CAAC,YACnB,oBAAC,SAAqB,WAAU,mBAC9B,+BAAC,QAAK,IAAI,YAAY,QAAQ,EAAE,IAC9B;AAAA,0BAAC,SAAI,WAAU,wBACb;AAAA,QAAC;AAAA;AAAA,UACC,KAAK,QAAQ;AAAA,UACb,KAAK,QAAQ;AAAA,UACb,WAAU;AAAA;AAAA,MACZ,GACF;AAAA,MACA,qBAAC,SAAI,WAAU,gBACb;AAAA,4BAAC,QAAG,WAAU,cAAc,kBAAQ,OAAM;AAAA,QAC1C,oBAAC,OAAE,WAAU,cAAc,kBAAQ,OAAM;AAAA,SAC3C;AAAA,OACF,KAbQ,QAAQ,EAclB,CACD,GACH;AAAA,KACF,GACF;AAEJ;AAEA,eAAe;",
         "names": []
       }
     },
     {
       "name": "vite:worker",
-      "start": 1749894711797,
-      "end": 1749894711797,
+      "start": 1750088802297,
+      "end": 1750088802297,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749894711797,
-      "end": 1749894711797,
+      "start": 1750088802297,
+      "end": 1750088802297,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749894711797,
-      "end": 1749894711797,
+      "start": 1750088802297,
+      "end": 1750088802297,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749894711802,
-      "end": 1749894711802,
+      "start": 1750088802297,
+      "end": 1750088802298,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749894711802,
-      "end": 1749894711802,
+      "start": 1750088802298,
+      "end": 1750088802298,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749894711803,
-      "end": 1749894711803,
+      "start": 1750088802298,
+      "end": 1750088802298,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749894711803,
-      "end": 1749894711803,
+      "start": 1750088802298,
+      "end": 1750088802298,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749894711803,
-      "end": 1749894711815,
+      "start": 1750088802298,
+      "end": 1750088802300,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749894711815,
-      "end": 1749894711815,
+      "start": 1750088802300,
+      "end": 1750088802300,
       "order": "normal"
     }
   ]

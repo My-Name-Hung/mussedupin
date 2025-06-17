@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { GroupAnimationWithThen } from 'motion-dom';\nimport { animateSequence } from './sequence.mjs';\nimport { animateSubject } from './subject.mjs';\n\nfunction isSequence(value) {\n    return Array.isArray(value) && value.some(Array.isArray);\n}\n/**\n * Creates an animation function that is optionally scoped\n * to a specific element.\n */\nfunction createScopedAnimate(scope) {\n    /**\n     * Implementation\n     */\n    function scopedAnimate(subjectOrSequence, optionsOrKeyframes, options) {\n        let animations = [];\n        if (isSequence(subjectOrSequence)) {\n            animations = animateSequence(subjectOrSequence, optionsOrKeyframes, scope);\n        }\n        else {\n            animations = animateSubject(subjectOrSequence, optionsOrKeyframes, options, scope);\n        }\n        const animation = new GroupAnimationWithThen(animations);\n        if (scope) {\n            scope.animations.push(animation);\n        }\n        return animation;\n    }\n    return scopedAnimate;\n}\nconst animate = createScopedAnimate();\n\nexport { animate, createScopedAnimate };\n",
-      "start": 1749894722618,
-      "end": 1749894722775,
+      "start": 1750088811790,
+      "end": 1750088812066,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749894722775,
-      "end": 1749894722775,
+      "start": 1750088812066,
+      "end": 1750088812066,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1749894722775,
-      "end": 1749894722775,
+      "start": 1750088812066,
+      "end": 1750088812066,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1749894722775,
-      "end": 1749894722775,
+      "start": 1750088812066,
+      "end": 1750088812066,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749894722775,
-      "end": 1749894722775,
+      "start": 1750088812066,
+      "end": 1750088812066,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749894722776,
-      "end": 1749894722776,
+      "start": 1750088812066,
+      "end": 1750088812066,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749894722776,
-      "end": 1749894722776,
+      "start": 1750088812066,
+      "end": 1750088812066,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749894722776,
-      "end": 1749894722776,
+      "start": 1750088812066,
+      "end": 1750088812066,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749894722776,
-      "end": 1749894722776,
+      "start": 1750088812066,
+      "end": 1750088812066,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749894722776,
-      "end": 1749894722776,
+      "start": 1750088812070,
+      "end": 1750088812070,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749894722776,
-      "end": 1749894722776,
+      "start": 1750088812070,
+      "end": 1750088812070,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749894722776,
-      "end": 1749894722776,
+      "start": 1750088812070,
+      "end": 1750088812070,
       "order": "normal"
     }
   ]

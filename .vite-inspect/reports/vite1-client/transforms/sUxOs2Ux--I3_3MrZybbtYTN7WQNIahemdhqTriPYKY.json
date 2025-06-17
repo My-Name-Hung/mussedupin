@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": ".bestseller {\n  background-image: url(\"https://res.cloudinary.com/dn0br7hj0/image/upload/background/Background2.webp\");\n  background-repeat: repeat;\n  background-position: top center;\n  background-size: 300px;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: crisp-edges;\n}\n\n.bestseller-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 0;\n}\n\n.bestseller-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 40px;\n  padding: 0 20px;\n}\n\n.bestseller-title {\n  font-family: \"Meholrax\", serif;\n  font-size: 2.5rem;\n  color: #000;\n  margin: 0;\n}\n\n.bestseller-view-all {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1rem;\n  color: #000;\n  text-decoration: none;\n  display: flex;\n  align-items: center;\n  gap: 5px;\n  transition: opacity 0.3s ease;\n}\n\n.bestseller-view-all:hover {\n  opacity: 0.7;\n}\n\n.bestseller-view-all svg {\n  font-size: 1.5rem;\n}\n\n.bestseller-grid {\n  display: grid;\n  grid-template-columns: repeat(3, 1fr);\n  gap: 0;\n  width: 100%;\n}\n\n.bestseller-card {\n  position: relative;\n  overflow: hidden;\n}\n\n.card-image-container {\n  width: 100%;\n  aspect-ratio: 1;\n  overflow: hidden;\n  position: relative;\n}\n\n.card-image-container::after {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(\n    to top,\n    rgba(0, 0, 0, 0.8),\n    rgba(0, 0, 0, 0.4) 50%,\n    rgba(0, 0, 0, 0.1)\n  );\n  pointer-events: none;\n}\n\n.card-image {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  transition: transform 0.3s ease;\n}\n\n.bestseller-card:hover .card-image {\n  transform: scale(1.05);\n}\n\n.card-content {\n  position: absolute;\n  top: 70%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  width: 100%;\n  padding: 20px;\n  color: #fff;\n  text-align: center;\n  z-index: 1;\n}\n\n.card-title {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.2rem;\n  font-weight: 400;\n  margin: 0 0 8px 0;\n  line-height: 1.4;\n  max-width: 80%;\n  margin: 0 auto 8px;\n}\n\n.card-price {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.2rem;\n  margin: 0;\n  opacity: 0.9;\n}\n\n/* Responsive styles */\n@media (max-width: 992px) {\n  .bestseller-grid {\n    grid-template-columns: repeat(2, 1fr);\n  }\n}\n\n@media (max-width: 768px) {\n  .bestseller-title {\n    font-size: 2rem;\n  }\n\n  .card-title {\n    font-size: 1.1rem;\n  }\n}\n\n@media (max-width: 480px) {\n  .bestseller-grid {\n    grid-template-columns: 1fr;\n  }\n\n  .bestseller-title {\n    font-size: 1.8rem;\n  }\n\n  .bestseller-view-all {\n    font-size: 0.9rem;\n  }\n\n  .card-title {\n    font-size: 1.4rem;\n  }\n}\n",
-      "start": 1749894713383,
-      "end": 1749894714583,
+      "start": 1750088802883,
+      "end": 1750088803423,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749894714583,
-      "end": 1749894714583,
+      "start": 1750088803423,
+      "end": 1750088803430,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1749894714585,
-      "end": 1749894714585,
+      "start": 1750088803434,
+      "end": 1750088803434,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1749894714585,
-      "end": 1749894714585,
+      "start": 1750088803434,
+      "end": 1750088803434,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749894714585,
-      "end": 1749894714585,
+      "start": 1750088803434,
+      "end": 1750088803434,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749894714585,
-      "end": 1749894714585,
+      "start": 1750088803434,
+      "end": 1750088803434,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749894714585,
-      "end": 1749894714585,
+      "start": 1750088803434,
+      "end": 1750088803434,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749894714585,
-      "end": 1749894714585,
+      "start": 1750088803434,
+      "end": 1750088803434,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749894714585,
-      "end": 1749894714585,
+      "start": 1750088803435,
+      "end": 1750088803435,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749894714585,
-      "end": 1749894714585,
+      "start": 1750088803435,
+      "end": 1750088803435,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749894714585,
-      "end": 1749894714585,
+      "start": 1750088803435,
+      "end": 1750088803435,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749894714585,
-      "end": 1749894714585,
+      "start": 1750088803435,
+      "end": 1750088803435,
       "order": "normal"
     }
   ]

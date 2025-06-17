@@ -1,52 +1,48 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
+import { Link } from "react-router-dom";
+import { sampleProducts } from "../../../pages/CategoryDetail/CategoryDetail";
 import "./Bestseller.css";
 
 const Bestseller = () => {
-  const products = [
-    {
-      image:
-        "https://boutique.louvre.fr/files/products/14345/382707-50b91573-l/aphrodite-known-as-the-venus.jpg",
-      title: "Tượng thần Vệ Nữ thành Milo - Từ 16 đến 50 cm",
-      price: "từ 220.000đ",
-    },
-    {
-      image:
-        "https://boutique.louvre.fr/files/products/33085/375660-5778adc3-l/products-375660.jpg",
-      title: "Bảo tàng Louvre Dobble",
-      price: "từ 120.000đ",
-    },
-    {
-      image:
-        "https://boutique.louvre.fr/files/products/20306/379595-4481f68b-l/odalisque-criss-cross-bracelet.jpg",
-      title: "Vòng tay dạng vòng chéo Odalisque",
-      price: "từ 500.000đ",
-    },
-  ];
+  const [randomProducts, setRandomProducts] = useState([]);
+
+  useEffect(() => {
+    // Filter trending products
+    const trendingProducts = sampleProducts.filter(
+      (product) => product.isTrending
+    );
+
+    // Get 3 random products
+    const shuffled = [...trendingProducts].sort(() => 0.5 - Math.random());
+    setRandomProducts(shuffled.slice(0, 3));
+  }, []); // Empty dependency array means this runs once on mount
 
   return (
     <section className="bestseller">
       <div className="bestseller-container">
         <div className="bestseller-header">
           <h2 className="bestseller-title">Sản phẩm bán chạy nhất</h2>
-          <a href="#" className="bestseller-view-all">
+          <Link to="/bestseller" className="bestseller-view-all">
             Xem tất cả <IoIosArrowRoundForward />
-          </a>
+          </Link>
         </div>
         <div className="bestseller-grid">
-          {products.map((product, index) => (
-            <div key={index} className="bestseller-card">
-              <div className="card-image-container">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="card-image"
-                />
-              </div>
-              <div className="card-content">
-                <h3 className="card-title">{product.title}</h3>
-                <p className="card-price">{product.price}</p>
-              </div>
+          {randomProducts.map((product) => (
+            <div key={product.id} className="bestseller-card">
+              <Link to={`/product/${product.id}`}>
+                <div className="card-image-container">
+                  <img
+                    src={product.image}
+                    alt={product.title}
+                    className="card-image"
+                  />
+                </div>
+                <div className="card-content">
+                  <h3 className="card-title">{product.title}</h3>
+                  <p className="card-price">{product.price}</p>
+                </div>
+              </Link>
             </div>
           ))}
         </div>

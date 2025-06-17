@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": ".category-detail {\n  background-image: url(\"https://res.cloudinary.com/dn0br7hj0/image/upload/background/Background2.webp\");\n  background-repeat: repeat;\n  background-position: top center;\n  background-size: 300px;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: crisp-edges;\n  position: relative;\n  min-height: 100vh;\n}\n\n.back-button {\n  position: absolute;\n  top: 40px;\n  left: 40px;\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  padding: 12px 20px;\n  background-color: #2c2f11;\n  border-radius: 30px;\n  text-decoration: none;\n  color: yellowgreen;\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1rem;\n  font-weight: 500;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);\n  transition: all 0.3s ease;\n  z-index: 100;\n}\n\n.back-button:hover {\n  transform: translateY(-2px);\n  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);\n}\n\n.back-button svg {\n  width: 20px;\n  height: 20px;\n}\n\n.hero-section-category {\n  width: 100%;\n  height: 100vh;\n  position: relative;\n  overflow: hidden;\n}\n\n.hero-image-category-container {\n  width: 100%;\n  height: 100%;\n  position: relative;\n}\n\n.hero-image-category {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  object-position: left;\n}\n\n.hero-content-category {\n  position: absolute;\n  bottom: 60px;\n  left: 60px;\n  color: #fff;\n  z-index: 2;\n  max-width: 600px;\n}\n\n.hero-title-category {\n  font-family: \"Mythical-Prince\", \"LouvreSerif\", Georgia, \"Times New Roman\",\n    serif;\n  font-size: 3.5rem;\n  margin: 0 0 20px;\n  line-height: 1.2;\n  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);\n}\n\n.hero-subtitle-category {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.2rem;\n  line-height: 1.6;\n  margin: 0;\n  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);\n}\n\n.hero-image-category-container::after {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(\n    to top,\n    rgba(0, 0, 0, 0.7) 0%,\n    rgba(0, 0, 0, 0.4) 30%,\n    rgba(0, 0, 0, 0.1) 100%\n  );\n}\n\n/* List Item Categories Section */\n.list-item-categories {\n  padding: 40px 20px;\n  max-width: 1400px;\n  margin: 0 auto;\n}\n\n.sort-categories {\n  display: flex;\n  justify-content: flex-start;\n  align-items: center;\n  margin-bottom: 30px;\n  font-family: \"Roboto\", sans-serif;\n  padding: 0px 20px;\n}\n\n.total-products {\n  font-size: 0.9rem;\n  color: #666;\n  display: flex;\n  align-items: center;\n  gap: 4px;\n  white-space: nowrap;\n}\n\n.total-products .total-count {\n  font-weight: 500;\n  color: #2c2f11;\n}\n\n.sort-dropdown-container {\n  position: relative;\n  display: flex;\n  align-items: center;\n}\n\n.sort-dropdown-header {\n  display: flex;\n  align-items: center;\n  cursor: pointer;\n  padding: 0px 12px;\n  font-size: 0.85rem;\n  color: #666;\n  user-select: none;\n  white-space: nowrap;\n}\n\n.sort-dropdown-header.active {\n  color: #2c2f11;\n}\n\n.sort-dropdown-header svg {\n  font-size: 24px;\n  color: #2c2f11;\n  transition: transform 0.3s ease;\n}\n\n.sort-dropdown-header svg.rotated {\n  transform: rotate(180deg);\n}\n\n.sort-dropdown-menu {\n  position: absolute;\n  top: calc(100% + 4px);\n  right: 0;\n  background-color: white;\n  border-radius: 4px;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);\n  min-width: 200px;\n  z-index: 100;\n  overflow: hidden;\n}\n\n.sort-option {\n  padding: 10px 16px;\n  cursor: pointer;\n  font-size: 0.9rem;\n  color: #666;\n  transition: all 0.2s ease;\n}\n\n.sort-option:hover {\n  background-color: #f5f5f5;\n  color: #2c2f11;\n}\n\n.sort-option.active {\n  background-color: #f5f5f5;\n  color: #2c2f11;\n  font-weight: 500;\n}\n\n.products-grid {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 30px;\n  margin-bottom: 40px;\n}\n\n.product-card {\n  border-radius: 8px;\n  overflow: hidden;\n  transition: transform 0.3s ease;\n  text-align: center;\n}\n\n.product-card:hover {\n  transform: translateY(-5px);\n}\n\n.product-image-container {\n  position: relative;\n  padding-top: 100%;\n}\n\n.product-image-container img {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.tag {\n  position: absolute;\n  top: 10px;\n  left: 10px;\n  padding: 4px 8px;\n  border-radius: 4px;\n  font-size: 0.8rem;\n  font-weight: 500;\n  z-index: 1;\n}\n\n.tag.new {\n  background-color: #2c2f11;\n  color: white;\n}\n\n.tag.trending {\n  background-color: #ff4d4d;\n  color: white;\n}\n\n.product-card h3 {\n  margin: 15px;\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1rem;\n  color: #333;\n  text-align: center;\n}\n\n.product-card .price {\n  margin: 0 15px 15px;\n  font-family: \"Roboto\", sans-serif;\n  font-weight: 500;\n  color: #2c2f11;\n  text-align: center;\n}\n\n.block-product {\n  grid-column: 1 / -1;\n  margin: 30px 0;\n}\n\n.featured-product {\n  display: flex;\n  background: #2c2f11;\n  border-radius: 12px;\n  overflow: hidden;\n  height: 400px;\n}\n\n.featured-product img {\n  width: 50%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.featured-content {\n  flex: 1;\n  padding: 40px;\n  color: white;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n}\n\n.featured-content h3 {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 2rem;\n  margin-bottom: 20px;\n}\n\n.featured-content .price {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.5rem;\n  font-weight: 500;\n}\n\n.load-more {\n  text-align: center;\n  margin: 40px 0;\n}\n\n.load-more button {\n  background-color: #2c2f11;\n  color: white;\n  border: none;\n  padding: 12px 24px;\n  border-radius: 30px;\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1rem;\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  margin: 0 auto;\n  transition: transform 0.3s ease;\n}\n\n.load-more button:hover {\n  transform: translateY(-2px);\n}\n\n.result-pager {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  gap: 10px;\n  margin-top: 30px;\n}\n\n.result-pager button {\n  width: 40px;\n  height: 40px;\n  border: 1px solid #ddd;\n  background: #2c2f11;\n  border-radius: 4px;\n  color: #fff;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n  transition: all 0.3s ease;\n}\n\n.result-pager button.active {\n  background-color: #2c2f11;\n  color: yellowgreen;\n  border-color: #fff;\n}\n\n.result-pager button:hover:not(:disabled) {\n  background-color: #2c2f11;\n  color: white;\n}\n\n.result-pager button:disabled {\n  opacity: 0.5;\n  cursor: not-allowed;\n}\n\n/* Filter Button and Modal */\n.filter-button {\n  position: fixed;\n  bottom: 20px;\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: #2c2f11;\n  color: white;\n  border: none;\n  padding: 12px 30px;\n  border-radius: 30px;\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1rem;\n  cursor: pointer;\n  z-index: 1000;\n  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);\n  transition: transform 0.3s ease, box-shadow 0.3s ease;\n}\n\n.filter-button:hover {\n  transform: translateX(-50%) translateY(-2px);\n  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);\n}\n\n.search-filters-modal {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background-color: #2c2f11;\n  z-index: 1001;\n  overflow-y: auto;\n  color: white;\n  animation: slideUp 0.3s ease-out;\n}\n\n@keyframes slideUp {\n  from {\n    transform: translateY(100%);\n  }\n  to {\n    transform: translateY(0);\n  }\n}\n\n.search-filters-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  margin-bottom: 40px;\n  position: relative;\n}\n\n.close-filters-button {\n  position: absolute;\n  top: 0;\n  right: 0;\n  background: none;\n  border: none;\n  padding: 8px;\n  cursor: pointer;\n  color: yellowgreen;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  transition: transform 0.2s ease;\n}\n\n.close-filters-button:hover {\n  transform: scale(1.1);\n}\n\n.close-filters-button svg {\n  width: 24px;\n  height: 24px;\n}\n\n.search-filters-title {\n  font-family: \"Meholrax\", sans-serif;\n  font-size: 2.5rem;\n  text-align: center;\n  color: yellowgreen;\n  width: 100%;\n  margin: 0;\n}\n\n.search-filters-content {\n  padding: 40px 20px;\n  max-width: 800px;\n  margin: 0 auto;\n  padding-bottom: 100px;\n  position: relative;\n}\n\n.filter-section {\n  margin-bottom: 30px;\n  border-bottom: 1px solid rgba(255, 255, 255, 0.1);\n}\n\n.filter-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 15px 0;\n  cursor: pointer;\n  transition: all 0.3s ease;\n}\n\n.filter-header:hover {\n  opacity: 0.8;\n}\n\n.filter-header h3 {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.2rem;\n  margin: 0;\n  color: yellowgreen;\n}\n\n.filter-header svg {\n  font-size: 28px;\n  color: yellowgreen;\n  transition: transform 0.3s ease;\n}\n\n.filter-header svg.rotated {\n  transform: rotate(180deg);\n}\n\n.filter-options {\n  padding: 20px 0;\n  animation: fadeIn 0.3s ease-out;\n}\n\n@keyframes fadeIn {\n  from {\n    opacity: 0;\n    transform: translateY(-10px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n.filter-option {\n  display: flex;\n  align-items: center;\n  gap: 12px;\n  padding: 10px 0;\n  cursor: pointer;\n  font-family: \"Roboto\", sans-serif;\n  color: rgba(255, 255, 255, 0.9);\n  transition: all 0.2s ease;\n}\n\n.filter-option:hover {\n  color: yellowgreen;\n}\n\n.filter-option input[type=\"checkbox\"] {\n  width: 20px;\n  height: 20px;\n  border: 2px solid yellowgreen;\n  border-radius: 4px;\n  cursor: pointer;\n  appearance: none;\n  -webkit-appearance: none;\n  background-color: transparent;\n  position: relative;\n  transition: all 0.2s ease;\n}\n\n.filter-option input[type=\"checkbox\"]:checked {\n  background-color: yellowgreen;\n}\n\n.filter-option input[type=\"checkbox\"]:checked::after {\n  content: \"✓\";\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  color: #2c2f11;\n  font-size: 14px;\n  font-weight: bold;\n}\n\n.filter-option .count {\n  margin-left: auto;\n  color: rgba(255, 255, 255, 0.6);\n  font-size: 0.9rem;\n}\n\n.price-range-slider {\n  padding: 30px 0;\n  animation: fadeIn 0.3s ease-out;\n}\n\n.price-range-inputs {\n  position: relative;\n  width: 100%;\n  height: 40px;\n}\n\n.price-range-inputs input[type=\"range\"] {\n  position: absolute;\n  width: 100%;\n  height: 4px;\n  background: none;\n  pointer-events: none;\n  -webkit-appearance: none;\n}\n\n.price-range-inputs input[type=\"range\"]::-webkit-slider-thumb {\n  height: 20px;\n  width: 20px;\n  border-radius: 50%;\n  border: 2px solid yellowgreen;\n  background: white;\n  pointer-events: auto;\n  -webkit-appearance: none;\n  cursor: pointer;\n  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);\n  transition: all 0.2s ease;\n}\n\n.price-range-inputs input[type=\"range\"]::-webkit-slider-thumb:hover {\n  transform: scale(1.1);\n}\n\n.price-range-inputs input[type=\"range\"]::-webkit-slider-runnable-track {\n  width: 100%;\n  height: 4px;\n  background: rgba(154, 205, 50, 0.3);\n  border-radius: 2px;\n  border: none;\n}\n\n.price-range-inputs input[type=\"range\"]:first-child {\n  background: linear-gradient(\n    to right,\n    rgba(154, 205, 50, 0.1) var(--value-percent),\n    yellowgreen var(--value-percent)\n  );\n}\n\n.price-range-inputs input[type=\"range\"]:last-child {\n  background: linear-gradient(\n    to left,\n    rgba(154, 205, 50, 0.1) var(--value-percent),\n    yellowgreen var(--value-percent)\n  );\n}\n\n.price-range-values {\n  display: flex;\n  justify-content: space-between;\n  font-family: \"Roboto\", sans-serif;\n  margin-top: 25px;\n  color: yellowgreen;\n  font-size: 0.9rem;\n}\n\n.apply-filters-button {\n  position: fixed;\n  bottom: 20px;\n  left: 50%;\n  transform: translateX(-50%);\n  background-color: yellowgreen;\n  color: #2c2f11;\n  border: none;\n  padding: 15px 40px;\n  border-radius: 30px;\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.1rem;\n  font-weight: 500;\n  cursor: pointer;\n  z-index: 1002;\n  transition: all 0.2s ease;\n  min-width: 200px;\n  text-align: center;\n}\n\n.apply-filters-button:hover:not(:disabled) {\n  transform: translateX(-50%) translateY(-2px);\n  box-shadow: 0 4px 12px rgba(154, 205, 50, 0.3);\n}\n\n.apply-filters-button:disabled {\n  background-color: #cccccc;\n  color: #666666;\n  cursor: not-allowed;\n  opacity: 0.7;\n}\n\n/* Responsive Styles */\n@media (max-width: 1200px) {\n  .products-grid {\n    grid-template-columns: repeat(3, 1fr);\n  }\n}\n\n@media (max-width: 768px) {\n  .back-button {\n    top: 20px;\n    left: 20px;\n    padding: 10px 16px;\n    font-size: 0.9rem;\n  }\n\n  .back-button svg {\n    width: 18px;\n    height: 18px;\n  }\n\n  .hero-content-category {\n    bottom: 40px;\n    left: 30px;\n    max-width: calc(100% - 60px);\n  }\n\n  .hero-title-category {\n    font-size: 2.5rem;\n  }\n\n  .hero-subtitle-category {\n    font-size: 1rem;\n  }\n\n  .products-grid {\n    grid-template-columns: repeat(2, 1fr);\n    gap: 20px;\n  }\n\n  .featured-product {\n    flex-direction: column;\n    height: auto;\n  }\n\n  .featured-product img {\n    width: 100%;\n    height: 300px;\n  }\n\n  .featured-content {\n    padding: 30px;\n  }\n\n  .featured-content h3 {\n    font-size: 1.5rem;\n  }\n\n  .search-filters-header {\n    margin-bottom: 30px;\n  }\n\n  .search-filters-title {\n    font-size: 2rem;\n  }\n\n  .close-filters-button {\n    padding: 6px;\n  }\n\n  .close-filters-button svg {\n    width: 20px;\n    height: 20px;\n  }\n\n  .filter-header h3 {\n    font-size: 1.1rem;\n  }\n\n  .filter-option {\n    padding: 8px 0;\n  }\n\n  .apply-filters-button {\n    padding: 12px 30px;\n    font-size: 1rem;\n  }\n}\n\n@media (max-width: 480px) {\n  .back-button {\n    top: 15px;\n    left: 15px;\n    padding: 8px 14px;\n  }\n\n  .hero-content-category {\n    bottom: 30px;\n    left: 20px;\n  }\n\n  .hero-title-category {\n    font-size: 2rem;\n    margin-bottom: 15px;\n  }\n\n  .sort-categories {\n    flex-direction: row;\n    align-items: center;\n  }\n\n  .featured-content h3 {\n    font-size: 1.2rem;\n  }\n\n  .result-pager button {\n    width: 35px;\n    height: 35px;\n  }\n\n  .search-filters-header {\n    margin-bottom: 25px;\n  }\n\n  .search-filters-title {\n    font-size: 1.8rem;\n  }\n\n  .close-filters-button {\n    padding: 4px;\n  }\n\n  .close-filters-button svg {\n    width: 18px;\n    height: 18px;\n  }\n\n  .filter-option input[type=\"checkbox\"] {\n    width: 18px;\n    height: 18px;\n  }\n\n  .filter-option .count {\n    font-size: 0.8rem;\n  }\n}\n\n/* Recently Viewed Products Section */\n.productreseen {\n  max-width: 1400px;\n  padding: 0 20px;\n}\n\n.productreseen h2 {\n  font-family: \"Meholrax\", sans-serif;\n  font-size: 2rem;\n  color: #2c2f11;\n  margin-bottom: 40px;\n  text-align: center;\n}\n\n.product-card-reseen {\n  position: relative;\n  padding: 15px;\n  transition: transform 0.3s ease;\n  text-align: center;\n}\n\n.product-card-reseen:hover {\n  transform: translateY(-5px);\n}\n\n.product-card-reseen .remove-product {\n  position: absolute;\n  top: 20px;\n  left: 20px;\n  width: 30px;\n  height: 30px;\n  border-radius: 50%;\n  background: rgba(255, 255, 255, 0.9);\n  border: none;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n  z-index: 10;\n  transition: all 0.3s ease;\n  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);\n}\n\n.product-card-reseen .remove-product:hover {\n  background: #fff;\n  transform: scale(1.1);\n}\n\n.product-card-reseen .remove-product svg {\n  color: #2c2f11;\n  font-size: 18px;\n}\n\n.product-card-reseen a {\n  text-decoration: none;\n  color: inherit;\n  display: block;\n}\n\n.product-card-reseen .product-image-container {\n  position: relative;\n  padding-top: 100%;\n  margin-bottom: 15px;\n}\n\n.product-card-reseen .product-image-container img {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.product-card-reseen h3 {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1rem;\n  color: #333;\n  margin: 0 0 10px;\n  padding-top: 20px;\n  text-align: center;\n}\n\n.product-card-reseen .price {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.1rem;\n  color: #2c2f11;\n  font-weight: 500;\n  padding-bottom: 20px;\n  margin: 0;\n  text-align: center;\n}\n\n/* Responsive styles for recently viewed products */\n@media (max-width: 768px) {\n  .productreseen h2 {\n    font-size: 1.8rem;\n    margin-bottom: 30px;\n  }\n}\n\n@media (max-width: 480px) {\n  .productreseen h2 {\n    font-size: 1.5rem;\n  }\n\n  .product-card-reseen .remove-product {\n    width: 25px;\n    height: 25px;\n  }\n\n  .product-card-reseen .remove-product svg {\n    font-size: 16px;\n  }\n}\n",
-      "start": 1749894711794,
-      "end": 1749894712333,
+      "start": 1750088801808,
+      "end": 1750088802617,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749894712333,
-      "end": 1749894712333,
+      "start": 1750088802617,
+      "end": 1750088802617,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1749894712337,
-      "end": 1749894712337,
+      "start": 1750088802620,
+      "end": 1750088802620,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1749894712337,
-      "end": 1749894712337,
+      "start": 1750088802620,
+      "end": 1750088802620,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749894712337,
-      "end": 1749894712337,
+      "start": 1750088802620,
+      "end": 1750088802620,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749894712338,
-      "end": 1749894712338,
+      "start": 1750088802621,
+      "end": 1750088802621,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749894712338,
-      "end": 1749894712338,
+      "start": 1750088802621,
+      "end": 1750088802621,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749894712338,
-      "end": 1749894712338,
+      "start": 1750088802621,
+      "end": 1750088802621,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749894712338,
-      "end": 1749894712338,
+      "start": 1750088802621,
+      "end": 1750088802621,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749894712338,
-      "end": 1749894712338,
+      "start": 1750088802621,
+      "end": 1750088802621,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749894712338,
-      "end": 1749894712338,
+      "start": 1750088802621,
+      "end": 1750088802621,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749894712338,
-      "end": 1749894712342,
+      "start": 1750088802621,
+      "end": 1750088802621,
       "order": "normal"
     }
   ]

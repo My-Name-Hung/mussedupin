@@ -1,0 +1,150 @@
+.artists-page {
+  background-image: url("https://res.cloudinary.com/dn0br7hj0/image/upload/background/Background2.webp");
+  background-repeat: repeat;
+  background-position: top center;
+  background-size: 300px;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  padding: 40px 20px;
+}
+
+.artists-title {
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
+  font-size: 3rem;
+  text-align: center;
+  margin-bottom: 40px;
+  color: #2c2f11;
+}
+
+.section-title {
+  font-family: "Meholrax", serif;
+  font-size: 2rem;
+  margin-bottom: 30px;
+  color: #2c2f11;
+}
+
+.artists-exhibition {
+  max-width: 1200px;
+  margin: 0 auto 60px;
+}
+
+.artists-exhibition-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.artists-exhibition-item {
+  text-decoration: none;
+  text-align: center;
+}
+
+.artist-image {
+  width: 100%;
+  aspect-ratio: 1;
+  margin-bottom: 15px;
+  overflow: hidden;
+  border-radius: 50%;
+}
+
+.artist-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.artist-name {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  color: #2c2f11;
+  margin-bottom: 5px;
+}
+
+.artist-count {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.all-artists {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.search-artists {
+  margin-bottom: 20px;
+}
+
+.search-artists input {
+  width: 100%;
+  max-width: 400px;
+  padding: 12px 20px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  color: #000;
+  background: none;
+}
+
+.artists-count {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.artists-list {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0;
+}
+
+.artist-list-item {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  padding: 15px 0;
+  text-decoration: none;
+  border-top: 1px solid #ddd;
+}
+
+.artist-list-item:last-child {
+  border-bottom: 1px solid #ddd;
+}
+
+.artist-list-name {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  color: #2c2f11;
+}
+
+.artist-list-count {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+@media (max-width: 768px) {
+  .artists-exhibition-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .artists-title {
+    font-size: 2.5rem;
+  }
+
+  .section-title {
+    font-size: 1.8rem;
+  }
+
+  .artist-name {
+    font-size: 1rem;
+  }
+
+  .artist-count {
+    font-size: 0.8rem;
+  }
+}

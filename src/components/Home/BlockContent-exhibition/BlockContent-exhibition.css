@@ -1,4 +1,4 @@
-.block-content-exhibition {
+.block-content-exhibition-section {
   background-image: url("https://res.cloudinary.com/dn0br7hj0/image/upload/background/Background2.webp");
   background-repeat: repeat;
   background-position: top center;
@@ -8,7 +8,7 @@
   padding: 80px 20px;
 }
 
-.exhibition-container {
+.block-content-exhibition-container {
   max-width: 1200px;
   margin: 0 auto;
   display: flex;
@@ -17,20 +17,20 @@
   text-align: center;
 }
 
-.exhibition-image-wrapper {
+.block-content-exhibition-image-wrapper {
   width: 100%;
   max-width: 600px;
   margin-bottom: 40px;
 }
 
-.exhibition-image {
+.block-content-exhibition-image {
   width: 100%;
   height: auto;
   object-fit: cover;
   aspect-ratio: 3/4;
 }
 
-.exhibition-content {
+.block-content-exhibition-content {
   max-width: 800px;
   display: flex;
   flex-direction: column;
@@ -38,21 +38,21 @@
   gap: 20px;
 }
 
-.exhibition-title {
+.block-content-exhibition-title {
   font-family: "Meholrax", serif;
   font-size: 2.5rem;
   color: #000;
   margin: 0;
 }
 
-.exhibition-subtitle {
+.block-content-exhibition-subtitle {
   font-family: "Roboto", sans-serif;
   font-size: 1.2rem;
   color: #333;
   margin: 0;
 }
 
-.exhibition-description {
+.block-content-exhibition-description {
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
   line-height: 1.6;
@@ -61,7 +61,7 @@
   margin: 0;
 }
 
-.exhibition-button {
+.block-content-exhibition-button {
   font-family: "Roboto", sans-serif;
   font-size: 1rem;
   color: #fff;
@@ -73,52 +73,52 @@
   margin-top: 20px;
 }
 
-.exhibition-button:hover {
+.block-content-exhibition-button:hover {
   background-color: #3a3e17;
 }
 
 /* Responsive styles */
 @media (max-width: 768px) {
-  .block-content-exhibition {
+  .block-content-exhibition-section {
     padding: 60px 15px;
   }
 
-  .exhibition-image-wrapper {
+  .block-content-exhibition-image-wrapper {
     max-width: 400px;
   }
 
-  .exhibition-title {
+  .block-content-exhibition-title {
     font-size: 2rem;
   }
 
-  .exhibition-subtitle {
+  .block-content-exhibition-subtitle {
     font-size: 1.1rem;
   }
 
-  .exhibition-description {
+  .block-content-exhibition-description {
     font-size: 0.9rem;
     padding: 0 20px;
   }
 }
 
 @media (max-width: 480px) {
-  .block-content-exhibition {
+  .block-content-exhibition-section {
     padding: 40px 10px;
   }
 
-  .exhibition-image-wrapper {
+  .block-content-exhibition-image-wrapper {
     max-width: 300px;
   }
 
-  .exhibition-title {
+  .block-content-exhibition-title {
     font-size: 1.8rem;
   }
 
-  .exhibition-subtitle {
+  .block-content-exhibition-subtitle {
     font-size: 1rem;
   }
 
-  .exhibition-button {
+  .block-content-exhibition-button {
     padding: 12px 25px;
     font-size: 0.9rem;
   }

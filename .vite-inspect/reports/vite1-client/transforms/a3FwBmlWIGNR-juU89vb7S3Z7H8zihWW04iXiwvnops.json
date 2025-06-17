@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\nimport { Link } from \"react-router-dom\";\nimport \"./Categories.css\";\n\nconst categories = [\n  {\n    title: \"Xuất bản\",\n    image: \"https://i.ibb.co/Lh29M4PG/image.png\",\n    link: \"/category/xuat-ban\",\n  },\n  {\n    title: \"Hội thảo nghệ thuật\",\n    image: \"https://i.ibb.co/jvfVkvCH/image.png\",\n    link: \"/category/hoi-thao-nghe-thuat\",\n  },\n  {\n    title: \"In theo yêu cầu\",\n    image: \"https://i.ibb.co/R4c4kK0z/image.png\",\n    link: \"/category/in-theo-yeu-cau\",\n  },\n  {\n    title: \"Hình ảnh và văn phòng phẩm\",\n    image: \"https://i.ibb.co/cSkG7X1P/image.png\",\n    link: \"/category/hinh-anh-va-van-phong-pham\",\n  },\n  {\n    title: \"Thời trang và phụ kiện\",\n    image: \"https://i.ibb.co/rfq5jtZ9/image.png\",\n    link: \"/category/thoi-trang-va-phu-kien\",\n  },\n  {\n    title: \"Đồ trang sức\",\n    image: \"https://i.ibb.co/HDhWtrpF/image.png\",\n    link: \"/category/do-trang-suc\",\n  },\n  {\n    title: \"Đồ gia dụng\",\n    image: \"https://i.ibb.co/Dfm9DJLy/image.png\",\n    link: \"/category/do-gia-dung\",\n  },\n  {\n    title: \"Trẻ em\",\n    image: \"https://i.ibb.co/KpBVKTDy/image.png\",\n    link: \"/category/tre-em\",\n  },\n];\n\nconst Categories = () => {\n  return (\n    <section className=\"categories-section\">\n      <h2 className=\"categories-title\">DANH MỤC</h2>\n      <div className=\"categories-grid\">\n        {categories.map((category, index) => (\n          <Link to={category.link} key={index} className=\"category-card\">\n            <div className=\"category-image-container\">\n              <img\n                src={category.image}\n                alt={category.title}\n                className=\"category-image\"\n              />\n            </div>\n            <h3 className=\"category-title\">\n              <span className=\"title-text\">{category.title}</span>\n            </h3>\n          </Link>\n        ))}\n      </div>\n    </section>\n  );\n};\n\nexport default Categories;\n",
-      "start": 1749894711363,
-      "end": 1749894711796,
+      "start": 1750088801730,
+      "end": 1750088802551,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749894711796,
-      "end": 1749894711796,
+      "start": 1750088802551,
+      "end": 1750088802551,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { Link } from \"react-router-dom\";\nimport \"./Categories.css\";\nconst categories = [\n  {\n    title: \"Xuất bản\",\n    image: \"https://i.ibb.co/Lh29M4PG/image.png\",\n    link: \"/category/xuat-ban\"\n  },\n  {\n    title: \"Hội thảo nghệ thuật\",\n    image: \"https://i.ibb.co/jvfVkvCH/image.png\",\n    link: \"/category/hoi-thao-nghe-thuat\"\n  },\n  {\n    title: \"In theo yêu cầu\",\n    image: \"https://i.ibb.co/R4c4kK0z/image.png\",\n    link: \"/category/in-theo-yeu-cau\"\n  },\n  {\n    title: \"Hình ảnh và văn phòng phẩm\",\n    image: \"https://i.ibb.co/cSkG7X1P/image.png\",\n    link: \"/category/hinh-anh-va-van-phong-pham\"\n  },\n  {\n    title: \"Thời trang và phụ kiện\",\n    image: \"https://i.ibb.co/rfq5jtZ9/image.png\",\n    link: \"/category/thoi-trang-va-phu-kien\"\n  },\n  {\n    title: \"Đồ trang sức\",\n    image: \"https://i.ibb.co/HDhWtrpF/image.png\",\n    link: \"/category/do-trang-suc\"\n  },\n  {\n    title: \"Đồ gia dụng\",\n    image: \"https://i.ibb.co/Dfm9DJLy/image.png\",\n    link: \"/category/do-gia-dung\"\n  },\n  {\n    title: \"Trẻ em\",\n    image: \"https://i.ibb.co/KpBVKTDy/image.png\",\n    link: \"/category/tre-em\"\n  }\n];\nconst Categories = () => {\n  return /* @__PURE__ */ jsxs(\"section\", { className: \"categories-section\", children: [\n    /* @__PURE__ */ jsx(\"h2\", { className: \"categories-title\", children: \"DANH MỤC\" }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"categories-grid\", children: categories.map((category, index) => /* @__PURE__ */ jsxs(Link, { to: category.link, className: \"category-card\", children: [\n      /* @__PURE__ */ jsx(\"div\", { className: \"category-image-container\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: category.image,\n          alt: category.title,\n          className: \"category-image\"\n        }\n      ) }),\n      /* @__PURE__ */ jsx(\"h3\", { className: \"category-title\", children: /* @__PURE__ */ jsx(\"span\", { className: \"title-text\", children: category.title }) })\n    ] }, index)) })\n  ] });\n};\nexport default Categories;\n",
-      "start": 1749894711796,
-      "end": 1749894712133,
+      "start": 1750088802551,
+      "end": 1750088802602,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1749894712133,
-      "end": 1749894712133,
+      "start": 1750088802603,
+      "end": 1750088802603,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749894712133,
-      "end": 1749894712133,
+      "start": 1750088802603,
+      "end": 1750088802603,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749894712133,
-      "end": 1749894712133,
+      "start": 1750088802603,
+      "end": 1750088802603,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749894712136,
-      "end": 1749894712136,
+      "start": 1750088802603,
+      "end": 1750088802603,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749894712136,
-      "end": 1749894712136,
+      "start": 1750088802603,
+      "end": 1750088802603,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749894712136,
-      "end": 1749894712136,
+      "start": 1750088802603,
+      "end": 1750088802603,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749894712136,
-      "end": 1749894712136,
+      "start": 1750088802603,
+      "end": 1750088802603,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749894712136,
-      "end": 1749894712143,
+      "start": 1750088802603,
+      "end": 1750088802604,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749894712143,
-      "end": 1749894712143,
+      "start": 1750088802604,
+      "end": 1750088802604,
       "order": "normal"
     }
   ]

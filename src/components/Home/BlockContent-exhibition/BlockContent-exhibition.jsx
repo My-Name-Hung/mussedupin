@@ -11,29 +11,28 @@ const BlockContentExhibition = () => {
       "Là một di tích lịch sử và là kho báu không lỗ nơi hội tụ thẩm mỹ của thế giới, Louvre truyền cảm hứng cho nhiều thế giới sáng tạo. Đối với thế giới thời trang, vốn rất thích tìm đến nghệ thuật, bảo tàng đã mở cửa cho một cuộc triển lãm dưới hình thức đối thoại...",
   };
 
-  const scrollToCategories = () => {
-    const categoriesSection = document.querySelector(".categories-section");
-    if (categoriesSection) {
-      categoriesSection.scrollIntoView({ behavior: "smooth" });
-    }
-  };
-
   return (
-    <section className="block-content-exhibition">
-      <div className="exhibition-container">
-        <div className="exhibition-image-wrapper">
+    <section className="block-content-exhibition-section">
+      <div className="block-content-exhibition-container">
+        <div className="block-content-exhibition-image-wrapper">
           <img
             src={exhibitionData.image}
             alt={exhibitionData.title}
-            className="exhibition-image"
+            className="block-content-exhibition-image"
           />
         </div>
-        <div className="exhibition-content">
-          <h2 className="exhibition-title">{exhibitionData.title}</h2>
-          <div className="exhibition-subtitle">{exhibitionData.subtitle}</div>
-          <p className="exhibition-description">{exhibitionData.description}</p>
-          <button className="exhibition-button" onClick={scrollToCategories}>
-            Khám phá tất cả sản phẩm
+        <div className="block-content-exhibition-content">
+          <h2 className="block-content-exhibition-title">
+            {exhibitionData.title}
+          </h2>
+          <div className="block-content-exhibition-subtitle">
+            {exhibitionData.subtitle}
+          </div>
+          <p className="block-content-exhibition-description">
+            {exhibitionData.description}
+          </p>
+          <button className="block-content-exhibition-button">
+            <a href="/contents/exhibitions">Khám phá tất cả sản phẩm</a>
           </button>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import CryptoJS from "crypto-js";
 import React, { useEffect, useState } from "react";
 import { FaArrowLeft } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
@@ -95,8 +96,59 @@ const CheckoutPage = () => {
 
   const generateQRCode = async () => {
     const totalAmount = calculateTotal();
-    const qrUrl = `https://api.vietqr.io/image/970418-113366668888-1kOIAUr.jpg?accountName=NGUYEN%20THANH%20HUNG&amount=${totalAmount}`;
+    const qrUrl = `https://api.vietqr.io/image/970418-3144068052-1kOIAUr.jpg?accountName=NGUYEN%20THANH%20HUNG&amount=${totalAmount}`;
     setQrCode(qrUrl);
+  };
+
+  // Add VNPAY integration functions
+  const generateVNPayURL = async (amount) => {
+    const tmnCode = "2Y102M9Q";
+    const secretKey = "V78RAFZJ7WFQO8P8DDJQZ4TA1V44QK1S";
+    const returnUrl = "http://localhost:3000/vnpay-return";
+
+    const now = new Date();
+    const yy = now.getFullYear().toString();
+    const MM = String(now.getMonth() + 1).padStart(2, "0");
+    const dd = String(now.getDate()).padStart(2, "0");
+    const hh = String(now.getHours()).padStart(2, "0");
+    const mm = String(now.getMinutes()).padStart(2, "0");
+    const ss = String(now.getSeconds()).padStart(2, "0");
+    const createDate = `${yy}${MM}${dd}${hh}${mm}${ss}`;
+
+    const orderId = String(Math.floor(Math.random() * 1000000));
+
+    const rawParams = {
+      vnp_Amount: String(Math.round(amount * 100)),
+      vnp_Command: "pay",
+      vnp_CreateDate: createDate,
+      vnp_CurrCode: "VND",
+      vnp_IpAddr: window.location.hostname, // sử dụng hostname thực
+      vnp_Locale: "vn",
+      vnp_OrderInfo: `Thanh toan don hang ${orderId}`,
+      vnp_OrderType: "billpayment",
+      vnp_ReturnUrl: returnUrl,
+      vnp_TmnCode: tmnCode,
+      vnp_TxnRef: orderId,
+      vnp_Version: "2.1.0",
+    };
+
+    const sortedParams = {};
+    Object.keys(rawParams)
+      .sort()
+      .forEach((key) => {
+        const v = rawParams[key];
+        sortedParams[key] = encodeURIComponent(v).replace(/%20/g, "+");
+      });
+
+    const signData = Object.entries(sortedParams)
+      .map(([k, v]) => `${k}=${v}`)
+      .join("&");
+
+    const hmac = CryptoJS.HmacSHA512(signData, secretKey);
+    const secureHash = hmac.toString(CryptoJS.enc.Hex).toUpperCase();
+
+    const queryString = signData; // đã encode & sort
+    return `https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?${queryString}&vnp_SecureHash=${secureHash}`;
   };
 
   const handleNextStep = async () => {
@@ -106,9 +158,25 @@ const CheckoutPage = () => {
         return;
       }
       setIsLoading(true);
+
+      if (paymentMethod === "vnpay") {
+        try {
+          const totalAmount = calculateTotal();
+          const vnpayUrl = await generateVNPayURL(totalAmount);
+          window.location.href = vnpayUrl;
+          return;
+        } catch (error) {
+          console.error("Error generating VNPAY URL:", error);
+          alert("Có lỗi xảy ra khi tạo URL thanh toán VNPAY");
+          setIsLoading(false);
+          return;
+        }
+      }
+
       if (paymentMethod === "bank") {
         await generateQRCode();
       }
+
       setCurrentStep(2);
       setIsLoading(false);
     } else if (currentStep === 2) {
@@ -273,6 +341,19 @@ const CheckoutPage = () => {
                 <h2>Phương thức thanh toán</h2>
                 <div
                   className={`payment-option ${
+                    paymentMethod === "vnpay" ? "selected" : ""
+                  }`}
+                  onClick={() => handlePaymentMethodSelect("vnpay")}
+                >
+                  <input
+                    type="radio"
+                    checked={paymentMethod === "vnpay"}
+                    onChange={() => {}}
+                  />
+                  <span>Thanh toán qua VNPAY</span>
+                </div>
+                <div
+                  className={`payment-option ${
                     paymentMethod === "bank" ? "selected" : ""
                   }`}
                   onClick={() => handlePaymentMethodSelect("bank")}
@@ -335,6 +416,8 @@ const CheckoutPage = () => {
                     <strong>Phương thức thanh toán:</strong>
                     {paymentMethod === "bank"
                       ? "Chuyển khoản ngân hàng"
+                      : paymentMethod === "vnpay"
+                      ? "Thanh toán qua VNPAY"
                       : "Tiền mặt"}
                   </p>
 
@@ -378,6 +461,8 @@ const CheckoutPage = () => {
               "Bước tiếp theo"
             ) : paymentMethod === "bank" ? (
               "Đã thanh toán"
+            ) : paymentMethod === "vnpay" ? (
+              "Đã thanh toán qua VNPAY"
             ) : (
               "Hoàn tất"
             )}

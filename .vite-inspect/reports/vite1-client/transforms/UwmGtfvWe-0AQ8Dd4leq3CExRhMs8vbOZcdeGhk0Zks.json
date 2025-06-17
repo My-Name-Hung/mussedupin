@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": ".product-details {\n  background-image: url(\"https://res.cloudinary.com/dn0br7hj0/image/upload/background/Background2.webp\");\n  background-repeat: repeat;\n  background-position: top center;\n  background-size: 300px;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: crisp-edges;\n  min-height: 100vh;\n  padding: 40px 20px;\n  position: relative;\n}\n\n.back-button-product {\n  position: absolute;\n  top: 40px;\n  left: 40px;\n  display: flex;\n  align-items: center;\n  gap: 8px;\n  padding: 12px 20px;\n  background-color: #2c2f11;\n  border-radius: 30px;\n  text-decoration: none;\n  color: yellowgreen;\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1rem;\n  font-weight: 500;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);\n  transition: all 0.3s ease;\n  z-index: 100;\n}\n\n.back-button-product:hover {\n  transform: translateY(-2px);\n  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);\n}\n\n.product-main {\n  max-width: 1200px;\n  margin: 80px auto 0;\n  display: grid;\n  grid-template-columns: 1fr 1fr;\n  gap: 60px;\n  padding: 40px;\n}\n\n.product-image {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  padding: 20px;\n}\n\n.product-image img {\n  max-width: 100%;\n  height: auto;\n  object-fit: contain;\n}\n\n.product-info {\n  display: flex;\n  flex-direction: column;\n  gap: 20px;\n}\n\n.product-title {\n  font-family: \"Meholrax\", sans-serif;\n  font-size: 2.5rem;\n  color: #2c2f11;\n  margin: 0;\n  line-height: 1.2;\n}\n\n.product-price {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.8rem;\n  color: #2c2f11;\n  font-weight: 500;\n  margin: 0;\n}\n\n.add-to-cart {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  gap: 10px;\n  background-color: #2c2f11;\n  color: white;\n  border: none;\n  padding: 15px 30px;\n  border-radius: 30px;\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.1rem;\n  font-weight: 500;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  margin-top: 20px;\n}\n\n.add-to-cart:hover {\n  transform: translateY(-2px);\n  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);\n}\n\n.product-specs {\n  margin-top: 30px;\n  border-top: 1px solid rgba(0, 0, 0, 0.4);\n  border-bottom: 1px solid rgba(0, 0, 0, 0.4);\n  padding-top: 20px;\n  padding-bottom: 20px;\n}\n\n.specs-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  cursor: pointer;\n  padding: 10px 0;\n}\n\n.specs-header h2 {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.2rem;\n  color: #2c2f11;\n  margin: 0;\n}\n\n.specs-header svg {\n  font-size: 24px;\n  color: #2c2f11;\n  transition: transform 0.3s ease;\n}\n\n.specs-header.open svg {\n  transform: rotate(180deg);\n}\n\n.specs-content {\n  padding: 20px 0;\n  animation: fadeIn 0.3s ease-out;\n}\n\n.specs-content p {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1rem;\n  color: #666;\n  margin: 10px 0;\n}\n\n.product-notes {\n  margin-top: 30px;\n  display: flex;\n  flex-direction: column;\n  gap: 15px;\n}\n\n.note-item {\n  display: flex;\n  align-items: flex-start;\n  gap: 10px;\n}\n\n.checkmark {\n  color: #2c2f11;\n  font-weight: bold;\n}\n\n.note-item p {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 0.9rem;\n  color: #666;\n  margin: 0;\n}\n\n.related-products {\n  max-width: 1200px;\n  margin: 60px auto;\n  padding: 40px;\n}\n\n.related-products h2 {\n  font-family: \"Meholrax\", sans-serif;\n  font-size: 2rem;\n  color: #2c2f11;\n  margin-bottom: 40px;\n  text-align: center;\n}\n\n.related-product-card {\n  text-decoration: none;\n  display: block;\n  padding: 15px;\n  transition: transform 0.3s ease;\n  text-align: center;\n}\n\n.related-product-card:hover {\n  transform: translateY(-5px);\n}\n\n.related-product-image {\n  width: 100%;\n  padding-top: 100%;\n  position: relative;\n  margin-bottom: 15px;\n}\n\n.related-product-image img {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  border-radius: 8px;\n}\n\n.related-product-card h3 {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1rem;\n  color: #333;\n  margin: 0 0 10px;\n  padding-top: 20px;\n  text-align: center;\n}\n\n.related-product-card .price {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.1rem;\n  color: #2c2f11;\n  font-weight: 500;\n  padding-bottom: 20px;\n  margin: 0;\n  text-align: center;\n}\n\n/* Swiper customization */\n.swiper-button-next,\n.swiper-button-prev {\n  color: #2c2f11;\n  display: none;\n}\n\n.swiper-pagination-bullet {\n  background: #2c2f11;\n}\n\n.swiper-pagination-bullet-active {\n  background: #2c2f11;\n}\n\n@keyframes fadeIn {\n  from {\n    opacity: 0;\n    transform: translateY(-10px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n/* Responsive styles */\n@media (max-width: 1024px) {\n  .product-main {\n    grid-template-columns: 1fr;\n    gap: 40px;\n  }\n\n  .product-image {\n    max-width: 600px;\n    margin: 0 auto;\n  }\n}\n\n@media (max-width: 768px) {\n  .product-details {\n    padding: 20px;\n  }\n\n  .back-button-product {\n    top: 20px;\n    left: 20px;\n    padding: 8px 16px;\n    font-size: 0.9rem;\n  }\n\n  .product-main {\n    margin-top: 60px;\n    padding: 20px;\n  }\n\n  .product-title {\n    font-size: 2rem;\n  }\n\n  .product-price {\n    font-size: 1.5rem;\n  }\n\n  .related-products {\n    padding: 20px;\n    margin: 40px auto;\n  }\n\n  .related-products h2 {\n    font-size: 1.8rem;\n    margin-bottom: 30px;\n  }\n}\n\n@media (max-width: 480px) {\n  .product-title {\n    font-size: 1.8rem;\n  }\n\n  .add-to-cart {\n    padding: 12px 24px;\n    font-size: 1rem;\n  }\n\n  .specs-header h2 {\n    font-size: 1.1rem;\n  }\n\n  .related-products h2 {\n    font-size: 1.5rem;\n  }\n}\n",
-      "start": 1749894711005,
-      "end": 1749894711564,
+      "start": 1750088801834,
+      "end": 1750088802672,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749894711564,
-      "end": 1749894711564,
+      "start": 1750088802673,
+      "end": 1750088802673,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1749894711567,
-      "end": 1749894711567,
+      "start": 1750088802687,
+      "end": 1750088802687,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1749894711567,
-      "end": 1749894711567,
+      "start": 1750088802687,
+      "end": 1750088802687,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749894711567,
-      "end": 1749894711567,
+      "start": 1750088802687,
+      "end": 1750088802687,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749894711567,
-      "end": 1749894711567,
+      "start": 1750088802687,
+      "end": 1750088802687,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749894711567,
-      "end": 1749894711567,
+      "start": 1750088802687,
+      "end": 1750088802687,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749894711567,
-      "end": 1749894711567,
+      "start": 1750088802687,
+      "end": 1750088802687,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749894711567,
-      "end": 1749894711567,
+      "start": 1750088802687,
+      "end": 1750088802687,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749894711567,
-      "end": 1749894711567,
+      "start": 1750088802687,
+      "end": 1750088802687,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749894711567,
-      "end": 1749894711567,
+      "start": 1750088802687,
+      "end": 1750088802687,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749894711567,
-      "end": 1749894711567,
+      "start": 1750088802687,
+      "end": 1750088802687,
       "order": "normal"
     }
   ]

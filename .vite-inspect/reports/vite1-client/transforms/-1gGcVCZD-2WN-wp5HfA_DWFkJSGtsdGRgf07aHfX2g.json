@@ -1,0 +1,90 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/ONLINE/src/pages/Collaborate/Collaborate.jsx",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import React from \"react\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../CategoryDetail/CategoryDetail\";\nimport \"./Collaborate.css\";\n\nconst Collaborate = () => {\n  // Group products by brand\n  const brandProducts = {\n    \"Harry Nuriev\": sampleProducts.filter((p) => [1, 2, 3].includes(p.id)),\n    \"Philippe Apeloig\": sampleProducts.filter((p) => [4, 5, 6].includes(p.id)),\n    Barbapapa: sampleProducts.filter((p) => [7, 8].includes(p.id)),\n    \"Jean-Michel Othoniel\": sampleProducts.filter((p) => p.id === 9),\n  };\n\n  return (\n    <div className=\"collaborate-page\">\n      <h1 className=\"collaborate-page-title\">Nhãn hàng hợp tác</h1>\n      <section className=\"card-image-collaborate\">\n        <div className=\"card-grid-collaborate\">\n          {Object.entries(brandProducts).map(([brand, products]) => (\n            <div key={brand} className=\"card-item-collaborate\">\n              <Link to={`/collaborate/${encodeURIComponent(brand)}`}>\n                <img\n                  src={products[0]?.image}\n                  alt={brand}\n                  className=\"card-image\"\n                />\n                <div className=\"card-content-collaborate\">\n                  <h3 className=\"card-title\">{brand}</h3>\n                  <p className=\"card-product-count\">\n                    {products.length} sản phẩm\n                  </p>\n                </div>\n              </Link>\n            </div>\n          ))}\n        </div>\n      </section>\n    </div>\n  );\n};\n\nexport default Collaborate;\n",
+      "start": 1750088799092,
+      "end": 1750088799111,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750088799111,
+      "end": 1750088799111,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../CategoryDetail/CategoryDetail\";\nimport \"./Collaborate.css\";\nconst Collaborate = () => {\n  const brandProducts = {\n    \"Harry Nuriev\": sampleProducts.filter((p) => [1, 2, 3].includes(p.id)),\n    \"Philippe Apeloig\": sampleProducts.filter((p) => [4, 5, 6].includes(p.id)),\n    Barbapapa: sampleProducts.filter((p) => [7, 8].includes(p.id)),\n    \"Jean-Michel Othoniel\": sampleProducts.filter((p) => p.id === 9)\n  };\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"collaborate-page\", children: [\n    /* @__PURE__ */ jsx(\"h1\", { className: \"collaborate-page-title\", children: \"Nhãn hàng hợp tác\" }),\n    /* @__PURE__ */ jsx(\"section\", { className: \"card-image-collaborate\", children: /* @__PURE__ */ jsx(\"div\", { className: \"card-grid-collaborate\", children: Object.entries(brandProducts).map(([brand, products]) => /* @__PURE__ */ jsx(\"div\", { className: \"card-item-collaborate\", children: /* @__PURE__ */ jsxs(Link, { to: `/collaborate/${encodeURIComponent(brand)}`, children: [\n      /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: products[0]?.image,\n          alt: brand,\n          className: \"card-image\"\n        }\n      ),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"card-content-collaborate\", children: [\n        /* @__PURE__ */ jsx(\"h3\", { className: \"card-title\", children: brand }),\n        /* @__PURE__ */ jsxs(\"p\", { className: \"card-product-count\", children: [\n          products.length,\n          \" sản phẩm\"\n        ] })\n      ] })\n    ] }) }, brand)) }) })\n  ] });\n};\nexport default Collaborate;\n",
+      "start": 1750088799111,
+      "end": 1750088800374,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/ONLINE/src/pages/Collaborate/Collaborate.jsx"
+        ],
+        "sourcesContent": [
+          "import React from \"react\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../CategoryDetail/CategoryDetail\";\nimport \"./Collaborate.css\";\n\nconst Collaborate = () => {\n  // Group products by brand\n  const brandProducts = {\n    \"Harry Nuriev\": sampleProducts.filter((p) => [1, 2, 3].includes(p.id)),\n    \"Philippe Apeloig\": sampleProducts.filter((p) => [4, 5, 6].includes(p.id)),\n    Barbapapa: sampleProducts.filter((p) => [7, 8].includes(p.id)),\n    \"Jean-Michel Othoniel\": sampleProducts.filter((p) => p.id === 9),\n  };\n\n  return (\n    <div className=\"collaborate-page\">\n      <h1 className=\"collaborate-page-title\">Nhãn hàng hợp tác</h1>\n      <section className=\"card-image-collaborate\">\n        <div className=\"card-grid-collaborate\">\n          {Object.entries(brandProducts).map(([brand, products]) => (\n            <div key={brand} className=\"card-item-collaborate\">\n              <Link to={`/collaborate/${encodeURIComponent(brand)}`}>\n                <img\n                  src={products[0]?.image}\n                  alt={brand}\n                  className=\"card-image\"\n                />\n                <div className=\"card-content-collaborate\">\n                  <h3 className=\"card-title\">{brand}</h3>\n                  <p className=\"card-product-count\">\n                    {products.length} sản phẩm\n                  </p>\n                </div>\n              </Link>\n            </div>\n          ))}\n        </div>\n      </section>\n    </div>\n  );\n};\n\nexport default Collaborate;\n"
+        ],
+        "mappings": "AAgBM,cAaY,YAbZ;AAhBN,OAAO,WAAW;AAClB,SAAS,YAAY;AACrB,SAAS,sBAAsB;AAC/B,OAAO;AAEP,MAAM,cAAc,MAAM;AAExB,QAAM,gBAAgB;AAAA,IACpB,gBAAgB,eAAe,OAAO,CAAC,MAAM,CAAC,GAAG,GAAG,CAAC,EAAE,SAAS,EAAE,EAAE,CAAC;AAAA,IACrE,oBAAoB,eAAe,OAAO,CAAC,MAAM,CAAC,GAAG,GAAG,CAAC,EAAE,SAAS,EAAE,EAAE,CAAC;AAAA,IACzE,WAAW,eAAe,OAAO,CAAC,MAAM,CAAC,GAAG,CAAC,EAAE,SAAS,EAAE,EAAE,CAAC;AAAA,IAC7D,wBAAwB,eAAe,OAAO,CAAC,MAAM,EAAE,OAAO,CAAC;AAAA,EACjE;AAEA,SACE,qBAAC,SAAI,WAAU,oBACb;AAAA,wBAAC,QAAG,WAAU,0BAAyB,+BAAiB;AAAA,IACxD,oBAAC,aAAQ,WAAU,0BACjB,8BAAC,SAAI,WAAU,yBACZ,iBAAO,QAAQ,aAAa,EAAE,IAAI,CAAC,CAAC,OAAO,QAAQ,MAClD,oBAAC,SAAgB,WAAU,yBACzB,+BAAC,QAAK,IAAI,gBAAgB,mBAAmB,KAAK,CAAC,IACjD;AAAA;AAAA,QAAC;AAAA;AAAA,UACC,KAAK,SAAS,CAAC,GAAG;AAAA,UAClB,KAAK;AAAA,UACL,WAAU;AAAA;AAAA,MACZ;AAAA,MACA,qBAAC,SAAI,WAAU,4BACb;AAAA,4BAAC,QAAG,WAAU,cAAc,iBAAM;AAAA,QAClC,qBAAC,OAAE,WAAU,sBACV;AAAA,mBAAS;AAAA,UAAO;AAAA,WACnB;AAAA,SACF;AAAA,OACF,KAbQ,KAcV,CACD,GACH,GACF;AAAA,KACF;AAEJ;AAEA,eAAe;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750088800374,
+      "end": 1750088800374,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750088800374,
+      "end": 1750088800374,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750088800374,
+      "end": 1750088800374,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750088800374,
+      "end": 1750088800374,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750088800374,
+      "end": 1750088800374,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750088800374,
+      "end": 1750088800374,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750088800374,
+      "end": 1750088800374,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750088800374,
+      "end": 1750088800387,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750088800387,
+      "end": 1750088800387,
+      "order": "normal"
+    }
+  ]
+}

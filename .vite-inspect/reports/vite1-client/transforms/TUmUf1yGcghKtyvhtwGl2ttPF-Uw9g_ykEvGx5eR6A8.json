@@ -3,22 +3,22 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "import React from \"react\";\nimport \"./BlockContent-exhibition.css\";\n\nconst BlockContentExhibition = () => {\n  const exhibitionData = {\n    image:\n      \"https://boutique.louvre.fr/files/contents/400725/697667-6ad49766-side/louvre-couture.jpg\",\n    title: \"Thời trang Louvre\",\n    subtitle: \"24 tháng 1 năm 2025 - 21 tháng 7 năm 2025\",\n    description:\n      \"Là một di tích lịch sử và là kho báu không lỗ nơi hội tụ thẩm mỹ của thế giới, Louvre truyền cảm hứng cho nhiều thế giới sáng tạo. Đối với thế giới thời trang, vốn rất thích tìm đến nghệ thuật, bảo tàng đã mở cửa cho một cuộc triển lãm dưới hình thức đối thoại...\",\n  };\n\n  const scrollToCategories = () => {\n    const categoriesSection = document.querySelector(\".categories-section\");\n    if (categoriesSection) {\n      categoriesSection.scrollIntoView({ behavior: \"smooth\" });\n    }\n  };\n\n  return (\n    <section className=\"block-content-exhibition\">\n      <div className=\"exhibition-container\">\n        <div className=\"exhibition-image-wrapper\">\n          <img\n            src={exhibitionData.image}\n            alt={exhibitionData.title}\n            className=\"exhibition-image\"\n          />\n        </div>\n        <div className=\"exhibition-content\">\n          <h2 className=\"exhibition-title\">{exhibitionData.title}</h2>\n          <div className=\"exhibition-subtitle\">{exhibitionData.subtitle}</div>\n          <p className=\"exhibition-description\">{exhibitionData.description}</p>\n          <button className=\"exhibition-button\" onClick={scrollToCategories}>\n            Khám phá tất cả sản phẩm\n          </button>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default BlockContentExhibition;\n",
-      "start": 1749894711361,
-      "end": 1749894711763,
+      "result": "import React from \"react\";\nimport \"./BlockContent-exhibition.css\";\n\nconst BlockContentExhibition = () => {\n  const exhibitionData = {\n    image:\n      \"https://boutique.louvre.fr/files/contents/400725/697667-6ad49766-side/louvre-couture.jpg\",\n    title: \"Thời trang Louvre\",\n    subtitle: \"24 tháng 1 năm 2025 - 21 tháng 7 năm 2025\",\n    description:\n      \"Là một di tích lịch sử và là kho báu không lỗ nơi hội tụ thẩm mỹ của thế giới, Louvre truyền cảm hứng cho nhiều thế giới sáng tạo. Đối với thế giới thời trang, vốn rất thích tìm đến nghệ thuật, bảo tàng đã mở cửa cho một cuộc triển lãm dưới hình thức đối thoại...\",\n  };\n\n  return (\n    <section className=\"block-content-exhibition-section\">\n      <div className=\"block-content-exhibition-container\">\n        <div className=\"block-content-exhibition-image-wrapper\">\n          <img\n            src={exhibitionData.image}\n            alt={exhibitionData.title}\n            className=\"block-content-exhibition-image\"\n          />\n        </div>\n        <div className=\"block-content-exhibition-content\">\n          <h2 className=\"block-content-exhibition-title\">\n            {exhibitionData.title}\n          </h2>\n          <div className=\"block-content-exhibition-subtitle\">\n            {exhibitionData.subtitle}\n          </div>\n          <p className=\"block-content-exhibition-description\">\n            {exhibitionData.description}\n          </p>\n          <button className=\"block-content-exhibition-button\">\n            <a href=\"/contents/exhibitions\">Khám phá tất cả sản phẩm</a>\n          </button>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default BlockContentExhibition;\n",
+      "start": 1750088801563,
+      "end": 1750088801904,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749894711763,
-      "end": 1749894711763,
+      "start": 1750088801904,
+      "end": 1750088801904,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport \"./BlockContent-exhibition.css\";\nconst BlockContentExhibition = () => {\n  const exhibitionData = {\n    image: \"https://boutique.louvre.fr/files/contents/400725/697667-6ad49766-side/louvre-couture.jpg\",\n    title: \"Thời trang Louvre\",\n    subtitle: \"24 tháng 1 năm 2025 - 21 tháng 7 năm 2025\",\n    description: \"Là một di tích lịch sử và là kho báu không lỗ nơi hội tụ thẩm mỹ của thế giới, Louvre truyền cảm hứng cho nhiều thế giới sáng tạo. Đối với thế giới thời trang, vốn rất thích tìm đến nghệ thuật, bảo tàng đã mở cửa cho một cuộc triển lãm dưới hình thức đối thoại...\"\n  };\n  const scrollToCategories = () => {\n    const categoriesSection = document.querySelector(\".categories-section\");\n    if (categoriesSection) {\n      categoriesSection.scrollIntoView({ behavior: \"smooth\" });\n    }\n  };\n  return /* @__PURE__ */ jsx(\"section\", { className: \"block-content-exhibition\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"exhibition-container\", children: [\n    /* @__PURE__ */ jsx(\"div\", { className: \"exhibition-image-wrapper\", children: /* @__PURE__ */ jsx(\n      \"img\",\n      {\n        src: exhibitionData.image,\n        alt: exhibitionData.title,\n        className: \"exhibition-image\"\n      }\n    ) }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"exhibition-content\", children: [\n      /* @__PURE__ */ jsx(\"h2\", { className: \"exhibition-title\", children: exhibitionData.title }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"exhibition-subtitle\", children: exhibitionData.subtitle }),\n      /* @__PURE__ */ jsx(\"p\", { className: \"exhibition-description\", children: exhibitionData.description }),\n      /* @__PURE__ */ jsx(\"button\", { className: \"exhibition-button\", onClick: scrollToCategories, children: \"Khám phá tất cả sản phẩm\" })\n    ] })\n  ] }) });\n};\nexport default BlockContentExhibition;\n",
-      "start": 1749894711763,
-      "end": 1749894712133,
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport \"./BlockContent-exhibition.css\";\nconst BlockContentExhibition = () => {\n  const exhibitionData = {\n    image: \"https://boutique.louvre.fr/files/contents/400725/697667-6ad49766-side/louvre-couture.jpg\",\n    title: \"Thời trang Louvre\",\n    subtitle: \"24 tháng 1 năm 2025 - 21 tháng 7 năm 2025\",\n    description: \"Là một di tích lịch sử và là kho báu không lỗ nơi hội tụ thẩm mỹ của thế giới, Louvre truyền cảm hứng cho nhiều thế giới sáng tạo. Đối với thế giới thời trang, vốn rất thích tìm đến nghệ thuật, bảo tàng đã mở cửa cho một cuộc triển lãm dưới hình thức đối thoại...\"\n  };\n  return /* @__PURE__ */ jsx(\"section\", { className: \"block-content-exhibition-section\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"block-content-exhibition-container\", children: [\n    /* @__PURE__ */ jsx(\"div\", { className: \"block-content-exhibition-image-wrapper\", children: /* @__PURE__ */ jsx(\n      \"img\",\n      {\n        src: exhibitionData.image,\n        alt: exhibitionData.title,\n        className: \"block-content-exhibition-image\"\n      }\n    ) }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"block-content-exhibition-content\", children: [\n      /* @__PURE__ */ jsx(\"h2\", { className: \"block-content-exhibition-title\", children: exhibitionData.title }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"block-content-exhibition-subtitle\", children: exhibitionData.subtitle }),\n      /* @__PURE__ */ jsx(\"p\", { className: \"block-content-exhibition-description\", children: exhibitionData.description }),\n      /* @__PURE__ */ jsx(\"button\", { className: \"block-content-exhibition-button\", children: /* @__PURE__ */ jsx(\"a\", { href: \"/contents/exhibitions\", children: \"Khám phá tất cả sản phẩm\" }) })\n    ] })\n  ] }) });\n};\nexport default BlockContentExhibition;\n",
+      "start": 1750088801904,
+      "end": 1750088802297,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -26,64 +26,64 @@
           "C:/Users/.Freelancer/ONLINE/src/components/Home/BlockContent-exhibition/BlockContent-exhibition.jsx"
         ],
         "sourcesContent": [
-          "import React from \"react\";\nimport \"./BlockContent-exhibition.css\";\n\nconst BlockContentExhibition = () => {\n  const exhibitionData = {\n    image:\n      \"https://boutique.louvre.fr/files/contents/400725/697667-6ad49766-side/louvre-couture.jpg\",\n    title: \"Thời trang Louvre\",\n    subtitle: \"24 tháng 1 năm 2025 - 21 tháng 7 năm 2025\",\n    description:\n      \"Là một di tích lịch sử và là kho báu không lỗ nơi hội tụ thẩm mỹ của thế giới, Louvre truyền cảm hứng cho nhiều thế giới sáng tạo. Đối với thế giới thời trang, vốn rất thích tìm đến nghệ thuật, bảo tàng đã mở cửa cho một cuộc triển lãm dưới hình thức đối thoại...\",\n  };\n\n  const scrollToCategories = () => {\n    const categoriesSection = document.querySelector(\".categories-section\");\n    if (categoriesSection) {\n      categoriesSection.scrollIntoView({ behavior: \"smooth\" });\n    }\n  };\n\n  return (\n    <section className=\"block-content-exhibition\">\n      <div className=\"exhibition-container\">\n        <div className=\"exhibition-image-wrapper\">\n          <img\n            src={exhibitionData.image}\n            alt={exhibitionData.title}\n            className=\"exhibition-image\"\n          />\n        </div>\n        <div className=\"exhibition-content\">\n          <h2 className=\"exhibition-title\">{exhibitionData.title}</h2>\n          <div className=\"exhibition-subtitle\">{exhibitionData.subtitle}</div>\n          <p className=\"exhibition-description\">{exhibitionData.description}</p>\n          <button className=\"exhibition-button\" onClick={scrollToCategories}>\n            Khám phá tất cả sản phẩm\n          </button>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default BlockContentExhibition;\n"
+          "import React from \"react\";\nimport \"./BlockContent-exhibition.css\";\n\nconst BlockContentExhibition = () => {\n  const exhibitionData = {\n    image:\n      \"https://boutique.louvre.fr/files/contents/400725/697667-6ad49766-side/louvre-couture.jpg\",\n    title: \"Thời trang Louvre\",\n    subtitle: \"24 tháng 1 năm 2025 - 21 tháng 7 năm 2025\",\n    description:\n      \"Là một di tích lịch sử và là kho báu không lỗ nơi hội tụ thẩm mỹ của thế giới, Louvre truyền cảm hứng cho nhiều thế giới sáng tạo. Đối với thế giới thời trang, vốn rất thích tìm đến nghệ thuật, bảo tàng đã mở cửa cho một cuộc triển lãm dưới hình thức đối thoại...\",\n  };\n\n  return (\n    <section className=\"block-content-exhibition-section\">\n      <div className=\"block-content-exhibition-container\">\n        <div className=\"block-content-exhibition-image-wrapper\">\n          <img\n            src={exhibitionData.image}\n            alt={exhibitionData.title}\n            className=\"block-content-exhibition-image\"\n          />\n        </div>\n        <div className=\"block-content-exhibition-content\">\n          <h2 className=\"block-content-exhibition-title\">\n            {exhibitionData.title}\n          </h2>\n          <div className=\"block-content-exhibition-subtitle\">\n            {exhibitionData.subtitle}\n          </div>\n          <p className=\"block-content-exhibition-description\">\n            {exhibitionData.description}\n          </p>\n          <button className=\"block-content-exhibition-button\">\n            <a href=\"/contents/exhibitions\">Khám phá tất cả sản phẩm</a>\n          </button>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default BlockContentExhibition;\n"
         ],
-        "mappings": "AAwBU,cAMF,YANE;AAxBV,OAAO,WAAW;AAClB,OAAO;AAEP,MAAM,yBAAyB,MAAM;AACnC,QAAM,iBAAiB;AAAA,IACrB,OACE;AAAA,IACF,OAAO;AAAA,IACP,UAAU;AAAA,IACV,aACE;AAAA,EACJ;AAEA,QAAM,qBAAqB,MAAM;AAC/B,UAAM,oBAAoB,SAAS,cAAc,qBAAqB;AACtE,QAAI,mBAAmB;AACrB,wBAAkB,eAAe,EAAE,UAAU,SAAS,CAAC;AAAA,IACzD;AAAA,EACF;AAEA,SACE,oBAAC,aAAQ,WAAU,4BACjB,+BAAC,SAAI,WAAU,wBACb;AAAA,wBAAC,SAAI,WAAU,4BACb;AAAA,MAAC;AAAA;AAAA,QACC,KAAK,eAAe;AAAA,QACpB,KAAK,eAAe;AAAA,QACpB,WAAU;AAAA;AAAA,IACZ,GACF;AAAA,IACA,qBAAC,SAAI,WAAU,sBACb;AAAA,0BAAC,QAAG,WAAU,oBAAoB,yBAAe,OAAM;AAAA,MACvD,oBAAC,SAAI,WAAU,uBAAuB,yBAAe,UAAS;AAAA,MAC9D,oBAAC,OAAE,WAAU,0BAA0B,yBAAe,aAAY;AAAA,MAClE,oBAAC,YAAO,WAAU,qBAAoB,SAAS,oBAAoB,sCAEnE;AAAA,OACF;AAAA,KACF,GACF;AAEJ;AAEA,eAAe;",
+        "mappings": "AAiBU,cAMF,YANE;AAjBV,OAAO,WAAW;AAClB,OAAO;AAEP,MAAM,yBAAyB,MAAM;AACnC,QAAM,iBAAiB;AAAA,IACrB,OACE;AAAA,IACF,OAAO;AAAA,IACP,UAAU;AAAA,IACV,aACE;AAAA,EACJ;AAEA,SACE,oBAAC,aAAQ,WAAU,oCACjB,+BAAC,SAAI,WAAU,sCACb;AAAA,wBAAC,SAAI,WAAU,0CACb;AAAA,MAAC;AAAA;AAAA,QACC,KAAK,eAAe;AAAA,QACpB,KAAK,eAAe;AAAA,QACpB,WAAU;AAAA;AAAA,IACZ,GACF;AAAA,IACA,qBAAC,SAAI,WAAU,oCACb;AAAA,0BAAC,QAAG,WAAU,kCACX,yBAAe,OAClB;AAAA,MACA,oBAAC,SAAI,WAAU,qCACZ,yBAAe,UAClB;AAAA,MACA,oBAAC,OAAE,WAAU,wCACV,yBAAe,aAClB;AAAA,MACA,oBAAC,YAAO,WAAU,mCAChB,8BAAC,OAAE,MAAK,yBAAwB,sCAAwB,GAC1D;AAAA,OACF;AAAA,KACF,GACF;AAEJ;AAEA,eAAe;",
         "names": []
       }
     },
     {
       "name": "vite:worker",
-      "start": 1749894712133,
-      "end": 1749894712133,
+      "start": 1750088802297,
+      "end": 1750088802297,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749894712133,
-      "end": 1749894712133,
+      "start": 1750088802297,
+      "end": 1750088802297,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749894712133,
-      "end": 1749894712133,
+      "start": 1750088802297,
+      "end": 1750088802297,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749894712136,
-      "end": 1749894712136,
+      "start": 1750088802297,
+      "end": 1750088802298,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749894712136,
-      "end": 1749894712136,
+      "start": 1750088802298,
+      "end": 1750088802298,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749894712136,
-      "end": 1749894712136,
+      "start": 1750088802298,
+      "end": 1750088802298,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749894712136,
-      "end": 1749894712136,
+      "start": 1750088802298,
+      "end": 1750088802298,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749894712136,
-      "end": 1749894712143,
+      "start": 1750088802298,
+      "end": 1750088802300,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749894712143,
-      "end": 1749894712143,
+      "start": 1750088802300,
+      "end": 1750088802300,
       "order": "normal"
     }
   ]

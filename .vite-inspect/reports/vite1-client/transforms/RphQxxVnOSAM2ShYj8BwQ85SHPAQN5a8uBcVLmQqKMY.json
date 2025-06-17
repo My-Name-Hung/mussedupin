@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useState } from \"react\";\nimport { FaEye, FaEyeSlash, FaTimes } from \"react-icons/fa\";\nimport \"./ForgotPasswordModal.css\";\n\nconst ForgotPasswordModal = ({ isOpen, onClose }) => {\n  const [email, setEmail] = useState(\"\");\n  const [resetCode, setResetCode] = useState(\"\");\n  const [newPassword, setNewPassword] = useState(\"\");\n  const [showPassword, setShowPassword] = useState(false);\n  const [step, setStep] = useState(1); // 1: email, 2: reset code, 3: new password\n  const [error, setError] = useState(\"\");\n  const [success, setSuccess] = useState(\"\");\n\n  const showMessage = (message, isError = false) => {\n    if (isError) {\n      setError(message);\n      setSuccess(\"\");\n    } else {\n      setSuccess(message);\n      setError(\"\");\n    }\n\n    setTimeout(() => {\n      setError(\"\");\n      setSuccess(\"\");\n    }, 2500);\n  };\n\n  const handleSendCode = async (e) => {\n    e.preventDefault();\n    try {\n      const response = await fetch(\n        \"https://mussedupin.onrender.com/api/auth/forgot-password\",\n        {\n          method: \"POST\",\n          headers: {\n            \"Content-Type\": \"application/json\",\n          },\n          body: JSON.stringify({ email }),\n        }\n      );\n\n      const data = await response.json();\n\n      if (data.success) {\n        showMessage(data.message);\n        setStep(2);\n      } else {\n        showMessage(data.message, true);\n      }\n    } catch (error) {\n      showMessage(\"Không thể gửi mã xác nhận. Vui lòng thử lại sau.\", true);\n    }\n  };\n\n  const handleVerifyCode = async (e) => {\n    e.preventDefault();\n    try {\n      const response = await fetch(\n        \"https://mussedupin.onrender.com/api/auth/verify-reset-code\",\n        {\n          method: \"POST\",\n          headers: {\n            \"Content-Type\": \"application/json\",\n          },\n          body: JSON.stringify({ email, resetCode }),\n        }\n      );\n\n      const data = await response.json();\n\n      if (data.success) {\n        showMessage(data.message);\n        setStep(3);\n      } else {\n        showMessage(data.message, true);\n      }\n    } catch (error) {\n      showMessage(\"Không thể xác thực mã. Vui lòng thử lại sau.\", true);\n    }\n  };\n\n  const handleResetPassword = async (e) => {\n    e.preventDefault();\n    try {\n      const response = await fetch(\n        \"https://mussedupin.onrender.com/api/auth/reset-password\",\n        {\n          method: \"POST\",\n          headers: {\n            \"Content-Type\": \"application/json\",\n          },\n          body: JSON.stringify({ email, resetCode, newPassword }),\n        }\n      );\n\n      const data = await response.json();\n\n      if (data.success) {\n        showMessage(data.message);\n        setTimeout(() => {\n          onClose();\n        }, 2500);\n      } else {\n        showMessage(data.message, true);\n      }\n    } catch (error) {\n      showMessage(\"Không thể đặt lại mật khẩu. Vui lòng thử lại sau.\", true);\n    }\n  };\n\n  if (!isOpen) return null;\n\n  return (\n    <div className=\"modal-overlay\">\n      <div className=\"modal-container\">\n        <button className=\"close-button\" onClick={onClose}>\n          <FaTimes />\n        </button>\n\n        <h2 className=\"modal-title\">Quên mật khẩu?</h2>\n        <p className=\"modal-subtitle\">\n          {step === 1\n            ? \"Vui lòng nhập địa chỉ email bạn đã sử dụng khi tạo tài khoản.\"\n            : step === 2\n            ? \"Nhập mã xác nhận 6 chữ số đã được gửi đến email của bạn.\"\n            : \"Nhập mật khẩu mới cho tài khoản của bạn.\"}\n        </p>\n\n        {error && <div className=\"error-message\">{error}</div>}\n        {success && <div className=\"success-message\">{success}</div>}\n\n        {step === 1 && (\n          <form onSubmit={handleSendCode} className=\"forgot-password-form\">\n            <div className=\"form-group\">\n              <label>* Địa chỉ Email</label>\n              <input\n                type=\"email\"\n                value={email}\n                onChange={(e) => setEmail(e.target.value)}\n                placeholder=\"Nhập địa chỉ email\"\n                required\n              />\n            </div>\n\n            <button type=\"submit\" className=\"submit-button\">\n              Gửi mã xác nhận\n            </button>\n          </form>\n        )}\n\n        {step === 2 && (\n          <form onSubmit={handleVerifyCode} className=\"forgot-password-form\">\n            <div className=\"form-group\">\n              <label>* Mã xác nhận</label>\n              <input\n                type=\"text\"\n                value={resetCode}\n                onChange={(e) => setResetCode(e.target.value)}\n                placeholder=\"Nhập mã 6 chữ số\"\n                required\n                pattern=\"[0-9]{6}\"\n                maxLength=\"6\"\n              />\n            </div>\n\n            <button type=\"submit\" className=\"submit-button\">\n              Xác nhận\n            </button>\n          </form>\n        )}\n\n        {step === 3 && (\n          <form onSubmit={handleResetPassword} className=\"forgot-password-form\">\n            <div className=\"form-group\">\n              <label>* Mật khẩu mới</label>\n              <div className=\"password-input\">\n                <input\n                  type={showPassword ? \"text\" : \"password\"}\n                  value={newPassword}\n                  onChange={(e) => setNewPassword(e.target.value)}\n                  placeholder=\"Nhập mật khẩu mới\"\n                  required\n                  minLength=\"6\"\n                />\n                <button\n                  type=\"button\"\n                  className=\"password-toggle\"\n                  onClick={() => setShowPassword(!showPassword)}\n                >\n                  {showPassword ? <FaEyeSlash /> : <FaEye />}\n                </button>\n              </div>\n            </div>\n\n            <button type=\"submit\" className=\"submit-button\">\n              Đặt lại mật khẩu\n            </button>\n          </form>\n        )}\n      </div>\n    </div>\n  );\n};\n\nexport default ForgotPasswordModal;\n",
-      "start": 1749894714541,
-      "end": 1749894715069,
+      "start": 1750088802849,
+      "end": 1750088803361,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749894715069,
-      "end": 1749894715069,
+      "start": 1750088803361,
+      "end": 1750088803361,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useState } from \"react\";\nimport { FaEye, FaEyeSlash, FaTimes } from \"react-icons/fa\";\nimport \"./ForgotPasswordModal.css\";\nconst ForgotPasswordModal = ({ isOpen, onClose }) => {\n  const [email, setEmail] = useState(\"\");\n  const [resetCode, setResetCode] = useState(\"\");\n  const [newPassword, setNewPassword] = useState(\"\");\n  const [showPassword, setShowPassword] = useState(false);\n  const [step, setStep] = useState(1);\n  const [error, setError] = useState(\"\");\n  const [success, setSuccess] = useState(\"\");\n  const showMessage = (message, isError = false) => {\n    if (isError) {\n      setError(message);\n      setSuccess(\"\");\n    } else {\n      setSuccess(message);\n      setError(\"\");\n    }\n    setTimeout(() => {\n      setError(\"\");\n      setSuccess(\"\");\n    }, 2500);\n  };\n  const handleSendCode = async (e) => {\n    e.preventDefault();\n    try {\n      const response = await fetch(\n        \"https://mussedupin.onrender.com/api/auth/forgot-password\",\n        {\n          method: \"POST\",\n          headers: {\n            \"Content-Type\": \"application/json\"\n          },\n          body: JSON.stringify({ email })\n        }\n      );\n      const data = await response.json();\n      if (data.success) {\n        showMessage(data.message);\n        setStep(2);\n      } else {\n        showMessage(data.message, true);\n      }\n    } catch (error2) {\n      showMessage(\"Không thể gửi mã xác nhận. Vui lòng thử lại sau.\", true);\n    }\n  };\n  const handleVerifyCode = async (e) => {\n    e.preventDefault();\n    try {\n      const response = await fetch(\n        \"https://mussedupin.onrender.com/api/auth/verify-reset-code\",\n        {\n          method: \"POST\",\n          headers: {\n            \"Content-Type\": \"application/json\"\n          },\n          body: JSON.stringify({ email, resetCode })\n        }\n      );\n      const data = await response.json();\n      if (data.success) {\n        showMessage(data.message);\n        setStep(3);\n      } else {\n        showMessage(data.message, true);\n      }\n    } catch (error2) {\n      showMessage(\"Không thể xác thực mã. Vui lòng thử lại sau.\", true);\n    }\n  };\n  const handleResetPassword = async (e) => {\n    e.preventDefault();\n    try {\n      const response = await fetch(\n        \"https://mussedupin.onrender.com/api/auth/reset-password\",\n        {\n          method: \"POST\",\n          headers: {\n            \"Content-Type\": \"application/json\"\n          },\n          body: JSON.stringify({ email, resetCode, newPassword })\n        }\n      );\n      const data = await response.json();\n      if (data.success) {\n        showMessage(data.message);\n        setTimeout(() => {\n          onClose();\n        }, 2500);\n      } else {\n        showMessage(data.message, true);\n      }\n    } catch (error2) {\n      showMessage(\"Không thể đặt lại mật khẩu. Vui lòng thử lại sau.\", true);\n    }\n  };\n  if (!isOpen) return null;\n  return /* @__PURE__ */ jsx(\"div\", { className: \"modal-overlay\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"modal-container\", children: [\n    /* @__PURE__ */ jsx(\"button\", { className: \"close-button\", onClick: onClose, children: /* @__PURE__ */ jsx(FaTimes, {}) }),\n    /* @__PURE__ */ jsx(\"h2\", { className: \"modal-title\", children: \"Quên mật khẩu?\" }),\n    /* @__PURE__ */ jsx(\"p\", { className: \"modal-subtitle\", children: step === 1 ? \"Vui lòng nhập địa chỉ email bạn đã sử dụng khi tạo tài khoản.\" : step === 2 ? \"Nhập mã xác nhận 6 chữ số đã được gửi đến email của bạn.\" : \"Nhập mật khẩu mới cho tài khoản của bạn.\" }),\n    error && /* @__PURE__ */ jsx(\"div\", { className: \"error-message\", children: error }),\n    success && /* @__PURE__ */ jsx(\"div\", { className: \"success-message\", children: success }),\n    step === 1 && /* @__PURE__ */ jsxs(\"form\", { onSubmit: handleSendCode, className: \"forgot-password-form\", children: [\n      /* @__PURE__ */ jsxs(\"div\", { className: \"form-group\", children: [\n        /* @__PURE__ */ jsx(\"label\", { children: \"* Địa chỉ Email\" }),\n        /* @__PURE__ */ jsx(\n          \"input\",\n          {\n            type: \"email\",\n            value: email,\n            onChange: (e) => setEmail(e.target.value),\n            placeholder: \"Nhập địa chỉ email\",\n            required: true\n          }\n        )\n      ] }),\n      /* @__PURE__ */ jsx(\"button\", { type: \"submit\", className: \"submit-button\", children: \"Gửi mã xác nhận\" })\n    ] }),\n    step === 2 && /* @__PURE__ */ jsxs(\"form\", { onSubmit: handleVerifyCode, className: \"forgot-password-form\", children: [\n      /* @__PURE__ */ jsxs(\"div\", { className: \"form-group\", children: [\n        /* @__PURE__ */ jsx(\"label\", { children: \"* Mã xác nhận\" }),\n        /* @__PURE__ */ jsx(\n          \"input\",\n          {\n            type: \"text\",\n            value: resetCode,\n            onChange: (e) => setResetCode(e.target.value),\n            placeholder: \"Nhập mã 6 chữ số\",\n            required: true,\n            pattern: \"[0-9]{6}\",\n            maxLength: \"6\"\n          }\n        )\n      ] }),\n      /* @__PURE__ */ jsx(\"button\", { type: \"submit\", className: \"submit-button\", children: \"Xác nhận\" })\n    ] }),\n    step === 3 && /* @__PURE__ */ jsxs(\"form\", { onSubmit: handleResetPassword, className: \"forgot-password-form\", children: [\n      /* @__PURE__ */ jsxs(\"div\", { className: \"form-group\", children: [\n        /* @__PURE__ */ jsx(\"label\", { children: \"* Mật khẩu mới\" }),\n        /* @__PURE__ */ jsxs(\"div\", { className: \"password-input\", children: [\n          /* @__PURE__ */ jsx(\n            \"input\",\n            {\n              type: showPassword ? \"text\" : \"password\",\n              value: newPassword,\n              onChange: (e) => setNewPassword(e.target.value),\n              placeholder: \"Nhập mật khẩu mới\",\n              required: true,\n              minLength: \"6\"\n            }\n          ),\n          /* @__PURE__ */ jsx(\n            \"button\",\n            {\n              type: \"button\",\n              className: \"password-toggle\",\n              onClick: () => setShowPassword(!showPassword),\n              children: showPassword ? /* @__PURE__ */ jsx(FaEyeSlash, {}) : /* @__PURE__ */ jsx(FaEye, {})\n            }\n          )\n        ] })\n      ] }),\n      /* @__PURE__ */ jsx(\"button\", { type: \"submit\", className: \"submit-button\", children: \"Đặt lại mật khẩu\" })\n    ] })\n  ] }) });\n};\nexport default ForgotPasswordModal;\n",
-      "start": 1749894715069,
-      "end": 1749894715127,
+      "start": 1750088803361,
+      "end": 1750088803629,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -36,56 +36,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1749894715127,
-      "end": 1749894715127,
+      "start": 1750088803629,
+      "end": 1750088803629,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749894715127,
-      "end": 1749894715127,
+      "start": 1750088803629,
+      "end": 1750088803629,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749894715127,
-      "end": 1749894715127,
+      "start": 1750088803629,
+      "end": 1750088803629,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749894715127,
-      "end": 1749894715127,
+      "start": 1750088803629,
+      "end": 1750088803630,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749894715127,
-      "end": 1749894715127,
+      "start": 1750088803630,
+      "end": 1750088803630,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749894715127,
-      "end": 1749894715127,
+      "start": 1750088803631,
+      "end": 1750088803631,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749894715127,
-      "end": 1749894715127,
+      "start": 1750088803631,
+      "end": 1750088803631,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749894715127,
-      "end": 1749894715128,
+      "start": 1750088803631,
+      "end": 1750088803632,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749894715128,
-      "end": 1749894715128,
+      "start": 1750088803632,
+      "end": 1750088803632,
       "order": "normal"
     }
   ]

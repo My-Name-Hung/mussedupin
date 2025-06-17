@@ -4,76 +4,76 @@
     {
       "name": "vite:load-fallback",
       "result": "import { warnOnce } from 'motion-utils';\nimport { useScroll } from '../use-scroll.mjs';\n\n/**\n * @deprecated useViewportScroll is deprecated. Convert to useScroll()\n */\nfunction useViewportScroll() {\n    if (process.env.NODE_ENV !== \"production\") {\n        warnOnce(false, \"useViewportScroll is deprecated. Convert to useScroll().\");\n    }\n    return useScroll();\n}\n\nexport { useViewportScroll };\n",
-      "start": 1749894720520,
-      "end": 1749894721876,
+      "start": 1750088811175,
+      "end": 1750088811519,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749894721876,
-      "end": 1749894721876,
+      "start": 1750088811519,
+      "end": 1750088811519,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1749894721876,
-      "end": 1749894721876,
+      "start": 1750088811519,
+      "end": 1750088811519,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1749894721877,
-      "end": 1749894721877,
+      "start": 1750088811519,
+      "end": 1750088811519,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
       "result": "import { warnOnce } from \"motion-utils\";\nimport { useScroll } from \"../use-scroll.mjs\";\nfunction useViewportScroll() {\n  if (false) {\n    warnOnce(false, \"useViewportScroll is deprecated. Convert to useScroll().\");\n  }\n  return useScroll();\n}\nexport { useViewportScroll };\n",
-      "start": 1749894721877,
-      "end": 1749894722565,
+      "start": 1750088811519,
+      "end": 1750088811594,
       "order": "normal-normal",
       "sourcemaps": null
     },
     {
       "name": "vite:build-html",
-      "start": 1749894722565,
-      "end": 1749894722565,
+      "start": 1750088811594,
+      "end": 1750088811594,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749894722565,
-      "end": 1749894722565,
+      "start": 1750088811594,
+      "end": 1750088811594,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749894722565,
-      "end": 1749894722565,
+      "start": 1750088811594,
+      "end": 1750088811594,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749894722565,
-      "end": 1749894722565,
+      "start": 1750088811594,
+      "end": 1750088811594,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749894722565,
-      "end": 1749894722565,
+      "start": 1750088811594,
+      "end": 1750088811594,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749894722565,
-      "end": 1749894722565,
+      "start": 1750088811594,
+      "end": 1750088811594,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749894722565,
-      "end": 1749894722565,
+      "start": 1750088811594,
+      "end": 1750088811594,
       "order": "normal"
     }
   ]

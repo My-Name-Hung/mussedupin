@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { l as elementTransitionEnd } from './utils.mjs';\n\nfunction effectVirtualTransitionEnd(_ref) {\n  let {\n    swiper,\n    duration,\n    transformElements,\n    allSlides\n  } = _ref;\n  const {\n    activeIndex\n  } = swiper;\n  const getSlide = el => {\n    if (!el.parentElement) {\n      // assume shadow root\n      const slide = swiper.slides.find(slideEl => slideEl.shadowRoot && slideEl.shadowRoot === el.parentNode);\n      return slide;\n    }\n    return el.parentElement;\n  };\n  if (swiper.params.virtualTranslate && duration !== 0) {\n    let eventTriggered = false;\n    let transitionEndTarget;\n    if (allSlides) {\n      transitionEndTarget = transformElements;\n    } else {\n      transitionEndTarget = transformElements.filter(transformEl => {\n        const el = transformEl.classList.contains('swiper-slide-transform') ? getSlide(transformEl) : transformEl;\n        return swiper.getSlideIndex(el) === activeIndex;\n      });\n    }\n    transitionEndTarget.forEach(el => {\n      elementTransitionEnd(el, () => {\n        if (eventTriggered) return;\n        if (!swiper || swiper.destroyed) return;\n        eventTriggered = true;\n        swiper.animating = false;\n        const evt = new window.CustomEvent('transitionend', {\n          bubbles: true,\n          cancelable: true\n        });\n        swiper.wrapperEl.dispatchEvent(evt);\n      });\n    });\n  }\n}\n\nexport { effectVirtualTransitionEnd as e };\n",
-      "start": 1749894714783,
-      "end": 1749894715137,
+      "start": 1750088803685,
+      "end": 1750088804124,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1749894715137,
-      "end": 1749894715137,
+      "start": 1750088804124,
+      "end": 1750088804124,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1749894715137,
-      "end": 1749894715137,
+      "start": 1750088804124,
+      "end": 1750088804124,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1749894715137,
-      "end": 1749894715137,
+      "start": 1750088804124,
+      "end": 1750088804124,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1749894715137,
-      "end": 1749894715137,
+      "start": 1750088804124,
+      "end": 1750088804124,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1749894715137,
-      "end": 1749894715137,
+      "start": 1750088804124,
+      "end": 1750088804124,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1749894715137,
-      "end": 1749894715137,
+      "start": 1750088804124,
+      "end": 1750088804124,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1749894715137,
-      "end": 1749894715137,
+      "start": 1750088804124,
+      "end": 1750088804124,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1749894715137,
-      "end": 1749894715137,
+      "start": 1750088804124,
+      "end": 1750088804124,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1749894715137,
-      "end": 1749894715137,
+      "start": 1750088804124,
+      "end": 1750088804124,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1749894715137,
-      "end": 1749894715137,
+      "start": 1750088804124,
+      "end": 1750088804124,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1749894715137,
-      "end": 1749894715137,
+      "start": 1750088804124,
+      "end": 1750088804124,
       "order": "normal"
     }
   ]

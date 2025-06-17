@@ -1321,17 +1321,15 @@ app.delete("/api/orders/:orderCode", async (req, res) => {
   }
 });
 
-// VNPAY Return URL handler
-app.get("/api/vnpay-return", async (req, res) => {
+// VNPAY IPN URL handler
+app.post("/api/vnpay-ipn", async (req, res) => {
   try {
     const vnp_Params = req.query;
     const secureHash = vnp_Params["vnp_SecureHash"];
 
-    // Remove hash and hash type from params
     delete vnp_Params["vnp_SecureHash"];
     delete vnp_Params["vnp_SecureHashType"];
 
-    // Sort params by field name
     const sortedParams = {};
     Object.keys(vnp_Params)
       .sort()
@@ -1339,7 +1337,6 @@ app.get("/api/vnpay-return", async (req, res) => {
         sortedParams[key] = vnp_Params[key];
       });
 
-    // Create signature
     const secretKey = "V78RAFZJ7WFQO8P8DDJQZ4TA1V44QK1S";
     const signData = Object.entries(sortedParams)
       .map(([key, value]) => `${key}=${value}`)
@@ -1348,13 +1345,11 @@ app.get("/api/vnpay-return", async (req, res) => {
     const hmac = crypto.createHmac("sha512", secretKey);
     const signed = hmac.update(Buffer.from(signData, "utf-8")).digest("hex");
 
-    // Compare signatures
     if (secureHash === signed) {
-      // Valid signature
       const orderId = vnp_Params["vnp_TxnRef"];
       const rspCode = vnp_Params["vnp_ResponseCode"];
 
-      // Get order from Google Sheets
+      // Cập nhật trạng thái đơn hàng
       const response = await sheets.spreadsheets.values.get({
         spreadsheetId: SPREADSHEET_ID,
         range: "Orders!A:Z",
@@ -1364,49 +1359,15 @@ app.get("/api/vnpay-return", async (req, res) => {
       const orderIndex = rows.findIndex((row) => row[1] === orderId);
 
       if (orderIndex !== -1) {
-        // Update order status based on response code
-        let newStatus;
-        let emailSubject;
-        let emailContent;
-
-        switch (rspCode) {
-          case "00":
-            newStatus = "Paid";
-            emailSubject = "Thanh toán thành công - Musée Du Pin";
-            emailContent = `
-              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-                <h2>Thanh toán thành công</h2>
-                <p>Đơn hàng #${orderId} đã được thanh toán thành công qua VNPAY.</p>
-                <p>Chúng tôi sẽ sớm xử lý đơn hàng của bạn.</p>
-              </div>
-            `;
-            break;
-          case "07":
-            newStatus = "Pending_Review";
-            emailSubject = "Giao dịch cần xác minh - Musée Du Pin";
-            emailContent = `
-              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-                <h2>Giao dịch cần xác minh</h2>
-                <p>Đơn hàng #${orderId} đang được xác minh bởi VNPAY.</p>
-                <p>Chúng tôi sẽ thông báo kết quả sớm nhất.</p>
-              </div>
-            `;
-            break;
-          default:
-            newStatus = "Payment_Failed";
-            emailSubject = "Thanh toán không thành công - Musée Du Pin";
-            emailContent = `
-              <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-                <h2>Thanh toán không thành công</h2>
-                <p>Đơn hàng #${orderId} thanh toán không thành công.</p>
-                <p>Lý do: ${getResponseDescription(rspCode)}</p>
-                <p>Vui lòng thử lại hoặc chọn phương thức thanh toán khác.</p>
-              </div>
-            `;
-            break;
+        let newStatus = "Pending";
+        if (rspCode === "00") {
+          newStatus = "Paid";
+        } else if (rspCode === "07") {
+          newStatus = "Pending_Review";
+        } else {
+          newStatus = "Payment_Failed";
         }
 
-        // Update order status in Google Sheets
         await sheets.spreadsheets.values.update({
           spreadsheetId: SPREADSHEET_ID,
           range: `Orders!H${orderIndex + 1}`,
@@ -1416,77 +1377,64 @@ app.get("/api/vnpay-return", async (req, res) => {
           },
         });
 
-        // Send email notification
-        const orderData = {
-          email: rows[orderIndex][3], // Assuming email is in column D
-          orderId: orderId,
-        };
-
-        const mailOptions = {
-          from: process.env.EMAIL_USER,
-          to: orderData.email,
-          subject: emailSubject,
-          html: emailContent,
-        };
-
-        await transporter.sendMail(mailOptions);
-
-        // Redirect to frontend with status
-        const returnUrl = "https://mussedupin.onrender.com/api/vnpay-return";
-        res.redirect(`${returnUrl}?orderId=${orderId}&status=${newStatus}`);
+        // Phản hồi cho VNPAY
+        res.status(200).json({ RspCode: "00", Message: "success" });
       } else {
-        res.status(404).json({
-          success: false,
-          message: "Không tìm thấy đơn hàng",
-        });
+        res.status(200).json({ RspCode: "01", Message: "Order not found" });
       }
     } else {
-      res.status(400).json({
-        success: false,
-        message: "Invalid signature",
-      });
+      res.status(200).json({ RspCode: "97", Message: "Invalid signature" });
     }
   } catch (error) {
-    console.error("VNPAY return error:", error);
-    res.status(500).json({
-      success: false,
-      message: "Internal server error",
-      error: error.message,
-    });
+    console.error("VNPAY IPN error:", error);
+    res.status(200).json({ RspCode: "99", Message: "Unknown error" });
   }
 });
 
-// Helper function to get VNPAY response description
-function getResponseDescription(responseCode) {
-  switch (responseCode) {
-    case "00":
-      return "Giao dịch thành công";
-    case "07":
-      return "Trừ tiền thành công. Giao dịch bị nghi ngờ (liên quan tới lừa đảo, giao dịch bất thường).";
-    case "09":
-      return "Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng chưa đăng ký dịch vụ InternetBanking tại ngân hàng.";
-    case "10":
-      return "Giao dịch không thành công do: Khách hàng xác thực thông tin thẻ/tài khoản không đúng quá 3 lần.";
-    case "11":
-      return "Giao dịch không thành công do: Đã hết hạn chờ thanh toán. Xin quý khách vui lòng thực hiện lại giao dịch.";
-    case "12":
-      return "Giao dịch không thành công do: Thẻ/Tài khoản của khách hàng bị khóa.";
-    case "13":
-      return "Giao dịch không thành công do Quý khách nhập sai mật khẩu xác thực giao dịch (OTP).";
-    case "24":
-      return "Giao dịch không thành công do: Khách hàng hủy giao dịch.";
-    case "51":
-      return "Giao dịch không thành công do: Tài khoản của quý khách không đủ số dư để thực hiện giao dịch.";
-    case "65":
-      return "Giao dịch không thành công do: Tài khoản của Quý khách đã vượt quá hạn mức giao dịch trong ngày.";
-    case "75":
-      return "Ngân hàng thanh toán đang bảo trì.";
-    case "79":
-      return "Giao dịch không thành công do: KH nhập sai mật khẩu thanh toán quá số lần quy định.";
-    default:
-      return "Giao dịch không thành công.";
+// VNPAY Return URL handler
+app.get("/api/vnpay-return", async (req, res) => {
+  try {
+    const vnp_Params = req.query;
+    const secureHash = vnp_Params["vnp_SecureHash"];
+
+    delete vnp_Params["vnp_SecureHash"];
+    delete vnp_Params["vnp_SecureHashType"];
+
+    const sortedParams = {};
+    Object.keys(vnp_Params)
+      .sort()
+      .forEach((key) => {
+        sortedParams[key] = vnp_Params[key];
+      });
+
+    const secretKey = "V78RAFZJ7WFQO8P8DDJQZ4TA1V44QK1S";
+    const signData = Object.entries(sortedParams)
+      .map(([key, value]) => `${key}=${value}`)
+      .join("&");
+
+    const hmac = crypto.createHmac("sha512", secretKey);
+    const signed = hmac.update(Buffer.from(signData, "utf-8")).digest("hex");
+
+    if (secureHash === signed) {
+      const orderId = vnp_Params["vnp_TxnRef"];
+      const rspCode = vnp_Params["vnp_ResponseCode"];
+
+      // Redirect to frontend with status
+      res.redirect(
+        `https://online-museeduphin.netlify.app/payment-result?orderId=${orderId}&vnp_ResponseCode=${rspCode}`
+      );
+    } else {
+      res.redirect(
+        `https://online-museeduphin.netlify.app/payment-result?error=invalid_signature`
+      );
+    }
+  } catch (error) {
+    console.error("VNPAY return error:", error);
+    res.redirect(
+      `https://online-museeduphin.netlify.app/payment-result?error=server_error`
+    );
   }
-}
+});
 
 // Test route
 app.get("/", (req, res) => {

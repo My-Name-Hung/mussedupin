@@ -104,7 +104,7 @@ const CheckoutPage = () => {
   const generateVNPayURL = async (amount) => {
     const tmnCode = "2Y102M9Q";
     const secretKey = "V78RAFZJ7WFQO8P8DDJQZ4TA1V44QK1S";
-    const returnUrl = "https://mussedupin.onrender.com/api/vnpay-return";
+    const returnUrl = "http://localhost:5173/vnpay-return";
 
     const now = new Date();
     const yy = now.getFullYear().toString();
@@ -132,6 +132,7 @@ const CheckoutPage = () => {
             shippingAddress: userInfo.address,
             paymentMethod: "vnpay",
             discountInfo: discountInfo,
+            status: "Pending",
           }),
         }
       );
@@ -148,14 +149,15 @@ const CheckoutPage = () => {
         vnp_Command: "pay",
         vnp_CreateDate: createDate,
         vnp_CurrCode: "VND",
-        vnp_IpAddr: "127.0.0.1", // Use fixed IP for consistency
+        vnp_IpAddr: "127.0.0.1",
         vnp_Locale: "vn",
         vnp_OrderInfo: `Thanh toan don hang ${orderId}`,
-        vnp_OrderType: "billpayment",
+        vnp_OrderType: "other",
         vnp_ReturnUrl: returnUrl,
         vnp_TmnCode: tmnCode,
         vnp_TxnRef: orderId,
         vnp_Version: "2.1.0",
+        vnp_BankCode: "",
       };
 
       const sortedParams = {};
@@ -173,8 +175,7 @@ const CheckoutPage = () => {
       const hmac = CryptoJS.HmacSHA512(signData, secretKey);
       const secureHash = hmac.toString(CryptoJS.enc.Hex).toUpperCase();
 
-      const queryString = signData; // đã encode & sort
-      return `https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?${queryString}&vnp_SecureHash=${secureHash}`;
+      return `https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?${signData}&vnp_SecureHash=${secureHash}`;
     } catch (error) {
       console.error("Error creating order for VNPAY:", error);
       throw error;

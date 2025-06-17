@@ -1321,6 +1321,61 @@ app.delete("/api/orders/:orderCode", async (req, res) => {
   }
 });
 
+// VNPAY Return URL handler
+app.get("/api/vnpay-return", async (req, res) => {
+  try {
+    const vnp_Params = req.query;
+    const secureHash = vnp_Params["vnp_SecureHash"];
+
+    // Remove hash and hash type from params
+    delete vnp_Params["vnp_SecureHash"];
+    delete vnp_Params["vnp_SecureHashType"];
+
+    // Sort params by field name
+    const sortedParams = Object.keys(vnp_Params)
+      .sort()
+      .reduce((acc, key) => {
+        if (vnp_Params[key] !== undefined && vnp_Params[key] !== null) {
+          acc[key] = vnp_Params[key];
+        }
+        return acc;
+      }, {});
+
+    // Create signature
+    const secretKey = "V78RAFZJ7WFQO8P8DDJQZ4TA1V44QK1S";
+    const signData = Object.entries(sortedParams)
+      .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
+      .join("&");
+
+    const hmac = crypto.createHmac("sha512", secretKey);
+    const signed = hmac
+      .update(Buffer.from(signData, "utf-8"))
+      .digest("hex")
+      .toUpperCase();
+
+    // Compare signatures
+    if (secureHash === signed) {
+      const orderId = vnp_Params["vnp_TxnRef"];
+      const rspCode = vnp_Params["vnp_ResponseCode"];
+
+      // Redirect to frontend with status
+      res.redirect(
+        `http://localhost:5173/payment-result?orderId=${orderId}&vnp_ResponseCode=${rspCode}`
+      );
+    } else {
+      console.log("Invalid signature");
+      console.log("Expected:", signed);
+      console.log("Received:", secureHash);
+      res.redirect(
+        `http://localhost:5173/payment-result?error=invalid_signature`
+      );
+    }
+  } catch (error) {
+    console.error("VNPAY return error:", error);
+    res.redirect(`http://localhost:5173/payment-result?error=server_error`);
+  }
+});
+
 // VNPAY IPN URL handler
 app.post("/api/vnpay-ipn", async (req, res) => {
   try {
@@ -1330,20 +1385,25 @@ app.post("/api/vnpay-ipn", async (req, res) => {
     delete vnp_Params["vnp_SecureHash"];
     delete vnp_Params["vnp_SecureHashType"];
 
-    const sortedParams = {};
-    Object.keys(vnp_Params)
+    const sortedParams = Object.keys(vnp_Params)
       .sort()
-      .forEach((key) => {
-        sortedParams[key] = vnp_Params[key];
-      });
+      .reduce((acc, key) => {
+        if (vnp_Params[key] !== undefined && vnp_Params[key] !== null) {
+          acc[key] = vnp_Params[key];
+        }
+        return acc;
+      }, {});
 
     const secretKey = "V78RAFZJ7WFQO8P8DDJQZ4TA1V44QK1S";
     const signData = Object.entries(sortedParams)
-      .map(([key, value]) => `${key}=${value}`)
+      .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
       .join("&");
 
     const hmac = crypto.createHmac("sha512", secretKey);
-    const signed = hmac.update(Buffer.from(signData, "utf-8")).digest("hex");
+    const signed = hmac
+      .update(Buffer.from(signData, "utf-8"))
+      .digest("hex")
+      .toUpperCase();
 
     if (secureHash === signed) {
       const orderId = vnp_Params["vnp_TxnRef"];
@@ -1377,62 +1437,19 @@ app.post("/api/vnpay-ipn", async (req, res) => {
           },
         });
 
-        // Phản hồi cho VNPAY
         res.status(200).json({ RspCode: "00", Message: "success" });
       } else {
         res.status(200).json({ RspCode: "01", Message: "Order not found" });
       }
     } else {
+      console.log("Invalid signature in IPN");
+      console.log("Expected:", signed);
+      console.log("Received:", secureHash);
       res.status(200).json({ RspCode: "97", Message: "Invalid signature" });
     }
   } catch (error) {
     console.error("VNPAY IPN error:", error);
     res.status(200).json({ RspCode: "99", Message: "Unknown error" });
-  }
-});
-
-// VNPAY Return URL handler
-app.get("/api/vnpay-return", async (req, res) => {
-  try {
-    const vnp_Params = req.query;
-    const secureHash = vnp_Params["vnp_SecureHash"];
-
-    delete vnp_Params["vnp_SecureHash"];
-    delete vnp_Params["vnp_SecureHashType"];
-
-    const sortedParams = {};
-    Object.keys(vnp_Params)
-      .sort()
-      .forEach((key) => {
-        sortedParams[key] = vnp_Params[key];
-      });
-
-    const secretKey = "V78RAFZJ7WFQO8P8DDJQZ4TA1V44QK1S";
-    const signData = Object.entries(sortedParams)
-      .map(([key, value]) => `${key}=${value}`)
-      .join("&");
-
-    const hmac = crypto.createHmac("sha512", secretKey);
-    const signed = hmac.update(Buffer.from(signData, "utf-8")).digest("hex");
-
-    if (secureHash === signed) {
-      const orderId = vnp_Params["vnp_TxnRef"];
-      const rspCode = vnp_Params["vnp_ResponseCode"];
-
-      // Redirect to frontend with status
-      res.redirect(
-        `https://online-museeduphin.netlify.app/payment-result?orderId=${orderId}&vnp_ResponseCode=${rspCode}`
-      );
-    } else {
-      res.redirect(
-        `https://online-museeduphin.netlify.app/payment-result?error=invalid_signature`
-      );
-    }
-  } catch (error) {
-    console.error("VNPAY return error:", error);
-    res.redirect(
-      `https://online-museeduphin.netlify.app/payment-result?error=server_error`
-    );
   }
 });
 

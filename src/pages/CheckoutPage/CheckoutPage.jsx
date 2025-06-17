@@ -107,13 +107,14 @@ const CheckoutPage = () => {
     const returnUrl = "http://localhost:5173/vnpay-return";
 
     const now = new Date();
-    const yy = now.getFullYear().toString();
-    const MM = String(now.getMonth() + 1).padStart(2, "0");
-    const dd = String(now.getDate()).padStart(2, "0");
-    const hh = String(now.getHours()).padStart(2, "0");
-    const mm = String(now.getMinutes()).padStart(2, "0");
-    const ss = String(now.getSeconds()).padStart(2, "0");
-    const createDate = `${yy}${MM}${dd}${hh}${mm}${ss}`;
+    const createDate = [
+      now.getFullYear(),
+      String(now.getMonth() + 1).padStart(2, "0"),
+      String(now.getDate()).padStart(2, "0"),
+      String(now.getHours()).padStart(2, "0"),
+      String(now.getMinutes()).padStart(2, "0"),
+      String(now.getSeconds()).padStart(2, "0"),
+    ].join("");
 
     // Create order first to get orderId
     try {
@@ -144,38 +145,43 @@ const CheckoutPage = () => {
 
       const orderId = orderData.orderCode;
 
-      const rawParams = {
-        vnp_Amount: String(Math.round(amount * 100)),
+      const vnpParams = {
+        vnp_Version: "2.1.0",
         vnp_Command: "pay",
-        vnp_CreateDate: createDate,
-        vnp_CurrCode: "VND",
-        vnp_IpAddr: "127.0.0.1",
+        vnp_TmnCode: tmnCode,
         vnp_Locale: "vn",
+        vnp_CurrCode: "VND",
+        vnp_TxnRef: orderId,
         vnp_OrderInfo: `Thanh toan don hang ${orderId}`,
         vnp_OrderType: "other",
+        vnp_Amount: String(Math.round(amount * 100)),
         vnp_ReturnUrl: returnUrl,
-        vnp_TmnCode: tmnCode,
-        vnp_TxnRef: orderId,
-        vnp_Version: "2.1.0",
+        vnp_IpAddr: "127.0.0.1",
+        vnp_CreateDate: createDate,
         vnp_BankCode: "",
       };
 
-      const sortedParams = {};
-      Object.keys(rawParams)
+      // Sắp xếp các tham số theo thứ tự a-z
+      const sortedParams = Object.keys(vnpParams)
         .sort()
-        .forEach((key) => {
-          const v = rawParams[key];
-          sortedParams[key] = encodeURIComponent(v).replace(/%20/g, "+");
-        });
+        .reduce((acc, key) => {
+          acc[key] = vnpParams[key];
+          return acc;
+        }, {});
 
+      // Tạo chuỗi query từ các tham số đã sắp xếp
       const signData = Object.entries(sortedParams)
-        .map(([k, v]) => `${k}=${v}`)
+        .map(([key, value]) => `${key}=${encodeURIComponent(value)}`)
         .join("&");
 
+      // Tạo chữ ký
       const hmac = CryptoJS.HmacSHA512(signData, secretKey);
       const secureHash = hmac.toString(CryptoJS.enc.Hex).toUpperCase();
 
-      return `https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?${signData}&vnp_SecureHash=${secureHash}`;
+      // Thêm chữ ký vào URL
+      const queryUrl = `${signData}&vnp_SecureHash=${secureHash}`;
+
+      return `https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?${queryUrl}`;
     } catch (error) {
       console.error("Error creating order for VNPAY:", error);
       throw error;

@@ -104,7 +104,7 @@ const CheckoutPage = () => {
   const generateVNPayURL = async (amount) => {
     const tmnCode = "2Y102M9Q";
     const secretKey = "V78RAFZJ7WFQO8P8DDJQZ4TA1V44QK1S";
-    const returnUrl = "http://localhost:3000/vnpay-return";
+    const returnUrl = "https://mussedupin.onrender.com/api/vnpay-return";
 
     const now = new Date();
     const yy = now.getFullYear().toString();
@@ -115,40 +115,70 @@ const CheckoutPage = () => {
     const ss = String(now.getSeconds()).padStart(2, "0");
     const createDate = `${yy}${MM}${dd}${hh}${mm}${ss}`;
 
-    const orderId = String(Math.floor(Math.random() * 1000000));
+    // Create order first to get orderId
+    try {
+      const orderResponse = await fetch(
+        "https://mussedupin.onrender.com/api/orders",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            userId: userInfo.id,
+            items: cartItems,
+            totalAmount: amount,
+            shippingAddress: userInfo.address,
+            paymentMethod: "vnpay",
+            discountInfo: discountInfo,
+          }),
+        }
+      );
 
-    const rawParams = {
-      vnp_Amount: String(Math.round(amount * 100)),
-      vnp_Command: "pay",
-      vnp_CreateDate: createDate,
-      vnp_CurrCode: "VND",
-      vnp_IpAddr: window.location.hostname, // sử dụng hostname thực
-      vnp_Locale: "vn",
-      vnp_OrderInfo: `Thanh toan don hang ${orderId}`,
-      vnp_OrderType: "billpayment",
-      vnp_ReturnUrl: returnUrl,
-      vnp_TmnCode: tmnCode,
-      vnp_TxnRef: orderId,
-      vnp_Version: "2.1.0",
-    };
+      const orderData = await orderResponse.json();
+      if (!orderData.success) {
+        throw new Error("Failed to create order");
+      }
 
-    const sortedParams = {};
-    Object.keys(rawParams)
-      .sort()
-      .forEach((key) => {
-        const v = rawParams[key];
-        sortedParams[key] = encodeURIComponent(v).replace(/%20/g, "+");
-      });
+      const orderId = orderData.orderCode;
 
-    const signData = Object.entries(sortedParams)
-      .map(([k, v]) => `${k}=${v}`)
-      .join("&");
+      const rawParams = {
+        vnp_Amount: String(Math.round(amount * 100)),
+        vnp_Command: "pay",
+        vnp_CreateDate: createDate,
+        vnp_CurrCode: "VND",
+        vnp_IpAddr: "127.0.0.1", // Use fixed IP for consistency
+        vnp_Locale: "vn",
+        vnp_OrderInfo: `Thanh toan don hang ${orderId}`,
+        vnp_OrderType: "billpayment",
+        vnp_ReturnUrl: returnUrl,
+        vnp_TmnCode: tmnCode,
+        vnp_TxnRef: orderId,
+        vnp_Version: "2.1.0",
+      };
 
-    const hmac = CryptoJS.HmacSHA512(signData, secretKey);
-    const secureHash = hmac.toString(CryptoJS.enc.Hex).toUpperCase();
+      const sortedParams = {};
+      Object.keys(rawParams)
+        .sort()
+        .forEach((key) => {
+          const v = rawParams[key];
+          sortedParams[key] = encodeURIComponent(v).replace(/%20/g, "+");
+        });
 
-    const queryString = signData; // đã encode & sort
-    return `https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?${queryString}&vnp_SecureHash=${secureHash}`;
+      const signData = Object.entries(sortedParams)
+        .map(([k, v]) => `${k}=${v}`)
+        .join("&");
+
+      const hmac = CryptoJS.HmacSHA512(signData, secretKey);
+      const secureHash = hmac.toString(CryptoJS.enc.Hex).toUpperCase();
+
+      const queryString = signData; // đã encode & sort
+      return `https://sandbox.vnpayment.vn/paymentv2/vpcpay.html?${queryString}&vnp_SecureHash=${secureHash}`;
+    } catch (error) {
+      console.error("Error creating order for VNPAY:", error);
+      throw error;
+    }
   };
 
   const handleNextStep = async () => {
@@ -159,26 +189,28 @@ const CheckoutPage = () => {
       }
       setIsLoading(true);
 
-      if (paymentMethod === "vnpay") {
-        try {
+      try {
+        if (paymentMethod === "vnpay") {
           const totalAmount = calculateTotal();
           const vnpayUrl = await generateVNPayURL(totalAmount);
+          // Clear cart before redirecting
+          localStorage.removeItem("cart");
+          localStorage.removeItem("cartDiscount");
           window.location.href = vnpayUrl;
           return;
-        } catch (error) {
-          console.error("Error generating VNPAY URL:", error);
-          alert("Có lỗi xảy ra khi tạo URL thanh toán VNPAY");
-          setIsLoading(false);
-          return;
         }
-      }
 
-      if (paymentMethod === "bank") {
-        await generateQRCode();
-      }
+        if (paymentMethod === "bank") {
+          await generateQRCode();
+        }
 
-      setCurrentStep(2);
-      setIsLoading(false);
+        setCurrentStep(2);
+      } catch (error) {
+        console.error("Error in payment process:", error);
+        alert("Có lỗi xảy ra trong quá trình thanh toán. Vui lòng thử lại.");
+      } finally {
+        setIsLoading(false);
+      }
     } else if (currentStep === 2) {
       setIsLoading(true);
       await createOrder();

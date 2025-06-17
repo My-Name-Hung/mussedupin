@@ -1432,9 +1432,8 @@ app.get("/api/vnpay-return", async (req, res) => {
         await transporter.sendMail(mailOptions);
 
         // Redirect to frontend with status
-        res.redirect(
-          `${process.env.CLIENT_URL}/payment-result?orderId=${orderId}&status=${newStatus}`
-        );
+        const returnUrl = "https://mussedupin.onrender.com/api/vnpay-return";
+        res.redirect(`${returnUrl}?orderId=${orderId}&status=${newStatus}`);
       } else {
         res.status(404).json({
           success: false,

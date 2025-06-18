@@ -226,87 +226,181 @@ const sendFeedbackConfirmation = (feedbackData) => {
 
 // Send experience booking confirmation email to customer
 const sendExperienceBookingEmail = async (bookingData) => {
-  const { userEmail, selectedDate, selectedTime, tickets } = bookingData;
+  const {
+    userInfo,
+    tickets,
+    selectedDate,
+    selectedTime,
+    bookingId,
+    paymentMethod,
+    totalAmount,
+  } = bookingData;
 
-  const emailContent = `
-    <h2>Xác nhận đặt vé tham quan</h2>
-    <p>Cảm ơn bạn đã đặt vé tham quan tại Musée Du Pin. Dưới đây là thông tin chi tiết về đơn đặt vé của bạn:</p>
-    
-    <h3>Thông tin đặt vé:</h3>
-    <p>Ngày tham quan: ${new Date(selectedDate).toLocaleDateString("vi-VN")}</p>
-    <p>Thời gian: ${selectedTime}</p>
-    
-    <h3>Chi tiết vé:</h3>
-    ${tickets
-      .map(
-        (ticket) => `
-      <div style="margin-bottom: 10px;">
-        <p><strong>${ticket.title}</strong></p>
-        <p>Số lượng: ${ticket.quantity}</p>
-        <p>Người tham quan: ${ticket.visitors.map((v) => v.name).join(", ")}</p>
-        <p>Giá: ${(ticket.price * ticket.quantity).toLocaleString()}đ</p>
+  const ticketList = tickets
+    .filter((ticket) => ticket.quantity > 0)
+    .map(
+      (ticket) => `
+      <tr>
+        <td style="padding: 10px; border-bottom: 1px solid #eee;">${
+          ticket.title
+        }</td>
+        <td style="padding: 10px; border-bottom: 1px solid #eee;">${
+          ticket.quantity
+        }</td>
+        <td style="padding: 10px; border-bottom: 1px solid #eee;">${ticket.visitors
+          .map((v) => v.name)
+          .join(", ")}</td>
+        <td style="padding: 10px; border-bottom: 1px solid #eee;">${(
+          ticket.price * ticket.quantity
+        ).toLocaleString()}đ</td>
+      </tr>
+    `
+    )
+    .join("");
+
+  const paymentInstructions =
+    paymentMethod === "bank"
+      ? `
+      <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
+        <h3 style="color: #2c2f11; margin-bottom: 10px;">Thông tin thanh toán:</h3>
+        <p><strong>Ngân hàng:</strong> Vietcombank</p>
+        <p><strong>Số tài khoản:</strong> 3144068052</p>
+        <p><strong>Chủ tài khoản:</strong> NGUYEN THANH HUNG</p>
+        <p><strong>Nội dung chuyển khoản:</strong> ${bookingId}</p>
       </div>
     `
-      )
-      .join("")}
-    
-    <p>Tổng cộng: ${tickets
-      .reduce((total, t) => total + t.price * t.quantity, 0)
-      .toLocaleString()}đ</p>
-    
-    <p>Vui lòng đến đúng giờ và mang theo email xác nhận này khi đến tham quan.</p>
-    
-    <p>Mọi thắc mắc xin vui lòng liên hệ:</p>
-    <p>Email: info@museedupin.com</p>
-    <p>Hotline: +84 86 235 6368</p>
+      : `
+      <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
+        <p>Vui lòng thanh toán trực tiếp tại quầy vé khi đến tham quan.</p>
+      </div>
+    `;
+
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+      <h2 style="color: #2c2f11; text-align: center;">Xác nhận đặt vé tham quan</h2>
+      
+      <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <p><strong>Mã đơn hàng:</strong> ${bookingId}</p>
+        <p><strong>Ngày tham quan:</strong> ${new Date(
+          selectedDate
+        ).toLocaleDateString("vi-VN")}</p>
+        <p><strong>Giờ tham quan:</strong> ${selectedTime}</p>
+        <p><strong>Tổng tiền:</strong> ${totalAmount.toLocaleString()}đ</p>
+        <p><strong>Phương thức thanh toán:</strong> ${
+          paymentMethod === "bank" ? "Chuyển khoản ngân hàng" : "Tiền mặt"
+        }</p>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <h3 style="color: #2c2f11;">Chi tiết vé:</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="background-color: #f8f9fa;">
+              <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Loại vé</th>
+              <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Số lượng</th>
+              <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Người tham quan</th>
+              <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Thành tiền</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${ticketList}
+          </tbody>
+        </table>
+      </div>
+
+      ${paymentInstructions}
+
+      <div style="margin-top: 20px; color: #666;">
+        <p>Nếu bạn có bất kỳ thắc mắc nào, vui lòng liên hệ với chúng tôi qua:</p>
+        <p>Email: info@mussedupin.com</p>
+        <p>Hotline: 0123456789</p>
+      </div>
+    </div>
   `;
 
   await sendEmail({
-    to: userEmail,
-    subject: "Xác nhận đặt vé tham quan Musée Du Pin",
-    html: emailContent,
+    to: userInfo.email,
+    subject: `Xác nhận đặt vé tham quan - Mã đơn ${bookingId}`,
+    html,
   });
 };
 
 // Send experience booking notification to admin
 const sendExperienceBookingAdminEmail = async (bookingData) => {
-  const { selectedDate, selectedTime, tickets, userInfo } = bookingData;
+  const {
+    userInfo,
+    tickets,
+    selectedDate,
+    selectedTime,
+    bookingId,
+    paymentMethod,
+    totalAmount,
+  } = bookingData;
 
-  const emailContent = `
-    <h2>Đơn đặt vé mới</h2>
-    
-    <h3>Thông tin khách hàng:</h3>
-    <p>Họ tên: ${userInfo.fullName}</p>
-    <p>Email: ${userInfo.email}</p>
-    <p>Số điện thoại: ${userInfo.phone}</p>
-    
-    <h3>Thông tin đặt vé:</h3>
-    <p>Ngày tham quan: ${new Date(selectedDate).toLocaleDateString("vi-VN")}</p>
-    <p>Thời gian: ${selectedTime}</p>
-    
-    <h3>Chi tiết vé:</h3>
-    ${tickets
-      .map(
-        (ticket) => `
-      <div style="margin-bottom: 10px;">
-        <p><strong>${ticket.title}</strong></p>
-        <p>Số lượng: ${ticket.quantity}</p>
-        <p>Người tham quan: ${ticket.visitors.map((v) => v.name).join(", ")}</p>
-        <p>Giá: ${(ticket.price * ticket.quantity).toLocaleString()}đ</p>
-      </div>
+  const ticketList = tickets
+    .filter((ticket) => ticket.quantity > 0)
+    .map(
+      (ticket) => `
+      <tr>
+        <td style="padding: 10px; border-bottom: 1px solid #eee;">${
+          ticket.title
+        }</td>
+        <td style="padding: 10px; border-bottom: 1px solid #eee;">${
+          ticket.quantity
+        }</td>
+        <td style="padding: 10px; border-bottom: 1px solid #eee;">${ticket.visitors
+          .map((v) => v.name)
+          .join(", ")}</td>
+        <td style="padding: 10px; border-bottom: 1px solid #eee;">${(
+          ticket.price * ticket.quantity
+        ).toLocaleString()}đ</td>
+      </tr>
     `
-      )
-      .join("")}
-    
-    <p>Tổng cộng: ${tickets
-      .reduce((total, t) => total + t.price * t.quantity, 0)
-      .toLocaleString()}đ</p>
+    )
+    .join("");
+
+  const html = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
+      <h2 style="color: #2c2f11; text-align: center;">Đơn đặt vé mới</h2>
+      
+      <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+        <p><strong>Mã đơn hàng:</strong> ${bookingId}</p>
+        <p><strong>Khách hàng:</strong> ${userInfo.fullName}</p>
+        <p><strong>Email:</strong> ${userInfo.email}</p>
+        <p><strong>Số điện thoại:</strong> ${userInfo.phone}</p>
+        <p><strong>Ngày tham quan:</strong> ${new Date(
+          selectedDate
+        ).toLocaleDateString("vi-VN")}</p>
+        <p><strong>Giờ tham quan:</strong> ${selectedTime}</p>
+        <p><strong>Tổng tiền:</strong> ${totalAmount.toLocaleString()}đ</p>
+        <p><strong>Phương thức thanh toán:</strong> ${
+          paymentMethod === "bank" ? "Chuyển khoản ngân hàng" : "Tiền mặt"
+        }</p>
+      </div>
+
+      <div style="margin-top: 20px;">
+        <h3 style="color: #2c2f11;">Chi tiết vé:</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="background-color: #f8f9fa;">
+              <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Loại vé</th>
+              <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Số lượng</th>
+              <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Người tham quan</th>
+              <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Thành tiền</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${ticketList}
+          </tbody>
+        </table>
+      </div>
+    </div>
   `;
 
   await sendEmail({
     to: process.env.ADMIN_EMAIL,
-    subject: "Đơn đặt vé mới - Musée Du Pin",
-    html: emailContent,
+    subject: `Đơn đặt vé mới - Mã đơn ${bookingId}`,
+    html,
   });
 };
 

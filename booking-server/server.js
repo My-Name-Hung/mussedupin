@@ -13,7 +13,6 @@ import mongoose from "mongoose";
 import cron from "node-cron";
 import nodemailer from "nodemailer";
 import User from "./models/User.js";
-import { env } from "process";
 
 dotenv.config();
 
@@ -41,6 +40,7 @@ app.use(
       "http://localhost:5173",
       "https://museedupin.netlify.app",
       "https://online-museeduphin.netlify.app",
+      "https://ticket-museeduphin.netlify.app",
     ],
   })
 );
@@ -271,7 +271,7 @@ const sendExperienceBookingEmail = async (bookingData) => {
               <p>Mã đơn hàng: ${bookingId}</p>  
       <h3 style="margin-bottom: 10px;">Thanh toán chuyển khoản</h3>
         <p>Số tiền: ${totalAmount.toLocaleString()}đ</p>
-      </div>
+        </div>
     `
       : `
       <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
@@ -291,12 +291,12 @@ const sendExperienceBookingEmail = async (bookingData) => {
         <p><strong>Họ tên:</strong> ${userInfo.fullName}</p>
         <p><strong>Email:</strong> ${userInfo.email}</p>
         <p><strong>Số điện thoại:</strong> ${userInfo.phone}</p>
-        <p><strong>Ngày tham quan:</strong> ${new Date(
-          selectedDate
-        ).toLocaleDateString("vi-VN")}</p>
+            <p><strong>Ngày tham quan:</strong> ${new Date(
+              selectedDate
+            ).toLocaleDateString("vi-VN")}</p>
         <p><strong>Giờ tham quan:</strong> ${selectedTime}</p>
-      </div>
-
+          </div>
+          
       <h3 style="color: #2c2f11;">Chi tiết vé</h3>
       <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
         <thead>
@@ -318,8 +318,8 @@ const sendExperienceBookingEmail = async (bookingData) => {
         <p>Nếu bạn có bất kỳ thắc mắc nào, vui lòng liên hệ với chúng tôi qua:</p>
         <p>Email: info@museedupin.com</p>
         <p>Hotline: +84 86 235 6368</p>
-      </div>
-    </div>
+        </div>
+        </div>
   `;
 
   await sendEmail({
@@ -377,14 +377,14 @@ const sendExperienceBookingAdminEmail = async (bookingData) => {
         <p><strong>Họ tên:</strong> ${userInfo.fullName}</p>
         <p><strong>Email:</strong> ${userInfo.email}</p>
         <p><strong>Số điện thoại:</strong> ${userInfo.phone}</p>
-        <p><strong>Ngày tham quan:</strong> ${new Date(
-          selectedDate
-        ).toLocaleDateString("vi-VN")}</p>
+            <p><strong>Ngày tham quan:</strong> ${new Date(
+              selectedDate
+            ).toLocaleDateString("vi-VN")}</p>
         <p><strong>Giờ tham quan:</strong> ${selectedTime}</p>
         <p><strong>Phương thức thanh toán:</strong> ${
           paymentMethod === "bank" ? "Chuyển khoản ngân hàng" : "Tiền mặt"
         }</p>
-      </div>
+          </div>
 
       <h3 style="color: #2c2f11;">Chi tiết vé</h3>
       <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
@@ -407,12 +407,12 @@ const sendExperienceBookingAdminEmail = async (bookingData) => {
         <p><strong>Phương thức thanh toán:</strong> ${
           paymentMethod === "bank" ? "Chuyển khoản ngân hàng" : "Tiền mặt"
         }</p>
+        </div>
       </div>
-    </div>
   `;
 
   await sendEmail({
-    to: process.env.ADMIN_EMAIL,
+    to: "admin@museedupin.com",
     subject: `Đơn đặt vé mới - ${bookingId}`,
     html: emailContent,
   });

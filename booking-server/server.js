@@ -674,71 +674,35 @@ app.get("/api/assets", async (req, res) => {
   }
 });
 
-// API endpoint for experience package bookings
+// API endpoint để xử lý đặt vé trải nghiệm
 app.post("/api/experience-bookings", async (req, res) => {
   try {
-    const {
-      packageId,
-      selectedDate,
-      selectedTime,
-      tickets,
-      userId,
-      userInfo,
-      paymentMethod,
-    } = req.body;
+    const bookingData = req.body;
 
-    // Validate required fields
-    if (
-      !packageId ||
-      !selectedDate ||
-      !selectedTime ||
-      !tickets ||
-      !tickets.length
-    ) {
-      return res.status(400).json({
-        success: false,
-        message: "Missing required booking information",
-      });
+    // Validate bookingId
+    if (!bookingData.bookingId) {
+      throw new Error("Missing booking ID");
     }
 
-    // Calculate total amount from tickets
-    const totalAmount = tickets.reduce(
-      (total, ticket) => total + ticket.price * ticket.quantity,
-      0
-    );
+    // Lưu booking vào database hoặc storage
+    await saveBooking(bookingData);
 
-    // Create booking record with calculated total amount
-    const booking = {
-      id: generateBookingId(),
-      packageId,
-      selectedDate,
-      selectedTime,
-      tickets,
-      userId,
-      userInfo,
-      paymentMethod,
-      totalAmount,
-      status: "pending",
-      createdAt: new Date(),
-    };
+    // Gửi email xác nhận
+    await Promise.all([
+      sendExperienceBookingEmail(bookingData),
+      sendExperienceBookingAdminEmail(bookingData),
+    ]);
 
-    // Save booking to database
-    await saveBooking(booking);
-
-    // Send confirmation emails
-    await sendExperienceBookingEmail(booking);
-    await sendExperienceBookingAdminEmail(booking);
-
-    res.json({
+    res.status(200).json({
       success: true,
-      bookingId: booking.id,
       message: "Booking created successfully",
+      bookingId: bookingData.bookingId,
     });
   } catch (error) {
     console.error("Error creating booking:", error);
     res.status(500).json({
       success: false,
-      message: "Internal server error",
+      message: "Failed to create booking",
       error: error.message,
     });
   }

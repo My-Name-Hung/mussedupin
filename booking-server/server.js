@@ -233,8 +233,13 @@ const sendExperienceBookingEmail = async (bookingData) => {
     selectedTime,
     bookingId,
     paymentMethod,
-    totalAmount,
   } = bookingData;
+
+  // Calculate total amount from tickets
+  const totalAmount = tickets.reduce(
+    (total, ticket) => total + ticket.price * ticket.quantity,
+    0
+  );
 
   const ticketList = tickets
     .filter((ticket) => ticket.quantity > 0)
@@ -267,11 +272,13 @@ const sendExperienceBookingEmail = async (bookingData) => {
         <p><strong>Số tài khoản:</strong> 3144068052</p>
         <p><strong>Chủ tài khoản:</strong> NGUYEN THANH HUNG</p>
         <p><strong>Nội dung chuyển khoản:</strong> ${bookingId}</p>
+        <p><strong>Số tiền:</strong> ${totalAmount.toLocaleString()}đ</p>
       </div>
     `
       : `
       <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
         <p>Vui lòng thanh toán trực tiếp tại quầy vé khi đến tham quan.</p>
+        <p><strong>Số tiền cần thanh toán:</strong> ${totalAmount.toLocaleString()}đ</p>
       </div>
     `;
 
@@ -334,7 +341,6 @@ const sendExperienceBookingAdminEmail = async (bookingData) => {
     selectedTime,
     bookingId,
     paymentMethod,
-    totalAmount,
   } = bookingData;
 
   const ticketList = tickets
@@ -664,8 +670,15 @@ app.get("/api/assets", async (req, res) => {
 // API endpoint for experience package bookings
 app.post("/api/experience-bookings", async (req, res) => {
   try {
-    const { packageId, selectedDate, selectedTime, tickets, userId, userInfo } =
-      req.body;
+    const {
+      packageId,
+      selectedDate,
+      selectedTime,
+      tickets,
+      userId,
+      userInfo,
+      paymentMethod,
+    } = req.body;
 
     // Validate required fields
     if (
@@ -681,7 +694,13 @@ app.post("/api/experience-bookings", async (req, res) => {
       });
     }
 
-    // Create booking record
+    // Calculate total amount from tickets
+    const totalAmount = tickets.reduce(
+      (total, ticket) => total + ticket.price * ticket.quantity,
+      0
+    );
+
+    // Create booking record with calculated total amount
     const booking = {
       id: generateBookingId(),
       packageId,
@@ -690,6 +709,8 @@ app.post("/api/experience-bookings", async (req, res) => {
       tickets,
       userId,
       userInfo,
+      paymentMethod,
+      totalAmount,
       status: "pending",
       createdAt: new Date(),
     };
@@ -698,11 +719,7 @@ app.post("/api/experience-bookings", async (req, res) => {
     await saveBooking(booking);
 
     // Send confirmation emails
-    await sendExperienceBookingEmail({
-      ...booking,
-      userEmail: userInfo.email,
-    });
-
+    await sendExperienceBookingEmail(booking);
     await sendExperienceBookingAdminEmail(booking);
 
     res.json({
@@ -715,6 +732,7 @@ app.post("/api/experience-bookings", async (req, res) => {
     res.status(500).json({
       success: false,
       message: "Internal server error",
+      error: error.message,
     });
   }
 });

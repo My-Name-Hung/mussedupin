@@ -13,6 +13,7 @@ import mongoose from "mongoose";
 import cron from "node-cron";
 import nodemailer from "nodemailer";
 import User from "./models/User.js";
+import { env } from "process";
 
 dotenv.config();
 
@@ -411,7 +412,7 @@ const sendExperienceBookingAdminEmail = async (bookingData) => {
   `;
 
   await sendEmail({
-    to: "admin@museedupin.com",
+    to: process.env.ADMIN_EMAIL,
     subject: `Đơn đặt vé mới - ${bookingId}`,
     html: emailContent,
   });

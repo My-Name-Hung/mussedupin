@@ -267,68 +267,64 @@ const sendExperienceBookingEmail = async (bookingData) => {
     paymentMethod === "bank"
       ? `
       <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
-        <h3 style="color: #2c2f11; margin-bottom: 10px;">Thông tin thanh toán:</h3>
-        <p><strong>Ngân hàng:</strong> Vietcombank</p>
-        <p><strong>Số tài khoản:</strong> 3144068052</p>
-        <p><strong>Chủ tài khoản:</strong> NGUYEN THANH HUNG</p>
-        <p><strong>Nội dung chuyển khoản:</strong> ${bookingId}</p>
-        <p><strong>Số tiền:</strong> ${totalAmount.toLocaleString()}đ</p>
+              <p>Mã đơn hàng: ${bookingId}</p>  
+      <h3 style="margin-bottom: 10px;">Thanh toán chuyển khoản</h3>
+        <p>Số tiền: ${totalAmount.toLocaleString()}đ</p>
       </div>
     `
       : `
       <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
-        <p>Vui lòng thanh toán trực tiếp tại quầy vé khi đến tham quan.</p>
-        <p><strong>Số tiền cần thanh toán:</strong> ${totalAmount.toLocaleString()}đ</p>
+        <h3 style="margin-bottom: 10px;">Thanh toán tại quầy</h3>
+        <p>Vui lòng thanh toán số tiền ${totalAmount.toLocaleString()}đ tại quầy vé khi đến tham quan.</p>
       </div>
     `;
 
-  const html = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-      <h2 style="color: #2c2f11; text-align: center;">Xác nhận đặt vé tham quan</h2>
+  const emailContent = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: #2c2f11;">Xác nhận đặt vé thành công</h2>
+      <p>Xin chào ${userInfo.fullName},</p>
+      <p>Cảm ơn bạn đã đặt vé tại Musée Du Pin. Dưới đây là thông tin chi tiết đơn hàng của bạn:</p>
       
-      <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+      <div style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
         <p><strong>Mã đơn hàng:</strong> ${bookingId}</p>
+        <p><strong>Họ tên:</strong> ${userInfo.fullName}</p>
+        <p><strong>Email:</strong> ${userInfo.email}</p>
+        <p><strong>Số điện thoại:</strong> ${userInfo.phone}</p>
         <p><strong>Ngày tham quan:</strong> ${new Date(
           selectedDate
         ).toLocaleDateString("vi-VN")}</p>
         <p><strong>Giờ tham quan:</strong> ${selectedTime}</p>
-        <p><strong>Tổng tiền:</strong> ${totalAmount.toLocaleString()}đ</p>
-        <p><strong>Phương thức thanh toán:</strong> ${
-          paymentMethod === "bank" ? "Chuyển khoản ngân hàng" : "Tiền mặt"
-        }</p>
       </div>
 
-      <div style="margin-top: 20px;">
-        <h3 style="color: #2c2f11;">Chi tiết vé:</h3>
-        <table style="width: 100%; border-collapse: collapse;">
-          <thead>
-            <tr style="background-color: #f8f9fa;">
-              <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Loại vé</th>
-              <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Số lượng</th>
-              <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Người tham quan</th>
-              <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Thành tiền</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${ticketList}
-          </tbody>
-        </table>
-      </div>
+      <h3 style="color: #2c2f11;">Chi tiết vé</h3>
+      <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+        <thead>
+          <tr style="background-color: #f8f9fa;">
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Vé</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Số lượng</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Người tham quan</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Thành tiền</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${ticketList}
+        </tbody>
+      </table>
 
       ${paymentInstructions}
 
-      <div style="margin-top: 20px; color: #666;">
+      <div style="margin-top: 20px;">
         <p>Nếu bạn có bất kỳ thắc mắc nào, vui lòng liên hệ với chúng tôi qua:</p>
-        <p>Email: info@mussedupin.com</p>
-        <p>Hotline: 0123456789</p>
+        <p>Email: info@museedupin.com</p>
+        <p>Hotline: +84 86 235 6368</p>
       </div>
     </div>
   `;
 
   await sendEmail({
     to: userInfo.email,
-    subject: `Xác nhận đặt vé tham quan - Mã đơn ${bookingId}`,
-    html,
+    subject: "Xác nhận đặt vé thành công - Musée Du Pin",
+    html: emailContent,
   });
 };
 
@@ -371,73 +367,53 @@ const sendExperienceBookingAdminEmail = async (bookingData) => {
     )
     .join("");
 
-  const paymentInstructions =
-    paymentMethod === "bank"
-      ? `
-      <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
-        <h3 style="color: #2c2f11; margin-bottom: 10px;">Thông tin thanh toán:</h3>
-        <p><strong>Ngân hàng:</strong> Vietcombank</p>
-        <p><strong>Số tài khoản:</strong> 3144068052</p>
-        <p><strong>Chủ tài khoản:</strong> NGUYEN THANH HUNG</p>
-        <p><strong>Nội dung chuyển khoản:</strong> ${bookingId}</p>
-        <p><strong>Số tiền:</strong> ${totalAmount.toLocaleString()}đ</p>
-      </div>
-    `
-      : `
-      <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
-        <p>Khách hàng sẽ thanh toán trực tiếp tại quầy vé khi đến tham quan.</p>
-        <p><strong>Số tiền cần thanh toán:</strong> ${totalAmount.toLocaleString()}đ</p>
-      </div>
-    `;
-
-  const html = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
-      <h2 style="color: #2c2f11; text-align: center;">Đơn đặt vé mới</h2>
+  const emailContent = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: #2c2f11;">Đơn đặt vé mới</h2>
       
-      <div style="background-color: #f8f9fa; padding: 15px; border-radius: 5px; margin: 20px 0;">
+      <div style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
         <p><strong>Mã đơn hàng:</strong> ${bookingId}</p>
-        <p><strong>Khách hàng:</strong> ${userInfo.fullName}</p>
+        <p><strong>Họ tên:</strong> ${userInfo.fullName}</p>
         <p><strong>Email:</strong> ${userInfo.email}</p>
         <p><strong>Số điện thoại:</strong> ${userInfo.phone}</p>
         <p><strong>Ngày tham quan:</strong> ${new Date(
           selectedDate
         ).toLocaleDateString("vi-VN")}</p>
         <p><strong>Giờ tham quan:</strong> ${selectedTime}</p>
-        <p><strong>Tổng tiền:</strong> ${totalAmount.toLocaleString()}đ</p>
         <p><strong>Phương thức thanh toán:</strong> ${
           paymentMethod === "bank" ? "Chuyển khoản ngân hàng" : "Tiền mặt"
         }</p>
       </div>
 
-      <div style="margin-top: 20px;">
-        <h3 style="color: #2c2f11;">Chi tiết vé:</h3>
-        <table style="width: 100%; border-collapse: collapse;">
-          <thead>
-            <tr style="background-color: #f8f9fa;">
-              <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Loại vé</th>
-              <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Số lượng</th>
-              <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Người tham quan</th>
-              <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Thành tiền</th>
-            </tr>
-          </thead>
-          <tbody>
-            ${ticketList}
-          </tbody>
-        </table>
-      </div>
+      <h3 style="color: #2c2f11;">Chi tiết vé</h3>
+      <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+        <thead>
+          <tr style="background-color: #f8f9fa;">
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Vé</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Số lượng</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Người tham quan</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Thành tiền</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${ticketList}
+        </tbody>
+      </table>
 
-      ${paymentInstructions}
-
-      <div style="margin-top: 20px; color: #666;">
-        <p>Vui lòng kiểm tra và xác nhận đơn đặt vé.</p>
+      <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
+        <h3 style="margin-bottom: 10px;">Thông tin thanh toán</h3>
+        <p><strong>Tổng tiền:</strong> ${totalAmount.toLocaleString()}đ</p>
+        <p><strong>Phương thức thanh toán:</strong> ${
+          paymentMethod === "bank" ? "Chuyển khoản ngân hàng" : "Tiền mặt"
+        }</p>
       </div>
     </div>
   `;
 
   await sendEmail({
-    to: process.env.ADMIN_EMAIL,
-    subject: `Đơn đặt vé mới - Mã đơn ${bookingId}`,
-    html,
+    to: "admin@museedupin.com",
+    subject: `Đơn đặt vé mới - ${bookingId}`,
+    html: emailContent,
   });
 };
 

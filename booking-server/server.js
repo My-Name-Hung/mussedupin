@@ -343,6 +343,12 @@ const sendExperienceBookingAdminEmail = async (bookingData) => {
     paymentMethod,
   } = bookingData;
 
+  // Calculate total amount from tickets
+  const totalAmount = tickets.reduce(
+    (total, ticket) => total + ticket.price * ticket.quantity,
+    0
+  );
+
   const ticketList = tickets
     .filter((ticket) => ticket.quantity > 0)
     .map(
@@ -364,6 +370,25 @@ const sendExperienceBookingAdminEmail = async (bookingData) => {
     `
     )
     .join("");
+
+  const paymentInstructions =
+    paymentMethod === "bank"
+      ? `
+      <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
+        <h3 style="color: #2c2f11; margin-bottom: 10px;">Thông tin thanh toán:</h3>
+        <p><strong>Ngân hàng:</strong> Vietcombank</p>
+        <p><strong>Số tài khoản:</strong> 3144068052</p>
+        <p><strong>Chủ tài khoản:</strong> NGUYEN THANH HUNG</p>
+        <p><strong>Nội dung chuyển khoản:</strong> ${bookingId}</p>
+        <p><strong>Số tiền:</strong> ${totalAmount.toLocaleString()}đ</p>
+      </div>
+    `
+      : `
+      <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
+        <p>Khách hàng sẽ thanh toán trực tiếp tại quầy vé khi đến tham quan.</p>
+        <p><strong>Số tiền cần thanh toán:</strong> ${totalAmount.toLocaleString()}đ</p>
+      </div>
+    `;
 
   const html = `
     <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px;">
@@ -399,6 +424,12 @@ const sendExperienceBookingAdminEmail = async (bookingData) => {
             ${ticketList}
           </tbody>
         </table>
+      </div>
+
+      ${paymentInstructions}
+
+      <div style="margin-top: 20px; color: #666;">
+        <p>Vui lòng kiểm tra và xác nhận đơn đặt vé.</p>
       </div>
     </div>
   `;

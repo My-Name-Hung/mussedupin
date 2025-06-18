@@ -225,95 +225,89 @@ const sendFeedbackConfirmation = (feedbackData) => {
 };
 
 // Send experience booking confirmation email to customer
-const sendExperienceBookingEmail = (bookingData) => {
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: bookingData.email,
-    subject: "Xác nhận đặt vé trải nghiệm tại Bảo tàng Thông (Musée Du Pin)",
-    html: `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e6e6e6; border-radius: 10px;">
-        <div style="background: linear-gradient(135deg, #2c2f11, #3d4016); padding: 20px; text-align: center; color: white; border-radius: 10px 10px 0 0;">
-          <h1 style="margin: 0;">Xác nhận đặt vé trải nghiệm</h1>
-        </div>
-        <div style="padding: 20px;">
-          <p>Xin chào <strong>${bookingData.name}</strong>,</p>
-          <p>Cảm ơn bạn đã đặt vé trải nghiệm tại Bảo tàng Thông (Musée Du Pin). Dưới đây là thông tin đặt vé của bạn:</p>
-          
-          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #2c2f11; margin-top: 0;">Chi tiết đặt vé</h3>
-            <p><strong>Gói trải nghiệm:</strong> ${bookingData.package}</p>
-            <p><strong>Ngày tham quan:</strong> ${new Date(
-              bookingData.date
-            ).toLocaleDateString("vi-VN")}</p>
-            <p><strong>Giờ tham quan:</strong> ${bookingData.time}</p>
-            <p><strong>Số lượng khách:</strong> ${bookingData.guests} người</p>
-            <p><strong>Giá vé:</strong> ${bookingData.price}</p>
-            ${
-              bookingData.specialRequests
-                ? `<p><strong>Yêu cầu đặc biệt:</strong> ${bookingData.specialRequests}</p>`
-                : ""
-            }
-          </div>
-          
-          <p>Chúng tôi rất mong được đón tiếp bạn tại Bảo tàng Thông (Musée Du Pin).</p>
-          <p>Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi qua:</p>
-          <ul style="list-style: none; padding-left: 0;">
-            <li>📞 Hotline: +84 86 235 6368</li>
-            <li>📧 Email: info@museedupin.com</li>
-          </ul>
-          
-          <p style="margin-top: 30px;">Trân trọng,<br>Đội ngũ Bảo tàng Thông (Musée Du Pin)</p>
-        </div>
-        <div style="background-color: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #64748b; border-radius: 0 0 10px 10px;">
-          © 2024 Bảo tàng Thông (Musée Du Pin). Tất cả các quyền được bảo lưu.
-        </div>
-      </div>
-    `,
-  };
+const sendExperienceBookingEmail = async (bookingData) => {
+  const { userEmail, selectedDate, selectedTime, tickets } = bookingData;
 
-  return transporter.sendMail(mailOptions);
+  const emailContent = `
+    <h2>Xác nhận đặt vé tham quan</h2>
+    <p>Cảm ơn bạn đã đặt vé tham quan tại Musée Du Pin. Dưới đây là thông tin chi tiết về đơn đặt vé của bạn:</p>
+    
+    <h3>Thông tin đặt vé:</h3>
+    <p>Ngày tham quan: ${new Date(selectedDate).toLocaleDateString("vi-VN")}</p>
+    <p>Thời gian: ${selectedTime}</p>
+    
+    <h3>Chi tiết vé:</h3>
+    ${tickets
+      .map(
+        (ticket) => `
+      <div style="margin-bottom: 10px;">
+        <p><strong>${ticket.title}</strong></p>
+        <p>Số lượng: ${ticket.quantity}</p>
+        <p>Người tham quan: ${ticket.visitors.map((v) => v.name).join(", ")}</p>
+        <p>Giá: ${(ticket.price * ticket.quantity).toLocaleString()}đ</p>
+      </div>
+    `
+      )
+      .join("")}
+    
+    <p>Tổng cộng: ${tickets
+      .reduce((total, t) => total + t.price * t.quantity, 0)
+      .toLocaleString()}đ</p>
+    
+    <p>Vui lòng đến đúng giờ và mang theo email xác nhận này khi đến tham quan.</p>
+    
+    <p>Mọi thắc mắc xin vui lòng liên hệ:</p>
+    <p>Email: info@museedupin.com</p>
+    <p>Hotline: +84 86 235 6368</p>
+  `;
+
+  await sendEmail({
+    to: userEmail,
+    subject: "Xác nhận đặt vé tham quan Musée Du Pin",
+    html: emailContent,
+  });
 };
 
 // Send experience booking notification to admin
-const sendExperienceBookingAdminEmail = (bookingData) => {
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
-    subject: "Có đặt vé trải nghiệm mới tại Bảo tàng Thông",
-    html: `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e6e6e6; border-radius: 10px;">
-        <div style="background: linear-gradient(135deg, #2c2f11, #3d4016); padding: 20px; text-align: center; color: white; border-radius: 10px 10px 0 0;">
-          <h1 style="margin: 0;">Đặt vé trải nghiệm mới</h1>
-        </div>
-        <div style="padding: 20px;">
-          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #2c2f11; margin-top: 0;">Thông tin khách hàng</h3>
-            <p><strong>Tên:</strong> ${bookingData.name}</p>
-            <p><strong>Email:</strong> ${bookingData.email}</p>
-            <p><strong>Số điện thoại:</strong> ${bookingData.phone}</p>
-          </div>
-          
-          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #2c2f11; margin-top: 0;">Chi tiết đặt vé</h3>
-            <p><strong>Gói trải nghiệm:</strong> ${bookingData.package}</p>
-            <p><strong>Ngày tham quan:</strong> ${new Date(
-              bookingData.date
-            ).toLocaleDateString("vi-VN")}</p>
-            <p><strong>Giờ tham quan:</strong> ${bookingData.time}</p>
-            <p><strong>Số lượng khách:</strong> ${bookingData.guests} người</p>
-            <p><strong>Giá vé:</strong> ${bookingData.price}</p>
-            ${
-              bookingData.specialRequests
-                ? `<p><strong>Yêu cầu đặc biệt:</strong> ${bookingData.specialRequests}</p>`
-                : ""
-            }
-          </div>
-        </div>
-      </div>
-    `,
-  };
+const sendExperienceBookingAdminEmail = async (bookingData) => {
+  const { selectedDate, selectedTime, tickets, userInfo } = bookingData;
 
-  return transporter.sendMail(mailOptions);
+  const emailContent = `
+    <h2>Đơn đặt vé mới</h2>
+    
+    <h3>Thông tin khách hàng:</h3>
+    <p>Họ tên: ${userInfo.fullName}</p>
+    <p>Email: ${userInfo.email}</p>
+    <p>Số điện thoại: ${userInfo.phone}</p>
+    
+    <h3>Thông tin đặt vé:</h3>
+    <p>Ngày tham quan: ${new Date(selectedDate).toLocaleDateString("vi-VN")}</p>
+    <p>Thời gian: ${selectedTime}</p>
+    
+    <h3>Chi tiết vé:</h3>
+    ${tickets
+      .map(
+        (ticket) => `
+      <div style="margin-bottom: 10px;">
+        <p><strong>${ticket.title}</strong></p>
+        <p>Số lượng: ${ticket.quantity}</p>
+        <p>Người tham quan: ${ticket.visitors.map((v) => v.name).join(", ")}</p>
+        <p>Giá: ${(ticket.price * ticket.quantity).toLocaleString()}đ</p>
+      </div>
+    `
+      )
+      .join("")}
+    
+    <p>Tổng cộng: ${tickets
+      .reduce((total, t) => total + t.price * t.quantity, 0)
+      .toLocaleString()}đ</p>
+  `;
+
+  await sendEmail({
+    to: process.env.ADMIN_EMAIL,
+    subject: "Đơn đặt vé mới - Musée Du Pin",
+    html: emailContent,
+  });
 };
 
 // API endpoint để xử lý đặt phòng
@@ -575,54 +569,58 @@ app.get("/api/assets", async (req, res) => {
 
 // API endpoint for experience package bookings
 app.post("/api/experience-bookings", async (req, res) => {
-  const bookingData = req.body;
-
   try {
-    // Save to Google Sheets
-    const row = [
-      new Date().toISOString(), // Timestamp
-      bookingData.package, // Experience package name
-      bookingData.name, // Customer name
-      bookingData.email, // Email
-      bookingData.phone, // Phone
-      bookingData.date, // Visit date
-      bookingData.guests, // Number of guests
-      bookingData.price, // Price
-      bookingData.specialRequests || "", // Special requests
-      "New", // Status
-    ];
+    const { packageId, selectedDate, selectedTime, tickets, userId, userInfo } =
+      req.body;
 
-    const request = {
-      spreadsheetId: SPREADSHEET_ID,
-      range: "Bookings!A:M",
-      valueInputOption: "RAW",
-      insertDataOption: "INSERT_ROWS",
-      resource: {
-        values: [row],
-      },
+    // Validate required fields
+    if (
+      !packageId ||
+      !selectedDate ||
+      !selectedTime ||
+      !tickets ||
+      !tickets.length
+    ) {
+      return res.status(400).json({
+        success: false,
+        message: "Missing required booking information",
+      });
+    }
+
+    // Create booking record
+    const booking = {
+      id: generateBookingId(),
+      packageId,
+      selectedDate,
+      selectedTime,
+      tickets,
+      userId,
+      userInfo,
+      status: "pending",
+      createdAt: new Date(),
     };
 
-    // Send data to Google Sheets
-    const sheetsResponse = await sheets.spreadsheets.values.append(request);
+    // Save booking to database
+    await saveBooking(booking);
 
     // Send confirmation emails
-    await Promise.all([
-      sendExperienceBookingEmail(bookingData),
-      sendExperienceBookingAdminEmail(bookingData),
-    ]);
+    await sendExperienceBookingEmail({
+      ...booking,
+      userEmail: userInfo.email,
+    });
 
-    res.status(200).json({
+    await sendExperienceBookingAdminEmail(booking);
+
+    res.json({
       success: true,
-      message:
-        "Experience booking saved successfully and email notifications sent.",
-      sheetsResponse: sheetsResponse.data,
+      bookingId: booking.id,
+      message: "Booking created successfully",
     });
   } catch (error) {
-    console.error("Error processing experience booking:", error);
+    console.error("Error creating booking:", error);
     res.status(500).json({
       success: false,
-      message: "Failed to process experience booking",
-      error: error.message,
+      message: "Internal server error",
     });
   }
 });
@@ -1483,3 +1481,49 @@ cron.schedule("*/5 * * * *", () => {
       });
   }
 });
+
+const sendEmail = async ({ to, subject, html }) => {
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to,
+    subject,
+    html,
+  };
+  return transporter.sendMail(mailOptions);
+};
+
+const generateBookingId = () => {
+  return (
+    "BK" +
+    Date.now().toString(36).toUpperCase() +
+    Math.random().toString(36).substring(2, 7).toUpperCase()
+  );
+};
+
+const saveBooking = async (booking) => {
+  const row = [
+    booking.id,
+    booking.packageId,
+    new Date(booking.selectedDate).toISOString(),
+    booking.selectedTime,
+    JSON.stringify(booking.tickets),
+    booking.userId,
+    booking.userInfo.fullName,
+    booking.userInfo.email,
+    booking.userInfo.phone,
+    booking.status,
+    new Date().toISOString(),
+  ];
+
+  const request = {
+    spreadsheetId: SPREADSHEET_ID,
+    range: "Bookings!A:K",
+    valueInputOption: "RAW",
+    insertDataOption: "INSERT_ROWS",
+    resource: {
+      values: [row],
+    },
+  };
+
+  return sheets.spreadsheets.values.append(request);
+};

@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/react-leaflet/lib/Popup.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { createElementObject, createOverlayComponent } from '@react-leaflet/core';\nimport { Popup as LeafletPopup } from 'leaflet';\nimport { useEffect } from 'react';\nexport const Popup = createOverlayComponent(function createPopup(props, context) {\n    const popup = new LeafletPopup(props, context.overlayContainer);\n    return createElementObject(popup, context);\n}, function usePopupLifecycle(element, context, { position }, setOpen) {\n    useEffect(function addPopup() {\n        const { instance } = element;\n        function onPopupOpen(event) {\n            if (event.popup === instance) {\n                instance.update();\n                setOpen(true);\n            }\n        }\n        function onPopupClose(event) {\n            if (event.popup === instance) {\n                setOpen(false);\n            }\n        }\n        context.map.on({\n            popupopen: onPopupOpen,\n            popupclose: onPopupClose\n        });\n        if (context.overlayContainer == null) {\n            // Attach to a Map\n            if (position != null) {\n                instance.setLatLng(position);\n            }\n            instance.openOn(context.map);\n        } else {\n            // Attach to container component\n            context.overlayContainer.bindPopup(instance);\n        }\n        return function removePopup() {\n            context.map.off({\n                popupopen: onPopupOpen,\n                popupclose: onPopupClose\n            });\n            context.overlayContainer?.unbindPopup();\n            context.map.removeLayer(instance);\n        };\n    }, [\n        element,\n        context,\n        setOpen,\n        position\n    ]);\n});\n",
+      "start": 1750747184419,
+      "end": 1750747184561,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747184561,
+      "end": 1750747184561,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747184561,
+      "end": 1750747184561,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747184561,
+      "end": 1750747184561,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747184561,
+      "end": 1750747184561,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747184561,
+      "end": 1750747184561,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747184561,
+      "end": 1750747184561,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747184561,
+      "end": 1750747184561,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747184562,
+      "end": 1750747184562,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747184562,
+      "end": 1750747184562,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747184562,
+      "end": 1750747184562,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747184562,
+      "end": 1750747184562,
+      "order": "normal"
+    }
+  ]
+}

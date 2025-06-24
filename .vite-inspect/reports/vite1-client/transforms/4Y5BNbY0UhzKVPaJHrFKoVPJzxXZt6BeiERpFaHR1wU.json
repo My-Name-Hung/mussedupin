@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/@babel/runtime/helpers/esm/objectWithoutPropertiesLoose.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "function _objectWithoutPropertiesLoose(r, e) {\n  if (null == r) return {};\n  var t = {};\n  for (var n in r) if ({}.hasOwnProperty.call(r, n)) {\n    if (-1 !== e.indexOf(n)) continue;\n    t[n] = r[n];\n  }\n  return t;\n}\nexport { _objectWithoutPropertiesLoose as default };",
+      "start": 1750747178115,
+      "end": 1750747178661,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747178661,
+      "end": 1750747178661,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747178661,
+      "end": 1750747178661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747178661,
+      "end": 1750747178661,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747178661,
+      "end": 1750747178661,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747178661,
+      "end": 1750747178661,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747178661,
+      "end": 1750747178661,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747178661,
+      "end": 1750747178661,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747178661,
+      "end": 1750747178662,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747178662,
+      "end": 1750747178662,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747178662,
+      "end": 1750747178662,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747178662,
+      "end": 1750747178662,
+      "order": "normal"
+    }
+  ]
+}

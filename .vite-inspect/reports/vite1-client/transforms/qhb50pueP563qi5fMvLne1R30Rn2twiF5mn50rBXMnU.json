@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/@babel/runtime/helpers/esm/toConsumableArray.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import arrayWithoutHoles from \"./arrayWithoutHoles.js\";\nimport iterableToArray from \"./iterableToArray.js\";\nimport unsupportedIterableToArray from \"./unsupportedIterableToArray.js\";\nimport nonIterableSpread from \"./nonIterableSpread.js\";\nfunction _toConsumableArray(r) {\n  return arrayWithoutHoles(r) || iterableToArray(r) || unsupportedIterableToArray(r) || nonIterableSpread();\n}\nexport { _toConsumableArray as default };",
+      "start": 1750747177820,
+      "end": 1750747178068,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747178068,
+      "end": 1750747178068,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747178068,
+      "end": 1750747178068,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747178068,
+      "end": 1750747178068,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747178068,
+      "end": 1750747178068,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747178068,
+      "end": 1750747178068,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747178068,
+      "end": 1750747178068,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747178068,
+      "end": 1750747178068,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747178069,
+      "end": 1750747178069,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747178069,
+      "end": 1750747178069,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747178069,
+      "end": 1750747178069,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747178069,
+      "end": 1750747178069,
+      "order": "normal"
+    }
+  ]
+}

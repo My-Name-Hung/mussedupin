@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/lucide-react/dist/esm/icons/tram-front.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"rect\", { width: \"16\", height: \"16\", x: \"4\", y: \"3\", rx: \"2\", key: \"1wxw4b\" }],\n  [\"path\", { d: \"M4 11h16\", key: \"mpoxn0\" }],\n  [\"path\", { d: \"M12 3v8\", key: \"1h2ygw\" }],\n  [\"path\", { d: \"m8 19-2 3\", key: \"13i0xs\" }],\n  [\"path\", { d: \"m18 22-2-3\", key: \"1p0ohu\" }],\n  [\"path\", { d: \"M8 15h.01\", key: \"a7atzg\" }],\n  [\"path\", { d: \"M16 15h.01\", key: \"rnfrdf\" }]\n];\nconst TramFront = createLucideIcon(\"tram-front\", __iconNode);\n\nexport { __iconNode, TramFront as default };\n//# sourceMappingURL=tram-front.js.map\n",
+      "start": 1750747186109,
+      "end": 1750747186193,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747186193,
+      "end": 1750747186193,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747186193,
+      "end": 1750747186194,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747186194,
+      "end": 1750747186194,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747186194,
+      "end": 1750747186194,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747186194,
+      "end": 1750747186194,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747186194,
+      "end": 1750747186194,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747186194,
+      "end": 1750747186194,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747186194,
+      "end": 1750747186194,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747186194,
+      "end": 1750747186194,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747186194,
+      "end": 1750747186194,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747186194,
+      "end": 1750747186194,
+      "order": "normal"
+    }
+  ]
+}

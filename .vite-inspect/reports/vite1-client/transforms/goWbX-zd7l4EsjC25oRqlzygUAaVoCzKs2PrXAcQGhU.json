@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/framer-motion/dist/es/render/utils/flat-tree.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { addUniqueItem, removeItem } from 'motion-utils';\nimport { compareByDepth } from './compare-by-depth.mjs';\n\nclass FlatTree {\n    constructor() {\n        this.children = [];\n        this.isDirty = false;\n    }\n    add(child) {\n        addUniqueItem(this.children, child);\n        this.isDirty = true;\n    }\n    remove(child) {\n        removeItem(this.children, child);\n        this.isDirty = true;\n    }\n    forEach(callback) {\n        this.isDirty && this.children.sort(compareByDepth);\n        this.isDirty = false;\n        this.children.forEach(callback);\n    }\n}\n\nexport { FlatTree };\n",
+      "start": 1750747184059,
+      "end": 1750747184286,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal"
+    }
+  ]
+}

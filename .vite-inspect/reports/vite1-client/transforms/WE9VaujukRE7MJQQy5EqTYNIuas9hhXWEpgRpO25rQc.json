@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/react-super-responsive-table/dist/esm/utils/tableContext.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import React, { createContext, useState, useMemo, } from 'react';\nvar HeaderContext = createContext(undefined);\nfunction HeaderProvider(_a) {\n    var children = _a.children;\n    var _b = useState([]), headers = _b[0], setHeaders = _b[1];\n    var contextValue = useMemo(function () { return ({ headers: headers, setHeaders: setHeaders }); }, [headers]);\n    return (React.createElement(HeaderContext.Provider, { value: contextValue }, children));\n}\nexport { HeaderProvider, HeaderContext };\n",
+      "start": 1750747176270,
+      "end": 1750747177556,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747177556,
+      "end": 1750747177556,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747177556,
+      "end": 1750747177556,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747177556,
+      "end": 1750747177556,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747177556,
+      "end": 1750747177556,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747177556,
+      "end": 1750747177556,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747177556,
+      "end": 1750747177556,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747177556,
+      "end": 1750747177556,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747177556,
+      "end": 1750747177556,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747177556,
+      "end": 1750747177556,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747177556,
+      "end": 1750747177556,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747177556,
+      "end": 1750747177556,
+      "order": "normal"
+    }
+  ]
+}

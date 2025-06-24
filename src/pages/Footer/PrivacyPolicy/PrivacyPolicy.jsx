@@ -19,7 +19,8 @@ const PrivacyPolicy = () => {
       <div className="privacy-banner">
         <img
           src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784642/collections/louvre-sunset.jpg"
-          alt="Bảo tàng Thông - Musée Du Pin"
+          alt={`Bảo tàng Thông - ${String.fromCharCode(160)}Musée Du Pin`}
+          className="notranslate"
         />
         <div className="banner-overlay">
           <h1>CHÍNH SÁCH BẢO MẬT</h1>
@@ -31,10 +32,11 @@ const PrivacyPolicy = () => {
         <div className="section">
           <h2>GIỚI THIỆU</h2>
           <p>
-            Bảo tàng Thông - Musée Du Pin cam kết bảo vệ quyền riêng tư và dữ
-            liệu cá nhân của quý khách. Chính sách bảo mật này mô tả cách chúng
-            tôi thu thập, sử dụng, lưu trữ và bảo vệ thông tin của quý khách khi
-            truy cập website và sử dụng dịch vụ hay các sản phẩm của bảo tàng.
+            Bảo tàng Thông - <span className="notranslate">Musée Du Pin</span>{" "}
+            cam kết bảo vệ quyền riêng tư và dữ liệu cá nhân của quý khách.
+            Chính sách bảo mật này mô tả cách chúng tôi thu thập, sử dụng, lưu
+            trữ và bảo vệ thông tin của quý khách khi truy cập website và sử
+            dụng dịch vụ hay các sản phẩm của bảo tàng.
           </p>
         </div>
 
@@ -144,14 +146,13 @@ const PrivacyPolicy = () => {
             chúng tôi xử lý dữ liệu cá nhân, vui lòng liên hệ:
           </p>
           <p>
-            Bảo tàng Thông - Musée Du Pin
+            Bảo tàng Thông - <span className="notranslate">Musée Du Pin</span>
             <br />
             Email: baotangthong2024@gmail.com
             <br />
-              Điện thoại: +84 2633 818 968; +84 86 235 6368
-
+            Điện thoại: +84 2633 818 968; +84 86 235 6368
             <br />
-              Địa chỉ: 29-31 Đống Đa, Phường 3, Tp Đà Lạt, tỉnh Lâm Đồng, Việt Nam
+            Địa chỉ: 29-31 Đống Đa, Phường 3, Tp Đà Lạt, tỉnh Lâm Đồng, Việt Nam
           </p>
         </div>
 

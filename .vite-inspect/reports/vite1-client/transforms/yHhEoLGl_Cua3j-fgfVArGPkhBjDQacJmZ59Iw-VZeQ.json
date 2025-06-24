@@ -1,0 +1,90 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import React, { useEffect } from \"react\";\nimport { FaCheckCircle } from \"react-icons/fa\";\nimport \"./SuccessModal.css\";\n\nconst SuccessModal = ({ isOpen, message, onClose, title }) => {\n  useEffect(() => {\n    if (isOpen) {\n      // Tự động đóng modal sau 2.5s\n      const timer = setTimeout(() => {\n        onClose();\n      }, 2500);\n\n      return () => clearTimeout(timer);\n    }\n  }, [isOpen, onClose]);\n\n  if (!isOpen) return null;\n\n  return (\n    <div className=\"success-modal-overlay\">\n      <div className=\"success-modal-container\">\n        <div className=\"success-icon\">\n          <FaCheckCircle />\n        </div>\n        <h2 className=\"success-title\">{title || \"Thành công!\"}</h2>\n        <p className=\"success-message\">{message}</p>\n      </div>\n    </div>\n  );\n};\n\nexport default SuccessModal;\n",
+      "start": 1750747176001,
+      "end": 1750747177107,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747177107,
+      "end": 1750747177107,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect } from \"react\";\nimport { FaCheckCircle } from \"react-icons/fa\";\nimport \"./SuccessModal.css\";\nconst SuccessModal = ({ isOpen, message, onClose, title }) => {\n  useEffect(() => {\n    if (isOpen) {\n      const timer = setTimeout(() => {\n        onClose();\n      }, 2500);\n      return () => clearTimeout(timer);\n    }\n  }, [isOpen, onClose]);\n  if (!isOpen) return null;\n  return /* @__PURE__ */ jsx(\"div\", { className: \"success-modal-overlay\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"success-modal-container\", children: [\n    /* @__PURE__ */ jsx(\"div\", { className: \"success-icon\", children: /* @__PURE__ */ jsx(FaCheckCircle, {}) }),\n    /* @__PURE__ */ jsx(\"h2\", { className: \"success-title\", children: title || \"Thành công!\" }),\n    /* @__PURE__ */ jsx(\"p\", { className: \"success-message\", children: message })\n  ] }) });\n};\nexport default SuccessModal;\n",
+      "start": 1750747177107,
+      "end": 1750747177480,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx"
+        ],
+        "sourcesContent": [
+          "import React, { useEffect } from \"react\";\nimport { FaCheckCircle } from \"react-icons/fa\";\nimport \"./SuccessModal.css\";\n\nconst SuccessModal = ({ isOpen, message, onClose, title }) => {\n  useEffect(() => {\n    if (isOpen) {\n      // Tự động đóng modal sau 2.5s\n      const timer = setTimeout(() => {\n        onClose();\n      }, 2500);\n\n      return () => clearTimeout(timer);\n    }\n  }, [isOpen, onClose]);\n\n  if (!isOpen) return null;\n\n  return (\n    <div className=\"success-modal-overlay\">\n      <div className=\"success-modal-container\">\n        <div className=\"success-icon\">\n          <FaCheckCircle />\n        </div>\n        <h2 className=\"success-title\">{title || \"Thành công!\"}</h2>\n        <p className=\"success-message\">{message}</p>\n      </div>\n    </div>\n  );\n};\n\nexport default SuccessModal;\n"
+        ],
+        "mappings": "AAoBM,SAEI,KAFJ;AApBN,OAAO,SAAS,iBAAiB;AACjC,SAAS,qBAAqB;AAC9B,OAAO;AAEP,MAAM,eAAe,CAAC,EAAE,QAAQ,SAAS,SAAS,MAAM,MAAM;AAC5D,YAAU,MAAM;AACd,QAAI,QAAQ;AAEV,YAAM,QAAQ,WAAW,MAAM;AAC7B,gBAAQ;AAAA,MACV,GAAG,IAAI;AAEP,aAAO,MAAM,aAAa,KAAK;AAAA,IACjC;AAAA,EACF,GAAG,CAAC,QAAQ,OAAO,CAAC;AAEpB,MAAI,CAAC,OAAQ,QAAO;AAEpB,SACE,oBAAC,SAAI,WAAU,yBACb,+BAAC,SAAI,WAAU,2BACb;AAAA,wBAAC,SAAI,WAAU,gBACb,8BAAC,iBAAc,GACjB;AAAA,IACA,oBAAC,QAAG,WAAU,iBAAiB,mBAAS,eAAc;AAAA,IACtD,oBAAC,OAAE,WAAU,mBAAmB,mBAAQ;AAAA,KAC1C,GACF;AAEJ;AAEA,eAAe;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747177480,
+      "end": 1750747177480,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747177480,
+      "end": 1750747177480,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747177480,
+      "end": 1750747177480,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747177480,
+      "end": 1750747177480,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747177480,
+      "end": 1750747177480,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747177480,
+      "end": 1750747177480,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747177480,
+      "end": 1750747177480,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747177480,
+      "end": 1750747177481,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747177481,
+      "end": 1750747177481,
+      "order": "normal"
+    }
+  ]
+}

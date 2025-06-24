@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.css",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": ".time-selection-container {\n  margin-top: 1rem;\n}\n\n.time-selection-container h2 {\n  margin-bottom: 1.5rem;\n  font-size: 1.5rem;\n  color: #333;\n}\n\n.time-tabs {\n  display: flex;\n  gap: 1rem;\n  margin-bottom: 2rem;\n}\n\n.tab {\n  padding: 0.8rem 1.5rem;\n  border: none;\n  background: #f0f0f0;\n  border: 1px solid #000;\n  border-radius: 6px;\n  color: #2c2f11;\n  cursor: pointer;\n  font-size: 0.9rem;\n  transition: all 0.2s;\n}\n\n.tab.active {\n  background: #2c2f11;\n  color: yellowgreen;\n}\n\n.time-slots {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));\n  gap: 1rem;\n}\n\n.time-slot {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  cursor: pointer;\n}\n\n.time-slot input[type=\"radio\"] {\n  display: none;\n}\n\n.time-slot span {\n  padding: 0.5rem 1rem;\n  border: 1px solid #000;\n  border-radius: 4px;\n  font-size: 0.9rem;\n  transition: all 0.2s;\n  color: #2c2f11;\n  width: 100%;\n  text-align: center;\n}\n\n.time-slot input[type=\"radio\"]:checked + span {\n  background: #2c2f11;\n  color: white;\n  border-color: white;\n}\n\n.time-slot:hover span {\n  background: #f8d7dc;\n  border-color: #e4002b;\n}\n",
+      "start": 1750747176180,
+      "end": 1750747177500,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747177500,
+      "end": 1750747177500,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747177500,
+      "end": 1750747177500,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747177500,
+      "end": 1750747177500,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747177500,
+      "end": 1750747177500,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747177500,
+      "end": 1750747177500,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747177500,
+      "end": 1750747177500,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747177500,
+      "end": 1750747177500,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747177500,
+      "end": 1750747177500,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747177500,
+      "end": 1750747177500,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747177500,
+      "end": 1750747177500,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747177500,
+      "end": 1750747177500,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/src/App.jsx",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import React from \"react\";\nimport { Route, BrowserRouter as Router, Routes } from \"react-router-dom\";\nimport \"./App.css\";\nimport Footer from \"./components/Footer/Footer\";\nimport Home from \"./components/Home/Home\";\nimport Navbar from \"./components/Navbar/Navbar\";\nimport ScrollToTop from \"./components/ScrollToTop\";\nimport ScrollToTopButton from \"./components/ScrollToTopButton/ScrollToTopButton\";\nimport Visit from \"./components/Visit/Visit\";\nimport \"./index.css\";\nimport CheckoutPage from \"./pages/CheckoutPage/CheckoutPage\";\nimport Copyrights from \"./pages/Footer/Copyrights/Copyrights\";\nimport LegalNotice from \"./pages/Footer/LegalNotice/LegalNotice\";\nimport PrivacyPolicy from \"./pages/Footer/PrivacyPolicy/PrivacyPolicy\";\nimport NotFound from \"./pages/NotFound\";\nimport TicketList from \"./pages/TicketList/TicketList\";\nimport ArtRooms from \"./pages/VisitPackages/ArtRooms\";\nimport NonResidentialPackages from \"./pages/VisitPackages/NonResidentialPackages\";\nimport PackageDetail from \"./pages/VisitPackages/PackageDetail\";\nimport RegularPackages from \"./pages/VisitPackages/RegularPackages\";\nimport ResidentialPackages from \"./pages/VisitPackages/ResidentialPackages\";\n\nfunction App() {\n  return (\n    <Router>\n      <ScrollToTop />\n      <div className=\"app\">\n        <Navbar />\n        <main>\n          <Routes>\n            <Route path=\"/\" element={<Home />} />\n            <Route path=\"/visit\" element={<Visit />} />\n            <Route\n              path=\"/visit/non-residential\"\n              element={<NonResidentialPackages />}\n            />\n            <Route\n              path=\"/visit/residential\"\n              element={<ResidentialPackages />}\n            />\n            <Route path=\"/visit/regular\" element={<RegularPackages />} />\n            <Route path=\"/visit/art-rooms\" element={<ArtRooms />} />\n            <Route\n              path=\"/visit/package/:packageId\"\n              element={<PackageDetail />}\n            />\n            <Route\n              path=\"/checkout/package/:packageId\"\n              element={<CheckoutPage />}\n            />\n            <Route path=\"/checkout/package\" element={<TicketList />} />\n            <Route path=\"/legal-notice\" element={<LegalNotice />} />\n            <Route path=\"/privacy-policy\" element={<PrivacyPolicy />} />\n            <Route path=\"/copyrights\" element={<Copyrights />} />\n            <Route path=\"*\" element={<NotFound />} />\n          </Routes>\n        </main>\n        <Footer />\n        <ScrollToTopButton />\n      </div>\n    </Router>\n  );\n}\n\nexport default App;\n",
+      "start": 1750747173712,
+      "end": 1750747173721,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747173721,
+      "end": 1750747173721,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { Route, BrowserRouter as Router, Routes } from \"react-router-dom\";\nimport \"./App.css\";\nimport Footer from \"./components/Footer/Footer\";\nimport Home from \"./components/Home/Home\";\nimport Navbar from \"./components/Navbar/Navbar\";\nimport ScrollToTop from \"./components/ScrollToTop\";\nimport ScrollToTopButton from \"./components/ScrollToTopButton/ScrollToTopButton\";\nimport Visit from \"./components/Visit/Visit\";\nimport \"./index.css\";\nimport CheckoutPage from \"./pages/CheckoutPage/CheckoutPage\";\nimport Copyrights from \"./pages/Footer/Copyrights/Copyrights\";\nimport LegalNotice from \"./pages/Footer/LegalNotice/LegalNotice\";\nimport PrivacyPolicy from \"./pages/Footer/PrivacyPolicy/PrivacyPolicy\";\nimport NotFound from \"./pages/NotFound\";\nimport TicketList from \"./pages/TicketList/TicketList\";\nimport ArtRooms from \"./pages/VisitPackages/ArtRooms\";\nimport NonResidentialPackages from \"./pages/VisitPackages/NonResidentialPackages\";\nimport PackageDetail from \"./pages/VisitPackages/PackageDetail\";\nimport RegularPackages from \"./pages/VisitPackages/RegularPackages\";\nimport ResidentialPackages from \"./pages/VisitPackages/ResidentialPackages\";\nfunction App() {\n  return /* @__PURE__ */ jsxs(Router, { children: [\n    /* @__PURE__ */ jsx(ScrollToTop, {}),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"app\", children: [\n      /* @__PURE__ */ jsx(Navbar, {}),\n      /* @__PURE__ */ jsx(\"main\", { children: /* @__PURE__ */ jsxs(Routes, { children: [\n        /* @__PURE__ */ jsx(Route, { path: \"/\", element: /* @__PURE__ */ jsx(Home, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"/visit\", element: /* @__PURE__ */ jsx(Visit, {}) }),\n        /* @__PURE__ */ jsx(\n          Route,\n          {\n            path: \"/visit/non-residential\",\n            element: /* @__PURE__ */ jsx(NonResidentialPackages, {})\n          }\n        ),\n        /* @__PURE__ */ jsx(\n          Route,\n          {\n            path: \"/visit/residential\",\n            element: /* @__PURE__ */ jsx(ResidentialPackages, {})\n          }\n        ),\n        /* @__PURE__ */ jsx(Route, { path: \"/visit/regular\", element: /* @__PURE__ */ jsx(RegularPackages, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"/visit/art-rooms\", element: /* @__PURE__ */ jsx(ArtRooms, {}) }),\n        /* @__PURE__ */ jsx(\n          Route,\n          {\n            path: \"/visit/package/:packageId\",\n            element: /* @__PURE__ */ jsx(PackageDetail, {})\n          }\n        ),\n        /* @__PURE__ */ jsx(\n          Route,\n          {\n            path: \"/checkout/package/:packageId\",\n            element: /* @__PURE__ */ jsx(CheckoutPage, {})\n          }\n        ),\n        /* @__PURE__ */ jsx(Route, { path: \"/checkout/package\", element: /* @__PURE__ */ jsx(TicketList, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"/legal-notice\", element: /* @__PURE__ */ jsx(LegalNotice, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"/privacy-policy\", element: /* @__PURE__ */ jsx(PrivacyPolicy, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"/copyrights\", element: /* @__PURE__ */ jsx(Copyrights, {}) }),\n        /* @__PURE__ */ jsx(Route, { path: \"*\", element: /* @__PURE__ */ jsx(NotFound, {}) })\n      ] }) }),\n      /* @__PURE__ */ jsx(Footer, {}),\n      /* @__PURE__ */ jsx(ScrollToTopButton, {})\n    ] })\n  ] });\n}\nexport default App;\n",
+      "start": 1750747173721,
+      "end": 1750747173733,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/App.jsx"
+        ],
+        "sourcesContent": [
+          "import React from \"react\";\nimport { Route, BrowserRouter as Router, Routes } from \"react-router-dom\";\nimport \"./App.css\";\nimport Footer from \"./components/Footer/Footer\";\nimport Home from \"./components/Home/Home\";\nimport Navbar from \"./components/Navbar/Navbar\";\nimport ScrollToTop from \"./components/ScrollToTop\";\nimport ScrollToTopButton from \"./components/ScrollToTopButton/ScrollToTopButton\";\nimport Visit from \"./components/Visit/Visit\";\nimport \"./index.css\";\nimport CheckoutPage from \"./pages/CheckoutPage/CheckoutPage\";\nimport Copyrights from \"./pages/Footer/Copyrights/Copyrights\";\nimport LegalNotice from \"./pages/Footer/LegalNotice/LegalNotice\";\nimport PrivacyPolicy from \"./pages/Footer/PrivacyPolicy/PrivacyPolicy\";\nimport NotFound from \"./pages/NotFound\";\nimport TicketList from \"./pages/TicketList/TicketList\";\nimport ArtRooms from \"./pages/VisitPackages/ArtRooms\";\nimport NonResidentialPackages from \"./pages/VisitPackages/NonResidentialPackages\";\nimport PackageDetail from \"./pages/VisitPackages/PackageDetail\";\nimport RegularPackages from \"./pages/VisitPackages/RegularPackages\";\nimport ResidentialPackages from \"./pages/VisitPackages/ResidentialPackages\";\n\nfunction App() {\n  return (\n    <Router>\n      <ScrollToTop />\n      <div className=\"app\">\n        <Navbar />\n        <main>\n          <Routes>\n            <Route path=\"/\" element={<Home />} />\n            <Route path=\"/visit\" element={<Visit />} />\n            <Route\n              path=\"/visit/non-residential\"\n              element={<NonResidentialPackages />}\n            />\n            <Route\n              path=\"/visit/residential\"\n              element={<ResidentialPackages />}\n            />\n            <Route path=\"/visit/regular\" element={<RegularPackages />} />\n            <Route path=\"/visit/art-rooms\" element={<ArtRooms />} />\n            <Route\n              path=\"/visit/package/:packageId\"\n              element={<PackageDetail />}\n            />\n            <Route\n              path=\"/checkout/package/:packageId\"\n              element={<CheckoutPage />}\n            />\n            <Route path=\"/checkout/package\" element={<TicketList />} />\n            <Route path=\"/legal-notice\" element={<LegalNotice />} />\n            <Route path=\"/privacy-policy\" element={<PrivacyPolicy />} />\n            <Route path=\"/copyrights\" element={<Copyrights />} />\n            <Route path=\"*\" element={<NotFound />} />\n          </Routes>\n        </main>\n        <Footer />\n        <ScrollToTopButton />\n      </div>\n    </Router>\n  );\n}\n\nexport default App;\n"
+        ],
+        "mappings": "AAyBM,cAII,YAJJ;AAzBN,OAAO,WAAW;AAClB,SAAS,OAAO,iBAAiB,QAAQ,cAAc;AACvD,OAAO;AACP,OAAO,YAAY;AACnB,OAAO,UAAU;AACjB,OAAO,YAAY;AACnB,OAAO,iBAAiB;AACxB,OAAO,uBAAuB;AAC9B,OAAO,WAAW;AAClB,OAAO;AACP,OAAO,kBAAkB;AACzB,OAAO,gBAAgB;AACvB,OAAO,iBAAiB;AACxB,OAAO,mBAAmB;AAC1B,OAAO,cAAc;AACrB,OAAO,gBAAgB;AACvB,OAAO,cAAc;AACrB,OAAO,4BAA4B;AACnC,OAAO,mBAAmB;AAC1B,OAAO,qBAAqB;AAC5B,OAAO,yBAAyB;AAEhC,SAAS,MAAM;AACb,SACE,qBAAC,UACC;AAAA,wBAAC,eAAY;AAAA,IACb,qBAAC,SAAI,WAAU,OACb;AAAA,0BAAC,UAAO;AAAA,MACR,oBAAC,UACC,+BAAC,UACC;AAAA,4BAAC,SAAM,MAAK,KAAI,SAAS,oBAAC,QAAK,GAAI;AAAA,QACnC,oBAAC,SAAM,MAAK,UAAS,SAAS,oBAAC,SAAM,GAAI;AAAA,QACzC;AAAA,UAAC;AAAA;AAAA,YACC,MAAK;AAAA,YACL,SAAS,oBAAC,0BAAuB;AAAA;AAAA,QACnC;AAAA,QACA;AAAA,UAAC;AAAA;AAAA,YACC,MAAK;AAAA,YACL,SAAS,oBAAC,uBAAoB;AAAA;AAAA,QAChC;AAAA,QACA,oBAAC,SAAM,MAAK,kBAAiB,SAAS,oBAAC,mBAAgB,GAAI;AAAA,QAC3D,oBAAC,SAAM,MAAK,oBAAmB,SAAS,oBAAC,YAAS,GAAI;AAAA,QACtD;AAAA,UAAC;AAAA;AAAA,YACC,MAAK;AAAA,YACL,SAAS,oBAAC,iBAAc;AAAA;AAAA,QAC1B;AAAA,QACA;AAAA,UAAC;AAAA;AAAA,YACC,MAAK;AAAA,YACL,SAAS,oBAAC,gBAAa;AAAA;AAAA,QACzB;AAAA,QACA,oBAAC,SAAM,MAAK,qBAAoB,SAAS,oBAAC,cAAW,GAAI;AAAA,QACzD,oBAAC,SAAM,MAAK,iBAAgB,SAAS,oBAAC,eAAY,GAAI;AAAA,QACtD,oBAAC,SAAM,MAAK,mBAAkB,SAAS,oBAAC,iBAAc,GAAI;AAAA,QAC1D,oBAAC,SAAM,MAAK,eAAc,SAAS,oBAAC,cAAW,GAAI;AAAA,QACnD,oBAAC,SAAM,MAAK,KAAI,SAAS,oBAAC,YAAS,GAAI;AAAA,SACzC,GACF;AAAA,MACA,oBAAC,UAAO;AAAA,MACR,oBAAC,qBAAkB;AAAA,OACrB;AAAA,KACF;AAEJ;AAEA,eAAe;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747173734,
+      "end": 1750747173734,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747173734,
+      "end": 1750747173734,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747173735,
+      "end": 1750747173735,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747173740,
+      "end": 1750747173740,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747173740,
+      "end": 1750747173740,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747173743,
+      "end": 1750747173743,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747173745,
+      "end": 1750747173745,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747173745,
+      "end": 1750747173746,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747173746,
+      "end": 1750747173746,
+      "order": "normal"
+    }
+  ]
+}

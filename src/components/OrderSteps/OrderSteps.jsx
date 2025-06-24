@@ -4,13 +4,14 @@ import "./OrderSteps.css";
 
 const OrderSteps = ({ currentStep, onStepClick }) => {
   const steps = [
-    { number: 1, title: "Thông tin nhận hàng" },
-    { number: 2, title: "Thanh toán đơn hàng" },
-    { number: 3, title: "Hoàn tất" },
+    { number: 1, title: "Đặt chỗ của bạn" },
+    { number: 2, title: "Thông tin tài khoản" },
+    { number: 3, title: "Thanh toán đơn hàng" },
+    { number: 4, title: "Hoàn tất" },
   ];
 
   const handleStepClick = (stepNumber) => {
-    // Chỉ cho phép click vào các step trước step hiện tại
+    // Only allow clicking on previous steps
     if (stepNumber < currentStep) {
       onStepClick(stepNumber);
     }
@@ -42,4 +43,3 @@ const OrderSteps = ({ currentStep, onStepClick }) => {
 };
 
 export default OrderSteps;
- 

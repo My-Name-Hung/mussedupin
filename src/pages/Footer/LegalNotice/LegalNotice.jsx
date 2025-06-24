@@ -31,7 +31,7 @@ const LegalNotice = () => {
         <div className="section">
           <h2>THÔNG TIN XUẤT BẢN</h2>
           <p>
-            Musée du Pin, Bảo tàng Thông,
+            <span className="notranslate">Musée Du Pin</span>, Bảo tàng Thông,
             <br />
             MST: 0106157152-001
             <br />
@@ -39,7 +39,7 @@ const LegalNotice = () => {
             <br />
             Điện thoại: +84 2633 818 968; +84 86 235 6368
             <br />
-            Giám đốc xuất bản: Musée du Pin
+            Giám đốc xuất bản: <span className="notranslate">Musée Du Pin</span>
           </p>
         </div>
 
@@ -47,7 +47,7 @@ const LegalNotice = () => {
         <div className="section">
           <h2>NỘI DUNG WEBSITE</h2>
           <p>
-            Musée du Pin
+            <span className="notranslate">Musée Du Pin</span>
             <br />
             Phòng Sản xuất Kỹ thuật số và Nghe nhìn
             <br />

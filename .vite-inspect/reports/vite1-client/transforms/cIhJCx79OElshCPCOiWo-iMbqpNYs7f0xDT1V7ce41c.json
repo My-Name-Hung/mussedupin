@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/react-super-responsive-table/dist/esm/utils/allowed.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "var __rest = (this && this.__rest) || function (s, e) {\n    var t = {};\n    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)\n        t[p] = s[p];\n    if (s != null && typeof Object.getOwnPropertySymbols === \"function\")\n        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))\n                t[p[i]] = s[p[i]];\n        }\n    return t;\n};\nexport var allowed = function (_a) {\n    var inHeader = _a.inHeader, columnKey = _a.columnKey, headers = _a.headers, forwardedRef = _a.forwardedRef, rest = __rest(_a, [\"inHeader\", \"columnKey\", \"headers\", \"forwardedRef\"]);\n    return rest;\n};\nexport default allowed;\n",
+      "start": 1750747176192,
+      "end": 1750747177501,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747177501,
+      "end": 1750747177501,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747177501,
+      "end": 1750747177501,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747177501,
+      "end": 1750747177501,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747177501,
+      "end": 1750747177501,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747177501,
+      "end": 1750747177501,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747177501,
+      "end": 1750747177501,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747177501,
+      "end": 1750747177501,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747177501,
+      "end": 1750747177501,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747177501,
+      "end": 1750747177501,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747177501,
+      "end": 1750747177501,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747177501,
+      "end": 1750747177501,
+      "order": "normal"
+    }
+  ]
+}

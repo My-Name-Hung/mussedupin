@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/lucide-react/dist/esm/icons/case-upper.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"m3 15 4-8 4 8\", key: \"1vwr6u\" }],\n  [\"path\", { d: \"M4 13h6\", key: \"1r9ots\" }],\n  [\"path\", { d: \"M15 11h4.5a2 2 0 0 1 0 4H15V7h4a2 2 0 0 1 0 4\", key: \"1sqfas\" }]\n];\nconst CaseUpper = createLucideIcon(\"case-upper\", __iconNode);\n\nexport { __iconNode, CaseUpper as default };\n//# sourceMappingURL=case-upper.js.map\n",
+      "start": 1750747187507,
+      "end": 1750747187661,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747187661,
+      "end": 1750747187661,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747187661,
+      "end": 1750747187661,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747187661,
+      "end": 1750747187661,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747187661,
+      "end": 1750747187661,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747187661,
+      "end": 1750747187661,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747187661,
+      "end": 1750747187661,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747187661,
+      "end": 1750747187661,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747187661,
+      "end": 1750747187661,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747187661,
+      "end": 1750747187661,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747187661,
+      "end": 1750747187661,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747187661,
+      "end": 1750747187661,
+      "order": "normal"
+    }
+  ]
+}

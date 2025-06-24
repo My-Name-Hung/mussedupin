@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/framer-motion/dist/es/context/MotionContext/index.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "\"use client\";\nimport { createContext } from 'react';\n\nconst MotionContext = /* @__PURE__ */ createContext({});\n\nexport { MotionContext };\n",
+      "start": 1750747184058,
+      "end": 1750747184285,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747184286,
+      "end": 1750747184286,
+      "order": "normal"
+    }
+  ]
+}

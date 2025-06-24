@@ -1,0 +1,90 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import React, { useState } from \"react\";\nimport \"./TimeSelection.css\";\n\nconst TimeSelection = ({ selectedTime, onTimeChange }) => {\n  const [activeTab, setActiveTab] = useState(\"morning\");\n\n  const generateTimeSlots = (start, end) => {\n    const slots = [];\n    let current = start;\n    while (current <= end) {\n      const hour = Math.floor(current);\n      const minute = (current % 1) * 60;\n      slots.push(\n        `${hour.toString().padStart(2, \"0\")}:${minute\n          .toString()\n          .padStart(2, \"0\")}`\n      );\n      current += 0.5; // 30 minute intervals\n    }\n    return slots;\n  };\n\n  const morningSlots = generateTimeSlots(8, 13.5); // 8:00 to 13:30\n  const afternoonSlots = generateTimeSlots(14, 23); // 14:00 to 23:00\n\n  return (\n    <div className=\"time-selection-container\">\n      <h2>Chọn thời gian</h2>\n      <div className=\"time-tabs\">\n        <button\n          className={`tab ${activeTab === \"morning\" ? \"active\" : \"\"}`}\n          onClick={() => setActiveTab(\"morning\")}\n        >\n          Buổi sáng & trưa\n        </button>\n        <button\n          className={`tab ${activeTab === \"afternoon\" ? \"active\" : \"\"}`}\n          onClick={() => setActiveTab(\"afternoon\")}\n        >\n          Buổi chiều\n        </button>\n      </div>\n      <div className=\"time-slots\">\n        {(activeTab === \"morning\" ? morningSlots : afternoonSlots).map(\n          (time) => (\n            <label key={time} className=\"time-slot\">\n              <input\n                type=\"radio\"\n                name=\"time\"\n                value={time}\n                checked={selectedTime === time}\n                onChange={(e) => onTimeChange(e.target.value)}\n              />\n              <span>{time}</span>\n            </label>\n          )\n        )}\n      </div>\n    </div>\n  );\n};\n\nexport default TimeSelection;\n",
+      "start": 1750747174887,
+      "end": 1750747175934,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747175934,
+      "end": 1750747175934,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useState } from \"react\";\nimport \"./TimeSelection.css\";\nconst TimeSelection = ({ selectedTime, onTimeChange }) => {\n  const [activeTab, setActiveTab] = useState(\"morning\");\n  const generateTimeSlots = (start, end) => {\n    const slots = [];\n    let current = start;\n    while (current <= end) {\n      const hour = Math.floor(current);\n      const minute = current % 1 * 60;\n      slots.push(\n        `${hour.toString().padStart(2, \"0\")}:${minute.toString().padStart(2, \"0\")}`\n      );\n      current += 0.5;\n    }\n    return slots;\n  };\n  const morningSlots = generateTimeSlots(8, 13.5);\n  const afternoonSlots = generateTimeSlots(14, 23);\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"time-selection-container\", children: [\n    /* @__PURE__ */ jsx(\"h2\", { children: \"Chọn thời gian\" }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"time-tabs\", children: [\n      /* @__PURE__ */ jsx(\n        \"button\",\n        {\n          className: `tab ${activeTab === \"morning\" ? \"active\" : \"\"}`,\n          onClick: () => setActiveTab(\"morning\"),\n          children: \"Buổi sáng & trưa\"\n        }\n      ),\n      /* @__PURE__ */ jsx(\n        \"button\",\n        {\n          className: `tab ${activeTab === \"afternoon\" ? \"active\" : \"\"}`,\n          onClick: () => setActiveTab(\"afternoon\"),\n          children: \"Buổi chiều\"\n        }\n      )\n    ] }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"time-slots\", children: (activeTab === \"morning\" ? morningSlots : afternoonSlots).map(\n      (time) => /* @__PURE__ */ jsxs(\"label\", { className: \"time-slot\", children: [\n        /* @__PURE__ */ jsx(\n          \"input\",\n          {\n            type: \"radio\",\n            name: \"time\",\n            value: time,\n            checked: selectedTime === time,\n            onChange: (e) => onTimeChange(e.target.value)\n          }\n        ),\n        /* @__PURE__ */ jsx(\"span\", { children: time })\n      ] }, time)\n    ) })\n  ] });\n};\nexport default TimeSelection;\n",
+      "start": 1750747175934,
+      "end": 1750747175991,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx"
+        ],
+        "sourcesContent": [
+          "import React, { useState } from \"react\";\nimport \"./TimeSelection.css\";\n\nconst TimeSelection = ({ selectedTime, onTimeChange }) => {\n  const [activeTab, setActiveTab] = useState(\"morning\");\n\n  const generateTimeSlots = (start, end) => {\n    const slots = [];\n    let current = start;\n    while (current <= end) {\n      const hour = Math.floor(current);\n      const minute = (current % 1) * 60;\n      slots.push(\n        `${hour.toString().padStart(2, \"0\")}:${minute\n          .toString()\n          .padStart(2, \"0\")}`\n      );\n      current += 0.5; // 30 minute intervals\n    }\n    return slots;\n  };\n\n  const morningSlots = generateTimeSlots(8, 13.5); // 8:00 to 13:30\n  const afternoonSlots = generateTimeSlots(14, 23); // 14:00 to 23:00\n\n  return (\n    <div className=\"time-selection-container\">\n      <h2>Chọn thời gian</h2>\n      <div className=\"time-tabs\">\n        <button\n          className={`tab ${activeTab === \"morning\" ? \"active\" : \"\"}`}\n          onClick={() => setActiveTab(\"morning\")}\n        >\n          Buổi sáng & trưa\n        </button>\n        <button\n          className={`tab ${activeTab === \"afternoon\" ? \"active\" : \"\"}`}\n          onClick={() => setActiveTab(\"afternoon\")}\n        >\n          Buổi chiều\n        </button>\n      </div>\n      <div className=\"time-slots\">\n        {(activeTab === \"morning\" ? morningSlots : afternoonSlots).map(\n          (time) => (\n            <label key={time} className=\"time-slot\">\n              <input\n                type=\"radio\"\n                name=\"time\"\n                value={time}\n                checked={selectedTime === time}\n                onChange={(e) => onTimeChange(e.target.value)}\n              />\n              <span>{time}</span>\n            </label>\n          )\n        )}\n      </div>\n    </div>\n  );\n};\n\nexport default TimeSelection;\n"
+        ],
+        "mappings": "AA2BM,cACA,YADA;AA3BN,OAAO,SAAS,gBAAgB;AAChC,OAAO;AAEP,MAAM,gBAAgB,CAAC,EAAE,cAAc,aAAa,MAAM;AACxD,QAAM,CAAC,WAAW,YAAY,IAAI,SAAS,SAAS;AAEpD,QAAM,oBAAoB,CAAC,OAAO,QAAQ;AACxC,UAAM,QAAQ,CAAC;AACf,QAAI,UAAU;AACd,WAAO,WAAW,KAAK;AACrB,YAAM,OAAO,KAAK,MAAM,OAAO;AAC/B,YAAM,SAAU,UAAU,IAAK;AAC/B,YAAM;AAAA,QACJ,GAAG,KAAK,SAAS,EAAE,SAAS,GAAG,GAAG,CAAC,IAAI,OACpC,SAAS,EACT,SAAS,GAAG,GAAG,CAAC;AAAA,MACrB;AACA,iBAAW;AAAA,IACb;AACA,WAAO;AAAA,EACT;AAEA,QAAM,eAAe,kBAAkB,GAAG,IAAI;AAC9C,QAAM,iBAAiB,kBAAkB,IAAI,EAAE;AAE/C,SACE,qBAAC,SAAI,WAAU,4BACb;AAAA,wBAAC,QAAG,4BAAc;AAAA,IAClB,qBAAC,SAAI,WAAU,aACb;AAAA;AAAA,QAAC;AAAA;AAAA,UACC,WAAW,OAAO,cAAc,YAAY,WAAW,EAAE;AAAA,UACzD,SAAS,MAAM,aAAa,SAAS;AAAA,UACtC;AAAA;AAAA,MAED;AAAA,MACA;AAAA,QAAC;AAAA;AAAA,UACC,WAAW,OAAO,cAAc,cAAc,WAAW,EAAE;AAAA,UAC3D,SAAS,MAAM,aAAa,WAAW;AAAA,UACxC;AAAA;AAAA,MAED;AAAA,OACF;AAAA,IACA,oBAAC,SAAI,WAAU,cACX,yBAAc,YAAY,eAAe,gBAAgB;AAAA,MACzD,CAAC,SACC,qBAAC,WAAiB,WAAU,aAC1B;AAAA;AAAA,UAAC;AAAA;AAAA,YACC,MAAK;AAAA,YACL,MAAK;AAAA,YACL,OAAO;AAAA,YACP,SAAS,iBAAiB;AAAA,YAC1B,UAAU,CAAC,MAAM,aAAa,EAAE,OAAO,KAAK;AAAA;AAAA,QAC9C;AAAA,QACA,oBAAC,UAAM,gBAAK;AAAA,WARF,IASZ;AAAA,IAEJ,GACF;AAAA,KACF;AAEJ;AAEA,eAAe;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747175991,
+      "end": 1750747175991,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747175991,
+      "end": 1750747175991,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747175991,
+      "end": 1750747175991,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747175991,
+      "end": 1750747175991,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747175991,
+      "end": 1750747175991,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747175992,
+      "end": 1750747175992,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747175992,
+      "end": 1750747175992,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747175992,
+      "end": 1750747175992,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747175992,
+      "end": 1750747175992,
+      "order": "normal"
+    }
+  ]
+}

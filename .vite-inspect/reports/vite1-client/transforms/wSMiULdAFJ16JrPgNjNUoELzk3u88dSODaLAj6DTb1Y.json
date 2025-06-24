@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/@babel/runtime/helpers/esm/nonIterableSpread.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "function _nonIterableSpread() {\n  throw new TypeError(\"Invalid attempt to spread non-iterable instance.\\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method.\");\n}\nexport { _nonIterableSpread as default };",
+      "start": 1750747178197,
+      "end": 1750747178753,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747178753,
+      "end": 1750747178753,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747178754,
+      "end": 1750747178754,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747178754,
+      "end": 1750747178754,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747178754,
+      "end": 1750747178754,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747178754,
+      "end": 1750747178754,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747178754,
+      "end": 1750747178754,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747178754,
+      "end": 1750747178754,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747178754,
+      "end": 1750747178754,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747178754,
+      "end": 1750747178754,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747178754,
+      "end": 1750747178754,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747178754,
+      "end": 1750747178754,
+      "order": "normal"
+    }
+  ]
+}

@@ -93,7 +93,7 @@ const LoginModal = ({ isOpen, onClose }) => {
     <>
       <div className="modal-overlay">
         <div className="login-modal-container">
-          <button className="close-button" onClick={onClose}>
+          <button className="close-button-login" onClick={onClose}>
             <FaTimes />
           </button>
 

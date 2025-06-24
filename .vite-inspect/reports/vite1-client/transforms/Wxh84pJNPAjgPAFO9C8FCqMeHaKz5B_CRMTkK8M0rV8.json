@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/react-calendar/dist/DecadeView/Years.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "var __assign = (this && this.__assign) || function () {\n    __assign = Object.assign || function(t) {\n        for (var s, i = 1, n = arguments.length; i < n; i++) {\n            s = arguments[i];\n            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))\n                t[p] = s[p];\n        }\n        return t;\n    };\n    return __assign.apply(this, arguments);\n};\nvar __rest = (this && this.__rest) || function (s, e) {\n    var t = {};\n    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)\n        t[p] = s[p];\n    if (s != null && typeof Object.getOwnPropertySymbols === \"function\")\n        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))\n                t[p[i]] = s[p[i]];\n        }\n    return t;\n};\nimport { jsx as _jsx } from \"react/jsx-runtime\";\nimport { getYearStart } from '@wojtekmaj/date-utils';\nimport TileGroup from '../TileGroup.js';\nimport Year from './Year.js';\nimport { getBeginOfDecadeYear } from '../shared/dates.js';\nexport default function Years(props) {\n    var activeStartDate = props.activeStartDate, hover = props.hover, showNeighboringDecade = props.showNeighboringDecade, value = props.value, valueType = props.valueType, otherProps = __rest(props, [\"activeStartDate\", \"hover\", \"showNeighboringDecade\", \"value\", \"valueType\"]);\n    var start = getBeginOfDecadeYear(activeStartDate);\n    var end = start + (showNeighboringDecade ? 11 : 9);\n    return (_jsx(TileGroup, { className: \"react-calendar__decade-view__years\", dateTransform: getYearStart, dateType: \"year\", end: end, hover: hover, renderTile: function (_a) {\n            var date = _a.date, otherTileProps = __rest(_a, [\"date\"]);\n            return (_jsx(Year, __assign({}, otherProps, otherTileProps, { activeStartDate: activeStartDate, currentDecade: start, date: date }), date.getTime()));\n        }, start: start, value: value, valueType: valueType }));\n}\n",
+      "start": 1750747177664,
+      "end": 1750747177822,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747177822,
+      "end": 1750747177822,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747177822,
+      "end": 1750747177822,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747177822,
+      "end": 1750747177822,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747177822,
+      "end": 1750747177822,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747177822,
+      "end": 1750747177822,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747177822,
+      "end": 1750747177822,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747177822,
+      "end": 1750747177822,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747177823,
+      "end": 1750747177823,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747177823,
+      "end": 1750747177823,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747177823,
+      "end": 1750747177823,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747177823,
+      "end": 1750747177823,
+      "order": "normal"
+    }
+  ]
+}

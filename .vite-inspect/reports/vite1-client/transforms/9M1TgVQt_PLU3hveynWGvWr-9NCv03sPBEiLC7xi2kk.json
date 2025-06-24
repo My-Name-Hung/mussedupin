@@ -1,0 +1,90 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import React from \"react\";\r\nimport { useNavigate } from \"react-router-dom\";\r\n\r\nimport Hero from \"./Hero/Hero\";\r\nimport \"./Home.css\";\r\nimport Visit from \"../Visit/Visit\";\r\n\r\nfunction Home() {\r\n  const navigate = useNavigate();\r\n\r\n  return (\r\n    <div className=\"home-container\">\r\n      <div className=\"home-content\">\r\n        <Hero />\r\n      </div>\r\n      <Visit />\r\n\r\n     \r\n    </div>\r\n  );\r\n}\r\n\r\nexport default Home;\r\n",
+      "start": 1750747173775,
+      "end": 1750747173797,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747173797,
+      "end": 1750747173797,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { useNavigate } from \"react-router-dom\";\nimport Hero from \"./Hero/Hero\";\nimport \"./Home.css\";\nimport Visit from \"../Visit/Visit\";\nfunction Home() {\n  const navigate = useNavigate();\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"home-container\", children: [\n    /* @__PURE__ */ jsx(\"div\", { className: \"home-content\", children: /* @__PURE__ */ jsx(Hero, {}) }),\n    /* @__PURE__ */ jsx(Visit, {})\n  ] });\n}\nexport default Home;\n",
+      "start": 1750747173797,
+      "end": 1750747174089,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx"
+        ],
+        "sourcesContent": [
+          "import React from \"react\";\r\nimport { useNavigate } from \"react-router-dom\";\r\n\r\nimport Hero from \"./Hero/Hero\";\r\nimport \"./Home.css\";\r\nimport Visit from \"../Visit/Visit\";\r\n\r\nfunction Home() {\r\n  const navigate = useNavigate();\r\n\r\n  return (\r\n    <div className=\"home-container\">\r\n      <div className=\"home-content\">\r\n        <Hero />\r\n      </div>\r\n      <Visit />\r\n\r\n     \r\n    </div>\r\n  );\r\n}\r\n\r\nexport default Home;\r\n"
+        ],
+        "mappings": "AAWI,SAEI,KAFJ;AAXJ,OAAO,WAAW;AAClB,SAAS,mBAAmB;AAE5B,OAAO,UAAU;AACjB,OAAO;AACP,OAAO,WAAW;AAElB,SAAS,OAAO;AACd,QAAM,WAAW,YAAY;AAE7B,SACE,qBAAC,SAAI,WAAU,kBACb;AAAA,wBAAC,SAAI,WAAU,gBACb,8BAAC,QAAK,GACR;AAAA,IACA,oBAAC,SAAM;AAAA,KAGT;AAEJ;AAEA,eAAe;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747174089,
+      "end": 1750747174089,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747174089,
+      "end": 1750747174089,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747174089,
+      "end": 1750747174089,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747174089,
+      "end": 1750747174089,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747174089,
+      "end": 1750747174089,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747174089,
+      "end": 1750747174089,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747174089,
+      "end": 1750747174089,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747174089,
+      "end": 1750747174090,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747174090,
+      "end": 1750747174090,
+      "order": "normal"
+    }
+  ]
+}

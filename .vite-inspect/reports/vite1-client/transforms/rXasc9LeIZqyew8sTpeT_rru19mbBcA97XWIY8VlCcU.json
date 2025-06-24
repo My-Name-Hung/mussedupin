@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/lucide-react/dist/esm/icons/clipboard.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"rect\", { width: \"8\", height: \"4\", x: \"8\", y: \"2\", rx: \"1\", ry: \"1\", key: \"tgr4d6\" }],\n  [\n    \"path\",\n    {\n      d: \"M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2\",\n      key: \"116196\"\n    }\n  ]\n];\nconst Clipboard = createLucideIcon(\"clipboard\", __iconNode);\n\nexport { __iconNode, Clipboard as default };\n//# sourceMappingURL=clipboard.js.map\n",
+      "start": 1750747187981,
+      "end": 1750747188088,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747188088,
+      "end": 1750747188088,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747188088,
+      "end": 1750747188088,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747188088,
+      "end": 1750747188088,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747188088,
+      "end": 1750747188088,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747188088,
+      "end": 1750747188088,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747188088,
+      "end": 1750747188088,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747188088,
+      "end": 1750747188088,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747188089,
+      "end": 1750747188089,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747188090,
+      "end": 1750747188090,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747188091,
+      "end": 1750747188091,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747188091,
+      "end": 1750747188091,
+      "order": "normal"
+    }
+  ]
+}

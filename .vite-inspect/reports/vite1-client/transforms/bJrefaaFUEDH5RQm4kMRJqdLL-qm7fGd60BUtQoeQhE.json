@@ -1,0 +1,90 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/src/components/AddressModal/AddressModal.jsx",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import React, { useState } from \"react\";\nimport { FaTimes } from \"react-icons/fa\";\nimport \"./AddressModal.css\";\n\nconst AddressModal = ({ isOpen, onClose, currentAddress, onSave }) => {\n  const [address, setAddress] = useState({\n    street: currentAddress?.street || \"\",\n    city: currentAddress?.city || \"\",\n    state: currentAddress?.state || \"\",\n  });\n\n  const handleSubmit = async (e) => {\n    e.preventDefault();\n    try {\n      const token = localStorage.getItem(\"token\");\n      const response = await fetch(\n        \"https://mussedupin.onrender.com/api/user/update-address\",\n        {\n          method: \"PUT\",\n          headers: {\n            \"Content-Type\": \"application/json\",\n            Authorization: `Bearer ${token}`,\n          },\n          body: JSON.stringify({ address }),\n        }\n      );\n\n      const data = await response.json();\n      if (data.success) {\n        onSave(address);\n        onClose();\n      }\n    } catch (error) {\n      console.error(\"Error updating address:\", error);\n    }\n  };\n\n  if (!isOpen) return null;\n\n  return (\n    <div className=\"modal-overlay\">\n      <div className=\"address-modal\">\n        <button className=\"close-button\" onClick={onClose}>\n          <FaTimes />\n        </button>\n\n        <h2>Thay đổi địa chỉ giao hàng</h2>\n\n        <form onSubmit={handleSubmit}>\n          <div className=\"form-group\">\n            <label>Địa chỉ</label>\n            <input\n              type=\"text\"\n              value={address.street}\n              onChange={(e) =>\n                setAddress({ ...address, street: e.target.value })\n              }\n              placeholder=\"Số nhà, tên đường\"\n              required\n            />\n          </div>\n\n          <div className=\"form-group\">\n            <label>Thành phố</label>\n            <input\n              type=\"text\"\n              value={address.city}\n              onChange={(e) => setAddress({ ...address, city: e.target.value })}\n              placeholder=\"Thành phố\"\n              required\n            />\n          </div>\n\n          <div className=\"form-group\">\n            <label>Tỉnh/Thành phố</label>\n            <input\n              type=\"text\"\n              value={address.state}\n              onChange={(e) =>\n                setAddress({ ...address, state: e.target.value })\n              }\n              placeholder=\"Tỉnh/Thành phố\"\n              required\n            />\n          </div>\n\n          <button type=\"submit\" className=\"save-button\">\n            Lưu thay đổi\n          </button>\n        </form>\n      </div>\n    </div>\n  );\n};\n\nexport default AddressModal;\n",
+      "start": 1750747174634,
+      "end": 1750747175784,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747175784,
+      "end": 1750747175785,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useState } from \"react\";\nimport { FaTimes } from \"react-icons/fa\";\nimport \"./AddressModal.css\";\nconst AddressModal = ({ isOpen, onClose, currentAddress, onSave }) => {\n  const [address, setAddress] = useState({\n    street: currentAddress?.street || \"\",\n    city: currentAddress?.city || \"\",\n    state: currentAddress?.state || \"\"\n  });\n  const handleSubmit = async (e) => {\n    e.preventDefault();\n    try {\n      const token = localStorage.getItem(\"token\");\n      const response = await fetch(\n        \"https://mussedupin.onrender.com/api/user/update-address\",\n        {\n          method: \"PUT\",\n          headers: {\n            \"Content-Type\": \"application/json\",\n            Authorization: `Bearer ${token}`\n          },\n          body: JSON.stringify({ address })\n        }\n      );\n      const data = await response.json();\n      if (data.success) {\n        onSave(address);\n        onClose();\n      }\n    } catch (error) {\n      console.error(\"Error updating address:\", error);\n    }\n  };\n  if (!isOpen) return null;\n  return /* @__PURE__ */ jsx(\"div\", { className: \"modal-overlay\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"address-modal\", children: [\n    /* @__PURE__ */ jsx(\"button\", { className: \"close-button\", onClick: onClose, children: /* @__PURE__ */ jsx(FaTimes, {}) }),\n    /* @__PURE__ */ jsx(\"h2\", { children: \"Thay đổi địa chỉ giao hàng\" }),\n    /* @__PURE__ */ jsxs(\"form\", { onSubmit: handleSubmit, children: [\n      /* @__PURE__ */ jsxs(\"div\", { className: \"form-group\", children: [\n        /* @__PURE__ */ jsx(\"label\", { children: \"Địa chỉ\" }),\n        /* @__PURE__ */ jsx(\n          \"input\",\n          {\n            type: \"text\",\n            value: address.street,\n            onChange: (e) => setAddress({ ...address, street: e.target.value }),\n            placeholder: \"Số nhà, tên đường\",\n            required: true\n          }\n        )\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"form-group\", children: [\n        /* @__PURE__ */ jsx(\"label\", { children: \"Thành phố\" }),\n        /* @__PURE__ */ jsx(\n          \"input\",\n          {\n            type: \"text\",\n            value: address.city,\n            onChange: (e) => setAddress({ ...address, city: e.target.value }),\n            placeholder: \"Thành phố\",\n            required: true\n          }\n        )\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"form-group\", children: [\n        /* @__PURE__ */ jsx(\"label\", { children: \"Tỉnh/Thành phố\" }),\n        /* @__PURE__ */ jsx(\n          \"input\",\n          {\n            type: \"text\",\n            value: address.state,\n            onChange: (e) => setAddress({ ...address, state: e.target.value }),\n            placeholder: \"Tỉnh/Thành phố\",\n            required: true\n          }\n        )\n      ] }),\n      /* @__PURE__ */ jsx(\"button\", { type: \"submit\", className: \"save-button\", children: \"Lưu thay đổi\" })\n    ] })\n  ] }) });\n};\nexport default AddressModal;\n",
+      "start": 1750747175785,
+      "end": 1750747175816,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/components/AddressModal/AddressModal.jsx"
+        ],
+        "sourcesContent": [
+          "import React, { useState } from \"react\";\nimport { FaTimes } from \"react-icons/fa\";\nimport \"./AddressModal.css\";\n\nconst AddressModal = ({ isOpen, onClose, currentAddress, onSave }) => {\n  const [address, setAddress] = useState({\n    street: currentAddress?.street || \"\",\n    city: currentAddress?.city || \"\",\n    state: currentAddress?.state || \"\",\n  });\n\n  const handleSubmit = async (e) => {\n    e.preventDefault();\n    try {\n      const token = localStorage.getItem(\"token\");\n      const response = await fetch(\n        \"https://mussedupin.onrender.com/api/user/update-address\",\n        {\n          method: \"PUT\",\n          headers: {\n            \"Content-Type\": \"application/json\",\n            Authorization: `Bearer ${token}`,\n          },\n          body: JSON.stringify({ address }),\n        }\n      );\n\n      const data = await response.json();\n      if (data.success) {\n        onSave(address);\n        onClose();\n      }\n    } catch (error) {\n      console.error(\"Error updating address:\", error);\n    }\n  };\n\n  if (!isOpen) return null;\n\n  return (\n    <div className=\"modal-overlay\">\n      <div className=\"address-modal\">\n        <button className=\"close-button\" onClick={onClose}>\n          <FaTimes />\n        </button>\n\n        <h2>Thay đổi địa chỉ giao hàng</h2>\n\n        <form onSubmit={handleSubmit}>\n          <div className=\"form-group\">\n            <label>Địa chỉ</label>\n            <input\n              type=\"text\"\n              value={address.street}\n              onChange={(e) =>\n                setAddress({ ...address, street: e.target.value })\n              }\n              placeholder=\"Số nhà, tên đường\"\n              required\n            />\n          </div>\n\n          <div className=\"form-group\">\n            <label>Thành phố</label>\n            <input\n              type=\"text\"\n              value={address.city}\n              onChange={(e) => setAddress({ ...address, city: e.target.value })}\n              placeholder=\"Thành phố\"\n              required\n            />\n          </div>\n\n          <div className=\"form-group\">\n            <label>Tỉnh/Thành phố</label>\n            <input\n              type=\"text\"\n              value={address.state}\n              onChange={(e) =>\n                setAddress({ ...address, state: e.target.value })\n              }\n              placeholder=\"Tỉnh/Thành phố\"\n              required\n            />\n          </div>\n\n          <button type=\"submit\" className=\"save-button\">\n            Lưu thay đổi\n          </button>\n        </form>\n      </div>\n    </div>\n  );\n};\n\nexport default AddressModal;\n"
+        ],
+        "mappings": "AA2CU,cAMA,YANA;AA3CV,OAAO,SAAS,gBAAgB;AAChC,SAAS,eAAe;AACxB,OAAO;AAEP,MAAM,eAAe,CAAC,EAAE,QAAQ,SAAS,gBAAgB,OAAO,MAAM;AACpE,QAAM,CAAC,SAAS,UAAU,IAAI,SAAS;AAAA,IACrC,QAAQ,gBAAgB,UAAU;AAAA,IAClC,MAAM,gBAAgB,QAAQ;AAAA,IAC9B,OAAO,gBAAgB,SAAS;AAAA,EAClC,CAAC;AAED,QAAM,eAAe,OAAO,MAAM;AAChC,MAAE,eAAe;AACjB,QAAI;AACF,YAAM,QAAQ,aAAa,QAAQ,OAAO;AAC1C,YAAM,WAAW,MAAM;AAAA,QACrB;AAAA,QACA;AAAA,UACE,QAAQ;AAAA,UACR,SAAS;AAAA,YACP,gBAAgB;AAAA,YAChB,eAAe,UAAU,KAAK;AAAA,UAChC;AAAA,UACA,MAAM,KAAK,UAAU,EAAE,QAAQ,CAAC;AAAA,QAClC;AAAA,MACF;AAEA,YAAM,OAAO,MAAM,SAAS,KAAK;AACjC,UAAI,KAAK,SAAS;AAChB,eAAO,OAAO;AACd,gBAAQ;AAAA,MACV;AAAA,IACF,SAAS,OAAO;AACd,cAAQ,MAAM,2BAA2B,KAAK;AAAA,IAChD;AAAA,EACF;AAEA,MAAI,CAAC,OAAQ,QAAO;AAEpB,SACE,oBAAC,SAAI,WAAU,iBACb,+BAAC,SAAI,WAAU,iBACb;AAAA,wBAAC,YAAO,WAAU,gBAAe,SAAS,SACxC,8BAAC,WAAQ,GACX;AAAA,IAEA,oBAAC,QAAG,wCAA0B;AAAA,IAE9B,qBAAC,UAAK,UAAU,cACd;AAAA,2BAAC,SAAI,WAAU,cACb;AAAA,4BAAC,WAAM,qBAAO;AAAA,QACd;AAAA,UAAC;AAAA;AAAA,YACC,MAAK;AAAA,YACL,OAAO,QAAQ;AAAA,YACf,UAAU,CAAC,MACT,WAAW,EAAE,GAAG,SAAS,QAAQ,EAAE,OAAO,MAAM,CAAC;AAAA,YAEnD,aAAY;AAAA,YACZ,UAAQ;AAAA;AAAA,QACV;AAAA,SACF;AAAA,MAEA,qBAAC,SAAI,WAAU,cACb;AAAA,4BAAC,WAAM,uBAAS;AAAA,QAChB;AAAA,UAAC;AAAA;AAAA,YACC,MAAK;AAAA,YACL,OAAO,QAAQ;AAAA,YACf,UAAU,CAAC,MAAM,WAAW,EAAE,GAAG,SAAS,MAAM,EAAE,OAAO,MAAM,CAAC;AAAA,YAChE,aAAY;AAAA,YACZ,UAAQ;AAAA;AAAA,QACV;AAAA,SACF;AAAA,MAEA,qBAAC,SAAI,WAAU,cACb;AAAA,4BAAC,WAAM,4BAAc;AAAA,QACrB;AAAA,UAAC;AAAA;AAAA,YACC,MAAK;AAAA,YACL,OAAO,QAAQ;AAAA,YACf,UAAU,CAAC,MACT,WAAW,EAAE,GAAG,SAAS,OAAO,EAAE,OAAO,MAAM,CAAC;AAAA,YAElD,aAAY;AAAA,YACZ,UAAQ;AAAA;AAAA,QACV;AAAA,SACF;AAAA,MAEA,oBAAC,YAAO,MAAK,UAAS,WAAU,eAAc,0BAE9C;AAAA,OACF;AAAA,KACF,GACF;AAEJ;AAEA,eAAe;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747175816,
+      "end": 1750747175816,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747175816,
+      "end": 1750747175816,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747175816,
+      "end": 1750747175816,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747175817,
+      "end": 1750747175817,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747175817,
+      "end": 1750747175817,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747175851,
+      "end": 1750747175851,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747175851,
+      "end": 1750747175851,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747175851,
+      "end": 1750747175851,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747175851,
+      "end": 1750747175862,
+      "order": "normal"
+    }
+  ]
+}

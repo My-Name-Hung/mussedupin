@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
+import { FaFacebook, FaYoutube } from "react-icons/fa";
 import { SiTiktok } from "react-icons/si";
 import { Link, useNavigate } from "react-router-dom";
 import FeedbackModal from "../FeedbackModal/FeedbackModal";
@@ -51,7 +51,8 @@ const Footer = () => {
                     to="https://museedupin.netlify.app/about"
                     target="_blank"
                   >
-                    Bảo tàng Du Pin tại Việt Nam
+                    Bảo tàng Thông -{" "}
+                    <span className="notranslate">Musée Du Pin</span> Việt Nam
                   </Link>
                 </li>
                 <li>
@@ -183,7 +184,8 @@ const Footer = () => {
             <Link to="/">
               <img
                 src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/icon.png"
-                alt="Logo Bảo tàng Du Pin"
+                alt={`Bảo tàng Thông - ${String.fromCharCode(160)}Musée Du Pin`}
+                className="notranslate"
               />
             </Link>
           </div>

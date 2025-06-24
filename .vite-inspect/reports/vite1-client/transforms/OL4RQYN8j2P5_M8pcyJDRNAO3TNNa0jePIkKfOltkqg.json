@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/lucide-react/dist/esm/icons/circle-chevron-up.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"circle\", { cx: \"12\", cy: \"12\", r: \"10\", key: \"1mglay\" }],\n  [\"path\", { d: \"m8 14 4-4 4 4\", key: \"fy2ptz\" }]\n];\nconst CircleChevronUp = createLucideIcon(\"circle-chevron-up\", __iconNode);\n\nexport { __iconNode, CircleChevronUp as default };\n//# sourceMappingURL=circle-chevron-up.js.map\n",
+      "start": 1750747185186,
+      "end": 1750747185357,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747185357,
+      "end": 1750747185357,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747185357,
+      "end": 1750747185357,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747185357,
+      "end": 1750747185357,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747185357,
+      "end": 1750747185357,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747185357,
+      "end": 1750747185357,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747185357,
+      "end": 1750747185357,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747185357,
+      "end": 1750747185357,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747185357,
+      "end": 1750747185357,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747185360,
+      "end": 1750747185360,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747185360,
+      "end": 1750747185360,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747185360,
+      "end": 1750747185360,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,71 @@
+.time-selection-container {
+  margin-top: 1rem;
+}
+
+.time-selection-container h2 {
+  margin-bottom: 1.5rem;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.time-tabs {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.tab {
+  padding: 0.8rem 1.5rem;
+  border: none;
+  background: #f0f0f0;
+  border: 1px solid #000;
+  border-radius: 6px;
+  color: #2c2f11;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+}
+
+.tab.active {
+  background: #2c2f11;
+  color: yellowgreen;
+}
+
+.time-slots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 1rem;
+}
+
+.time-slot {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.time-slot input[type="radio"] {
+  display: none;
+}
+
+.time-slot span {
+  padding: 0.5rem 1rem;
+  border: 1px solid #000;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  transition: all 0.2s;
+  color: #2c2f11;
+  width: 100%;
+  text-align: center;
+}
+
+.time-slot input[type="radio"]:checked + span {
+  background: #2c2f11;
+  color: white;
+  border-color: white;
+}
+
+.time-slot:hover span {
+  background: #f8d7dc;
+  border-color: #e4002b;
+}

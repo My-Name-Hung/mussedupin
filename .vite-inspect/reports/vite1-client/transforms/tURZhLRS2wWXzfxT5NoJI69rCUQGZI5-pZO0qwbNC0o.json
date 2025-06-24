@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/framer-motion/dist/es/utils/reduced-motion/use-reduced-motion-config.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { useContext } from 'react';\nimport { MotionConfigContext } from '../../context/MotionConfigContext.mjs';\nimport { useReducedMotion } from './use-reduced-motion.mjs';\n\nfunction useReducedMotionConfig() {\n    const reducedMotionPreference = useReducedMotion();\n    const { reducedMotion } = useContext(MotionConfigContext);\n    if (reducedMotion === \"never\") {\n        return false;\n    }\n    else if (reducedMotion === \"always\") {\n        return true;\n    }\n    else {\n        return reducedMotionPreference;\n    }\n}\n\nexport { useReducedMotionConfig };\n",
+      "start": 1750747181925,
+      "end": 1750747183470,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747183470,
+      "end": 1750747183470,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747183470,
+      "end": 1750747183470,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747183470,
+      "end": 1750747183470,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747183470,
+      "end": 1750747183470,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747183470,
+      "end": 1750747183470,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747183470,
+      "end": 1750747183470,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747183470,
+      "end": 1750747183470,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747183470,
+      "end": 1750747183470,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747183470,
+      "end": 1750747183470,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747183470,
+      "end": 1750747183470,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747183470,
+      "end": 1750747183470,
+      "order": "normal"
+    }
+  ]
+}

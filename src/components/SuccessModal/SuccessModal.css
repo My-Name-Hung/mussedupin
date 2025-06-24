@@ -28,7 +28,7 @@
   background: none;
   border: none;
   font-size: 1.5rem;
-  color: #666;
+  color: #fff;
   cursor: pointer;
 }
 
@@ -41,20 +41,20 @@
 
 .success-icon {
   font-size: 4rem;
-  color: #2c2f11;
+  color: #fff;
 }
 
 .success-content h2 {
   font-family: "Roboto", sans-serif;
   font-size: 1.5rem;
-  color: #2c2f11;
+  color: yellowgreen;
   margin: 0;
 }
 
 .success-content p {
   font-family: "Roboto", sans-serif;
   font-size: 1.1rem;
-  color: #666;
+  color: #fff;
   margin: 0;
   line-height: 1.5;
 }

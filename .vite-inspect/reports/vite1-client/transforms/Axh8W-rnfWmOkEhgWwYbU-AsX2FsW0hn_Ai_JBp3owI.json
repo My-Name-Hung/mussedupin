@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/prop-types/lib/ReactPropTypesSecret.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * Copyright (c) 2013-present, Facebook, Inc.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n'use strict';\n\nvar ReactPropTypesSecret = 'SECRET_DO_NOT_PASS_THIS_OR_YOU_WILL_BE_FIRED';\n\nmodule.exports = ReactPropTypesSecret;\n",
+      "start": 1750747177568,
+      "end": 1750747177805,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747177806,
+      "end": 1750747177806,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747177806,
+      "end": 1750747177806,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747177806,
+      "end": 1750747177806,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747177806,
+      "end": 1750747177806,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747177806,
+      "end": 1750747177806,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747177806,
+      "end": 1750747177806,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747177806,
+      "end": 1750747177806,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747177806,
+      "end": 1750747177806,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747177806,
+      "end": 1750747177806,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747177806,
+      "end": 1750747177806,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747177806,
+      "end": 1750747177810,
+      "order": "normal"
+    }
+  ]
+}

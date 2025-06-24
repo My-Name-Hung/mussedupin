@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/@babel/runtime/helpers/esm/taggedTemplateLiteral.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "function _taggedTemplateLiteral(e, t) {\n  return t || (t = e.slice(0)), Object.freeze(Object.defineProperties(e, {\n    raw: {\n      value: Object.freeze(t)\n    }\n  }));\n}\nexport { _taggedTemplateLiteral as default };",
+      "start": 1750747177823,
+      "end": 1750747178073,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747178073,
+      "end": 1750747178073,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747178073,
+      "end": 1750747178073,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747178073,
+      "end": 1750747178073,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747178073,
+      "end": 1750747178073,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747178073,
+      "end": 1750747178073,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747178073,
+      "end": 1750747178073,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747178073,
+      "end": 1750747178073,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747178074,
+      "end": 1750747178074,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747178074,
+      "end": 1750747178074,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747178074,
+      "end": 1750747178074,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747178074,
+      "end": 1750747178074,
+      "order": "normal"
+    }
+  ]
+}

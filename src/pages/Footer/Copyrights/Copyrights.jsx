@@ -19,7 +19,8 @@ const Copyrights = () => {
       <div className="copyrights-banner">
         <img
           src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784642/collections/louvre-sunset.jpg"
-          alt="Bảo tàng Thông - Musée Du Pin"
+          alt={`Bảo tàng Thông - ${String.fromCharCode(160)}Musée Du Pin`}
+          className="notranslate"
         />
         <div className="banner-overlay">
           <h1>BẢN QUYỀN</h1>
@@ -32,9 +33,10 @@ const Copyrights = () => {
           <h2>GIỚI THIỆU</h2>
           <p>
             Trang web này và toàn bộ nội dung của nó thuộc quyền sở hữu của Bảo
-            tàng Thông - Musée Du Pin. Mọi quyền sở hữu trí tuệ, bao gồm nhưng
-            không giới hạn ở bản quyền, nhãn hiệu, và các quyền sở hữu trí tuệ
-            khác đều được bảo vệ bởi pháp luật Việt Nam và các công ước quốc tế.
+            tàng Thông - <span className="notranslate">Musée Du Pin</span>. Mọi
+            quyền sở hữu trí tuệ, bao gồm nhưng không giới hạn ở bản quyền, nhãn
+            hiệu, và các quyền sở hữu trí tuệ khác đều được bảo vệ bởi pháp luật
+            Việt Nam và các công ước quốc tế.
           </p>
         </div>
 
@@ -154,7 +156,8 @@ const Copyrights = () => {
             liên hệ:
           </p>
           <p>
-            Phòng Bản quyền - Bảo tàng Thông - Musée Du Pin
+            Phòng Bản quyền - Bảo tàng Thông -{" "}
+            <span className="notranslate">Musée Du Pin</span>
             <br />
             Email: baotangthong2024@gmail.com
             <br />

@@ -1,0 +1,90 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import React from \"react\";\nimport { FaCheck } from \"react-icons/fa\";\nimport \"./OrderSteps.css\";\n\nconst OrderSteps = ({ currentStep, onStepClick }) => {\n  const steps = [\n    { number: 1, title: \"Đặt chỗ của bạn\" },\n    { number: 2, title: \"Thông tin tài khoản\" },\n    { number: 3, title: \"Thanh toán đơn hàng\" },\n    { number: 4, title: \"Hoàn tất\" },\n  ];\n\n  const handleStepClick = (stepNumber) => {\n    // Only allow clicking on previous steps\n    if (stepNumber < currentStep) {\n      onStepClick(stepNumber);\n    }\n  };\n\n  return (\n    <div className=\"order-steps\">\n      {steps.map((step, index) => (\n        <div\n          key={step.number}\n          className={`step ${currentStep === step.number ? \"active\" : \"\"} ${\n            currentStep > step.number ? \"completed clickable\" : \"\"\n          }`}\n          onClick={() => handleStepClick(step.number)}\n        >\n          <div className=\"step-indicator\">\n            {currentStep > step.number ? (\n              <FaCheck className=\"check-icon\" />\n            ) : (\n              <span>{step.number}</span>\n            )}\n          </div>\n          <span className=\"step-title\">{step.title}</span>\n          {index < steps.length - 1 && <div className=\"step-line\" />}\n        </div>\n      ))}\n    </div>\n  );\n};\n\nexport default OrderSteps;\n",
+      "start": 1750747174843,
+      "end": 1750747175871,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747175871,
+      "end": 1750747175871,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { FaCheck } from \"react-icons/fa\";\nimport \"./OrderSteps.css\";\nconst OrderSteps = ({ currentStep, onStepClick }) => {\n  const steps = [\n    { number: 1, title: \"Đặt chỗ của bạn\" },\n    { number: 2, title: \"Thông tin tài khoản\" },\n    { number: 3, title: \"Thanh toán đơn hàng\" },\n    { number: 4, title: \"Hoàn tất\" }\n  ];\n  const handleStepClick = (stepNumber) => {\n    if (stepNumber < currentStep) {\n      onStepClick(stepNumber);\n    }\n  };\n  return /* @__PURE__ */ jsx(\"div\", { className: \"order-steps\", children: steps.map((step, index) => /* @__PURE__ */ jsxs(\n    \"div\",\n    {\n      className: `step ${currentStep === step.number ? \"active\" : \"\"} ${currentStep > step.number ? \"completed clickable\" : \"\"}`,\n      onClick: () => handleStepClick(step.number),\n      children: [\n        /* @__PURE__ */ jsx(\"div\", { className: \"step-indicator\", children: currentStep > step.number ? /* @__PURE__ */ jsx(FaCheck, { className: \"check-icon\" }) : /* @__PURE__ */ jsx(\"span\", { children: step.number }) }),\n        /* @__PURE__ */ jsx(\"span\", { className: \"step-title\", children: step.title }),\n        index < steps.length - 1 && /* @__PURE__ */ jsx(\"div\", { className: \"step-line\" })\n      ]\n    },\n    step.number\n  )) });\n};\nexport default OrderSteps;\n",
+      "start": 1750747175871,
+      "end": 1750747175991,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx"
+        ],
+        "sourcesContent": [
+          "import React from \"react\";\nimport { FaCheck } from \"react-icons/fa\";\nimport \"./OrderSteps.css\";\n\nconst OrderSteps = ({ currentStep, onStepClick }) => {\n  const steps = [\n    { number: 1, title: \"Đặt chỗ của bạn\" },\n    { number: 2, title: \"Thông tin tài khoản\" },\n    { number: 3, title: \"Thanh toán đơn hàng\" },\n    { number: 4, title: \"Hoàn tất\" },\n  ];\n\n  const handleStepClick = (stepNumber) => {\n    // Only allow clicking on previous steps\n    if (stepNumber < currentStep) {\n      onStepClick(stepNumber);\n    }\n  };\n\n  return (\n    <div className=\"order-steps\">\n      {steps.map((step, index) => (\n        <div\n          key={step.number}\n          className={`step ${currentStep === step.number ? \"active\" : \"\"} ${\n            currentStep > step.number ? \"completed clickable\" : \"\"\n          }`}\n          onClick={() => handleStepClick(step.number)}\n        >\n          <div className=\"step-indicator\">\n            {currentStep > step.number ? (\n              <FaCheck className=\"check-icon\" />\n            ) : (\n              <span>{step.number}</span>\n            )}\n          </div>\n          <span className=\"step-title\">{step.title}</span>\n          {index < steps.length - 1 && <div className=\"step-line\" />}\n        </div>\n      ))}\n    </div>\n  );\n};\n\nexport default OrderSteps;\n"
+        ],
+        "mappings": "AAsBQ,SASM,KATN;AAtBR,OAAO,WAAW;AAClB,SAAS,eAAe;AACxB,OAAO;AAEP,MAAM,aAAa,CAAC,EAAE,aAAa,YAAY,MAAM;AACnD,QAAM,QAAQ;AAAA,IACZ,EAAE,QAAQ,GAAG,OAAO,kBAAkB;AAAA,IACtC,EAAE,QAAQ,GAAG,OAAO,sBAAsB;AAAA,IAC1C,EAAE,QAAQ,GAAG,OAAO,sBAAsB;AAAA,IAC1C,EAAE,QAAQ,GAAG,OAAO,WAAW;AAAA,EACjC;AAEA,QAAM,kBAAkB,CAAC,eAAe;AAEtC,QAAI,aAAa,aAAa;AAC5B,kBAAY,UAAU;AAAA,IACxB;AAAA,EACF;AAEA,SACE,oBAAC,SAAI,WAAU,eACZ,gBAAM,IAAI,CAAC,MAAM,UAChB;AAAA,IAAC;AAAA;AAAA,MAEC,WAAW,QAAQ,gBAAgB,KAAK,SAAS,WAAW,EAAE,IAC5D,cAAc,KAAK,SAAS,wBAAwB,EACtD;AAAA,MACA,SAAS,MAAM,gBAAgB,KAAK,MAAM;AAAA,MAE1C;AAAA,4BAAC,SAAI,WAAU,kBACZ,wBAAc,KAAK,SAClB,oBAAC,WAAQ,WAAU,cAAa,IAEhC,oBAAC,UAAM,eAAK,QAAO,GAEvB;AAAA,QACA,oBAAC,UAAK,WAAU,cAAc,eAAK,OAAM;AAAA,QACxC,QAAQ,MAAM,SAAS,KAAK,oBAAC,SAAI,WAAU,aAAY;AAAA;AAAA;AAAA,IAdnD,KAAK;AAAA,EAeZ,CACD,GACH;AAEJ;AAEA,eAAe;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747175991,
+      "end": 1750747175991,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747175991,
+      "end": 1750747175991,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747175991,
+      "end": 1750747175991,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747175991,
+      "end": 1750747175991,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747175991,
+      "end": 1750747175991,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747175992,
+      "end": 1750747175992,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747175992,
+      "end": 1750747175992,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747175992,
+      "end": 1750747175992,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747175992,
+      "end": 1750747175992,
+      "order": "normal"
+    }
+  ]
+}

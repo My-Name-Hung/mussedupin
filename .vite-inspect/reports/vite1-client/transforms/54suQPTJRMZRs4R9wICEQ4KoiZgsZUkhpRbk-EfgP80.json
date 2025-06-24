@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/react-super-responsive-table/dist/esm/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import Table from './components/Table';\nimport Tbody from './components/Tbody';\nimport Td from './components/Td';\nimport Th from './components/Th';\nimport Thead from './components/Thead';\nimport Tr from './components/Tr';\nexport { Table, Tbody, Td, Th, Thead, Tr };\n",
+      "start": 1750747174628,
+      "end": 1750747175779,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747175779,
+      "end": 1750747175779,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747175779,
+      "end": 1750747175780,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747175780,
+      "end": 1750747175780,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747175780,
+      "end": 1750747175780,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747175780,
+      "end": 1750747175780,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747175780,
+      "end": 1750747175780,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747175780,
+      "end": 1750747175780,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747175780,
+      "end": 1750747175780,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747175780,
+      "end": 1750747175781,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747175781,
+      "end": 1750747175781,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747175781,
+      "end": 1750747175781,
+      "order": "normal"
+    }
+  ]
+}

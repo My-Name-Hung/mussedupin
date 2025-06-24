@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/lucide-react/dist/esm/icons/circle-arrow-down.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"circle\", { cx: \"12\", cy: \"12\", r: \"10\", key: \"1mglay\" }],\n  [\"path\", { d: \"M12 8v8\", key: \"napkw2\" }],\n  [\"path\", { d: \"m8 12 4 4 4-4\", key: \"k98ssh\" }]\n];\nconst CircleArrowDown = createLucideIcon(\"circle-arrow-down\", __iconNode);\n\nexport { __iconNode, CircleArrowDown as default };\n//# sourceMappingURL=circle-arrow-down.js.map\n",
+      "start": 1750747185101,
+      "end": 1750747185219,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747185219,
+      "end": 1750747185219,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747185219,
+      "end": 1750747185219,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747185219,
+      "end": 1750747185219,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747185219,
+      "end": 1750747185219,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747185219,
+      "end": 1750747185219,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747185219,
+      "end": 1750747185219,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747185219,
+      "end": 1750747185219,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747185219,
+      "end": 1750747185219,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747185220,
+      "end": 1750747185220,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747185220,
+      "end": 1750747185220,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747185220,
+      "end": 1750747185222,
+      "order": "normal"
+    }
+  ]
+}

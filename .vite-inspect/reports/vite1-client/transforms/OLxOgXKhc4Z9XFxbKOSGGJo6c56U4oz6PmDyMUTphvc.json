@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/@emotion/memoize/dist/emotion-memoize.esm.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "function memoize(fn) {\n  var cache = Object.create(null);\n  return function (arg) {\n    if (cache[arg] === undefined) cache[arg] = fn(arg);\n    return cache[arg];\n  };\n}\n\nexport { memoize as default };\n",
+      "start": 1750747178098,
+      "end": 1750747178620,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747178620,
+      "end": 1750747178620,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747178620,
+      "end": 1750747178620,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747178620,
+      "end": 1750747178620,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747178620,
+      "end": 1750747178620,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747178620,
+      "end": 1750747178620,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747178620,
+      "end": 1750747178620,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747178620,
+      "end": 1750747178620,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747178620,
+      "end": 1750747178620,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747178620,
+      "end": 1750747178620,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747178620,
+      "end": 1750747178620,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747178620,
+      "end": 1750747178620,
+      "order": "normal"
+    }
+  ]
+}

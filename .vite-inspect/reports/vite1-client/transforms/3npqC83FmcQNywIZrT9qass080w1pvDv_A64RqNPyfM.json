@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/use-isomorphic-layout-effect/dist/use-isomorphic-layout-effect.browser.esm.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { useLayoutEffect } from 'react';\n\nvar index = useLayoutEffect ;\n\nexport { index as default };\n",
+      "start": 1750747177826,
+      "end": 1750747178074,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747178074,
+      "end": 1750747178074,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747178074,
+      "end": 1750747178074,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747178074,
+      "end": 1750747178074,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747178074,
+      "end": 1750747178074,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747178074,
+      "end": 1750747178074,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747178074,
+      "end": 1750747178074,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747178074,
+      "end": 1750747178074,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747178074,
+      "end": 1750747178074,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747178074,
+      "end": 1750747178074,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747178074,
+      "end": 1750747178074,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747178074,
+      "end": 1750747178074,
+      "order": "normal"
+    }
+  ]
+}

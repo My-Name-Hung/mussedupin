@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/react-calendar/dist/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import Calendar from './Calendar.js';\nimport CenturyView from './CenturyView.js';\nimport DecadeView from './DecadeView.js';\nimport MonthView from './MonthView.js';\nimport Navigation from './Calendar/Navigation.js';\nimport YearView from './YearView.js';\nexport { Calendar, CenturyView, DecadeView, MonthView, Navigation, YearView };\nexport default Calendar;\n",
+      "start": 1750747176002,
+      "end": 1750747177111,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750747177111,
+      "end": 1750747177111,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750747177111,
+      "end": 1750747177111,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750747177111,
+      "end": 1750747177111,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750747177111,
+      "end": 1750747177111,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750747177111,
+      "end": 1750747177111,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750747177111,
+      "end": 1750747177111,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750747177111,
+      "end": 1750747177111,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750747177111,
+      "end": 1750747177111,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750747177111,
+      "end": 1750747177111,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750747177111,
+      "end": 1750747177111,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750747177111,
+      "end": 1750747177111,
+      "order": "normal"
+    }
+  ]
+}

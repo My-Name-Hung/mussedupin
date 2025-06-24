@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { isCSSVariableName } from 'motion-dom';\n\nconst scaleCorrectors = {};\nfunction addScaleCorrector(correctors) {\n    for (const key in correctors) {\n        scaleCorrectors[key] = correctors[key];\n        if (isCSSVariableName(key)) {\n            scaleCorrectors[key].isCSSVariable = true;\n        }\n    }\n}\n\nexport { addScaleCorrector, scaleCorrectors };\n",
-      "start": 1750746812355,
-      "end": 1750746812966,
+      "start": 1750779217542,
+      "end": 1750779218262,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750746812966,
-      "end": 1750746812966,
+      "start": 1750779218262,
+      "end": 1750779218262,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1750746812966,
-      "end": 1750746812966,
+      "start": 1750779218262,
+      "end": 1750779218262,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1750746812966,
-      "end": 1750746812966,
+      "start": 1750779218262,
+      "end": 1750779218262,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750746812966,
-      "end": 1750746812966,
+      "start": 1750779218262,
+      "end": 1750779218262,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750746812966,
-      "end": 1750746812966,
+      "start": 1750779218262,
+      "end": 1750779218262,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750746812966,
-      "end": 1750746812966,
+      "start": 1750779218262,
+      "end": 1750779218262,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750746812966,
-      "end": 1750746812966,
+      "start": 1750779218262,
+      "end": 1750779218262,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750746812966,
-      "end": 1750746812966,
+      "start": 1750779218262,
+      "end": 1750779218262,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750746812966,
-      "end": 1750746812966,
+      "start": 1750779218262,
+      "end": 1750779218262,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750746812966,
-      "end": 1750746812966,
+      "start": 1750779218262,
+      "end": 1750779218262,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750746812966,
-      "end": 1750746812966,
+      "start": 1750779218262,
+      "end": 1750779218262,
       "order": "normal"
     }
   ]

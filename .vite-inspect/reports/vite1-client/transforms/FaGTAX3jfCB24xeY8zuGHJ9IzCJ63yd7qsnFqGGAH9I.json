@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { createElementObject, createTileLayerComponent, updateGridLayer, withPane } from '@react-leaflet/core';\nimport { TileLayer as LeafletTileLayer } from 'leaflet';\nexport const TileLayer = createTileLayerComponent(function createTileLayer({ url, ...options }, context) {\n    const layer = new LeafletTileLayer(url, withPane(options, context));\n    return createElementObject(layer, context);\n}, function updateTileLayer(layer, props, prevProps) {\n    updateGridLayer(layer, props, prevProps);\n    const { url } = props;\n    if (url != null && url !== prevProps.url) {\n        layer.setUrl(url);\n    }\n});\n",
-      "start": 1750746813722,
-      "end": 1750746813947,
+      "start": 1750779219015,
+      "end": 1750779219439,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750746813947,
-      "end": 1750746813947,
+      "start": 1750779219439,
+      "end": 1750779219439,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1750746813947,
-      "end": 1750746813947,
+      "start": 1750779219439,
+      "end": 1750779219439,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1750746813947,
-      "end": 1750746813947,
+      "start": 1750779219439,
+      "end": 1750779219439,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750746813947,
-      "end": 1750746813947,
+      "start": 1750779219439,
+      "end": 1750779219439,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750746813947,
-      "end": 1750746813947,
+      "start": 1750779219439,
+      "end": 1750779219439,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750746813947,
-      "end": 1750746813947,
+      "start": 1750779219439,
+      "end": 1750779219439,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750746813947,
-      "end": 1750746813947,
+      "start": 1750779219439,
+      "end": 1750779219439,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750746813947,
-      "end": 1750746813947,
+      "start": 1750779219439,
+      "end": 1750779219439,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750746813947,
-      "end": 1750746813947,
+      "start": 1750779219439,
+      "end": 1750779219439,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750746813947,
-      "end": 1750746813947,
+      "start": 1750779219439,
+      "end": 1750779219439,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750746813947,
-      "end": 1750746813947,
+      "start": 1750779219439,
+      "end": 1750779219439,
       "order": "normal"
     }
   ]

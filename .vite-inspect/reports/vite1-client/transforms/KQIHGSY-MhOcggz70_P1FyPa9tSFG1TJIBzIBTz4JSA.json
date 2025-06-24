@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { useLeafletContext } from '@react-leaflet/core';\nimport { useEffect } from 'react';\nexport function useMap() {\n    return useLeafletContext().map;\n}\nexport function useMapEvent(type, handler) {\n    const map = useMap();\n    useEffect(function addMapEventHandler() {\n        // @ts-ignore event type\n        map.on(type, handler);\n        return function removeMapEventHandler() {\n            // @ts-ignore event type\n            map.off(type, handler);\n        };\n    }, [\n        map,\n        type,\n        handler\n    ]);\n    return map;\n}\nexport function useMapEvents(handlers) {\n    const map = useMap();\n    useEffect(function addMapEventHandlers() {\n        map.on(handlers);\n        return function removeMapEventHandlers() {\n            map.off(handlers);\n        };\n    }, [\n        map,\n        handlers\n    ]);\n    return map;\n}\n",
-      "start": 1750746813149,
-      "end": 1750746813723,
+      "start": 1750779218485,
+      "end": 1750779219035,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750746813723,
-      "end": 1750746813723,
+      "start": 1750779219035,
+      "end": 1750779219035,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1750746813724,
-      "end": 1750746813724,
+      "start": 1750779219035,
+      "end": 1750779219035,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1750746813724,
-      "end": 1750746813724,
+      "start": 1750779219035,
+      "end": 1750779219035,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750746813724,
-      "end": 1750746813724,
+      "start": 1750779219035,
+      "end": 1750779219035,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750746813724,
-      "end": 1750746813724,
+      "start": 1750779219035,
+      "end": 1750779219035,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750746813724,
-      "end": 1750746813724,
+      "start": 1750779219035,
+      "end": 1750779219035,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750746813724,
-      "end": 1750746813724,
+      "start": 1750779219035,
+      "end": 1750779219035,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750746813725,
-      "end": 1750746813725,
+      "start": 1750779219037,
+      "end": 1750779219037,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750746813725,
-      "end": 1750746813725,
+      "start": 1750779219037,
+      "end": 1750779219037,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750746813725,
-      "end": 1750746813725,
+      "start": 1750779219037,
+      "end": 1750779219037,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750746813725,
-      "end": 1750746813725,
+      "start": 1750779219037,
+      "end": 1750779219037,
       "order": "normal"
     }
   ]

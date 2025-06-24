@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\nimport \"./LoadingSpinner.css\";\n\nconst LoadingSpinner = ({ size = \"small\", color = \"white\" }) => {\n  return (\n    <div\n      className={`loading-spinner ${size}`}\n      style={{\n        borderColor: color,\n        borderTopColor: \"transparent\",\n      }}\n    />\n  );\n};\n\nexport default LoadingSpinner;\n",
-      "start": 1750746805119,
-      "end": 1750746805370,
+      "start": 1750779197119,
+      "end": 1750779198919,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750746805370,
-      "end": 1750746805370,
+      "start": 1750779198919,
+      "end": 1750779198919,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport \"./LoadingSpinner.css\";\nconst LoadingSpinner = ({ size = \"small\", color = \"white\" }) => {\n  return /* @__PURE__ */ jsx(\n    \"div\",\n    {\n      className: `loading-spinner ${size}`,\n      style: {\n        borderColor: color,\n        borderTopColor: \"transparent\"\n      }\n    }\n  );\n};\nexport default LoadingSpinner;\n",
-      "start": 1750746805370,
-      "end": 1750746805639,
+      "start": 1750779198919,
+      "end": 1750779199753,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1750746805639,
-      "end": 1750746805639,
+      "start": 1750779199753,
+      "end": 1750779199753,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750746805639,
-      "end": 1750746805639,
+      "start": 1750779199753,
+      "end": 1750779199753,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750746805639,
-      "end": 1750746805639,
+      "start": 1750779199753,
+      "end": 1750779199753,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750746805639,
-      "end": 1750746805639,
+      "start": 1750779199767,
+      "end": 1750779199767,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750746805639,
-      "end": 1750746805639,
+      "start": 1750779199767,
+      "end": 1750779199767,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750746805639,
-      "end": 1750746805639,
+      "start": 1750779199770,
+      "end": 1750779199770,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750746805639,
-      "end": 1750746805639,
+      "start": 1750779199770,
+      "end": 1750779199770,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750746805639,
-      "end": 1750746805641,
+      "start": 1750779199770,
+      "end": 1750779199771,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750746805641,
-      "end": 1750746805641,
+      "start": 1750779199771,
+      "end": 1750779199771,
       "order": "normal"
     }
   ]

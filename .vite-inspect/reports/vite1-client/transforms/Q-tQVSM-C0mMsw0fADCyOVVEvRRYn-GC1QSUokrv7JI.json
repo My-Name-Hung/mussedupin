@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useMemo } from \"react\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../../../pages/CategoryDetail/CategoryDetail\";\nimport \"./BlockContent.css\";\n\nconst BlockContent = () => {\n  const artists = useMemo(() => {\n    // Get unique artists and count their products from all categories\n    const artistCounts = Object.values(sampleProducts)\n      .flat()\n      .reduce((acc, product) => {\n      acc[product.artist] = (acc[product.artist] || 0) + 1;\n      return acc;\n    }, {});\n\n    // Convert to array and sort by count\n    return Object.entries(artistCounts)\n      .map(([name, count]) => ({ name, count }))\n      .sort((a, b) => b.count - a.count);\n  }, []);\n\n  return (\n    <section className=\"block-contents\">\n      <div className=\"content-container\">\n        <div className=\"content-wrapper\">\n          <h2 className=\"content-title\">Khám phá bộ sưu tập của nghệ sĩ</h2>\n          <div className=\"artists-list\">\n            {artists.slice(0, 10).map((artist, index) => (\n              <Link\n                key={index}\n                to={`/contents/artists/${encodeURIComponent(artist.name)}`}\n                className=\"artist-item\"\n              >\n                {artist.name}\n              </Link>\n            ))}\n          </div>\n          <Link to=\"/contents/artists\" className=\"content-cta\">\n            Xem tất cả nghệ sĩ\n          </Link>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default BlockContent;\n",
-      "start": 1750746804591,
-      "end": 1750746805062,
+      "start": 1750779198791,
+      "end": 1750779199935,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750746805062,
-      "end": 1750746805062,
+      "start": 1750779199935,
+      "end": 1750779199935,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useMemo } from \"react\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../../../pages/CategoryDetail/CategoryDetail\";\nimport \"./BlockContent.css\";\nconst BlockContent = () => {\n  const artists = useMemo(() => {\n    const artistCounts = Object.values(sampleProducts).flat().reduce((acc, product) => {\n      acc[product.artist] = (acc[product.artist] || 0) + 1;\n      return acc;\n    }, {});\n    return Object.entries(artistCounts).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);\n  }, []);\n  return /* @__PURE__ */ jsx(\"section\", { className: \"block-contents\", children: /* @__PURE__ */ jsx(\"div\", { className: \"content-container\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"content-wrapper\", children: [\n    /* @__PURE__ */ jsx(\"h2\", { className: \"content-title\", children: \"Khám phá bộ sưu tập của nghệ sĩ\" }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"artists-list\", children: artists.slice(0, 10).map((artist, index) => /* @__PURE__ */ jsx(\n      Link,\n      {\n        to: `/contents/artists/${encodeURIComponent(artist.name)}`,\n        className: \"artist-item\",\n        children: artist.name\n      },\n      index\n    )) }),\n    /* @__PURE__ */ jsx(Link, { to: \"/contents/artists\", className: \"content-cta\", children: \"Xem tất cả nghệ sĩ\" })\n  ] }) }) });\n};\nexport default BlockContent;\n",
-      "start": 1750746805062,
-      "end": 1750746805220,
+      "start": 1750779199935,
+      "end": 1750779201705,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1750746805220,
-      "end": 1750746805220,
+      "start": 1750779201706,
+      "end": 1750779201706,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750746805220,
-      "end": 1750746805220,
+      "start": 1750779201706,
+      "end": 1750779201706,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750746805220,
-      "end": 1750746805220,
+      "start": 1750779201706,
+      "end": 1750779201706,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750746805220,
-      "end": 1750746805220,
+      "start": 1750779201706,
+      "end": 1750779201706,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750746805220,
-      "end": 1750746805220,
+      "start": 1750779201706,
+      "end": 1750779201706,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750746805220,
-      "end": 1750746805220,
+      "start": 1750779201706,
+      "end": 1750779201706,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750746805220,
-      "end": 1750746805221,
+      "start": 1750779201706,
+      "end": 1750779201706,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750746805221,
-      "end": 1750746805222,
+      "start": 1750779201706,
+      "end": 1750779201707,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750746805222,
-      "end": 1750746805222,
+      "start": 1750779201708,
+      "end": 1750779201708,
       "order": "normal"
     }
   ]

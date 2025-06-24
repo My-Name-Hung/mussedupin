@@ -1,6 +1,6 @@
 // Cloudinary configuration
-const CLOUD_NAME = "dn0br7hj0";
-const VERSION = "v1748784653"; // Add version number
+const CLOUD_NAME = "dco63bsah";
+const VERSION = "v1750338666"; // Add version number
 
 // Base URL for Cloudinary
 const CLOUDINARY_BASE_URL = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload`;
@@ -26,60 +26,51 @@ const buildCloudinaryUrl = (publicId, options = {}) => {
   }${publicId}`;
 };
 
-// Helper function to get exhibition image URL
-export const getImageUrl = (filename) => {
+// Helper functions for each category
+export const getKhuyenTaiImageUrl = (filename) => {
   if (!filename) return "";
-  const publicId = `collections/${filename}`;
+  const publicId = `khuyentai/${filename}`;
   return buildCloudinaryUrl(publicId);
 };
 
-// Helper function to get gallery image URL
-export const getGalleryImageUrl = (filename) => {
+export const getAnPhamImageUrl = (filename) => {
   if (!filename) return "";
-  const publicId = `collections/${filename}`;
+  const publicId = `Anpham/${filename}`;
   return buildCloudinaryUrl(publicId);
 };
 
-// Helper function to get thumbnail URL
-export const getThumbnailUrl = (filename) => {
+export const getInTheoYeuCauImageUrl = (filename) => {
   if (!filename) return "";
-  const publicId = `collections/${filename}`;
+  const publicId = `inyeucau/${filename}`;
   return buildCloudinaryUrl(publicId);
 };
 
-// Helper function to get about image URL
-export const getAboutImageUrl = (filename) => {
+export const getHoiThaoNgheThuatImageUrl = (filename) => {
   if (!filename) return "";
-  const publicId = `about/${filename}`;
+  const publicId = `hoithaonghethuat/${filename}`;
   return buildCloudinaryUrl(publicId);
 };
 
-// Helper function to get logo image URL
-export const getLogoImageUrl = (filename, options = {}) => {
+export const getThoiTrangImageUrl = (filename) => {
   if (!filename) return "";
-  const publicId = `logo/${filename}`;
-  return buildCloudinaryUrl(publicId, {
-    ...options,
-  });
+  const publicId = `thoitrang/${filename}`;
+  return buildCloudinaryUrl(publicId);
 };
 
-// Helper function to get background image URL
-export const getBackgroundImageUrl = (filename, options = {}) => {
+export const getDoTrangSucImageUrl = (filename) => {
   if (!filename) return "";
-  const publicId = `background/${filename}`;
-  return buildCloudinaryUrl(publicId, {
-    ...options,
-  });
+  const publicId = `dotrangsuc/${filename}`;
+  return buildCloudinaryUrl(publicId);
 };
 
-// Helper function to get any image URL with custom transformations
-export const getImagebuildUrl = (publicId, options = {}) => {
-  return buildCloudinaryUrl(publicId, options);
+export const getThoCamImageUrl = (filename) => {
+  if (!filename) return "";
+  const publicId = `thocam/${filename}`;
+  return buildCloudinaryUrl(publicId);
 };
 
-// Helper function to get hero video URL
-export const getHeroVideoUrl = (filename) => {
+export const getSanPhamTuThongImageUrl = (filename) => {
   if (!filename) return "";
-  const publicId = `hero/${filename}`;
+  const publicId = `sanphamtuthong/${filename}`;
   return buildCloudinaryUrl(publicId);
 };

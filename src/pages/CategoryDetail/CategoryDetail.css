@@ -221,7 +221,7 @@
   left: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
 }
 
 .tag {
@@ -259,6 +259,13 @@
   font-weight: 500;
   color: #2c2f11;
   text-align: center;
+}
+
+.product-card .product-size {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 5px;
+  font-family: "Roboto", sans-serif;
 }
 
 .block-product {

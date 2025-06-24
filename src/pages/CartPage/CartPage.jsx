@@ -3,7 +3,38 @@ import { FaChevronDown, FaChevronUp, FaTimes } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import Notification from "../../components/Notification/Notification";
+import {
+  getAnPhamImageUrl,
+  getThoCamImageUrl,
+  getHoiThaoNgheThuatImageUrl,
+  getInTheoYeuCauImageUrl,
+  getKhuyenTaiImageUrl,
+  getThoiTrangImageUrl,
+  getSanPhamTuThongImageUrl,
+} from "../../utils/cloudinary";
 import "./CartPage.css";
+
+// Helper function to get image URL based on category
+const getImageUrl = (category, filename) => {
+  switch (category) {
+    case "khuyentai":
+      return getKhuyenTaiImageUrl(filename);
+    case "anpham":
+      return getAnPhamImageUrl(filename);
+    case "in-theo-yeu-cau":
+      return getInTheoYeuCauImageUrl(filename);
+    case "hoi-thao-nghe-thuat":
+      return getHoiThaoNgheThuatImageUrl(filename);
+    case "thoi-trang-va-phu-kien":
+      return getThoiTrangImageUrl(filename);
+    case "thocam":
+      return getThoCamImageUrl(filename);
+    case "sanphamtuthong":
+      return getSanPhamTuThongImageUrl(filename);
+    default:
+      return "";
+  }
+};
 
 const CartPage = () => {
   const navigate = useNavigate();
@@ -274,7 +305,10 @@ const CartPage = () => {
         {cartItems.map((item) => (
           <div key={item.id} className="cart-item">
             <div className="item-image">
-              <img src={item.image} alt={item.name} />
+              <img
+                src={getImageUrl(item.category, item.image)}
+                alt={item.name}
+              />
             </div>
 
             <div className="item-details">
@@ -404,7 +438,10 @@ const CartPage = () => {
                 <div className="order-products">
                   {order.items.map((item) => (
                     <div key={item.id} className="order-product">
-                      <img src={item.image} alt={item.name} />
+                      <img
+                        src={getImageUrl(item.category, item.image)}
+                        alt={item.name}
+                      />
                       <div className="product-details">
                         <h4>{item.name}</h4>
                         <p>Số lượng: {item.quantity}</p>
@@ -456,7 +493,10 @@ const CartPage = () => {
             <div className="saved-items">
               {savedItems.map((item) => (
                 <div key={item.id} className="saved-item">
-                  <img src={item.image} alt={item.name} />
+                  <img
+                    src={getImageUrl(item.category, item.image)}
+                    alt={item.name}
+                  />
                   <h3>{item.name}</h3>
                   <p className="price">{item.price.toLocaleString()}đ</p>
                   <div className="saved-item-actions">

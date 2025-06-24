@@ -40,6 +40,7 @@ app.use(
       "http://localhost:5173",
       "https://museedupin.netlify.app",
       "https://online-museeduphin.netlify.app",
+      "https://ticket-museeduphin.netlify.app",
     ],
   })
 );
@@ -225,95 +226,196 @@ const sendFeedbackConfirmation = (feedbackData) => {
 };
 
 // Send experience booking confirmation email to customer
-const sendExperienceBookingEmail = (bookingData) => {
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: bookingData.email,
-    subject: "Xác nhận đặt vé trải nghiệm tại Bảo tàng Thông (Musée Du Pin)",
-    html: `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e6e6e6; border-radius: 10px;">
-        <div style="background: linear-gradient(135deg, #2c2f11, #3d4016); padding: 20px; text-align: center; color: white; border-radius: 10px 10px 0 0;">
-          <h1 style="margin: 0;">Xác nhận đặt vé trải nghiệm</h1>
+const sendExperienceBookingEmail = async (bookingData) => {
+  const {
+    userInfo,
+    tickets,
+    selectedDate,
+    selectedTime,
+    bookingId,
+    paymentMethod,
+  } = bookingData;
+
+  // Calculate total amount from tickets
+  const totalAmount = tickets.reduce(
+    (total, ticket) => total + ticket.price * ticket.quantity,
+    0
+  );
+
+  const ticketList = tickets
+    .filter((ticket) => ticket.quantity > 0)
+    .map(
+      (ticket) => `
+      <tr>
+        <td style="padding: 10px; border-bottom: 1px solid #eee;">${
+          ticket.title
+        }</td>
+        <td style="padding: 10px; border-bottom: 1px solid #eee;">${
+          ticket.quantity
+        }</td>
+        <td style="padding: 10px; border-bottom: 1px solid #eee;">${ticket.visitors
+          .map((v) => v.name)
+          .join(", ")}</td>
+        <td style="padding: 10px; border-bottom: 1px solid #eee;">${(
+          ticket.price * ticket.quantity
+        ).toLocaleString()}đ</td>
+      </tr>
+    `
+    )
+    .join("");
+
+  const paymentInstructions =
+    paymentMethod === "bank"
+      ? `
+      <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
+              <p>Mã đơn hàng: ${bookingId}</p>  
+      <h3 style="margin-bottom: 10px;">Thanh toán chuyển khoản</h3>
+        <p>Số tiền: ${totalAmount.toLocaleString()}đ</p>
         </div>
-        <div style="padding: 20px;">
-          <p>Xin chào <strong>${bookingData.name}</strong>,</p>
-          <p>Cảm ơn bạn đã đặt vé trải nghiệm tại Bảo tàng Thông (Musée Du Pin). Dưới đây là thông tin đặt vé của bạn:</p>
-          
-          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #2c2f11; margin-top: 0;">Chi tiết đặt vé</h3>
-            <p><strong>Gói trải nghiệm:</strong> ${bookingData.package}</p>
+    `
+      : `
+      <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
+        <h3 style="margin-bottom: 10px;">Thanh toán tại quầy</h3>
+        <p>Vui lòng thanh toán số tiền ${totalAmount.toLocaleString()}đ tại quầy vé khi đến tham quan.</p>
+      </div>
+    `;
+
+  const emailContent = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: #2c2f11;">Xác nhận đặt vé thành công</h2>
+      <p>Xin chào ${userInfo.fullName},</p>
+      <p>Cảm ơn bạn đã đặt vé tại Musée Du Pin. Dưới đây là thông tin chi tiết đơn hàng của bạn:</p>
+      
+      <div style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
+        <p><strong>Mã đơn hàng:</strong> ${bookingId}</p>
+        <p><strong>Họ tên:</strong> ${userInfo.fullName}</p>
+        <p><strong>Email:</strong> ${userInfo.email}</p>
+        <p><strong>Số điện thoại:</strong> ${userInfo.phone}</p>
             <p><strong>Ngày tham quan:</strong> ${new Date(
-              bookingData.date
+              selectedDate
             ).toLocaleDateString("vi-VN")}</p>
-            <p><strong>Giờ tham quan:</strong> ${bookingData.time}</p>
-            <p><strong>Số lượng khách:</strong> ${bookingData.guests} người</p>
-            <p><strong>Giá vé:</strong> ${bookingData.price}</p>
-            ${
-              bookingData.specialRequests
-                ? `<p><strong>Yêu cầu đặc biệt:</strong> ${bookingData.specialRequests}</p>`
-                : ""
-            }
+        <p><strong>Giờ tham quan:</strong> ${selectedTime}</p>
           </div>
           
-          <p>Chúng tôi rất mong được đón tiếp bạn tại Bảo tàng Thông (Musée Du Pin).</p>
-          <p>Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi qua:</p>
-          <ul style="list-style: none; padding-left: 0;">
-            <li>📞 Hotline: +84 86 235 6368</li>
-            <li>📧 Email: info@museedupin.com</li>
-          </ul>
-          
-          <p style="margin-top: 30px;">Trân trọng,<br>Đội ngũ Bảo tàng Thông (Musée Du Pin)</p>
-        </div>
-        <div style="background-color: #f1f5f9; padding: 15px; text-align: center; font-size: 12px; color: #64748b; border-radius: 0 0 10px 10px;">
-          © 2024 Bảo tàng Thông (Musée Du Pin). Tất cả các quyền được bảo lưu.
-        </div>
-      </div>
-    `,
-  };
+      <h3 style="color: #2c2f11;">Chi tiết vé</h3>
+      <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+        <thead>
+          <tr style="background-color: #f8f9fa;">
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Vé</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Số lượng</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Người tham quan</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Thành tiền</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${ticketList}
+        </tbody>
+      </table>
 
-  return transporter.sendMail(mailOptions);
+      ${paymentInstructions}
+
+      <div style="margin-top: 20px;">
+        <p>Nếu bạn có bất kỳ thắc mắc nào, vui lòng liên hệ với chúng tôi qua:</p>
+        <p>Email: info@museedupin.com</p>
+        <p>Hotline: +84 86 235 6368</p>
+        </div>
+        </div>
+  `;
+
+  await sendEmail({
+    to: userInfo.email,
+    subject: "Xác nhận đặt vé thành công - Musée Du Pin",
+    html: emailContent,
+  });
 };
 
 // Send experience booking notification to admin
-const sendExperienceBookingAdminEmail = (bookingData) => {
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to: process.env.ADMIN_EMAIL || process.env.EMAIL_USER,
-    subject: "Có đặt vé trải nghiệm mới tại Bảo tàng Thông",
-    html: `
-      <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e6e6e6; border-radius: 10px;">
-        <div style="background: linear-gradient(135deg, #2c2f11, #3d4016); padding: 20px; text-align: center; color: white; border-radius: 10px 10px 0 0;">
-          <h1 style="margin: 0;">Đặt vé trải nghiệm mới</h1>
-        </div>
-        <div style="padding: 20px;">
-          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #2c2f11; margin-top: 0;">Thông tin khách hàng</h3>
-            <p><strong>Tên:</strong> ${bookingData.name}</p>
-            <p><strong>Email:</strong> ${bookingData.email}</p>
-            <p><strong>Số điện thoại:</strong> ${bookingData.phone}</p>
-          </div>
-          
-          <div style="background-color: #f8fafc; padding: 15px; border-radius: 8px; margin: 20px 0;">
-            <h3 style="color: #2c2f11; margin-top: 0;">Chi tiết đặt vé</h3>
-            <p><strong>Gói trải nghiệm:</strong> ${bookingData.package}</p>
+const sendExperienceBookingAdminEmail = async (bookingData) => {
+  const {
+    userInfo,
+    tickets,
+    selectedDate,
+    selectedTime,
+    bookingId,
+    paymentMethod,
+  } = bookingData;
+
+  // Calculate total amount from tickets
+  const totalAmount = tickets.reduce(
+    (total, ticket) => total + ticket.price * ticket.quantity,
+    0
+  );
+
+  const ticketList = tickets
+    .filter((ticket) => ticket.quantity > 0)
+    .map(
+      (ticket) => `
+      <tr>
+        <td style="padding: 10px; border-bottom: 1px solid #eee;">${
+          ticket.title
+        }</td>
+        <td style="padding: 10px; border-bottom: 1px solid #eee;">${
+          ticket.quantity
+        }</td>
+        <td style="padding: 10px; border-bottom: 1px solid #eee;">${ticket.visitors
+          .map((v) => v.name)
+          .join(", ")}</td>
+        <td style="padding: 10px; border-bottom: 1px solid #eee;">${(
+          ticket.price * ticket.quantity
+        ).toLocaleString()}đ</td>
+      </tr>
+    `
+    )
+    .join("");
+
+  const emailContent = `
+    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
+      <h2 style="color: #2c2f11;">Đơn đặt vé mới</h2>
+      
+      <div style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
+        <p><strong>Mã đơn hàng:</strong> ${bookingId}</p>
+        <p><strong>Họ tên:</strong> ${userInfo.fullName}</p>
+        <p><strong>Email:</strong> ${userInfo.email}</p>
+        <p><strong>Số điện thoại:</strong> ${userInfo.phone}</p>
             <p><strong>Ngày tham quan:</strong> ${new Date(
-              bookingData.date
+              selectedDate
             ).toLocaleDateString("vi-VN")}</p>
-            <p><strong>Giờ tham quan:</strong> ${bookingData.time}</p>
-            <p><strong>Số lượng khách:</strong> ${bookingData.guests} người</p>
-            <p><strong>Giá vé:</strong> ${bookingData.price}</p>
-            ${
-              bookingData.specialRequests
-                ? `<p><strong>Yêu cầu đặc biệt:</strong> ${bookingData.specialRequests}</p>`
-                : ""
-            }
+        <p><strong>Giờ tham quan:</strong> ${selectedTime}</p>
+        <p><strong>Phương thức thanh toán:</strong> ${
+          paymentMethod === "bank" ? "Chuyển khoản ngân hàng" : "Tiền mặt"
+        }</p>
           </div>
+
+      <h3 style="color: #2c2f11;">Chi tiết vé</h3>
+      <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
+        <thead>
+          <tr style="background-color: #f8f9fa;">
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Vé</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Số lượng</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Người tham quan</th>
+            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Thành tiền</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${ticketList}
+        </tbody>
+      </table>
+
+      <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
+        <h3 style="margin-bottom: 10px;">Thông tin thanh toán</h3>
+        <p><strong>Tổng tiền:</strong> ${totalAmount.toLocaleString()}đ</p>
+        <p><strong>Phương thức thanh toán:</strong> ${
+          paymentMethod === "bank" ? "Chuyển khoản ngân hàng" : "Tiền mặt"
+        }</p>
         </div>
       </div>
-    `,
-  };
+  `;
 
-  return transporter.sendMail(mailOptions);
+  await sendEmail({
+    to: "admin@museedupin.com",
+    subject: `Đơn đặt vé mới - ${bookingId}`,
+    html: emailContent,
+  });
 };
 
 // API endpoint để xử lý đặt phòng
@@ -573,39 +675,20 @@ app.get("/api/assets", async (req, res) => {
   }
 });
 
-// API endpoint for experience package bookings
+// API endpoint để xử lý đặt vé trải nghiệm
 app.post("/api/experience-bookings", async (req, res) => {
-  const bookingData = req.body;
-
   try {
-    // Save to Google Sheets
-    const row = [
-      new Date().toISOString(), // Timestamp
-      bookingData.package, // Experience package name
-      bookingData.name, // Customer name
-      bookingData.email, // Email
-      bookingData.phone, // Phone
-      bookingData.date, // Visit date
-      bookingData.guests, // Number of guests
-      bookingData.price, // Price
-      bookingData.specialRequests || "", // Special requests
-      "New", // Status
-    ];
+    const bookingData = req.body;
 
-    const request = {
-      spreadsheetId: SPREADSHEET_ID,
-      range: "Bookings!A:M",
-      valueInputOption: "RAW",
-      insertDataOption: "INSERT_ROWS",
-      resource: {
-        values: [row],
-      },
-    };
+    // Validate bookingId
+    if (!bookingData.bookingId) {
+      throw new Error("Missing booking ID");
+    }
 
-    // Send data to Google Sheets
-    const sheetsResponse = await sheets.spreadsheets.values.append(request);
+    // Lưu booking vào database hoặc storage
+    await saveBooking(bookingData);
 
-    // Send confirmation emails
+    // Gửi email xác nhận
     await Promise.all([
       sendExperienceBookingEmail(bookingData),
       sendExperienceBookingAdminEmail(bookingData),
@@ -613,15 +696,14 @@ app.post("/api/experience-bookings", async (req, res) => {
 
     res.status(200).json({
       success: true,
-      message:
-        "Experience booking saved successfully and email notifications sent.",
-      sheetsResponse: sheetsResponse.data,
+      message: "Booking created successfully",
+      bookingId: bookingData.bookingId,
     });
   } catch (error) {
-    console.error("Error processing experience booking:", error);
+    console.error("Error creating booking:", error);
     res.status(500).json({
       success: false,
-      message: "Failed to process experience booking",
+      message: "Failed to create booking",
       error: error.message,
     });
   }
@@ -1483,3 +1565,49 @@ cron.schedule("*/5 * * * *", () => {
       });
   }
 });
+
+const sendEmail = async ({ to, subject, html }) => {
+  const mailOptions = {
+    from: process.env.EMAIL_USER,
+    to,
+    subject,
+    html,
+  };
+  return transporter.sendMail(mailOptions);
+};
+
+const generateBookingId = () => {
+  return (
+    "BK" +
+    Date.now().toString(36).toUpperCase() +
+    Math.random().toString(36).substring(2, 7).toUpperCase()
+  );
+};
+
+const saveBooking = async (booking) => {
+  const row = [
+    booking.id,
+    booking.packageId,
+    new Date(booking.selectedDate).toISOString(),
+    booking.selectedTime,
+    JSON.stringify(booking.tickets),
+    booking.userId,
+    booking.userInfo.fullName,
+    booking.userInfo.email,
+    booking.userInfo.phone,
+    booking.status,
+    new Date().toISOString(),
+  ];
+
+  const request = {
+    spreadsheetId: SPREADSHEET_ID,
+    range: "Bookings!A:K",
+    valueInputOption: "RAW",
+    insertDataOption: "INSERT_ROWS",
+    resource: {
+      values: [row],
+    },
+  };
+
+  return sheets.spreadsheets.values.append(request);
+};

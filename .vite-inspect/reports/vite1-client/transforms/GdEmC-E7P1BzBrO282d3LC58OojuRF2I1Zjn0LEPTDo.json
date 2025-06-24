@@ -1,0 +1,90 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/ONLINE/src/pages/VNPayReturn/VNPayReturn.jsx",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import React, { useEffect, useState } from \"react\";\nimport { useLocation, useNavigate } from \"react-router-dom\";\nimport \"./VNPayReturn.css\";\n\nconst VNPayReturn = () => {\n  const [status, setStatus] = useState(\"processing\");\n  const [message, setMessage] = useState(\"\");\n  const navigate = useNavigate();\n  const location = useLocation();\n\n  useEffect(() => {\n    const verifyPayment = () => {\n      const searchParams = new URLSearchParams(location.search);\n      const vnp_ResponseCode = searchParams.get(\"vnp_ResponseCode\");\n      const vnp_TransactionStatus = searchParams.get(\"vnp_TransactionStatus\");\n\n      // Verify the payment response\n      if (vnp_ResponseCode === \"00\" && vnp_TransactionStatus === \"00\") {\n        setStatus(\"success\");\n        setMessage(\"Thanh toán thành công!\");\n        // Clear cart after successful payment\n        localStorage.removeItem(\"cart\");\n        localStorage.removeItem(\"cartDiscount\");\n      } else {\n        setStatus(\"failed\");\n        setMessage(\"Thanh toán thất bại hoặc bị hủy.\");\n      }\n    };\n\n    verifyPayment();\n  }, [location]);\n\n  const handleContinue = () => {\n    if (status === \"success\") {\n      navigate(\"/\"); // Navigate to home page or order history\n    } else {\n      navigate(\"/cart\"); // Return to cart if payment failed\n    }\n  };\n\n  return (\n    <div className=\"vnpay-return\">\n      <div className=\"vnpay-return-container\">\n        <div className={`payment-status ${status}`}>\n          <div className=\"status-icon\">{status === \"success\" ? \"✓\" : \"✕\"}</div>\n          <h2>\n            {status === \"success\"\n              ? \"Thanh toán thành công\"\n              : \"Thanh toán thất bại\"}\n          </h2>\n          <p>{message}</p>\n          <button onClick={handleContinue}>\n            {status === \"success\" ? \"Tiếp tục mua sắm\" : \"Thử lại\"}\n          </button>\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default VNPayReturn;\n",
+      "start": 1750746804444,
+      "end": 1750746804541,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750746804542,
+      "end": 1750746804542,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect, useState } from \"react\";\nimport { useLocation, useNavigate } from \"react-router-dom\";\nimport \"./VNPayReturn.css\";\nconst VNPayReturn = () => {\n  const [status, setStatus] = useState(\"processing\");\n  const [message, setMessage] = useState(\"\");\n  const navigate = useNavigate();\n  const location = useLocation();\n  useEffect(() => {\n    const verifyPayment = () => {\n      const searchParams = new URLSearchParams(location.search);\n      const vnp_ResponseCode = searchParams.get(\"vnp_ResponseCode\");\n      const vnp_TransactionStatus = searchParams.get(\"vnp_TransactionStatus\");\n      if (vnp_ResponseCode === \"00\" && vnp_TransactionStatus === \"00\") {\n        setStatus(\"success\");\n        setMessage(\"Thanh toán thành công!\");\n        localStorage.removeItem(\"cart\");\n        localStorage.removeItem(\"cartDiscount\");\n      } else {\n        setStatus(\"failed\");\n        setMessage(\"Thanh toán thất bại hoặc bị hủy.\");\n      }\n    };\n    verifyPayment();\n  }, [location]);\n  const handleContinue = () => {\n    if (status === \"success\") {\n      navigate(\"/\");\n    } else {\n      navigate(\"/cart\");\n    }\n  };\n  return /* @__PURE__ */ jsx(\"div\", { className: \"vnpay-return\", children: /* @__PURE__ */ jsx(\"div\", { className: \"vnpay-return-container\", children: /* @__PURE__ */ jsxs(\"div\", { className: `payment-status ${status}`, children: [\n    /* @__PURE__ */ jsx(\"div\", { className: \"status-icon\", children: status === \"success\" ? \"✓\" : \"✕\" }),\n    /* @__PURE__ */ jsx(\"h2\", { children: status === \"success\" ? \"Thanh toán thành công\" : \"Thanh toán thất bại\" }),\n    /* @__PURE__ */ jsx(\"p\", { children: message }),\n    /* @__PURE__ */ jsx(\"button\", { onClick: handleContinue, children: status === \"success\" ? \"Tiếp tục mua sắm\" : \"Thử lại\" })\n  ] }) }) });\n};\nexport default VNPayReturn;\n",
+      "start": 1750746804542,
+      "end": 1750746804844,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/ONLINE/src/pages/VNPayReturn/VNPayReturn.jsx"
+        ],
+        "sourcesContent": [
+          "import React, { useEffect, useState } from \"react\";\nimport { useLocation, useNavigate } from \"react-router-dom\";\nimport \"./VNPayReturn.css\";\n\nconst VNPayReturn = () => {\n  const [status, setStatus] = useState(\"processing\");\n  const [message, setMessage] = useState(\"\");\n  const navigate = useNavigate();\n  const location = useLocation();\n\n  useEffect(() => {\n    const verifyPayment = () => {\n      const searchParams = new URLSearchParams(location.search);\n      const vnp_ResponseCode = searchParams.get(\"vnp_ResponseCode\");\n      const vnp_TransactionStatus = searchParams.get(\"vnp_TransactionStatus\");\n\n      // Verify the payment response\n      if (vnp_ResponseCode === \"00\" && vnp_TransactionStatus === \"00\") {\n        setStatus(\"success\");\n        setMessage(\"Thanh toán thành công!\");\n        // Clear cart after successful payment\n        localStorage.removeItem(\"cart\");\n        localStorage.removeItem(\"cartDiscount\");\n      } else {\n        setStatus(\"failed\");\n        setMessage(\"Thanh toán thất bại hoặc bị hủy.\");\n      }\n    };\n\n    verifyPayment();\n  }, [location]);\n\n  const handleContinue = () => {\n    if (status === \"success\") {\n      navigate(\"/\"); // Navigate to home page or order history\n    } else {\n      navigate(\"/cart\"); // Return to cart if payment failed\n    }\n  };\n\n  return (\n    <div className=\"vnpay-return\">\n      <div className=\"vnpay-return-container\">\n        <div className={`payment-status ${status}`}>\n          <div className=\"status-icon\">{status === \"success\" ? \"✓\" : \"✕\"}</div>\n          <h2>\n            {status === \"success\"\n              ? \"Thanh toán thành công\"\n              : \"Thanh toán thất bại\"}\n          </h2>\n          <p>{message}</p>\n          <button onClick={handleContinue}>\n            {status === \"success\" ? \"Tiếp tục mua sắm\" : \"Thử lại\"}\n          </button>\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default VNPayReturn;\n"
+        ],
+        "mappings": "AA2CQ,SACE,KADF;AA3CR,OAAO,SAAS,WAAW,gBAAgB;AAC3C,SAAS,aAAa,mBAAmB;AACzC,OAAO;AAEP,MAAM,cAAc,MAAM;AACxB,QAAM,CAAC,QAAQ,SAAS,IAAI,SAAS,YAAY;AACjD,QAAM,CAAC,SAAS,UAAU,IAAI,SAAS,EAAE;AACzC,QAAM,WAAW,YAAY;AAC7B,QAAM,WAAW,YAAY;AAE7B,YAAU,MAAM;AACd,UAAM,gBAAgB,MAAM;AAC1B,YAAM,eAAe,IAAI,gBAAgB,SAAS,MAAM;AACxD,YAAM,mBAAmB,aAAa,IAAI,kBAAkB;AAC5D,YAAM,wBAAwB,aAAa,IAAI,uBAAuB;AAGtE,UAAI,qBAAqB,QAAQ,0BAA0B,MAAM;AAC/D,kBAAU,SAAS;AACnB,mBAAW,wBAAwB;AAEnC,qBAAa,WAAW,MAAM;AAC9B,qBAAa,WAAW,cAAc;AAAA,MACxC,OAAO;AACL,kBAAU,QAAQ;AAClB,mBAAW,kCAAkC;AAAA,MAC/C;AAAA,IACF;AAEA,kBAAc;AAAA,EAChB,GAAG,CAAC,QAAQ,CAAC;AAEb,QAAM,iBAAiB,MAAM;AAC3B,QAAI,WAAW,WAAW;AACxB,eAAS,GAAG;AAAA,IACd,OAAO;AACL,eAAS,OAAO;AAAA,IAClB;AAAA,EACF;AAEA,SACE,oBAAC,SAAI,WAAU,gBACb,8BAAC,SAAI,WAAU,0BACb,+BAAC,SAAI,WAAW,kBAAkB,MAAM,IACtC;AAAA,wBAAC,SAAI,WAAU,eAAe,qBAAW,YAAY,MAAM,KAAI;AAAA,IAC/D,oBAAC,QACE,qBAAW,YACR,0BACA,uBACN;AAAA,IACA,oBAAC,OAAG,mBAAQ;AAAA,IACZ,oBAAC,YAAO,SAAS,gBACd,qBAAW,YAAY,qBAAqB,WAC/C;AAAA,KACF,GACF,GACF;AAEJ;AAEA,eAAe;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750746804844,
+      "end": 1750746804844,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750746804844,
+      "end": 1750746804844,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750746804844,
+      "end": 1750746804844,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750746804844,
+      "end": 1750746804844,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750746804844,
+      "end": 1750746804844,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750746804844,
+      "end": 1750746804844,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750746804844,
+      "end": 1750746804844,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750746804844,
+      "end": 1750746804845,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750746804846,
+      "end": 1750746804846,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { BsCart3 } from "react-icons/bs";
 import { IoIosArrowBack } from "react-icons/io";
+import { IoClose } from "react-icons/io5";
+import { MdNavigateBefore, MdNavigateNext } from "react-icons/md";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import "swiper/css";
@@ -9,9 +11,43 @@ import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import Notification from "../../components/Notification/Notification";
+import {
+  getAnPhamImageUrl,
+  getDoTrangSucImageUrl,
+  getHoiThaoNgheThuatImageUrl,
+  getInTheoYeuCauImageUrl,
+  getKhuyenTaiImageUrl,
+  getSanPhamTuThongImageUrl,
+  getThoCamImageUrl,
+  getThoiTrangImageUrl,
+} from "../../utils/cloudinary";
 import { sampleProducts } from "../CategoryDetail/CategoryDetail";
 import { exhibitionsData } from "../Exhibitions/Exhibitions";
 import "./ProductDetails.css";
+
+// Helper function to get image URL based on category
+const getImageUrl = (category, filename) => {
+  switch (category) {
+    case "khuyentai":
+      return getKhuyenTaiImageUrl(filename);
+    case "anpham":
+      return getAnPhamImageUrl(filename);
+    case "in-theo-yeu-cau":
+      return getInTheoYeuCauImageUrl(filename);
+    case "hoi-thao-nghe-thuat":
+      return getHoiThaoNgheThuatImageUrl(filename);
+    case "thoi-trang-va-phu-kien":
+      return getThoiTrangImageUrl(filename);
+    case "do-trang-suc":
+      return getDoTrangSucImageUrl(filename);
+    case "thocam":
+      return getThoCamImageUrl(filename);
+    case "sanphamtuthong":
+      return getSanPhamTuThongImageUrl(filename);
+    default:
+      return "";
+  }
+};
 
 const ProductDetails = () => {
   const { productId } = useParams();
@@ -21,6 +57,10 @@ const ProductDetails = () => {
   const [relatedProducts, setRelatedProducts] = useState([]);
   const [showNotification, setShowNotification] = useState(false);
   const [productSource, setProductSource] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showImageModal, setShowImageModal] = useState(false);
+  const [showFullscreen, setShowFullscreen] = useState(false);
+  const [fullscreenImageIndex, setFullscreenImageIndex] = useState(0);
 
   useEffect(() => {
     let foundProduct = null;
@@ -51,18 +91,23 @@ const ProductDetails = () => {
 
     // If not found in exhibitions, try sampleProducts
     if (!foundProduct) {
-      const catalogProduct = sampleProducts.find(
-        (p) => p.title === productId || p.id.toString() === productId
-      );
-      if (catalogProduct) {
-        foundProduct = {
-          ...catalogProduct,
-          source: "catalog",
-        };
-        source = {
-          type: "catalog",
-          category: catalogProduct.type,
-        };
+      // Search through all categories in sampleProducts
+      for (const category in sampleProducts) {
+        const categoryProducts = sampleProducts[category];
+        const catalogProduct = categoryProducts.find(
+          (p) => p.id === productId || p.title === productId
+        );
+        if (catalogProduct) {
+          foundProduct = {
+            ...catalogProduct,
+            source: "catalog",
+          };
+          source = {
+            type: "catalog",
+            category: category,
+          };
+          break;
+        }
       }
     }
 
@@ -80,16 +125,29 @@ const ProductDetails = () => {
           .slice(0, 6);
       } else {
         // Get products from the same category
-        related = sampleProducts
-          .filter(
-            (p) =>
-              p.type === foundProduct.type && p.title !== foundProduct.title
-          )
+        related = sampleProducts[source.category]
+          .filter((p) => p.id !== foundProduct.id)
           .slice(0, 6);
       }
       setRelatedProducts(related);
     }
   }, [productId]);
+
+  const handlePrevImage = () => {
+    setCurrentImageIndex((prev) =>
+      prev === 0 ? product.images.length - 1 : prev - 1
+    );
+  };
+
+  const handleNextImage = () => {
+    setCurrentImageIndex((prev) =>
+      prev === product.images.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const handleImageClick = () => {
+    setShowImageModal(true);
+  };
 
   const addToCart = () => {
     const cartItem = {
@@ -97,6 +155,7 @@ const ProductDetails = () => {
       name: product.title,
       price: parseFloat(product.price.replace(/[^\d]/g, "")),
       image: product.image,
+      category: product.category, // Add category for image URL generation
       quantity: 1,
       source: productSource,
     };
@@ -131,6 +190,23 @@ const ProductDetails = () => {
     navigate(-1);
   };
 
+  const handleFullscreenPrev = () => {
+    setFullscreenImageIndex((prev) =>
+      prev === 0 ? product.images.length - 1 : prev - 1
+    );
+  };
+
+  const handleFullscreenNext = () => {
+    setFullscreenImageIndex((prev) =>
+      prev === product.images.length - 1 ? 0 : prev + 1
+    );
+  };
+
+  const openFullscreen = (index) => {
+    setFullscreenImageIndex(index);
+    setShowFullscreen(true);
+  };
+
   if (!product) {
     return <div>Loading...</div>;
   }
@@ -150,7 +226,33 @@ const ProductDetails = () => {
 
       <div className="product-main">
         <div className="product-image">
-          <img src={product.image} alt={product.title} />
+          <div className="slideshow-container-product">
+            <button
+              className="nav-button-product prev"
+              onClick={handlePrevImage}
+            >
+              <MdNavigateBefore />
+            </button>
+            <img
+              src={getImageUrl(
+                product.category,
+                product.images[currentImageIndex]
+              )}
+              alt={product.title}
+              onClick={handleImageClick}
+            />
+            <button
+              className="nav-button-product next"
+              onClick={handleNextImage}
+            >
+              <MdNavigateNext />
+            </button>
+            {product.images.length > 1 && (
+              <div className="image-counter-product">
+                {currentImageIndex + 1} / {product.images.length}
+              </div>
+            )}
+          </div>
         </div>
 
         <div className="product-info">
@@ -165,12 +267,13 @@ const ProductDetails = () => {
               </p>
             </>
           )}
+          <a className="product-price-detail">{product.price}</a>
           {productSource?.type === "catalog" && (
             <p className="product-category">
               Danh mục: {productSource.category}
             </p>
           )}
-          <p className="product-price">{product.price}</p>
+          {product.size && <p className="product-size">{product.size}</p>}
 
           <button className="add-to-cart" onClick={addToCart}>
             <BsCart3 />
@@ -189,6 +292,7 @@ const ProductDetails = () => {
               <div className="specs-content">
                 <p>Tên sản phẩm: {product.title}</p>
                 <p>Giá: {product.price}</p>
+                {product.size && <p>Kích thước: {product.size}</p>}
                 {productSource?.type === "exhibition" && (
                   <>
                     <p>Triển lãm: {productSource.title}</p>
@@ -212,7 +316,7 @@ const ProductDetails = () => {
           <div className="product-notes">
             <div className="note-item">
               <span className="checkmark">✓</span>
-              <p>Thanh toán an toàn bởi Verifone</p>
+              <p>Thanh toán an toàn</p>
             </div>
             <div className="note-item">
               <span className="checkmark">✓</span>
@@ -228,6 +332,63 @@ const ProductDetails = () => {
           </div>
         </div>
       </div>
+
+      {showImageModal && (
+        <div className="image-modal">
+          <button
+            className="modal-close"
+            onClick={() => setShowImageModal(false)}
+          >
+            <IoClose />
+          </button>
+          <div className="modal-grid">
+            {product.images.map((image, index) => (
+              <div
+                key={index}
+                className="modal-image-container"
+                onClick={() => openFullscreen(index)}
+              >
+                <img
+                  src={getImageUrl(product.category, image)}
+                  alt={`${product.title} ${index + 1}`}
+                />
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {showFullscreen && (
+        <div className="fullscreen-viewer">
+          <button
+            className="fullscreen-close"
+            onClick={() => setShowFullscreen(false)}
+          >
+            <IoClose />
+          </button>
+          <button
+            className="fullscreen-nav prev"
+            onClick={handleFullscreenPrev}
+          >
+            <MdNavigateBefore />
+          </button>
+          <div className="fullscreen-image">
+            <img
+              src={getImageUrl(
+                product.category,
+                product.images[fullscreenImageIndex]
+              )}
+              alt={`${product.title} ${fullscreenImageIndex + 1}`}
+            />
+          </div>
+          <button
+            className="fullscreen-nav next"
+            onClick={handleFullscreenNext}
+          >
+            <MdNavigateNext />
+          </button>
+        </div>
+      )}
 
       <section className="related-products">
         <h2>
@@ -267,7 +428,13 @@ const ProductDetails = () => {
                 className="related-product-card"
               >
                 <div className="related-product-image">
-                  <img src={relatedProduct.image} alt={relatedProduct.title} />
+                  <img
+                    src={getImageUrl(
+                      relatedProduct.category,
+                      relatedProduct.image
+                    )}
+                    alt={relatedProduct.title}
+                  />
                 </div>
                 <h3>{relatedProduct.title}</h3>
                 <p className="price">{relatedProduct.price}</p>

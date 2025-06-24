@@ -86,43 +86,7 @@ function Home() {
       </div>
 
       {/* Prepare your visit bar */}
-      {!isMobile && (
-        <div
-          className={`prepare-visit-bar ${
-            showPrepareVisitBar ? "visible" : ""
-          }`}
-        >
-          <div className="prepare-visit-content">
-            <div
-              className="prepare-visit-left"
-              style={{
-                fontFamily:
-                  "Mythical-Prince, LouvreSerif, Georgia, Times New Roman, serif",
-              }}
-            >
-              Chuẩn bị tham quan
-            </div>
-            <div className="prepare-visit-center">
-              <div className="prepare-visit-museum-status">
-                Bảo tàng đang mở cửa
-              </div>
-              <div className="prepare-visit-time">
-                <span>7:00 AM</span>
-                <span className="prepare-visit-time-arrow">→</span>
-                <span>21:00 PM</span>
-              </div>
-            </div>
-            <div className="prepare-visit-right">
-              <a href="/tickets" className="prepare-visit-button">
-                <TicketIcon />
-              </a>
-              <a href="/prepare-visit" className="prepare-visit-button">
-                <BoutiqueIcon />
-              </a>
-            </div>
-          </div>
-        </div>
-      )}
+
     </div>
   );
 }

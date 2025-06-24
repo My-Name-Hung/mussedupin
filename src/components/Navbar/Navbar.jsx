@@ -16,13 +16,12 @@ import {
   FaUser,
   FaYoutube,
 } from "react-icons/fa";
+import { IoIosArrowBack, IoIosArrowRoundForward } from "react-icons/io";
 import { RiShoppingBag4Fill } from "react-icons/ri";
 import { SiTiktok } from "react-icons/si";
 import { Link, useNavigate } from "react-router-dom";
 import LoginModal from "../Auth/LoginModal";
 import "./Navbar.css";
-
-import { IoIosArrowBack } from "react-icons/io";
 
 // Icon components using react-icons
 const SearchIcon = () => <FaSearch size={16} />;
@@ -253,9 +252,6 @@ const searchData = [
 ];
 
 const Navbar = () => {
-  const [currentLanguage, setCurrentLanguage] = useState("vi");
-  const [showLangDropdown, setShowLangDropdown] = useState(false);
-  const [showMobileLangDropdown, setShowMobileLangDropdown] = useState(false);
   const [showSearchBox, setShowSearchBox] = useState(false);
   const [showSeeMoreDropdown, setShowSeeMoreDropdown] = useState(false);
   const [showVisitDropdown, setShowVisitDropdown] = useState(false);
@@ -273,15 +269,13 @@ const Navbar = () => {
   const [currentUser, setCurrentUser] = useState(null);
   const [cartItemCount, setCartItemCount] = useState(0);
 
-  // Mobile submenu states - Enable these features
+  // Mobile submenu states
   const [showMobileSubmenu, setShowMobileSubmenu] = useState(false);
   const [currentMobileSubmenu, setCurrentMobileSubmenu] = useState("");
   const [submenuItems, setSubmenuItems] = useState([]);
 
   const navigate = useNavigate();
   const navItemsRef = useRef([]);
-  const dropdownRef = useRef(null);
-  const mobileLangDropdownRef = useRef(null);
   const seeMoreRef = useRef(null);
   const visitRef = useRef(null);
   const searchInputRef = useRef(null);
@@ -289,24 +283,24 @@ const Navbar = () => {
   const searchResultsRef = useRef(null);
   const userDropdownRef = useRef(null);
 
-  // Add supported languages
-  const supportedLanguages = [
-    { code: "vi", name: "Tiếng Việt" },
-    { code: "en", name: "English" },
-  ];
+  // Add GTranslate script to head
+  useEffect(() => {
+    // Add GTranslate settings
+    const gtSettings = document.createElement("script");
+    gtSettings.innerHTML = `window.gtranslateSettings = {"default_language":"vi","native_language_names":true,"detect_browser_language":true,"languages":["vi","en"],"wrapper_selector":".gtranslate_wrapper"}`;
+    document.head.appendChild(gtSettings);
 
-  // Get current language name
-  const getCurrentLanguageName = () => {
-    const lang = supportedLanguages.find((l) => l.code === currentLanguage);
-    return lang ? lang.name : "Tiếng Việt";
-  };
+    // Add GTranslate script
+    const gtScript = document.createElement("script");
+    gtScript.src = "https://cdn.gtranslate.net/widgets/latest/ln.js";
+    gtScript.defer = true;
+    document.head.appendChild(gtScript);
 
-  // Handle language change
-  const handleLanguageChange = (langCode) => {
-    setCurrentLanguage(langCode);
-    setShowMobileLangDropdown(false);
-    setShowLangDropdown(false);
-  };
+    return () => {
+      document.head.removeChild(gtSettings);
+      document.head.removeChild(gtScript);
+    };
+  }, []);
 
   // Handle search functionality
   const handleSearchInputChange = (e) => {
@@ -578,19 +572,12 @@ const Navbar = () => {
   useEffect(() => {
     function handleClickOutside(event) {
       // Only close language dropdowns when clicking outside
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setShowLangDropdown(false);
-      }
       if (
-        mobileLangDropdownRef.current &&
-        !mobileLangDropdownRef.current.contains(event.target)
+        userDropdownRef.current &&
+        !userDropdownRef.current.contains(event.target)
       ) {
-        setShowMobileLangDropdown(false);
+        setShowUserDropdown(false);
       }
-
-      // Don't automatically close dropdowns when clicking inside them
-      // We'll only close them via the X button or Escape key
-      // This is specifically for Visit, Exhibitions, and Explore dropdowns
     }
 
     document.addEventListener("mousedown", handleClickOutside);
@@ -928,17 +915,14 @@ const Navbar = () => {
 
   return (
     <>
-      <div className="explore-button-container">
-        <a
-          href="https://museedupin.netlify.app/"
-          className="explore-button"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <p>
-            <IoIosArrowBack />
-            Cùng khám phá chúng tôi
-          </p>
+      <div className="comeback-banner">
+        <img
+          src="https://ik.imagekit.io/8u8lkoqkkm/comeback.jpg?updatedAt=1750746004933"
+          alt="Back to Musée Du Pin"
+        />
+        <a href="https://museedupin.netlify.app" target="_blank">
+          <IoIosArrowBack size={20} />
+          Trở về trang chủ
         </a>
       </div>
       <header className="navbar-container">
@@ -954,20 +938,8 @@ const Navbar = () => {
               <span>Tìm kiếm</span>
             </div>
 
-            <div className="language-dropdown" ref={dropdownRef}>
-              <div
-                className="selected-language"
-                onClick={() => setShowLangDropdown(!showLangDropdown)}
-              >
-                {getCurrentLanguageName()}
-              </div>
-
-              {showLangDropdown && (
-                <div className="language-options">
-                  <div className="language-header">Ngôn ngữ</div>
-                </div>
-              )}
-            </div>
+            {/* Replace language dropdown with GTranslate */}
+            <div className="gtranslate_wrapper"></div>
           </div>
 
           {/* Center section with logo */}
@@ -985,21 +957,15 @@ const Navbar = () => {
           {/* Desktop Navbar - Right Section */}
           <div className="desktop-right-section">
             <div className="buttons-container">
-              <Link
-                to="https://online-museeduphin.netlify.app/"
-                className="btn btn-outline"
-              >
-                <BoutiqueIcon />
-              </Link>
               <UserButton />
-              <Link to="/cart" className="btn btn-outline cart-btn">
+              <Link to="/cart" className="btn btn-filled cart-btn">
                 <RiShoppingBag4Fill size={16} />
                 {cartItemCount > 0 && (
                   <span className="cart-count">{cartItemCount}</span>
                 )}
               </Link>
               <Link
-                to="https://online-museeduphin.netlify.app/"
+                to="https://ticket-museeduphin.netlify.app/"
                 className="btn btn-filled"
               >
                 <TicketIcon />
@@ -1020,12 +986,14 @@ const Navbar = () => {
               <img
                 src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.webp"
                 alt="Musée Du Pin Logo"
-                className="mobile-logo-image"
+                className="mobile-logo-image notranslate"
                 loading="lazy"
               />
             </div>
             <a href="/">
-              <span className="museum-name-mobile">Musée Du Pin</span>
+              <span className="museum-name-mobile notranslate">
+                Musée Du Pin
+              </span>
             </a>
           </div>
 
@@ -1038,7 +1006,7 @@ const Navbar = () => {
               )}
             </Link>
             <Link
-              to="https://online-museeduphin.netlify.app/"
+              to="https://ticket-museeduphin.netlify.app/"
               className="btn btn-outline"
             >
               <TicketIcon />
@@ -1067,6 +1035,42 @@ const Navbar = () => {
                   }}
                 >
                   DANH MỤC
+                  <div className="underline"></div>
+                </Link>
+              </li>
+              <li
+                className="nav-item"
+                ref={(el) => (navItemsRef.current[1] = el)}
+              >
+                <Link to="/contents/exhibitions">
+                  TRIỂN LÃM
+                  <div className="underline"></div>
+                </Link>
+              </li>
+              <li
+                className="nav-item"
+                ref={(el) => (navItemsRef.current[2] = el)}
+              >
+                <Link to="/collaborate">
+                  SỰ HỢP TÁC
+                  <div className="underline"></div>
+                </Link>
+              </li>
+              <li
+                className="nav-item"
+                ref={(el) => (navItemsRef.current[3] = el)}
+              >
+                <Link to="/bestseller">
+                  SẢN PHẨM BÁN CHẠY
+                  <div className="underline"></div>
+                </Link>
+              </li>
+              <li
+                className="nav-item"
+                ref={(el) => (navItemsRef.current[4] = el)}
+              >
+                <Link to="/news">
+                  SẢN PHẨM MỚI
                   <div className="underline"></div>
                 </Link>
               </li>
@@ -1137,32 +1141,8 @@ const Navbar = () => {
             >
               <CloseIcon />
             </button>
-            <div
-              className="mobile-lang-selector"
-              onClick={() => setShowMobileLangDropdown(!showMobileLangDropdown)}
-              ref={mobileLangDropdownRef}
-            >
-              {getCurrentLanguageName()}
-              {showMobileLangDropdown ? <ChevronUp /> : <ChevronDown />}
-              {showMobileLangDropdown && (
-                <div className="mobile-language-options">
-                  {supportedLanguages.map((lang) => (
-                    <div
-                      key={lang.code}
-                      className={`mobile-language-option ${
-                        currentLanguage === lang.code ? "active" : ""
-                      }`}
-                      onClick={(e) => {
-                        e.stopPropagation();
-                        handleLanguageChange(lang.code);
-                      }}
-                    >
-                      {lang.name}
-                    </div>
-                  ))}
-                </div>
-              )}
-            </div>
+            {/* Replace mobile language selector with GTranslate */}
+            <div className="gtranslate_wrapper mobile"></div>
           </div>
 
           <div className="mobile-search">
@@ -1228,17 +1208,15 @@ const Navbar = () => {
           <div className="mobile-nav-divider"></div>
 
           <div className="mobile-secondary-links">
-            <div
-              className="mobile-secondary-item"
-              onClick={() =>
-                handleNavItemClick("https://online-museeduphin.netlify.app/")
-              }
-            >
-              Đặt vé trực tuyến
+            <div className="mobile-secondary-item">
+              <a href="https://ticket-museeduphin.netlify.app/" target="_blank">
+                Đặt vé trực tuyến <IoIosArrowRoundForward />
+              </a>
             </div>
             <div className="mobile-secondary-item">
               <a href="https://museedupin.netlify.app/support" target="_blank">
-                Hỗ trợ Musée Du Pin
+                Hỗ trợ <span className="notranslate">Musée Du Pin</span>
+                <IoIosArrowRoundForward />
               </a>
             </div>
           </div>

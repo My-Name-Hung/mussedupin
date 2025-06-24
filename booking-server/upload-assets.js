@@ -10,9 +10,9 @@ const __dirname = path.dirname(__filename);
 
 // Configure Cloudinary
 cloudinary.config({
-  cloud_name: "dn0br7hj0",
-  api_key: "858213595484572",
-  api_secret: "DPgIubL29wODRxmV49RoiapTuiI",
+  cloud_name: "dco63bsah",
+  api_key: "613166122899756",
+  api_secret: "V4fqjHWT9GqOWQH5yQOk75ZboTg",
   secure: true,
 });
 
@@ -77,7 +77,10 @@ const uploadAllAssets = async () => {
 
   // Define directories to process
   const directories = [
-    { path: path.join(assetsDir, "Home/Collections"), folder: "collections" },
+    {
+      path: path.join(assetsDir, "sanphamtuthong"),
+      folder: "sanphamtuthong",
+    },
   ];
 
   console.log("🚀 Starting Cloudinary upload process...\n");

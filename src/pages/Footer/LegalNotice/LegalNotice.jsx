@@ -31,7 +31,7 @@ const LegalNotice = () => {
         <div className="section">
           <h2>THÔNG TIN XUẤT BẢN</h2>
           <p>
-            Musée du Pin, Bảo tàng Thông,
+            <span className="notranslate">Musée du Pin</span>, Bảo tàng Thông,
             <br />
             MST: 0106157152-001
             <br />
@@ -39,7 +39,7 @@ const LegalNotice = () => {
             <br />
             Điện thoại: +84 2633 818 968; +84 86 235 6368
             <br />
-            Giám đốc xuất bản: Musée du Pin
+            Giám đốc xuất bản: <span className="notranslate">Musée du Pin</span>
           </p>
         </div>
 
@@ -47,7 +47,7 @@ const LegalNotice = () => {
         <div className="section">
           <h2>NỘI DUNG WEBSITE</h2>
           <p>
-            Musée du Pin
+            <span className="notranslate">Musée du Pin</span>
             <br />
             Phòng Sản xuất Kỹ thuật số và Nghe nhìn
             <br />
@@ -89,14 +89,15 @@ const LegalNotice = () => {
 
           <h3>Hình ảnh</h3>
           <p>
-            Hình ảnh có ghi © Musée du Pin / [...] là tài sản độc quyền của Bảo
-            tàng Du Pin và được Bảo tàng Du Pin sử dụng với sự cho phép của tác
-            giả hoặc chủ sở hữu quyền.
+            Hình ảnh có ghi © <span className="notranslate">Musée du Pin</span>{" "}
+            / [...] là tài sản độc quyền của Bảo tàng Du Pin và được Bảo tàng Du
+            Pin sử dụng với sự cho phép của tác giả hoặc chủ sở hữu quyền.
           </p>
           <p>
-            Hình ảnh có ghi © Tác giả, Musée du Pin / [...] là tài sản của Tác
-            giả. Việc tái sử dụng phi thương mại được cho phép, với điều kiện
-            phải ghi nhận nguồn gốc và tác giả.
+            Hình ảnh có ghi © Tác giả,{" "}
+            <span className="notranslate">Musée du Pin</span> / [...] là tài sản
+            của Tác giả. Việc tái sử dụng phi thương mại được cho phép, với điều
+            kiện phải ghi nhận nguồn gốc và tác giả.
           </p>
           <p>
             Đối với bất kỳ việc tái sử dụng thương mại và/hoặc biên tập lại hình

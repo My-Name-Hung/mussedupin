@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { useContext } from 'react';\nimport { MotionConfigContext } from '../../context/MotionConfigContext.mjs';\nimport { useReducedMotion } from './use-reduced-motion.mjs';\n\nfunction useReducedMotionConfig() {\n    const reducedMotionPreference = useReducedMotion();\n    const { reducedMotion } = useContext(MotionConfigContext);\n    if (reducedMotion === \"never\") {\n        return false;\n    }\n    else if (reducedMotion === \"always\") {\n        return true;\n    }\n    else {\n        return reducedMotionPreference;\n    }\n}\n\nexport { useReducedMotionConfig };\n",
-      "start": 1750088811185,
-      "end": 1750088811588,
+      "start": 1750746812188,
+      "end": 1750746812510,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750088811588,
-      "end": 1750088811588,
+      "start": 1750746812510,
+      "end": 1750746812510,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1750088811588,
-      "end": 1750088811588,
+      "start": 1750746812510,
+      "end": 1750746812510,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1750088811588,
-      "end": 1750088811588,
+      "start": 1750746812510,
+      "end": 1750746812510,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750088811588,
-      "end": 1750088811588,
+      "start": 1750746812510,
+      "end": 1750746812510,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750088811588,
-      "end": 1750088811588,
+      "start": 1750746812511,
+      "end": 1750746812511,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750088811588,
-      "end": 1750088811588,
+      "start": 1750746812511,
+      "end": 1750746812511,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750088811588,
-      "end": 1750088811588,
+      "start": 1750746812511,
+      "end": 1750746812511,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750088811588,
-      "end": 1750088811588,
+      "start": 1750746812511,
+      "end": 1750746812511,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750088811588,
-      "end": 1750088811588,
+      "start": 1750746812511,
+      "end": 1750746812511,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750088811588,
-      "end": 1750088811588,
+      "start": 1750746812511,
+      "end": 1750746812511,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750088811588,
-      "end": 1750088811588,
+      "start": 1750746812511,
+      "end": 1750746812511,
       "order": "normal"
     }
   ]

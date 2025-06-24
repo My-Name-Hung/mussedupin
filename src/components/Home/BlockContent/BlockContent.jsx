@@ -5,8 +5,10 @@ import "./BlockContent.css";
 
 const BlockContent = () => {
   const artists = useMemo(() => {
-    // Get unique artists and count their products
-    const artistCounts = sampleProducts.reduce((acc, product) => {
+    // Get unique artists and count their products from all categories
+    const artistCounts = Object.values(sampleProducts)
+      .flat()
+      .reduce((acc, product) => {
       acc[product.artist] = (acc[product.artist] || 0) + 1;
       return acc;
     }, {});

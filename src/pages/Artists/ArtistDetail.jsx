@@ -11,65 +11,32 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  getAnPhamImageUrl,
+  getHoiThaoNgheThuatImageUrl,
+  getInTheoYeuCauImageUrl,
+  getKhuyenTaiImageUrl,
+  getSanPhamTuThongImageUrl,
+  getThoCamImageUrl,
+  getThoiTrangImageUrl,
+} from "../../utils/cloudinary";
 import { sampleProducts } from "../CategoryDetail/CategoryDetail";
 import "./ArtistDetail.css";
 
 // Artist details data
 const artistsData = {
-  "Albrecht Dürer": {
+  "Musée Du Pin": {
     image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7d/Albrecht_D%C3%BCrer_-_Self-Portrait_-_WGA6938.jpg/800px-Albrecht_D%C3%BCrer_-_Self-Portrait_-_WGA6938.jpg",
-    bio: "Albrecht Dürer (1471-1528) là một họa sĩ, thợ khắc và nhà lý luận nghệ thuật người Đức thời Phục Hưng. Ông được coi là một trong những nghệ sĩ vĩ đại nhất của thời kỳ Phục Hưng phương Bắc và là người tiên phong trong việc sử dụng kỹ thuật khắc gỗ và khắc đồng.",
+      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.webp",
+    bio: "Nghệ thuật là sự tôn vinh thiên nhiên.",
     achievements:
-      "Dürer đã tạo ra nhiều kiệt tác trong nghệ thuật khắc gỗ và khắc đồng, bao gồm các tác phẩm nổi tiếng như 'Knight, Death and the Devil' (1513), 'Melencolia I' (1514) và 'Saint Jerome in his Study' (1514). Ông cũng là người đầu tiên phát triển lý thuyết về tỷ lệ cơ thể người trong nghệ thuật phương Tây.",
+      "Musée Du Pin – một dự án nghệ thuật độc lập và tiên phong – được kiến tạo để tôn vinh, gìn giữ và kể lại những giá trị nguyên bản của Đà Lạt",
     influence:
-      "Ảnh hưởng của ông đến nghệ thuật châu Âu là rất lớn, đặc biệt trong lĩnh vực in ấn và minh họa. Ông cũng là một trong những nghệ sĩ đầu tiên tự vẽ chân dung và viết tự truyện, góp phần định hình vai trò của nghệ sĩ trong xã hội thời Phục Hưng.",
+      "Musée Du Pin gìn giữ vẻ đẹp từ khí hậu, rừng Thông và cảnh quan đến kiến trúc, lịch sử và văn hóa dân tộc bản địa vùng cao nguyên.",
     stats: {
       works: 374,
       exhibitions: 89,
       awards: 12,
-    },
-  },
-  "Antonio Canova": {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/4/44/Antonio_Canova_Selfportrait_1792.jpg/800px-Antonio_Canova_Selfportrait_1792.jpg",
-    bio: "Antonio Canova (1757-1822) là một nhà điêu khắc người Ý, được coi là nghệ sĩ vĩ đại nhất của trường phái Tân cổ điển. Các tác phẩm của ông nổi tiếng với vẻ đẹp lý tưởng và kỹ thuật điêu luyện trong việc xử lý đá cẩm thạch.",
-    achievements:
-      "Canova đã tạo ra nhiều kiệt tác điêu khắc, trong đó có 'Psyche Revived by Cupid's Kiss', 'The Three Graces', và tượng của Napoleon Bonaparte. Ông được mệnh danh là 'nhà điêu khắc của các vị vua' và được trao tước hiệu Marquis of Ischia.",
-    influence:
-      "Phong cách của ông đã định hình nên nghệ thuật điêu khắc châu Âu trong thế kỷ 19 và ảnh hưởng sâu sắc đến sự phát triển của trường phái Tân cổ điển. Kỹ thuật xử lý đá cẩm thạch của ông vẫn được nghiên cứu và ngưỡng mộ đến ngày nay.",
-    stats: {
-      works: 256,
-      exhibitions: 67,
-      awards: 15,
-    },
-  },
-  "Albrecht Altdorfer": {
-    image:
-      "https://i0.wp.com/www.myddoa.com/wp-content/uploads/2018/02/albrecht-altdorfer-self-portrait-1530.jpg?resize=908%2C1024&ssl=1",
-    bio: "Albrecht Altdorfer (1480-1538) là một họa sĩ, kiến trúc sư và thợ khắc người Đức thời Phục Hưng. Ông được biết đến như một trong những người tiên phong trong việc phát triển phong cách phong cảnh độc lập trong nghệ thuật phương Tây.",
-    achievements:
-      "Tác phẩm nổi tiếng nhất của ông là 'The Battle of Alexander at Issus', một kiệt tác về nghệ thuật phong cảnh và lịch sử. Ông cũng là người đầu tiên vẽ phong cảnh thuần túy không có nhân vật trong nghệ thuật châu Âu.",
-    influence:
-      "Altdorfer là người đầu tiên thực sự phát triển thể loại tranh phong cảnh thuần túy trong nghệ thuật phương Tây. Phong cách độc đáo của ông trong việc kết hợp phong cảnh với các chủ đề tôn giáo và thần thoại đã ảnh hưởng sâu sắc đến các thế hệ họa sĩ sau này.",
-    stats: {
-      works: 189,
-      exhibitions: 45,
-      awards: 8,
-    },
-  },
-  "Leonardo da Vinci": {
-    image:
-      "https://upload.wikimedia.org/wikipedia/commons/thumb/b/ba/Leonardo_self.jpg/800px-Leonardo_self.jpg",
-    bio: "Leonardo da Vinci (1452-1519) là một thiên tài đa năng người Ý thời kỳ Phục Hưng. Ông là họa sĩ, nhà điêu khắc, kiến trúc sư, nhà khoa học, nhà phát minh, nhà giải phẫu học, nhà toán học và nhà viết văn.",
-    achievements:
-      "Những kiệt tác nổi tiếng nhất của ông bao gồm 'Mona Lisa', 'Bữa tiệc cuối cùng', và 'Người Vitruvian'. Các phát minh của ông bao gồm máy bay, xe tăng, tàu ngầm và nhiều thiết bị cơ khí tiên tiến khác.",
-    influence:
-      "Da Vinci được coi là biểu tượng của 'Người phục hưng toàn năng' và là một trong những nghệ sĩ có ảnh hưởng nhất trong lịch sử nghệ thuật. Các nghiên cứu của ông về giải phẫu, quang học và cơ học đã đi trước thời đại hàng thế kỷ.",
-    stats: {
-      works: 234,
-      exhibitions: 156,
-      awards: 23,
     },
   },
 };
@@ -85,8 +52,34 @@ const ArtistDetail = () => {
   const [showSortDropdown, setShowSortDropdown] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [previewCount, setPreviewCount] = useState(0);
+  const [displayedPages, setDisplayedPages] = useState([]);
   const decodedArtistName = decodeURIComponent(artistName);
   const artistInfo = artistsData[decodedArtistName];
+
+  // Get Cloudinary image URL based on category
+  const getImageUrl = (category, filename) => {
+    if (!filename) return "";
+
+    switch (category) {
+      case "khuyentai":
+        return getKhuyenTaiImageUrl(filename);
+      case "anpham":
+        return getAnPhamImageUrl(filename);
+      case "in-theo-yeu-cau":
+        return getInTheoYeuCauImageUrl(filename);
+      case "hoi-thao-nghe-thuat":
+        return getHoiThaoNgheThuatImageUrl(filename);
+      case "thoi-trang":
+        return getThoiTrangImageUrl(filename);
+      case "thocam":
+        return getThoCamImageUrl(filename);
+      case "san-pham-tu-thong":
+      case "sanphamtuthong":
+        return getSanPhamTuThongImageUrl(filename);
+      default:
+        return filename;
+    }
+  };
 
   // Calculate min and max prices from products
   const priceRange = useMemo(() => {
@@ -112,15 +105,30 @@ const ArtistDetail = () => {
   });
 
   useEffect(() => {
-    // Filter products for this artist
-    const products = sampleProducts.filter(
-      (product) => product.artist === decodedArtistName
-    );
-    setArtistProducts(products);
-    setAllArtistProducts(products);
-    setFilteredProducts(products);
-    setFilteredCount(products.length);
-    setPreviewCount(products.length);
+    // Get all products from all categories and filter for this artist
+    const allProducts = [];
+    Object.entries(sampleProducts).forEach(([category, products]) => {
+      products.forEach((product) => {
+        if (product.artist === decodedArtistName) {
+          // Add category to each product if not exists
+          allProducts.push({
+            ...product,
+            category: product.category || category,
+            images: product.images || [product.image],
+          });
+        }
+      });
+    });
+
+    // Get 5 random products for featured section
+    const shuffled = [...allProducts].sort(() => 0.5 - Math.random());
+    const featuredProducts = shuffled.slice(0, 5);
+
+    setArtistProducts(featuredProducts);
+    setAllArtistProducts(allProducts);
+    setFilteredProducts(allProducts);
+    setFilteredCount(allProducts.length);
+    setPreviewCount(allProducts.length);
   }, [decodedArtistName]);
 
   // Format price for display
@@ -201,7 +209,7 @@ const ArtistDetail = () => {
   };
 
   // Pagination
-  const productsPerPage = 10;
+  const productsPerPage = 5;
   const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
   const currentProducts = filteredProducts.slice(
     (currentPage - 1) * productsPerPage,
@@ -213,6 +221,23 @@ const ArtistDetail = () => {
     window.scrollTo(0, 0);
   };
 
+  // Update pagination logic
+  useEffect(() => {
+    const totalPages = Math.ceil(filteredProducts.length / productsPerPage);
+    const currentSet = Math.floor((currentPage - 1) / 5);
+    const pages = [];
+
+    for (
+      let i = currentSet * 5 + 1;
+      i <= Math.min((currentSet + 1) * 5, totalPages);
+      i++
+    ) {
+      pages.push(i);
+    }
+
+    setDisplayedPages(pages);
+  }, [currentPage, filteredProducts.length]);
+
   return (
     <div className="artist-detail">
       <Link to="/contents/artists" className="back-button-artists">
@@ -222,11 +247,11 @@ const ArtistDetail = () => {
 
       <div className="artists-detail-hero">
         <img
-          src="https://boutique.louvre.fr/files/contents/400859/698402-55c8eeab-bannerxl/contents-698402.jpg"
+          src={artistInfo.image}
           alt={decodedArtistName}
           className="hero-image"
         />
-        <h1 className="hero-title">{decodedArtistName}</h1>
+        <h1 className="hero-title notranslate">{decodedArtistName}</h1>
       </div>
 
       <section className="artists-detail-product">
@@ -269,7 +294,13 @@ const ArtistDetail = () => {
                 className="artists-detail-item"
               >
                 <div className="product-image">
-                  <img src={product.image} alt={product.title} />
+                  <img
+                    src={getImageUrl(
+                      product.category,
+                      product.images?.[0] || product.image
+                    )}
+                    alt={product.title}
+                  />
                 </div>
                 <h3 className="product-title">{product.title}</h3>
                 <p className="product-price">{product.price}</p>
@@ -286,7 +317,7 @@ const ArtistDetail = () => {
               <img src={artistInfo.image} alt={decodedArtistName} />
             </div>
             <div className="artist-info">
-              <h2>{decodedArtistName}</h2>
+              <h2 className="notranslate">{decodedArtistName}</h2>
               <p>{artistInfo.bio}</p>
               <p>
                 <strong>Thành tựu:</strong> {artistInfo.achievements}
@@ -378,41 +409,61 @@ const ArtistDetail = () => {
               className="artist-product-card"
               key={product.id}
             >
-              <img src={product.image} alt={product.title} />
+              <div className="artist-product-image">
+                <img
+                  src={getImageUrl(
+                    product.category,
+                    product.images?.[0] || product.image
+                  )}
+                  alt={product.title}
+                />
+              </div>
               <div className="artist-product-content">
-                <h3>{product.title}</h3>
-                <p>{product.price}</p>
+                <h3 className="artist-product-title">{product.title}</h3>
+                <p className="artist-product-price">{product.price}</p>
               </div>
             </Link>
           ))}
         </div>
 
         <div className="result-pager-artists">
-          {Array.from({ length: totalPages }, (_, i) => (
+          {displayedPages.map((page) => (
             <button
-              key={i + 1}
-              className={currentPage === i + 1 ? "active" : ""}
-              onClick={() => handlePageChange(i + 1)}
+              key={page}
+              className={currentPage === page ? "active" : ""}
+              onClick={() => handlePageChange(page)}
             >
-              {i + 1}
+              {page}
             </button>
           ))}
-          <button
-            onClick={() =>
-              handlePageChange(Math.min(currentPage + 1, totalPages))
-            }
-            disabled={currentPage === totalPages}
-          >
-            <MdKeyboardArrowRight />
-          </button>
-          <button
-            onClick={() =>
-              handlePageChange(Math.min(currentPage + 10, totalPages))
-            }
-            disabled={currentPage + 10 > totalPages}
-          >
-            <MdKeyboardDoubleArrowRight />
-          </button>
+          {Math.ceil(filteredProducts.length / productsPerPage) >
+            displayedPages[displayedPages.length - 1] && (
+            <>
+              <button
+                onClick={() =>
+                  handlePageChange(Math.min(currentPage + 1, totalPages))
+                }
+                disabled={currentPage === totalPages}
+              >
+                <MdKeyboardArrowRight />
+              </button>
+              <button
+                onClick={() =>
+                  handlePageChange(
+                    Math.min(
+                      displayedPages[displayedPages.length - 1] + 1,
+                      totalPages
+                    )
+                  )
+                }
+                disabled={
+                  displayedPages[displayedPages.length - 1] >= totalPages
+                }
+              >
+                <MdKeyboardDoubleArrowRight />
+              </button>
+            </>
+          )}
         </div>
       </section>
 

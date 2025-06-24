@@ -4,12 +4,22 @@ import { sampleProducts } from "../CategoryDetail/CategoryDetail";
 import "./Collaborate.css";
 
 const Collaborate = () => {
-  // Group products by brand
+  // Get all products from all categories and group them by brand
+  const allProducts = Object.values(sampleProducts).flat();
+
   const brandProducts = {
-    "Harry Nuriev": sampleProducts.filter((p) => [1, 2, 3].includes(p.id)),
-    "Philippe Apeloig": sampleProducts.filter((p) => [4, 5, 6].includes(p.id)),
-    Barbapapa: sampleProducts.filter((p) => [7, 8].includes(p.id)),
-    "Jean-Michel Othoniel": sampleProducts.filter((p) => p.id === 9),
+    "Harry Nuriev": allProducts.filter((p) =>
+      [1, 2, 3].includes(Number(p.id.split("-")[1]))
+    ),
+    "Philippe Apeloig": allProducts.filter((p) =>
+      [4, 5, 6].includes(Number(p.id.split("-")[1]))
+    ),
+    Barbapapa: allProducts.filter((p) =>
+      [7, 8].includes(Number(p.id.split("-")[1]))
+    ),
+    "Jean-Michel Othoniel": allProducts.filter(
+      (p) => Number(p.id.split("-")[1]) === 9
+    ),
   };
 
   return (

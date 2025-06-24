@@ -10,11 +10,12 @@ const BlocksWrapper = () => {
       title: "Điêu khắc",
       subtitle: "Xem tất cả sản phẩm",
       categoryLink: "/category/do-trang-suc",
+      description: "Khám phá những tác phẩm điêu khắc độc đáo",
     },
     {
       image:
         "https://boutique.louvre.fr/files/contents/400060/691026-ad27ca49-xxl/contents-691026.jpg",
-      title: "Những sản phẩm nổi bật",
+      title: "Sản phẩm nổi bật",
       subtitle: "Xem tất cả sản phẩm",
       categoryLink: "/category/xuat-ban",
     },
@@ -30,10 +31,12 @@ const BlocksWrapper = () => {
                 src={block.image}
                 alt={block.title}
                 className="block-image"
+                loading="lazy"
               />
             </div>
             <div className="block-content">
               <h2 className="block-title">{block.title}</h2>
+              <p className="block-description">{block.description}</p>
               <div className="block-subtitle">
                 {block.subtitle}
                 <IoIosArrowRoundForward className="arrow-icon" />

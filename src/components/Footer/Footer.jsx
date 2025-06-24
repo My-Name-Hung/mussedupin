@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
+import { FaFacebook, FaYoutube } from "react-icons/fa";
 import { SiTiktok } from "react-icons/si";
 import { Link, useNavigate } from "react-router-dom";
 import FeedbackModal from "../FeedbackModal/FeedbackModal";
@@ -51,7 +51,9 @@ const Footer = () => {
                     to="https://museedupin.netlify.app/about"
                     target="_blank"
                   >
-                    Bảo tàng Du Pin tại Việt Nam
+                    Bảo tàng {" "} <span className="notranslate">Thông -</span>{" "}
+                    <span className="notranslate">Musée Du Pin</span> tại Việt
+                    Nam
                   </Link>
                 </li>
                 <li>
@@ -77,7 +79,7 @@ const Footer = () => {
               <ul className="footer-links">
                 <li>
                   <Link
-                    to="https://online-museeduphin.netlify.app/"
+                    to="https://ticket-museeduphin.netlify.app/"
                     target="_blank"
                   >
                     Dịch vụ đặt vé trực tuyến

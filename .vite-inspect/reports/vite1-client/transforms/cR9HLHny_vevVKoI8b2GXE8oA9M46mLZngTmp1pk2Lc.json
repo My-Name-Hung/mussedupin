@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { createElementObject, createLayerComponent, extendContext, updateMediaOverlay } from '@react-leaflet/core';\nimport { LatLngBounds, ImageOverlay as LeafletImageOverlay } from 'leaflet';\nexport const ImageOverlay = createLayerComponent(function createImageOverlay({ bounds, url, ...options }, ctx) {\n    const overlay = new LeafletImageOverlay(url, bounds, options);\n    return createElementObject(overlay, extendContext(ctx, {\n        overlayContainer: overlay\n    }));\n}, function updateImageOverlay(overlay, props, prevProps) {\n    updateMediaOverlay(overlay, props, prevProps);\n    if (props.bounds !== prevProps.bounds) {\n        const bounds = props.bounds instanceof LatLngBounds ? props.bounds : new LatLngBounds(props.bounds);\n        overlay.setBounds(bounds);\n    }\n    if (props.url !== prevProps.url) {\n        overlay.setUrl(props.url);\n    }\n});\n",
-      "start": 1750088809865,
-      "end": 1750088810899,
+      "start": 1750746813215,
+      "end": 1750746813730,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750088810899,
-      "end": 1750088810899,
+      "start": 1750746813730,
+      "end": 1750746813730,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1750088810899,
-      "end": 1750088810899,
+      "start": 1750746813730,
+      "end": 1750746813730,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1750088810899,
-      "end": 1750088810899,
+      "start": 1750746813730,
+      "end": 1750746813730,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750088810899,
-      "end": 1750088810899,
+      "start": 1750746813730,
+      "end": 1750746813730,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750088810899,
-      "end": 1750088810899,
+      "start": 1750746813730,
+      "end": 1750746813730,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750088810899,
-      "end": 1750088810899,
+      "start": 1750746813730,
+      "end": 1750746813730,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750088810899,
-      "end": 1750088810899,
+      "start": 1750746813730,
+      "end": 1750746813730,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750088810899,
-      "end": 1750088810899,
+      "start": 1750746813731,
+      "end": 1750746813731,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750088810900,
-      "end": 1750088810900,
+      "start": 1750746813731,
+      "end": 1750746813731,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750088810900,
-      "end": 1750088810900,
+      "start": 1750746813731,
+      "end": 1750746813731,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750088810900,
-      "end": 1750088810900,
+      "start": 1750746813731,
+      "end": 1750746813731,
       "order": "normal"
     }
   ]

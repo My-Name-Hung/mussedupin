@@ -6,6 +6,15 @@ import {
 } from "react-icons/md";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import {
+  getAnPhamImageUrl,
+  getThoCamImageUrl,
+  getHoiThaoNgheThuatImageUrl,
+  getInTheoYeuCauImageUrl,
+  getKhuyenTaiImageUrl,
+  getThoiTrangImageUrl,
+  getSanPhamTuThongImageUrl,
+} from "../../utils/cloudinary";
 import { sampleProducts } from "../CategoryDetail/CategoryDetail";
 import "./BestsellerPage.css";
 
@@ -18,10 +27,33 @@ const BestsellerPage = () => {
   const [filteredCount, setFilteredCount] = useState(0);
   const [previewCount, setPreviewCount] = useState(0);
 
+  // Get all products from all categories and flatten into a single array
+  const allProducts = Object.values(sampleProducts).flat();
+
   // Get trending products
-  const trendingProducts = sampleProducts.filter(
-    (product) => product.isTrending
-  );
+  const trendingProducts = allProducts.filter((product) => product.isTrending);
+
+  // Helper function to get image URL based on category
+  const getImageUrl = (category, filename) => {
+    switch (category) {
+      case "khuyentai":
+        return getKhuyenTaiImageUrl(filename);
+      case "anpham":
+        return getAnPhamImageUrl(filename);
+      case "in-theo-yeu-cau":
+        return getInTheoYeuCauImageUrl(filename);
+      case "hoi-thao-nghe-thuat":
+        return getHoiThaoNgheThuatImageUrl(filename);
+      case "thoi-trang-va-phu-kien":
+        return getThoiTrangImageUrl(filename);
+      case "thocam":
+        return getThoCamImageUrl(filename);
+      case "sanphamtuthong":
+        return getSanPhamTuThongImageUrl(filename);
+      default:
+        return "";
+    }
+  };
 
   // Calculate min and max prices from products
   const priceRange = {
@@ -211,7 +243,7 @@ const BestsellerPage = () => {
             <div key={product.id} className="card-item-bestseller">
               <Link to={`/product/${product.id}`}>
                 <img
-                  src={product.image}
+                  src={getImageUrl(product.category, product.image)}
                   alt={product.title}
                   className="card-image"
                 />

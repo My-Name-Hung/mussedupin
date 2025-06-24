@@ -9,7 +9,8 @@
 }
 
 .collaborate-page-title {
-  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman", serif;
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
   text-align: center;
   color: #2c2f11;
   margin-bottom: 40px;
@@ -61,4 +62,4 @@
   .card-grid-collaborate {
     grid-template-columns: repeat(4, 1fr);
   }
-} 
+}

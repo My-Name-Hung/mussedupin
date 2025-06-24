@@ -2,151 +2,221 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <!-- Trang chủ -->
   <url>
-    <loc>https://museedupin.netlify.app/</loc>
+    <loc>https://online-museeduphin.netlify.app/</loc>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
   </url>
 
   <!-- Trang giới thiệu -->
   <url>
-    <loc>https://museedupin.netlify.app/about</loc>
+    <loc>https://online-museeduphin.netlify.app/about</loc>
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Trang tham quan -->
   <url>
-    <loc>https://museedupin.netlify.app/visit</loc>
+    <loc>https://online-museeduphin.netlify.app/visit</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://museedupin.netlify.app/visit-info</loc>
+    <loc>https://online-museeduphin.netlify.app/visit-info</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Triển lãm -->
   <url>
-    <loc>https://museedupin.netlify.app/exhibitions</loc>
+    <loc>https://online-museeduphin.netlify.app/exhibitions</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Bộ sưu tập -->
   <url>
-    <loc>https://museedupin.netlify.app/collection</loc>
+    <loc>https://online-museeduphin.netlify.app/collection</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Lưu trú nghệ thuật -->
   <url>
-    <loc>https://museedupin.netlify.app/luu-tru-nghe-thuat</loc>
+    <loc>https://online-museeduphin.netlify.app/luu-tru-nghe-thuat</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
 
   <!-- Đời sống bảo tàng -->
   <url>
-    <loc>https://museedupin.netlify.app/life-at-the-museum</loc>
+    <loc>https://online-museeduphin.netlify.app/life-at-the-museum</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Tuyến tham quan -->
   <url>
-    <loc>https://museedupin.netlify.app/visitor-trails</loc>
+    <loc>https://online-museeduphin.netlify.app/visitor-trails</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
 
   <!-- Bản đồ bảo tàng -->
   <url>
-    <loc>https://museedupin.netlify.app/museum-map</loc>
+    <loc>https://online-museeduphin.netlify.app/museum-map</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Nội quy tham quan -->
   <url>
-    <loc>https://museedupin.netlify.app/visitor-rules</loc>
+    <loc>https://online-museeduphin.netlify.app/visitor-rules</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Hỗ trợ -->
   <url>
-    <loc>https://museedupin.netlify.app/support</loc>
+    <loc>https://online-museeduphin.netlify.app/support</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Nghệ thuật vị giác -->
   <url>
-    <loc>https://museedupin.netlify.app/the-taste</loc>
+    <loc>https://online-museeduphin.netlify.app/the-taste</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://museedupin.netlify.app/the-taste/restaurant</loc>
+    <loc>https://online-museeduphin.netlify.app/the-taste/restaurant</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://museedupin.netlify.app/the-taste/cafe</loc>
+    <loc>https://online-museeduphin.netlify.app/the-taste/cafe</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Âm thanh đẹp -->
   <url>
-    <loc>https://museedupin.netlify.app/the-acoustic</loc>
+    <loc>https://online-museeduphin.netlify.app/the-acoustic</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://museedupin.netlify.app/the-acoustic/pind-amour</loc>
+    <loc>https://online-museeduphin.netlify.app/the-acoustic/pind-amour</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://museedupin.netlify.app/the-acoustic/high-end</loc>
+    <loc>https://online-museeduphin.netlify.app/the-acoustic/high-end</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Không gian nghệ thuật và vườn trong Bảo Tàng -->
   <url>
-    <loc>https://museedupin.netlify.app/the-place</loc>
+    <loc>https://online-museeduphin.netlify.app/the-place</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://museedupin.netlify.app/the-place/langbiang</loc>
+    <loc>https://online-museeduphin.netlify.app/the-place/langbiang</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
   <url>
-    <loc>https://museedupin.netlify.app/the-place/exhibition</loc>
+    <loc>https://online-museeduphin.netlify.app/the-place/exhibition</loc>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
   </url>
 
   <!-- Trang pháp lý -->
   <url>
-    <loc>https://museedupin.netlify.app/legal-notice</loc>
+    <loc>https://online-museeduphin.netlify.app/legal-notice</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://museedupin.netlify.app/privacy-policy</loc>
+    <loc>https://online-museeduphin.netlify.app/privacy-policy</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
   </url>
   <url>
-    <loc>https://museedupin.netlify.app/copyrights</loc>
+    <loc>https://online-museeduphin.netlify.app/copyrights</loc>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
+  </url>
+
+  <!-- Các route mới từ App.jsx -->
+  <url>
+    <loc>https://online-museeduphin.netlify.app/cart</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://online-museeduphin.netlify.app/checkout</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://online-museeduphin.netlify.app/vnpay-return</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://online-museeduphin.netlify.app/bestseller</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://online-museeduphin.netlify.app/news</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://online-museeduphin.netlify.app/contents/artists</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://online-museeduphin.netlify.app/contents/exhibitions</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://online-museeduphin.netlify.app/collaborate</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+  <!-- Các route động chỉ nên thêm nếu có dữ liệu cụ thể -->
+  <!-- Ví dụ mẫu -->
+  <url>
+    <loc>https://online-museeduphin.netlify.app/category/example-category</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://online-museeduphin.netlify.app/product/example-product</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://online-museeduphin.netlify.app/contents/exhibitions/example-exhibition</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://online-museeduphin.netlify.app/contents/artists/example-artist</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
+    <loc>https://online-museeduphin.netlify.app/collaborate/example-brand</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.5</priority>
   </url>
 </urlset> 

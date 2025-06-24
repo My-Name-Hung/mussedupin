@@ -112,18 +112,33 @@ const CollaborateDetail = () => {
 
   useEffect(() => {
     // Filter products for this brand
-    const products = sampleProducts.filter((product) => {
-      if (decodedBrandName === "Harry Nuriev") {
-        return [1, 2, 3].includes(product.id);
-      } else if (decodedBrandName === "Philippe Apeloig") {
-        return [4, 5, 6].includes(product.id);
-      } else if (decodedBrandName === "Barbapapa") {
-        return [7, 8].includes(product.id);
-      } else if (decodedBrandName === "Jean-Michel Othoniel") {
-        return product.id === 9;
-      }
-      return false;
+    const products = [];
+    Object.values(sampleProducts).forEach((categoryProducts) => {
+      categoryProducts.forEach((product) => {
+        if (
+          decodedBrandName === "Harry Nuriev" &&
+          [1, 2, 3].includes(parseInt(product.id.split("-")[1]))
+        ) {
+          products.push(product);
+        } else if (
+          decodedBrandName === "Philippe Apeloig" &&
+          [4, 5, 6].includes(parseInt(product.id.split("-")[1]))
+        ) {
+          products.push(product);
+        } else if (
+          decodedBrandName === "Barbapapa" &&
+          [7, 8].includes(parseInt(product.id.split("-")[1]))
+        ) {
+          products.push(product);
+        } else if (
+          decodedBrandName === "Jean-Michel Othoniel" &&
+          parseInt(product.id.split("-")[1]) === 9
+        ) {
+          products.push(product);
+        }
+      });
     });
+
     setBrandProducts(products);
     setFilteredProducts(products);
     setFilteredCount(products.length);

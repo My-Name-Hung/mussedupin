@@ -6,8 +6,39 @@ import {
 } from "react-icons/md";
 import { RiArrowDropDownLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import {
+  getAnPhamImageUrl,
+  getInTheoYeuCauImageUrl,
+  getKhuyenTaiImageUrl,
+  getThoiTrangImageUrl,
+  getSanPhamTuThongImageUrl,
+  getHoiThaoNgheThuatImageUrl,
+  getThoCamImageUrl,
+} from "../../utils/cloudinary";
 import { sampleProducts } from "../CategoryDetail/CategoryDetail";
 import "./NewsPage.css";
+
+// Helper function to get image URL based on category
+const getImageUrl = (category, filename) => {
+  switch (category) {
+    case "khuyentai":
+      return getKhuyenTaiImageUrl(filename);
+    case "anpham":
+      return getAnPhamImageUrl(filename);
+    case "in-theo-yeu-cau":
+      return getInTheoYeuCauImageUrl(filename);
+    case "hoi-thao-nghe-thuat":
+      return getHoiThaoNgheThuatImageUrl(filename);
+    case "thoi-trang-va-phu-kien":
+      return getThoiTrangImageUrl(filename);
+    case "thocam":
+      return getThoCamImageUrl(filename);
+    case "sanphamtuthong":
+      return getSanPhamTuThongImageUrl(filename);
+    default:
+      return "";
+  }
+};
 
 const NewsPage = () => {
   const [showFilters, setShowFilters] = useState(false);
@@ -18,8 +49,11 @@ const NewsPage = () => {
   const [filteredCount, setFilteredCount] = useState(0);
   const [previewCount, setPreviewCount] = useState(0);
 
+  // Convert sampleProducts object into array
+  const allProducts = Object.values(sampleProducts).flat();
+
   // Get new products
-  const newProducts = sampleProducts.filter((product) => product.isNew);
+  const newProducts = allProducts.filter((product) => product.isNew);
 
   // Calculate min and max prices from products
   const priceRange = {
@@ -209,7 +243,7 @@ const NewsPage = () => {
             <div key={product.id} className="card-item-news">
               <Link to={`/product/${product.id}`}>
                 <img
-                  src={product.image}
+                  src={getImageUrl(product.category, product.image)}
                   alt={product.title}
                   className="card-image"
                 />

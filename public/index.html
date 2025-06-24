@@ -5,29 +5,29 @@
     <!-- Đặt viewport để đảm bảo responsive với mobile -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Tiêu đề tối ưu: ưu tiên chứa từ khóa chính ("Bảo tàng Thông", "Musee Du Pin") -->
+    <!-- Tiêu đề tối ưu cho cửa hàng trực tuyến -->
     <title>
-      Bảo tàng Thông | Musee Du Pin – Nơi giữ gìn, nâng niu những giá trị Đà Lạt
+      Cửa hàng Bảo tàng Thông | Mua sắm Nghệ thuật & Quà lưu niệm - Musee Du Pin
     </title>
 
-    <!-- Meta Description: giữ độ dài khoảng 150–160 ký tự để hiện đủ trên SERP -->
+    <!-- Meta Description cập nhật cho cửa hàng -->
     <meta
       name="description"
-      content="Khám phá Bảo tàng Thông (Musee Du Pin): bộ sưu tập nghệ thuật, triển lãm, sự kiện văn hóa và lịch sử Việt Nam. Tham quan trực tuyến ngay hôm nay!"
+      content="Khám phá và mua sắm các tác phẩm nghệ thuật độc quyền, quà lưu niệm từ Bảo tàng Thông. Sản phẩm chính hãng, giao hàng toàn quốc, thanh toán an toàn qua VNPay."
     />
 
-    <!-- Meta Keywords: ít được Google ưu tiên nhưng vẫn có thể giữ cho các search engine khác -->
+    <!-- Meta Keywords cập nhật -->
     <meta
       name="keywords"
-      content="bảo tàng thông, musee du pin, nghệ thuật việt nam, triển lãm, văn hóa việt nam, bảo tàng việt nam"
+      content="cửa hàng bảo tàng thông, quà lưu niệm đà lạt, mua sắm nghệ thuật, tác phẩm nghệ thuật, musee du pin shop, đồ lưu niệm bảo tàng"
     />
     <meta
       name="google-site-verification"
       content="nrcZ5VenmSlmvmE_y8IiqwmnvcWTWjXhddg-jBASX7s"
     />
 
-    <!-- Canonical: tránh tình trạng duplicate content -->
-    <link rel="canonical" href="https://museedupin.com/" />
+    <!-- Canonical URL mới -->
+    <link rel="canonical" href="https://online-museeduphin.netlify.app/" />
 
     <!-- Xác định robots: cho phép index và theo dõi link -->
     <meta name="robots" content="index, follow" />
@@ -45,71 +45,92 @@
       sizes="86x86"
     />
 
-    <!-- Open Graph (Facebook, LinkedIn …) -->
+    <!-- Thêm meta tags cho E-commerce -->
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#ffffff" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+
+    <!-- Preconnect cho payment gateway -->
+    <link rel="preconnect" href="https://vnpay.vn" />
+
+    <!-- Open Graph cập nhật cho shop -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Bảo tàng Thông | Musee Du Pin" />
+    <meta
+      property="og:title"
+      content="Cửa hàng Bảo tàng Thông | Mua sắm Nghệ thuật & Quà lưu niệm"
+    />
     <meta
       property="og:description"
-      content="Khám phá bộ sưu tập nghệ thuật độc đáo và lịch sử Việt Nam tại Bảo tàng Thông – Musee Du Pin."
+      content="Mua sắm trực tuyến các tác phẩm nghệ thuật độc quyền và quà lưu niệm từ Bảo tàng Thông. Giao hàng toàn quốc, thanh toán an toàn."
     />
-    <meta
-      property="og:image"
-      content="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png"
-    />
-    <meta property="og:url" content="https://museedupin.com/" />
+    <meta property="og:url" content="https://online-museeduphin.netlify.app/" />
 
-    <!-- Twitter Card -->
+    <!-- Twitter Card cập nhật -->
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Bảo tàng Thông | Musee Du Pin" />
+    <meta
+      name="twitter:title"
+      content="Cửa hàng Bảo tàng Thông | Mua sắm Nghệ thuật & Quà lưu niệm"
+    />
     <meta
       name="twitter:description"
-      content="Tham quan Bảo tàng Thông – Musee Du Pin: triển lãm nghệ thuật, sự kiện văn hóa đặc sắc tại Việt Nam."
-    />
-    <meta
-      name="twitter:image"
-      content="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png"
+      content="Mua sắm trực tuyến các tác phẩm nghệ thuật độc quyền và quà lưu niệm từ Bảo tàng Thông. Giao hàng toàn quốc, thanh toán an toàn."
     />
 
-    <!-- JSON-LD Structured Data cho Organization + Museum -->
+    <!-- JSON-LD Structured Data cập nhật thêm WebSite và Store -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
         "@graph": [
           {
             "@type": "Organization",
-            "@id": "https://museedupin.com/#organization",
-            "name": "Bảo tàng Thông",
-            "url": "https://museedupin.com/",
+            "@id": "https://online-museeduphin.netlify.app/#organization",
+            "name": "Cửa hàng Bảo tàng Thông",
+            "url": "https://online-museeduphin.netlify.app/",
             "logo": "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png",
             "sameAs": ["https://www.facebook.com/BaoTangThongDalat"],
             "contactPoint": {
               "@type": "ContactPoint",
               "telephone": "0862356368",
-              "contactType": "Bảo Tàng Thông- Musee du Pin",
-              "areaServed": "Đà Lạt"
+              "contactType": "customer service",
+              "areaServed": "VN",
+              "availableLanguage": ["Vietnamese"]
             }
           },
           {
-            "@type": "Museum",
-            "@id": "https://museedupin.com/#museum",
-            "name": "Bảo tàng Thông | Musee Du Pin",
-            "description": "Bảo tàng Thông – Musee Du Pin: triển lãm nghệ thuật, di sản văn hóa và lịch sử Việt Nam.",
-            "url": "https://museedupin.com/",
-            "image": "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png",
+            "@type": "Store",
+            "@id": "https://online-museeduphin.netlify.app/#store",
+            "name": "Cửa hàng Bảo tàng Thông",
+            "description": "Cửa hàng trực tuyến chính thức của Bảo tàng Thông - Musee Du Pin, chuyên cung cấp các tác phẩm nghệ thuật và quà lưu niệm độc quyền.",
+            "url": "https://online-museeduphin.netlify.app/",
+            "telephone": "0862356368",
+            "priceRange": "$$",
+            "paymentAccepted": ["Cash", "Credit Card", "VNPay"],
             "address": {
               "@type": "PostalAddress",
-              "streetAddress": "29-31 Đống Đa, phường 3, Đà Lạt",
+              "streetAddress": "29-31 Đống Đa, phường 3",
               "addressLocality": "Đà Lạt",
-              "addressCountry": "Việt Nam"
+              "addressRegion": "Lâm Đồng",
+              "postalCode": "66000",
+              "addressCountry": "VN"
+            }
+          },
+          {
+            "@type": "WebSite",
+            "@id": "https://online-museeduphin.netlify.app/#website",
+            "url": "https://online-museeduphin.netlify.app/",
+            "name": "Cửa hàng Bảo tàng Thông",
+            "description": "Cửa hàng trực tuyến chính thức của Bảo tàng Thông",
+            "publisher": {
+              "@id": "https://online-museeduphin.netlify.app/#organization"
             },
-            "geo": {
-              "@type": "GeoCoordinates",
-              "latitude": 11.92384504845912,
-              "longitude": 108.4446307502475
-            },
-            "telephone": "0862356368",
-            "openingHours": "09:00-21:00",
-            "sameAs": ["https://www.facebook.com/BaoTangThongDalat"]
+            "potentialAction": [
+              {
+                "@type": "SearchAction",
+                "target": "https://online-museeduphin.netlify.app/search?q={search_term_string}",
+                "query-input": "required name=search_term_string"
+              }
+            ]
           }
         ]
       }

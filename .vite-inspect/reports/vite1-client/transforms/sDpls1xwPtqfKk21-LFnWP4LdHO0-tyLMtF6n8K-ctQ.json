@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/ONLINE/node_modules/crypto-js/pad-iso10126.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": ";(function (root, factory, undef) {\n\tif (typeof exports === \"object\") {\n\t\t// CommonJS\n\t\tmodule.exports = exports = factory(require(\"./core\"), require(\"./cipher-core\"));\n\t}\n\telse if (typeof define === \"function\" && define.amd) {\n\t\t// AMD\n\t\tdefine([\"./core\", \"./cipher-core\"], factory);\n\t}\n\telse {\n\t\t// Global (browser)\n\t\tfactory(root.CryptoJS);\n\t}\n}(this, function (CryptoJS) {\n\n\t/**\n\t * ISO 10126 padding strategy.\n\t */\n\tCryptoJS.pad.Iso10126 = {\n\t    pad: function (data, blockSize) {\n\t        // Shortcut\n\t        var blockSizeBytes = blockSize * 4;\n\n\t        // Count padding bytes\n\t        var nPaddingBytes = blockSizeBytes - data.sigBytes % blockSizeBytes;\n\n\t        // Pad\n\t        data.concat(CryptoJS.lib.WordArray.random(nPaddingBytes - 1)).\n\t             concat(CryptoJS.lib.WordArray.create([nPaddingBytes << 24], 1));\n\t    },\n\n\t    unpad: function (data) {\n\t        // Get number of padding bytes from last byte\n\t        var nPaddingBytes = data.words[(data.sigBytes - 1) >>> 2] & 0xff;\n\n\t        // Remove padding\n\t        data.sigBytes -= nPaddingBytes;\n\t    }\n\t};\n\n\n\treturn CryptoJS.pad.Iso10126;\n\n}));",
+      "start": 1750746806518,
+      "end": 1750746807029,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750746807029,
+      "end": 1750746807029,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750746807029,
+      "end": 1750746807029,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750746807029,
+      "end": 1750746807029,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750746807029,
+      "end": 1750746807029,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750746807029,
+      "end": 1750746807029,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750746807029,
+      "end": 1750746807029,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750746807029,
+      "end": 1750746807029,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750746808033,
+      "end": 1750746808033,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750746808033,
+      "end": 1750746808033,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750746808033,
+      "end": 1750746808033,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750746808033,
+      "end": 1750746808033,
+      "order": "normal"
+    }
+  ]
+}

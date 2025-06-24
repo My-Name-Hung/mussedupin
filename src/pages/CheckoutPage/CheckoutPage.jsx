@@ -378,7 +378,7 @@ const CheckoutPage = () => {
 
               <section className="payment-methods">
                 <h2>Phương thức thanh toán</h2>
-                <div
+                {/* <div
                   className={`payment-option ${
                     paymentMethod === "vnpay" ? "selected" : ""
                   }`}
@@ -390,7 +390,7 @@ const CheckoutPage = () => {
                     onChange={() => {}}
                   />
                   <span>Thanh toán qua VNPAY</span>
-                </div>
+                </div> */}
                 <div
                   className={`payment-option ${
                     paymentMethod === "bank" ? "selected" : ""

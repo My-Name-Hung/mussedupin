@@ -5,6 +5,7 @@ import "./Collaborate.css";
 
 const Collaborate = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
 
   const collaborators = [
     {
@@ -30,12 +31,23 @@ const Collaborate = () => {
   ];
 
   useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentSlide((prev) => (prev + 1) % collaborators.length);
-    }, 5000);
+    const handleResize = () => {
+      setIsMobile(window.innerWidth <= 768);
+    };
 
-    return () => clearInterval(interval);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
   }, []);
+
+  useEffect(() => {
+    if (isMobile) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % collaborators.length);
+      }, 5000);
+
+      return () => clearInterval(interval);
+    }
+  }, [isMobile]);
 
   const handleDotClick = (index) => {
     setCurrentSlide(index);
@@ -53,7 +65,11 @@ const Collaborate = () => {
         <div className="slideshow-container">
           <div
             className="slides-wrapper"
-            style={{ transform: `translateX(-${currentSlide * 100}%)` }}
+            style={
+              isMobile
+                ? { transform: `translateX(-${currentSlide * 100}%)` }
+                : {}
+            }
           >
             {collaborators.map((item, index) => (
               <div key={index} className="slide">
@@ -71,16 +87,18 @@ const Collaborate = () => {
               </div>
             ))}
           </div>
-          <div className="dots-navigation">
-            {collaborators.map((_, index) => (
-              <button
-                key={index}
-                className={`dot ${currentSlide === index ? "active" : ""}`}
-                onClick={() => handleDotClick(index)}
-                aria-label={`Slide ${index + 1}`}
-              />
-            ))}
-          </div>
+          {isMobile && (
+            <div className="dots-navigation">
+              {collaborators.map((_, index) => (
+                <button
+                  key={index}
+                  className={`dot ${currentSlide === index ? "active" : ""}`}
+                  onClick={() => handleDotClick(index)}
+                  aria-label={`Slide ${index + 1}`}
+                />
+              ))}
+            </div>
+          )}
         </div>
       </div>
     </section>

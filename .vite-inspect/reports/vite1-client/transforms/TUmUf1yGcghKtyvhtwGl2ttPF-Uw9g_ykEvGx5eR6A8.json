@@ -3,22 +3,22 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "import React from \"react\";\nimport \"./BlockContent-exhibition.css\";\n\nconst BlockContentExhibition = () => {\n  const exhibitionData = {\n    image:\n      \"https://boutique.louvre.fr/files/contents/400725/697667-6ad49766-side/louvre-couture.jpg\",\n    title: \"Thời trang Louvre\",\n    subtitle: \"24 tháng 1 năm 2025 - 21 tháng 7 năm 2025\",\n    description:\n      \"Là một di tích lịch sử và là kho báu không lỗ nơi hội tụ thẩm mỹ của thế giới, Louvre truyền cảm hứng cho nhiều thế giới sáng tạo. Đối với thế giới thời trang, vốn rất thích tìm đến nghệ thuật, bảo tàng đã mở cửa cho một cuộc triển lãm dưới hình thức đối thoại...\",\n  };\n\n  return (\n    <section className=\"block-content-exhibition-section\">\n      <div className=\"block-content-exhibition-container\">\n        <div className=\"block-content-exhibition-image-wrapper\">\n          <img\n            src={exhibitionData.image}\n            alt={exhibitionData.title}\n            className=\"block-content-exhibition-image\"\n          />\n        </div>\n        <div className=\"block-content-exhibition-content\">\n          <h2 className=\"block-content-exhibition-title\">\n            {exhibitionData.title}\n          </h2>\n          <div className=\"block-content-exhibition-subtitle\">\n            {exhibitionData.subtitle}\n          </div>\n          <p className=\"block-content-exhibition-description\">\n            {exhibitionData.description}\n          </p>\n          <button className=\"block-content-exhibition-button\">\n            <a href=\"/contents/exhibitions\">Khám phá tất cả sản phẩm</a>\n          </button>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default BlockContentExhibition;\n",
-      "start": 1750088801563,
-      "end": 1750088801904,
+      "result": "import React from \"react\";\nimport \"./BlockContent-exhibition.css\";\n\nconst BlockContentExhibition = () => {\n  const exhibitionData = {\n    image:\n      \"https://res.cloudinary.com/dco63bsah/image/upload/v1750658293/hoithaonghethuat/hoithaonghethuat.jpg\",\n    title: \"Tay nặn tay vẽ\",\n    subtitle: \"24 tháng 1 năm 2025 - 21 tháng 7 năm 2025\",\n    description:\n      \"Tay nặn tay vẽ – workshop nghệ thuật đặc biệt của chương trình lưu trú nghệ thuật MDP-AR.Là lúc con được sáng tạo nên chính những điều đẹp nhất về Tổ quốc, quê hương, sở thích,... trong tim mình.\",\n  };\n\n  return (\n    <section className=\"block-content-exhibition-section\">\n      <div className=\"block-content-exhibition-container\">\n        <div className=\"block-content-exhibition-image-wrapper\">\n          <img\n            src={exhibitionData.image}\n            alt={exhibitionData.title}\n            className=\"block-content-exhibition-image\"\n          />\n        </div>\n        <div className=\"block-content-exhibition-content\">\n          <h2 className=\"block-content-exhibition-title\">\n            {exhibitionData.title}\n          </h2>\n          <div className=\"block-content-exhibition-subtitle\">\n            {exhibitionData.subtitle}\n          </div>\n          <p className=\"block-content-exhibition-description\">\n            {exhibitionData.description}\n          </p>\n          <button className=\"block-content-exhibition-button\">\n            <a href=\"/contents/exhibitions\">Khám phá tất cả sản phẩm</a>\n          </button>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default BlockContentExhibition;\n",
+      "start": 1750746804591,
+      "end": 1750746805061,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750088801904,
-      "end": 1750088801904,
+      "start": 1750746805061,
+      "end": 1750746805061,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport \"./BlockContent-exhibition.css\";\nconst BlockContentExhibition = () => {\n  const exhibitionData = {\n    image: \"https://boutique.louvre.fr/files/contents/400725/697667-6ad49766-side/louvre-couture.jpg\",\n    title: \"Thời trang Louvre\",\n    subtitle: \"24 tháng 1 năm 2025 - 21 tháng 7 năm 2025\",\n    description: \"Là một di tích lịch sử và là kho báu không lỗ nơi hội tụ thẩm mỹ của thế giới, Louvre truyền cảm hứng cho nhiều thế giới sáng tạo. Đối với thế giới thời trang, vốn rất thích tìm đến nghệ thuật, bảo tàng đã mở cửa cho một cuộc triển lãm dưới hình thức đối thoại...\"\n  };\n  return /* @__PURE__ */ jsx(\"section\", { className: \"block-content-exhibition-section\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"block-content-exhibition-container\", children: [\n    /* @__PURE__ */ jsx(\"div\", { className: \"block-content-exhibition-image-wrapper\", children: /* @__PURE__ */ jsx(\n      \"img\",\n      {\n        src: exhibitionData.image,\n        alt: exhibitionData.title,\n        className: \"block-content-exhibition-image\"\n      }\n    ) }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"block-content-exhibition-content\", children: [\n      /* @__PURE__ */ jsx(\"h2\", { className: \"block-content-exhibition-title\", children: exhibitionData.title }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"block-content-exhibition-subtitle\", children: exhibitionData.subtitle }),\n      /* @__PURE__ */ jsx(\"p\", { className: \"block-content-exhibition-description\", children: exhibitionData.description }),\n      /* @__PURE__ */ jsx(\"button\", { className: \"block-content-exhibition-button\", children: /* @__PURE__ */ jsx(\"a\", { href: \"/contents/exhibitions\", children: \"Khám phá tất cả sản phẩm\" }) })\n    ] })\n  ] }) });\n};\nexport default BlockContentExhibition;\n",
-      "start": 1750088801904,
-      "end": 1750088802297,
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport \"./BlockContent-exhibition.css\";\nconst BlockContentExhibition = () => {\n  const exhibitionData = {\n    image: \"https://res.cloudinary.com/dco63bsah/image/upload/v1750658293/hoithaonghethuat/hoithaonghethuat.jpg\",\n    title: \"Tay nặn tay vẽ\",\n    subtitle: \"24 tháng 1 năm 2025 - 21 tháng 7 năm 2025\",\n    description: \"Tay nặn tay vẽ – workshop nghệ thuật đặc biệt của chương trình lưu trú nghệ thuật MDP-AR.Là lúc con được sáng tạo nên chính những điều đẹp nhất về Tổ quốc, quê hương, sở thích,... trong tim mình.\"\n  };\n  return /* @__PURE__ */ jsx(\"section\", { className: \"block-content-exhibition-section\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"block-content-exhibition-container\", children: [\n    /* @__PURE__ */ jsx(\"div\", { className: \"block-content-exhibition-image-wrapper\", children: /* @__PURE__ */ jsx(\n      \"img\",\n      {\n        src: exhibitionData.image,\n        alt: exhibitionData.title,\n        className: \"block-content-exhibition-image\"\n      }\n    ) }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"block-content-exhibition-content\", children: [\n      /* @__PURE__ */ jsx(\"h2\", { className: \"block-content-exhibition-title\", children: exhibitionData.title }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"block-content-exhibition-subtitle\", children: exhibitionData.subtitle }),\n      /* @__PURE__ */ jsx(\"p\", { className: \"block-content-exhibition-description\", children: exhibitionData.description }),\n      /* @__PURE__ */ jsx(\"button\", { className: \"block-content-exhibition-button\", children: /* @__PURE__ */ jsx(\"a\", { href: \"/contents/exhibitions\", children: \"Khám phá tất cả sản phẩm\" }) })\n    ] })\n  ] }) });\n};\nexport default BlockContentExhibition;\n",
+      "start": 1750746805061,
+      "end": 1750746805220,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -26,7 +26,7 @@
           "C:/Users/.Freelancer/ONLINE/src/components/Home/BlockContent-exhibition/BlockContent-exhibition.jsx"
         ],
         "sourcesContent": [
-          "import React from \"react\";\nimport \"./BlockContent-exhibition.css\";\n\nconst BlockContentExhibition = () => {\n  const exhibitionData = {\n    image:\n      \"https://boutique.louvre.fr/files/contents/400725/697667-6ad49766-side/louvre-couture.jpg\",\n    title: \"Thời trang Louvre\",\n    subtitle: \"24 tháng 1 năm 2025 - 21 tháng 7 năm 2025\",\n    description:\n      \"Là một di tích lịch sử và là kho báu không lỗ nơi hội tụ thẩm mỹ của thế giới, Louvre truyền cảm hứng cho nhiều thế giới sáng tạo. Đối với thế giới thời trang, vốn rất thích tìm đến nghệ thuật, bảo tàng đã mở cửa cho một cuộc triển lãm dưới hình thức đối thoại...\",\n  };\n\n  return (\n    <section className=\"block-content-exhibition-section\">\n      <div className=\"block-content-exhibition-container\">\n        <div className=\"block-content-exhibition-image-wrapper\">\n          <img\n            src={exhibitionData.image}\n            alt={exhibitionData.title}\n            className=\"block-content-exhibition-image\"\n          />\n        </div>\n        <div className=\"block-content-exhibition-content\">\n          <h2 className=\"block-content-exhibition-title\">\n            {exhibitionData.title}\n          </h2>\n          <div className=\"block-content-exhibition-subtitle\">\n            {exhibitionData.subtitle}\n          </div>\n          <p className=\"block-content-exhibition-description\">\n            {exhibitionData.description}\n          </p>\n          <button className=\"block-content-exhibition-button\">\n            <a href=\"/contents/exhibitions\">Khám phá tất cả sản phẩm</a>\n          </button>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default BlockContentExhibition;\n"
+          "import React from \"react\";\nimport \"./BlockContent-exhibition.css\";\n\nconst BlockContentExhibition = () => {\n  const exhibitionData = {\n    image:\n      \"https://res.cloudinary.com/dco63bsah/image/upload/v1750658293/hoithaonghethuat/hoithaonghethuat.jpg\",\n    title: \"Tay nặn tay vẽ\",\n    subtitle: \"24 tháng 1 năm 2025 - 21 tháng 7 năm 2025\",\n    description:\n      \"Tay nặn tay vẽ – workshop nghệ thuật đặc biệt của chương trình lưu trú nghệ thuật MDP-AR.Là lúc con được sáng tạo nên chính những điều đẹp nhất về Tổ quốc, quê hương, sở thích,... trong tim mình.\",\n  };\n\n  return (\n    <section className=\"block-content-exhibition-section\">\n      <div className=\"block-content-exhibition-container\">\n        <div className=\"block-content-exhibition-image-wrapper\">\n          <img\n            src={exhibitionData.image}\n            alt={exhibitionData.title}\n            className=\"block-content-exhibition-image\"\n          />\n        </div>\n        <div className=\"block-content-exhibition-content\">\n          <h2 className=\"block-content-exhibition-title\">\n            {exhibitionData.title}\n          </h2>\n          <div className=\"block-content-exhibition-subtitle\">\n            {exhibitionData.subtitle}\n          </div>\n          <p className=\"block-content-exhibition-description\">\n            {exhibitionData.description}\n          </p>\n          <button className=\"block-content-exhibition-button\">\n            <a href=\"/contents/exhibitions\">Khám phá tất cả sản phẩm</a>\n          </button>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default BlockContentExhibition;\n"
         ],
         "mappings": "AAiBU,cAMF,YANE;AAjBV,OAAO,WAAW;AAClB,OAAO;AAEP,MAAM,yBAAyB,MAAM;AACnC,QAAM,iBAAiB;AAAA,IACrB,OACE;AAAA,IACF,OAAO;AAAA,IACP,UAAU;AAAA,IACV,aACE;AAAA,EACJ;AAEA,SACE,oBAAC,aAAQ,WAAU,oCACjB,+BAAC,SAAI,WAAU,sCACb;AAAA,wBAAC,SAAI,WAAU,0CACb;AAAA,MAAC;AAAA;AAAA,QACC,KAAK,eAAe;AAAA,QACpB,KAAK,eAAe;AAAA,QACpB,WAAU;AAAA;AAAA,IACZ,GACF;AAAA,IACA,qBAAC,SAAI,WAAU,oCACb;AAAA,0BAAC,QAAG,WAAU,kCACX,yBAAe,OAClB;AAAA,MACA,oBAAC,SAAI,WAAU,qCACZ,yBAAe,UAClB;AAAA,MACA,oBAAC,OAAE,WAAU,wCACV,yBAAe,aAClB;AAAA,MACA,oBAAC,YAAO,WAAU,mCAChB,8BAAC,OAAE,MAAK,yBAAwB,sCAAwB,GAC1D;AAAA,OACF;AAAA,KACF,GACF;AAEJ;AAEA,eAAe;",
         "names": []
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1750088802297,
-      "end": 1750088802297,
+      "start": 1750746805220,
+      "end": 1750746805220,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750088802297,
-      "end": 1750088802297,
+      "start": 1750746805220,
+      "end": 1750746805220,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750088802297,
-      "end": 1750088802297,
+      "start": 1750746805220,
+      "end": 1750746805220,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750088802297,
-      "end": 1750088802298,
+      "start": 1750746805220,
+      "end": 1750746805220,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750088802298,
-      "end": 1750088802298,
+      "start": 1750746805220,
+      "end": 1750746805220,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750088802298,
-      "end": 1750088802298,
+      "start": 1750746805220,
+      "end": 1750746805220,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750088802298,
-      "end": 1750088802298,
+      "start": 1750746805221,
+      "end": 1750746805221,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750088802298,
-      "end": 1750088802300,
+      "start": 1750746805221,
+      "end": 1750746805222,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750088802300,
-      "end": 1750088802300,
+      "start": 1750746805222,
+      "end": 1750746805222,
       "order": "normal"
     }
   ]

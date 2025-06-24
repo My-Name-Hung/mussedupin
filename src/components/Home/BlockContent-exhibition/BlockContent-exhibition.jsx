@@ -4,11 +4,11 @@ import "./BlockContent-exhibition.css";
 const BlockContentExhibition = () => {
   const exhibitionData = {
     image:
-      "https://boutique.louvre.fr/files/contents/400725/697667-6ad49766-side/louvre-couture.jpg",
-    title: "Thời trang Louvre",
+      "https://res.cloudinary.com/dco63bsah/image/upload/v1750658293/hoithaonghethuat/hoithaonghethuat.jpg",
+    title: "Tay nặn tay vẽ",
     subtitle: "24 tháng 1 năm 2025 - 21 tháng 7 năm 2025",
     description:
-      "Là một di tích lịch sử và là kho báu không lỗ nơi hội tụ thẩm mỹ của thế giới, Louvre truyền cảm hứng cho nhiều thế giới sáng tạo. Đối với thế giới thời trang, vốn rất thích tìm đến nghệ thuật, bảo tàng đã mở cửa cho một cuộc triển lãm dưới hình thức đối thoại...",
+      "Tay nặn tay vẽ – workshop nghệ thuật đặc biệt của chương trình lưu trú nghệ thuật MDP-AR.Là lúc con được sáng tạo nên chính những điều đẹp nhất về Tổ quốc, quê hương, sở thích,... trong tim mình.",
   };
 
   return (

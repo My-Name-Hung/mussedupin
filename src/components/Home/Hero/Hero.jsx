@@ -10,73 +10,52 @@ import "./Hero.css";
 const slides = [
   {
     image:
-      "https://ik.imagekit.io/8u8lkoqkkm/DemThong_Trong.jpg?updatedAt=1749312390412",
-    title: "Đêm Thông",
-    subtitle: "Các sản phẩm về Thông",
-    categoryLink: "/category/xuat-ban",
+      "https://res.cloudinary.com/dco63bsah/image/upload/v1750392404/Khuyentai/MDP-1140241.webp",
+    title: "Trang sức",
+    subtitle: "Khám phá bộ sưu tập trang sức độc đáo",
+    categoryLink: "/category/khuyentai",
   },
   {
     image:
-      "https://ik.imagekit.io/8u8lkoqkkm/loirung_doc.png?updatedAt=1749269173624",
-    title: "Lối rừng",
-    subtitle: "Các sản phẩm về Thông",
-    categoryLink: "/category/xuat-ban",
+      "https://res.cloudinary.com/dco63bsah/image/upload/v1750655956/Anpham/dautay.png",
+    title: "Ấn phẩm",
+    subtitle: "Ấn phẩm nghệ thuật, mở ra một trang mới",
+    categoryLink: "/category/anpham",
   },
   {
     image:
-      "https://ik.imagekit.io/8u8lkoqkkm/Dangsuong_Doc.jpg?updatedAt=1749269171830",
-    title: "Dáng sương",
-    subtitle: "Các sản phẩm về Thông",
-    categoryLink: "/category/xuat-ban",
+      "https://res.cloudinary.com/dco63bsah/image/upload/v1750658293/hoithaonghethuat/hoithaonghethuat.jpg",
+    title: "Hội thảo nghệ thuật",
+    subtitle: "Khám phá và trải nghiệm nghệ thuật",
+    categoryLink: "/category/hoi-thao-nghe-thuat",
   },
   {
     image:
-      "https://ik.imagekit.io/8u8lkoqkkm/Th%C3%B4ng%202.webp?updatedAt=1749523250616",
-    title: "Phức Tầng",
-    subtitle: "Các sản phẩm về Thông",
-    categoryLink: "/category/xuat-ban",
+      "https://res.cloudinary.com/dco63bsah/image/upload/v1750731839/inyeucau/BTT01529-HDR.webp",
+    title: "In theo yêu cầu",
+    subtitle: "Biến ý tưởng của bạn thành hiện thực",
+    categoryLink: "/category/in-theo-yeu-cau",
   },
   {
     image:
-      "https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng.webp?updatedAt=1749523332792",
-    title: "Vật liệu",
-    subtitle: "Các sản phẩm về Thông",
-    categoryLink: "/category/xuat-ban",
+      "https://res.cloudinary.com/dco63bsah/image/upload/v1750733148/thoitrang/aophongbackground.jpg",
+    title: "Thời trang và phụ kiện",
+    subtitle: "Phong cách thời thượng kết hợp nghệ thuật",
+    categoryLink: "/category/thoi-trang-va-phu-kien",
   },
   {
     image:
-      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/DSC_2475.webp",
-    title: "Dụng cục âm nhạc Tây Nguyên",
-    subtitle: "Các sản phẩm về đồng bào K'ho",
-    categoryLink: "/category/kho",
+      "https://res.cloudinary.com/dco63bsah/image/upload/v1750736923/thocam/V%C3%A1y%20ng%E1%BA%AFn%20m%C3%A3%2005.webp",
+    title: "Thổ cẩm",
+    subtitle: "Sản phẩm Thổ cẩm mang đậm sắc đồng bào K'ho",
+    categoryLink: "/category/thocam",
   },
   {
     image:
-      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/L%E1%BB%93ng%20%C4%90a%20%C4%90a.webp",
-    title: "K'ho Chăn nuôi",
-    subtitle: "Các sản phẩm về đồng bào K'ho",
-    categoryLink: "/category/kho",
-  },
-  {
-    image:
-      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/b%C3%ACnh%20y%C3%AAn%201%20(2).webp",
-    title: "Bề mặt ký ức",
-    subtitle: "Các sản phẩm về đồng bào K'ho",
-    categoryLink: "/category/kho",
-  },
-  {
-    image:
-      "https://ik.imagekit.io/8u8lkoqkkm/fe26e39c6384d7da8e95.jpg?updatedAt=1749083704253",
-    title: "Lửa thiêng",
-    subtitle: "Các sản phẩm về Thông",
-    categoryLink: "/category/xuat-ban",
-  },
-  {
-    image:
-      "https://ik.imagekit.io/8u8lkoqkkm/image(1).png?updatedAt=1749394994472",
-    title: "Ngệ thuật vị giác",
-    subtitle: "Các sản phẩm về Thông",
-    categoryLink: "/category/xuat-ban",
+      "https://res.cloudinary.com/dco63bsah/image/upload/v1750739198/sanphamtuthong/Tranh%20A4%2004.jpg",
+    title: "Sản phẩm từ thông",
+    subtitle: "Sản phẩm được thiết kế từ Thông, nét đặc trưng thiên nhiên",
+    categoryLink: "/category/sanphamtuthong",
   },
 ];
 
@@ -128,11 +107,11 @@ const Hero = () => {
         <Slider ref={(slider) => setSliderRef(slider)} {...settings}>
           {randomSlides.map((slide, index) => (
             <div key={index} className="slide">
-              <div className="slide-image-container">
+              <div className="slide-image-container-hero">
                 <img
                   src={slide.image}
                   alt={slide.title}
-                  className="slide-image"
+                  className="slide-images"
                 />
                 <div className="slide-content">
                   <h1 className="slide-title-hero">{slide.title}</h1>

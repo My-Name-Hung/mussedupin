@@ -2,14 +2,48 @@ import React, { useEffect, useState } from "react";
 import { IoIosArrowRoundForward } from "react-icons/io";
 import { Link } from "react-router-dom";
 import { sampleProducts } from "../../../pages/CategoryDetail/CategoryDetail";
+import {
+  getAnPhamImageUrl,
+  getThoCamImageUrl,
+  getHoiThaoNgheThuatImageUrl,
+  getInTheoYeuCauImageUrl,
+  getKhuyenTaiImageUrl,
+  getThoiTrangImageUrl,
+  getSanPhamTuThongImageUrl,
+} from "../../../utils/cloudinary";
 import "./Bestseller.css";
 
 const Bestseller = () => {
   const [randomProducts, setRandomProducts] = useState([]);
 
+  // Helper function to get image URL based on category
+  const getImageUrl = (category, filename) => {
+    switch (category) {
+      case "khuyentai":
+        return getKhuyenTaiImageUrl(filename);
+      case "anpham":
+        return getAnPhamImageUrl(filename);
+      case "in-theo-yeu-cau":
+        return getInTheoYeuCauImageUrl(filename);
+      case "hoi-thao-nghe-thuat":
+        return getHoiThaoNgheThuatImageUrl(filename);
+      case "thoi-trang-va-phu-kien":
+        return getThoiTrangImageUrl(filename);
+      case "thocam":
+        return getThoCamImageUrl(filename);
+      case "sanphamtuthong":
+        return getSanPhamTuThongImageUrl(filename);
+      default:
+        return "";
+    }
+  };
+
   useEffect(() => {
+    // Get all products from all categories and flatten into a single array
+    const allProducts = Object.values(sampleProducts).flat();
+
     // Filter trending products
-    const trendingProducts = sampleProducts.filter(
+    const trendingProducts = allProducts.filter(
       (product) => product.isTrending
     );
 
@@ -33,7 +67,7 @@ const Bestseller = () => {
               <Link to={`/product/${product.id}`}>
                 <div className="card-image-container">
                   <img
-                    src={product.image}
+                    src={getImageUrl(product.category, product.image)}
                     alt={product.title}
                     className="card-image"
                   />

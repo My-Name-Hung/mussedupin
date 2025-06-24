@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/ONLINE/node_modules/crypto-js/mode-cfb.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": ";(function (root, factory, undef) {\n\tif (typeof exports === \"object\") {\n\t\t// CommonJS\n\t\tmodule.exports = exports = factory(require(\"./core\"), require(\"./cipher-core\"));\n\t}\n\telse if (typeof define === \"function\" && define.amd) {\n\t\t// AMD\n\t\tdefine([\"./core\", \"./cipher-core\"], factory);\n\t}\n\telse {\n\t\t// Global (browser)\n\t\tfactory(root.CryptoJS);\n\t}\n}(this, function (CryptoJS) {\n\n\t/**\n\t * Cipher Feedback block mode.\n\t */\n\tCryptoJS.mode.CFB = (function () {\n\t    var CFB = CryptoJS.lib.BlockCipherMode.extend();\n\n\t    CFB.Encryptor = CFB.extend({\n\t        processBlock: function (words, offset) {\n\t            // Shortcuts\n\t            var cipher = this._cipher;\n\t            var blockSize = cipher.blockSize;\n\n\t            generateKeystreamAndEncrypt.call(this, words, offset, blockSize, cipher);\n\n\t            // Remember this block to use with next block\n\t            this._prevBlock = words.slice(offset, offset + blockSize);\n\t        }\n\t    });\n\n\t    CFB.Decryptor = CFB.extend({\n\t        processBlock: function (words, offset) {\n\t            // Shortcuts\n\t            var cipher = this._cipher;\n\t            var blockSize = cipher.blockSize;\n\n\t            // Remember this block to use with next block\n\t            var thisBlock = words.slice(offset, offset + blockSize);\n\n\t            generateKeystreamAndEncrypt.call(this, words, offset, blockSize, cipher);\n\n\t            // This block becomes the previous block\n\t            this._prevBlock = thisBlock;\n\t        }\n\t    });\n\n\t    function generateKeystreamAndEncrypt(words, offset, blockSize, cipher) {\n\t        var keystream;\n\n\t        // Shortcut\n\t        var iv = this._iv;\n\n\t        // Generate keystream\n\t        if (iv) {\n\t            keystream = iv.slice(0);\n\n\t            // Remove IV for subsequent blocks\n\t            this._iv = undefined;\n\t        } else {\n\t            keystream = this._prevBlock;\n\t        }\n\t        cipher.encryptBlock(keystream, 0);\n\n\t        // Encrypt\n\t        for (var i = 0; i < blockSize; i++) {\n\t            words[offset + i] ^= keystream[i];\n\t        }\n\t    }\n\n\t    return CFB;\n\t}());\n\n\n\treturn CryptoJS.mode.CFB;\n\n}));",
+      "start": 1750746806493,
+      "end": 1750746806877,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750746806877,
+      "end": 1750746806877,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750746806877,
+      "end": 1750746806877,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750746806877,
+      "end": 1750746806877,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750746806878,
+      "end": 1750746806878,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750746806878,
+      "end": 1750746806878,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750746806878,
+      "end": 1750746806878,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750746806878,
+      "end": 1750746806878,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750746808033,
+      "end": 1750746808033,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750746808033,
+      "end": 1750746808033,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750746808033,
+      "end": 1750746808033,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750746808033,
+      "end": 1750746808033,
+      "order": "normal"
+    }
+  ]
+}

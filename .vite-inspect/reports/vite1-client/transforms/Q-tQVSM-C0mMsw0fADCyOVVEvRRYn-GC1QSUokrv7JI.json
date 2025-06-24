@@ -3,22 +3,22 @@
   "transforms": [
     {
       "name": "vite:load-fallback",
-      "result": "import React, { useMemo } from \"react\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../../../pages/CategoryDetail/CategoryDetail\";\nimport \"./BlockContent.css\";\n\nconst BlockContent = () => {\n  const artists = useMemo(() => {\n    // Get unique artists and count their products\n    const artistCounts = sampleProducts.reduce((acc, product) => {\n      acc[product.artist] = (acc[product.artist] || 0) + 1;\n      return acc;\n    }, {});\n\n    // Convert to array and sort by count\n    return Object.entries(artistCounts)\n      .map(([name, count]) => ({ name, count }))\n      .sort((a, b) => b.count - a.count);\n  }, []);\n\n  return (\n    <section className=\"block-contents\">\n      <div className=\"content-container\">\n        <div className=\"content-wrapper\">\n          <h2 className=\"content-title\">Khám phá bộ sưu tập của nghệ sĩ</h2>\n          <div className=\"artists-list\">\n            {artists.slice(0, 10).map((artist, index) => (\n              <Link\n                key={index}\n                to={`/contents/artists/${encodeURIComponent(artist.name)}`}\n                className=\"artist-item\"\n              >\n                {artist.name}\n              </Link>\n            ))}\n          </div>\n          <Link to=\"/contents/artists\" className=\"content-cta\">\n            Xem tất cả nghệ sĩ\n          </Link>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default BlockContent;\n",
-      "start": 1750088801564,
-      "end": 1750088801906,
+      "result": "import React, { useMemo } from \"react\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../../../pages/CategoryDetail/CategoryDetail\";\nimport \"./BlockContent.css\";\n\nconst BlockContent = () => {\n  const artists = useMemo(() => {\n    // Get unique artists and count their products from all categories\n    const artistCounts = Object.values(sampleProducts)\n      .flat()\n      .reduce((acc, product) => {\n      acc[product.artist] = (acc[product.artist] || 0) + 1;\n      return acc;\n    }, {});\n\n    // Convert to array and sort by count\n    return Object.entries(artistCounts)\n      .map(([name, count]) => ({ name, count }))\n      .sort((a, b) => b.count - a.count);\n  }, []);\n\n  return (\n    <section className=\"block-contents\">\n      <div className=\"content-container\">\n        <div className=\"content-wrapper\">\n          <h2 className=\"content-title\">Khám phá bộ sưu tập của nghệ sĩ</h2>\n          <div className=\"artists-list\">\n            {artists.slice(0, 10).map((artist, index) => (\n              <Link\n                key={index}\n                to={`/contents/artists/${encodeURIComponent(artist.name)}`}\n                className=\"artist-item\"\n              >\n                {artist.name}\n              </Link>\n            ))}\n          </div>\n          <Link to=\"/contents/artists\" className=\"content-cta\">\n            Xem tất cả nghệ sĩ\n          </Link>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default BlockContent;\n",
+      "start": 1750746804591,
+      "end": 1750746805062,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750088801906,
-      "end": 1750088801907,
+      "start": 1750746805062,
+      "end": 1750746805062,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useMemo } from \"react\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../../../pages/CategoryDetail/CategoryDetail\";\nimport \"./BlockContent.css\";\nconst BlockContent = () => {\n  const artists = useMemo(() => {\n    const artistCounts = sampleProducts.reduce((acc, product) => {\n      acc[product.artist] = (acc[product.artist] || 0) + 1;\n      return acc;\n    }, {});\n    return Object.entries(artistCounts).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);\n  }, []);\n  return /* @__PURE__ */ jsx(\"section\", { className: \"block-contents\", children: /* @__PURE__ */ jsx(\"div\", { className: \"content-container\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"content-wrapper\", children: [\n    /* @__PURE__ */ jsx(\"h2\", { className: \"content-title\", children: \"Khám phá bộ sưu tập của nghệ sĩ\" }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"artists-list\", children: artists.slice(0, 10).map((artist, index) => /* @__PURE__ */ jsx(\n      Link,\n      {\n        to: `/contents/artists/${encodeURIComponent(artist.name)}`,\n        className: \"artist-item\",\n        children: artist.name\n      },\n      index\n    )) }),\n    /* @__PURE__ */ jsx(Link, { to: \"/contents/artists\", className: \"content-cta\", children: \"Xem tất cả nghệ sĩ\" })\n  ] }) }) });\n};\nexport default BlockContent;\n",
-      "start": 1750088801907,
-      "end": 1750088802297,
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useMemo } from \"react\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../../../pages/CategoryDetail/CategoryDetail\";\nimport \"./BlockContent.css\";\nconst BlockContent = () => {\n  const artists = useMemo(() => {\n    const artistCounts = Object.values(sampleProducts).flat().reduce((acc, product) => {\n      acc[product.artist] = (acc[product.artist] || 0) + 1;\n      return acc;\n    }, {});\n    return Object.entries(artistCounts).map(([name, count]) => ({ name, count })).sort((a, b) => b.count - a.count);\n  }, []);\n  return /* @__PURE__ */ jsx(\"section\", { className: \"block-contents\", children: /* @__PURE__ */ jsx(\"div\", { className: \"content-container\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"content-wrapper\", children: [\n    /* @__PURE__ */ jsx(\"h2\", { className: \"content-title\", children: \"Khám phá bộ sưu tập của nghệ sĩ\" }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"artists-list\", children: artists.slice(0, 10).map((artist, index) => /* @__PURE__ */ jsx(\n      Link,\n      {\n        to: `/contents/artists/${encodeURIComponent(artist.name)}`,\n        className: \"artist-item\",\n        children: artist.name\n      },\n      index\n    )) }),\n    /* @__PURE__ */ jsx(Link, { to: \"/contents/artists\", className: \"content-cta\", children: \"Xem tất cả nghệ sĩ\" })\n  ] }) }) });\n};\nexport default BlockContent;\n",
+      "start": 1750746805062,
+      "end": 1750746805220,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -26,64 +26,64 @@
           "C:/Users/.Freelancer/ONLINE/src/components/Home/BlockContent/BlockContent.jsx"
         ],
         "sourcesContent": [
-          "import React, { useMemo } from \"react\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../../../pages/CategoryDetail/CategoryDetail\";\nimport \"./BlockContent.css\";\n\nconst BlockContent = () => {\n  const artists = useMemo(() => {\n    // Get unique artists and count their products\n    const artistCounts = sampleProducts.reduce((acc, product) => {\n      acc[product.artist] = (acc[product.artist] || 0) + 1;\n      return acc;\n    }, {});\n\n    // Convert to array and sort by count\n    return Object.entries(artistCounts)\n      .map(([name, count]) => ({ name, count }))\n      .sort((a, b) => b.count - a.count);\n  }, []);\n\n  return (\n    <section className=\"block-contents\">\n      <div className=\"content-container\">\n        <div className=\"content-wrapper\">\n          <h2 className=\"content-title\">Khám phá bộ sưu tập của nghệ sĩ</h2>\n          <div className=\"artists-list\">\n            {artists.slice(0, 10).map((artist, index) => (\n              <Link\n                key={index}\n                to={`/contents/artists/${encodeURIComponent(artist.name)}`}\n                className=\"artist-item\"\n              >\n                {artist.name}\n              </Link>\n            ))}\n          </div>\n          <Link to=\"/contents/artists\" className=\"content-cta\">\n            Xem tất cả nghệ sĩ\n          </Link>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default BlockContent;\n"
+          "import React, { useMemo } from \"react\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../../../pages/CategoryDetail/CategoryDetail\";\nimport \"./BlockContent.css\";\n\nconst BlockContent = () => {\n  const artists = useMemo(() => {\n    // Get unique artists and count their products from all categories\n    const artistCounts = Object.values(sampleProducts)\n      .flat()\n      .reduce((acc, product) => {\n      acc[product.artist] = (acc[product.artist] || 0) + 1;\n      return acc;\n    }, {});\n\n    // Convert to array and sort by count\n    return Object.entries(artistCounts)\n      .map(([name, count]) => ({ name, count }))\n      .sort((a, b) => b.count - a.count);\n  }, []);\n\n  return (\n    <section className=\"block-contents\">\n      <div className=\"content-container\">\n        <div className=\"content-wrapper\">\n          <h2 className=\"content-title\">Khám phá bộ sưu tập của nghệ sĩ</h2>\n          <div className=\"artists-list\">\n            {artists.slice(0, 10).map((artist, index) => (\n              <Link\n                key={index}\n                to={`/contents/artists/${encodeURIComponent(artist.name)}`}\n                className=\"artist-item\"\n              >\n                {artist.name}\n              </Link>\n            ))}\n          </div>\n          <Link to=\"/contents/artists\" className=\"content-cta\">\n            Xem tất cả nghệ sĩ\n          </Link>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default BlockContent;\n"
         ],
-        "mappings": "AAsBQ,SACE,KADF;AAtBR,OAAO,SAAS,eAAe;AAC/B,SAAS,YAAY;AACrB,SAAS,sBAAsB;AAC/B,OAAO;AAEP,MAAM,eAAe,MAAM;AACzB,QAAM,UAAU,QAAQ,MAAM;AAE5B,UAAM,eAAe,eAAe,OAAO,CAAC,KAAK,YAAY;AAC3D,UAAI,QAAQ,MAAM,KAAK,IAAI,QAAQ,MAAM,KAAK,KAAK;AACnD,aAAO;AAAA,IACT,GAAG,CAAC,CAAC;AAGL,WAAO,OAAO,QAAQ,YAAY,EAC/B,IAAI,CAAC,CAAC,MAAM,KAAK,OAAO,EAAE,MAAM,MAAM,EAAE,EACxC,KAAK,CAAC,GAAG,MAAM,EAAE,QAAQ,EAAE,KAAK;AAAA,EACrC,GAAG,CAAC,CAAC;AAEL,SACE,oBAAC,aAAQ,WAAU,kBACjB,8BAAC,SAAI,WAAU,qBACb,+BAAC,SAAI,WAAU,mBACb;AAAA,wBAAC,QAAG,WAAU,iBAAgB,6CAA+B;AAAA,IAC7D,oBAAC,SAAI,WAAU,gBACZ,kBAAQ,MAAM,GAAG,EAAE,EAAE,IAAI,CAAC,QAAQ,UACjC;AAAA,MAAC;AAAA;AAAA,QAEC,IAAI,qBAAqB,mBAAmB,OAAO,IAAI,CAAC;AAAA,QACxD,WAAU;AAAA,QAET,iBAAO;AAAA;AAAA,MAJH;AAAA,IAKP,CACD,GACH;AAAA,IACA,oBAAC,QAAK,IAAG,qBAAoB,WAAU,eAAc,gCAErD;AAAA,KACF,GACF,GACF;AAEJ;AAEA,eAAe;",
+        "mappings": "AAwBQ,SACE,KADF;AAxBR,OAAO,SAAS,eAAe;AAC/B,SAAS,YAAY;AACrB,SAAS,sBAAsB;AAC/B,OAAO;AAEP,MAAM,eAAe,MAAM;AACzB,QAAM,UAAU,QAAQ,MAAM;AAE5B,UAAM,eAAe,OAAO,OAAO,cAAc,EAC9C,KAAK,EACL,OAAO,CAAC,KAAK,YAAY;AAC1B,UAAI,QAAQ,MAAM,KAAK,IAAI,QAAQ,MAAM,KAAK,KAAK;AACnD,aAAO;AAAA,IACT,GAAG,CAAC,CAAC;AAGL,WAAO,OAAO,QAAQ,YAAY,EAC/B,IAAI,CAAC,CAAC,MAAM,KAAK,OAAO,EAAE,MAAM,MAAM,EAAE,EACxC,KAAK,CAAC,GAAG,MAAM,EAAE,QAAQ,EAAE,KAAK;AAAA,EACrC,GAAG,CAAC,CAAC;AAEL,SACE,oBAAC,aAAQ,WAAU,kBACjB,8BAAC,SAAI,WAAU,qBACb,+BAAC,SAAI,WAAU,mBACb;AAAA,wBAAC,QAAG,WAAU,iBAAgB,6CAA+B;AAAA,IAC7D,oBAAC,SAAI,WAAU,gBACZ,kBAAQ,MAAM,GAAG,EAAE,EAAE,IAAI,CAAC,QAAQ,UACjC;AAAA,MAAC;AAAA;AAAA,QAEC,IAAI,qBAAqB,mBAAmB,OAAO,IAAI,CAAC;AAAA,QACxD,WAAU;AAAA,QAET,iBAAO;AAAA;AAAA,MAJH;AAAA,IAKP,CACD,GACH;AAAA,IACA,oBAAC,QAAK,IAAG,qBAAoB,WAAU,eAAc,gCAErD;AAAA,KACF,GACF,GACF;AAEJ;AAEA,eAAe;",
         "names": []
       }
     },
     {
       "name": "vite:worker",
-      "start": 1750088802297,
-      "end": 1750088802297,
+      "start": 1750746805220,
+      "end": 1750746805220,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750088802297,
-      "end": 1750088802297,
+      "start": 1750746805220,
+      "end": 1750746805220,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750088802297,
-      "end": 1750088802297,
+      "start": 1750746805220,
+      "end": 1750746805220,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750088802298,
-      "end": 1750088802298,
+      "start": 1750746805220,
+      "end": 1750746805220,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750088802298,
-      "end": 1750088802298,
+      "start": 1750746805220,
+      "end": 1750746805220,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750088802298,
-      "end": 1750088802298,
+      "start": 1750746805220,
+      "end": 1750746805220,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750088802298,
-      "end": 1750088802298,
+      "start": 1750746805220,
+      "end": 1750746805221,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750088802298,
-      "end": 1750088802300,
+      "start": 1750746805221,
+      "end": 1750746805222,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750088802300,
-      "end": 1750088802300,
+      "start": 1750746805222,
+      "end": 1750746805222,
       "order": "normal"
     }
   ]

@@ -6,41 +6,16 @@ export const exhibitionsData = [
   {
     id: 1,
     image:
-      "https://boutique.louvre.fr/files/contents/400994/779027-318c7112-side/passion-for-china.png",
-    title: "A Passion for China",
-    date: "5/14/25 - 8/25/25",
-    status: "close",
+      "https://res.cloudinary.com/dco63bsah/image/upload/v1750658293/hoithaonghethuat/hoithaonghethuat.jpg",
+    title: "Tay nặn tay vẽ",
+    date: "1/24/25 - 7/21/25",
+    status: "inprogress",
     products: [
       {
-        title: "sản phẩm trưng bày 1",
-        price: "230.000đ",
+        title: "Tay nặn tay vẽ",
+        price: "Liên hệ",
         image:
-          "https://boutique.louvre.fr/files/products/62897/779731-9b3c0f69-l/products-779731.jpg",
-      },
-      {
-        title: "sản phẩm trưng bày 2",
-        price: "200.000đ",
-        image: "https://i.ibb.co/zWtyhrtR/image.png",
-      },
-      {
-        title: "sản phẩm trưng bày 3",
-        price: "210.000đ",
-        image: "https://i.ibb.co/zVKd61Z1/image.png",
-      },
-      {
-        title: "sản phẩm trưng bày 4",
-        price: "400.000đ",
-        image: "https://i.ibb.co/sdvBZYVJ/image.png",
-      },
-      {
-        title: "sản phẩm trưng bày 5",
-        price: "450.000đ",
-        image: "https://i.ibb.co/PZ9NmgYG/image.png",
-      },
-      {
-        title: "sản phẩm trưng bày 6",
-        price: "330.000đ",
-        image: "https://i.ibb.co/zWgYbmbw/image.png",
+          "https://res.cloudinary.com/dco63bsah/image/upload/v1750658293/hoithaonghethuat/hoithaonghethuat.jpg",
       },
     ],
   },

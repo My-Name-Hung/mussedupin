@@ -7,6 +7,7 @@
   image-rendering: crisp-edges;
   width: 100vw;
   height: 100vh;
+  overflow: hidden;
 }
 
 .blocks-container {
@@ -14,6 +15,87 @@
   height: 100%;
   display: flex;
   flex-direction: column;
+}
+
+@media (min-width: 769px) {
+  .blocks-container {
+    flex-direction: row;
+    padding: 2rem;
+    gap: 2rem;
+  }
+
+  .block {
+    flex: 1;
+    height: calc(100vh - 4rem);
+    border-radius: 20px;
+    transition: all 0.5s ease;
+  }
+
+  .block:hover {
+    flex: 1.2;
+  }
+
+  .block-image-container {
+    border-radius: 20px;
+  }
+
+  .block-content {
+    padding-top: 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+  }
+
+  .block:hover .block-content {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .block-title {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .block-description {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    max-width: 80%;
+    line-height: 1.6;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease 0.1s;
+  }
+
+  .block:hover .block-description {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .block-subtitle {
+    font-size: 1.3rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease 0.2s;
+  }
+
+  .block:hover .block-subtitle {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .block::after {
+    background: linear-gradient(
+      to bottom,
+      rgba(0, 0, 0, 0.1),
+      rgba(0, 0, 0, 0.7)
+    );
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .block:hover::after {
+    opacity: 1;
+  }
 }
 
 .block {
@@ -66,6 +148,14 @@
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+.block-description {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  margin-bottom: 1rem;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
 .block-subtitle {
   font-family: "Roboto", sans-serif;
   font-size: 1.1rem;
@@ -84,7 +174,6 @@
   transform: translateX(5px);
 }
 
-/* Add a gradient overlay */
 .block::after {
   content: "";
   position: absolute;
@@ -112,6 +201,10 @@
 
   .block-subtitle {
     font-size: 1rem;
+  }
+
+  .block-description {
+    display: none;
   }
 }
 

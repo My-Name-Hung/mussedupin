@@ -8,10 +8,14 @@ const Artists = () => {
 
   const artists = useMemo(() => {
     // Get unique artists and count their products
-    const artistCounts = sampleProducts.reduce((acc, product) => {
-      acc[product.artist] = (acc[product.artist] || 0) + 1;
-      return acc;
-    }, {});
+    const artistCounts = {};
+
+    // Iterate through each category and its products
+    Object.values(sampleProducts).forEach((products) => {
+      products.forEach((product) => {
+        artistCounts[product.artist] = (artistCounts[product.artist] || 0) + 1;
+      });
+    });
 
     // Convert to array and sort by count
     return Object.entries(artistCounts)
@@ -19,7 +23,7 @@ const Artists = () => {
         name,
         count,
         image:
-          "https://boutique.louvre.fr/files/contents/400859/698402-55c8eeab-bannerxl/contents-698402.jpg",
+          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/icon.png",
       }))
       .sort((a, b) => b.count - a.count);
   }, []);

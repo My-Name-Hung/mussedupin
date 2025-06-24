@@ -12,451 +12,2145 @@ import "swiper/css/navigation";
 import "swiper/css/pagination";
 import { Navigation, Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
+import {
+  getAnPhamImageUrl,
+  getHoiThaoNgheThuatImageUrl,
+  getInTheoYeuCauImageUrl,
+  getKhuyenTaiImageUrl,
+  getSanPhamTuThongImageUrl,
+  getThoCamImageUrl,
+  getThoiTrangImageUrl,
+} from "../../utils/cloudinary";
 import "./CategoryDetail.css";
 
-export const sampleProducts = [
-  {
-    id: 1,
-    title: "Sản phẩm 1",
-    price: "200.000đ",
-    image: "https://i.ibb.co/6cQg2V7P/image.png",
-    isNew: true,
-    isTrending: false,
-    artist: "Albrecht Dürer",
-    publishYear: "2024",
-    type: "Sách nghệ thuật",
-  },
-  {
-    id: 2,
-    title: "Sản phẩm 2",
-    price: "200.000đ",
-    image: "https://i.ibb.co/fGTTpx8h/image.png",
-    isNew: false,
-    isTrending: true,
-    artist: "Antonio Canova",
-    publishYear: "2024",
-    type: "DVD văn hóa",
-  },
-  {
-    id: 3,
-    title: "Sản phẩm 3",
-    price: "200.000đ",
-    image: "https://i.ibb.co/vCqsCkC2/image.png",
-    isNew: true,
-    isTrending: true,
-    artist: "Albrecht Altdorfer",
-    publishYear: "2025",
-    type: "Sách tiếng Anh và tiếng nước ngoài",
-  },
-  {
-    id: 4,
-    title: "Sản phẩm 4",
-    price: "200.000đ",
-    image: "https://i.ibb.co/5WPtYb2R/image.png",
-    isNew: false,
-    isTrending: false,
-    artist: "Albrecht Dürer",
-    publishYear: "2024",
-    type: "Danh mục triển lãm",
-  },
-  {
-    id: 5,
-    title: "Sản phẩm 5",
-    price: "200.000đ",
-    image: "https://i.ibb.co/yF08P7wP/image.png",
-    isNew: true,
-    isTrending: false,
-    artist: "Antonio Canova",
-    publishYear: "2025",
-    type: "Dành cho du khách trẻ tuổi",
-  },
-  {
-    id: 6,
-    title: "Sản phẩm 6",
-    price: "200.000đ",
-    image: "https://i.ibb.co/cSWNYSZ8/image.png",
-    isNew: false,
-    isTrending: true,
-    artist: "Albrecht Altdorfer",
-    publishYear: "2024",
-    type: "Tiểu thuyết đồ họa",
-  },
-  {
-    id: 7,
-    title: "Sản phẩm 7",
-    price: "200.000đ",
-    image: "https://i.ibb.co/k63L1YZx/image.png",
-    isNew: true,
-    isTrending: false,
-    artist: "Albrecht Dürer",
-    publishYear: "2025",
-    type: "Hướng dẫn",
-  },
-  {
-    id: 8,
-    title: "Sản phẩm 8",
-    price: "200.000đ",
-    image: "https://i.ibb.co/1Yg77DPD/image.png",
-    isNew: false,
-    isTrending: true,
-    artist: "Antonio Canova",
-    publishYear: "2024",
-    type: "Lịch sử, địa lý và khoa học",
-  },
-  {
-    id: 9,
-    title: "Sản phẩm 9",
-    price: "200.000đ",
-    image: "https://i.ibb.co/KcjhbNSs/image.png",
-    isNew: true,
-    isTrending: false,
-    artist: "Albrecht Altdorfer",
-    publishYear: "2025",
-    type: "Văn học, thơ ca và tiểu luận",
-  },
-  {
-    id: 10,
-    title: "Sản phẩm 10",
-    price: "200.000đ",
-    image: "https://i.ibb.co/9H6XG43C/image.png",
-    isNew: false,
-    isTrending: true,
-    artist: "Albrecht Dürer",
-    publishYear: "2024",
-    type: "Tạp chí",
-  },
-  {
-    id: 11,
-    title: "Sản phẩm 11",
-    price: "200.000đ",
-    image: "https://i.ibb.co/dsyXjGr3/image.png",
-    isNew: true,
-    isTrending: false,
-    artist: "Antonio Canova",
-    publishYear: "2025",
-    type: "Sách nghệ thuật",
-  },
-  {
-    id: 12,
-    title: "Sản phẩm 12",
-    price: "200.000đ",
-    image: "https://i.ibb.co/FbHmxbq4/image.png",
-    isNew: false,
-    isTrending: true,
-    artist: "Albrecht Altdorfer",
-    publishYear: "2024",
-    type: "DVD văn hóa",
-  },
-  {
-    id: 13,
-    title: "Sản phẩm 13",
-    price: "200.000đ",
-    image: "https://i.ibb.co/0jYkn08k/image.png",
-    isNew: true,
-    isTrending: false,
-    artist: "Albrecht Dürer",
-    publishYear: "2025",
-    type: "Sách tiếng Anh và tiếng nước ngoài",
-  },
-  {
-    id: 14,
-    title: "Sản phẩm 14",
-    price: "200.000đ",
-    image: "https://i.ibb.co/8L3pPzw8/image.png",
-    isNew: false,
-    isTrending: true,
-    artist: "Antonio Canova",
-    publishYear: "2024",
-    type: "Danh mục triển lãm",
-  },
-  {
-    id: 15,
-    title: "Sản phẩm 15",
-    price: "200.000đ",
-    image: "https://i.ibb.co/8L3pPzw8/image.png",
-    isNew: true,
-    isTrending: false,
-    artist: "Albrecht Altdorfer",
-    publishYear: "2025",
-    type: "Dành cho du khách trẻ tuổi",
-  },
-  {
-    id: 16,
-    title: "Sản phẩm 16",
-    price: "200.000đ",
-    image: "https://i.ibb.co/fzgssXHc/image.png",
-    isNew: false,
-    isTrending: true,
-    artist: "Albrecht Dürer",
-    publishYear: "2024",
-    type: "Tiểu thuyết đồ họa",
-  },
-  {
-    id: 17,
-    title: "Sản phẩm 17",
-    price: "200.000đ",
-    image: "https://i.ibb.co/bjh7gdWt/image.png",
-    isNew: true,
-    isTrending: false,
-    artist: "Antonio Canova",
-    publishYear: "2025",
-    type: "Hướng dẫn",
-  },
-  {
-    id: 18,
-    title: "Sản phẩm 18",
-    price: "200.000đ",
-    image: "https://i.ibb.co/N6r6b5yd/image.png",
-    isNew: false,
-    isTrending: true,
-    artist: "Albrecht Altdorfer",
-    publishYear: "2024",
-    type: "Lịch sử, địa lý và khoa học",
-  },
-  {
-    id: 19,
-    title: "Sản phẩm 19",
-    price: "200.000đ",
-    image: "https://i.ibb.co/HD2tpfyH/image.png",
-    isNew: true,
-    isTrending: false,
-    artist: "Albrecht Dürer",
-    publishYear: "2025",
-    type: "Văn học, thơ ca và tiểu luận",
-  },
-  {
-    id: 20,
-    title: "Sản phẩm 20",
-    price: "200.000đ",
-    image: "https://i.ibb.co/YqfCjjS/image.png",
-    isNew: false,
-    isTrending: true,
-    artist: "Antonio Canova",
-    publishYear: "2024",
-    type: "Tạp chí",
-  },
-  {
-    id: 21,
-    title: "Sản phẩm 21",
-    price: "250.000đ",
-    image: "https://i.ibb.co/6cQg2V7P/image.png",
-    isNew: true,
-    isTrending: false,
-    artist: "Leonardo da Vinci",
-    publishYear: "2023",
-    type: "Sách nghệ thuật",
-  },
-  {
-    id: 22,
-    title: "Sản phẩm 22",
-    price: "280.000đ",
-    image: "https://i.ibb.co/fGTTpx8h/image.png",
-    isNew: false,
-    isTrending: true,
-    artist: "Michelangelo",
-    publishYear: "2022",
-    type: "DVD văn hóa",
-  },
-];
+export const sampleProducts = {
+  khuyentai: [
+    {
+      id: "khuyentai-1",
+      title: "Khuyên tai 1",
+      price: "Liên hệ",
+      images: [
+        "khuyentai-hero (1).webp",
+        "khuyentai-hero (2).webp",
+        "khuyentai-hero (11).webp",
+        "khuyentai-hero (12).webp",
+        "khuyentai-hero (41).webp",
+      ],
+      image: "khuyentai-hero (1).webp", // Thumbnail
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-2",
+      title: "Khuyên tai 2",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (3).webp"],
+      image: "khuyentai-hero (3).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-3",
+      title: "Khuyên tai 3",
+      price: "Liên hệ",
+      images: [
+        "khuyentai-hero (4).webp",
+        "khuyentai-hero (5).webp",
+        "khuyentai-hero (13).webp",
+        "khuyentai-hero (14).webp",
+      ],
+      image: "khuyentai-hero (4).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-4",
+      title: "Khuyên tai 4",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (6).webp", "khuyentai-hero (40).webp"],
+      image: "khuyentai-hero (6).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-5",
+      title: "Khuyên tai 5",
+      price: "Liên hệ",
+      images: [
+        "khuyentai-hero (7).webp",
+        "khuyentai-hero (38).webp",
+        "khuyentai-hero (39).webp",
+      ],
+      image: "khuyentai-hero (7).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-6",
+      title: "Khuyên tai 6",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (8).webp", "khuyentai-hero (9).webp"],
+      image: "khuyentai-hero (8).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-7",
+      title: "Khuyên tai 7",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (10).webp"],
+      image: "khuyentai-hero (10).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-8",
+      title: "Khuyên tai 8",
+      price: "Liên hệ",
+      images: [
+        "khuyentai-hero (15).webp",
+        "khuyentai-hero (16).webp",
+        "khuyentai-hero (17).webp",
+        "khuyentai-hero (18).webp",
+        "khuyentai-hero (19).webp",
+      ],
+      image: "khuyentai-hero (15).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-9",
+      title: "Khuyên tai 9",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (20).webp", "khuyentai-hero (21).webp"],
+      image: "khuyentai-hero (20).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-10",
+      title: "Khuyên tai 10",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (22).webp"],
+      image: "khuyentai-hero (22).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-11",
+      title: "Khuyên tai 11",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (23).webp", "khuyentai-hero (24).webp"],
+      image: "khuyentai-hero (23).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-12",
+      title: "Khuyên tai 12",
+      price: "Liên hệ",
+      images: [
+        "khuyentai-hero (25).webp",
+        "khuyentai-hero (26).webp",
+        "khuyentai-hero (27).webp",
+      ],
+      image: "khuyentai-hero (25).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-13",
+      title: "Khuyên tai 13",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (28).webp", "khuyentai-hero (29).webp"],
+      image: "khuyentai-hero (28).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-14",
+      title: "Khuyên tai 14",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (30).webp"],
+      image: "khuyentai-hero (30).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-15",
+      title: "Khuyên tai 15",
+      price: "Liên hệ",
+      images: [
+        "khuyentai-hero (31).webp",
+        "khuyentai-hero (32).webp",
+        "khuyentai-hero (34).webp",
+        "khuyentai-hero (35).webp",
+      ],
+      image: "khuyentai-hero (31).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-16",
+      title: "Khuyên tai 16",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (36).webp"],
+      image: "khuyentai-hero (36).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-17",
+      title: "Khuyên tai 17",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (37).webp"],
+      image: "khuyentai-hero (37).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-18",
+      title: "Khuyên tai 18",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (43).webp"],
+      image: "khuyentai-hero (43).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-19",
+      title: "Khuyên tai 19",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (44).webp"],
+      image: "khuyentai-hero (44).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-20",
+      title: "Khuyên tai 20",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (45).webp"],
+      image: "khuyentai-hero (45).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-21",
+      title: "Khuyên tai 21",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (46).webp"],
+      image: "khuyentai-hero (46).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-22",
+      title: "Khuyên tai 22",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (47).webp"],
+      image: "khuyentai-hero (47).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-23",
+      title: "Khuyên tai 23",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (48).webp"],
+      image: "khuyentai-hero (48).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-24",
+      title: "Khuyên tai 24",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (49).webp"],
+      image: "khuyentai-hero (49).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-25",
+      title: "Khuyên tai 25",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (50).webp"],
+      image: "khuyentai-hero (50).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-26",
+      title: "Khuyên tai 26",
+      price: "Liên hệ",
+      images: ["khuyentai-hero (42).webp"],
+      image: "khuyentai-hero (42).webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-27",
+      title: "Khuyên tai 27",
+      price: "Liên hệ",
+      images: ["MDP Model 21.webp", "MDP Model 22.webp"],
+      image: "MDP Model 21.webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-28",
+      title: "Khuyên tai 28",
+      price: "Liên hệ",
+      images: ["MDP Model 23.webp", "MDP Model 24.webp"],
+      image: "MDP Model 23.webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-29",
+      title: "Khuyên tai 29",
+      price: "Liên hệ",
+      images: ["MDP Model 210.webp"],
+      image: "MDP Model 210.webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-30",
+      title: "Khuyên tai 30",
+      price: "Liên hệ",
+      images: ["MDP Model 217.webp"],
+      image: "MDP Model 217.webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-31",
+      title: "Khuyên tai 31",
+      price: "Liên hệ",
+      images: ["MDP Model 220.webp"],
+      image: "MDP Model 220.webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-32",
+      title: "Khuyên tai 32",
+      price: "Liên hệ",
+      images: ["MDP-3837.webp", "MDP-3842.webp"],
+      image: "MDP-3837.webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-33",
+      title: "Khuyên tai 33",
+      price: "Liên hệ",
+      images: ["MDP-3805.webp"],
+      image: "MDP-3805.webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-34",
+      title: "Khuyên tai 34",
+      price: "Liên hệ",
+      images: ["MDP-3812.webp"],
+      image: "MDP-3812.webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-35",
+      title: "Khuyên tai 35",
+      price: "Liên hệ",
+      images: ["MDP-3817.webp"],
+      image: "MDP-3817.webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-36",
+      title: "Khuyên tai 36",
+      price: "Liên hệ",
+      images: ["MDP-3823.webp"],
+      image: "MDP-3823.webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-37",
+      title: "Khuyên tai 37",
+      price: "Liên hệ",
+      images: ["MDP-3830.webp"],
+      image: "MDP-3830.webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-38",
+      title: "Khuyên tai 38",
+      price: "Liên hệ",
+      images: ["MDP-3846.webp"],
+      image: "MDP-3846.webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-39",
+      title: "Khuyên tai 39",
+      price: "Liên hệ",
+      images: ["MDP-3875.webp"],
+      image: "MDP-3875.webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-40",
+      title: "Khuyên tai 40",
+      price: "Liên hệ",
+      images: ["MDP-3877.webp"],
+      image: "MDP-3877.webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-41",
+      title: "Khuyên tai 41",
+      price: "Liên hệ",
+      images: ["MDP-3886.webp"],
+      image: "MDP-3886.webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-42",
+      title: "Khuyên tai 42",
+      price: "Liên hệ",
+      images: ["MDP-3891.webp"],
+      image: "MDP-3891.webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+    {
+      id: "khuyentai-43",
+      title: "Khuyên tai 43",
+      price: "Liên hệ",
+      images: [
+        "MDP-1140241.webp",
+        "MDP-1140315.webp",
+        "MDP-1140349.webp",
+        "MDP-1140364.webp",
+      ],
+      image: "MDP-1140241.webp", // Thumbnail
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Khuyên tai",
+      category: "khuyentai",
+    },
+  ],
+  anpham: [
+    {
+      id: "anpham-1",
+      title: "Tuổi thơ",
+      price: "Liên hệ",
+      images: ["tuoitho.png"],
+      image: "tuoitho.png",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tuổi thơ",
+      category: "anpham",
+    },
+    {
+      id: "anpham-2",
+      title: "Dâu tây",
+      price: "Liên hệ",
+      images: ["dautay.png"],
+      image: "dautay.png",
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Dâu tây",
+      category: "anpham",
+    },
+    {
+      id: "anpham-3",
+      title: "Hoa ban trắng",
+      price: "Liên hệ",
+      images: ["hoabantrang.png"],
+      image: "hoabantrang.png",
+      isNew: true,
+      isTrending: false,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Hoa ban trắng",
+      category: "anpham",
+    },
+  ],
+  "in-theo-yeu-cau": [
+    {
+      id: "tranh-1",
+      title: "tranh 1",
+      price: "Liên hệ",
+      images: ["BTT01209-HDR.webp"],
+      image: "BTT01209-HDR.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "In tranh nghệ thuật",
+      category: "in-theo-yeu-cau",
+    },
+    {
+      id: "tranh-2",
+      title: "tranh 2",
+      price: "Liên hệ",
+      images: ["BTT01405-HDR.webp"],
+      image: "BTT01405-HDR.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "In tranh nghệ thuật",
+      category: "in-theo-yeu-cau",
+    },
+    {
+      id: "tranh-3",
+      title: "tranh 3",
+      price: "Liên hệ",
+      images: ["BTT01421-HDR.webp"],
+      image: "BTT01421-HDR.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "In tranh nghệ thuật",
+      category: "in-theo-yeu-cau",
+    },
+    {
+      id: "tranh-4",
+      title: "tranh 4",
+      price: "Liên hệ",
+      images: ["BTT01438-HDR.webp"],
+      image: "BTT01438-HDR.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "In tranh nghệ thuật",
+      category: "in-theo-yeu-cau",
+    },
+    {
+      id: "tranh-5",
+      title: "tranh 5",
+      price: "Liên hệ",
+      images: ["BTT01451-HDR.webp"],
+      image: "BTT01451-HDR.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "In tranh nghệ thuật",
+      category: "in-theo-yeu-cau",
+    },
+    {
+      id: "tranh-6",
+      title: "tranh 6",
+      price: "Liên hệ",
+      images: ["BTT01498-HDR.webp"],
+      image: "BTT01498-HDR.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "In tranh nghệ thuật",
+      category: "in-theo-yeu-cau",
+    },
+    {
+      id: "tranh-7",
+      title: "tranh 7",
+      price: "Liên hệ",
+      images: ["BTT01513-HDR.webp"],
+      image: "BTT01513-HDR.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "In tranh nghệ thuật",
+      category: "in-theo-yeu-cau",
+    },
+    {
+      id: "tranh-8",
+      title: "tranh 8",
+      price: "Liên hệ",
+      images: ["BTT01517-HDR.webp"],
+      image: "BTT01517-HDR.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "In tranh nghệ thuật",
+      category: "in-theo-yeu-cau",
+    },
+    {
+      id: "tranh-9",
+      title: "tranh 9",
+      price: "Liên hệ",
+      images: ["BTT01529-HDR.webp"],
+      image: "BTT01529-HDR.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "In tranh nghệ thuật",
+      category: "in-theo-yeu-cau",
+    },
+  ],
+  "hoi-thao-nghe-thuat": [
+    {
+      id: "hoithaonghethuat-1",
+      title: "Tay nặn tay vẽ",
+      price: "Liên hệ",
+      images: ["hoithaonghethuat.jpg"],
+      image: "hoithaonghethuat.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tay nặn tay vẽ",
+      category: "hoi-thao-nghe-thuat",
+    },
+  ],
+  "thoi-trang-va-phu-kien": [
+    {
+      id: "thoitrang-1",
+      title: "Áo phông nam",
+      price: "Liên hệ",
+      images: ["aophong.png"],
+      image: "aophong.png",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Áo phông nam",
+      category: "thoi-trang-va-phu-kien",
+    },
+  ],
+  thocam: [
+    {
+      id: "thocam-1",
+      title: "Cravat 01",
+      price: "600.000đ",
+      images: ["Cravat 01.webp"],
+      image: "Cravat 01.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Cravat",
+      category: "thocam",
+    },
+    {
+      id: "thocam-2",
+      title: "Cravat 02",
+      price: "600.000đ",
+      images: ["Cravat 02.webp"],
+      image: "Cravat 02.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Cravat",
+      category: "thocam",
+    },
+    {
+      id: "thocam-3",
+      title: "Cravat 03",
+      price: "600.000đ",
+      images: ["Cravat 03.webp"],
+      image: "Cravat 03.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Cravat",
+      category: "thocam",
+    },
+    {
+      id: "thocam-4",
+      title: "Cravat 04",
+      price: "600.000đ",
+      images: ["Cravat 04.webp"],
+      image: "Cravat 04.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Cravat",
+      category: "thocam",
+    },
+    {
+      id: "thocam-5",
+      title: "Đầm trẻ em mã 01,02,03",
+      price: "Liên hệ",
+      images: ["Đầm_trẻ_em_mã_01_02_03.webp"],
+      image: "Đầm_trẻ_em_mã_01_02_03.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Đầm trẻ em",
+      category: "thocam",
+    },
+    {
+      id: "thocam-6",
+      title: "Đầm trẻ em mã 04,05,06",
+      price: "Liên hệ",
+      images: ["Đầm_trẻ_em_mã_04_05_06.webp"],
+      image: "Đầm_trẻ_em_mã_04_05_06.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Đầm trẻ em",
+      category: "thocam",
+    },
+    {
+      id: "thocam-7",
+      title: "Gối trang trí 1",
+      price: "600.000đ",
+      images: ["Gôi trang trí 1.webp"],
+      image: "Gôi trang trí 1.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Gối trang trí",
+      category: "thocam",
+    },
+    {
+      id: "thocam-8",
+      title: "Gối trang trí 2",
+      price: "600.000đ",
+      images: ["Gôi trang trí 2.webp"],
+      image: "Gôi trang trí 2.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Gối trang trí",
+      category: "thocam",
+    },
+    {
+      id: "thocam-9",
+      title: "Hộp bút",
+      price: "60.000đ",
+      images: ["Hộp bút.webp"],
+      image: "Hộp bút.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Hộp bút",
+      category: "thocam",
+    },
+    {
+      id: "thocam-10",
+      title: "Kẹp tóc 01",
+      price: "195.000đ",
+      images: ["Kẹp tóc 01.webp"],
+      image: "Kẹp tóc 01.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Kẹp tóc",
+      category: "thocam",
+    },
+    {
+      id: "thocam-11",
+      title: "Kẹp tóc 02",
+      price: "195.000đ",
+      images: ["Kẹp tóc 02.webp"],
+      image: "Kẹp tóc 02.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Kẹp tóc",
+      category: "thocam",
+    },
+    {
+      id: "thocam-12",
+      title: "Kẹp tóc 03",
+      price: "195.000đ",
+      images: ["Kẹp tóc 03.webp"],
+      image: "Kẹp tóc 03.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Kẹp tóc",
+      category: "thocam",
+    },
+    {
+      id: "thocam-13",
+      title: "Kẹp tóc 04",
+      price: "195.000đ",
+      images: ["Kẹp tóc 04.webp"],
+      image: "Kẹp tóc 04.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Kẹp tóc",
+      category: "thocam",
+    },
+    {
+      id: "thocam-14",
+      title: "Kẹp tóc 05",
+      price: "195.000đ",
+      images: ["Kẹp tóc 05.webp"],
+      image: "Kẹp tóc 05.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Kẹp tóc",
+      category: "thocam",
+    },
+    {
+      id: "thocam-15",
+      title: "Kẹp tóc 06",
+      price: "195.000đ",
+      images: ["Kẹp tóc 06.webp"],
+      image: "Kẹp tóc 06.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Kẹp tóc",
+      category: "thocam",
+    },
+    {
+      id: "thocam-16",
+      title: "Kẹp tóc 07",
+      price: "195.000đ",
+      images: ["Kẹp tóc 07.webp"],
+      image: "Kẹp tóc 07.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Kẹp tóc",
+      category: "thocam",
+    },
+    {
+      id: "thocam-17",
+      title: "Kẹp tóc 08",
+      price: "195.000đ",
+      images: ["Kẹp tóc 08.webp"],
+      image: "Kẹp tóc 08.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Kẹp tóc",
+      category: "thocam",
+    },
+    {
+      id: "thocam-18",
+      title: "Set hộp đồ trang điểm 3 size",
+      price: "370.000đ",
+      images: ["Set hộp đồ trang điểm 3 size.webp"],
+      image: "Set hộp đồ trang điểm 3 size.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Set hộp đồ trang điểm",
+      category: "thocam",
+    },
+    {
+      id: "thocam-19",
+      title: "Sơ mi nam 01",
+      price: "1.450.000đ",
+      images: ["Sơ mi nam 01.webp"],
+      image: "Sơ mi nam 01.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Sơ mi nam",
+      category: "thocam",
+    },
+    {
+      id: "thocam-20",
+      title: "Sơ mi nam 02",
+      price: "1.450.000đ",
+      images: ["Sơ mi nam 02.webp"],
+      image: "Sơ mi nam 02.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Sơ mi nam",
+      category: "thocam",
+    },
+    {
+      id: "thocam-21",
+      title: "Sơ mi nam 03",
+      price: "1.450.000đ",
+      images: ["Sơ mi nam 03.webp"],
+      image: "Sơ mi nam 03.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Sơ mi nam",
+      category: "thocam",
+    },
+    {
+      id: "thocam-22",
+      title: "Sơ mi nam 04",
+      price: "1.450.000đ",
+      images: ["Sơ mi nam 04.webp"],
+      image: "Sơ mi nam 04.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Sơ mi nam",
+      category: "thocam",
+    },
+    {
+      id: "thocam-23",
+      title: "Túi khoác vai",
+      price: "180.000đ",
+      images: ["Túi khoác vai.webp"],
+      image: "Túi khoác vai.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Túi khoác vai",
+      category: "thocam",
+    },
+    {
+      id: "thocam-24",
+      title: "Túi xách",
+      price: "1.500.000đ",
+      images: ["Túi xách.webp"],
+      image: "Túi xách.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Túi xách",
+      category: "thocam",
+    },
+    {
+      id: "thocam-25",
+      title: "Váy ngắn mã 01,02,03,04",
+      price: "4.200.000đ",
+      images: ["Váy_ngắn_mã_01_02_03_04.webp"],
+      image: "Váy_ngắn_mã_01_02_03_04.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Váy ngắn",
+      category: "thocam",
+    },
+    {
+      id: "thocam-26",
+      title: "Váy ngắn mã 05",
+      price: "3.500.000đ",
+      images: ["Váy ngắn mã 05.webp"],
+      image: "Váy ngắn mã 05.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Váy ngắn",
+      category: "thocam",
+    },
+    {
+      id: "thocam-27",
+      title: "Váy ngắn mã 06, 07",
+      price: "4.200.000đ",
+      images: ["Váy ngắn mã 06, 07.webp"],
+      image: "Váy ngắn mã 06, 07.webp",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Váy ngắn",
+      category: "thocam",
+    },
+  ],
+  sanphamtuthong: [
+    {
+      id: "sanphamtuthong-1",
+      title: "Vòng quả thông 01",
+      price: "Liên hệ",
+      images: ["Vòng quả thông 01.jpg"],
+      image: "Vòng quả thông 01.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Vòng quả thông",
+      category: "sanphamtuthong",
+      size: "30cm x 1m", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-2",
+      title: "Vòng quả thông 02",
+      price: "Liên hệ",
+      images: ["Vòng quả thông 02.jpg"],
+      image: "Vòng quả thông 02.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Vòng quả thông",
+      category: "sanphamtuthong",
+      size: "30cm x 1m", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-3",
+      title: "Vòng quả thông 03",
+      price: "Liên hệ",
+      images: ["Vòng quả thông 03.jpg"],
+      image: "Vòng quả thông 03.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Vòng quả thông",
+      category: "sanphamtuthong",
+      size: "30cm x 1m", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-4",
+      title: "Vòng quả thông 04",
+      price: "Liên hệ",
+      images: ["Vòng quả thông 04.jpg"],
+      image: "Vòng quả thông 04.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Vòng quả thông",
+      category: "sanphamtuthong",
+      size: "30cm x 1m", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-5",
+      title: "Vòng quả thông 05",
+      price: "Liên hệ",
+      images: ["Vòng quả thông 05.jpg"],
+      image: "Vòng quả thông 05.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Vòng quả thông",
+      category: "sanphamtuthong",
+      size: "30cm x 1m", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-6",
+      title: "Vòng quả thông 06",
+      price: "Liên hệ",
+      images: ["Vòng quả thông 06.jpg"],
+      image: "Vòng quả thông 06.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Vòng quả thông",
+      category: "sanphamtuthong",
+      size: "30cm x 1m", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-7",
+      title: "Vòng quả thông 08",
+      price: "Liên hệ",
+      images: ["Vòng quả thông 08.jpg"],
+      image: "Vòng quả thông 08.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Vòng quả thông",
+      category: "sanphamtuthong",
+      size: "30cm x 1m", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-8",
+      title: "Vòng quả thông 09",
+      price: "Liên hệ",
+      images: ["Vòng quả thông 09.jpg"],
+      image: "Vòng quả thông 09.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Vòng quả thông",
+      category: "sanphamtuthong",
+      size: "30cm x 1m", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-9",
+      title: "Vòng quả thông 10",
+      price: "Liên hệ",
+      images: ["Vòng quả thông 10.jpg"],
+      image: "Vòng quả thông 10.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Vòng quả thông",
+      category: "sanphamtuthong",
+      size: "30cm x 1m", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-10",
+      title: "Vòng quả thông 11",
+      price: "Liên hệ",
+      images: ["Vòng quả thông 11.jpg"],
+      image: "Vòng quả thông 11.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Vòng quả thông",
+      category: "sanphamtuthong",
+      size: "30cm x 1m", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-11",
+      title: "Tranh theo yêu cầu",
+      price: "Liên hệ",
+      images: ["Tranh theo yêu cầu 02.jpg"],
+      image: "Tranh theo yêu cầu 02.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh theo yêu cầu",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-12",
+      title: "Tranh mini",
+      price: "110.000đ",
+      images: ["Tranh mini.jpg"],
+      image: "Tranh mini.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh mini",
+      category: "sanphamtuthong",
+      size: "10cm x 10cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-13",
+      title: "Tranh mini 01",
+      price: "110.000đ",
+      images: ["Tranh mini 01.jpg"],
+      image: "Tranh mini 01.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh mini",
+      category: "sanphamtuthong",
+      size: "10cm x 10cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-14",
+      title: "Tranh mini 02",
+      price: "110.000đ",
+      images: ["Tranh mini 02.jpg"],
+      image: "Tranh mini 02.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh mini",
+      category: "sanphamtuthong",
+      size: "10cm x 10cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-15",
+      title: "Tranh độc bản 01",
+      price: "Liên hệ",
+      images: ["Tranh độc bản 01.jpg"],
+      image: "Tranh độc bản 01.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh độc bản",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-16",
+      title: "Tranh độc bản 02",
+      price: "Liên hệ",
+      images: ["Tranh độc bản 02.jpg"],
+      image: "Tranh độc bản 02.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh độc bản",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-17",
+      title: "Tranh độc bản 03",
+      price: "Liên hệ",
+      images: ["Tranh độc bản 03.jpg"],
+      image: "Tranh độc bản 03.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh độc bản",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-18",
+      title: "Tranh độc bản 04",
+      price: "Liên hệ",
+      images: ["Tranh độc bản 04.jpg"],
+      image: "Tranh độc bản 04.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh độc bản",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-19",
+      title: "Tranh độc bản 05",
+      price: "Liên hệ",
+      images: ["Tranh độc bản 05.jpg"],
+      image: "Tranh độc bản 05.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh độc bản",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-20",
+      title: "Tranh độc bản 06",
+      price: "Liên hệ",
+      images: ["Tranh độc bản 06.jpg"],
+      image: "Tranh độc bản 06.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh độc bản",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-21",
+      title: "Tranh A4 01",
+      price: "700.000đ",
+      images: ["Tranh A4 01.jpg"],
+      image: "Tranh A4 01.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh A4",
+      category: "sanphamtuthong",
+      size: "20cmx30cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-22",
+      title: "Tranh A4 02",
+      price: "700.000đ",
+      images: ["Tranh A4 02.jpg"],
+      image: "Tranh A4 02.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh A4",
+      category: "sanphamtuthong",
+      size: "20cmx30cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-23",
+      title: "Tranh A4 03",
+      price: "700.000đ",
+      images: ["Tranh A4 03.jpg"],
+      image: "Tranh A4 03.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh A4",
+      category: "sanphamtuthong",
+      size: "20cmx30cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-24",
+      title: "Tranh A4 04",
+      price: "700.000đ",
+      images: ["Tranh A4 04.jpg"],
+      image: "Tranh A4 04.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh A4",
+      category: "sanphamtuthong",
+      size: "20cmx30cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-25",
+      title: "Tranh A4 05",
+      price: "700.000đ",
+      images: ["Tranh A4 05.jpg"],
+      image: "Tranh A4 05.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh A4",
+      category: "sanphamtuthong",
+      size: "20cmx30cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-26",
+      title: "Tranh A4 06",
+      price: "700.000đ",
+      images: ["Tranh A4 06.jpg"],
+      image: "Tranh A4 06.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh A4",
+      category: "sanphamtuthong",
+      size: "20cmx30cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-27",
+      title: "Tranh A4 07",
+      price: "700.000đ",
+      images: ["Tranh A4 07.jpg"],
+      image: "Tranh A4 07.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh A4",
+      category: "sanphamtuthong",
+      size: "20cmx30cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-28",
+      title: "Tranh A4 08",
+      price: "700.000đ",
+      images: ["Tranh A4 08.jpg"],
+      image: "Tranh A4 08.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh A4",
+      category: "sanphamtuthong",
+      size: "20cmx30cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-29",
+      title: "Tranh A4 09",
+      price: "700.000đ",
+      images: ["Tranh A4 09.jpg"],
+      image: "Tranh A4 09.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh A4",
+      category: "sanphamtuthong",
+      size: "20cmx30cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-30",
+      title: "Tranh A4 10",
+      price: "700.000đ",
+      images: ["Tranh A4 10.jpg"],
+      image: "Tranh A4 10.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh A4",
+      category: "sanphamtuthong",
+      size: "20cmx30cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-31",
+      title: "Tranh A4 11",
+      price: "700.000đ",
+      images: ["Tranh A4 11.jpg"],
+      image: "Tranh A4 11.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh A4",
+      category: "sanphamtuthong",
+      size: "20cmx30cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-32",
+      title: "Tranh A4 12",
+      price: "700.000đ",
+      images: ["Tranh A4 12.jpg"],
+      image: "Tranh A4 12.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh A4",
+      category: "sanphamtuthong",
+      size: "20cmx30cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-33",
+      title: "Tranh A4 13",
+      price: "700.000đ",
+      images: ["Tranh A4 13.jpg"],
+      image: "Tranh A4 13.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh A4",
+      category: "sanphamtuthong",
+      size: "20cmx30cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-34",
+      title: "Tranh A4 14",
+      price: "700.000đ",
+      images: ["Tranh A4 14.jpg"],
+      image: "Tranh A4 14.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh A4",
+      category: "sanphamtuthong",
+      size: "20cmx30cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-35",
+      title: "Tranh A4 15",
+      price: "700.000đ",
+      images: ["Tranh A4 15.jpg"],
+      image: "Tranh A4 15.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh A4",
+      category: "sanphamtuthong",
+      size: "20cmx30cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-36",
+      title: "Tranh 40x40 01",
+      price: "1.100.000đ",
+      images: ["Tranh 40x40 (01).jpg"],
+      image: "Tranh 40x40 (01).jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh 40x40",
+      category: "sanphamtuthong",
+      size: "40cmx40cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-37",
+      title: "Tranh 40x40 02",
+      price: "1.100.000đ",
+      images: ["Tranh 40x40 (02).jpg"],
+      image: "Tranh 40x40 (02).jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh 40x40",
+      category: "sanphamtuthong",
+      size: "40cmx40cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-38",
+      title: "Tranh 40x40 03",
+      price: "1.100.000đ",
+      images: ["Tranh 40x40 (03).jpg"],
+      image: "Tranh 40x40 (03).jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh 40x40",
+      category: "sanphamtuthong",
+      size: "40cmx40cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-39",
+      title: "Tranh 40x40 04",
+      price: "1.100.000đ",
+      images: ["Tranh 40x40 (04).jpg"],
+      image: "Tranh 40x40 (04).jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh 40x40",
+      category: "sanphamtuthong",
+      size: "40cmx40cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-40",
+      title: "Tranh 40x40 05",
+      price: "1.100.000đ",
+      images: ["Tranh 40x40 (05).jpg"],
+      image: "Tranh 40x40 (05).jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh 40x40",
+      category: "sanphamtuthong",
+      size: "40cmx40cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-41",
+      title: "Tranh 20x20 01",
+      price: "370.000đ",
+      images: ["Tranh 20x20 (01).jpg"],
+      image: "Tranh 20x20 (01).jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh 20x20",
+      category: "sanphamtuthong",
+      size: "20cmx20cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-42",
+      title: "Tranh 20x20 02",
+      price: "370.000đ",
+      images: ["Tranh 20x20 (02).jpg"],
+      image: "Tranh 20x20 (02).jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh 20x20",
+      category: "sanphamtuthong",
+      size: "20cmx20cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-43",
+      title: "Tranh 20x20 03",
+      price: "370.000đ",
+      images: ["Tranh 20x20 (03).jpg"],
+      image: "Tranh 20x20 (03).jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh 20x20",
+      category: "sanphamtuthong",
+      size: "20cmx20cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-44",
+      title: "Tranh 20x20 04",
+      price: "370.000đ",
+      images: ["Tranh 20x20 (04).jpg"],
+      image: "Tranh 20x20 (04).jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh 20x20",
+      category: "sanphamtuthong",
+      size: "20cmx20cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-45",
+      title: "Tranh 15x20 01",
+      price: "370.000đ",
+      images: ["Tranh 15x20 (01).jpg"],
+      image: "Tranh 15x20 (01).jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh 15x20",
+      category: "sanphamtuthong",
+      size: "15cmx20cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-46",
+      title: "Tranh 15x20 02",
+      price: "370.000đ",
+      images: ["Tranh 15x20 (02).jpg"],
+      image: "Tranh 15x20 (02).jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh 15x20",
+      category: "sanphamtuthong",
+      size: "15cmx20cm", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-47",
+      title: "Móc khóa 01",
+      price: "50.000đ",
+      images: ["moc khoa 01.jpg"],
+      image: "moc khoa 01.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Móc khóa",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-48",
+      title: "Móc khóa 02",
+      price: "50.000đ",
+      images: ["moc khoa 02.jpg"],
+      image: "moc khoa 02.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Móc khóa",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-49",
+      title: "Lọ hoa lớn 01",
+      price: "1.200.000đ",
+      images: ["Lọ hoa lớn 01.jpg"],
+      image: "Lọ hoa lớn 01.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Lọ hoa lớn",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-50",
+      title: "Lọ hoa lớn 02",
+      price: "1.200.000đ",
+      images: ["Lọ hoa lớn 02.jpg"],
+      image: "Lọ hoa lớn 02.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Lọ hoa lớn",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-51",
+      title: "Lọ hoa bé 01",
+      price: "370.000đ",
+      images: ["Lo hoa bé 01.jpg"],
+      image: "Lo hoa bé 01.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Lọ hoa bé",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-52",
+      title: "Lọ hoa bé 02",
+      price: "370.000đ",
+      images: ["Lo hoa bé 02.jpg"],
+      image: "Lo hoa bé 02.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Lọ hoa bé",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-53",
+      title: "Lọ hoa bé 03",
+      price: "370.000đ",
+      images: ["Lo hoa bé 03.jpg"],
+      image: "Lo hoa bé 03.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Lọ hoa bé",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-54",
+      title: "Lọ hoa bé 04",
+      price: "370.000đ",
+      images: ["Lo hoa bé 04.jpg"],
+      image: "Lo hoa bé 04.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Lọ hoa bé",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-55",
+      title: "Lọ hoa bé 05",
+      price: "370.000đ",
+      images: ["Lo hoa bé 05.jpg"],
+      image: "Lo hoa bé 05.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Lọ hoa bé",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-56",
+      title: "Lọ hoa bé 06",
+      price: "370.000đ",
+      images: ["Lo hoa bé 06.jpg"],
+      image: "Lo hoa bé 06.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Lọ hoa bé",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-57",
+      title: "Lọ hoa bé 07",
+      price: "370.000đ",
+      images: ["Lo hoa bé 07.jpg"],
+      image: "Lo hoa bé 07.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Lọ hoa bé",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-58",
+      title: "Lọ hoa bé 08",
+      price: "370.000đ",
+      images: ["Lo hoa bé 08.jpg"],
+      image: "Lo hoa bé 08.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Lọ hoa bé",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-59",
+      title: "Lọ hoa bé 09",
+      price: "370.000đ",
+      images: ["Lo hoa bé 09.jpg"],
+      image: "Lo hoa bé 09.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Lọ hoa bé",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-60",
+      title: "Bó hoa 1 bông",
+      price: "50.000đ",
+      images: ["bó hoa 1 bong.jpg"],
+      image: "bó hoa 1 bong.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Bó hoa 1 bông",
+      category: "sanphamtuthong",
+      size: "", // Thêm kích thước sản phẩm
+    },
+    {
+      id: "sanphamtuthong-61",
+      title: "Tranh 50x50",
+      price: "2.000.000đ",
+      images: ["Tranh 50x50.jpg"],
+      image: "Tranh 50x50.jpg",
+      isNew: true,
+      isTrending: true,
+      artist: "Musée Du Pin",
+      publishYear: "2025",
+      type: "Tranh 50x50",
+      category: "sanphamtuthong",
+      size: "50cmx50cm", // Thêm kích thước sản phẩm
+    },
+  ],
+};
 
 const filterCategories = {
-  "xuat-ban": {
+  khuyentai: {
+    types: [{ name: "Khuyên tai", count: 43 }],
+    artists: [{ name: "Musée Du Pin", count: 43 }],
+    publishYears: ["2025"],
+  },
+  anpham: {
     types: [
-      { name: "Sách nghệ thuật", count: 72 },
-      { name: "DVD văn hóa", count: 4 },
-      { name: "Sách tiếng Anh và tiếng nước ngoài", count: 3 },
-      { name: "Danh mục triển lãm", count: 73 },
-      { name: "Dành cho du khách trẻ tuổi", count: 73 },
-      { name: "Tiểu thuyết đồ họa", count: 28 },
-      { name: "Hướng dẫn", count: 8 },
-      { name: "Lịch sử, địa lý và khoa học", count: 34 },
-      { name: "Văn học, thơ ca và tiểu luận", count: 23 },
-      { name: "Tạp chí", count: 83 },
+      { name: "Tuổi thơ", count: 1 },
+      { name: "Dâu tây", count: 1 },
+      { name: "Hoa ban trắng", count: 1 },
     ],
-    artists: [
-      { name: "Albrecht Altdorfer", count: 15 },
-      { name: "Albrecht Dürer", count: 25 },
-      { name: "Antonio Canova", count: 18 },
-      { name: "Leonardo da Vinci", count: 42 },
-      { name: "Michelangelo", count: 35 },
-      { name: "Claude Monet", count: 28 },
-      { name: "Vincent van Gogh", count: 31 },
-    ],
-    publishYears: ["2024", "2025", "2023", "2022"],
+    artists: [{ name: "Musée Du Pin", count: 1 }],
+    publishYears: ["2025"],
   },
   "hoi-thao-nghe-thuat": {
-    types: [
-      { name: "Hội thảo trực tiếp", count: 45 },
-      { name: "Workshop online", count: 38 },
-      { name: "Triển lãm ảo", count: 27 },
-      { name: "Tọa đàm nghệ thuật", count: 52 },
-      { name: "Khóa học thực hành", count: 63 },
-      { name: "Chương trình tham quan", count: 31 },
-    ],
-    artists: [
-      { name: "Pablo Picasso", count: 28 },
-      { name: "Salvador Dalí", count: 22 },
-      { name: "Frida Kahlo", count: 19 },
-      { name: "Andy Warhol", count: 34 },
-      { name: "Gustav Klimt", count: 25 },
-    ],
-    publishYears: ["2024", "2025"],
+    types: [{ name: "Tay nặn tay vẽ", count: 1 }],
+    artists: [{ name: "Musée Du Pin", count: 1 }],
+    publishYears: ["2025"],
   },
   "in-theo-yeu-cau": {
-    types: [
-      { name: "In tranh nghệ thuật", count: 85 },
-      { name: "In ảnh chất lượng cao", count: 67 },
-      { name: "In trên canvas", count: 43 },
-      { name: "In trên giấy đặc biệt", count: 38 },
-      { name: "In theo kích thước tùy chỉnh", count: 92 },
-    ],
-    artists: [
-      { name: "Henri Matisse", count: 31 },
-      { name: "Paul Cézanne", count: 27 },
-      { name: "Edgar Degas", count: 24 },
-      { name: "Auguste Renoir", count: 29 },
-    ],
-    publishYears: ["2024", "2025"],
-  },
-  "hinh-anh-va-van-phong-pham": {
-    types: [
-      { name: "Sổ tay nghệ thuật", count: 56 },
-      { name: "Bút và bộ bút", count: 43 },
-      { name: "Thiệp nghệ thuật", count: 38 },
-      { name: "Poster và tranh in", count: 72 },
-      { name: "Đồ dùng văn phòng", count: 45 },
-    ],
-    artists: [
-      { name: "Wassily Kandinsky", count: 23 },
-      { name: "Paul Klee", count: 19 },
-      { name: "Joan Miró", count: 27 },
-      { name: "Piet Mondrian", count: 21 },
-    ],
-    publishYears: ["2024", "2025"],
+    types: [{ name: "In tranh nghệ thuật", count: 1 }],
+    artists: [{ name: "Musée Du Pin", count: 1 }],
+    publishYears: ["2025"],
   },
   "thoi-trang-va-phu-kien": {
-    types: [
-      { name: "Áo thun nghệ thuật", count: 64 },
-      { name: "Túi tote canvas", count: 48 },
-      { name: "Khăn quàng", count: 35 },
-      { name: "Phụ kiện thời trang", count: 82 },
-      { name: "Mũ và nón", count: 29 },
-    ],
-    artists: [
-      { name: "Georgia O'Keeffe", count: 26 },
-      { name: "René Magritte", count: 31 },
-      { name: "Marc Chagall", count: 24 },
-      { name: "Egon Schiele", count: 22 },
-    ],
-    publishYears: ["2024", "2025"],
+    types: [{ name: "Áo phông nam", count: 1 }],
+    artists: [{ name: "Musée Du Pin", count: 1 }],
+    publishYears: ["2025"],
   },
-  "do-trang-suc": {
+  thocam: {
     types: [
-      { name: "Vòng cổ nghệ thuật", count: 58 },
-      { name: "Hoa tai", count: 42 },
-      { name: "Vòng tay", count: 37 },
-      { name: "Nhẫn", count: 45 },
-      { name: "Bộ trang sức", count: 31 },
+      { name: "Cravat", count: 4 },
+      { name: "Đầm trẻ em", count: 2 },
+      { name: "Gối trang trí", count: 2 },
+      { name: "Hộp bút", count: 1 },
+      { name: "Kẹp tóc", count: 2 },
+      { name: "Set hộp đồ trang điểm", count: 1 },
+      { name: "Sơ mi nam", count: 4 },
+      { name: "Túi khoác vai", count: 1 },
+      { name: "Túi xách", count: 1 },
+      { name: "Váy ngắn", count: 3 },
     ],
-    artists: [
-      { name: "Gustav Fabergé", count: 28 },
-      { name: "René Lalique", count: 34 },
-      { name: "Cartier", count: 41 },
-      { name: "Tiffany & Co.", count: 37 },
-    ],
-    publishYears: ["2024", "2025"],
+    artists: [{ name: "Musée Du Pin", count: 21 }],
+    publishYears: ["2025"],
   },
-  "do-gia-dung": {
+  sanphamtuthong: {
     types: [
-      { name: "Đồ trang trí nhà", count: 73 },
-      { name: "Bình và lọ", count: 45 },
-      { name: "Đèn trang trí", count: 38 },
-      { name: "Khung ảnh", count: 52 },
-      { name: "Đồ dùng bàn ăn", count: 64 },
+      { name: "Vòng quả thông", count: 3 },
+      { name: "Tranh độc bản", count: 6 },
+      { name: "Tranh A4", count: 15 },
+      { name: "Tranh 40x40", count: 5 },
+      { name: "Tranh 20x20", count: 2 },
+      { name: "Tranh 15x20", count: 2 },
+      { name: "Móc khóa", count: 2 },
+      { name: "Lọ hoa lớn", count: 2 },
+      { name: "Lọ hoa bé", count: 9 },
+      { name: "Bó hoa 1 bông", count: 1 },
+      { name: "Tranh 50x50", count: 1 },
     ],
-    artists: [
-      { name: "William Morris", count: 29 },
-      { name: "Frank Lloyd Wright", count: 35 },
-      { name: "Charles Rennie Mackintosh", count: 27 },
-      { name: "Émile Gallé", count: 31 },
-    ],
-    publishYears: ["2024", "2025"],
-  },
-  "tre-em": {
-    types: [
-      { name: "Sách tô màu", count: 47 },
-      { name: "Đồ chơi nghệ thuật", count: 58 },
-      { name: "Bộ dụng cụ vẽ", count: 42 },
-      { name: "Sách truyện nghệ thuật", count: 63 },
-      { name: "Trò chơi sáng tạo", count: 51 },
-    ],
-    artists: [
-      { name: "Maurice Sendak", count: 32 },
-      { name: "Eric Carle", count: 38 },
-      { name: "Beatrix Potter", count: 29 },
-      { name: "Dr. Seuss", count: 45 },
-    ],
-    publishYears: ["2024", "2025"],
+    artists: [{ name: "Musée Du Pin", count: 48 }],
+    publishYears: ["2025"],
   },
 };
 
 const categoryData = {
-  "xuat-ban": {
-    title: "Xuất bản",
+  khuyentai: {
+    title: "Khuyên tai",
     subtitle:
-      "Đắm mình vào thư viện lý tưởng không thể hiểu thấu của Louvre! Thông qua bộ sưu tập các tác phẩm về sống...",
-    heroImage:
-      "https://boutique.louvre.fr/files/contents/400222/691027-a35b4cad-banner/contents-691027.jpg",
+      "Khuyên tai là một trong những món trang sức được ưa chuộng nhất trong thời gian gần đây. Đây là một trong những món trang sức được ưa chuộng nhất trong thời gian gần đây. Đây là một trong những món trang sức được ưa chuộng nhất trong thời gian gần đây.",
+    heroImage: "MDP-1140241.webp",
+  },
+  anpham: {
+    title: "Ấn phẩm",
+    subtitle:
+      "Ấn phẩm nghệ thuật, mở ra một trang mới, một cuộc hành trình đầy thú vị tại Musée Du Pin",
+    heroImage: "dautaybackground.png",
   },
   "hoi-thao-nghe-thuat": {
     title: "Hội thảo nghệ thuật",
     subtitle:
-      "Khám phá nghệ thuật qua góc nhìn mới mẻ, nơi hội tụ của những tài năng và đam mê sáng tạo không giới hạn",
-    heroImage:
-      "https://boutique.louvre.fr/files/contents/400223/691028-61587142-banner/contents-691028.jpg",
+      "Hội thảo nghệ thuật mang đến những trải nghiệm thú vị và bổ ích, giúp bạn khám phá và hiểu sâu hơn về nghệ thuật tại Musée Du Pin",
+    heroImage: "hoithaonghethuat.jpg",
   },
   "in-theo-yeu-cau": {
     title: "In theo yêu cầu",
     subtitle:
       "Biến ý tưởng của bạn thành hiện thực với dịch vụ in ấn chất lượng cao, tùy chỉnh theo mọi nhu cầu",
-    heroImage:
-      "https://boutique.louvre.fr/files/contents/400170/688709-73fd23f3-banner/contents-688709.jpg",
-  },
-  "hinh-anh-va-van-phong-pham": {
-    title: "Hình ảnh và văn phòng phẩm",
-    subtitle:
-      "Nâng tầm không gian làm việc với bộ sưu tập văn phòng phẩm độc đáo, kết hợp nghệ thuật và công năng",
-    heroImage:
-      "https://boutique.louvre.fr/files/contents/400224/691029-c28db588-banner/contents-691029.jpg",
+    heroImage: "BTT01405-HDR.webp",
   },
   "thoi-trang-va-phu-kien": {
     title: "Thời trang và phụ kiện",
     subtitle:
       "Phong cách thời thượng kết hợp với nghệ thuật đương đại, tạo nên những thiết kế độc đáo và sang trọng",
-    heroImage:
-      "https://boutique.louvre.fr/files/contents/400225/691030-3dd3fd53-banner/contents-691030.jpg",
+    heroImage: "aophongbackground.jpg",
   },
-  "do-trang-suc": {
-    title: "Đồ trang sức",
+  thocam: {
+    title: "Thổ cẩm",
     subtitle:
-      "Những kiệt tác nghệ thuật thu nhỏ, mang vẻ đẹp tinh tế và câu chuyện lịch sử đến từng chi tiết",
-    heroImage:
-      "https://boutique.louvre.fr/files/contents/400226/691031-d554a72c-banner/contents-691031.jpg",
+      "Sản phẩm Thổ cẩm mang đậm sắc đồng bào K'ho được thiết kế đẹp mắt, giản dị",
+    heroImage: "Váy ngắn mã 05.webp",
   },
-  "do-gia-dung": {
-    title: "Đồ gia dụng",
+  sanphamtuthong: {
+    title: "Sản phẩm từ thông",
     subtitle:
-      "Nâng tầm không gian sống với bộ sưu tập đồ gia dụng nghệ thuật, kết hợp thẩm mỹ và công năng",
-    heroImage:
-      "https://boutique.louvre.fr/files/contents/400227/691032-4ab30b8c-banner/contents-691032.jpg",
+      "Sản phẩm được thiết kế từ Thông, nét đặc trưng cùng vẻ đẹp thiên nhiên được Musée Du Pin khắc họa tạo nên các sản phẩm tuyệt đẹp.",
+    heroImage: "Tranh A4 04.jpg",
   },
-  "tre-em": {
-    title: "Trẻ em",
-    subtitle:
-      "Khơi dậy trí tưởng tượng và tình yêu nghệ thuật cho thế hệ tương lai qua những sản phẩm đặc biệt",
-    heroImage:
-      "https://boutique.louvre.fr/files/contents/400228/691034-5653eeb4-banner/contents-691034.jpg",
-  },
+};
+
+// Helper function to get image URL based on category
+const getImageUrl = (category, filename) => {
+  switch (category) {
+    case "khuyentai":
+      return getKhuyenTaiImageUrl(filename);
+    case "anpham":
+      return getAnPhamImageUrl(filename);
+    case "in-theo-yeu-cau":
+      return getInTheoYeuCauImageUrl(filename);
+    case "hoi-thao-nghe-thuat":
+      return getHoiThaoNgheThuatImageUrl(filename);
+    case "thoi-trang-va-phu-kien":
+      return getThoiTrangImageUrl(filename);
+    case "thocam":
+      return getThoCamImageUrl(filename);
+    case "sanphamtuthong":
+      return getSanPhamTuThongImageUrl(filename);
+    default:
+      return "";
+  }
 };
 
 const CategoryDetail = () => {
@@ -506,14 +2200,21 @@ const CategoryDetail = () => {
 
   // Calculate min and max prices from products
   const priceRange = useMemo(() => {
-    const prices = sampleProducts.map((product) =>
-      parseInt(product.price.replace(/[^\d]/g, ""))
-    );
+    const prices = (sampleProducts[categoryId] || [])
+      .map((product) => {
+        if (product.price === "Liên hệ") return 0;
+        return parseInt(product.price.replace(/[^\d]/g, "")) || 0;
+      })
+      .filter((price) => price > 0); // Chỉ lấy giá có giá trị số
+
     return {
-      min: 0, // Always start from 0
-      max: Math.max(...prices),
+      min: prices.length > 0 ? Math.min(...prices) : 0,
+      max: prices.length > 0 ? Math.max(...prices) : 0,
+      hasContactPrice: (sampleProducts[categoryId] || []).some(
+        (product) => product.price === "Liên hệ"
+      ),
     };
-  }, []);
+  }, [categoryId]);
 
   const [openSections, setOpenSections] = useState({
     types: false,
@@ -529,15 +2230,16 @@ const CategoryDetail = () => {
     priceRange: [priceRange.min, priceRange.max],
   });
 
-  const [filteredProducts, setFilteredProducts] = useState(sampleProducts);
-  const [filteredCount, setFilteredCount] = useState(sampleProducts.length);
-  const [filterCounts, setFilterCounts] = useState({
-    types: {},
-    artists: {},
-    publishYears: {},
-  });
+  const [filteredProducts, setFilteredProducts] = useState(
+    sampleProducts[categoryId] || []
+  );
+  const [filteredCount, setFilteredCount] = useState(
+    sampleProducts[categoryId].length
+  );
 
-  const [previewCount, setPreviewCount] = useState(sampleProducts.length);
+  const [previewCount, setPreviewCount] = useState(
+    sampleProducts[categoryId].length
+  );
 
   // Format price for display
   const formatPrice = (price) => {
@@ -561,39 +2263,80 @@ const CategoryDetail = () => {
         filters.publishYears.length === 0 ||
         filters.publishYears.includes(product.publishYear);
 
-      const price = parseInt(product.price.replace(/[^\d]/g, ""));
-      const priceMatch =
-        price >= filters.priceRange[0] && price <= filters.priceRange[1];
+      // Xử lý lọc theo giá
+      let priceMatch = true;
+      if (product.price !== "Liên hệ") {
+        const price = parseInt(product.price.replace(/[^\d]/g, "")) || 0;
+        priceMatch =
+          price >= filters.priceRange[0] && price <= filters.priceRange[1];
+      }
 
       return typeMatch && artistMatch && yearMatch && priceMatch;
     });
   };
 
   // Calculate counts for each filter option based on current filtered products
-  const calculateFilterCounts = (products) => {
+  const calculateFilterCounts = () => {
     const counts = {
       types: {},
       artists: {},
       publishYears: {},
     };
 
-    products.forEach((product) => {
-      counts.types[product.type] = (counts.types[product.type] || 0) + 1;
-      counts.artists[product.artist] =
-        (counts.artists[product.artist] || 0) + 1;
-      counts.publishYears[product.publishYear] =
-        (counts.publishYears[product.publishYear] || 0) + 1;
+    // Đếm số lượng từ tất cả sản phẩm trong danh mục
+    const allCategoryProducts = sampleProducts[categoryId] || [];
+
+    allCategoryProducts.forEach((product) => {
+      // Đếm theo type
+      if (product.type) {
+        counts.types[product.type] = (counts.types[product.type] || 0) + 1;
+      }
+
+      // Đếm theo artist
+      if (product.artist) {
+        counts.artists[product.artist] =
+          (counts.artists[product.artist] || 0) + 1;
+      }
+
+      // Đếm theo năm
+      if (product.publishYear) {
+        counts.publishYears[product.publishYear] =
+          (counts.publishYears[product.publishYear] || 0) + 1;
+      }
     });
 
-    setFilterCounts(counts);
+    return counts;
+  };
+
+  // Cập nhật phần hiển thị trong modal
+  const getTypeCount = (typeName) => {
+    const allCategoryProducts = sampleProducts[categoryId] || [];
+    return allCategoryProducts.filter((product) => product.type === typeName)
+      .length;
+  };
+
+  const getArtistCount = (artistName) => {
+    const allCategoryProducts = sampleProducts[categoryId] || [];
+    return allCategoryProducts.filter(
+      (product) => product.artist === artistName
+    ).length;
+  };
+
+  const getYearCount = (year) => {
+    const allCategoryProducts = sampleProducts[categoryId] || [];
+    return allCategoryProducts.filter((product) => product.publishYear === year)
+      .length;
   };
 
   // Update preview count whenever filters change
   useEffect(() => {
-    const filtered = filterProducts(sampleProducts, selectedFilters);
+    const filtered = filterProducts(
+      sampleProducts[categoryId],
+      selectedFilters
+    );
     setPreviewCount(filtered.length);
-    calculateFilterCounts(filtered);
-  }, [selectedFilters]);
+    calculateFilterCounts();
+  }, [selectedFilters, categoryId]);
 
   // Toggle section open/close
   const toggleSection = (section) => {
@@ -605,9 +2348,13 @@ const CategoryDetail = () => {
 
   // Apply filters
   const applyFilters = () => {
-    const filtered = filterProducts(sampleProducts, selectedFilters);
+    const filtered = filterProducts(
+      sampleProducts[categoryId],
+      selectedFilters
+    );
     setFilteredProducts(filtered);
     setFilteredCount(filtered.length);
+    setPreviewCount(filtered.length);
     setShowFilters(false);
   };
 
@@ -620,11 +2367,11 @@ const CategoryDetail = () => {
       priceRange: [priceRange.min, priceRange.max],
     };
     setSelectedFilters(initialFilters);
-    const filtered = filterProducts(sampleProducts, initialFilters);
+    const filtered = filterProducts(sampleProducts[categoryId], initialFilters);
     setFilteredProducts(filtered);
     setFilteredCount(filtered.length);
     setPreviewCount(filtered.length);
-    calculateFilterCounts(filtered);
+    calculateFilterCounts();
   };
 
   // Close dropdown when clicking outside
@@ -671,6 +2418,17 @@ const CategoryDetail = () => {
     currentPage * productsPerPage
   );
 
+  // Kiểm tra xem có filter nào được chọn không
+  const hasActiveFilters = () => {
+    return (
+      selectedFilters.types.length > 0 ||
+      selectedFilters.artists.length > 0 ||
+      selectedFilters.publishYears.length > 0 ||
+      selectedFilters.priceRange[0] !== priceRange.min ||
+      selectedFilters.priceRange[1] !== priceRange.max
+    );
+  };
+
   return (
     <div className="category-detail">
       <Link to="/" className="back-button">
@@ -702,13 +2460,13 @@ const CategoryDetail = () => {
       <div className="hero-section-category">
         <div className="hero-image-category-container">
           <img
-            src={category.heroImage}
+            src={getImageUrl(categoryId, category.heroImage)}
             alt={category.title}
             className="hero-image-category"
           />
           <div className="hero-content-category">
-            <h1 className="hero-title-category">{category.title}</h1>
-            <p className="hero-subtitle-category">{category.subtitle}</p>
+            <h3>{category.title}</h3>
+            <p>{category.subtitle}</p>
           </div>
         </div>
       </div>
@@ -783,10 +2541,16 @@ const CategoryDetail = () => {
                   {product.isTrending && (
                     <span className="tag trending">Thịnh hành</span>
                   )}
-                  <img src={product.image} alt={product.title} />
+                  <img
+                    src={getImageUrl(product.category, product.image)}
+                    alt={product.title}
+                  />
                 </div>
                 <h3>{product.title}</h3>
                 <p className="price">{product.price}</p>
+                {product.size && (
+                  <p className="product-size">Kích thước: {product.size}</p>
+                )}
               </Link>
               {index === 9 && filteredProducts.length > 10 && (
                 <div className="block-product">
@@ -796,7 +2560,10 @@ const CategoryDetail = () => {
                     onClick={() => addToRecentlyViewed(filteredProducts[10])}
                   >
                     <img
-                      src={filteredProducts[10].image}
+                      src={getImageUrl(
+                        filteredProducts[10].category,
+                        filteredProducts[10].image
+                      )}
                       alt={filteredProducts[10].title}
                     />
                     <div className="featured-content">
@@ -888,7 +2655,10 @@ const CategoryDetail = () => {
                   </button>
                   <Link to={`/product/${product.id}`}>
                     <div className="product-image-container">
-                      <img src={product.image} alt={product.title} />
+                      <img
+                        src={getImageUrl(product.category, product.image)}
+                        alt={product.title}
+                      />
                     </div>
                     <h3>{product.title}</h3>
                     <p className="price">{product.price}</p>
@@ -971,9 +2741,7 @@ const CategoryDetail = () => {
                         }}
                       />
                       <span>{type.name}</span>
-                      <span className="count">
-                        ({filterCounts.types[type.name] || 0})
-                      </span>
+                      <span className="count">({getTypeCount(type.name)})</span>
                     </label>
                   ))}
                 </div>
@@ -1012,7 +2780,7 @@ const CategoryDetail = () => {
                       />
                       <span>{artist.name}</span>
                       <span className="count">
-                        ({filterCounts.artists[artist.name] || 0})
+                        ({getArtistCount(artist.name)})
                       </span>
                     </label>
                   ))}
@@ -1051,9 +2819,7 @@ const CategoryDetail = () => {
                         }}
                       />
                       <span>{year}</span>
-                      <span className="count">
-                        ({filterCounts.publishYears[year] || 0})
-                      </span>
+                      <span className="count">({getYearCount(year)})</span>
                     </label>
                   ))}
                 </div>

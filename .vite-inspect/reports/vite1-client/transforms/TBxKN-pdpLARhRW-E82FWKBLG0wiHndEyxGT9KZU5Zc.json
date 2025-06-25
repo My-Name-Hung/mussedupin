@@ -1,0 +1,90 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/mussedupin-0f2501a9a053b0e75502c49e74876d2dc852c693/src/components/Home/Home.jsx",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import React, { useEffect, useState } from \"react\";\nimport Collections from \"./Collections/Collections\";\nimport DelveInto from \"./DelveInto/DelveInto\";\nimport DuPin from \"./DuPin/DuPin\";\nimport Hero from \"./Hero/Hero\";\nimport Highlights from \"./Highlights/Highlights\";\n\nfunction Home() {\n  const [showPrepareVisitBar, setShowPrepareVisitBar] = useState(false);\n  const [hideNavbar, setHideNavbar] = useState(false);\n  const [isMobile, setIsMobile] = useState(false);\n\n  useEffect(() => {\n    const checkMobile = () => {\n      setIsMobile(window.innerWidth <= 768);\n    };\n\n    checkMobile();\n    window.addEventListener(\"resize\", checkMobile);\n\n    return () => {\n      window.removeEventListener(\"resize\", checkMobile);\n    };\n  }, []);\n\n  // Handle when the Highlights section becomes visible\n  const handleHighlightsVisible = () => {\n    setShowPrepareVisitBar(true);\n    setHideNavbar(true);\n  };\n\n  // Handle when the Highlights section is no longer visible\n  const handleHighlightsHidden = () => {\n    setShowPrepareVisitBar(false);\n    setHideNavbar(false);\n  };\n\n  // Icon cho Online Boutique\n  const BoutiqueIcon = () => (\n    <svg\n      viewBox=\"0 0 24 24\"\n      width=\"1em\"\n      height=\"1em\"\n      fill=\"currentColor\"\n      focusable=\"false\"\n      aria-hidden=\"true\"\n    >\n      <path d=\"M11.57 2c-1.78 0-3.2 1.28-3.2 2.86V7H5.14a.71.71 0 0 0-.72.64L3 21.21a.72.72 0 0 0 .72.79h15.71a.71.71 0 0 0 .72-.79L18.72 7.64A.71.71 0 0 0 18 7h-3.22V4.86c0-1.58-1.43-2.86-3.21-2.86zM9.8 4.86c0-.8.8-1.43 1.78-1.43 1 0 1.8.64 1.8 1.43V7h-3.6V4.86zm7.57 3.57 1.28 12.14H4.51L5.79 8.43h2.57v1.43a.71.71 0 1 0 1.43 0V8.43h3.57v1.43a.71.71 0 1 0 1.43 0V8.43h2.57z\"></path>\n    </svg>\n  );\n\n  // Icon cho Tickets\n  const TicketIcon = () => (\n    <svg\n      viewBox=\"0 0 16 16\"\n      width=\"1em\"\n      height=\"1em\"\n      fill=\"currentColor\"\n      focusable=\"false\"\n      aria-hidden=\"true\"\n    >\n      <path d=\"M9.13.5a.9.9 0 0 1 1.28 0l1.17 1.18c.2.2.3.5.25.79a1.48 1.48 0 0 0 1.7 1.7c.3-.04.59.05.79.25l1.17 1.17a.9.9 0 0 1 0 1.28L6.87 15.5a.9.9 0 0 1-1.28 0L.51 10.41a.9.9 0 0 1 0-1.28zm.64.78L1.28 9.77l4.95 4.95 8.49-8.49-1.1-1.1c-.74.15-1.52-.1-2.08-.67s-.82-1.34-.7-2.14L9.77 1.28zm.53 5.13c.1-.1.25-.1.35 0l.35.35c.1.1.1.26 0 .36l-4.59 4.6a.27.27 0 0 1-.36 0l-.35-.36a.25.25 0 0 1 0-.36l4.6-4.59zm-2.24-.59c.1-.1.26-.1.35 0l.36.35c.1.1.1.26 0 .36L5 10.3c-.1.1-.26.1-.36 0l-.35-.35a.25.25 0 0 1 0-.36l3.77-3.77z\"></path>\n    </svg>\n  );\n\n  return (\n    <div className=\"home-container\">\n      {/* Add className to control navbar visibility */}\n      <div className={`home-content ${hideNavbar ? \"hide-navbar\" : \"\"}`}>\n        {/* Phần Hero - Hiển thị banner chính của trang */}\n        <Hero />\n\n        {/* Phần Highlights - Hiển thị các điểm nổi bật của bảo tàng */}\n        <Highlights\n          onVisible={handleHighlightsVisible}\n          onHidden={handleHighlightsHidden}\n        />\n\n        {/* Phần Collections - Hiển thị các bộ sưu tập */}\n        <Collections />\n\n        {/* Phần DuPin - Hiển thị thông tin về DuPin */}\n        <DuPin />\n\n        {/* Phần DelveInto - Hiển thị phần tìm hiểu thêm */}\n        <DelveInto />\n      </div>\n\n      {/* Prepare your visit bar */}\n      {!isMobile && (\n        <div\n          className={`prepare-visit-bar ${\n            showPrepareVisitBar ? \"visible\" : \"\"\n          }`}\n        >\n          <div className=\"prepare-visit-content\">\n            <div\n              className=\"prepare-visit-left\"\n              style={{\n                fontFamily:\n                  \"Mythical-Prince, LouvreSerif, Georgia, Times New Roman, serif\",\n              }}\n            >\n              Chuẩn bị tham quan\n            </div>\n            <div className=\"prepare-visit-center\">\n              <div className=\"prepare-visit-museum-status\">\n                Bảo tàng đang mở cửa\n              </div>\n              <div className=\"prepare-visit-time\">\n                <span>7:00 AM</span>\n                <span className=\"prepare-visit-time-arrow\">→</span>\n                <span>21:00 PM</span>\n              </div>\n            </div>\n            <div className=\"prepare-visit-right\">\n              <a href=\"/tickets\" className=\"prepare-visit-button\">\n                <TicketIcon />\n              </a>\n              <a href=\"/prepare-visit\" className=\"prepare-visit-button\">\n                <BoutiqueIcon />\n              </a>\n            </div>\n          </div>\n        </div>\n      )}\n    </div>\n  );\n}\n\nexport default Home;\n",
+      "start": 1750873700089,
+      "end": 1750873700402,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750873700403,
+      "end": 1750873700403,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect, useState } from \"react\";\nimport Collections from \"./Collections/Collections\";\nimport DelveInto from \"./DelveInto/DelveInto\";\nimport DuPin from \"./DuPin/DuPin\";\nimport Hero from \"./Hero/Hero\";\nimport Highlights from \"./Highlights/Highlights\";\nfunction Home() {\n  const [showPrepareVisitBar, setShowPrepareVisitBar] = useState(false);\n  const [hideNavbar, setHideNavbar] = useState(false);\n  const [isMobile, setIsMobile] = useState(false);\n  useEffect(() => {\n    const checkMobile = () => {\n      setIsMobile(window.innerWidth <= 768);\n    };\n    checkMobile();\n    window.addEventListener(\"resize\", checkMobile);\n    return () => {\n      window.removeEventListener(\"resize\", checkMobile);\n    };\n  }, []);\n  const handleHighlightsVisible = () => {\n    setShowPrepareVisitBar(true);\n    setHideNavbar(true);\n  };\n  const handleHighlightsHidden = () => {\n    setShowPrepareVisitBar(false);\n    setHideNavbar(false);\n  };\n  const BoutiqueIcon = () => /* @__PURE__ */ jsx(\n    \"svg\",\n    {\n      viewBox: \"0 0 24 24\",\n      width: \"1em\",\n      height: \"1em\",\n      fill: \"currentColor\",\n      focusable: \"false\",\n      \"aria-hidden\": \"true\",\n      children: /* @__PURE__ */ jsx(\"path\", { d: \"M11.57 2c-1.78 0-3.2 1.28-3.2 2.86V7H5.14a.71.71 0 0 0-.72.64L3 21.21a.72.72 0 0 0 .72.79h15.71a.71.71 0 0 0 .72-.79L18.72 7.64A.71.71 0 0 0 18 7h-3.22V4.86c0-1.58-1.43-2.86-3.21-2.86zM9.8 4.86c0-.8.8-1.43 1.78-1.43 1 0 1.8.64 1.8 1.43V7h-3.6V4.86zm7.57 3.57 1.28 12.14H4.51L5.79 8.43h2.57v1.43a.71.71 0 1 0 1.43 0V8.43h3.57v1.43a.71.71 0 1 0 1.43 0V8.43h2.57z\" })\n    }\n  );\n  const TicketIcon = () => /* @__PURE__ */ jsx(\n    \"svg\",\n    {\n      viewBox: \"0 0 16 16\",\n      width: \"1em\",\n      height: \"1em\",\n      fill: \"currentColor\",\n      focusable: \"false\",\n      \"aria-hidden\": \"true\",\n      children: /* @__PURE__ */ jsx(\"path\", { d: \"M9.13.5a.9.9 0 0 1 1.28 0l1.17 1.18c.2.2.3.5.25.79a1.48 1.48 0 0 0 1.7 1.7c.3-.04.59.05.79.25l1.17 1.17a.9.9 0 0 1 0 1.28L6.87 15.5a.9.9 0 0 1-1.28 0L.51 10.41a.9.9 0 0 1 0-1.28zm.64.78L1.28 9.77l4.95 4.95 8.49-8.49-1.1-1.1c-.74.15-1.52-.1-2.08-.67s-.82-1.34-.7-2.14L9.77 1.28zm.53 5.13c.1-.1.25-.1.35 0l.35.35c.1.1.1.26 0 .36l-4.59 4.6a.27.27 0 0 1-.36 0l-.35-.36a.25.25 0 0 1 0-.36l4.6-4.59zm-2.24-.59c.1-.1.26-.1.35 0l.36.35c.1.1.1.26 0 .36L5 10.3c-.1.1-.26.1-.36 0l-.35-.35a.25.25 0 0 1 0-.36l3.77-3.77z\" })\n    }\n  );\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"home-container\", children: [\n    /* @__PURE__ */ jsxs(\"div\", { className: `home-content ${hideNavbar ? \"hide-navbar\" : \"\"}`, children: [\n      /* @__PURE__ */ jsx(Hero, {}),\n      /* @__PURE__ */ jsx(\n        Highlights,\n        {\n          onVisible: handleHighlightsVisible,\n          onHidden: handleHighlightsHidden\n        }\n      ),\n      /* @__PURE__ */ jsx(Collections, {}),\n      /* @__PURE__ */ jsx(DuPin, {}),\n      /* @__PURE__ */ jsx(DelveInto, {})\n    ] }),\n    !isMobile && /* @__PURE__ */ jsx(\n      \"div\",\n      {\n        className: `prepare-visit-bar ${showPrepareVisitBar ? \"visible\" : \"\"}`,\n        children: /* @__PURE__ */ jsxs(\"div\", { className: \"prepare-visit-content\", children: [\n          /* @__PURE__ */ jsx(\n            \"div\",\n            {\n              className: \"prepare-visit-left\",\n              style: {\n                fontFamily: \"Mythical-Prince, LouvreSerif, Georgia, Times New Roman, serif\"\n              },\n              children: \"Chuẩn bị tham quan\"\n            }\n          ),\n          /* @__PURE__ */ jsxs(\"div\", { className: \"prepare-visit-center\", children: [\n            /* @__PURE__ */ jsx(\"div\", { className: \"prepare-visit-museum-status\", children: \"Bảo tàng đang mở cửa\" }),\n            /* @__PURE__ */ jsxs(\"div\", { className: \"prepare-visit-time\", children: [\n              /* @__PURE__ */ jsx(\"span\", { children: \"7:00 AM\" }),\n              /* @__PURE__ */ jsx(\"span\", { className: \"prepare-visit-time-arrow\", children: \"→\" }),\n              /* @__PURE__ */ jsx(\"span\", { children: \"21:00 PM\" })\n            ] })\n          ] }),\n          /* @__PURE__ */ jsxs(\"div\", { className: \"prepare-visit-right\", children: [\n            /* @__PURE__ */ jsx(\"a\", { href: \"/tickets\", className: \"prepare-visit-button\", children: /* @__PURE__ */ jsx(TicketIcon, {}) }),\n            /* @__PURE__ */ jsx(\"a\", { href: \"/prepare-visit\", className: \"prepare-visit-button\", children: /* @__PURE__ */ jsx(BoutiqueIcon, {}) })\n          ] })\n        ] })\n      }\n    )\n  ] });\n}\nexport default Home;\n",
+      "start": 1750873700403,
+      "end": 1750873700694,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/mussedupin-0f2501a9a053b0e75502c49e74876d2dc852c693/src/components/Home/Home.jsx"
+        ],
+        "sourcesContent": [
+          "import React, { useEffect, useState } from \"react\";\nimport Collections from \"./Collections/Collections\";\nimport DelveInto from \"./DelveInto/DelveInto\";\nimport DuPin from \"./DuPin/DuPin\";\nimport Hero from \"./Hero/Hero\";\nimport Highlights from \"./Highlights/Highlights\";\n\nfunction Home() {\n  const [showPrepareVisitBar, setShowPrepareVisitBar] = useState(false);\n  const [hideNavbar, setHideNavbar] = useState(false);\n  const [isMobile, setIsMobile] = useState(false);\n\n  useEffect(() => {\n    const checkMobile = () => {\n      setIsMobile(window.innerWidth <= 768);\n    };\n\n    checkMobile();\n    window.addEventListener(\"resize\", checkMobile);\n\n    return () => {\n      window.removeEventListener(\"resize\", checkMobile);\n    };\n  }, []);\n\n  // Handle when the Highlights section becomes visible\n  const handleHighlightsVisible = () => {\n    setShowPrepareVisitBar(true);\n    setHideNavbar(true);\n  };\n\n  // Handle when the Highlights section is no longer visible\n  const handleHighlightsHidden = () => {\n    setShowPrepareVisitBar(false);\n    setHideNavbar(false);\n  };\n\n  // Icon cho Online Boutique\n  const BoutiqueIcon = () => (\n    <svg\n      viewBox=\"0 0 24 24\"\n      width=\"1em\"\n      height=\"1em\"\n      fill=\"currentColor\"\n      focusable=\"false\"\n      aria-hidden=\"true\"\n    >\n      <path d=\"M11.57 2c-1.78 0-3.2 1.28-3.2 2.86V7H5.14a.71.71 0 0 0-.72.64L3 21.21a.72.72 0 0 0 .72.79h15.71a.71.71 0 0 0 .72-.79L18.72 7.64A.71.71 0 0 0 18 7h-3.22V4.86c0-1.58-1.43-2.86-3.21-2.86zM9.8 4.86c0-.8.8-1.43 1.78-1.43 1 0 1.8.64 1.8 1.43V7h-3.6V4.86zm7.57 3.57 1.28 12.14H4.51L5.79 8.43h2.57v1.43a.71.71 0 1 0 1.43 0V8.43h3.57v1.43a.71.71 0 1 0 1.43 0V8.43h2.57z\"></path>\n    </svg>\n  );\n\n  // Icon cho Tickets\n  const TicketIcon = () => (\n    <svg\n      viewBox=\"0 0 16 16\"\n      width=\"1em\"\n      height=\"1em\"\n      fill=\"currentColor\"\n      focusable=\"false\"\n      aria-hidden=\"true\"\n    >\n      <path d=\"M9.13.5a.9.9 0 0 1 1.28 0l1.17 1.18c.2.2.3.5.25.79a1.48 1.48 0 0 0 1.7 1.7c.3-.04.59.05.79.25l1.17 1.17a.9.9 0 0 1 0 1.28L6.87 15.5a.9.9 0 0 1-1.28 0L.51 10.41a.9.9 0 0 1 0-1.28zm.64.78L1.28 9.77l4.95 4.95 8.49-8.49-1.1-1.1c-.74.15-1.52-.1-2.08-.67s-.82-1.34-.7-2.14L9.77 1.28zm.53 5.13c.1-.1.25-.1.35 0l.35.35c.1.1.1.26 0 .36l-4.59 4.6a.27.27 0 0 1-.36 0l-.35-.36a.25.25 0 0 1 0-.36l4.6-4.59zm-2.24-.59c.1-.1.26-.1.35 0l.36.35c.1.1.1.26 0 .36L5 10.3c-.1.1-.26.1-.36 0l-.35-.35a.25.25 0 0 1 0-.36l3.77-3.77z\"></path>\n    </svg>\n  );\n\n  return (\n    <div className=\"home-container\">\n      {/* Add className to control navbar visibility */}\n      <div className={`home-content ${hideNavbar ? \"hide-navbar\" : \"\"}`}>\n        {/* Phần Hero - Hiển thị banner chính của trang */}\n        <Hero />\n\n        {/* Phần Highlights - Hiển thị các điểm nổi bật của bảo tàng */}\n        <Highlights\n          onVisible={handleHighlightsVisible}\n          onHidden={handleHighlightsHidden}\n        />\n\n        {/* Phần Collections - Hiển thị các bộ sưu tập */}\n        <Collections />\n\n        {/* Phần DuPin - Hiển thị thông tin về DuPin */}\n        <DuPin />\n\n        {/* Phần DelveInto - Hiển thị phần tìm hiểu thêm */}\n        <DelveInto />\n      </div>\n\n      {/* Prepare your visit bar */}\n      {!isMobile && (\n        <div\n          className={`prepare-visit-bar ${\n            showPrepareVisitBar ? \"visible\" : \"\"\n          }`}\n        >\n          <div className=\"prepare-visit-content\">\n            <div\n              className=\"prepare-visit-left\"\n              style={{\n                fontFamily:\n                  \"Mythical-Prince, LouvreSerif, Georgia, Times New Roman, serif\",\n              }}\n            >\n              Chuẩn bị tham quan\n            </div>\n            <div className=\"prepare-visit-center\">\n              <div className=\"prepare-visit-museum-status\">\n                Bảo tàng đang mở cửa\n              </div>\n              <div className=\"prepare-visit-time\">\n                <span>7:00 AM</span>\n                <span className=\"prepare-visit-time-arrow\">→</span>\n                <span>21:00 PM</span>\n              </div>\n            </div>\n            <div className=\"prepare-visit-right\">\n              <a href=\"/tickets\" className=\"prepare-visit-button\">\n                <TicketIcon />\n              </a>\n              <a href=\"/prepare-visit\" className=\"prepare-visit-button\">\n                <BoutiqueIcon />\n              </a>\n            </div>\n          </div>\n        </div>\n      )}\n    </div>\n  );\n}\n\nexport default Home;\n"
+        ],
+        "mappings": "AA+CM,cAqBA,YArBA;AA/CN,OAAO,SAAS,WAAW,gBAAgB;AAC3C,OAAO,iBAAiB;AACxB,OAAO,eAAe;AACtB,OAAO,WAAW;AAClB,OAAO,UAAU;AACjB,OAAO,gBAAgB;AAEvB,SAAS,OAAO;AACd,QAAM,CAAC,qBAAqB,sBAAsB,IAAI,SAAS,KAAK;AACpE,QAAM,CAAC,YAAY,aAAa,IAAI,SAAS,KAAK;AAClD,QAAM,CAAC,UAAU,WAAW,IAAI,SAAS,KAAK;AAE9C,YAAU,MAAM;AACd,UAAM,cAAc,MAAM;AACxB,kBAAY,OAAO,cAAc,GAAG;AAAA,IACtC;AAEA,gBAAY;AACZ,WAAO,iBAAiB,UAAU,WAAW;AAE7C,WAAO,MAAM;AACX,aAAO,oBAAoB,UAAU,WAAW;AAAA,IAClD;AAAA,EACF,GAAG,CAAC,CAAC;AAGL,QAAM,0BAA0B,MAAM;AACpC,2BAAuB,IAAI;AAC3B,kBAAc,IAAI;AAAA,EACpB;AAGA,QAAM,yBAAyB,MAAM;AACnC,2BAAuB,KAAK;AAC5B,kBAAc,KAAK;AAAA,EACrB;AAGA,QAAM,eAAe,MACnB;AAAA,IAAC;AAAA;AAAA,MACC,SAAQ;AAAA,MACR,OAAM;AAAA,MACN,QAAO;AAAA,MACP,MAAK;AAAA,MACL,WAAU;AAAA,MACV,eAAY;AAAA,MAEZ,8BAAC,UAAK,GAAE,4WAA2W;AAAA;AAAA,EACrX;AAIF,QAAM,aAAa,MACjB;AAAA,IAAC;AAAA;AAAA,MACC,SAAQ;AAAA,MACR,OAAM;AAAA,MACN,QAAO;AAAA,MACP,MAAK;AAAA,MACL,WAAU;AAAA,MACV,eAAY;AAAA,MAEZ,8BAAC,UAAK,GAAE,+fAA8f;AAAA;AAAA,EACxgB;AAGF,SACE,qBAAC,SAAI,WAAU,kBAEb;AAAA,yBAAC,SAAI,WAAW,gBAAgB,aAAa,gBAAgB,EAAE,IAE7D;AAAA,0BAAC,QAAK;AAAA,MAGN;AAAA,QAAC;AAAA;AAAA,UACC,WAAW;AAAA,UACX,UAAU;AAAA;AAAA,MACZ;AAAA,MAGA,oBAAC,eAAY;AAAA,MAGb,oBAAC,SAAM;AAAA,MAGP,oBAAC,aAAU;AAAA,OACb;AAAA,IAGC,CAAC,YACA;AAAA,MAAC;AAAA;AAAA,QACC,WAAW,qBACT,sBAAsB,YAAY,EACpC;AAAA,QAEA,+BAAC,SAAI,WAAU,yBACb;AAAA;AAAA,YAAC;AAAA;AAAA,cACC,WAAU;AAAA,cACV,OAAO;AAAA,gBACL,YACE;AAAA,cACJ;AAAA,cACD;AAAA;AAAA,UAED;AAAA,UACA,qBAAC,SAAI,WAAU,wBACb;AAAA,gCAAC,SAAI,WAAU,+BAA8B,kCAE7C;AAAA,YACA,qBAAC,SAAI,WAAU,sBACb;AAAA,kCAAC,UAAK,qBAAO;AAAA,cACb,oBAAC,UAAK,WAAU,4BAA2B,eAAC;AAAA,cAC5C,oBAAC,UAAK,sBAAQ;AAAA,eAChB;AAAA,aACF;AAAA,UACA,qBAAC,SAAI,WAAU,uBACb;AAAA,gCAAC,OAAE,MAAK,YAAW,WAAU,wBAC3B,8BAAC,cAAW,GACd;AAAA,YACA,oBAAC,OAAE,MAAK,kBAAiB,WAAU,wBACjC,8BAAC,gBAAa,GAChB;AAAA,aACF;AAAA,WACF;AAAA;AAAA,IACF;AAAA,KAEJ;AAEJ;AAEA,eAAe;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750873700694,
+      "end": 1750873700694,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750873700694,
+      "end": 1750873700694,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750873700694,
+      "end": 1750873700694,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750873700694,
+      "end": 1750873700694,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750873700694,
+      "end": 1750873700694,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750873700694,
+      "end": 1750873700694,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750873700694,
+      "end": 1750873700694,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750873700694,
+      "end": 1750873700695,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750873700695,
+      "end": 1750873700695,
+      "order": "normal"
+    }
+  ]
+}

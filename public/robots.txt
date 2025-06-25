@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin/
+Disallow: /private/
+
+# Sitemap location
+Sitemap: https://museedupin.netlify.app/sitemap.xml
+
+# Crawl-delay for all bots
+Crawl-delay: 10 

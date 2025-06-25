@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/mussedupin-0f2501a9a053b0e75502c49e74876d2dc852c693/node_modules/lucide-react/dist/esm/icons/clock-fading.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M12 2a10 10 0 0 1 7.38 16.75\", key: \"175t95\" }],\n  [\"path\", { d: \"M12 6v6l4 2\", key: \"mmk7yg\" }],\n  [\"path\", { d: \"M2.5 8.875a10 10 0 0 0-.5 3\", key: \"1vce0s\" }],\n  [\"path\", { d: \"M2.83 16a10 10 0 0 0 2.43 3.4\", key: \"o3fkw4\" }],\n  [\"path\", { d: \"M4.636 5.235a10 10 0 0 1 .891-.857\", key: \"1szpfk\" }],\n  [\"path\", { d: \"M8.644 21.42a10 10 0 0 0 7.631-.38\", key: \"9yhvd4\" }]\n];\nconst ClockFading = createLucideIcon(\"clock-fading\", __iconNode);\n\nexport { __iconNode, ClockFading as default };\n//# sourceMappingURL=clock-fading.js.map\n",
+      "start": 1750873710646,
+      "end": 1750873710685,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750873710685,
+      "end": 1750873710685,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750873710685,
+      "end": 1750873710685,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750873710685,
+      "end": 1750873710685,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750873710685,
+      "end": 1750873710685,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750873710685,
+      "end": 1750873710685,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750873710685,
+      "end": 1750873710685,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750873710685,
+      "end": 1750873710685,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750873710686,
+      "end": 1750873710686,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750873710686,
+      "end": 1750873710686,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750873710686,
+      "end": 1750873710686,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750873710686,
+      "end": 1750873710686,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,2486 @@
+/* Import Google Fonts - Montserrat and Roboto */
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Roboto:wght@300;400;500&display=swap");
+
+/* Import Mythical-Prince font */
+@font-face {
+  font-family: "Mythical-Prince";
+  src: url("../../../assets/museedupin/1FTV-VIP-Mythical-Prince.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Visit page styles with elegant art museum aesthetic */
+.visit-page {
+  width: 100%;
+  color: #1a1a1a;
+  background-image: url("https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784842/background/Background2.webp");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 300px;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  overflow-x: hidden;
+  transition: transform 0.3s ease;
+  position: relative;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.visit-page.touch-up {
+  transform: translateY(10px);
+}
+
+.visit-page.touch-down {
+  transform: translateY(-10px);
+}
+
+/* Hero section styles */
+.visit-hero {
+  position: relative;
+  height: 100vh;
+  max-height: 700px;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.visit-hero-image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.visit-hero-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transform: scale(1.05);
+  animation: heroZoomDesktop 30s ease-in-out infinite alternate;
+  transition: filter 1s ease;
+  filter: saturate(1.1) contrast(1.05);
+}
+
+@keyframes heroZoomDesktop {
+  0% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1.2);
+  }
+}
+
+.visit-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.7) 0%,
+    rgba(0, 0, 0, 0.3) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  z-index: 2;
+}
+
+.visit-hero-content {
+  position: relative;
+  z-index: 4;
+  padding: 0 10%;
+  margin-bottom: 10%;
+  animation: fadeUpContent 1.5s ease forwards;
+}
+
+.visit-hero-title {
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
+  font-size: 3rem;
+  font-weight: 500;
+  margin: 0 0 1.5rem;
+  max-width: 80%;
+  color: #fff;
+  line-height: 1.2;
+  animation: fadeInUp 1s ease 0.2s forwards;
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.visit-hero-subtitle {
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
+  font-size: 1.8rem;
+  font-weight: 300;
+  color: #ffffff;
+  margin: 20px 0 0;
+  max-width: 100%;
+  opacity: 0;
+  animation: fadeInUp 1s ease-out 0.5s forwards;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Horizontal navigation styles */
+.visit-nav-container {
+  width: 100%;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  z-index: 100;
+  transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.visit-nav-container.sticky {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  box-shadow: none;
+  animation: slideDown 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.visit-nav {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.visit-nav-list {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  justify-content: center;
+  position: relative;
+  min-width: min-content; /* Ensures the list doesn't wrap on small screens */
+}
+
+.visit-nav-item {
+  position: relative;
+  margin: 0 25px;
+}
+
+.visit-nav-button {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 1rem;
+  color: #555;
+  background: transparent;
+  border: none;
+  padding: 1.5rem 0.5rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  position: relative;
+  white-space: nowrap;
+}
+
+.visit-nav-button:hover {
+  color: #00695c;
+}
+
+.visit-nav-item.active .visit-nav-button {
+  color: #00695c;
+  font-weight: 600;
+}
+
+.visit-nav-indicator {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  background-color: #00695c;
+  transition: width 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+    transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  width: 0;
+  transform-origin: left center;
+}
+
+.visit-nav-item.active .visit-nav-indicator {
+  width: 100%;
+  transform: scaleX(1);
+}
+
+/* Create a gliding effect for the active indicator */
+.visit-nav-list::after {
+  display: none;
+}
+
+.visit-nav-item:nth-child(1).active ~ .visit-nav-list::after {
+  width: calc(100% / 3);
+  transform: translateX(0);
+}
+
+.visit-nav-item:nth-child(2).active ~ .visit-nav-list::after {
+  width: calc(100% / 3);
+  transform: translateX(calc(100% / 3));
+}
+
+.visit-nav-item:nth-child(3).active ~ .visit-nav-list::after {
+  width: calc(100% / 3);
+  transform: translateX(calc(200% / 3));
+}
+
+/* Mobile styles for navigation - cleaned up version */
+@media (max-width: 768px) {
+  .visit-nav-container {
+    display: none; /* Hide the horizontal nav on mobile */
+  }
+
+  /* First section needs extra padding without the fixed nav */
+  .visit-section:first-of-type {
+    padding-top: 10px; /* Reduced padding since nav is hidden */
+  }
+
+  /* Mobile-view class no longer needs special padding for the fixed nav */
+  .mobile-view {
+    padding-top: 0;
+  }
+
+  .visit-nav-container::-webkit-scrollbar {
+    display: none; /* Chrome, Safari */
+  }
+
+  .visit-nav-container::after {
+    display: none;
+  }
+
+  .visit-nav-container.scrolled-right::after {
+    opacity: 0;
+  }
+
+  .visit-nav {
+    padding: 0 5px;
+    width: 100%;
+    min-width: max-content;
+  }
+
+  .visit-nav-list {
+    justify-content: flex-start;
+    padding: 5px 10px;
+    gap: 8px;
+    width: max-content;
+    display: flex;
+  }
+
+  .visit-nav-item {
+    margin: 0;
+    flex-shrink: 0;
+    min-width: auto;
+  }
+
+  .visit-nav-button {
+    font-size: 0.95rem;
+    padding: 0.8rem 1.4rem;
+    border-radius: 50px;
+    background: rgba(0, 0, 0, 0.04);
+    transition: all 0.3s ease;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+    white-space: nowrap;
+    min-width: max-content;
+  }
+
+  .visit-nav-item.active .visit-nav-button {
+    color: #fff;
+    background: linear-gradient(135deg, #00695c, #009688);
+    box-shadow: 0 4px 10px rgba(0, 105, 92, 0.3);
+  }
+
+  .visit-nav-indicator {
+    display: none;
+  }
+
+  .visit-nav-list::after {
+    display: none;
+  }
+
+  /* Adjust sections for fixed navigation */
+  .visit-section {
+    padding: 25px 15px;
+    border-radius: 0;
+    margin-top: 0;
+  }
+
+  /* Mobile-optimized museum info */
+  .museum-info-wrapper {
+    grid-template-columns: 1fr;
+    gap: 15px; /* Reduced from 20px */
+    margin-top: 15px; /* Reduced from 25px */
+  }
+
+  .museum-info-image {
+    aspect-ratio: 16/9;
+    border-radius: 12px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    margin: 0;
+    height: auto;
+    max-height: none;
+  }
+
+  .museum-info-content {
+    padding: 0;
+  }
+
+  /* Optimized status display */
+  .museum-status {
+    margin-bottom: 10px; /* Reduced from 15px */
+    padding: 8px 10px; /* Reduced from 10px 12px */
+    border-radius: 8px;
+  }
+
+  .museum-title {
+    font-size: 1.4rem; /* Reduced from 1.5rem */
+    margin-bottom: 10px; /* Reduced from 15px */
+  }
+
+  /* Optimized hours display */
+  .museum-hours {
+    margin-bottom: 5px; /* Reduced from 15px */
+    border-radius: 8px;
+  }
+
+  .hours-row {
+    padding: 10px; /* Reduced from 12px */
+  }
+
+  .note-item {
+    padding: 8px 12px; /* Reduced from 12px 15px */
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  }
+
+  .note-item:last-child {
+    border-bottom: none;
+  }
+
+  .note-label {
+    margin-bottom: 1px; /* Reduced from 3px */
+    font-weight: 600;
+    font-size: 0.85rem; /* Reduced from 0.9rem */
+    color: #333;
+  }
+
+  .note-value {
+    font-size: 0.85rem; /* Reduced from 0.9rem */
+    line-height: 1.3; /* Reduced from 1.4 */
+    color: #555;
+  }
+
+  /* Touch-friendly note items */
+  .note-item.touch-friendly {
+    position: relative;
+    transition: background-color 0.2s ease;
+  }
+
+  .note-item.touch-friendly:active {
+    background-color: rgba(0, 0, 0, 0.02);
+  }
+
+  /* Tighter ticket section */
+  .ticket-intro {
+    margin-bottom: 20px; /* Reduced from 30px */
+  }
+
+  .ticket-heading {
+    font-size: 1.6rem; /* Reduced from 1.8rem */
+    margin-bottom: 12px; /* Reduced from 15px */
+  }
+
+  .ticket-description {
+    font-size: 0.95rem; /* Reduced from 1rem */
+    margin-bottom: 15px; /* Reduced from implied 20px */
+  }
+
+  .ticket-option {
+    padding: 15px 12px; /* Reduced from 20px 15px */
+    margin-bottom: 10px; /* Reduced from 15px */
+  }
+
+  /* Visit info box with less whitespace */
+  .visit-info-box {
+    margin: 0 15px 30px; /* Reduced bottom margin from 40px */
+    padding: 20px 15px; /* Reduced from 25px 20px */
+  }
+}
+
+@media (max-width: 576px) {
+  .visit-hero {
+    height: 60vh;
+  }
+
+  .visit-hero-title {
+    font-size: 2.7rem;
+    margin-bottom: 10px;
+  }
+
+  .visit-section {
+    padding: 30px 15px;
+  }
+
+  .visit-section-title {
+    font-size: 1.3rem;
+    border-bottom: none !important;
+    margin-bottom: 15px;
+  }
+
+  .museum-title {
+    font-size: 1.4rem;
+  }
+
+  .ticket-price {
+    font-size: 1.6rem;
+  }
+}
+
+/* Section styles */
+.visit-section {
+  padding: 100px 0;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 1s ease, transform 1s ease;
+}
+
+.visit-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.visit-section:nth-child(even) {
+  position: relative;
+  overflow: hidden;
+}
+
+.visit-section:nth-child(even)::before {
+  display: none;
+}
+
+.visit-section-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 30px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Enhanced artistic section title */
+.visit-section-title {
+  font-family: "Meholrax", serif;
+  font-size: 3rem;
+  font-weight: 600;
+  margin-top: 40px;
+  margin-bottom: 2rem;
+  position: relative;
+  display: inline-block;
+  line-height: 1.2;
+  text-transform: uppercase;
+  color: rgba(0, 0, 0, 0.9);
+  letter-spacing: 0.05em;
+  z-index: 1;
+}
+
+.visit-section-title::before {
+  display: none;
+}
+
+.visit-section-title::after {
+  display: none;
+}
+
+/* Decorative elements for section title */
+.visit-section-title span {
+  position: relative;
+  display: inline-block;
+}
+
+.visit-section-title span::before {
+  display: none;
+}
+
+.visit-section-title span::after {
+  display: none;
+}
+
+.visit-section:hover .visit-section-title::after {
+  width: 180px;
+}
+
+@keyframes pulse {
+  0% {
+    opacity: 0.5;
+    transform: translateX(-50%) scale(1);
+  }
+  100% {
+    opacity: 0.8;
+    transform: translateX(-50%) scale(1.5);
+  }
+}
+
+/* Additional decorative dots */
+.visit-section-title::before,
+.visit-section-title::after {
+  z-index: -1;
+}
+
+.visit-section-title::before {
+  box-shadow: 0 0 30px rgba(0, 105, 92, 0.1);
+}
+
+/* Museum location tabs */
+.museum-location-tabs {
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  margin-bottom: 40px;
+  overflow-x: auto;
+  white-space: nowrap;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.museum-location-tabs::-webkit-scrollbar {
+  display: none;
+}
+
+.location-tab {
+  position: relative;
+  margin-right: 20px;
+}
+
+.location-tab.active::after {
+  content: "";
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00695c;
+}
+
+.location-tab-button {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #555;
+  background: transparent;
+  border: none;
+  padding: 15px 20px 15px 0;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.location-tab.active .location-tab-button {
+  color: #00695c;
+  font-weight: 600;
+}
+
+/* Museum info wrapper */
+.museum-info-wrapper {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 40px;
+  padding: 30px;
+  border-radius: 12px;
+}
+
+.museum-info-image {
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+  transition: transform 0.5s ease;
+}
+
+.museum-info-image:hover {
+  transform: translateY(-10px);
+}
+
+.museum-info-image::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0),
+    rgba(0, 0, 0, 0.2)
+  );
+  opacity: 0;
+  transition: opacity 0.8s ease;
+  z-index: 1;
+}
+
+.museum-info-image:hover::after {
+  opacity: 1;
+}
+
+.museum-info-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 15s ease;
+}
+
+.museum-info-image:hover img {
+  transform: scale(1.1);
+}
+
+.museum-info-content {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Museum status bar */
+.museum-status-bar {
+  margin-bottom: 10px;
+  width: 100%;
+}
+
+.museum-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 20px;
+  letter-spacing: 0.5px;
+}
+
+.museum-status {
+  display: flex;
+  align-items: center;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  padding: 15px 20px;
+  border-radius: 6px;
+  margin-bottom: 30px;
+  transition: all 0.3s ease;
+}
+
+.museum-status.open {
+  border: 1px solid #2e7d32;
+}
+
+.museum-status.closed {
+  border: 1px solid #c62828;
+}
+
+.status-dot {
+  width: 16px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 12px;
+  position: relative;
+}
+
+.open .status-dot {
+  background-color: #2e7d32;
+  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.2);
+}
+
+.open .status-dot::after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(76, 175, 80, 0.6);
+  border-radius: 50%;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: scale(2);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 0;
+  }
+}
+
+.closed .status-dot {
+  background-color: #c62828;
+  box-shadow: 0 0 0 3px rgba(244, 67, 54, 0.2);
+}
+
+/* Museum hours */
+.museum-hours {
+  margin-bottom: 40px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.hours-row {
+  display: flex;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  padding: 20px 25px;
+  transition: background-color 0.3s ease;
+}
+
+.hours-row:last-child {
+  border-bottom: none;
+}
+
+.hours-time {
+  flex: 0 0 40%;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #000;
+}
+
+.hours-time.closed {
+  color: #c62828;
+}
+
+.hours-days {
+  flex: 0 0 60%;
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  color: #555;
+}
+
+/* Museum notes */
+.museum-notes {
+  font-family: "Roboto", sans-serif;
+  background: none !important;
+}
+
+.note-item {
+  margin-bottom: 0;
+  display: flex;
+  align-items: flex-start;
+  padding: 20px 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  transition: background-color 0.3s ease;
+}
+
+.note-item:last-child {
+  border-bottom: none;
+}
+
+.note-item:hover {
+  background-color: transparent;
+}
+
+.note-label {
+  flex: 0 0 180px;
+  font-weight: 500;
+  color: #000;
+}
+
+.note-value {
+  flex: 1;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Ticket section styles */
+.ticket-intro {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  border-radius: 16px;
+}
+
+.ticket-image-container {
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.ticket-illustration {
+  max-width: 100%;
+  height: auto;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease;
+}
+
+.ticket-illustration:hover {
+  transform: scale(1.02);
+}
+
+.ticket-description {
+  font-size: 1.1rem;
+  line-height: 1.6;
+  color: #2c2f11;
+  margin-bottom: 1rem;
+}
+
+.ticket-note {
+  font-size: 0.95rem;
+  color: #666;
+  font-style: italic;
+  padding: 0.75rem;
+  background: rgba(149, 161, 37, 0.1);
+  border-radius: 8px;
+  border-left: 4px solid #95a125;
+}
+
+.ticket-option {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 30px 25px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+  border-radius: 6px;
+  margin-bottom: 5px;
+}
+
+.ticket-option:hover {
+  transform: translateY(-2px);
+}
+
+.ticket-option:first-child {
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+.ticket-option-details {
+  flex: 1;
+  padding-right: 30px;
+}
+
+.ticket-type {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #000;
+  margin-bottom: 10px;
+}
+
+.ticket-details {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  color: #555;
+  margin: 10px 0 0;
+  line-height: 1.5;
+}
+
+.ticket-link {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  color: #00695c;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  margin-top: 15px;
+  transition: all 0.3s ease;
+  padding: 5px 0;
+}
+
+.ticket-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background-color: #00695c;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
+}
+
+.ticket-link:hover {
+  color: #004d40;
+}
+
+.ticket-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.ticket-price {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: #000;
+  flex: 0 0 150px;
+  text-align: right;
+}
+
+.ticket-price.highlighted {
+  color: #00695c;
+  position: relative;
+}
+
+.ticket-price.highlighted::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  right: 0;
+  width: 40px;
+  height: 2px;
+  background-color: #00695c;
+}
+
+/* Free admission section */
+.section-intro,
+.section-subtitle {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  color: #555;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}
+
+.section-subtitle {
+  font-weight: 500;
+  color: #000;
+}
+
+.visitor-category {
+  margin-bottom: 25px;
+  padding: 15px 20px;
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.visitor-category:hover {
+  transform: translateY(-2px);
+}
+
+.category-title {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #000;
+  margin: 0 0 8px;
+}
+
+.category-details {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.visitor-category-separator {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  margin: 40px 0 30px;
+  position: relative;
+  text-align: center;
+  color: #00695c;
+}
+
+.visitor-category-separator::before,
+.visitor-category-separator::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  width: 30%;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(0, 105, 92, 0.2),
+    transparent
+  );
+}
+
+.visitor-category-separator::before {
+  left: 0;
+}
+
+.visitor-category-separator::after {
+  right: 0;
+}
+
+.visitor-categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+}
+
+/* Tours and activities section */
+.section-subtitle {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #000;
+  margin: 40px 0 20px;
+}
+
+/* Audioguide section */
+.audioguide-link {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  color: #00695c;
+  text-decoration: none;
+  position: relative;
+  display: inline-block;
+  margin-bottom: 20px;
+  padding-right: 20px;
+  transition: color 0.3s ease;
+}
+
+.audioguide-link::after {
+  content: "→";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  transition: transform 0.3s ease;
+}
+
+.audioguide-link:hover {
+  color: #004d40;
+}
+
+.audioguide-link:hover::after {
+  transform: translate(5px, -50%);
+}
+
+.audioguide-link:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(0, 105, 92, 0.3);
+  border-radius: 2px;
+}
+
+/* Payment section */
+.payment-details {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 40px;
+  max-width: 80%;
+}
+
+.payment-image {
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+  transform: perspective(1000px) rotateY(-5deg);
+  transition: transform 0.5s ease;
+}
+
+.payment-image:hover {
+  transform: perspective(1000px) rotateY(0deg);
+}
+
+.payment-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.payment-image:hover img {
+  transform: scale(1.05);
+}
+
+/* Membership section */
+.membership-info {
+  margin-bottom: 60px;
+  position: relative;
+}
+
+.membership-heading {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  font-weight: 400;
+  color: #000;
+  margin: 0 0 25px;
+  position: relative;
+  display: inline-block;
+}
+
+.membership-heading::after {
+  content: "";
+  position: absolute;
+  bottom: -8px;
+  left: 0;
+  width: 60%;
+  height: 2px;
+  background: linear-gradient(to right, #00695c, transparent);
+}
+
+.membership-description {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: #555;
+  margin-bottom: 40px;
+  max-width: 80%;
+}
+
+.membership-card-image {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  transform: perspective(1000px) rotateX(5deg);
+  transition: all 0.5s ease;
+}
+
+.membership-card-image:hover {
+  transform: perspective(1000px) rotateX(0deg) translateY(-10px);
+}
+
+.membership-card-image img {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.5s ease;
+}
+
+.membership-card-image:hover img {
+  transform: scale(1.05);
+}
+
+/* Info box section */
+.visit-info-box {
+  display: flex;
+  align-items: center;
+  max-width: 900px;
+  margin: 0 auto 100px;
+  padding: 40px;
+  border-radius: 12px;
+  cursor: pointer;
+  transition: all 0.4s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.visit-info-box:hover {
+  transform: translateY(-5px);
+}
+
+.visit-info-icon {
+  flex: 0 0 80px;
+  margin-right: 30px;
+  transition: transform 0.4s ease;
+}
+
+.visit-info-box:hover .visit-info-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.visit-info-content {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+}
+
+.visit-info-title {
+  font-family: "Meholrax", serif;
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  font-weight: 600;
+}
+
+.visit-info-text {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.1rem;
+  color: #555;
+  margin: 0;
+  line-height: 1.6;
+}
+
+/* Responsive styles */
+@media (max-width: 992px) {
+  .visit-hero-title {
+    font-size: 3.5rem;
+  }
+
+  .visit-hero-subtitle {
+    font-size: 1.3rem;
+    max-width: 80%;
+  }
+
+  .museum-info-wrapper {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .museum-info-image {
+    max-height: 400px;
+  }
+
+  .note-item {
+    flex-direction: column;
+    padding: 8px 12px;
+  }
+
+  .note-label {
+    flex: none;
+    margin-bottom: 1px;
+    font-size: 0.85rem;
+  }
+
+  .note-value {
+    font-size: 0.85rem;
+    line-height: 1.3;
+    padding-left: 0;
+  }
+
+  .ticket-description {
+    max-width: 100%;
+  }
+
+  .membership-description {
+    max-width: 100%;
+  }
+}
+
+/* Custom modern loading state */
+.is-loading {
+  position: relative;
+}
+
+.is-loading::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.is-loading::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 40px;
+  height: 40px;
+  border: 3px solid rgba(0, 105, 92, 0.1);
+  border-top: 3px solid #00695c;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  z-index: 101;
+}
+
+@keyframes spin {
+  0% {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+/* Add touch ripple effect for buttons */
+.touch-ripple {
+  position: relative;
+  overflow: hidden;
+}
+
+.ripple {
+  position: absolute;
+  transform: translate(-50%, -50%) scale(0);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.5);
+  animation: rippleEffect 0.8s ease-out;
+  pointer-events: none;
+}
+
+@keyframes rippleEffect {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.6;
+  }
+  100% {
+    transform: translate(-50%, -50%) scale(2);
+    opacity: 0;
+  }
+}
+
+/* Mobile-specific features */
+.mobile-view .visit-hero {
+  height: 65vh;
+  margin-top: 0;
+  padding-top: 0;
+}
+
+.mobile-view .visit-hero-title {
+  font-size: 2.6rem;
+}
+
+.info-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(45deg, rgba(0, 105, 92, 0.2), transparent);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.museum-info-image:active .info-image-overlay {
+  opacity: 1;
+}
+
+.touch-friendly {
+  position: relative;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.touch-friendly:active {
+  transform: scale(0.99);
+  background-color: rgba(0, 0, 0, 0.02);
+}
+
+.touch-card {
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.touch-card:active {
+  transform: translateY(2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+}
+
+.mobile-info-box {
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.mobile-info-box:active {
+  transform: scale(0.98);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
+}
+
+.mobile-nav-lists {
+  display: flex;
+  list-style: none;
+  background: #2c2f11;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  justify-content: space-around;
+}
+
+.mobile-info-box::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 105, 92, 0.15),
+    transparent 70%
+  );
+  transform: scale(0);
+  opacity: 0;
+  transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  pointer-events: none;
+}
+
+.mobile-info-box:active::before {
+  transform: scale(2.5);
+  opacity: 1;
+}
+
+.mobile-scroll-top {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 100;
+  cursor: pointer;
+}
+
+.mobile-scroll-top.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.mobile-scroll-top:active {
+  transform: scale(0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Enhanced Mobile Styles */
+@media (max-width: 768px) {
+  /* Enhanced nav scrolling indicator */
+  .visit-nav-container::after {
+    display: none;
+  }
+
+  .visit-nav-container.scrolled-right::after {
+    opacity: 0;
+  }
+
+  /* Modern approach to ticket cards */
+  .ticket-options {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .ticket-option {
+    margin-bottom: 0;
+    overflow: visible;
+  }
+
+  .ticket-option::after {
+    content: "";
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: rgba(0, 105, 92, 0.05);
+    z-index: 0;
+    transform: scale(0);
+    opacity: 0;
+    transition: transform 0.5s ease-out, opacity 0.5s ease-out;
+  }
+
+  .ticket-option:active::after {
+    transform: scale(4);
+    opacity: 1;
+  }
+
+  /* Ensure proper touch feedback on note items */
+  .note-item {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .note-item:active::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    height: 100%;
+    transform: translate(-50%, -50%) scale(0);
+    background-color: rgba(0, 105, 92, 0.05);
+    border-radius: 50%;
+    z-index: 0;
+    animation: touchRipple 0.6s ease-out forwards;
+  }
+
+  @keyframes touchRipple {
+    to {
+      transform: translate(-50%, -50%) scale(2.5);
+      opacity: 0;
+    }
+  }
+}
+
+/* Adjust the mobile-view class to account for fixed navigation */
+.mobile-view {
+  padding-top: 0;
+  margin-top: 0;
+}
+
+.visit-section-container {
+  padding: 0;
+}
+
+/* Mobile-optimized museum info */
+.museum-info-wrapper {
+  grid-template-columns: 1fr;
+  gap: 15px; /* Reduced from 20px */
+  margin-top: 15px; /* Reduced from 25px */
+}
+
+/* VisitInfo.css */
+
+/* Add scoping to avoid conflicts with Navbar.css */
+.visit-page * {
+  box-sizing: border-box;
+}
+
+.visit-page .mobile-bottom-nav {
+  display: none;
+}
+
+.visit-page .mobile-nav-button {
+  background: none;
+  border: none;
+  padding: 12px 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  cursor: pointer;
+  color: rgba(255, 255, 255, 0.6);
+  transition: color 0.3s ease, transform 0.2s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.visit-page .mobile-button-item.active .mobile-nav-button {
+  color: #ffffff;
+}
+
+.visit-page .mobile-nav-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 5px;
+  height: 24px;
+}
+
+.visit-page .mobile-nav-icon svg {
+  width: 24px;
+  height: 24px;
+  display: block;
+}
+
+.visit-page .mobile-nav-label {
+  font-size: 12px;
+  font-weight: 500;
+  text-align: center;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  max-width: 100%;
+  padding: 0 5px;
+}
+
+/* Glow effect for active nav item */
+.visit-page .mobile-button-item.active .mobile-nav-icon {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+}
+.mobile-button-item.active .mobile-nav-label {
+  color: yellowgreen !important;
+}
+
+/* Enhanced Mobile Bottom Navigation */
+@media (max-width: 768px) {
+  .visit-page .mobile-bottom-nav {
+    display: flex;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #2c2f11;
+    box-shadow: 0 -5px 15px rgba(0, 0, 0, 0.2);
+    z-index: 9700; /* Điều chỉnh thấp hơn mobile-hero-controller */
+    padding: 12px 0;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    justify-content: space-around;
+    align-items: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    will-change: transform; /* Cải thiện hiệu suất transform */
+    -webkit-transform-style: preserve-3d;
+    transform-style: preserve-3d;
+  }
+
+  .visit-page .mobile-button-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 33.333%;
+    position: relative;
+  }
+
+  /* Make sure bottom padding is adjusted for the navbar */
+  .visit-page {
+    padding-bottom: 80px;
+  }
+
+  /* Adjust the scroll top button position for mobile */
+  .visit-page .mobile-scroll-top {
+    bottom: 80px;
+  }
+
+  .mobile-bottom-nav.hidden {
+    transform: translateY(100%);
+  }
+}
+
+/* Prevent duplicate scroll-to-top button by scoping the styles */
+.visit-page .mobile-scroll-top {
+  position: fixed;
+  bottom: 80px; /* Positioned above the bottom nav */
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
+  z-index: 99;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  border: none;
+}
+
+.visit-page .mobile-scroll-top.visible {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Add ripple effect for better touch feedback */
+.visit-page .ripple-effect {
+  position: relative;
+  overflow: hidden;
+}
+
+.visit-page .ripple-circle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.4);
+  transform: scale(0);
+  animation: ripple-animation 0.8s ease-out;
+  pointer-events: none;
+}
+
+@keyframes ripple-animation {
+  to {
+    transform: scale(3);
+    opacity: 0;
+  }
+}
+
+/* Base styles for Visit component to avoid conflicts with Navbar */
+.visit-page .visit-nav-container {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+  overflow-x: auto;
+  background-color: #fff;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 5px 0;
+  transition: all 0.3s ease;
+}
+
+/* Rest of the CSS (unchanged but now scoped to avoid conflicts) */
+
+/* Update class names to match the changes in JSX files */
+.visit-page .mobile-button-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 33.333%;
+  position: relative;
+}
+
+.visit-page .mobile-button-item.active .mobile-nav-button {
+  color: #ffffff;
+}
+
+/* Glow effect for active nav item */
+.visit-page .mobile-button-item.active .mobile-nav-icon {
+  filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.6));
+}
+
+/* Mobile responsiveness for enhanced section titles */
+@media (max-width: 768px) {
+  .visit-section-title {
+    font-size: 1.8rem;
+    padding-bottom: 20px;
+    margin-bottom: 25px;
+    letter-spacing: 0.5px;
+  }
+
+  .visit-section-title::before {
+    width: 40px;
+    height: 40px;
+    top: -10px;
+  }
+
+  .visit-section-title span::before,
+  .visit-section-title span::after {
+    width: 20px;
+    right: -30px;
+    left: -30px;
+  }
+
+  .visit-section-title::after {
+    width: 80px;
+  }
+
+  .visit-section:hover .visit-section-title::after {
+    width: 120px;
+  }
+}
+
+@media (max-width: 576px) {
+  .visit-section-title {
+    font-size: 2rem;
+    padding-bottom: 15px;
+    margin-bottom: 10px;
+  }
+
+  .visit-section-title::before {
+    width: 30px;
+    height: 30px;
+    top: -8px;
+  }
+
+  .visit-section-title span::before,
+  .visit-section-title span::after {
+    display: none; /* Hide decorative elements on very small screens */
+  }
+}
+
+/* Mobile responsiveness */
+@media (max-width: 768px) {
+  .visit-page {
+    background-size: 200px; /* Smaller background pattern for mobile */
+  }
+
+  .museum-info-wrapper {
+    padding: 20px;
+  }
+
+  .ticket-intro {
+    padding: 20px;
+  }
+}
+
+/* Add new styles for experience packages */
+.package-section {
+  margin-bottom: 60px;
+}
+
+.package-type-title {
+  font-family: "Meholrax", serif;
+  font-size: 2.5rem;
+  color: #2c2f11;
+  margin-bottom: 30px;
+  text-align: center;
+  position: relative;
+}
+
+.package-type-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #2c2f11, transparent);
+}
+
+.package-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  margin-top: 40px;
+}
+
+.package-card {
+  background: #ffffff;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+
+.package-card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+}
+
+.package-image {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  overflow: hidden;
+}
+
+.package-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.package-card:hover .package-image img {
+  transform: scale(1.1);
+}
+
+.package-video-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.package-card:hover .package-video-overlay {
+  opacity: 1;
+}
+
+.package-video-overlay iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.package-content {
+  padding: 25px;
+}
+
+.package-title {
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
+  font-size: 1.8rem;
+  color: #2c2f11;
+  margin-bottom: 15px;
+}
+
+.package-description {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 20px;
+  line-height: 1.6;
+}
+
+.package-details {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 20px;
+}
+
+.package-details li {
+  padding: 8px 0;
+  padding-left: 25px;
+  position: relative;
+  font-size: 0.95rem;
+  color: #444;
+}
+
+.package-details li::before {
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #2c2f11;
+  font-size: 1.2rem;
+}
+
+.package-price {
+  border-top: 1px solid #eee;
+  padding-top: 20px;
+  margin-top: 20px;
+}
+
+.price-label {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+  margin-bottom: 5px;
+}
+
+.price-value {
+  display: block;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: #2c2f11;
+  margin-bottom: 5px;
+}
+
+.child-price {
+  display: block;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.package-note {
+  font-size: 0.85rem;
+  color: #666;
+  font-style: italic;
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px dashed #eee;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .package-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .package-type-title {
+    font-size: 2rem;
+  }
+
+  .package-card {
+    margin-bottom: 20px;
+  }
+
+  .package-image {
+    height: 200px;
+  }
+}
+
+.package-main-title {
+  font-family: "Meholrax", serif;
+  border-bottom: none !important;
+  font-size: 2.5rem;
+  color: #2c2f11;
+  text-align: center;
+  font-weight: 700;
+}
+
+.package-group-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  background: #2c2f11;
+  color: #fff;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+
+.package-group-title:hover {
+  color: yellowgreen;
+}
+
+.package-group-title.open {
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom: none;
+}
+
+.package-group-title .dropdown-icon {
+  transition: transform 0.3s ease;
+}
+
+.package-group-title.open .dropdown-icon {
+  transform: rotate(180deg);
+}
+
+.package-group-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out;
+  border: 1px solid #e0e0e0;
+  border-top: none;
+  border-bottom-left-radius: 8px;
+  border-bottom-right-radius: 8px;
+}
+
+.package-group-content.open {
+  max-height: 9999px; /* Adjust based on your content */
+  transition: max-height 0.5s ease-in;
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+  .package-group-title {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.125rem;
+  }
+
+  .package-group-content {
+    border-radius: 0;
+  }
+}
+
+.package-block {
+  border-bottom: none !important;
+  background: none;
+}
+
+.package-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.4rem;
+  color: #222;
+  font-weight: 700;
+  margin-bottom: 12px;
+  text-align: left;
+}
+
+.package-image-block {
+  width: 100%;
+  text-align: center;
+  margin-bottom: 14px;
+}
+
+.package-image-full {
+  width: 100%;
+  height: auto;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  margin: 0 auto 0 auto;
+  display: block;
+  object-fit: cover;
+}
+
+.package-content-block {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  color: #444;
+  margin-bottom: 12px;
+  line-height: 1.7;
+  text-align: left;
+}
+
+.package-details-list {
+  margin: 10px 0 10px 0;
+  padding-left: 20px;
+  font-family: "Roboto", sans-serif;
+}
+
+.package-details-list li {
+  margin-bottom: 4px;
+  list-style: disc;
+}
+
+.package-time {
+  font-size: 1rem;
+  color: #666;
+  margin-bottom: 6px;
+  font-style: italic;
+}
+
+.package-price-block {
+  margin: 8px 0 0 0;
+  font-size: 1.05rem;
+  color: #222;
+  font-family: "Roboto", sans-serif;
+}
+
+.package-price-label {
+  font-weight: 500;
+  margin-right: 8px;
+}
+
+.package-price-value {
+  font-weight: 700;
+  color: #00695c;
+}
+
+.package-child-price {
+  display: block;
+  font-size: 0.95rem;
+  color: #888;
+  margin-top: 2px;
+}
+
+.package-note {
+  font-size: 0.95rem;
+  color: #b71c1c;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+.package-video-block {
+  margin-top: 20px;
+  position: relative;
+  width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.package-video-block:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+}
+
+.video-thumbnail-wrapper {
+  position: relative;
+  width: 100%;
+  cursor: pointer;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: 16px;
+}
+
+.video-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s ease;
+}
+
+.video-thumbnail-wrapper:hover .video-thumbnail {
+  transform: scale(1.05);
+}
+
+.play-button-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease;
+}
+
+.video-thumbnail-wrapper:hover .play-button-overlay {
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.play-button-overlay svg {
+  width: 80px;
+  height: 80px;
+  transition: transform 0.3s ease;
+}
+
+.video-thumbnail-wrapper:hover .play-button-overlay svg {
+  transform: scale(1.1);
+}
+
+.video-iframe-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+}
+
+.video-iframe-wrapper iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Mobile styles cho video */
+@media (max-width: 768px) {
+  .package-video-block {
+    margin-top: 15px;
+  }
+
+  .play-button-overlay svg {
+    width: 60px;
+    height: 60px;
+  }
+
+  .video-thumbnail-wrapper {
+    border-radius: 12px;
+  }
+}
+
+.hours-blocks {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 32px;
+  margin: 0 auto 32px auto;
+  max-width: 700px;
+}
+
+.hours-block {
+  border-radius: 18px;
+  padding: 24px 18px 20px 18px;
+  min-width: 220px;
+  flex: 1 1 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: box-shadow 0.2s;
+}
+
+.hours-block:hover {
+  box-shadow: 0 6px 24px rgba(44, 47, 17, 0.13);
+}
+
+.hours-block-icon {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hours-block-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.2rem;
+  color: #2c2f11;
+  font-weight: 700;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+.hours-block-list {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  color: #444;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.hours-block-list li {
+  margin-bottom: 4px;
+  line-height: 1.6;
+}
+
+@media (max-width: 700px) {
+  .hours-blocks {
+    flex-direction: column;
+    gap: 18px;
+    max-width: 100%;
+  }
+  .hours-block {
+    min-width: 0;
+    width: 100%;
+    padding: 18px 10px 14px 10px;
+  }
+}
+
+.hours-tooltip {
+  position: absolute;
+  left: 50%;
+  bottom: -38px;
+  transform: translateX(-50%);
+  background: rgba(44, 47, 17, 0.92);
+  color: #fff;
+  font-family: "Roboto", sans-serif;
+  font-size: 0.98rem;
+  padding: 7px 18px;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(44, 47, 17, 0.13);
+  white-space: nowrap;
+  opacity: 0;
+  animation: tooltipFadeIn 0.3s forwards;
+  pointer-events: none;
+  z-index: 10;
+}
+
+@keyframes tooltipFadeIn {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.hours-block {
+  position: relative;
+}
+
+@media (max-width: 700px) {
+  .hours-tooltip {
+    font-size: 0.92rem;
+    padding: 6px 12px;
+    bottom: -32px;
+  }
+}
+
+.visit-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin: 20px auto 0 auto;
+  padding-left: 10px;
+  padding-right: 10px;
+  max-width: 1400px;
+}
+
+.visit-card {
+  display: flex;
+  flex-direction: row;
+  background: none;
+  box-shadow: none;
+  overflow: hidden;
+  gap: 0;
+  border-radius: 16px;
+  padding: 0;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.visit-card:hover {
+  transform: scale(1.02);
+}
+
+.visit-card-img-wrap {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: stretch;
+  justify-content: center;
+}
+
+/* Horizontal card (khổ ngang) */
+.visit-card-horizontal .visit-card-img-wrap {
+  height: 60vh;
+}
+
+/* Vertical card (khổ dọc) */
+.visit-card-vertical .visit-card-img-wrap {
+  height: 85vh;
+}
+
+.visit-card-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+}
+
+.visit-card-horizontal .visit-card-img {
+  object-position: center 30%; /* Điều chỉnh vị trí focus cho ảnh ngang */
+}
+
+.visit-card-vertical .visit-card-img {
+  object-position: center; /* Giữ nguyên vị trí focus cho ảnh dọc */
+}
+
+.visit-card-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.7) 100%
+  );
+  z-index: 2;
+}
+
+.visit-card-content {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  padding: 60px;
+  z-index: 2;
+  color: #fff;
+  text-align: left;
+  background: none;
+}
+
+.visit-card-content h2 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  font-family: "Mythical-Prince", serif;
+  color: #fff;
+  letter-spacing: 1.2px;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.7), 0 1px 0 #222;
+  border-bottom: none;
+  margin-bottom: 16px;
+  padding-bottom: 0;
+}
+
+.visit-card-content p {
+  font-size: 1.2rem;
+  color: #f3f3f3;
+  line-height: 1.6;
+  font-family: "Roboto", sans-serif;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
+  max-width: 80%;
+}
+
+@media (max-width: 768px) {
+  .visit-card-horizontal .visit-card-img-wrap {
+    height: 40vh;
+  }
+
+  .visit-card-vertical .visit-card-img-wrap {
+    height: 60vh;
+  }
+
+  .visit-card-content {
+    padding: 30px;
+  }
+
+  .visit-card-content h2 {
+    font-size: 2rem;
+    margin-bottom: 12px;
+  }
+
+  .visit-card-content p {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+}

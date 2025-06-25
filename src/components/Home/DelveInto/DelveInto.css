@@ -1,0 +1,518 @@
+.delve-into-section {
+  background: #2c2f11;
+  color: #fff;
+  padding: 5rem 0 8rem;
+  overflow: hidden;
+  position: relative;
+}
+
+
+.delve-into-container {
+  max-width: 1440px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  position: relative;
+  z-index: 2;
+}
+
+.delve-into-title {
+  font-family: "Meholrax", serif;
+  font-size: 3.5rem;
+  font-weight: 400;
+  margin: 0 0 4rem;
+  letter-spacing: 0.05em;
+  text-align: start;
+  position: relative;
+  background: linear-gradient(90deg, #fcfccc, #596016);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+  transform: translateZ(0); /* Fix for webkit rendering */
+}
+
+.delve-into-title::after {
+  content: "";
+  position: absolute;
+  bottom: -20px;
+  left: 0;
+  width: 120px;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0.8),
+    rgba(255, 255, 255, 0.1)
+  );
+}
+
+/* Modernized asymmetric grid layout */
+.delve-into-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  grid-template-rows: repeat(12, 50px);
+  gap: 1.8rem;
+  position: relative;
+  margin-bottom: 0;
+  transform-style: preserve-3d;
+  perspective: 1200px;
+}
+
+/* Grid items with artistic positioning */
+.grid-item {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  transform-style: preserve-3d;
+  transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+  will-change: transform, box-shadow;
+}
+
+.grid-item::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 50%;
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity 0.5s ease;
+}
+
+.grid-item::before {
+  content: "";
+  position: absolute;
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.grid-item:hover::before {
+  opacity: 1;
+}
+
+.grid-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);
+  transform-origin: center center;
+  filter: saturate(1.05) contrast(1.05);
+}
+
+.grid-item:hover {
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);
+  transform: translateY(-12px) scale(1.02) rotateY(2deg);
+  z-index: 10;
+}
+
+.grid-item:hover .grid-image {
+  transform: scale(1.1);
+  filter: saturate(1.2) contrast(1.1);
+}
+
+/* Enhanced asymmetric grid item placements */
+.grid-item-1 {
+  grid-column: 1 / span 5;
+  grid-row: 1 / span 8;
+  transform: perspective(1000px) rotateY(-2deg) rotateX(1deg);
+  z-index: 2;
+}
+
+.grid-item-2 {
+  grid-column: 1 / span 3;
+  grid-row: 9 / span 4;
+  transform: perspective(1000px) rotateY(1.5deg) rotateX(-1deg);
+  z-index: 1;
+}
+
+.grid-item-3 {
+  grid-column: 4 / span 2;
+  grid-row: 9 / span 4;
+  transform: perspective(1000px) rotateY(-1.5deg) rotateX(1.5deg);
+  z-index: 3;
+}
+
+.grid-item-4 {
+  grid-column: 6 / span 4;
+  grid-row: 1 / span 12;
+  transform: perspective(1000px) rotateX(1deg) translateY(-10px);
+  z-index: 4;
+}
+
+.grid-item-5 {
+  grid-column: 10 / span 3;
+  grid-row: 1 / span 6;
+  transform: perspective(1000px) rotateY(2deg) rotateX(-0.5deg);
+  z-index: 2;
+}
+
+.grid-item-6 {
+  grid-column: 10 / span 3;
+  grid-row: 7 / span 6;
+  transform: perspective(1000px) rotateY(1.5deg) rotateX(-1.5deg);
+  z-index: 1;
+}
+
+.explore-button-container {
+  position: absolute;
+  bottom: 50%;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 20;
+  transform: translateY(50%);
+}
+
+.explore-button {
+  background-color: rgba(255, 255, 255, 0.95);
+  color: #000;
+  border: none;
+  border-radius: 30px;
+  padding: 1.2rem 3.5rem;
+  font-size: 1.3rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-decoration: none;
+  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  z-index: 20;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.explore-button::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.6),
+    transparent
+  );
+  transition: left 0.7s ease;
+}
+
+.explore-button:hover {
+  background-color: #fff;
+  transform: translateY(-8px) scale(1.05);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+}
+
+.explore-button:hover::before {
+  left: 100%;
+}
+
+.explore-button:active {
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* Enhanced staggered animation for grid items */
+.grid-item {
+  opacity: 0;
+  animation: fadeInGrid 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.grid-item-1 {
+  animation-delay: 0.1s;
+}
+
+.grid-item-2 {
+  animation-delay: 0.3s;
+}
+
+.grid-item-3 {
+  animation-delay: 0.5s;
+}
+
+.grid-item-4 {
+  animation-delay: 0.2s;
+}
+
+.grid-item-5 {
+  animation-delay: 0.4s;
+}
+
+.grid-item-6 {
+  animation-delay: 0.6s;
+}
+
+@keyframes fadeInGrid {
+  from {
+    opacity: 0;
+    transform: translateY(40px) scale(0.95) rotateX(5deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1) rotateX(0);
+  }
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 1200px) {
+  .delve-into-title {
+    font-size: 3rem;
+    margin-bottom: 3rem;
+  }
+
+  .delve-into-grid {
+    grid-template-rows: repeat(14, 45px);
+    gap: 1.5rem;
+    margin-bottom: 4rem;
+  }
+
+  .grid-item-4 {
+    transform: perspective(1000px) rotateX(1deg) translateY(-5px);
+  }
+}
+
+@media (max-width: 992px) {
+  .delve-into-title {
+    font-size: 2.8rem;
+  }
+
+  .delve-into-grid {
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(22, 35px);
+    gap: 1.4rem;
+    perspective: 1000px;
+  }
+
+  .grid-item-1 {
+    grid-column: 1 / span 5;
+    grid-row: 1 / span 8;
+    transform: perspective(800px) rotateY(-3deg) rotateX(1deg);
+  }
+
+  .grid-item-2 {
+    grid-column: 6 / span 3;
+    grid-row: 1 / span 6;
+    transform: perspective(800px) rotateY(3deg) rotateX(-1deg);
+  }
+
+  .grid-item-3 {
+    grid-column: 6 / span 3;
+    grid-row: 7 / span 6;
+    transform: perspective(800px) rotateY(2deg) rotateX(1deg);
+  }
+
+  .grid-item-4 {
+    grid-column: 1 / span 4;
+    grid-row: 9 / span 8;
+    transform: perspective(800px) rotateY(-2deg) translateY(0);
+  }
+
+  .grid-item-5 {
+    grid-column: 5 / span 4;
+    grid-row: 13 / span 6;
+    transform: perspective(800px) rotateY(3deg) rotateX(-1deg);
+  }
+
+  .grid-item-6 {
+    grid-column: 1 / span 8;
+    grid-row: 19 / span 4;
+    transform: perspective(800px) rotateX(2deg);
+  }
+
+  .grid-item:hover {
+    transform: translateY(-8px) scale(1.03);
+  }
+}
+
+@media (max-width: 768px) {
+  .delve-into-section {
+    padding: 4rem 0 6rem;
+  }
+
+  .delve-into-title {
+    font-size: 2.5rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .delve-into-title::after {
+    width: 80px;
+    height: 2px;
+    bottom: -15px;
+  }
+
+  .explore-button-container {
+    bottom: 45%;
+  }
+
+  .explore-button {
+    padding: 1rem 2.8rem;
+    font-size: 1.1rem;
+  }
+
+  /* Create a more artistic staggered mobile layout */
+  .delve-into-grid {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    grid-template-rows: repeat(30, 25px);
+    gap: 1.2rem;
+    perspective: 800px;
+    margin-bottom: 3.5rem;
+  }
+
+  .grid-item-1 {
+    grid-column: 1 / span 4;
+    grid-row: 1 / span 8;
+    transform: perspective(600px) rotateY(-3deg);
+    z-index: 3;
+  }
+
+  .grid-item-2 {
+    grid-column: 1 / span 3;
+    grid-row: 9 / span 5;
+    transform: perspective(600px) rotateY(-2deg);
+    z-index: 1;
+  }
+
+  .grid-item-3 {
+    grid-column: 4 / span 3;
+    grid-row: 9 / span 8;
+    transform: perspective(600px) rotateY(3deg) translateY(-15px);
+    z-index: 4;
+  }
+
+  .grid-item-4 {
+    grid-column: 5 / span 2;
+    grid-row: 1 / span 8;
+    transform: perspective(600px) rotateY(4deg) translateY(15px);
+    z-index: 2;
+  }
+
+  .grid-item-5 {
+    grid-column: 1 / span 3;
+    grid-row: 14 / span 7;
+    transform: perspective(600px) rotateY(-3deg) translateY(0);
+    z-index: 2;
+  }
+
+  .grid-item-6 {
+    grid-column: 1 / span 6;
+    grid-row: 21 / span 6;
+    transform: perspective(600px) rotateX(2deg);
+    z-index: 2;
+  }
+
+  .grid-item::after {
+    height: 60%;
+  }
+
+  .grid-item:hover {
+    transform: translateY(-6px) scale(1.02);
+  }
+}
+
+@media (max-width: 480px) {
+  .delve-into-section {
+    padding: 3rem 0 5rem;
+  }
+
+  .delve-into-container {
+    padding: 0 1.2rem;
+  }
+
+  .delve-into-title {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .delve-into-title::after {
+    width: 60px;
+    bottom: -10px;
+  }
+
+  .explore-button-container {
+    bottom: 20%;
+  }
+
+  .explore-button {
+    padding: 0.9rem 2.5rem;
+    font-size: 1rem;
+  }
+
+  /* Create an enhanced artistic overlapping layout for small screens */
+  .delve-into-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(42, 15px);
+    gap: 0.9rem;
+    margin-bottom: 3rem;
+    perspective: 500px;
+  }
+
+  .grid-item-1 {
+    grid-column: 1 / span 4;
+    grid-row: 1 / span 10;
+    z-index: 5;
+    transform: perspective(500px) rotateX(2deg);
+  }
+
+  .grid-item-2 {
+    grid-column: 3 / span 2;
+    grid-row: 11 / span 8;
+    z-index: 2;
+    transform: perspective(500px) rotateY(4deg) translateY(-15px);
+  }
+
+  .grid-item-3 {
+    grid-column: 1 / span 2;
+    grid-row: 11 / span 6;
+    z-index: 4;
+    transform: perspective(500px) rotateY(-4deg);
+  }
+
+  .grid-item-4 {
+    grid-column: 1 / span 3;
+    grid-row: 17 / span 11;
+    z-index: 3;
+    transform: perspective(500px) rotateY(-2deg) translateY(-5px);
+  }
+
+  .grid-item-5 {
+    grid-column: 4 / span 1;
+    grid-row: 19 / span 8;
+    z-index: 1;
+    transform: perspective(500px) rotateY(5deg) translateY(10px);
+  }
+
+  .grid-item-6 {
+    grid-column: 1 / span 4;
+    grid-row: 28 / span 8;
+    z-index: 2;
+    transform: perspective(500px) rotateX(2deg);
+  }
+
+  .grid-item-6::after {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);
+  }
+
+
+  /* Dynamic shine effect for cards */
+  .grid-item:nth-child(odd)::after {
+    height: 100%;
+  }
+
+  .grid-item:nth-child(even)::after {
+    height: 100%;
+  }
+
+  .grid-item:hover {
+    transform: translateY(-5px) scale(1.02);
+  }
+}

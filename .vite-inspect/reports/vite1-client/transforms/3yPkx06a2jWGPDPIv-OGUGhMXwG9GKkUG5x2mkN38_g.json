@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/mussedupin-0f2501a9a053b0e75502c49e74876d2dc852c693/node_modules/lucide-react/dist/esm/icons/external-link.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M15 3h6v6\", key: \"1q9fwt\" }],\n  [\"path\", { d: \"M10 14 21 3\", key: \"gplh6r\" }],\n  [\"path\", { d: \"M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6\", key: \"a6xqqp\" }]\n];\nconst ExternalLink = createLucideIcon(\"external-link\", __iconNode);\n\nexport { __iconNode, ExternalLink as default };\n//# sourceMappingURL=external-link.js.map\n",
+      "start": 1750873710929,
+      "end": 1750873710964,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750873710964,
+      "end": 1750873710964,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750873710964,
+      "end": 1750873710964,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750873710964,
+      "end": 1750873710964,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750873710964,
+      "end": 1750873710964,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750873710964,
+      "end": 1750873710964,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750873710964,
+      "end": 1750873710964,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750873710964,
+      "end": 1750873710964,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750873710964,
+      "end": 1750873710964,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750873710964,
+      "end": 1750873710964,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750873710964,
+      "end": 1750873710964,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750873710964,
+      "end": 1750873710964,
+      "order": "normal"
+    }
+  ]
+}

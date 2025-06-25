@@ -1,0 +1,477 @@
+/* Remove Google Fonts imports and use local fonts */
+/* Hero Container Styles */
+.hero-container-home {
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-image-container-home {
+  width: 100vw;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-video-home {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  background: #000;
+  opacity: 1;
+  transition: opacity 1.5s ease;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.hero-video-home.loaded {
+  opacity: 1;
+}
+
+/* Hero Content Styles */
+.hero-content-home {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 3;
+  color: #fff;
+  text-align: center;
+  width: 100%;
+  max-width: 900px;
+}
+
+/* Custom font loading */
+@font-face {
+  font-family: "LouvreSerif";
+  src: url("../../assets/fonts/louvreserif/400/latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("../../assets/fonts/montserrat/600/latin.woff2") format("woff2");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../../assets/fonts/roboto/400/latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("../../assets/fonts/roboto/500/latin.woff2") format("woff2");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mythical-Prince";
+  src: url("../../../assets/museedupin/1FTV-VIP-Mythical-Prince.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+.hero-title-home {
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
+  font-size: 5rem;
+  font-weight: 600;
+  line-height: 1.1;
+  margin-bottom: 0.5rem;
+  max-width: 850px;
+  z-index: 2;
+  position: relative;
+  color: #ffffff;
+}
+
+/* Apply Vietnamese font when in Vietnamese language */
+
+/* Mobile controller for prepare your visit */
+.mobile-hero-controller {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #000;
+  color: white;
+  z-index: 100;
+  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);
+}
+
+.mobile-prepare-visit {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 20px;
+  font-family: "Montserrat", Arial, sans-serif;
+  font-weight: 600;
+  font-size: 14px;
+  background-color: #2c2f11;
+  cursor: pointer;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.prepare-visit-arrow {
+  transition: transform 0.3s ease;
+}
+
+/* Info Panel Styles */
+.hero-info-panel {
+  position: absolute;
+  width: 55%;
+  bottom: -20px;
+  right: 0;
+  background-color: #2c2f11;
+  color: white;
+  padding: 0;
+  z-index: 10;
+  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
+  margin: 0;
+}
+
+.info-panel-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1280px;
+  margin: 0 auto;
+  background-color: #2c2f11;
+  padding: 20px;
+}
+
+.info-panel-left {
+  flex: 1;
+}
+
+.info-panel-titles {
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 18px;
+  color: #fff;
+  font-weight: 600;
+  margin: 0 0 10px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.info-panel-status {
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 0 0 5px 0;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.info-panel-hours {
+  font-family: "Montserrat", Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0;
+  display: flex;
+  align-items: center;
+}
+
+.hours-arrow {
+  margin: 0 8px;
+  display: flex;
+  align-items: center;
+}
+
+.info-panel-separator {
+  width: 1px;
+  height: 100px;
+  background-color: rgba(255, 255, 255, 0.2);
+  margin: 0 30px;
+}
+
+.info-panel-right {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.info-panel-button {
+  padding: 12px 25px;
+  border-radius: 30px;
+  font-family: "Roboto", Arial, sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  text-align: center;
+  transition: all 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 200px;
+}
+.info-panel-button:hover {
+  text-decoration: underline;
+}
+
+.btn-primary {
+  background-color: #00695c;
+  color: white;
+  border: none;
+}
+
+.btn-primary:hover {
+  background-color: #00897b;
+}
+
+.btn-secondary {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.7);
+}
+
+.button-icon {
+  margin-right: 10px;
+}
+
+/* Media Queries for Responsiveness */
+@media (max-width: 1200px) {
+  .hero-content {
+    width: 60%;
+  }
+}
+
+@media (max-width: 992px) {
+  .hero-content {
+    width: 70%;
+    bottom: 35%;
+  }
+
+  .hero-title {
+    font-size: 40px;
+    line-height: 48px;
+  }
+}
+
+@media (min-width: 769px) {
+  .hero-container-home {
+    height: 80vh;
+  }
+  .hero-info-panel {
+    position: absolute;
+    width: 55%;
+    bottom: calc(
+      810vh + 40px
+    );
+    left: 570px;
+    background-color: #2c2f11;
+    color: white;
+    padding: 0;
+    z-index: 10;
+    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);
+    margin: 0;
+  }
+
+  .info-panel-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1280px;
+    margin: 0 auto;
+    background-color: #2c2f11;
+    padding: 20px;
+  }
+
+  .info-panel-left {
+    flex: 1;
+  }
+
+  .info-panel-titles {
+    font-family: "Montserrat", Arial, sans-serif;
+    font-size: 18px;
+    color: #fff;
+    font-weight: 600;
+    margin: 0 0 10px 0;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  .info-panel-status {
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0 0 5px 0;
+    color: rgba(255, 255, 255, 0.8);
+  }
+
+  .info-panel-hours {
+    font-family: "Montserrat", Arial, sans-serif;
+    font-size: 16px;
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .hours-arrow {
+    margin: 0 8px;
+    display: flex;
+    align-items: center;
+  }
+
+  .info-panel-separator {
+    width: 1px;
+    height: 100px;
+    background-color: rgba(255, 255, 255, 0.2);
+    margin: 0 30px;
+  }
+
+  .info-panel-right {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .info-panel-button {
+    padding: 12px 25px;
+    border-radius: 30px;
+    font-family: "Roboto", Arial, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    text-align: center;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    width: 200px;
+  }
+  .info-panel-button:hover {
+    text-decoration: underline;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-content {
+    left: 5%;
+    width: 90%;
+    bottom: 40%;
+  }
+  .hero-container-home {
+    height: 30vh;
+  }
+  .hero-title {
+    font-size: 30px;
+    line-height: 38px;
+  }
+
+  /* Show mobile controller and adjust panel */
+  .mobile-hero-controller {
+    display: block;
+  }
+
+  .hero-info-panel {
+    position: fixed;
+    width: 100%;
+    height: auto;
+    bottom: 56px; /* Higher than mobile-hero-controller */
+    right: 0;
+    left: 0;
+    background-color: #1a1a1a;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    z-index: 99;
+  }
+
+  .hero-info-panel.open {
+    transform: translateY(0);
+  }
+
+  .info-panel-content {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+  }
+
+  .info-panel-separator {
+    width: 100%;
+    height: 1px;
+    margin: 20px 0;
+  }
+
+  .info-panel-right {
+    margin-top: 20px;
+    width: 100%;
+  }
+
+  .info-panel-button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .hero-content {
+    bottom: 30%;
+  }
+
+  .hero-title {
+    font-size: 2.7rem;
+    line-height: 40px;
+    letter-spacing: 1px;
+  }
+
+  .info-panel-titles {
+    font-size: 16px;
+  }
+
+  .info-panel-status {
+    font-size: 13px;
+  }
+
+  .info-panel-hours {
+    font-size: 14px;
+  }
+
+  .info-panel-button {
+    padding: 10px 20px;
+    font-size: 13px;
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 375px) {
+  .hero-title {
+    font-size: 22px;
+    line-height: 28px;
+  }
+
+  .info-panel-content {
+    padding: 15px;
+  }
+
+  .info-panel-separator {
+    margin: 15px 0;
+  }
+
+  .info-panel-button {
+    padding: 8px 16px;
+  }
+}
+
+/* End of Hero CSS */

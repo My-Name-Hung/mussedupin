@@ -1,0 +1,609 @@
+/* VisitorTrailsPage.css */
+
+@font-face {
+  font-family: "LouvreSerif";
+  src: url("../../assets/fonts/louvreserif/400/latin.woff2") format("woff2");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Mythical-Prince";
+  src: url("../../assets/museedupin/1FTV-VIP-Mythical-Prince.otf")
+    format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  --primary-color: #b38741;
+  --primary-dark: #93702f;
+  --primary-light: #d3af78;
+  --secondary-color: #1e1e1e;
+  --text-color: #333333;
+  --light-color: #f5f5f5;
+  --accent-color: #d4af37;
+  --bg-light: #f9f8f6;
+  --bg-medium: #f3f0e9;
+  --bg-dark: #e9e4d8;
+  --shadow-soft: 0 6px 15px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 10px 25px rgba(0, 0, 0, 0.12);
+  --shadow-hard: 0 15px 35px rgba(0, 0, 0, 0.18);
+  --transition-slow: 0.6s cubic-bezier(0.19, 1, 0.22, 1);
+  --transition-medium: 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+  --transition-fast: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  --font-primary: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
+  --font-secondary: "Roboto", sans-serif;
+}
+
+.visitor-trails-page {
+  width: 100%;
+  overflow-x: hidden;
+  background-image: url("https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784842/background/Background2.webp");
+  background-repeat: repeat;
+  background-position: center;
+  background-size: 300px;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+  box-sizing: border-box;
+  overflow: visible;
+  color: var(--text-color);
+  -webkit-overflow-scrolling: touch;
+}
+
+/* Hero Section */
+.vt-hero {
+  position: relative;
+  height: 100vh;
+  min-height: 600px;
+  width: 100%;
+  overflow: hidden;
+  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);
+}
+
+.vt-hero-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center 30%;
+  filter: saturate(1.2) contrast(1.1) brightness(0.95);
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.vt-hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.3),
+    rgba(0, 0, 0, 0.7)
+  );
+  background-blend-mode: multiply;
+}
+
+.vt-hero-content {
+  position: absolute;
+  top: 50%;
+  left: 10%;
+  transform: translateY(-50%);
+  text-align: left;
+  color: white;
+  width: 80%;
+  max-width: 800px;
+  z-index: 2;
+}
+
+.vt-hero-title {
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+    serif;
+  font-size: 4.5rem;
+  font-weight: 600;
+  line-height: 1.1;
+  margin: 0 0 1.5rem;
+  color: #fff;
+  max-width: 80%;
+  letter-spacing: 0.5px;
+  transform: translateY(20px);
+  opacity: 0;
+  animation: vtFadeInUp 1s ease 0.4s forwards;
+}
+
+.vt-hero-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0px;
+  width: 100px;
+  height: 3px;
+  background-color: rgba(255, 255, 255, 0.7);
+  transform-origin: left center;
+  transform: scaleX(0);
+  animation: 1.2s ease 0.5s 1 normal forwards running vtExpandWidth;
+}
+
+.vt-hero-subtitle {
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 24px;
+  font-weight: 300;
+  max-width: 70%;
+  line-height: 1.5;
+  margin: 20px 0px 0px;
+  animation: 1.2s ease 0.3s 1 normal both running vtFadeInUp;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+/* Custom scroll indicator in hero section */
+.vt-hero-scroll-indicator {
+  position: absolute;
+  bottom: 40px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: rgba(255, 255, 255, 0.8);
+  font-family: Roboto, Arial, sans-serif;
+  font-size: 12px;
+  letter-spacing: 2px;
+  opacity: 0;
+  animation: fadeIn 1s ease 2s forwards;
+  z-index: 3;
+}
+
+.vt-hero-scroll-mouse {
+  width: 30px;
+  height: 50px;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 20px;
+  margin-bottom: 10px;
+  position: relative;
+  cursor: pointer;
+}
+
+.vt-hero-scroll-wheel {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: rgba(255, 255, 255, 0.8);
+  left: 50%;
+  margin-left: -3px;
+  top: 10px;
+  border-radius: 50%;
+  animation: scrollWheel 2s ease infinite;
+}
+
+@keyframes scrollWheel {
+  0% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(15px);
+    opacity: 0;
+  }
+}
+
+@keyframes vtFadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(60px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes vtExpandWidth {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: scaleX(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+/* Description Section */
+.vt-description-section {
+  padding: 4rem 0;
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.vt-description-container {
+  padding: 0 5%;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.vt-description-text {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.7;
+  color: #333;
+  margin-bottom: 2rem;
+}
+
+.vt-description-text p {
+  margin-bottom: 1.5rem;
+}
+
+/* Map link button */
+.vt-map-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #2c2f11;
+  color: #fff;
+  text-decoration: none;
+  padding: 1.25rem 2rem;
+  border-radius: 10px;
+  font-family: "Roboto", sans-serif;
+  font-size: 1.125rem;
+  font-weight: 400;
+  transition: all 0.3s ease;
+  margin: 2rem auto 0;
+  max-width: 300px;
+  gap: 8px;
+}
+
+.vt-map-link:hover {
+  background-color: #6d752b;
+}
+
+.vt-map-link svg {
+  transition: transform 0.3s ease;
+}
+
+.vt-map-link:hover svg {
+  transform: translateX(5px);
+}
+
+/* Trails Section */
+.vt-trails-section {
+  padding: 3rem 0 6rem;
+  position: relative;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.vt-section-header {
+  text-align: left;
+  margin-bottom: 3rem;
+  max-width: 1200px;
+  margin-left: 5%;
+}
+
+.vt-section-title {
+  font-family: "Meholrax", serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  position: relative;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #000;
+}
+
+.vt-section-divider {
+  height: 3px;
+  width: 140px;
+  background-color: #b38741;
+  margin: 1rem 0;
+  border-radius: 1px;
+}
+
+/* Trail cards grid */
+.vt-trails-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 0 5%;
+}
+
+.vt-trail-item {
+  border-radius: 8px;
+  overflow: hidden;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  height: 100%;
+  cursor: pointer;
+  position: relative;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.vt-trail-item.loaded {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.vt-trail-item:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-medium);
+}
+
+.vt-trail-item a {
+  text-decoration: none;
+  color: var(--text-color);
+  display: block;
+  height: 100%;
+}
+
+.vt-trail-image-container {
+  position: relative;
+  height: 0;
+  padding-bottom: 66%;
+  overflow: hidden;
+}
+
+.vt-trail-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+  will-change: transform;
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+.vt-trail-item:hover .vt-trail-image {
+  transform: scale(1.05);
+}
+
+.vt-trail-duration {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  background-color: #2c2f11;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-family: "Roboto", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  color: #9acd32;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.vt-audio-icon {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #2c2f11;
+  padding: 8px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #9acd32;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 1;
+}
+
+.vt-clock-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.vt-trail-content {
+  padding: 20px;
+}
+
+.vt-trail-title {
+  font-family: "Roboto", sans-serif;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  line-height: 1.3;
+  font-weight: 500;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.vt-trail-description {
+  font-family: "Roboto", sans-serif;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: #555;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* Dark section */
+.vt-dark-section {
+  background-color: #2c2f11;
+  padding: 5rem 0;
+  position: relative;
+  color: white;
+  clip-path: polygon(0 5%, 100% 0, 100% 95%, 0 100%);
+  margin-top: -3rem;
+  margin-bottom: -3rem;
+}
+
+.vt-dark-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 5%;
+}
+
+.vt-dark-title {
+  font-family: "Meholrax", serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.vt-note-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 30px;
+}
+
+.vt-note-item {
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 25px;
+  border-radius: 8px;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.vt-note-item:hover {
+  transform: translateY(-5px);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.vt-note-title {
+  font-family: "Meholrax", serif;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+
+.vt-note-text {
+  font-family: "Roboto", sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+/* Responsive styles */
+@media (max-width: 1200px) {
+  .vt-trails-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 992px) {
+  .vt-hero-title {
+    font-size: 3.5rem;
+  }
+
+  .vt-hero-subtitle {
+    font-size: 1.3rem;
+  }
+
+  .vt-section-title {
+    font-size: 2.2rem;
+  }
+
+  .vt-dark-title {
+    font-size: 2.2rem;
+  }
+
+  .vt-note-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .vt-hero-title {
+    font-size: 3rem;
+    max-width: 100%;
+  }
+
+  .vt-hero-subtitle {
+    font-size: 1.2rem;
+    max-width: 100%;
+  }
+
+  .vt-hero-content {
+    width: 90%;
+    left: 5%;
+  }
+
+  .vt-trails-grid {
+    grid-template-columns: 1fr;
+    max-width: 500px;
+    margin: 0 auto;
+  }
+
+  .vt-description-container,
+  .vt-section-header {
+    padding: 0 20px;
+    margin-left: 0;
+  }
+
+  .vt-trail-image-container {
+    padding-bottom: 56%;
+  }
+
+  .vt-trail-item {
+    transition: transform 0.3s ease;
+  }
+
+  .vt-hero-image {
+    transition: transform 0.3s ease;
+  }
+}
+
+@media (max-width: 576px) {
+  .vt-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .vt-hero {
+    min-height: 400px;
+  }
+
+  .vt-dark-section {
+    padding: 4rem 0;
+  }
+
+  .vt-dark-title {
+    font-size: 1.8rem;
+  }
+}
+
+/* Animation classes */
+.animate-section {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.animate-section.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Optimize animation performance */
+@media (prefers-reduced-motion: reduce) {
+  .vt-trail-item {
+    transition: none;
+    animation: none;
+    transform: none;
+  }
+
+  .vt-hero-image {
+    transition: none;
+  }
+}

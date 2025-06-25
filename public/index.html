@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Đặt viewport để đảm bảo responsive với mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Tiêu đề tối ưu: ưu tiên chứa từ khóa chính ("Bảo tàng Thông", "Musee Du Pin") -->
+    <title>
+      Bảo tàng Thông | Musee Du Pin – Nơi giữ gìn, nâng niu những giá trị Đà Lạt
+    </title>
+
+    <!-- Meta Description: giữ độ dài khoảng 150–160 ký tự để hiện đủ trên SERP -->
+    <meta
+      name="description"
+      content="Khám phá Bảo tàng Thông (Musee Du Pin): bộ sưu tập nghệ thuật, triển lãm, sự kiện văn hóa và lịch sử Việt Nam. Tham quan trực tuyến ngay hôm nay!"
+    />
+
+    <!-- Meta Keywords: ít được Google ưu tiên nhưng vẫn có thể giữ cho các search engine khác -->
+    <meta
+      name="keywords"
+      content="bảo tàng thông, musee du pin, nghệ thuật việt nam, triển lãm, văn hóa việt nam, bảo tàng việt nam"
+    />
+    <meta
+      name="google-site-verification"
+      content="nrcZ5VenmSlmvmE_y8IiqwmnvcWTWjXhddg-jBASX7s"
+    />
+
+    <!-- Canonical: tránh tình trạng duplicate content -->
+    <link rel="canonical" href="https://museedupin.com/" />
+
+    <!-- Xác định robots: cho phép index và theo dõi link -->
+    <meta name="robots" content="index, follow" />
+
+    <!-- Preconnect/Preload: ưu tiên kết nối nhanh đến các tài nguyên quan trọng (font, API, CDN) -->
+    <link rel="preconnect" href="https://res.cloudinary.com" />
+    <link rel="preload" href="/src/styles/critical.css" as="style" />
+    <link rel="stylesheet" href="/src/styles/critical.css" />
+
+    <!-- Favicon chuẩn và kích thước -->
+    <link
+      rel="icon"
+      type="image/png"
+      href="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png"
+      sizes="86x86"
+    />
+
+    <!-- Open Graph (Facebook, LinkedIn …) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Bảo tàng Thông | Musee Du Pin" />
+    <meta
+      property="og:description"
+      content="Khám phá bộ sưu tập nghệ thuật độc đáo và lịch sử Việt Nam tại Bảo tàng Thông – Musee Du Pin."
+    />
+    <meta
+      property="og:image"
+      content="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png"
+    />
+    <meta property="og:url" content="https://museedupin.com/" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Bảo tàng Thông | Musee Du Pin" />
+    <meta
+      name="twitter:description"
+      content="Tham quan Bảo tàng Thông – Musee Du Pin: triển lãm nghệ thuật, sự kiện văn hóa đặc sắc tại Việt Nam."
+    />
+    <meta
+      name="twitter:image"
+      content="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png"
+    />
+
+    <!-- JSON-LD Structured Data cho Organization + Museum -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "Organization",
+            "@id": "https://museedupin.com/#organization",
+            "name": "Bảo tàng Thông",
+            "url": "https://museedupin.com/",
+            "logo": "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png",
+            "sameAs": ["https://www.facebook.com/BaoTangThongDalat"],
+            "contactPoint": {
+              "@type": "ContactPoint",
+              "telephone": "0862356368",
+              "contactType": "Bảo Tàng Thông- Musee du Pin",
+              "areaServed": "Đà Lạt"
+            }
+          },
+          {
+            "@type": "Museum",
+            "@id": "https://museedupin.com/#museum",
+            "name": "Bảo tàng Thông | Musee Du Pin",
+            "description": "Bảo tàng Thông – Musee Du Pin: triển lãm nghệ thuật, di sản văn hóa và lịch sử Việt Nam.",
+            "url": "https://museedupin.com/",
+            "image": "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "29-31 Đống Đa, phường 3, Đà Lạt",
+              "addressLocality": "Đà Lạt",
+              "addressCountry": "Việt Nam"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": 11.92384504845912,
+              "longitude": 108.4446307502475
+            },
+            "telephone": "0862356368",
+            "openingHours": "09:00-21:00",
+            "sameAs": ["https://www.facebook.com/BaoTangThongDalat"]
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>

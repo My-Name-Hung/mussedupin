@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/mussedupin-0f2501a9a053b0e75502c49e74876d2dc852c693/node_modules/lucide-react/dist/esm/icons/bluetooth-searching.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"m7 7 10 10-5 5V2l5 5L7 17\", key: \"1q5490\" }],\n  [\"path\", { d: \"M20.83 14.83a4 4 0 0 0 0-5.66\", key: \"k8tn1j\" }],\n  [\"path\", { d: \"M18 12h.01\", key: \"yjnet6\" }]\n];\nconst BluetoothSearching = createLucideIcon(\"bluetooth-searching\", __iconNode);\n\nexport { __iconNode, BluetoothSearching as default };\n//# sourceMappingURL=bluetooth-searching.js.map\n",
+      "start": 1750873710243,
+      "end": 1750873710298,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750873710298,
+      "end": 1750873710298,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750873710298,
+      "end": 1750873710298,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750873710298,
+      "end": 1750873710298,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750873710298,
+      "end": 1750873710298,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750873710298,
+      "end": 1750873710298,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750873710298,
+      "end": 1750873710298,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750873710298,
+      "end": 1750873710298,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750873710298,
+      "end": 1750873710298,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750873710298,
+      "end": 1750873710298,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750873710298,
+      "end": 1750873710298,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750873710298,
+      "end": 1750873710298,
+      "order": "normal"
+    }
+  ]
+}

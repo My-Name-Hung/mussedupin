@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/mussedupin-0f2501a9a053b0e75502c49e74876d2dc852c693/node_modules/react-leaflet/lib/Circle.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { createElementObject, createPathComponent, extendContext, updateCircle } from '@react-leaflet/core';\nimport { Circle as LeafletCircle } from 'leaflet';\nexport const Circle = createPathComponent(function createCircle({ center, children: _c, ...options }, ctx) {\n    const circle = new LeafletCircle(center, options);\n    return createElementObject(circle, extendContext(ctx, {\n        overlayContainer: circle\n    }));\n}, updateCircle);\n",
+      "start": 1750873707779,
+      "end": 1750873708636,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750873708637,
+      "end": 1750873708637,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750873708637,
+      "end": 1750873708637,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750873708637,
+      "end": 1750873708637,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750873708637,
+      "end": 1750873708637,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750873708637,
+      "end": 1750873708637,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750873708637,
+      "end": 1750873708637,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750873708637,
+      "end": 1750873708637,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750873708637,
+      "end": 1750873708637,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750873708637,
+      "end": 1750873708637,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750873708637,
+      "end": 1750873708637,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750873708637,
+      "end": 1750873708637,
+      "order": "normal"
+    }
+  ]
+}

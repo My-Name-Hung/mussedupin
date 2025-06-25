@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/mussedupin-0f2501a9a053b0e75502c49e74876d2dc852c693/src/hooks/usePreloadAssets.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { useCallback, useEffect, useState } from \"react\";\nimport useImageCache from \"./useImageCache\";\n\nconst CONCURRENT_LOADS = 4; // Number of concurrent image loads\nconst PRIORITY_THRESHOLD = 5; // Number of high priority images to load first\n\nexport default function usePreloadAssets(assetList = [], options = {}) {\n  const { preload, isLoaded: isCached } = useImageCache();\n  const [progress, setProgress] = useState(0);\n  const [done, setDone] = useState(false);\n  const [priorityDone, setPriorityDone] = useState(false);\n\n  const loadImage = useCallback(\n    async (src) => {\n      if (isCached(src)) return true;\n      try {\n        await preload(src);\n        return true;\n      } catch (error) {\n        console.error(`Failed to preload: ${src}`, error);\n        return false;\n      }\n    },\n    [preload, isCached]\n  );\n\n  useEffect(() => {\n    let isMounted = true;\n    let loaded = 0;\n\n    if (assetList.length === 0) {\n      setDone(true);\n      setProgress(100);\n      setPriorityDone(true);\n      return;\n    }\n\n    // Split assets into priority and regular\n    const priorityAssets = assetList.slice(0, PRIORITY_THRESHOLD);\n    const regularAssets = assetList.slice(PRIORITY_THRESHOLD);\n\n    // Load priority assets first\n    const loadPriorityAssets = async () => {\n      await Promise.all(priorityAssets.map((src) => loadImage(src)));\n      if (isMounted) {\n        setPriorityDone(true);\n        loaded = priorityAssets.length;\n        setProgress(Math.round((loaded / assetList.length) * 100));\n      }\n    };\n\n    // Load regular assets in chunks\n    const loadRegularAssets = async () => {\n      for (let i = 0; i < regularAssets.length; i += CONCURRENT_LOADS) {\n        const chunk = regularAssets.slice(i, i + CONCURRENT_LOADS);\n        await Promise.all(chunk.map((src) => loadImage(src)));\n        if (isMounted) {\n          loaded += chunk.length;\n          setProgress(Math.round((loaded / assetList.length) * 100));\n        }\n      }\n      if (isMounted) setDone(true);\n    };\n\n    // Start loading process\n    loadPriorityAssets().then(() => {\n      if (regularAssets.length > 0) {\n        loadRegularAssets();\n      } else {\n        setDone(true);\n      }\n    });\n\n    return () => {\n      isMounted = false;\n    };\n  }, [assetList, loadImage]);\n\n  return { progress, done, priorityDone };\n}\n",
+      "start": 1750873701677,
+      "end": 1750873702320,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750873702320,
+      "end": 1750873702320,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750873702320,
+      "end": 1750873702320,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750873702320,
+      "end": 1750873702320,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750873702320,
+      "end": 1750873702320,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750873702320,
+      "end": 1750873702320,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750873702320,
+      "end": 1750873702320,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750873702320,
+      "end": 1750873702321,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750873702321,
+      "end": 1750873702321,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750873702321,
+      "end": 1750873702321,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750873702321,
+      "end": 1750873702321,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750873702321,
+      "end": 1750873702321,
+      "order": "normal"
+    }
+  ]
+}

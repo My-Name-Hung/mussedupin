@@ -1,0 +1,151 @@
+@font-face {
+  font-family: "Meholrax";
+  src: url("../../assets/fonts/Meholrax.ttf") format("truetype");
+}
+
+.loading-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #0f0f0f;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+}
+
+.loading-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo-container {
+  position: relative;
+  width: 120px;
+  height: 120px;
+  margin-bottom: 20px;
+  animation: pulse 2s infinite;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+}
+
+.loading-logo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 10px;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards;
+}
+
+.loading-logo[src] {
+  opacity: 1;
+}
+
+.loading-logo:not([src]),
+.loading-logo[src=""],
+.loading-logo:-moz-loading,
+.loading-logo:-moz-broken {
+  opacity: 0;
+}
+
+.loading-title {
+  font-family: "Meholrax", serif;
+  font-size: 2.5rem;
+  color: #ffffff;
+  margin: 0;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards 0.3s;
+  text-align: center;
+  letter-spacing: 1px;
+  font-weight: 400;
+}
+
+.loading-bar-container {
+  width: 200px;
+  height: 4px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 2px;
+  overflow: hidden;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards 0.6s;
+}
+
+.loading-bar {
+  height: 100%;
+  background-color: #00d1b2;
+  transition: width 0.3s ease;
+  border-radius: 2px;
+}
+
+.loading-text {
+  font-family: "Meholrax", serif;
+  font-size: 1rem;
+  color: #ffffff;
+  opacity: 0;
+  animation: fadeIn 0.5s ease forwards 0.9s;
+  letter-spacing: 1px;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.05);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Fallback styles when logo fails to load */
+.logo-container::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+  opacity: 0;
+}
+
+.loading-logo:not([src]) + .logo-container::after,
+.loading-logo[src=""] + .logo-container::after {
+  opacity: 1;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .logo-container {
+    width: 100px;
+    height: 100px;
+  }
+
+  .loading-title {
+    font-size: 2rem;
+  }
+
+  .loading-bar-container {
+    width: 150px;
+  }
+}

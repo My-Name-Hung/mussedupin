@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/mussedupin-0f2501a9a053b0e75502c49e74876d2dc852c693/node_modules/react-leaflet/lib/hooks.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { useLeafletContext } from '@react-leaflet/core';\nimport { useEffect } from 'react';\nexport function useMap() {\n    return useLeafletContext().map;\n}\nexport function useMapEvent(type, handler) {\n    const map = useMap();\n    useEffect(function addMapEventHandler() {\n        // @ts-ignore event type\n        map.on(type, handler);\n        return function removeMapEventHandler() {\n            // @ts-ignore event type\n            map.off(type, handler);\n        };\n    }, [\n        map,\n        type,\n        handler\n    ]);\n    return map;\n}\nexport function useMapEvents(handlers) {\n    const map = useMap();\n    useEffect(function addMapEventHandlers() {\n        map.on(handlers);\n        return function removeMapEventHandlers() {\n            map.off(handlers);\n        };\n    }, [\n        map,\n        handlers\n    ]);\n    return map;\n}\n",
+      "start": 1750873707779,
+      "end": 1750873708630,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750873708631,
+      "end": 1750873708631,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750873708632,
+      "end": 1750873708632,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750873708632,
+      "end": 1750873708632,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750873708632,
+      "end": 1750873708633,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750873708633,
+      "end": 1750873708633,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750873708633,
+      "end": 1750873708633,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750873708633,
+      "end": 1750873708633,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750873708634,
+      "end": 1750873708634,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750873708634,
+      "end": 1750873708634,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750873708634,
+      "end": 1750873708634,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750873708634,
+      "end": 1750873708635,
+      "order": "normal"
+    }
+  ]
+}

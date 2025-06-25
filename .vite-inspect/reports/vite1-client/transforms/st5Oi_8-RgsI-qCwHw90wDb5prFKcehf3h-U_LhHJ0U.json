@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/mussedupin-0f2501a9a053b0e75502c49e74876d2dc852c693/node_modules/lucide-react/dist/esm/icons/circle-dollar-sign.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"circle\", { cx: \"12\", cy: \"12\", r: \"10\", key: \"1mglay\" }],\n  [\"path\", { d: \"M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8\", key: \"1h4pet\" }],\n  [\"path\", { d: \"M12 18V6\", key: \"zqpxq5\" }]\n];\nconst CircleDollarSign = createLucideIcon(\"circle-dollar-sign\", __iconNode);\n\nexport { __iconNode, CircleDollarSign as default };\n//# sourceMappingURL=circle-dollar-sign.js.map\n",
+      "start": 1750873710565,
+      "end": 1750873710609,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750873710609,
+      "end": 1750873710609,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750873710609,
+      "end": 1750873710609,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750873710609,
+      "end": 1750873710609,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750873710609,
+      "end": 1750873710609,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750873710609,
+      "end": 1750873710609,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750873710609,
+      "end": 1750873710609,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750873710609,
+      "end": 1750873710609,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750873710610,
+      "end": 1750873710610,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750873710610,
+      "end": 1750873710610,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750873710610,
+      "end": 1750873710610,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750873710610,
+      "end": 1750873710610,
+      "order": "normal"
+    }
+  ]
+}

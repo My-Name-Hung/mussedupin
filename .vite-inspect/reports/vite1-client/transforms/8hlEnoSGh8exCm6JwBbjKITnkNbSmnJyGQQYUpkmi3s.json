@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/mussedupin-0f2501a9a053b0e75502c49e74876d2dc852c693/node_modules/react-leaflet/lib/AttributionControl.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { createControlComponent } from '@react-leaflet/core';\nimport { Control } from 'leaflet';\nexport const AttributionControl = createControlComponent(function createAttributionControl(props) {\n    return new Control.Attribution(props);\n});\n",
+      "start": 1750873707779,
+      "end": 1750873708636,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750873708636,
+      "end": 1750873708636,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750873708636,
+      "end": 1750873708636,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750873708636,
+      "end": 1750873708636,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750873708636,
+      "end": 1750873708636,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750873708636,
+      "end": 1750873708636,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750873708636,
+      "end": 1750873708636,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750873708636,
+      "end": 1750873708636,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750873708636,
+      "end": 1750873708636,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750873708636,
+      "end": 1750873708636,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750873708636,
+      "end": 1750873708636,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750873708636,
+      "end": 1750873708636,
+      "order": "normal"
+    }
+  ]
+}

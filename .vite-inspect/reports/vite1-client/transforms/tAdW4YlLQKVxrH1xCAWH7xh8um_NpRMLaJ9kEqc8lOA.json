@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import { StrictMode } from \"react\";\nimport { createRoot } from \"react-dom/client\";\nimport App from \"./App.jsx\";\nimport \"./index.css\";\n\ncreateRoot(document.getElementById(\"root\")).render(\n  <StrictMode>\n      <App />\n  </StrictMode>\n);\n",
-      "start": 1750873699919,
-      "end": 1750873699923,
+      "start": 1750951453845,
+      "end": 1750951453847,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750873699923,
-      "end": 1750873699923,
+      "start": 1750951453847,
+      "end": 1750951453847,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx } from \"react/jsx-runtime\";\nimport { StrictMode } from \"react\";\nimport { createRoot } from \"react-dom/client\";\nimport App from \"./App.jsx\";\nimport \"./index.css\";\ncreateRoot(document.getElementById(\"root\")).render(\n  /* @__PURE__ */ jsx(StrictMode, { children: /* @__PURE__ */ jsx(App, {}) })\n);\n",
-      "start": 1750873699923,
-      "end": 1750873699935,
+      "start": 1750951453847,
+      "end": 1750951453853,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1750873699935,
-      "end": 1750873699935,
+      "start": 1750951453853,
+      "end": 1750951453853,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750873699935,
-      "end": 1750873699936,
+      "start": 1750951453853,
+      "end": 1750951453854,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750873699936,
-      "end": 1750873699936,
+      "start": 1750951453854,
+      "end": 1750951453854,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750873699936,
-      "end": 1750873699937,
+      "start": 1750951453854,
+      "end": 1750951453854,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750873699937,
-      "end": 1750873699937,
+      "start": 1750951453854,
+      "end": 1750951453854,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750873699938,
-      "end": 1750873699939,
+      "start": 1750951453854,
+      "end": 1750951453854,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750873699939,
-      "end": 1750873699939,
+      "start": 1750951453854,
+      "end": 1750951453854,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750873699939,
-      "end": 1750873699946,
+      "start": 1750951453854,
+      "end": 1750951453856,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750873699946,
-      "end": 1750873699947,
+      "start": 1750951453856,
+      "end": 1750951453857,
       "order": "normal"
     }
   ]

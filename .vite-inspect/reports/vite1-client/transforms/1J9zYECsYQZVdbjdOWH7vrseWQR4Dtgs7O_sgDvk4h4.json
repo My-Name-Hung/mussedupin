@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\nimport { Helmet } from \"react-helmet\";\nimport \"./Copyrights.css\";\n\n// Import header image\n\nconst Copyrights = () => {\n  return (\n    <div className=\"copyrights-container\">\n      <Helmet>\n        <title>Bản quyền | Bảo tàng Thông - Musée Du Pin</title>\n        <meta\n          name=\"description\"\n          content=\"Thông tin về bản quyền và quyền sở hữu trí tuệ của Bảo tàng Thông - Musée Du Pin.\"\n        />\n      </Helmet>\n\n      {/* Header Banner */}\n      <div className=\"copyrights-banner\">\n        <img\n          src=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784642/collections/louvre-sunset.jpg\"\n          alt=\"Bảo tàng Thông - Musée Du Pin\"\n        />\n        <div className=\"banner-overlay\">\n          <h1>BẢN QUYỀN</h1>\n        </div>\n      </div>\n\n      <div className=\"copyrights-content\">\n        {/* Introduction Section */}\n        <div className=\"section\">\n          <h2>GIỚI THIỆU</h2>\n          <p>\n            Trang web này và toàn bộ nội dung của nó thuộc quyền sở hữu của Bảo\n            tàng Thông - Musée Du Pin. Mọi quyền sở hữu trí tuệ, bao gồm nhưng\n            không giới hạn ở bản quyền, nhãn hiệu, và các quyền sở hữu trí tuệ\n            khác đều được bảo vệ bởi pháp luật Việt Nam và các công ước quốc tế.\n          </p>\n        </div>\n\n        {/* Protected Content Section */}\n        <div className=\"section\">\n          <h2>NỘI DUNG ĐƯỢC BẢO VỆ</h2>\n          <p>Các nội dung được bảo vệ bản quyền bao gồm:</p>\n          <ul>\n            <li>Hình ảnh và ảnh chụp của các tác phẩm nghệ thuật</li>\n            <li>Văn bản, bài viết và nội dung biên tập</li>\n            <li>Thiết kế đồ họa và giao diện người dùng</li>\n            <li>Tài liệu nghiên cứu và ấn phẩm khoa học</li>\n            <li>Video, âm thanh và nội dung đa phương tiện</li>\n          </ul>\n        </div>\n\n        {/* Usage Rights Section */}\n        <div className=\"section\">\n          <h2>QUYỀN SỬ DỤNG</h2>\n          <h3>Sử dụng được phép</h3>\n          <ul>\n            <li>\n              Xem và truy cập nội dung cho mục đích cá nhân, phi thương mại\n            </li>\n            <li>\n              Tải xuống và in ấn tài liệu cho mục đích nghiên cứu, giáo dục\n            </li>\n            <li>Chia sẻ liên kết đến trang web của bảo tàng</li>\n          </ul>\n\n          <h3>Hành vi bị cấm</h3>\n          <ul>\n            <li>\n              Sao chép, phân phối hoặc sửa đổi nội dung mà không được phép\n            </li>\n            <li>Sử dụng nội dung cho mục đích thương mại</li>\n            <li>Gỡ bỏ thông tin về bản quyền hoặc nguồn gốc</li>\n          </ul>\n        </div>\n\n        {/* Image Rights Section */}\n        <div className=\"section\">\n          <h2>QUYỀN SỬ DỤNG HÌNH ẢNH</h2>\n          <p>\n            Hình ảnh trong bộ sưu tập của bảo tàng được phân loại theo các mức\n            độ bảo vệ khác nhau:\n          </p>\n          <ul>\n            <li>\n              Hình ảnh có dấu © Bảo tàng Thông - Musée Du Pin: Thuộc quyền sở\n              hữu độc quyền của bảo tàng\n            </li>\n            <li>\n              Hình ảnh có dấu © Tác giả/Nghệ sĩ: Thuộc quyền sở hữu của tác giả\n              hoặc người thừa kế\n            </li>\n            <li>\n              Hình ảnh có giấy phép: Có thể sử dụng theo điều khoản của giấy\n              phép\n            </li>\n          </ul>\n        </div>\n\n        {/* Commercial Use Section */}\n        <div className=\"section\">\n          <h2>SỬ DỤNG THƯƠNG MẠI</h2>\n          <p>\n            Để sử dụng nội dung của bảo tàng cho mục đích thương mại, bạn cần:\n          </p>\n          <ul>\n            <li>Gửi yêu cầu bằng văn bản đến phòng Bản quyền của bảo tàng</li>\n            <li>Nêu rõ mục đích và phạm vi sử dụng</li>\n            <li>Đợi phê duyệt và ký kết thỏa thuận cấp phép</li>\n            <li>Thanh toán phí bản quyền (nếu có)</li>\n          </ul>\n        </div>\n\n        {/* Academic Use Section */}\n        <div className=\"section\">\n          <h2>SỬ DỤNG HỌC THUẬT</h2>\n          <p>\n            Đối với mục đích học thuật và nghiên cứu, bảo tàng có chính sách ưu\n            đãi:\n          </p>\n          <ul>\n            <li>\n              Miễn phí sử dụng hình ảnh độ phân giải thấp cho luận văn, nghiên\n              cứu\n            </li>\n            <li>\n              Giảm giá cho việc sử dụng hình ảnh chất lượng cao trong ấn phẩm\n              học thuật\n            </li>\n            <li>Hỗ trợ tiếp cận tài liệu nghiên cứu và thông tin chi tiết</li>\n          </ul>\n        </div>\n\n        {/* Violation and Enforcement Section */}\n        <div className=\"section\">\n          <h2>VI PHẠM VÀ XỬ LÝ</h2>\n          <p>\n            Bảo tàng Thông - Musée Du Pin nghiêm túc xử lý mọi hành vi vi phạm\n            bản quyền:\n          </p>\n          <ul>\n            <li>Gửi thông báo yêu cầu ngừng vi phạm</li>\n            <li>Yêu cầu bồi thường thiệt hại</li>\n            <li>Thực hiện các biện pháp pháp lý cần thiết</li>\n          </ul>\n        </div>\n\n        {/* Contact Section */}\n        <div className=\"section\">\n          <h2>LIÊN HỆ</h2>\n          <p>\n            Mọi thắc mắc về bản quyền hoặc yêu cầu sử dụng nội dung, vui lòng\n            liên hệ:\n          </p>\n          <p>\n            Phòng Bản quyền - Bảo tàng Thông - Musée Du Pin\n            <br />\n            Email: baotangthong2024@gmail.com\n            <br />\n            Điện thoại: +84 2633 818 968; +84 86 235 6368\n            <br />\n            Địa chỉ: 29-31 Đống Đa, phường 3, tp. Đà Lạt, Lâm Đồng\n          </p>\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default Copyrights;\n",
-      "start": 1750873700127,
-      "end": 1750873700469,
+      "start": 1750951454027,
+      "end": 1750951454087,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750873700469,
-      "end": 1750873700469,
+      "start": 1750951454087,
+      "end": 1750951454087,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { Helmet } from \"react-helmet\";\nimport \"./Copyrights.css\";\nconst Copyrights = () => {\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"copyrights-container\", children: [\n    /* @__PURE__ */ jsxs(Helmet, { children: [\n      /* @__PURE__ */ jsx(\"title\", { children: \"Bản quyền | Bảo tàng Thông - Musée Du Pin\" }),\n      /* @__PURE__ */ jsx(\n        \"meta\",\n        {\n          name: \"description\",\n          content: \"Thông tin về bản quyền và quyền sở hữu trí tuệ của Bảo tàng Thông - Musée Du Pin.\"\n        }\n      )\n    ] }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"copyrights-banner\", children: [\n      /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784642/collections/louvre-sunset.jpg\",\n          alt: \"Bảo tàng Thông - Musée Du Pin\"\n        }\n      ),\n      /* @__PURE__ */ jsx(\"div\", { className: \"banner-overlay\", children: /* @__PURE__ */ jsx(\"h1\", { children: \"BẢN QUYỀN\" }) })\n    ] }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"copyrights-content\", children: [\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"GIỚI THIỆU\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Trang web này và toàn bộ nội dung của nó thuộc quyền sở hữu của Bảo tàng Thông - Musée Du Pin. Mọi quyền sở hữu trí tuệ, bao gồm nhưng không giới hạn ở bản quyền, nhãn hiệu, và các quyền sở hữu trí tuệ khác đều được bảo vệ bởi pháp luật Việt Nam và các công ước quốc tế.\" })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"NỘI DUNG ĐƯỢC BẢO VỆ\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Các nội dung được bảo vệ bản quyền bao gồm:\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Hình ảnh và ảnh chụp của các tác phẩm nghệ thuật\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Văn bản, bài viết và nội dung biên tập\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Thiết kế đồ họa và giao diện người dùng\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Tài liệu nghiên cứu và ấn phẩm khoa học\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Video, âm thanh và nội dung đa phương tiện\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"QUYỀN SỬ DỤNG\" }),\n        /* @__PURE__ */ jsx(\"h3\", { children: \"Sử dụng được phép\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Xem và truy cập nội dung cho mục đích cá nhân, phi thương mại\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Tải xuống và in ấn tài liệu cho mục đích nghiên cứu, giáo dục\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Chia sẻ liên kết đến trang web của bảo tàng\" })\n        ] }),\n        /* @__PURE__ */ jsx(\"h3\", { children: \"Hành vi bị cấm\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Sao chép, phân phối hoặc sửa đổi nội dung mà không được phép\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Sử dụng nội dung cho mục đích thương mại\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Gỡ bỏ thông tin về bản quyền hoặc nguồn gốc\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"QUYỀN SỬ DỤNG HÌNH ẢNH\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Hình ảnh trong bộ sưu tập của bảo tàng được phân loại theo các mức độ bảo vệ khác nhau:\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Hình ảnh có dấu © Bảo tàng Thông - Musée Du Pin: Thuộc quyền sở hữu độc quyền của bảo tàng\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Hình ảnh có dấu © Tác giả/Nghệ sĩ: Thuộc quyền sở hữu của tác giả hoặc người thừa kế\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Hình ảnh có giấy phép: Có thể sử dụng theo điều khoản của giấy phép\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"SỬ DỤNG THƯƠNG MẠI\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Để sử dụng nội dung của bảo tàng cho mục đích thương mại, bạn cần:\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Gửi yêu cầu bằng văn bản đến phòng Bản quyền của bảo tàng\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Nêu rõ mục đích và phạm vi sử dụng\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Đợi phê duyệt và ký kết thỏa thuận cấp phép\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Thanh toán phí bản quyền (nếu có)\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"SỬ DỤNG HỌC THUẬT\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Đối với mục đích học thuật và nghiên cứu, bảo tàng có chính sách ưu đãi:\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Miễn phí sử dụng hình ảnh độ phân giải thấp cho luận văn, nghiên cứu\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Giảm giá cho việc sử dụng hình ảnh chất lượng cao trong ấn phẩm học thuật\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Hỗ trợ tiếp cận tài liệu nghiên cứu và thông tin chi tiết\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"VI PHẠM VÀ XỬ LÝ\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Bảo tàng Thông - Musée Du Pin nghiêm túc xử lý mọi hành vi vi phạm bản quyền:\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Gửi thông báo yêu cầu ngừng vi phạm\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Yêu cầu bồi thường thiệt hại\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Thực hiện các biện pháp pháp lý cần thiết\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"LIÊN HỆ\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Mọi thắc mắc về bản quyền hoặc yêu cầu sử dụng nội dung, vui lòng liên hệ:\" }),\n        /* @__PURE__ */ jsxs(\"p\", { children: [\n          \"Phòng Bản quyền - Bảo tàng Thông - Musée Du Pin\",\n          /* @__PURE__ */ jsx(\"br\", {}),\n          \"Email: baotangthong2024@gmail.com\",\n          /* @__PURE__ */ jsx(\"br\", {}),\n          \"Điện thoại: +84 2633 818 968; +84 86 235 6368\",\n          /* @__PURE__ */ jsx(\"br\", {}),\n          \"Địa chỉ: 29-31 Đống Đa, phường 3, tp. Đà Lạt, Lâm Đồng\"\n        ] })\n      ] })\n    ] })\n  ] });\n};\nexport default Copyrights;\n",
-      "start": 1750873700469,
-      "end": 1750873700722,
+      "start": 1750951454087,
+      "end": 1750951454177,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1750873700722,
-      "end": 1750873700722,
+      "start": 1750951454177,
+      "end": 1750951454177,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750873700722,
-      "end": 1750873700722,
+      "start": 1750951454177,
+      "end": 1750951454177,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750873700722,
-      "end": 1750873700722,
+      "start": 1750951454177,
+      "end": 1750951454177,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750873700722,
-      "end": 1750873700722,
+      "start": 1750951454178,
+      "end": 1750951454178,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750873700722,
-      "end": 1750873700722,
+      "start": 1750951454178,
+      "end": 1750951454178,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750873700722,
-      "end": 1750873700722,
+      "start": 1750951454178,
+      "end": 1750951454178,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750873700722,
-      "end": 1750873700722,
+      "start": 1750951454178,
+      "end": 1750951454178,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750873700722,
-      "end": 1750873700723,
+      "start": 1750951454178,
+      "end": 1750951454178,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750873700723,
-      "end": 1750873700723,
+      "start": 1750951454178,
+      "end": 1750951454178,
       "order": "normal"
     }
   ]

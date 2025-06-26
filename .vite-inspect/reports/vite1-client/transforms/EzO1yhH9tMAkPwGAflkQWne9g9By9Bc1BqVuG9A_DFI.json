@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "// Cloudinary configuration\nconst CLOUD_NAME = \"dn0br7hj0\";\nconst VERSION = \"v1748784653\"; // Add version number\n\n// Base URL for Cloudinary\nconst CLOUDINARY_BASE_URL = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload`;\n\n// Helper function to build Cloudinary URL with transformations\nconst buildCloudinaryUrl = (publicId, options = {}) => {\n  if (!publicId) return \"\";\n\n  // Convert options to Cloudinary transformation string\n  const transformations = Object.entries(options)\n    .filter(([, value]) => value !== undefined)\n    .map(([key, value]) => {\n      if (key === \"width\" || key === \"height\" || key === \"crop\") {\n        return `${key}_${value}`;\n      }\n      return `${key},${value}`;\n    })\n    .join(\",\");\n\n  // Build the final URL with version number\n  return `${CLOUDINARY_BASE_URL}/${VERSION}/${\n    transformations ? transformations + \"/\" : \"\"\n  }${publicId}`;\n};\n\n// Helper function to check if a URL is a direct URL\nconst isDirectUrl = (url) => {\n  return url && (url.startsWith(\"http\") || url.startsWith(\"https\"));\n};\n\n// Helper function to get exhibition image URL\nexport const getImageUrl = (filename) => {\n  if (!filename) return \"\";\n  // If it's already a direct URL, return it as is\n  if (isDirectUrl(filename)) return filename;\n  // Otherwise treat as Cloudinary asset\n  const publicId = `collections/${filename}`;\n  return buildCloudinaryUrl(publicId);\n};\n\n// Helper function to get gallery image URL\nexport const getGalleryImageUrl = (filename) => {\n  if (!filename) return \"\";\n  // If it's already a direct URL, return it as is\n  if (isDirectUrl(filename)) return filename;\n  // Otherwise treat as Cloudinary asset\n  const publicId = `collections/${filename}`;\n  return buildCloudinaryUrl(publicId);\n};\n\n// Helper function to get thumbnail URL\nexport const getThumbnailUrl = (filename) => {\n  if (!filename) return \"\";\n  // If it's already a direct URL, return it as is\n  if (isDirectUrl(filename)) return filename;\n  // Otherwise treat as Cloudinary asset\n  const publicId = `collections/${filename}`;\n  return buildCloudinaryUrl(publicId);\n};\n\n// Helper function to get about image URL\nexport const getAboutImageUrl = (filename) => {\n  if (!filename) return \"\";\n  const publicId = `about/${filename}`;\n  return buildCloudinaryUrl(publicId);\n};\n\n// Helper function to get logo image URL\nexport const getLogoImageUrl = (filename, options = {}) => {\n  if (!filename) return \"\";\n  const publicId = `logo/${filename}`;\n  return buildCloudinaryUrl(publicId, {\n    ...options,\n  });\n};\n\n// Helper function to get background image URL\nexport const getBackgroundImageUrl = (filename, options = {}) => {\n  if (!filename) return \"\";\n  const publicId = `background/${filename}`;\n  return buildCloudinaryUrl(publicId, {\n    ...options,\n  });\n};\n\n// Helper function to get any image URL with custom transformations\nexport const getImagebuildUrl = (publicId, options = {}) => {\n  return buildCloudinaryUrl(publicId, options);\n};\n\n// Helper function to get hero video URL\nexport const getHeroVideoUrl = (filename) => {\n  if (!filename) return \"\";\n  const publicId = `hero/${filename}`;\n  return buildCloudinaryUrl(publicId);\n};\n",
-      "start": 1750873700542,
-      "end": 1750873700827,
+      "start": 1750951454200,
+      "end": 1750951454626,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750873700827,
-      "end": 1750873700827,
+      "start": 1750951454626,
+      "end": 1750951454626,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1750873700827,
-      "end": 1750873700827,
+      "start": 1750951454626,
+      "end": 1750951454626,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1750873700827,
-      "end": 1750873700827,
+      "start": 1750951454626,
+      "end": 1750951454626,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750873700827,
-      "end": 1750873700827,
+      "start": 1750951454626,
+      "end": 1750951454626,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750873700827,
-      "end": 1750873700827,
+      "start": 1750951454626,
+      "end": 1750951454626,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750873700827,
-      "end": 1750873700827,
+      "start": 1750951454626,
+      "end": 1750951454626,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750873700827,
-      "end": 1750873700827,
+      "start": 1750951454626,
+      "end": 1750951454626,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750873700827,
-      "end": 1750873700827,
+      "start": 1750951454626,
+      "end": 1750951454626,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750873700827,
-      "end": 1750873700827,
+      "start": 1750951454626,
+      "end": 1750951454626,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750873700827,
-      "end": 1750873700827,
+      "start": 1750951454626,
+      "end": 1750951454627,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750873700827,
-      "end": 1750873700827,
+      "start": 1750951454627,
+      "end": 1750951454627,
       "order": "normal"
     }
   ]

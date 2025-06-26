@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useEffect, useRef } from \"react\";\nimport { useNavigate } from \"react-router-dom\";\nimport { getImageUrl } from \"../../../utils/cloudinary\";\nimport \"./DelveInto.css\";\n\nconst DelveInto = () => {\n  const gridRef = useRef(null);\n  const navigate = useNavigate();\n\n  // Add mouse movement effect for grid items\n  useEffect(() => {\n    const gridItems = document.querySelectorAll(\".grid-item\");\n\n    const handleMouseMove = (e) => {\n      gridItems.forEach((item) => {\n        const rect = item.getBoundingClientRect();\n        const x = e.clientX - rect.left;\n        const y = e.clientY - rect.top;\n\n        // Calculate mouse position as percentage of the element\n        const mouseX = Math.floor((x / rect.width) * 100);\n        const mouseY = Math.floor((y / rect.height) * 100);\n\n        item.style.setProperty(\"--mouse-x\", `${mouseX}%`);\n        item.style.setProperty(\"--mouse-y\", `${mouseY}%`);\n      });\n    };\n\n    document.addEventListener(\"mousemove\", handleMouseMove);\n\n    return () => {\n      document.removeEventListener(\"mousemove\", handleMouseMove);\n    };\n  }, []);\n\n  const handleExploreClick = () => {\n    // Get the navbar component's functions\n    const navbarElement = document.querySelector(\"header.navbar-container\");\n    if (navbarElement) {\n      // Show mobile menu first\n      const mobileMenu = navbarElement.querySelector(\".mobile-menu-overlay\");\n      if (mobileMenu) {\n        mobileMenu.classList.add(\"show\");\n      }\n\n      // Find and click the \"KHÁM PHÁ\" menu item to trigger its submenu\n      setTimeout(() => {\n        const khamPhaMenuItem = Array.from(\n          navbarElement.querySelectorAll(\".mobile-nav-item\")\n        ).find((item) => item.textContent.includes(\"KHÁM PHÁ\"));\n        if (khamPhaMenuItem) {\n          khamPhaMenuItem.click();\n        }\n      }, 100);\n    }\n  };\n\n  return (\n    <section className=\"delve-into-section\">\n      <div className=\"delve-into-container\">\n        <h2 className=\"delve-into-title\">Khám phá Musée Du Pin</h2>\n\n        <div className=\"delve-into-grid\" ref={gridRef}>\n          <div className=\"grid-item grid-item-1\">\n            <img\n              src={getImageUrl(\"Thông 2.webp\")}\n              alt=\"Thông 2\"\n              className=\"grid-image\"\n            />\n          </div>\n\n          <div className=\"grid-item grid-item-2\">\n            <img\n              src={getImageUrl(\"DanTrung_hero.webp\")}\n              alt=\"Đàn T'rưng\"\n              className=\"grid-image\"\n            />\n          </div>\n\n          <div className=\"grid-item grid-item-3\">\n            <img\n              src=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784650/collections/Gui_hero.webp\"\n              alt=\"Chiếc Gùi Tây Nguyên\"\n              className=\"grid-image\"\n            />\n          </div>\n\n          <div className=\"grid-item grid-item-4\">\n            <img\n              src=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784647/collections/LongDaDa_hero.webp\"\n              alt=\"Lồng Đa Đa\"\n              className=\"grid-image\"\n            />\n          </div>\n\n          <div className=\"grid-item grid-item-5\">\n            <img\n              src=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784644/collections/phunu_hero.webp\"\n              alt=\"Điêu Khắc\"\n              className=\"grid-image\"\n            />\n          </div>\n\n          <div className=\"grid-item grid-item-6\">\n            <img\n              src={getImageUrl(\"Cồng chiên.webp\")}\n              alt=\"Cồng Chiên\"\n              className=\"grid-image\"\n            />\n          </div>\n        </div>\n\n        <div className=\"explore-button-container\">\n          <button className=\"explore-button\" onClick={handleExploreClick}>\n            Khám phá\n          </button>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default DelveInto;\n",
-      "start": 1750873700800,
-      "end": 1750873701130,
+      "start": 1750951454257,
+      "end": 1750951454752,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750873701130,
-      "end": 1750873701130,
+      "start": 1750951454752,
+      "end": 1750951454752,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect, useRef } from \"react\";\nimport { useNavigate } from \"react-router-dom\";\nimport { getImageUrl } from \"../../../utils/cloudinary\";\nimport \"./DelveInto.css\";\nconst DelveInto = () => {\n  const gridRef = useRef(null);\n  const navigate = useNavigate();\n  useEffect(() => {\n    const gridItems = document.querySelectorAll(\".grid-item\");\n    const handleMouseMove = (e) => {\n      gridItems.forEach((item) => {\n        const rect = item.getBoundingClientRect();\n        const x = e.clientX - rect.left;\n        const y = e.clientY - rect.top;\n        const mouseX = Math.floor(x / rect.width * 100);\n        const mouseY = Math.floor(y / rect.height * 100);\n        item.style.setProperty(\"--mouse-x\", `${mouseX}%`);\n        item.style.setProperty(\"--mouse-y\", `${mouseY}%`);\n      });\n    };\n    document.addEventListener(\"mousemove\", handleMouseMove);\n    return () => {\n      document.removeEventListener(\"mousemove\", handleMouseMove);\n    };\n  }, []);\n  const handleExploreClick = () => {\n    const navbarElement = document.querySelector(\"header.navbar-container\");\n    if (navbarElement) {\n      const mobileMenu = navbarElement.querySelector(\".mobile-menu-overlay\");\n      if (mobileMenu) {\n        mobileMenu.classList.add(\"show\");\n      }\n      setTimeout(() => {\n        const khamPhaMenuItem = Array.from(\n          navbarElement.querySelectorAll(\".mobile-nav-item\")\n        ).find((item) => item.textContent.includes(\"KHÁM PHÁ\"));\n        if (khamPhaMenuItem) {\n          khamPhaMenuItem.click();\n        }\n      }, 100);\n    }\n  };\n  return /* @__PURE__ */ jsx(\"section\", { className: \"delve-into-section\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"delve-into-container\", children: [\n    /* @__PURE__ */ jsx(\"h2\", { className: \"delve-into-title\", children: \"Khám phá Musée Du Pin\" }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"delve-into-grid\", ref: gridRef, children: [\n      /* @__PURE__ */ jsx(\"div\", { className: \"grid-item grid-item-1\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: getImageUrl(\"Thông 2.webp\"),\n          alt: \"Thông 2\",\n          className: \"grid-image\"\n        }\n      ) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"grid-item grid-item-2\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: getImageUrl(\"DanTrung_hero.webp\"),\n          alt: \"Đàn T'rưng\",\n          className: \"grid-image\"\n        }\n      ) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"grid-item grid-item-3\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784650/collections/Gui_hero.webp\",\n          alt: \"Chiếc Gùi Tây Nguyên\",\n          className: \"grid-image\"\n        }\n      ) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"grid-item grid-item-4\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784647/collections/LongDaDa_hero.webp\",\n          alt: \"Lồng Đa Đa\",\n          className: \"grid-image\"\n        }\n      ) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"grid-item grid-item-5\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784644/collections/phunu_hero.webp\",\n          alt: \"Điêu Khắc\",\n          className: \"grid-image\"\n        }\n      ) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"grid-item grid-item-6\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: getImageUrl(\"Cồng chiên.webp\"),\n          alt: \"Cồng Chiên\",\n          className: \"grid-image\"\n        }\n      ) })\n    ] }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"explore-button-container\", children: /* @__PURE__ */ jsx(\"button\", { className: \"explore-button\", onClick: handleExploreClick, children: \"Khám phá\" }) })\n  ] }) });\n};\nexport default DelveInto;\n",
-      "start": 1750873701130,
-      "end": 1750873702344,
+      "start": 1750951454752,
+      "end": 1750951455672,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1750873702345,
-      "end": 1750873702345,
+      "start": 1750951455672,
+      "end": 1750951455672,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750873702345,
-      "end": 1750873702345,
+      "start": 1750951455672,
+      "end": 1750951455672,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750873702345,
-      "end": 1750873702345,
+      "start": 1750951455672,
+      "end": 1750951455672,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750873702345,
-      "end": 1750873702345,
+      "start": 1750951455672,
+      "end": 1750951455672,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750873702345,
-      "end": 1750873702345,
+      "start": 1750951455672,
+      "end": 1750951455672,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750873702345,
-      "end": 1750873702345,
+      "start": 1750951455672,
+      "end": 1750951455672,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750873702345,
-      "end": 1750873702345,
+      "start": 1750951455672,
+      "end": 1750951455672,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750873702345,
-      "end": 1750873702346,
+      "start": 1750951455672,
+      "end": 1750951455673,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750873702346,
-      "end": 1750873702346,
+      "start": 1750951455673,
+      "end": 1750951455673,
       "order": "normal"
     }
   ]

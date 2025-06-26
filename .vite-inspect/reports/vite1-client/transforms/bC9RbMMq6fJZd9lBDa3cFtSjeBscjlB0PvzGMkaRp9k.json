@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { createContext, useContext, useEffect, useState } from \"react\";\n\nconst TranslationContext = createContext();\n\nexport const TranslationProvider = ({ children }) => {\n  const [currentLang, setCurrentLang] = useState(\"vi\");\n  const [customTranslations, setCustomTranslations] = useState({});\n\n  // Listen for language changes from GTranslate\n  useEffect(() => {\n    const checkLanguage = () => {\n      const htmlLang = document.documentElement.lang;\n      setCurrentLang(htmlLang === \"en\" ? \"en\" : \"vi\");\n    };\n\n    // Initial check\n    checkLanguage();\n\n    // Create observer to watch for changes in html lang attribute\n    const observer = new MutationObserver(checkLanguage);\n    observer.observe(document.documentElement, {\n      attributes: true,\n      attributeFilter: [\"lang\"],\n    });\n\n    return () => observer.disconnect();\n  }, []);\n\n  // Register custom translations\n  const registerTranslations = (key, translations) => {\n    setCustomTranslations((prev) => ({\n      ...prev,\n      [key]: translations,\n    }));\n  };\n\n  // Get translation\n  const getTranslation = (key, path) => {\n    if (customTranslations[key] && customTranslations[key][currentLang]) {\n      return customTranslations[key][currentLang][path] || \"\";\n    }\n    return \"\";\n  };\n\n  return (\n    <TranslationContext.Provider\n      value={{\n        currentLang,\n        registerTranslations,\n        getTranslation,\n      }}\n    >\n      {children}\n    </TranslationContext.Provider>\n  );\n};\n\nexport const useTranslation = () => {\n  const context = useContext(TranslationContext);\n  if (!context) {\n    throw new Error(\"useTranslation must be used within a TranslationProvider\");\n  }\n  return context;\n};\n",
-      "start": 1750873700089,
-      "end": 1750873700407,
+      "start": 1750951454024,
+      "end": 1750951454082,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750873700407,
-      "end": 1750873700407,
+      "start": 1750951454082,
+      "end": 1750951454082,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx } from \"react/jsx-runtime\";\nimport React, { createContext, useContext, useEffect, useState } from \"react\";\nconst TranslationContext = createContext();\nexport const TranslationProvider = ({ children }) => {\n  const [currentLang, setCurrentLang] = useState(\"vi\");\n  const [customTranslations, setCustomTranslations] = useState({});\n  useEffect(() => {\n    const checkLanguage = () => {\n      const htmlLang = document.documentElement.lang;\n      setCurrentLang(htmlLang === \"en\" ? \"en\" : \"vi\");\n    };\n    checkLanguage();\n    const observer = new MutationObserver(checkLanguage);\n    observer.observe(document.documentElement, {\n      attributes: true,\n      attributeFilter: [\"lang\"]\n    });\n    return () => observer.disconnect();\n  }, []);\n  const registerTranslations = (key, translations) => {\n    setCustomTranslations((prev) => ({\n      ...prev,\n      [key]: translations\n    }));\n  };\n  const getTranslation = (key, path) => {\n    if (customTranslations[key] && customTranslations[key][currentLang]) {\n      return customTranslations[key][currentLang][path] || \"\";\n    }\n    return \"\";\n  };\n  return /* @__PURE__ */ jsx(\n    TranslationContext.Provider,\n    {\n      value: {\n        currentLang,\n        registerTranslations,\n        getTranslation\n      },\n      children\n    }\n  );\n};\nexport const useTranslation = () => {\n  const context = useContext(TranslationContext);\n  if (!context) {\n    throw new Error(\"useTranslation must be used within a TranslationProvider\");\n  }\n  return context;\n};\n",
-      "start": 1750873700407,
-      "end": 1750873700562,
+      "start": 1750951454082,
+      "end": 1750951454177,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1750873700562,
-      "end": 1750873700562,
+      "start": 1750951454177,
+      "end": 1750951454177,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750873700562,
-      "end": 1750873700562,
+      "start": 1750951454177,
+      "end": 1750951454177,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750873700562,
-      "end": 1750873700562,
+      "start": 1750951454177,
+      "end": 1750951454178,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750873700562,
-      "end": 1750873700562,
+      "start": 1750951454178,
+      "end": 1750951454178,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750873700562,
-      "end": 1750873700562,
+      "start": 1750951454178,
+      "end": 1750951454178,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750873700562,
-      "end": 1750873700562,
+      "start": 1750951454178,
+      "end": 1750951454178,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750873700562,
-      "end": 1750873700563,
+      "start": 1750951454178,
+      "end": 1750951454178,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750873700563,
-      "end": 1750873700564,
+      "start": 1750951454178,
+      "end": 1750951454178,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750873700564,
-      "end": 1750873700564,
+      "start": 1750951454178,
+      "end": 1750951454178,
       "order": "normal"
     }
   ]

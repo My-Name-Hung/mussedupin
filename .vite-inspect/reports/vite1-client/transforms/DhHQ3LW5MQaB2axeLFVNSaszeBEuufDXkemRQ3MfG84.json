@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/mussedupin-0f2501a9a053b0e75502c49e74876d2dc852c693/node_modules/framer-motion/dist/es/render/store.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "const visualElementStore = new WeakMap();\n\nexport { visualElementStore };\n",
+      "start": 1750951463464,
+      "end": 1750951463876,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750951463877,
+      "end": 1750951463877,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750951463877,
+      "end": 1750951463877,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750951463877,
+      "end": 1750951463877,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750951463877,
+      "end": 1750951463877,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750951463877,
+      "end": 1750951463877,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750951463880,
+      "end": 1750951463880,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750951463880,
+      "end": 1750951463881,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750951463881,
+      "end": 1750951463881,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750951463881,
+      "end": 1750951463881,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750951463881,
+      "end": 1750951463881,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750951463881,
+      "end": 1750951463881,
+      "order": "normal"
+    }
+  ]
+}

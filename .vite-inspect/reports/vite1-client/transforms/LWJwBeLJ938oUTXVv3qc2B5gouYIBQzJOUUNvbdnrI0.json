@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "/* NotFound.css */\n.not-found-page {\n  background-color: #f8f8f8;\n  min-height: 100vh;\n}\n\n.not-found-container {\n  max-width: 1200px;\n  margin: 0 auto;\n  padding: 20px;\n}\n\n/* Breadcrumb styling */\n.breadcrumb {\n  display: flex;\n  align-items: center;\n  margin: 20px 0;\n  font-size: 14px;\n  color: #666;\n}\n\n.breadcrumb-logo {\n  height: 24px;\n  width: auto;\n}\n\n.breadcrumb-separator {\n  margin: 0 10px;\n  font-size: 16px;\n}\n\n.breadcrumb-label {\n  color: #333;\n}\n\n/* Not found content styling */\n.not-found-content {\n  background-color: white;\n  padding: 40px;\n  border-radius: 4px;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);\n  margin-top: 30px;\n  max-width: 800px;\n  margin: 30px auto;\n}\n\n.not-found-title {\n  font-size: 28px;\n  font-weight: 600;\n  margin-bottom: 20px;\n  color: #222;\n}\n\n.not-found-message {\n  font-size: 18px;\n  line-height: 1.5;\n  color: #555;\n  margin-bottom: 30px;\n}\n\n/* Suggestions styling */\n.not-found-suggestions {\n  margin: 30px 0;\n  border-top: 1px solid #eee;\n  border-bottom: 1px solid #eee;\n  padding: 30px 0;\n}\n\n.not-found-suggestions h2 {\n  font-size: 20px;\n  font-weight: 600;\n  margin-bottom: 15px;\n  color: #333;\n}\n\n.not-found-suggestions ul {\n  padding-left: 20px;\n}\n\n.not-found-suggestions li {\n  margin-bottom: 10px;\n  color: #555;\n  font-size: 16px;\n  line-height: 1.4;\n}\n\n/* Search again styling */\n.search-again-container {\n  margin: 30px 0;\n}\n\n.search-again-title {\n  font-size: 18px;\n  font-weight: 600;\n  margin-bottom: 15px;\n  color: #333;\n}\n\n.search-bar {\n  display: flex;\n  align-items: stretch;\n  border: 1px solid #ddd;\n  background-color: white;\n  max-width: 600px;\n}\n\n.search-input {\n  flex: 1;\n  border: none;\n  height: 50px;\n  padding: 0 15px;\n  font-size: 16px;\n  outline: none;\n  font-family: Roboto, Arial, sans-serif;\n}\n\n.search-button {\n  background-color: #222;\n  color: white;\n  width: 50px;\n  border: none;\n  cursor: pointer;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  transition: background-color 0.2s ease;\n}\n\n.search-button:hover {\n  background-color: #000;\n}\n\n/* Back to home styling */\n.back-to-home {\n  margin-top: 30px;\n  text-align: center;\n}\n\n.home-link {\n  display: inline-block;\n  color: #00695c;\n  font-size: 16px;\n  text-decoration: none;\n  padding: 10px 20px;\n  border: 1px solid #00695c;\n  border-radius: 30px;\n  transition: all 0.2s ease;\n}\n\n.home-link:hover {\n  background-color: #00695c;\n  color: white;\n}\n\n/* Responsive styles */\n@media (max-width: 768px) {\n  .not-found-content {\n    padding: 30px 20px;\n  }\n\n  .not-found-title {\n    font-size: 24px;\n  }\n\n  .not-found-message {\n    font-size: 16px;\n  }\n}\n\n@media (max-width: 480px) {\n  .not-found-content {\n    padding: 20px 15px;\n  }\n\n  .not-found-title {\n    font-size: 22px;\n  }\n\n  .not-found-suggestions li {\n    font-size: 15px;\n  }\n}\n",
-      "start": 1750873701692,
-      "end": 1750873702323,
+      "start": 1750951455222,
+      "end": 1750951455894,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750873702323,
-      "end": 1750873702323,
+      "start": 1750951455894,
+      "end": 1750951455894,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1750873702323,
-      "end": 1750873702323,
+      "start": 1750951455894,
+      "end": 1750951455894,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1750873702323,
-      "end": 1750873702323,
+      "start": 1750951455894,
+      "end": 1750951455894,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750873702323,
-      "end": 1750873702324,
+      "start": 1750951455894,
+      "end": 1750951455894,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750873702324,
-      "end": 1750873702324,
+      "start": 1750951455894,
+      "end": 1750951455894,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750873702324,
-      "end": 1750873702324,
+      "start": 1750951455894,
+      "end": 1750951455894,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750873702324,
-      "end": 1750873702324,
+      "start": 1750951455894,
+      "end": 1750951455894,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750873702324,
-      "end": 1750873702324,
+      "start": 1750951455918,
+      "end": 1750951455918,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750873702324,
-      "end": 1750873702324,
+      "start": 1750951455918,
+      "end": 1750951455918,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750873702324,
-      "end": 1750873702324,
+      "start": 1750951455918,
+      "end": 1750951455918,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750873702324,
-      "end": 1750873702324,
+      "start": 1750951455918,
+      "end": 1750951455958,
       "order": "normal"
     }
   ]

@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": ".delve-into-section {\n  background: #2c2f11;\n  color: #fff;\n  padding: 5rem 0 8rem;\n  overflow: hidden;\n  position: relative;\n}\n\n\n.delve-into-container {\n  max-width: 1440px;\n  margin: 0 auto;\n  padding: 0 2rem;\n  position: relative;\n  z-index: 2;\n}\n\n.delve-into-title {\n  font-family: \"Meholrax\", serif;\n  font-size: 3.5rem;\n  font-weight: 400;\n  margin: 0 0 4rem;\n  letter-spacing: 0.05em;\n  text-align: start;\n  position: relative;\n  background: linear-gradient(90deg, #fcfccc, #596016);\n  -webkit-background-clip: text;\n  background-clip: text;\n  -webkit-text-fill-color: transparent;\n  color: transparent;\n  transform: translateZ(0); /* Fix for webkit rendering */\n}\n\n.delve-into-title::after {\n  content: \"\";\n  position: absolute;\n  bottom: -20px;\n  left: 0;\n  width: 120px;\n  height: 3px;\n  background: linear-gradient(\n    90deg,\n    rgba(255, 255, 255, 0.8),\n    rgba(255, 255, 255, 0.1)\n  );\n}\n\n/* Modernized asymmetric grid layout */\n.delve-into-grid {\n  display: grid;\n  grid-template-columns: repeat(12, 1fr);\n  grid-template-rows: repeat(12, 50px);\n  gap: 1.8rem;\n  position: relative;\n  margin-bottom: 0;\n  transform-style: preserve-3d;\n  perspective: 1200px;\n}\n\n/* Grid items with artistic positioning */\n.grid-item {\n  position: relative;\n  border-radius: 8px;\n  overflow: hidden;\n  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);\n  transform-style: preserve-3d;\n  transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);\n  will-change: transform, box-shadow;\n}\n\n.grid-item::after {\n  content: \"\";\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  height: 50%;\n  pointer-events: none;\n  z-index: 1;\n  transition: opacity 0.5s ease;\n}\n\n.grid-item::before {\n  content: \"\";\n  position: absolute;\n  top: -10%;\n  left: -10%;\n  width: 120%;\n  height: 120%;\n  opacity: 0;\n  transition: opacity 0.5s ease;\n  z-index: 1;\n  pointer-events: none;\n}\n\n.grid-item:hover::before {\n  opacity: 1;\n}\n\n.grid-image {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  transition: all 1.2s cubic-bezier(0.19, 1, 0.22, 1);\n  transform-origin: center center;\n  filter: saturate(1.05) contrast(1.05);\n}\n\n.grid-item:hover {\n  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7);\n  transform: translateY(-12px) scale(1.02) rotateY(2deg);\n  z-index: 10;\n}\n\n.grid-item:hover .grid-image {\n  transform: scale(1.1);\n  filter: saturate(1.2) contrast(1.1);\n}\n\n/* Enhanced asymmetric grid item placements */\n.grid-item-1 {\n  grid-column: 1 / span 5;\n  grid-row: 1 / span 8;\n  transform: perspective(1000px) rotateY(-2deg) rotateX(1deg);\n  z-index: 2;\n}\n\n.grid-item-2 {\n  grid-column: 1 / span 3;\n  grid-row: 9 / span 4;\n  transform: perspective(1000px) rotateY(1.5deg) rotateX(-1deg);\n  z-index: 1;\n}\n\n.grid-item-3 {\n  grid-column: 4 / span 2;\n  grid-row: 9 / span 4;\n  transform: perspective(1000px) rotateY(-1.5deg) rotateX(1.5deg);\n  z-index: 3;\n}\n\n.grid-item-4 {\n  grid-column: 6 / span 4;\n  grid-row: 1 / span 12;\n  transform: perspective(1000px) rotateX(1deg) translateY(-10px);\n  z-index: 4;\n}\n\n.grid-item-5 {\n  grid-column: 10 / span 3;\n  grid-row: 1 / span 6;\n  transform: perspective(1000px) rotateY(2deg) rotateX(-0.5deg);\n  z-index: 2;\n}\n\n.grid-item-6 {\n  grid-column: 10 / span 3;\n  grid-row: 7 / span 6;\n  transform: perspective(1000px) rotateY(1.5deg) rotateX(-1.5deg);\n  z-index: 1;\n}\n\n.explore-button-container {\n  position: absolute;\n  bottom: 50%;\n  left: 0;\n  right: 0;\n  display: flex;\n  justify-content: center;\n  z-index: 20;\n  transform: translateY(50%);\n}\n\n.explore-button {\n  background-color: rgba(255, 255, 255, 0.95);\n  color: #000;\n  border: none;\n  border-radius: 30px;\n  padding: 1.2rem 3.5rem;\n  font-size: 1.3rem;\n  font-weight: 500;\n  letter-spacing: 0.03em;\n  text-decoration: none;\n  transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);\n  z-index: 20;\n  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);\n  position: relative;\n  overflow: hidden;\n  backdrop-filter: blur(5px);\n  -webkit-backdrop-filter: blur(5px);\n}\n\n.explore-button::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: -100%;\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(\n    90deg,\n    transparent,\n    rgba(255, 255, 255, 0.6),\n    transparent\n  );\n  transition: left 0.7s ease;\n}\n\n.explore-button:hover {\n  background-color: #fff;\n  transform: translateY(-8px) scale(1.05);\n  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);\n}\n\n.explore-button:hover::before {\n  left: 100%;\n}\n\n.explore-button:active {\n  transform: translateY(-4px) scale(1.02);\n}\n\n/* Enhanced staggered animation for grid items */\n.grid-item {\n  opacity: 0;\n  animation: fadeInGrid 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;\n}\n\n.grid-item-1 {\n  animation-delay: 0.1s;\n}\n\n.grid-item-2 {\n  animation-delay: 0.3s;\n}\n\n.grid-item-3 {\n  animation-delay: 0.5s;\n}\n\n.grid-item-4 {\n  animation-delay: 0.2s;\n}\n\n.grid-item-5 {\n  animation-delay: 0.4s;\n}\n\n.grid-item-6 {\n  animation-delay: 0.6s;\n}\n\n@keyframes fadeInGrid {\n  from {\n    opacity: 0;\n    transform: translateY(40px) scale(0.95) rotateX(5deg);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0) scale(1) rotateX(0);\n  }\n}\n\n/* Media queries for responsiveness */\n@media (max-width: 1200px) {\n  .delve-into-title {\n    font-size: 3rem;\n    margin-bottom: 3rem;\n  }\n\n  .delve-into-grid {\n    grid-template-rows: repeat(14, 45px);\n    gap: 1.5rem;\n    margin-bottom: 4rem;\n  }\n\n  .grid-item-4 {\n    transform: perspective(1000px) rotateX(1deg) translateY(-5px);\n  }\n}\n\n@media (max-width: 992px) {\n  .delve-into-title {\n    font-size: 2.8rem;\n  }\n\n  .delve-into-grid {\n    grid-template-columns: repeat(8, 1fr);\n    grid-template-rows: repeat(22, 35px);\n    gap: 1.4rem;\n    perspective: 1000px;\n  }\n\n  .grid-item-1 {\n    grid-column: 1 / span 5;\n    grid-row: 1 / span 8;\n    transform: perspective(800px) rotateY(-3deg) rotateX(1deg);\n  }\n\n  .grid-item-2 {\n    grid-column: 6 / span 3;\n    grid-row: 1 / span 6;\n    transform: perspective(800px) rotateY(3deg) rotateX(-1deg);\n  }\n\n  .grid-item-3 {\n    grid-column: 6 / span 3;\n    grid-row: 7 / span 6;\n    transform: perspective(800px) rotateY(2deg) rotateX(1deg);\n  }\n\n  .grid-item-4 {\n    grid-column: 1 / span 4;\n    grid-row: 9 / span 8;\n    transform: perspective(800px) rotateY(-2deg) translateY(0);\n  }\n\n  .grid-item-5 {\n    grid-column: 5 / span 4;\n    grid-row: 13 / span 6;\n    transform: perspective(800px) rotateY(3deg) rotateX(-1deg);\n  }\n\n  .grid-item-6 {\n    grid-column: 1 / span 8;\n    grid-row: 19 / span 4;\n    transform: perspective(800px) rotateX(2deg);\n  }\n\n  .grid-item:hover {\n    transform: translateY(-8px) scale(1.03);\n  }\n}\n\n@media (max-width: 768px) {\n  .delve-into-section {\n    padding: 4rem 0 6rem;\n  }\n\n  .delve-into-title {\n    font-size: 2.5rem;\n    margin-bottom: 2.5rem;\n  }\n\n  .delve-into-title::after {\n    width: 80px;\n    height: 2px;\n    bottom: -15px;\n  }\n\n  .explore-button-container {\n    bottom: 45%;\n  }\n\n  .explore-button {\n    padding: 1rem 2.8rem;\n    font-size: 1.1rem;\n  }\n\n  /* Create a more artistic staggered mobile layout */\n  .delve-into-grid {\n    display: grid;\n    grid-template-columns: repeat(6, 1fr);\n    grid-template-rows: repeat(30, 25px);\n    gap: 1.2rem;\n    perspective: 800px;\n    margin-bottom: 3.5rem;\n  }\n\n  .grid-item-1 {\n    grid-column: 1 / span 4;\n    grid-row: 1 / span 8;\n    transform: perspective(600px) rotateY(-3deg);\n    z-index: 3;\n  }\n\n  .grid-item-2 {\n    grid-column: 1 / span 3;\n    grid-row: 9 / span 5;\n    transform: perspective(600px) rotateY(-2deg);\n    z-index: 1;\n  }\n\n  .grid-item-3 {\n    grid-column: 4 / span 3;\n    grid-row: 9 / span 8;\n    transform: perspective(600px) rotateY(3deg) translateY(-15px);\n    z-index: 4;\n  }\n\n  .grid-item-4 {\n    grid-column: 5 / span 2;\n    grid-row: 1 / span 8;\n    transform: perspective(600px) rotateY(4deg) translateY(15px);\n    z-index: 2;\n  }\n\n  .grid-item-5 {\n    grid-column: 1 / span 3;\n    grid-row: 14 / span 7;\n    transform: perspective(600px) rotateY(-3deg) translateY(0);\n    z-index: 2;\n  }\n\n  .grid-item-6 {\n    grid-column: 1 / span 6;\n    grid-row: 21 / span 6;\n    transform: perspective(600px) rotateX(2deg);\n    z-index: 2;\n  }\n\n  .grid-item::after {\n    height: 60%;\n  }\n\n  .grid-item:hover {\n    transform: translateY(-6px) scale(1.02);\n  }\n}\n\n@media (max-width: 480px) {\n  .delve-into-section {\n    padding: 3rem 0 5rem;\n  }\n\n  .delve-into-container {\n    padding: 0 1.2rem;\n  }\n\n  .delve-into-title {\n    font-size: 2rem;\n    margin-bottom: 2rem;\n  }\n\n  .delve-into-title::after {\n    width: 60px;\n    bottom: -10px;\n  }\n\n  .explore-button-container {\n    bottom: 20%;\n  }\n\n  .explore-button {\n    padding: 0.9rem 2.5rem;\n    font-size: 1rem;\n  }\n\n  /* Create an enhanced artistic overlapping layout for small screens */\n  .delve-into-grid {\n    display: grid;\n    grid-template-columns: repeat(4, 1fr);\n    grid-template-rows: repeat(42, 15px);\n    gap: 0.9rem;\n    margin-bottom: 3rem;\n    perspective: 500px;\n  }\n\n  .grid-item-1 {\n    grid-column: 1 / span 4;\n    grid-row: 1 / span 10;\n    z-index: 5;\n    transform: perspective(500px) rotateX(2deg);\n  }\n\n  .grid-item-2 {\n    grid-column: 3 / span 2;\n    grid-row: 11 / span 8;\n    z-index: 2;\n    transform: perspective(500px) rotateY(4deg) translateY(-15px);\n  }\n\n  .grid-item-3 {\n    grid-column: 1 / span 2;\n    grid-row: 11 / span 6;\n    z-index: 4;\n    transform: perspective(500px) rotateY(-4deg);\n  }\n\n  .grid-item-4 {\n    grid-column: 1 / span 3;\n    grid-row: 17 / span 11;\n    z-index: 3;\n    transform: perspective(500px) rotateY(-2deg) translateY(-5px);\n  }\n\n  .grid-item-5 {\n    grid-column: 4 / span 1;\n    grid-row: 19 / span 8;\n    z-index: 1;\n    transform: perspective(500px) rotateY(5deg) translateY(10px);\n  }\n\n  .grid-item-6 {\n    grid-column: 1 / span 4;\n    grid-row: 28 / span 8;\n    z-index: 2;\n    transform: perspective(500px) rotateX(2deg);\n  }\n\n  .grid-item-6::after {\n    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), transparent);\n  }\n\n\n  /* Dynamic shine effect for cards */\n  .grid-item:nth-child(odd)::after {\n    height: 100%;\n  }\n\n  .grid-item:nth-child(even)::after {\n    height: 100%;\n  }\n\n  .grid-item:hover {\n    transform: translateY(-5px) scale(1.02);\n  }\n}\n",
-      "start": 1750873702460,
-      "end": 1750873703195,
+      "start": 1750951456018,
+      "end": 1750951456228,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750873703195,
-      "end": 1750873703195,
+      "start": 1750951456228,
+      "end": 1750951456228,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1750873703196,
-      "end": 1750873703196,
+      "start": 1750951456228,
+      "end": 1750951456228,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1750873703196,
-      "end": 1750873703196,
+      "start": 1750951456228,
+      "end": 1750951456228,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750873703196,
-      "end": 1750873703196,
+      "start": 1750951456228,
+      "end": 1750951456228,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750873703196,
-      "end": 1750873703196,
+      "start": 1750951456228,
+      "end": 1750951456228,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750873703196,
-      "end": 1750873703196,
+      "start": 1750951456228,
+      "end": 1750951456228,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750873703196,
-      "end": 1750873703196,
+      "start": 1750951456228,
+      "end": 1750951456228,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750873703196,
-      "end": 1750873703196,
+      "start": 1750951456228,
+      "end": 1750951456228,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750873703196,
-      "end": 1750873703196,
+      "start": 1750951456228,
+      "end": 1750951456228,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750873703196,
-      "end": 1750873703196,
+      "start": 1750951456228,
+      "end": 1750951456228,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750873703196,
-      "end": 1750873703196,
+      "start": 1750951456228,
+      "end": 1750951456228,
       "order": "normal"
     }
   ]

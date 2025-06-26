@@ -1,5 +1,12 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, {
+  useCallback,
+  useEffect,
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 import { Helmet } from "react-helmet";
+import { RxHamburgerMenu } from "react-icons/rx";
 import "./DuPinPlus.css";
 
 // Sample data for videos - replace with your actual content
@@ -221,20 +228,38 @@ const allVideos = [
   },
 ];
 
-// Extract unique categories for the filter
-const categories = [
-  "Tất cả",
-  ...new Set(allVideos.map((video) => video.category)),
+// Define categories and tags
+const CATEGORIES = [
+  "Alexandre Yersin",
+  "MDP-AR",
+  "Triển lãm",
+  "Trẻ em",
+  "Podcast",
+  "Hội thảo",
+  "Nhà Mắt Thông",
+  "Lifestyle",
+  "Acoustic Art",
+  "Taste Art",
+  "Live",
 ];
 
+const TAGS = {
+  "Âm nhạc": ["Acoustic Art"],
+  "Vị giác": ["Taste Art"],
+  "Góc nghệ sỹ": ["Live", "MDP-AR", "Podcast", "Alexandre Yersin"],
+  "Kiến trúc": ["Nhà Mắt Thông", "Kiến trúc"],
+  "Thiên Nhiên": ["Thiên nhiên", "Lifestyle"],
+  "Văn Hóa": ["Văn hóa"],
+};
+
 const DuPinPlus = () => {
-  const [videos, setVideos] = useState(allVideos);
   const [selectedVideo, setSelectedVideo] = useState(null);
   const [showModal, setShowModal] = useState(false);
-  const [activeCategory, setActiveCategory] = useState("Tất cả");
-  const [searchQuery, setSearchQuery] = useState("");
   const [currentHeroSlide, setCurrentHeroSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [showSidebar, setShowSidebar] = useState(false);
+  const [selectedFilter, setSelectedFilter] = useState(null);
+  const [filterType, setFilterType] = useState(null); // 'category' or 'tag'
   const autoPlayRef = useRef(null);
   const videosRef = useRef({});
   const heroRef = useRef(null);
@@ -290,41 +315,55 @@ const DuPinPlus = () => {
   };
 
   const playHeroVideo = (video) => {
-    const targetVideo = videosRef.current[video.id];
-    if (targetVideo) {
-      targetVideo.scrollIntoView({ behavior: "smooth" });
+    // Tìm section chứa video trong category tương ứng
+    const categorySection = document.querySelector(
+      `[data-category="${video.category}"]`
+    );
+    if (categorySection) {
+      // Scroll đến section
+      categorySection.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      // Đợi scroll hoàn tất rồi mở modal
       setTimeout(() => {
         setSelectedVideo(video);
         setShowModal(true);
-      }, 500);
+        document.body.style.overflow = "hidden";
+      }, 800); // Tăng timeout để đảm bảo scroll hoàn tất
+    } else {
+      // Nếu không tìm thấy section, mở modal luôn
+      setSelectedVideo(video);
+      setShowModal(true);
+      document.body.style.overflow = "hidden";
     }
   };
 
-  // Filter videos based on category and search query
-  useEffect(() => {
-    let filteredVideos = allVideos;
-
-    // Apply category filter
-    if (activeCategory !== "Tất cả") {
-      filteredVideos = filteredVideos.filter(
-        (video) => video.category === activeCategory
-      );
+  // Group videos by category
+  const videosByCategory = allVideos.reduce((acc, video) => {
+    if (!acc[video.category]) {
+      acc[video.category] = [];
     }
+    acc[video.category].push(video);
+    return acc;
+  }, {});
 
-    // Apply search filter
-    if (searchQuery.trim()) {
-      const query = searchQuery.toLowerCase();
-      filteredVideos = filteredVideos.filter(
-        (video) =>
-          video.title.toLowerCase().includes(query) ||
-          video.subtitle.toLowerCase().includes(query)
-      );
-    }
+  // Handle slide navigation
+  const handleSlide = (direction, category) => {
+    const container = videosRef.current[category];
+    if (!container) return;
 
-    setVideos(filteredVideos);
-  }, [activeCategory, searchQuery]);
+    const scrollAmount = container.offsetWidth;
+    const scrollPosition =
+      direction === "prev"
+        ? container.scrollLeft - scrollAmount
+        : container.scrollLeft + scrollAmount;
 
-  // Handle video selection and modal
+    container.scrollTo({
+      left: scrollPosition,
+      behavior: "smooth",
+    });
+  };
+
+  // Handle video modal
   const openVideoModal = (video) => {
     setSelectedVideo(video);
     setShowModal(true);
@@ -337,11 +376,61 @@ const DuPinPlus = () => {
     document.body.style.overflow = "auto";
   };
 
-  // Close modal when clicking outside the content
   const handleModalBackdropClick = (e) => {
     if (e.target.classList.contains("video-modal-dupin")) {
       closeModal();
     }
+  };
+
+  // Get random thumbnail for category
+  const getCategoryThumbnail = useCallback((category) => {
+    const categoryVideos = allVideos.filter(
+      (video) => video.category === category
+    );
+    if (categoryVideos.length === 0) return null;
+    const randomIndex = Math.floor(Math.random() * categoryVideos.length);
+    return categoryVideos[randomIndex].thumbnail;
+  }, []);
+
+  // Filter videos based on selection
+  const filteredVideos = useMemo(() => {
+    if (!selectedFilter) return videosByCategory;
+
+    if (filterType === "category") {
+      return {
+        [selectedFilter]: allVideos.filter(
+          (video) => video.category === selectedFilter
+        ),
+      };
+    }
+
+    // For tags, get all videos from related categories
+    const tagCategories = TAGS[selectedFilter] || [];
+    const filteredByTag = allVideos.filter((video) =>
+      tagCategories.includes(video.category)
+    );
+
+    return {
+      [selectedFilter]: filteredByTag,
+    };
+  }, [selectedFilter, filterType]);
+
+  // Toggle sidebar
+  const toggleSidebar = () => {
+    setShowSidebar(!showSidebar);
+  };
+
+  // Handle filter selection
+  const handleFilterSelect = (filter, type) => {
+    setSelectedFilter(filter);
+    setFilterType(type);
+    setShowSidebar(false);
+  };
+
+  // Reset filter
+  const resetFilter = () => {
+    setSelectedFilter(null);
+    setFilterType(null);
   };
 
   return (
@@ -355,6 +444,10 @@ const DuPinPlus = () => {
       </Helmet>
 
       <div className="dupinplus-hero" ref={heroRef}>
+        <button className="filter-menu-button" onClick={toggleSidebar}>
+          <span className="filter-menu-text">Khám phá</span>
+          <RxHamburgerMenu />
+        </button>
         <div className="hero-slideshow">
           {heroVideos.map((video, index) => (
             <div
@@ -435,90 +528,260 @@ const DuPinPlus = () => {
         </div>
       </div>
 
-      {/* <section className="filter-section">
-        <div className="search-box">
-          <input
-            type="text"
-            placeholder="Tìm kiếm video..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="search-input"
-          />
-          <button className="search-button">
-            <svg
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-              width="24"
-              height="24"
-            >
-              <path
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                d="M15 15l6 6m-11-4a7 7 0 110-14 7 7 0 010 14z"
-              />
-            </svg>
+      {/* Filter Sidebar */}
+      <div className={`filter-sidebar ${showSidebar ? "show" : ""}`}>
+        <div className="filter-sidebar-content">
+          <button className="close-sidebar" onClick={toggleSidebar}>
+            <span>×</span>
+          </button>
+
+          <div className="filter-section">
+            <h2>Thẻ</h2>
+            <div className="tag-list">
+              <button
+                className={`tag-item ${
+                  selectedFilter === "Âm nhạc" && filterType === "tag"
+                    ? "active"
+                    : ""
+                }`}
+                onClick={() => handleFilterSelect("Âm nhạc", "tag")}
+              >
+                Âm nhạc
+              </button>
+              <button
+                className={`tag-item ${
+                  selectedFilter === "Vị giác" && filterType === "tag"
+                    ? "active"
+                    : ""
+                }`}
+                onClick={() => handleFilterSelect("Vị giác", "tag")}
+              >
+                Vị giác
+              </button>
+              <button
+                className={`tag-item ${
+                  selectedFilter === "Góc Nghệ Sỹ" && filterType === "tag"
+                    ? "active"
+                    : ""
+                }`}
+                onClick={() => handleFilterSelect("Góc Nghệ Sỹ", "tag")}
+              >
+                Góc Nghệ Sỹ
+              </button>
+              <button
+                className={`tag-item ${
+                  selectedFilter === "Kiến Trúc" && filterType === "tag"
+                    ? "active"
+                    : ""
+                }`}
+                onClick={() => handleFilterSelect("Kiến Trúc", "tag")}
+              >
+                Kiến Trúc
+              </button>
+              <button
+                className={`tag-item ${
+                  selectedFilter === "Thiên Nhiên" && filterType === "tag"
+                    ? "active"
+                    : ""
+                }`}
+                onClick={() => handleFilterSelect("Thiên Nhiên", "tag")}
+              >
+                Thiên Nhiên
+              </button>
+              <button
+                className={`tag-item ${
+                  selectedFilter === "Văn Hóa" && filterType === "tag"
+                    ? "active"
+                    : ""
+                }`}
+                onClick={() => handleFilterSelect("Văn Hóa", "tag")}
+              >
+                Văn Hóa
+              </button>
+            </div>
+          </div>
+
+          <div className="filter-section">
+            <h2>Danh mục</h2>
+            <div className="category-list">
+              {CATEGORIES.map((category) => (
+                <button
+                  key={category}
+                  className={`category-item ${
+                    selectedFilter === category && filterType === "category"
+                      ? "active"
+                      : ""
+                  }`}
+                  onClick={() => handleFilterSelect(category, "category")}
+                >
+                  {category}
+                </button>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Active Filter Indicator */}
+      {selectedFilter && (
+        <div className="active-filter">
+          <span>
+            {filterType === "tag"
+              ? "Đang hiển thị theo thẻ: "
+              : "Đang hiển thị theo danh mục: "}
+            {selectedFilter}
+          </span>
+          <button
+            onClick={() => {
+              setSelectedFilter(null);
+              setFilterType(null);
+            }}
+          >
+            Xóa lọc
           </button>
         </div>
-
-        <div className="category-filters">
-          {categories.map((category) => (
-            <button
-              key={category}
-              className={`category-button ${
-                activeCategory === category ? "active" : ""
-              }`}
-              onClick={() => setActiveCategory(category)}
-            >
-              {category}
-            </button>
-          ))}
-        </div>
-      </section> */}
+      )}
 
       <section className="videos-grid">
-        {videos.length > 0 ? (
-          videos.map((video) => (
-            <div
-              key={video.id}
-              className="video-card"
-              onClick={() => openVideoModal(video)}
-              ref={(el) => (videosRef.current[video.id] = el)}
-            >
-              <div className="video-thumbnail-container">
-                <img
-                  src={video.thumbnail}
-                  alt={video.title}
-                  className="video-thumbnail"
-                  loading="lazy"
-                />
-                <div className="play-overlay">
-                  <div className="play-button">
-                    <svg viewBox="0 0 100 100" className="play-icon">
-                      <circle cx="50" cy="50" r="45" className="play-circle" />
-                      <polygon
-                        points="40,30 70,50 40,70"
-                        className="play-triangle"
-                      />
-                    </svg>
-                  </div>
-                </div>
-                <div className="video-duration">{video.duration}</div>
-              </div>
-              <div className="video-info">
-                <span className="video-category">{video.category}</span>
-                <h3 className="video-title">{video.title}</h3>
-                {video.subtitle && <span className="video-subtitle"></span>}
-                <p className="video-description">{video.description}</p>
-              </div>
+        {Object.entries(filteredVideos).map(([category, videos]) => (
+          <div
+            key={category}
+            className="videos-grid-contents"
+            data-category={category}
+          >
+            <div className="videos-grid-header">
+              <h2 className="videos-grid-title">{category}</h2>
+              <span className="videos-count">
+                {videos.length} video{videos.length > 1 ? "s" : ""}
+              </span>
             </div>
-          ))
-        ) : (
-          <div className="no-results">
-            <h3>Không tìm thấy video</h3>
-            <p>Vui lòng điều chỉnh lại tiêu chí tìm kiếm hoặc bộ lọc</p>
+
+            {videos.length >= 4 ? (
+              <div className="videos-grid-slide">
+                <button
+                  className="slide-nav-dupin prev"
+                  onClick={() => handleSlide("prev", category)}
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    width="24"
+                    height="24"
+                  >
+                    <path d="M15.41 7.41L14 6l-6 6 6 6 1.41-1.41L10.83 12z" />
+                  </svg>
+                </button>
+                <div
+                  className="videos-slide-container"
+                  ref={(el) => (videosRef.current[category] = el)}
+                  data-videos={videos.map((v) => v.id).join(",")}
+                >
+                  {videos.map((video) => (
+                    <div
+                      key={video.id}
+                      className="video-card"
+                      onClick={() => openVideoModal(video)}
+                      data-video-id={video.id}
+                    >
+                      <div className="video-thumbnail-container">
+                        <img
+                          src={video.thumbnail}
+                          alt={video.title}
+                          className="video-thumbnail"
+                          loading="lazy"
+                        />
+                        <div className="play-overlay">
+                          <div className="play-button">
+                            <svg viewBox="0 0 100 100" className="play-icon">
+                              <circle
+                                cx="50"
+                                cy="50"
+                                r="45"
+                                className="play-circle"
+                              />
+                              <polygon
+                                points="40,30 70,50 40,70"
+                                className="play-triangle"
+                              />
+                            </svg>
+                          </div>
+                        </div>
+                        <div className="video-duration">{video.duration}</div>
+                      </div>
+                      <div className="video-info">
+                        <h3 className="video-title">{video.title}</h3>
+                        {video.subtitle && (
+                          <span className="video-subtitle">
+                            {video.subtitle}
+                          </span>
+                        )}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+                <button
+                  className="slide-nav-dupin next"
+                  onClick={() => handleSlide("next", category)}
+                >
+                  <svg
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    width="24"
+                    height="24"
+                  >
+                    <path d="M10 6L8.59 7.41 13.17 12l-4.58 4.59L10 18l6-6z" />
+                  </svg>
+                </button>
+              </div>
+            ) : (
+              <div
+                className="videos-grid-fixed"
+                data-videos={videos.map((v) => v.id).join(",")}
+              >
+                {videos.map((video) => (
+                  <div
+                    key={video.id}
+                    className="video-card"
+                    onClick={() => openVideoModal(video)}
+                    data-video-id={video.id}
+                  >
+                    <div className="video-thumbnail-container">
+                      <img
+                        src={video.thumbnail}
+                        alt={video.title}
+                        className="video-thumbnail"
+                        loading="lazy"
+                      />
+                      <div className="play-overlay">
+                        <div className="play-button">
+                          <svg viewBox="0 0 100 100" className="play-icon">
+                            <circle
+                              cx="50"
+                              cy="50"
+                              r="45"
+                              className="play-circle"
+                            />
+                            <polygon
+                              points="40,30 70,50 40,70"
+                              className="play-triangle"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="video-duration">{video.duration}</div>
+                    </div>
+                    <div className="video-info">
+                      <h3 className="video-title">{video.title}</h3>
+                      {video.subtitle && (
+                        <span className="video-subtitle">{video.subtitle}</span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
-        )}
+        ))}
       </section>
 
       {/* Video Modal */}

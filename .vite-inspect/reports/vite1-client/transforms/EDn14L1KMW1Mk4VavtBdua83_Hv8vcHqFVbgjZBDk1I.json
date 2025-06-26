@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/mussedupin-0f2501a9a053b0e75502c49e74876d2dc852c693/node_modules/framer-motion/dist/es/context/PresenceContext.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "\"use client\";\nimport { createContext } from 'react';\n\n/**\n * @public\n */\nconst PresenceContext = \n/* @__PURE__ */ createContext(null);\n\nexport { PresenceContext };\n",
+      "start": 1750951463574,
+      "end": 1750951463899,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1750951463899,
+      "end": 1750951463899,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1750951463899,
+      "end": 1750951463899,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1750951463899,
+      "end": 1750951463899,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1750951463899,
+      "end": 1750951463899,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1750951463899,
+      "end": 1750951463899,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1750951463899,
+      "end": 1750951463899,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1750951463899,
+      "end": 1750951463899,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1750951463899,
+      "end": 1750951463899,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1750951463899,
+      "end": 1750951463899,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1750951463899,
+      "end": 1750951463899,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1750951463899,
+      "end": 1750951463899,
+      "order": "normal"
+    }
+  ]
+}

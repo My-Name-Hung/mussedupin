@@ -276,8 +276,9 @@
   .hero-info-panel {
     position: absolute;
     width: 55%;
+    display: block;
     bottom: calc(
-      810vh + 40px
+      830vh + 40px
     );
     left: 570px;
     background-color: #2c2f11;

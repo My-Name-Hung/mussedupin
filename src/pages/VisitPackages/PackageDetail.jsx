@@ -266,7 +266,7 @@ const PackageDetail = () => {
           "1 phần nước uống tự chọn",
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "gJL4YdOunvA",
           title: "Khám Phá Dáng Sương",
         },
       },
@@ -287,7 +287,7 @@ const PackageDetail = () => {
           "Tặng gói chụp ảnh nghệ thuật (1 tiếng)",
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "1lVoCgIxUm4",
           title: "Workshop Nghệ Nhân",
         },
       },
@@ -309,12 +309,12 @@ const PackageDetail = () => {
           "Bữa trưa nhẹ gồm 01 món ăn và 01 thức uống",
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "3hr-yyLqAy4",
           title: "Trải Nghiệm Hồn Núi",
         },
       },
       "lua-thieng": {
-        title: "LỬA THIÊNG / Pind' Amour",
+        title: "LỬA THIÊNG / Pin d'Amour",
         description:
           "Buổi tối bùng cháy với âm nhạc, nghệ thuật, văn hóa, rượu và không gian view toàn cảnh Đà Lạt về đêm",
         fullDescription: `Buổi tối bùng cháy với âm nhạc, nghệ thuật, văn hóa, rượu và không gian view toàn cảnh Đà Lạt về đêm`,
@@ -330,7 +330,7 @@ const PackageDetail = () => {
           'Trải nghiệm sân khấu Pind\'amour với chương trình Vin Acoustic "Thông Hát" và rượu vang thượng hạng và 01 phần ăn nhẹ',
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "_qP_eGPzVJE",
           title: "Đêm Lửa Thiêng",
         },
       },
@@ -349,7 +349,7 @@ const PackageDetail = () => {
           "Bữa sáng với đặc sản địa phương",
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "Ja3XeTu-r54",
           title: "Đêm Thông",
         },
       },
@@ -371,7 +371,7 @@ const PackageDetail = () => {
           "Tặng gói chụp ảnh nghệ thuật (1 tiếng)",
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "2zuGLmyZgfU",
           title: "Bóng Cây Kơnia",
         },
       },
@@ -392,7 +392,7 @@ const PackageDetail = () => {
           "Bộ ảnh nghệ thuật chuyên nghiệp",
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "OI6r5SW9BiM",
           title: "Trường Ca Langbiang",
         },
       },
@@ -1097,8 +1097,8 @@ const PackageDetail = () => {
       </div>
 
       <div className="package-detail-content">
-        <button className="book-now-button" onClick={handleBookNow}>
-          Đặt vé ngay
+        <button className="book-now-button">
+          <a href="https://ticket-museeduphin.netlify.app/" target="_blank">Đặt vé ngay</a>
         </button>
         <div className="content-wrapper">
           <div className="content-left">

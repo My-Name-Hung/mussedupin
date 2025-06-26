@@ -306,36 +306,36 @@ const Highlights = ({ onVisible, onHidden }) => {
         <div className="highlights-layout">
           {/* Featured large card (2 columns) */}
           <div className="highlight-featured">
-            <div
-              className={`highlight-card-wrapper highlight-card-large ${
-                visibleCards[0] ? "visible" : ""
-              }`}
-            >
-              <div className="highlight-card">
-                <div className="card-tag">
+          <div
+            className={`highlight-card-wrapper highlight-card-large ${
+              visibleCards[0] ? "visible" : ""
+            }`}
+          >
+            <div className="highlight-card">
+              <div className="card-tag">
                   <span>{randomItems[0]?.tag}</span>
-                </div>
+              </div>
                 <Link to={randomItems[0]?.link} className="card-link-wrapper">
-                  <div className="card-image-container">
-                    <CachedImage
+                <div className="card-image-container">
+                  <CachedImage
                       src={randomItems[0]?.image}
                       alt={randomItems[0]?.alt}
-                      className="card-image"
-                      loading="eager"
+                    className="card-image"
+                    loading="eager"
                       highlightId={randomItems[0]?.id}
-                    />
-                  </div>
-                  <div className="card-content">
-                    <h3 className="card-title">
-                      <span className="card-title-text">
+                  />
+                </div>
+                <div className="card-content">
+                  <h3 className="card-title">
+                    <span className="card-title-text">
                         {randomItems[0]?.title}
-                      </span>
-                    </h3>
-                    <p className="card-description">
+                    </span>
+                  </h3>
+                  <p className="card-description">
                       {randomItems[0]?.description}
-                    </p>
-                  </div>
-                </Link>
+                  </p>
+                </div>
+              </Link>
               </div>
             </div>
           </div>

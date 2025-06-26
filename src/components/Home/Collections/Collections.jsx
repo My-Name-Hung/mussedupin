@@ -99,7 +99,7 @@ const collectionsData = [
     alt: "Bề mặt ký ức",
     description: "Bề mặt ký ức.",
   },
-  {
+    {
     id: 11,
     title: "Thiên nhiên Đà Lạt",
     artist: "Tham quan",

@@ -481,8 +481,8 @@
     overflow: visible;
     position: relative;
     transform-style: preserve-3d;
-    cursor: default;
-  }
+  cursor: default;
+}
 
   .collection-inner-container {
     min-width: max-content;

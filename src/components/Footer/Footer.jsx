@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import { FaFacebook, FaInstagram, FaLinkedin, FaYoutube } from "react-icons/fa";
+import { FaFacebook, FaYoutube } from "react-icons/fa";
 import { SiTiktok } from "react-icons/si";
 import { Link, useNavigate } from "react-router-dom";
+import { useTranslation } from "../../contexts/TranslationContext";
 import FeedbackModal from "../FeedbackModal/FeedbackModal";
 import "./Footer.css";
 
 const Footer = () => {
+  const { currentLang } = useTranslation();
   const [openSections, setOpenSections] = useState([]);
   const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);
   const navigate = useNavigate();
@@ -43,14 +45,25 @@ const Footer = () => {
               }`}
             >
               <h3 className="footer-heading" onClick={() => toggleSection(0)}>
-                GIỚI THIỆU
+                {currentLang === "en" ? "ABOUT" : "GIỚI THIỆU"}
               </h3>
               <ul className="footer-links">
                 <li>
-                  <Link to="/about">Bảo tàng Du Pin tại Việt Nam</Link>
+                  <Link to="/about">
+                    {currentLang === "en" ? (
+                      <span className="notranslate">Musée Du Pin</span>
+                    ) : (
+                      "Bảo tàng Thông"
+                    )}{" "}
+                    {currentLang === "en" ? "in Vietnam" : "tại Việt Nam"}
+                  </Link>
                 </li>
                 <li>
-                  <Link to="/visitor-rules">Nội quy tham quan</Link>
+                  <Link to="/visitor-rules">
+                    {currentLang === "en"
+                      ? "Visitor Rules"
+                      : "Nội quy tham quan"}
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -62,21 +75,29 @@ const Footer = () => {
               }`}
             >
               <h3 className="footer-heading" onClick={() => toggleSection(1)}>
-                TRANG WEB CỦA CHÚNG TÔI
+                {currentLang === "en"
+                  ? "OUR WEBSITES"
+                  : "TRANG WEB CỦA CHÚNG TÔI"}
               </h3>
               <ul className="footer-links">
                 <li>
                   <Link to="https://ticket-museeduphin.netlify.app/">
-                    Dịch vụ đặt vé trực tuyến
+                    {currentLang === "en"
+                      ? "Online Ticket Service"
+                      : "Dịch vụ đặt vé trực tuyến"}
                   </Link>
                 </li>
                 <li>
                   <Link to="https://online-museeduphin.netlify.app/">
-                    Cửa hàng trực tuyến
+                    {currentLang === "en"
+                      ? "Online Store"
+                      : "Cửa hàng trực tuyến"}
                   </Link>
                 </li>
                 <li>
-                  <Link to="/collection">Bộ sưu tập</Link>
+                  <Link to="/collection">
+                    {currentLang === "en" ? "Collection" : "Bộ sưu tập"}
+                  </Link>
                 </li>
               </ul>
             </div>
@@ -88,7 +109,7 @@ const Footer = () => {
               }`}
             >
               <h3 className="footer-heading" onClick={() => toggleSection(2)}>
-                LIÊN HỆ
+                {currentLang === "en" ? "CONTACT" : "LIÊN HỆ"}
               </h3>
               <ul className="footer-links">
                 <li>
@@ -99,12 +120,14 @@ const Footer = () => {
                       navigate("/visit-info#faq");
                     }}
                   >
-                    Câu hỏi thường gặp
+                    {currentLang === "en" ? "FAQ" : "Câu hỏi thường gặp"}
                   </Link>
                 </li>
                 <li>
                   <a href="#" onClick={handleContactClick}>
-                    Liên hệ với chúng tôi
+                    {currentLang === "en"
+                      ? "Contact Us"
+                      : "Liên hệ với chúng tôi"}
                   </a>
                 </li>
                 <li>
@@ -115,7 +138,9 @@ const Footer = () => {
                       setIsFeedbackModalOpen(true);
                     }}
                   >
-                    Gửi phản hồi cho chúng tôi!
+                    {currentLang === "en"
+                      ? "Send us feedback!"
+                      : "Gửi phản hồi cho chúng tôi!"}
                   </a>
                 </li>
               </ul>
@@ -128,7 +153,7 @@ const Footer = () => {
               }`}
             >
               <h3 className="footer-heading" onClick={() => toggleSection(3)}>
-                THEO DÕI CHÚNG TÔI
+                {currentLang === "en" ? "FOLLOW US" : "THEO DÕI CHÚNG TÔI"}
               </h3>
               <div className="social-icons">
                 <a
@@ -162,9 +187,15 @@ const Footer = () => {
           {/* Bottom Legal Links */}
           <div className="footer-legal">
             <div className="legal-links">
-              <Link to="/legal-notice">Thông báo pháp lý</Link>
-              <Link to="/privacy-policy">Chính sách bảo mật</Link>
-              <Link to="/copyrights">Bản quyền</Link>
+              <Link to="/legal-notice">
+                {currentLang === "en" ? "Legal Notice" : "Thông báo pháp lý"}
+              </Link>
+              <Link to="/privacy-policy">
+                {currentLang === "en" ? "Privacy Policy" : "Chính sách bảo mật"}
+              </Link>
+              <Link to="/copyrights">
+                {currentLang === "en" ? "Copyright" : "Bản quyền"}
+              </Link>
             </div>
           </div>
 
@@ -173,7 +204,11 @@ const Footer = () => {
             <Link to="/">
               <img
                 src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/icon.png"
-                alt="Logo Bảo tàng Du Pin"
+                alt={
+                  currentLang === "en"
+                    ? "Musée Du Pin Logo"
+                    : "Logo Bảo tàng Thông"
+                }
               />
             </Link>
           </div>

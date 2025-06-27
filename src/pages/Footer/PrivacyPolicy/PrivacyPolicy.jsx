@@ -1,17 +1,47 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "../../../contexts/TranslationContext";
 import "./PrivacyPolicy.css";
 
 // Import header image
 
+const translations = {
+  meta: {
+    vi: {
+      title: "Chính sách bảo mật | Bảo tàng Thông",
+      description:
+        "Chính sách bảo mật và quy định về bảo vệ dữ liệu cá nhân của Bảo tàng Thông - Musée Du Pin.",
+    },
+    en: {
+      title: "Privacy Policy | Musée Du Pin",
+      description:
+        "Privacy policy and personal data protection regulations of Musée Du Pin.",
+    },
+  },
+  header: {
+    vi: "CHÍNH SÁCH BẢO MẬT",
+    en: "PRIVACY POLICY",
+  },
+  alt: {
+    vi: "Bảo tàng Thông - Musée Du Pin",
+    en: "Musée Du Pin",
+  },
+};
+
 const PrivacyPolicy = () => {
+  const { currentLang, registerTranslations } = useTranslation();
+
+  React.useEffect(() => {
+    registerTranslations("privacyPolicy", translations);
+  }, [registerTranslations]);
+
   return (
     <div className="privacy-policy-container">
       <Helmet>
-        <title>Chính sách bảo mật | Bảo tàng Thông - Musée Du Pin</title>
+        <title>{translations.meta[currentLang].title}</title>
         <meta
           name="description"
-          content="Chính sách bảo mật và quy định về bảo vệ dữ liệu cá nhân của Bảo tàng Thông - Musée Du Pin."
+          content={translations.meta[currentLang].description}
         />
       </Helmet>
 
@@ -19,22 +49,21 @@ const PrivacyPolicy = () => {
       <div className="privacy-banner">
         <img
           src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784642/collections/louvre-sunset.jpg"
-          alt="Bảo tàng Thông - Musée Du Pin"
+          alt={translations.alt[currentLang]}
         />
         <div className="banner-overlay">
-          <h1>CHÍNH SÁCH BẢO MẬT</h1>
+          <h1>{translations.header[currentLang]}</h1>
         </div>
       </div>
 
       <div className="privacy-content">
         {/* Introduction Section */}
         <div className="section">
-          <h2>GIỚI THIỆU</h2>
+          <h2>{currentLang === "en" ? "INTRODUCTION" : "GIỚI THIỆU"}</h2>
           <p>
-            Bảo tàng Thông - Musée Du Pin cam kết bảo vệ quyền riêng tư và dữ
-            liệu cá nhân của quý khách. Chính sách bảo mật này mô tả cách chúng
-            tôi thu thập, sử dụng, lưu trữ và bảo vệ thông tin của quý khách khi
-            truy cập website và sử dụng dịch vụ hay các sản phẩm của bảo tàng.
+            {currentLang === "en"
+              ? "Musée Du Pin is committed to protecting your privacy and personal data. This privacy policy describes how we collect, use, store and protect your information when you access our website and use our services or products."
+              : "Bảo tàng Thông - Musée Du Pin cam kết bảo vệ quyền riêng tư và dữ liệu cá nhân của quý khách. Chính sách bảo mật này mô tả cách chúng tôi thu thập, sử dụng, lưu trữ và bảo vệ thông tin của quý khách khi truy cập website và sử dụng dịch vụ hay các sản phẩm của bảo tàng."}
           </p>
         </div>
 
@@ -138,20 +167,24 @@ const PrivacyPolicy = () => {
 
         {/* Contact Section */}
         <div className="section">
-          <h2>LIÊN HỆ</h2>
+          <h2>{currentLang === "en" ? "CONTACT" : "LIÊN HỆ"}</h2>
           <p>
-            Nếu quý khách có bất kỳ câu hỏi nào về chính sách bảo mật hoặc cách
-            chúng tôi xử lý dữ liệu cá nhân, vui lòng liên hệ:
+            {currentLang === "en"
+              ? "If you have any questions about our privacy policy or how we handle your personal data, please contact:"
+              : "Nếu quý khách có bất kỳ câu hỏi nào về chính sách bảo mật hoặc cách chúng tôi xử lý dữ liệu cá nhân, vui lòng liên hệ:"}
           </p>
           <p>
-            Bảo tàng Thông - Musée Du Pin
+            Musée Du Pin
             <br />
             Email: baotangthong2024@gmail.com
             <br />
-              Điện thoại: +84 2633 818 968; +84 86 235 6368
-
+            {currentLang === "en" ? "Phone" : "Điện thoại"}: +84 2633 818 968;
+            +84 86 235 6368
             <br />
-              Địa chỉ: 29-31 Đống Đa, Phường 3, Tp Đà Lạt, tỉnh Lâm Đồng, Việt Nam
+            {currentLang === "en" ? "Address" : "Địa chỉ"}: 29-31 Đống Đa,{" "}
+            {currentLang === "en"
+              ? "Ward 3, Da Lat City, Lam Dong, Vietnam"
+              : "Phường 3, Tp Đà Lạt, tỉnh Lâm Đồng, Việt Nam"}
           </p>
         </div>
 

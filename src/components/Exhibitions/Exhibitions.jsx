@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
+import { useTranslation } from "../../contexts/TranslationContext";
 import { getImageUrl } from "../../utils/cloudinary";
 
 // Import hero image
@@ -17,9 +18,13 @@ const exhibitionsData = [
     description:
       "Khi nghệ thuật không chỉ để ngắm, mà để sống cùng và sống trong. Không có tủ kính ngăn cách. Không có rào chắn giữa người và hiện vật. Langbiang không đơn thuần là một căn phòng, mà là một vùng ký ức sống, nơi hồn cốt của núi rừng thở trong từng vật phẩm, cháy trong từng ngọn lửa bếp, ngân nga trong từng tiếng cồng chiêng.",
     date: "30 tháng 4 - 28 tháng 7 2025",
-    image: "https://ik.imagekit.io/8u8lkoqkkm/8349122d9b192f477608.jpg?updatedAt=1749174236204",
+    image:
+      "https://ik.imagekit.io/8u8lkoqkkm/8349122d9b192f477608.jpg?updatedAt=1749174236204",
     alt: "Không gian nghệ thuật Langbiang",
-    tag: "Trưng bày",
+    tag: {
+      vi: "Trưng bày",
+      en: "Exhibition",
+    },
     link: "/exhibition-details/langbiang-khong-gian",
     featured: true,
   },
@@ -111,8 +116,14 @@ const exhibitionsData = [
     date: "Trưng bày thường xuyên",
     image:
       "https://ik.imagekit.io/8u8lkoqkkm/PinD'amour6.jpg?updatedAt=1750001274965",
-    alt: "Khán phòng Pin d'amour",
-    tag: "Âm thanh",
+    alt: {
+      vi: "Khán phòng Pin d'amour",
+      en: "Pin d'amour Auditorium",
+    },
+    tag: {
+      vi: "Âm thanh",
+      en: "Audio",
+    },
     link: "/the-acoustic/pind-amour",
     featured: false,
   },
@@ -125,8 +136,14 @@ const exhibitionsData = [
     date: "Trưng bày thường xuyên",
     image:
       "https://ik.imagekit.io/8u8lkoqkkm/image(3).png?updatedAt=1749000530723",
-    alt: "Phòng nghe High-end",
-    tag: "Âm thanh",
+    alt: {
+      vi: "Phòng nghe High-end",
+      en: "High-end Listening Room",
+    },
+    tag: {
+      vi: "Âm thanh",
+      en: "Audio",
+    },
     link: "/the-acoustic/high-end",
     featured: false,
   },
@@ -139,8 +156,14 @@ const exhibitionsData = [
     date: "Mở cửa hàng ngày",
     image:
       "https://ik.imagekit.io/8u8lkoqkkm/image(1).png?updatedAt=1749000543046",
-    alt: "Nhà hàng Bảo tàng",
-    tag: "Ẩm thực",
+    alt: {
+      vi: "Nhà hàng Bảo tàng",
+      en: "Musée Du Pin Restaurant",
+    },
+    tag: {
+      vi: "Ẩm thực",
+      en: "Cuisine",
+    },
     link: "/the-taste/restaurant",
     featured: false,
   },
@@ -219,6 +242,7 @@ const guidedToursData = [
 ];
 
 const Exhibitions = () => {
+  const { currentLang } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const gridRef = useRef(null);
@@ -324,20 +348,41 @@ const Exhibitions = () => {
   const activeData =
     activeTab === "exhibitions" ? exhibitionsData : guidedToursData;
 
+  // Update alt text based on language
+  const getAltText = (item) => {
+    if (item.alt && typeof item.alt === "object") {
+      return item.alt[currentLang];
+    }
+    return item.alt;
+  };
+
   return (
     <div className="exhibitions-page">
       {/* Hero Section with background image */}
       <div className="exhibitions-hero" ref={heroRef}>
         <div className="exhibitions-hero-overlay">
-          <img src={getImageUrl("louvre-sunset.jpg")} alt="Bảo tàng" />
+          <img
+            src={getImageUrl("louvre-sunset.jpg")}
+            alt={currentLang === "en" ? "Musée Du Pin" : "Bảo tàng Thông"}
+          />
         </div>
         <div className="exhibitions-hero-content">
           <h1 className="exhibitions-hero-title">
-            {activeTab === "exhibitions" ? "TRƯNG BÀY" : "THAM QUAN"}
+            {activeTab === "exhibitions"
+              ? currentLang === "en"
+                ? "EXHIBITIONS"
+                : "TRƯNG BÀY"
+              : currentLang === "en"
+              ? "GUIDED TOURS"
+              : "THAM QUAN"}
           </h1>
           <p className="exhibitions-hero-subtitle">
             {activeTab === "exhibitions"
-              ? "Khám phá các cuộc trưng bày hiện tại và sắp tới"
+              ? currentLang === "en"
+                ? "Discover our current and upcoming exhibitions"
+                : "Khám phá các cuộc trưng bày hiện tại và sắp tới"
+              : currentLang === "en"
+              ? "Explore the museum with our professional guides"
               : "Khám phá bảo tàng cùng hướng dẫn viên chuyên nghiệp"}
           </p>
         </div>
@@ -351,18 +396,22 @@ const Exhibitions = () => {
               activeTab === "exhibitions" ? "active" : ""
             }`}
             onClick={() => handleTabChange("exhibitions")}
-            aria-label="Hiển thị trưng bày"
+            aria-label={
+              currentLang === "en" ? "Show exhibitions" : "Hiển thị trưng bày"
+            }
           >
-            TRƯNG BÀY
+            {currentLang === "en" ? "EXHIBITIONS" : "TRƯNG BÀY"}
           </button>
           <button
             className={`tab-button ${
               activeTab === "guided-tours" ? "active" : ""
             }`}
             onClick={() => handleTabChange("guided-tours")}
-            aria-label="Hiển thị tham quan"
+            aria-label={
+              currentLang === "en" ? "Show guided tours" : "Hiển thị tham quan"
+            }
           >
-            THAM QUAN
+            {currentLang === "en" ? "GUIDED TOURS" : "THAM QUAN"}
           </button>
         </div>
       </div>
@@ -386,13 +435,13 @@ const Exhibitions = () => {
                 >
                   <div className="exhibition-card featured-card">
                     <div className="card-tag">
-                      <span>{item.tag}</span>
+                      <span>{item.tag[currentLang]}</span>
                     </div>
                     <Link to={item.link} className="card-link-wrapper">
                       <div className="card-image-container">
                         <img
                           src={getImageUrl(item.image)}
-                          alt={item.alt}
+                          alt={getAltText(item)}
                           className="card-image"
                           loading="eager"
                           style={{
@@ -405,15 +454,16 @@ const Exhibitions = () => {
                       </div>
                       <div className="card-content">
                         <h2 className="card-title">{item.title}</h2>
-                        {/* <h3 className="card-subtitle">
-                          {item.subtitle}
-                        </h3> */}
                         <p className="card-description">{item.description}</p>
                         <div className="card-footer">
                           <span className="card-date">
                             {activeTab === "exhibitions"
                               ? item.date
-                              : `Thời gian: ${item.duration}`}
+                              : `${
+                                  currentLang === "en"
+                                    ? "Duration"
+                                    : "Thời gian"
+                                }: ${item.duration}`}
                           </span>
                         </div>
                       </div>
@@ -443,13 +493,13 @@ const Exhibitions = () => {
               >
                 <div className="exhibition-card">
                   <div className="card-tag">
-                    <span>{item.tag}</span>
+                    <span>{item.tag[currentLang]}</span>
                   </div>
                   <Link to={item.link} className="card-link-wrapper">
                     <div className="card-image-container">
                       <img
                         src={getImageUrl(item.image)}
-                        alt={item.alt}
+                        alt={getAltText(item)}
                         className="card-image"
                         loading={index < 5 ? "eager" : "lazy"}
                         style={{
@@ -462,15 +512,14 @@ const Exhibitions = () => {
                     </div>
                     <div className="card-content">
                       <h2 className="card-title">{item.title}</h2>
-                      {/* <h3 className="card-subtitle">
-                        {item.subtitle}
-                      </h3> */}
                       <p className="card-description">{item.description}</p>
                       <div className="card-footer">
                         <span className="card-date">
                           {activeTab === "exhibitions"
                             ? item.date
-                            : `Thời gian: ${item.duration}`}
+                            : `${
+                                currentLang === "en" ? "Duration" : "Thời gian"
+                              }: ${item.duration}`}
                         </span>
                       </div>
                     </div>

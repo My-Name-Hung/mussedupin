@@ -815,40 +815,45 @@ const TrailExperiencePage = () => {
           </div>
         </div>
 
-        {/* Main artwork image */}
-        <div className="trail-exp-artwork-container">
-          {currentImage && currentImage.url && (
-            <img
-              src={getImageUrl(currentImage.url)}
-              alt={currentImage.title}
-              className="trail-exp-artwork main-artwork"
-            />
-          )}
-        </div>
-
-        {/* Artwork info */}
-        <div className="trail-exp-artwork-info">
-          <h2 className="trail-exp-artwork-title">{currentImage.title}</h2>
-          {currentImage.artist && (
-            <div className="trail-exp-artwork-artist">
-              {currentImage.artist}
-            </div>
-          )}
-          <p className="trail-exp-artwork-description">
-            {currentImage.description}
-          </p>
-        </div>
-
-        {/* Additional sections */}
-        {currentImage.additionalSections?.map((section, index) => (
-          <div key={index} className="trail-exp-section">
-            <div className="trail-exp-section-header">
-              <div className="trail-exp-section-icon">{section.icon}</div>
-              <h3 className="trail-exp-section-title">{section.title}</h3>
-            </div>
-            <div className="trail-exp-section-content">{section.content}</div>
+        <div className="trail-exp-content-grid">
+          {/* Main artwork image */}
+          <div className="trail-exp-artwork-container">
+            {currentImage && currentImage.url && (
+              <img
+                src={getImageUrl(currentImage.url)}
+                alt={currentImage.title}
+                className="trail-exp-artwork main-artwork"
+                loading="lazy"
+              />
+            )}
           </div>
-        ))}
+
+          {/* Artwork info */}
+          <div className="trail-exp-artwork-info">
+            <h2 className="trail-exp-artwork-title">{currentImage.title}</h2>
+            {currentImage.artist && (
+              <div className="trail-exp-artwork-artist">
+                {currentImage.artist}
+              </div>
+            )}
+            <p className="trail-exp-artwork-description">
+              {currentImage.description}
+            </p>
+
+            {/* Additional sections */}
+            {currentImage.additionalSections?.map((section, index) => (
+              <div key={index} className="trail-exp-section">
+                <div className="trail-exp-section-header">
+                  <div className="trail-exp-section-icon">{section.icon}</div>
+                  <h3 className="trail-exp-section-title">{section.title}</h3>
+                </div>
+                <div className="trail-exp-section-content">
+                  {section.content}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
 
       {/* Bottom navigation */}

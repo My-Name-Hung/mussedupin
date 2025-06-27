@@ -1,4 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { useLocation, useNavigate } from "react-router-dom";
 import { getImageUrl } from "../../../utils/cloudinary";
 import "./Visit.css";
@@ -6,6 +7,7 @@ import "./Visit.css";
 // Hero section background image
 
 const Visit = () => {
+  const { currentLang } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState("hours");
@@ -728,15 +730,6 @@ const Visit = () => {
     setPlayingVideo((prev) => ({ ...prev, [pkgId]: true }));
   };
 
-  // Helper to extract Youtube videoId from url or id
-  const getYoutubeId = (urlOrId) => {
-    if (!urlOrId) return "";
-    if (urlOrId.length === 11 && !urlOrId.includes("http")) return urlOrId;
-    const match =
-      urlOrId.match(/[?&]v=([^&#]+)/) || urlOrId.match(/youtu\.be\/([^?&#]+)/);
-    return match ? match[1] : urlOrId;
-  };
-
   const renderPackage = (pkg) => {
     const videoId = pkg.video?.id || "";
     return (
@@ -1156,6 +1149,67 @@ const Visit = () => {
     clearTimeout(tooltipTimeout.current);
   };
 
+  // Update membership section
+  const renderMembershipSection = () => (
+    <section
+      className={`${visibleSections.membership ? "visible" : ""}`}
+      id="membership"
+      ref={sectionRefs.membership}
+    >
+      <div className="visit-section-container">
+        <h2 className="visit-section-title">
+          <span>{currentLang === "en" ? "MEMBERSHIP" : "THÀNH VIÊN"}</span>
+        </h2>
+
+        <div className="membership-info">
+          <h3 className="membership-heading">
+            {currentLang === "en"
+              ? "Become a member of the Musée Du Pin Friends Society"
+              : "Trở thành thành viên của Hội Bạn bè Bảo tàng Thông"}
+          </h3>
+          <p className="membership-description">
+            {currentLang === "en"
+              ? "The Musée Du Pin Friends Society offers various membership programs (youth, individual and couples, family), with prices ranging from 350,000 VND to 2,800,000 VND."
+              : "Hội Bạn bè Bảo tàng Thông cung cấp nhiều chương trình thành viên khác nhau (thanh niên, cá nhân và cặp đôi, gia đình), với mức giá từ 350.000đ đến 2.800.000đ."}
+          </p>
+        </div>
+      </div>
+    </section>
+  );
+
+  // Update visit info box
+  const renderVisitInfoBox = () => (
+    <div
+      className={`visit-info-box ${isMobile ? "mobile-info-box" : ""}`}
+      onClick={navigateToHome}
+    >
+      <div className="visit-info-icon">
+        <svg viewBox="0 0 100 100" width="40" height="40">
+          <circle
+            cx="50"
+            cy="50"
+            r="45"
+            fill="none"
+            stroke="#00695c"
+            strokeWidth="2"
+          />
+          <path d="M45,30 L55,30 L55,40 L45,40 Z" fill="#00695c" />
+          <path d="M45,45 L55,45 L55,70 L45,70 Z" fill="#00695c" />
+        </svg>
+      </div>
+      <div className="visit-info-content">
+        <h3 className="visit-info-title">
+          {currentLang === "en" ? "ENTRY AND EXIT" : "VÀO VÀ RA"}
+        </h3>
+        <p className="visit-info-text">
+          {currentLang === "en"
+            ? "Please plan your visit in advance as re-entry is not permitted once you leave the museum."
+            : "Hãy lên kế hoạch trước những gì bạn muốn làm tại bảo tàng vì khi đã ra khỏi bảo tàng sẽ không được vào lại."}
+        </p>
+      </div>
+    </div>
+  );
+
   // return updated component with enhanced mobile support
   return (
     <div
@@ -1317,56 +1371,10 @@ const Visit = () => {
       </section>
 
       {/* Membership Section */}
-      <section
-        className={` ${visibleSections.membership ? "visible" : ""}`}
-        id="membership"
-        ref={sectionRefs.membership}
-      >
-        <div className="visit-section-container">
-          <h2 className="visit-section-title">
-            <span>THÀNH VIÊN</span>
-          </h2>
-
-          <div className="membership-info">
-            <h3 className="membership-heading">
-              Trở thành thành viên của Hội Bạn bè Musée Du Pin
-            </h3>
-            <p className="membership-description">
-              Hội Bạn bè Musée Du Pin cung cấp nhiều chương trình thành viên
-              khác nhau (thanh niên, cá nhân và cặp đôi, gia đình), với mức giá
-              từ 350.000đ đến 2.800.000đ.
-            </p>
-          </div>
-        </div>
-      </section>
+      {renderMembershipSection()}
 
       {/* Mobile-enhanced info box */}
-      <div
-        className={`visit-info-box ${isMobile ? "mobile-info-box" : ""}`}
-        onClick={navigateToHome}
-      >
-        <div className="visit-info-icon">
-          <svg viewBox="0 0 100 100" width="40" height="40">
-            <circle
-              cx="50"
-              cy="50"
-              r="45"
-              fill="none"
-              stroke="#00695c"
-              strokeWidth="2"
-            />
-            <path d="M45,30 L55,30 L55,40 L45,40 Z" fill="#00695c" />
-            <path d="M45,45 L55,45 L55,70 L45,70 Z" fill="#00695c" />
-          </svg>
-        </div>
-        <div className="visit-info-content">
-          <h3 className="visit-info-title">VÀO VÀ RA</h3>
-          <p className="visit-info-text">
-            Hãy lên kế hoạch trước những gì bạn muốn làm tại bảo tàng vì khi đã
-            ra khỏi bảo tàng sẽ không được vào lại.
-          </p>
-        </div>
-      </div>
+      {renderVisitInfoBox()}
 
       {/* Mobile scroll to top button */}
       {renderMobileScrollTop()}

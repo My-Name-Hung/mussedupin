@@ -1,23 +1,26 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
+import { useTranslation } from "../../../contexts/TranslationContext";
 import { getImageUrl } from "../../../utils/cloudinary";
 import "./VisitInfo.css";
 
 import { FaBaby, FaCar, FaSearch } from "react-icons/fa";
 
 const VisitInfo = () => {
+  const { currentLang } = useTranslation();
   const location = useLocation();
   const [activeSection, setActiveSection] = useState("amenities");
-  const [isNavSticky, setIsNavSticky] = useState(false);
   const [isMobile] = useState(false);
-  const [navScrolled, setNavScrolled] = useState(false);
-  const [touchStartX, setTouchStartX] = useState(0);
   const lastScrollTop = useRef(0);
   const scrollTimeout = useRef(null);
+  const heroRef = useRef(null);
+  const detailsSidebarRef = useRef(null);
+  const bookingSidebarRef = useRef(null);
 
   // Add new state for slideshow
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
+  const [touchStartX, setTouchStartX] = useState(0);
   const autoPlayRef = useRef(null);
   const slideShowImages = [
     "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748932474/hxeghpjapx0q1lnd9of7.png",
@@ -28,6 +31,27 @@ const VisitInfo = () => {
     "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748932462/b2qkklmo1grw1ushz83d.png",
     "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748932457/wnggxcv1dn4b6meviasq.png",
   ];
+
+  // Handle touch events for mobile
+  const handleTouchStart = (e) => {
+    setTouchStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e) => {
+    if (!touchStartX) return;
+
+    const touchEndX = e.touches[0].clientX;
+    const diff = touchStartX - touchEndX;
+
+    if (Math.abs(diff) > 50) {
+      if (diff > 0) {
+        nextSlide();
+      } else {
+        prevSlide();
+      }
+      setTouchStartX(0);
+    }
+  };
 
   // Handle autoplay
   useEffect(() => {
@@ -61,28 +85,6 @@ const VisitInfo = () => {
     setIsAutoPlaying(false);
   };
 
-  // Handle touch events for mobile
-  const handleTouchStart = (e) => {
-    setTouchStartX(e.touches[0].clientX);
-  };
-
-  const handleTouchMove = (e) => {
-    if (!touchStartX) return;
-
-    const touchEndX = e.touches[0].clientX;
-    const diff = touchStartX - touchEndX;
-
-    if (Math.abs(diff) > 50) {
-      // Minimum swipe distance
-      if (diff > 0) {
-        nextSlide(); // Swipe left
-      } else {
-        prevSlide(); // Swipe right
-      }
-      setTouchStartX(0);
-    }
-  };
-
   // Homestay filter and detail states
   const [activeCategory, setActiveCategory] = useState("all");
   const [filteredHomestays, setFilteredHomestays] = useState([]);
@@ -113,12 +115,6 @@ const VisitInfo = () => {
     faq: useRef(null),
   };
 
-  const navRef = useRef(null);
-  const heroRef = useRef(null);
-  const horizontalNavRef = useRef(null);
-  const detailsSidebarRef = useRef(null);
-  const bookingSidebarRef = useRef(null);
-
   // Handle hash links when component mounts
   useEffect(() => {
     // Get the hash from the URL
@@ -136,22 +132,10 @@ const VisitInfo = () => {
     }
   }, [location]);
 
-  // Enhanced handleScroll to track scroll direction for hiding navbar
+  // Handle scroll
   const handleScroll = useCallback(() => {
     const st = window.pageYOffset || document.documentElement.scrollTop;
     lastScrollTop.current = st <= 0 ? 0 : st;
-
-    // Original scroll handling logic
-    if (heroRef.current && navRef.current) {
-      const heroBottom = heroRef.current.getBoundingClientRect().bottom;
-      const navHeight = navRef.current.offsetHeight;
-
-      if (heroBottom <= navHeight) {
-        setIsNavSticky(true);
-      } else {
-        setIsNavSticky(false);
-      }
-    }
 
     if (scrollTimeout.current) {
       clearTimeout(scrollTimeout.current);
@@ -161,13 +145,8 @@ const VisitInfo = () => {
     }, 150);
   }, []);
 
-  // Update useEffect to use our enhanced scroll handler
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
-
-    // Initial check
-    handleScroll();
-
     return () => {
       window.removeEventListener("scroll", handleScroll);
       if (scrollTimeout.current) {
@@ -462,22 +441,37 @@ const VisitInfo = () => {
     },
     {
       id: "lost-found",
-      title: "Đồ thất lạc",
-      description:
-        "Bị mất đồ? Nếu bạn vẫn còn trong bảo tàng, hãy đến Quầy Hỗ trợ dưới Tháp và nhân viên sẽ giúp bạn.",
+      title: {
+        vi: "Đồ thất lạc",
+        en: "Lost and Found",
+      },
+      description: {
+        vi: "Bị mất đồ? Nếu bạn vẫn còn trong bảo tàng, hãy đến Quầy Hỗ trợ dưới Tháp và nhân viên sẽ giúp bạn.",
+        en: "Lost something? If you're still in the museum, visit the Support Desk under the Tower and our staff will assist you.",
+      },
       image: "room7.jpg",
       icon: "help",
-      details:
-        "Đối với đồ vật tìm thấy sau chuyến thăm, hãy điền vào mẫu báo cáo trên trang web của chúng tôi",
+      details: {
+        vi: "Đối với đồ vật tìm thấy sau chuyến thăm, hãy điền vào mẫu báo cáo trên trang web của chúng tôi",
+        en: "For items found after your visit, please fill out the report form on our website",
+      },
     },
     {
       id: "baby-space",
-      title: "Khu vực cho em bé",
-      description:
-        "Studio – khu vực đặc biệt được thiết kế dành cho gia đình",
+      title: {
+        vi: "Khu vực cho em bé",
+        en: "Baby Area",
+      },
+      description: {
+        vi: "Studio – khu vực đặc biệt được thiết kế dành cho gia đình",
+        en: "Studio – a special area designed for families",
+      },
       image: "room8.jpg",
       icon: "baby",
-      details: "Mọi thứ bạn cần cho sự thoải mái và chăm sóc em bé",
+      details: {
+        vi: "Mọi thứ bạn cần cho sự thoải mái và chăm sóc em bé",
+        en: "Everything you need for baby comfort and care",
+      },
     },
   ];
 
@@ -486,54 +480,70 @@ const VisitInfo = () => {
     {
       id: "traditional",
       title: "The ChildHood",
-      description:
-        "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
+      description: {
+        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
+        en: "Authentic local house with traditional decorations and home-cooked meals.",
+      },
       image: "thechillhood.jpg",
       price: 2800000,
       rating: 4.8,
-      tags: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
+      tags: {
+        vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
+        en: ["Recommended", "Traditional", "Breakfast included"],
+      },
       category: ["popular", "recommended"],
-      location: "Cách bảo tàng 5 phút đi bộ",
+      location: {
+        vi: "Cách bảo tàng 5 phút đi bộ",
+        en: "5 minutes walk from Musée Du Pin",
+      },
       host: "Musée Du Pin",
-      roomType: "Phòng riêng trong nhà truyền thống",
-      beds: "1 giường đôi",
-      amenities: [
-        "Wi-Fi miễn phí",
-        "Bao gồm bữa sáng",
-        "Điều hòa nhiệt độ",
-        "Vườn",
-        "Phòng tắm riêng",
-      ],
-      rules: ["Không hút thuốc", "Không thú cưng", "Không tổ chức tiệc"],
-      cancellation: "Hủy miễn phí đến 48 giờ trước khi nhận phòng",
-      gallery: [
-        "whitebauhinia.jpg",
-        "thechill1.jpg",
-        "thechill2.jpg",
-        "thememory.jpg",
-      ],
-      reviews: [
-        {
-          author: "Jean-Pierre",
-          rating: 5,
-          comment: "Trải nghiệm truyền thống tuyệt vời với bữa sáng ngon!",
-        },
-        {
-          author: "Sarah",
-          rating: 4.5,
-          comment: "Ngôi nhà đẹp và chủ nhà rất thân thiện. Rất đáng để ở.",
-        },
-      ],
+      roomType: {
+        vi: "Phòng riêng trong nhà truyền thống",
+        en: "Private room in traditional house",
+      },
+      beds: {
+        vi: "1 giường đôi",
+        en: "1 double bed",
+      },
+      amenities: {
+        vi: [
+          "Wi-Fi miễn phí",
+          "Bao gồm bữa sáng",
+          "Điều hòa nhiệt độ",
+          "Vườn",
+          "Phòng tắm riêng",
+        ],
+        en: [
+          "Free Wi-Fi",
+          "Breakfast included",
+          "Air conditioning",
+          "Garden",
+          "Private bathroom",
+        ],
+      },
+      rules: {
+        vi: ["Không hút thuốc", "Không thú cưng", "Không tổ chức tiệc"],
+        en: ["No smoking", "No pets", "No parties"],
+      },
+      cancellation: {
+        vi: "Hủy miễn phí đến 48 giờ trước khi nhận phòng",
+        en: "Free cancellation up to 48 hours before check-in",
+      },
     },
     {
       id: "modern",
       title: "White Bauhunia",
-      description:
-        "Căn hộ sang trọng với đầy đủ tiện nghi, cách bảo tàng 10 phút đi bộ.",
+      description: {
+        vi: "Căn hộ sang trọng với đầy đủ tiện nghi, cách bảo tàng 10 phút đi bộ.",
+        en: "Luxurious apartment with full amenities, 10 minutes walk from the museum.",
+      },
       image: "whitebauhinia.jpg",
       price: 4200000,
       rating: 4.9,
-      tags: ["Đánh giá cao", "Sang trọng", "Vị trí trung tâm"],
+      tags: {
+        vi: ["Đánh giá cao", "Sang trọng", "Vị trí trung tâm"],
+        en: ["Highly Rated", "Luxury", "Central Location"],
+      },
       category: ["popular", "top-rated"],
       location: "Cách bảo tàng 10 phút đi bộ",
       host: "Musée Du Pin",
@@ -794,147 +804,124 @@ const VisitInfo = () => {
   // FAQ data with more detailed answers
   const faqData = [
     {
-      question: "Tôi muốn biết giờ hoạt động của Bảo Tàng Thông?",
-      answer: (
-        <>
-          Bạn có thể tìm hiểu giờ mở cửa của Bảo Tàng trong mục{" "}
-          <a href="/visit">
-            <strong style={{ cursor: "pointer", color: "#00695c" }}>
-              Giờ mở cửa & chi phí các gói trải nghiệm
-            </strong>
-          </a>
-        </>
-      ),
+      question: {
+        vi: "Tôi muốn biết giờ hoạt động của Bảo Tàng Thông?",
+        en: "What are the opening hours of Musée Du Pin?",
+      },
+      answer: {
+        vi: "Bạn có thể tìm hiểu giờ mở cửa của Bảo Tàng trong mục Giờ mở cửa & chi phí các gói trải nghiệm",
+        en: "You can find our opening hours in the Opening Hours & Experience Packages section",
+      },
     },
     {
-      question: "Tôi muốn biết đường đi tới Bảo tàng Thông?",
-      answer: (
-        <>
-          Bạn có thể tìm hiểu đường đi đến Bảo Tàng và từ Bảo Tàng đi đến các
-          địa điểm khác trong mục{" "}
-          <a href="/museum-map">
-            <strong style={{ cursor: "pointer", color: "#00695c" }}>
-              Bản đồ, đường đi & chỉ dẫn
-            </strong>
-          </a>
-        </>
-      ),
+      question: {
+        vi: "Tôi muốn biết đường đi tới Bảo tàng Thông?",
+        en: "How do I get to Musée Du Pin?",
+      },
+      answer: {
+        vi: "Bạn có thể tìm hiểu đường đi đến Bảo Tàng và từ Bảo Tàng đi đến các địa điểm khác trong mục Bản đồ, đường đi & chỉ dẫn",
+        en: "You can find directions to and from the museum in our Map, Directions & Guide section",
+      },
     },
     {
-      question:
-        "Tôi muốn trải nghiệm ở Bảo Tàng Thông thì trả phí như thế nào?",
-      answer: (
-        <>
-          Bạn có thể tìm hiểu chi tiết các gói trải nghiệm và chi phí tham khảo
-          tại mục{" "}
-          <a href="/visit#tickets">
-            <strong style={{ cursor: "pointer", color: "#00695c" }}>
-              Giờ mở cửa & chi phí các gói trải nghiệm
-            </strong>
-          </a>
-        </>
-      ),
+      question: {
+        vi: "Tôi muốn trải nghiệm ở Bảo Tàng Thông thì trả phí như thế nào?",
+        en: "What are the admission fees for Musée Du Pin?",
+      },
+      answer: {
+        vi: "Bạn có thể tìm hiểu chi tiết các gói trải nghiệm và chi phí tham khảo tại mục Giờ mở cửa & chi phí các gói trải nghiệm",
+        en: "You can find detailed information about experience packages and fees in our Opening Hours & Experience Packages section",
+      },
     },
     {
-      question: "Bảo Tàng Thông có những hoạt động nào?",
-      answer: (
-        <>
-          Bảo Tàng Thông có rất nhiều hoạt động, bạn có thể tham khảo mục{" "}
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              const navbarElement = document.querySelector(
-                "header.navbar-container"
-              );
-              if (navbarElement) {
-                // Show mobile menu first
-                const mobileMenu = navbarElement.querySelector(
-                  ".mobile-menu-overlay"
-                );
-                if (mobileMenu) {
-                  mobileMenu.classList.add("show");
-                }
-
-                // Find and click the "KHÁM PHÁ" menu item to trigger its submenu
-                setTimeout(() => {
-                  const khamPhaMenuItem = Array.from(
-                    navbarElement.querySelectorAll(".mobile-nav-item")
-                  ).find((item) => item.textContent.includes("KHÁM PHÁ"));
-                  if (khamPhaMenuItem) {
-                    khamPhaMenuItem.click();
-                  }
-                }, 100);
-              }
-            }}
-          >
-            <strong style={{ cursor: "pointer", color: "#00695c" }}>
-              Khám phá
-            </strong>
-          </a>{" "}
-          và mục{" "}
-          <a
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              const navbarElement = document.querySelector(
-                "header.navbar-container"
-              );
-              if (navbarElement) {
-                // Show mobile menu first
-                const mobileMenu = navbarElement.querySelector(
-                  ".mobile-menu-overlay"
-                );
-                if (mobileMenu) {
-                  mobileMenu.classList.add("show");
-                }
-
-                // Find and click the "Trải nghiệm" menu item to trigger its submenu
-                setTimeout(() => {
-                  const traiNghiemMenuItem = Array.from(
-                    navbarElement.querySelectorAll(".mobile-nav-item")
-                  ).find((item) => item.textContent.includes("Trải nghiệm"));
-                  if (traiNghiemMenuItem) {
-                    traiNghiemMenuItem.click();
-                  }
-                }, 100);
-              }
-            }}
-          >
-            <strong style={{ cursor: "pointer", color: "#00695c" }}>
-              Trải Nghiệm
-            </strong>
-          </a>
-        </>
-      ),
+      question: {
+        vi: "Bảo Tàng Thông có những hoạt động nào?",
+        en: "What activities are available at Musée Du Pin?",
+      },
+      answer: {
+        vi: "Bảo Tàng Thông có nhiều hoạt động đa dạng, từ triển lãm thường trực đến các workshop nghệ thuật và chương trình giáo dục. Vui lòng xem mục Khám phá và Trải nghiệm để biết thêm chi tiết.",
+        en: "Musée Du Pin offers a variety of activities, from permanent exhibitions to art workshops and educational programs. Please check our Explore and Experience sections for more details.",
+      },
     },
     {
-      question: "Bảo Tàng Thông có các hoạt động nào cho trẻ em?",
-      answer: (
-        <>
-          Có rất nhiều hoạt động workshop giáo dục cho trẻ em, bạn có thể tham
-          khảo tại mục{" "}
-          <a href="/visit">
-            <strong style={{ cursor: "pointer", color: "#00695c" }}>
-              Các Chương Trình Định Kỳ
-            </strong>
-          </a>
-        </>
-      ),
+      question: {
+        vi: "Bảo Tàng Thông có các hoạt động nào cho trẻ em?",
+        en: "What activities are available for children?",
+      },
+      answer: {
+        vi: "Có rất nhiều hoạt động workshop giáo dục cho trẻ em, bạn có thể tham khảo tại mục Các Chương Trình Định Kỳ",
+        en: "We offer many educational workshops for children. You can find more information in our Regular Programs section",
+      },
     },
     {
-      question: "Lưu trú nghệ thuật là gì?",
-      answer: (
-        <>
-          Đây là một hành trình thăng hoa cảm xúc. Bạn có thể tìm hiểu chi tiết
-          hơn trong mục{" "}
-          <a href="/luu-tru-nghe-thuat">
-            <strong style={{ cursor: "pointer", color: "#00695c" }}>
-              Lưu trú nghệ thuật.
-            </strong>
-          </a>
-        </>
-      ),
+      question: {
+        vi: "Những vật dụng nào không được phép mang vào bảo tàng?",
+        en: "What items are not allowed in the museum?",
+      },
+      answer: {
+        vi: "Các vật dụng không được phép mang vào bảo tàng gồm đồ ăn thức uống (trừ chai nước), và các vật sắc nhọn. Những vật dụng này phải được gửi tại phòng gửi đồ. Chúng tôi cũng cấm chạm vào tác phẩm nghệ thuật, hút thuốc trong không gian trưng bày.",
+        en: "Food and beverages (except water bottles) and sharp objects are not allowed in the museum. These items must be stored in the cloakroom. We also prohibit touching artworks and smoking in exhibition spaces.",
+      },
+    },
+    {
+      question: {
+        vi: "Có cho phép xe đẩy em bé vào bảo tàng không?",
+        en: "Are strollers allowed in the museum?",
+      },
+      answer: {
+        vi: "Có, xe đẩy và nôi em bé được phép vào bảo tàng. Tuy nhiên, trong thời điểm đông khách, bạn có thể được yêu cầu gửi xe đẩy lớn tại phòng gửi đồ và sử dụng địu em bé thay thế.",
+        en: "Yes, strollers and baby carriers are allowed in the museum. However, during peak hours, you may be asked to store large strollers in the cloakroom and use baby carriers instead.",
+      },
+    },
+    {
+      question: {
+        vi: "Tôi có thể mang thú cưng vào Bảo Tàng không?",
+        en: "Are pets allowed in the museum?",
+      },
+      answer: {
+        vi: "Thật tiếc, bạn không thể mang thú cưng vào Bảo Tàng",
+        en: "Sorry, pets are not allowed in the museum",
+      },
+    },
+    {
+      question: {
+        vi: "Trong trường hợp để quên đồ tại Bảo Tàng thì tôi phải làm gì?",
+        en: "What should I do if I lose something at the museum?",
+      },
+      answer: {
+        vi: "Bạn cần thông báo cho hệ thống hỗ trợ online qua Zalo, fb Mes, Line, Viber để được khoanh vùng tìm kiếm đồ thất lạc. Bảo Tàng sẽ hỗ trợ hết sức cho quý khách nhưng không chịu trách nhiệm về việc này.",
+        en: "Please notify our online support system via Zalo, Facebook Messenger, Line, or Viber to help locate your lost items. The museum will assist you but cannot be held responsible for lost items.",
+      },
+    },
+    {
+      question: {
+        vi: "Bảo Tàng Thông có lắp máy lạnh không?",
+        en: "Does the museum have air conditioning?",
+      },
+      answer: {
+        vi: (
+          <>
+            Bạn có thể tìm hiểu chi tiết các gói trải nghiệm và chi phí tham
+            khảo tại mục{" "}
+            <a href="/visit#tickets">
+              <strong style={{ cursor: "pointer", color: "#00695c" }}>
+                Giờ mở cửa & chi phí các gói trải nghiệm
+              </strong>
+            </a>
+          </>
+        ),
+        en: (
+          <>
+            You can find detailed information about experience packages and fees
+            in our{" "}
+            <a href="/visit#tickets">
+              <strong style={{ cursor: "pointer", color: "#00695c" }}>
+                Opening Hours & Experience Packages
+              </strong>
+            </a>
+          </>
+        ),
+      },
     },
     {
       question: "Những vật dụng nào không được phép mang vào bảo tàng?",
@@ -1214,9 +1201,21 @@ const VisitInfo = () => {
                   <div className="amenity-icon-backdrop"></div>
                 </div>
                 <div className="amenity-card-content">
-                  <h3 className="amenity-title">{amenity.title}</h3>
-                  <p className="amenity-description">{amenity.description}</p>
-                  <div className="amenity-card-details">{amenity.details}</div>
+                  <h3 className="amenity-title">
+                    {typeof amenity.title === "object"
+                      ? amenity.title[currentLang]
+                      : amenity.title}
+                  </h3>
+                  <p className="amenity-description">
+                    {typeof amenity.description === "object"
+                      ? amenity.description[currentLang]
+                      : amenity.description}
+                  </p>
+                  <div className="amenity-card-details">
+                    {typeof amenity.details === "object"
+                      ? amenity.details[currentLang]
+                      : amenity.details}
+                  </div>
                 </div>
               </div>
               <div className="amenity-card-decorations">
@@ -1338,22 +1337,37 @@ const VisitInfo = () => {
             <div className="homestay-card modern" key={homestay.id}>
               <div className="homestay-card-image">
                 <img src={getImageUrl(homestay.image)} alt={homestay.title} />
-                {homestay.tags.map(
-                  (tag, index) =>
-                    index < 1 && (
-                      <div
-                        className="homestay-card-tag"
-                        key={`${homestay.id}-tag-${index}`}
-                      >
-                        {tag}
-                      </div>
+                {(() => {
+                  const tags = homestay.tags;
+                  if (!tags) return null;
+
+                  const tagsToRender =
+                    typeof tags === "object" && !Array.isArray(tags)
+                      ? tags[currentLang] || []
+                      : tags;
+
+                  return (
+                    Array.isArray(tagsToRender) &&
+                    tagsToRender.map(
+                      (tag, index) =>
+                        index < 1 && (
+                          <div
+                            className="homestay-card-tag"
+                            key={`${homestay.id}-tag-${index}`}
+                          >
+                            {tag}
+                          </div>
+                        )
                     )
-                )}
+                  );
+                })()}
               </div>
               <div className="homestay-card-content">
                 <h3 className="homestay-card-title">{homestay.title}</h3>
                 <p className="homestay-card-description">
-                  {homestay.description}
+                  {typeof homestay.description === "object"
+                    ? homestay.description[currentLang]
+                    : homestay.description}
                 </p>
                 <div className="homestay-card-location">
                   <svg viewBox="0 0 24 24" width="16" height="16">
@@ -1362,7 +1376,11 @@ const VisitInfo = () => {
                       fill="currentColor"
                     />
                   </svg>
-                  <span>{homestay.location}</span>
+                  <span>
+                    {typeof homestay.location === "object"
+                      ? homestay.location[currentLang]
+                      : homestay.location}
+                  </span>
                 </div>
                 <div className="homestay-card-footer">
                   <div className="homestay-card-price">
@@ -1399,58 +1417,50 @@ const VisitInfo = () => {
     <section className="faq-section" id="faq" ref={sectionRefs.faq}>
       <div className="faq-container">
         <div className="faq-header">
-          <h2
-            className="faq-title"
-            style={{
-              fontFamily:
-                "'Mythical-Prince', 'LouvreSerif', Georgia, 'Times New Roman', serif",
-            }}
-          >
-            <span>Câu hỏi thường gặp</span>
+          <h2 className="faq-title">
+            <span>
+              {currentLang === "en"
+                ? "Frequently Asked Questions"
+                : "Câu hỏi thường gặp"}
+            </span>
           </h2>
-          <p className="faq-subtitle">Câu trả lời từ Bảo tàng Du Pin.</p>
+          <p className="faq-subtitle">
+            {currentLang === "en"
+              ? "Answers from Musée Du Pin"
+              : "Câu trả lời từ Bảo tàng Thông"}
+          </p>
         </div>
 
         <div className="faq-list">
-          {faqData.map((faq, index) => (
-            <div
-              className={`faq-item ${activeFaq === index ? "active" : ""}`}
-              key={index}
-              style={{ "--animation-order": index }}
-            >
-              <div className="faq-highlight"></div>
-              <div className="faq-question" onClick={() => toggleFaq(index)}>
-                <span>{faq.question}</span>
-              </div>
-              <div className="faq-answer">
-                {typeof faq.answer === "string" ? (
-                  <p>{faq.answer}</p>
-                ) : (
-                  faq.answer
-                )}
-              </div>
-            </div>
-          ))}
-        </div>
+          {faqData.map((faq, index) => {
+            // Get the correct language version of question and answer
+            const question =
+              typeof faq.question === "string"
+                ? faq.question
+                : faq.question[currentLang];
+            const answer =
+              typeof faq.answer === "string"
+                ? faq.answer
+                : faq.answer[currentLang];
 
-        <div className="faq-footer">
-          <h3 className="faq-footer-title">Không tìm thấy câu trả lời?</h3>
-          <p className="faq-footer-text">
-            Liên hệ với đội hỗ trợ của chúng tôi để biết thêm thông tin.
-          </p>
-          <button className="contact-btn">
-            <svg viewBox="0 0 24 24" width="18" height="18">
-              <path
-                fill="currentColor"
-                d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"
-              />
-            </svg>
-            <a href="baotangthong2024@gmail.com">Liên hệ với chúng tôi</a>
-          </button>
+            return (
+              <div
+                className={`faq-item ${activeFaq === index ? "active" : ""}`}
+                key={index}
+                style={{ "--animation-order": index }}
+              >
+                <div className="faq-highlight"></div>
+                <div className="faq-question" onClick={() => toggleFaq(index)}>
+                  <span>{question}</span>
+                </div>
+                <div className="faq-answer">
+                  <p>{answer}</p>
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
-
-      {renderMobileScrollTop()}
     </section>
   );
 
@@ -1525,11 +1535,15 @@ const VisitInfo = () => {
 
           <div className="homestay-details-info">
             <h3 className="homestay-details-subtitle">
-              {selectedHomestay.roomType}
+              {typeof selectedHomestay.roomType === "object"
+                ? selectedHomestay.roomType[currentLang]
+                : selectedHomestay.roomType}
             </h3>
 
             <p className="homestay-details-description">
-              {selectedHomestay.description}
+              {typeof selectedHomestay.description === "object"
+                ? selectedHomestay.description[currentLang]
+                : selectedHomestay.description}
             </p>
 
             <div className="homestay-details-location">
@@ -1539,7 +1553,11 @@ const VisitInfo = () => {
                   fill="currentColor"
                 />
               </svg>
-              <span>{selectedHomestay.location}</span>
+              <span>
+                {typeof selectedHomestay.location === "object"
+                  ? selectedHomestay.location[currentLang]
+                  : selectedHomestay.location}
+              </span>
             </div>
 
             <div className="homestay-details-host">
@@ -1559,13 +1577,20 @@ const VisitInfo = () => {
                   fill="currentColor"
                 />
               </svg>
-              <span>{selectedHomestay.beds}</span>
+              <span>
+                {typeof selectedHomestay.beds === "object"
+                  ? selectedHomestay.beds[currentLang]
+                  : selectedHomestay.beds}
+              </span>
             </div>
 
             <div className="homestay-details-section">
               <h3>Tiện nghi</h3>
               <ul className="amenities-list">
-                {selectedHomestay.amenities.map((amenity, index) => (
+                {(typeof selectedHomestay.amenities === "object"
+                  ? selectedHomestay.amenities[currentLang]
+                  : selectedHomestay.amenities
+                )?.map((amenity, index) => (
                   <li key={index}>
                     <svg viewBox="0 0 24 24" width="16" height="16">
                       <path
@@ -1582,7 +1607,10 @@ const VisitInfo = () => {
             <div className="homestay-details-section">
               <h3>Nội quy</h3>
               <ul className="rules-list">
-                {selectedHomestay.rules.map((rule, index) => (
+                {(typeof selectedHomestay.rules === "object"
+                  ? selectedHomestay.rules[currentLang]
+                  : selectedHomestay.rules
+                )?.map((rule, index) => (
                   <li key={index}>{rule}</li>
                 ))}
               </ul>
@@ -1590,7 +1618,11 @@ const VisitInfo = () => {
 
             <div className="homestay-details-section">
               <h3>Chính sách hủy phòng</h3>
-              <p>{selectedHomestay.cancellation}</p>
+              <p>
+                {typeof selectedHomestay.cancellation === "object"
+                  ? selectedHomestay.cancellation[currentLang]
+                  : selectedHomestay.cancellation}
+              </p>
             </div>
           </div>
 
@@ -1926,26 +1958,6 @@ const VisitInfo = () => {
     );
   };
 
-  // Render mobile scroll to top button
-  const renderMobileScrollTop = () => {
-    if (!isMobile) return null;
-
-    return (
-      <button
-        className="mobile-scroll-top"
-        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-        aria-label="Cuộn lên đầu trang"
-      >
-        <svg viewBox="0 0 24 24" width="24" height="24">
-          <path
-            d="M12 8l-6 6 1.41 1.41L12 10.83l4.59 4.58L18 14z"
-            fill="currentColor"
-          />
-        </svg>
-      </button>
-    );
-  };
-
   // Helper function to render icons
   const renderIcon = (icon) => {
     const commonAttributes = {
@@ -2246,27 +2258,6 @@ const VisitInfo = () => {
         </div>
       </div>
     );
-  };
-
-  // Handle horizontal nav scrolling on mobile
-  const handleNavTouchStart = (e) => {
-    setTouchStartX(e.touches[0].clientX);
-  };
-
-  const handleNavTouchMove = (e) => {
-    if (!horizontalNavRef.current) return;
-
-    const touchX = e.touches[0].clientX;
-    const diff = touchStartX - touchX;
-    const scrollLeft = horizontalNavRef.current.scrollLeft;
-
-    if (diff > 5) {
-      // Scrolling right
-      setNavScrolled(true);
-    } else if (diff < -5 && scrollLeft === 0) {
-      // Scrolling left and at the beginning
-      setNavScrolled(false);
-    }
   };
 
   // Add renderMobileBottomNav function

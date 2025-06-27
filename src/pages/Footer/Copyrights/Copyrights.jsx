@@ -1,17 +1,47 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "../../../contexts/TranslationContext";
 import "./Copyrights.css";
 
 // Import header image
 
+const translations = {
+  meta: {
+    vi: {
+      title: "Bản quyền | Bảo tàng Thông",
+      description:
+        "Thông tin về bản quyền và quyền sở hữu trí tuệ của Bảo tàng Thông - Musée Du Pin.",
+    },
+    en: {
+      title: "Copyright | Musée Du Pin",
+      description:
+        "Information about copyright and intellectual property rights of Musée Du Pin.",
+    },
+  },
+  header: {
+    vi: "BẢN QUYỀN",
+    en: "COPYRIGHT",
+  },
+  alt: {
+    vi: "Bảo tàng Thông - Musée Du Pin",
+    en: "Musée Du Pin",
+  },
+};
+
 const Copyrights = () => {
+  const { currentLang, registerTranslations } = useTranslation();
+
+  React.useEffect(() => {
+    registerTranslations("copyrights", translations);
+  }, [registerTranslations]);
+
   return (
     <div className="copyrights-container">
       <Helmet>
-        <title>Bản quyền | Bảo tàng Thông - Musée Du Pin</title>
+        <title>{translations.meta[currentLang].title}</title>
         <meta
           name="description"
-          content="Thông tin về bản quyền và quyền sở hữu trí tuệ của Bảo tàng Thông - Musée Du Pin."
+          content={translations.meta[currentLang].description}
         />
       </Helmet>
 
@@ -19,22 +49,21 @@ const Copyrights = () => {
       <div className="copyrights-banner">
         <img
           src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784642/collections/louvre-sunset.jpg"
-          alt="Bảo tàng Thông - Musée Du Pin"
+          alt={translations.alt[currentLang]}
         />
         <div className="banner-overlay">
-          <h1>BẢN QUYỀN</h1>
+          <h1>{translations.header[currentLang]}</h1>
         </div>
       </div>
 
       <div className="copyrights-content">
         {/* Introduction Section */}
         <div className="section">
-          <h2>GIỚI THIỆU</h2>
+          <h2>{currentLang === "en" ? "INTRODUCTION" : "GIỚI THIỆU"}</h2>
           <p>
-            Trang web này và toàn bộ nội dung của nó thuộc quyền sở hữu của Bảo
-            tàng Thông - Musée Du Pin. Mọi quyền sở hữu trí tuệ, bao gồm nhưng
-            không giới hạn ở bản quyền, nhãn hiệu, và các quyền sở hữu trí tuệ
-            khác đều được bảo vệ bởi pháp luật Việt Nam và các công ước quốc tế.
+            {currentLang === "en"
+              ? "This website and all its content are the property of Musée Du Pin. All intellectual property rights, including but not limited to copyright, trademarks, and other intellectual property rights are protected by Vietnamese law and international conventions."
+              : "Trang web này và toàn bộ nội dung của nó thuộc quyền sở hữu của Bảo tàng Thông - Musée Du Pin. Mọi quyền sở hữu trí tuệ, bao gồm nhưng không giới hạn ở bản quyền, nhãn hiệu, và các quyền sở hữu trí tuệ khác đều được bảo vệ bởi pháp luật Việt Nam và các công ước quốc tế."}
           </p>
         </div>
 
@@ -148,19 +177,25 @@ const Copyrights = () => {
 
         {/* Contact Section */}
         <div className="section">
-          <h2>LIÊN HỆ</h2>
+          <h2>{currentLang === "en" ? "CONTACT" : "LIÊN HỆ"}</h2>
           <p>
-            Mọi thắc mắc về bản quyền hoặc yêu cầu sử dụng nội dung, vui lòng
-            liên hệ:
+            {currentLang === "en"
+              ? "For any copyright inquiries or content usage requests, please contact:"
+              : "Mọi thắc mắc về bản quyền hoặc yêu cầu sử dụng nội dung, vui lòng liên hệ:"}
           </p>
           <p>
-            Phòng Bản quyền - Bảo tàng Thông - Musée Du Pin
+            {currentLang === "en" ? "Copyright Department" : "Phòng Bản quyền"}{" "}
+            - Musée Du Pin
             <br />
             Email: baotangthong2024@gmail.com
             <br />
-            Điện thoại: +84 2633 818 968; +84 86 235 6368
+            {currentLang === "en" ? "Phone" : "Điện thoại"}: +84 2633 818 968;
+            +84 86 235 6368
             <br />
-            Địa chỉ: 29-31 Đống Đa, phường 3, tp. Đà Lạt, Lâm Đồng
+            {currentLang === "en" ? "Address" : "Địa chỉ"}: 29-31 Đống Đa,{" "}
+            {currentLang === "en"
+              ? "Ward 3, Da Lat City, Lam Dong"
+              : "phường 3, tp. Đà Lạt, Lâm Đồng"}
           </p>
         </div>
       </div>

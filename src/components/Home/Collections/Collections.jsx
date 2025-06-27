@@ -5,6 +5,7 @@ import React, {
   useRef,
   useState,
 } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import { getImageUrl } from "../../../utils/cloudinary";
 import OptimizedImage from "../../OptimizedImage/OptimizedImage";
@@ -18,8 +19,10 @@ const collectionsData = [
     artist: "Trưng bày",
     image: "Cồng Chiên.webp",
     alt: "Dụng cụ âm nhạc Tây Nguyên",
-    description:
-      "Musée Du Pin trưng bày các nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, tiêu biểu là cồng chiêng – biểu tượng văn hóa và tín ngưỡng thiêng liêng. Âm thanh vang vọng của cồng chiêng thể hiện sự kết nối sâu sắc giữa con người và thế giới tâm linh.",
+    description: {
+      vi: "Bảo tàng Thông trưng bày các nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, tiêu biểu là cồng chiêng – biểu tượng văn hóa và tín ngưỡng thiêng liêng. Âm thanh vang vọng của cồng chiêng thể hiện sự kết nối sâu sắc giữa con người và thế giới tâm linh.",
+      en: "Musée Du Pin displays traditional bronze musical instruments of Central Highland ethnic groups, notably the gong - a symbol of sacred culture and beliefs. The resonating sound of gongs represents the deep connection between humans and the spiritual world.",
+    },
   },
   {
     id: 2,
@@ -27,8 +30,10 @@ const collectionsData = [
     artist: "Trưng bày",
     image: "Lồng Đa Đa.webp",
     alt: "Hơi thở đại ngàn",
-    description:
-      "Lồng đa đa của người K'ho hiện đang được trưng bày tại Musée Du Pin như một biểu tượng mộc mạc nhưng đầy tính văn hóa của đời sống dân tộc Tây Nguyên. Được đan thủ công từ tre nứa, chiếc lồng không chỉ phục vụ mục đích chăn nuôi mà còn phản ánh sự khéo léo, tỉ mỉ và mối liên kết bền chặt giữa con người với thiên nhiên núi rừng.",
+    description: {
+      vi: "Lồng đa đa của người K'ho hiện đang được trưng bày tại Bảo tàng Thông như một biểu tượng mộc mạc nhưng đầy tính văn hóa của đời sống dân tộc Tây Nguyên. Được đan thủ công từ tre nứa, chiếc lồng không chỉ phục vụ mục đích chăn nuôi mà còn phản ánh sự khéo léo, tỉ mỉ và mối liên kết bền chặt giữa con người với thiên nhiên núi rừng.",
+      en: "The K'ho people's da da cage is currently on display at Musée Du Pin as a rustic yet culturally rich symbol of Central Highland ethnic life. Handwoven from bamboo, the cage not only serves livestock purposes but also reflects the skillfulness, meticulousness, and strong connection between humans and forest nature.",
+    },
   },
   {
     id: 3,
@@ -36,8 +41,10 @@ const collectionsData = [
     artist: "Trưng bày",
     image: "Điêu Khắc.webp",
     alt: "Hình hài bản sắc",
-    description:
-      "Tác phẩm điêu khắc người dân tộc K'ho đang được trưng bày tại Musée Du Pin thể hiện hình ảnh phụ nữ Tây Nguyên trong dáng đứng trang nghiêm, tay cầm chiếc chiêng nhỏ – biểu tượng của âm nhạc và tín ngưỡng bản địa. Tác phẩm mang đậm phong cách mộc mạc nhưng đầy chiều sâu văn hóa, phản ánh vẻ đẹp nội tâm, tinh thần kiên cường và vai trò quan trọng của người phụ nữ trong đời sống cộng đồng K'ho.",
+    description: {
+      vi: "Tác phẩm điêu khắc người dân tộc K'ho đang được trưng bày tại Bảo tàng Thông thể hiện hình ảnh phụ nữ Tây Nguyên trong dáng đứng trang nghiêm, tay cầm chiếc chiêng nhỏ – biểu tượng của âm nhạc và tín ngưỡng bản địa.",
+      en: "The K'ho ethnic sculpture currently on display at Musée Du Pin depicts a Highland woman in a solemn stance, holding a small gong - a symbol of indigenous music and beliefs.",
+    },
   },
   {
     id: 4,
@@ -99,7 +106,7 @@ const collectionsData = [
     alt: "Bề mặt ký ức",
     description: "Bề mặt ký ức.",
   },
-    {
+  {
     id: 11,
     title: "Thiên nhiên Đà Lạt",
     artist: "Tham quan",
@@ -135,6 +142,7 @@ const getItemSize = (index) => {
 };
 
 const Collections = () => {
+  const { currentLang } = useTranslation();
   const scrollContainerRef = useRef(null);
   const animationRef = useRef(null);
   const lastTimestampRef = useRef(null);

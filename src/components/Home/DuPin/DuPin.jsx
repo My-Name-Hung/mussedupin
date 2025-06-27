@@ -521,7 +521,7 @@ const DuPin = () => {
         className="dupin-header"
         style={{ transform: `translateY(${scrollProgress * -20}px)` }}
       >
-        <h2 className="dupin-title">MUSÉE DU PIN +</h2>
+        <h2 className="dupin-title notranslate">MUSÉE DU PIN +</h2>
         <div className="dupin-subtitle">
           Khám phá nội dung kỹ thuật số độc quyền của chúng tôi
         </div>

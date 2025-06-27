@@ -1,17 +1,45 @@
 import React from "react";
 import { Helmet } from "react-helmet";
+import { useTranslation } from "../../../contexts/TranslationContext";
 import "./LegalNotice.css";
 
-// Import header image
+const translations = {
+  meta: {
+    vi: {
+      title: "Điều khoản pháp lý | Bảo tàng Thông",
+      description:
+        "Thông tin pháp lý và điều khoản sử dụng cho website Bảo tàng Thông.",
+    },
+    en: {
+      title: "Legal Notice | Musée Du Pin",
+      description:
+        "Legal information and terms of use for Musée Du Pin website.",
+    },
+  },
+  header: {
+    vi: "ĐIỀU KHOẢN PHÁP LÝ",
+    en: "LEGAL NOTICE",
+  },
+  alt: {
+    vi: "Bảo tàng Thông",
+    en: "Musée Du Pin",
+  },
+};
 
 const LegalNotice = () => {
+  const { currentLang, registerTranslations } = useTranslation();
+
+  React.useEffect(() => {
+    registerTranslations("legalNotice", translations);
+  }, [registerTranslations]);
+
   return (
     <div className="legal-notice-container">
       <Helmet>
-        <title>Điều khoản pháp lý | Bảo tàng Du Pin</title>
+        <title>{translations.meta[currentLang].title}</title>
         <meta
           name="description"
-          content="Thông tin pháp lý và điều khoản sử dụng cho website Bảo tàng Du Pin."
+          content={translations.meta[currentLang].description}
         />
       </Helmet>
 
@@ -19,39 +47,53 @@ const LegalNotice = () => {
       <div className="legal-banner">
         <img
           src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784642/collections/louvre-sunset.jpg"
-          alt="Bảo tàng Du Pin"
+          alt={translations.alt[currentLang]}
         />
         <div className="banner-overlay">
-          <h1>ĐIỀU KHOẢN PHÁP LÝ</h1>
+          <h1>{translations.header[currentLang]}</h1>
         </div>
       </div>
 
       <div className="legal-content">
         {/* Publishing Section */}
         <div className="section">
-          <h2>THÔNG TIN XUẤT BẢN</h2>
+          <h2>
+            {currentLang === "en"
+              ? "PUBLISHING INFORMATION"
+              : "THÔNG TIN XUẤT BẢN"}
+          </h2>
           <p>
-            Musée du Pin, Bảo tàng Thông,
+            Musée Du Pin{currentLang === "vi" ? ", Bảo tàng Thông," : ","}
             <br />
-            MST: 0106157152-001
+            {currentLang === "en" ? "Tax ID" : "MST"}: 0106157152-001
             <br />
-            Địa chỉ: 29-31 Đống Đa, phường 3, tp. Đà Lạt, Lâm Đồng
+            {currentLang === "en" ? "Address" : "Địa chỉ"}: 29-31 Đống Đa,{" "}
+            {currentLang === "en"
+              ? "Ward 3, Da Lat City, Lam Dong"
+              : "phường 3, tp. Đà Lạt, Lâm Đồng"}
             <br />
-            Điện thoại: +84 2633 818 968; +84 86 235 6368
+            {currentLang === "en" ? "Phone" : "Điện thoại"}: +84 2633 818 968;
+            +84 86 235 6368
             <br />
-            Giám đốc xuất bản: Musée du Pin
+            {currentLang === "en" ? "Publishing Director" : "Giám đốc xuất bản"}
+            : Musée Du Pin
           </p>
         </div>
 
         {/* Website Content Section */}
         <div className="section">
-          <h2>NỘI DUNG WEBSITE</h2>
+          <h2>
+            {currentLang === "en" ? "WEBSITE CONTENT" : "NỘI DUNG WEBSITE"}
+          </h2>
           <p>
-            Musée du Pin
+            Musée Du Pin
             <br />
-            Phòng Sản xuất Kỹ thuật số và Nghe nhìn
+            {currentLang === "en"
+              ? "Digital Production and Audiovisual Department"
+              : "Phòng Sản xuất Kỹ thuật số và Nghe nhìn"}
             <br />
-            29-31 Đống Đa, phường 3, Đà Lạt
+            29-31 Đống Đa,{" "}
+            {currentLang === "en" ? "Ward 3, Da Lat" : "phường 3, Đà Lạt"}
             <br />
             baotangthong2024@gmail.com
           </p>
@@ -59,24 +101,29 @@ const LegalNotice = () => {
 
         {/* Intellectual Property Section */}
         <div className="section">
-          <h2>QUYỀN SỞ HỮU TRÍ TUỆ</h2>
-          <h3>Phát triển website</h3>
+          <h2>
+            {currentLang === "en"
+              ? "INTELLECTUAL PROPERTY"
+              : "QUYỀN SỞ HỮU TRÍ TUỆ"}
+          </h2>
+          <h3>
+            {currentLang === "en"
+              ? "Website Development"
+              : "Phát triển website"}
+          </h3>
           <p>
-            Cấu trúc chung của website này là tài sản độc quyền của Bảo tàng Du
-            Pin. Mọi hình thức sao chép, trình bày, toàn bộ hoặc một phần, sử
-            dụng, điều chỉnh, cung cấp hoặc sửa đổi bằng bất kỳ quy trình, cá
-            nhân và phương tiện nào (đặc biệt là bán, tiếp thị, cho thuê, v.v.)
-            mà không có sự cho phép rõ ràng của bảo tàng, bất kỳ tác giả hoặc
-            chủ sở hữu quyền nào đều bị nghiêm cấm và cấu thành vi phạm Bộ luật
-            Sở hữu Trí tuệ.
+            {currentLang === "en"
+              ? "The general structure of this website is the exclusive property of Musée Du Pin. Any reproduction, representation, in whole or in part, use, adaptation, provision or modification by any process, any person and any means whatsoever (particularly sale, marketing, rental, etc.) without the express permission of the museum, any author or rights holder is strictly prohibited and constitutes an infringement of the Intellectual Property Code."
+              : "Cấu trúc chung của website này là tài sản độc quyền của Bảo tàng Du Pin. Mọi hình thức sao chép, trình bày, toàn bộ hoặc một phần, sử dụng, điều chỉnh, cung cấp hoặc sửa đổi bằng bất kỳ quy trình, cá nhân và phương tiện nào (đặc biệt là bán, tiếp thị, cho thuê, v.v.) mà không có sự cho phép rõ ràng của bảo tàng, bất kỳ tác giả hoặc chủ sở hữu quyền nào đều bị nghiêm cấm và cấu thành vi phạm Bộ luật Sở hữu Trí tuệ."}
           </p>
 
-          <h3>Nội dung Website</h3>
+          <h3>
+            {currentLang === "en" ? "Website Content" : "Nội dung Website"}
+          </h3>
           <p>
-            Theo luật sở hữu trí tuệ, nội dung khoa học, văn hóa và giáo dục
-            (bao gồm nhưng không giới hạn ở văn bản, hình ảnh, ảnh chụp, bản ghi
-            âm và tài liệu nghe nhìn và đa phương tiện) của website này là tài
-            sản của Bảo tàng Du Pin.
+            {currentLang === "en"
+              ? "According to intellectual property law, the scientific, cultural and educational content (including but not limited to text, images, photographs, audio recordings and audiovisual and multimedia materials) of this website is the property of Musée Du Pin."
+              : "Theo luật sở hữu trí tuệ, nội dung khoa học, văn hóa và giáo dục (bao gồm nhưng không giới hạn ở văn bản, hình ảnh, ảnh chụp, bản ghi âm và tài liệu nghe nhìn và đa phương tiện) của website này là tài sản của Bảo tàng Thông."}
           </p>
           <p>
             Do đó, mọi hình thức sao chép, trình bày, toàn bộ hoặc một phần, sử
@@ -90,7 +137,7 @@ const LegalNotice = () => {
           <h3>Hình ảnh</h3>
           <p>
             Hình ảnh có ghi © Musée du Pin / [...] là tài sản độc quyền của Bảo
-            tàng Du Pin và được Bảo tàng Du Pin sử dụng với sự cho phép của tác
+            tàng Du Pin và được Bảo tàng Thông sử dụng với sự cho phép của tác
             giả hoặc chủ sở hữu quyền.
           </p>
           <p>
@@ -173,7 +220,7 @@ const LegalNotice = () => {
             dùng.
           </p>
           <p>
-            Bảo tàng Du Pin không chịu trách nhiệm về nội dung của các trang web
+            Bảo tàng Thông không chịu trách nhiệm về nội dung của các trang web
             này, và sẽ không chịu trách nhiệm về bất kỳ thiệt hại hoặc tổn
             thương nào phát sinh từ chúng. Các liên kết đến các trang web khác
             chỉ được cung cấp cho người dùng để thuận tiện.

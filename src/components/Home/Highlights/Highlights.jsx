@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Link } from "react-router-dom";
 import useCachedAsset from "../../../hooks/useCachedAsset";
 import "./Highlights.css";
@@ -9,23 +10,33 @@ const allItems = [
   {
     id: "langbiang-khong-gian",
     title: "Không gian nghệ thuật Langbiang",
-    description:
-      "Khi nghệ thuật không chỉ để ngắm, mà để sống cùng và sống trong. Không có tủ kính ngăn cách. Không có rào chắn giữa người và hiện vật. Langbiang không đơn thuần là một căn phòng, mà là một vùng ký ức sống, nơi hồn cốt của núi rừng thở trong từng vật phẩm, cháy trong từng ngọn lửa bếp, ngân nga trong từng tiếng cồng chiêng.",
+    description: {
+      vi: "Khi nghệ thuật không chỉ để ngắm, mà để sống cùng và sống trong. Không có tủ kính ngăn cách. Không có rào chắn giữa người và hiện vật. Langbiang không đơn thuần là một căn phòng, mà là một vùng ký ức sống, nơi hồn cốt của núi rừng thở trong từng vật phẩm, cháy trong từng ngọn lửa bếp, ngân nga trong từng tiếng cồng chiêng.",
+      en: "When art is not just to be viewed, but to be lived with and within. No glass cases. No barriers between people and artifacts. Langbiang is not just a room, but a living memory zone, where the soul of the forest breathes in every item, burns in every hearth fire, resonates in every gong sound.",
+    },
     image:
       "https://ik.imagekit.io/8u8lkoqkkm/image.png?updatedAt=1749008666857",
     alt: "Langbiang",
-    tag: "Trưng bày",
+    tag: {
+      vi: "Trưng bày",
+      en: "Exhibition",
+    },
     link: "/exhibition-details/langbiang-khong-gian",
   },
   {
     id: "phuc-tang",
     title: "Phức Tầng",
-    description:
-      "Được Musée Du Pin bắt trọn khoảng khắc các hình ảnh thiên nhiên đậm sắc dân tộc K'ho, tạo nên bức tranh đẹp về đất nước Tây Nguyên.",
+    description: {
+      vi: "Được Bảo tàng Thông bắt trọn khoảng khắc các hình ảnh thiên nhiên đậm sắc dân tộc K'ho, tạo nên bức tranh đẹp về đất nước Tây Nguyên.",
+      en: "Musée Du Pin captures moments of nature rich in K'ho ethnic character, creating a beautiful picture of the Central Highlands.",
+    },
     image:
       "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784653/collections/Th%C3%B4ng%202.webp",
     alt: "Phức Tầng",
-    tag: "Tham Quan",
+    tag: {
+      vi: "Tham Quan",
+      en: "Tour",
+    },
     link: "/exhibition-details/phuc-tang-tram-mac",
   },
   {
@@ -183,9 +194,12 @@ const CachedImage = ({
 }) => {
   const { url: cachedUrl, isLoaded } = useCachedAsset(src);
 
+  // Don't render the img element if src is empty or null
+  if (!src) return null;
+
   return (
     <img
-      src={cachedUrl}
+      src={cachedUrl || src} // Fallback to original src if cachedUrl is empty
       alt={alt}
       className={className}
       loading={loading}
@@ -199,6 +213,7 @@ const CachedImage = ({
 };
 
 const Highlights = ({ onVisible, onHidden }) => {
+  const { currentLang } = useTranslation();
   const [isVisible, setIsVisible] = useState(false);
   const highlightsRef = useRef(null);
   const [visibleCards, setVisibleCards] = useState({});
@@ -260,7 +275,9 @@ const Highlights = ({ onVisible, onHidden }) => {
   return (
     <section id="highlights" className="highlights-section" ref={highlightsRef}>
       <div className="highlights-header">
-        <h3 className="highlights-title">ĐIỂM NỔI BẬT</h3>
+        <h3 className="highlights-title">
+          {currentLang === "en" ? "HIGHLIGHTS" : "ĐIỂM NỔI BẬT"}
+        </h3>
       </div>
 
       {/* Mobile layout */}
@@ -277,7 +294,7 @@ const Highlights = ({ onVisible, onHidden }) => {
           >
             <div className="highlight-card">
               <div className="card-tag">
-                <span>{item.tag}</span>
+                <span>{item.tag[currentLang]}</span>
               </div>
               <Link to={item.link} className="card-link-wrapper">
                 <div className="card-image-container">
@@ -293,7 +310,11 @@ const Highlights = ({ onVisible, onHidden }) => {
                   <h3 className="card-title">
                     <span className="card-title-text">{item.title}</span>
                   </h3>
-                  <p className="card-description">{item.description}</p>
+                  <p className="card-description">
+                    {typeof item.description === "object"
+                      ? item.description[currentLang] || ""
+                      : item.description || ""}
+                  </p>
                 </div>
               </Link>
             </div>
@@ -306,36 +327,38 @@ const Highlights = ({ onVisible, onHidden }) => {
         <div className="highlights-layout">
           {/* Featured large card (2 columns) */}
           <div className="highlight-featured">
-          <div
-            className={`highlight-card-wrapper highlight-card-large ${
-              visibleCards[0] ? "visible" : ""
-            }`}
-          >
-            <div className="highlight-card">
-              <div className="card-tag">
-                  <span>{randomItems[0]?.tag}</span>
-              </div>
+            <div
+              className={`highlight-card-wrapper highlight-card-large ${
+                visibleCards[0] ? "visible" : ""
+              }`}
+            >
+              <div className="highlight-card">
+                <div className="card-tag">
+                  <span>{randomItems[0]?.tag[currentLang]}</span>
+                </div>
                 <Link to={randomItems[0]?.link} className="card-link-wrapper">
-                <div className="card-image-container">
-                  <CachedImage
+                  <div className="card-image-container">
+                    <CachedImage
                       src={randomItems[0]?.image}
                       alt={randomItems[0]?.alt}
-                    className="card-image"
-                    loading="eager"
+                      className="card-image"
+                      loading="eager"
                       highlightId={randomItems[0]?.id}
-                  />
-                </div>
-                <div className="card-content">
-                  <h3 className="card-title">
-                    <span className="card-title-text">
+                    />
+                  </div>
+                  <div className="card-content">
+                    <h3 className="card-title">
+                      <span className="card-title-text">
                         {randomItems[0]?.title}
-                    </span>
-                  </h3>
-                  <p className="card-description">
-                      {randomItems[0]?.description}
-                  </p>
-                </div>
-              </Link>
+                      </span>
+                    </h3>
+                    <p className="card-description">
+                      {typeof randomItems[0]?.description === "object"
+                        ? randomItems[0]?.description[currentLang] || ""
+                        : randomItems[0]?.description || ""}
+                    </p>
+                  </div>
+                </Link>
               </div>
             </div>
           </div>
@@ -349,7 +372,7 @@ const Highlights = ({ onVisible, onHidden }) => {
             >
               <div className="highlight-card">
                 <div className="card-tag">
-                  <span>{randomItems[1]?.tag}</span>
+                  <span>{randomItems[1]?.tag[currentLang]}</span>
                 </div>
                 <Link to={randomItems[1]?.link} className="card-link-wrapper">
                   <div className="card-image-container">
@@ -368,7 +391,9 @@ const Highlights = ({ onVisible, onHidden }) => {
                       </span>
                     </h3>
                     <p className="card-description">
-                      {randomItems[1]?.description}
+                      {typeof randomItems[1]?.description === "object"
+                        ? randomItems[1]?.description[currentLang] || ""
+                        : randomItems[1]?.description || ""}
                     </p>
                   </div>
                 </Link>
@@ -388,7 +413,7 @@ const Highlights = ({ onVisible, onHidden }) => {
               >
                 <div className="highlight-card">
                   <div className="card-tag">
-                    <span>{item.tag}</span>
+                    <span>{item.tag[currentLang]}</span>
                   </div>
                   <Link to={item.link} className="card-link-wrapper">
                     <div className="card-image-container">
@@ -404,7 +429,11 @@ const Highlights = ({ onVisible, onHidden }) => {
                       <h3 className="card-title">
                         <span className="card-title-text">{item.title}</span>
                       </h3>
-                      <p className="card-description">{item.description}</p>
+                      <p className="card-description">
+                        {typeof item.description === "object"
+                          ? item.description[currentLang] || ""
+                          : item.description || ""}
+                      </p>
                     </div>
                   </Link>
                 </div>

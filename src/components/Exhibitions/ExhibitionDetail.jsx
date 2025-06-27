@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "../../contexts/TranslationContext";
 import {
   getGalleryImageUrl,
   getImageUrl,
@@ -272,7 +273,10 @@ const allItemsData = {
     location: "Tầng 3",
     image:
       "https://ik.imagekit.io/8u8lkoqkkm/PinD'amour6.jpg?updatedAt=1750001274965",
-    alt: "Khán phòng Pin d'amour",
+    alt: {
+      vi: "Khán phòng Pin d'amour",
+      en: "Pin d'amour Auditorium",
+    },
     tag: "Âm thanh",
     longDescription: [
       "Khi âm thanh trở thành một tác phẩm nghệ thuật",
@@ -294,7 +298,10 @@ const allItemsData = {
     location: "Tầng 2",
     image:
       "https://ik.imagekit.io/8u8lkoqkkm/image(3).png?updatedAt=1749000530723",
-    alt: "Phòng nghe High-end",
+    alt: {
+      vi: "Phòng nghe High-end",
+      en: "High-end Listening Room",
+    },
     tag: "Âm thanh",
     longDescription: [
       "Với những nhân vật đặc biệt, Bảo Tàng Thông còn có riêng một phòng nghe High-end chuyên dụng – nơi âm thanh được tái hiện với độ trung thực đến mức khiến bạn có cảm giác mình đang ngồi ngay trên sân khấu, đối diện với ca sĩ thật.",
@@ -317,7 +324,10 @@ const allItemsData = {
     location: "Tầng 1",
     image:
       "https://ik.imagekit.io/8u8lkoqkkm/image(1).png?updatedAt=1749000543046",
-    alt: "Nhà hàng Bảo tàng",
+    alt: {
+      vi: "Nhà hàng Bảo tàng",
+      en: "Musée Du Pin Restaurant",
+    },
     tag: "Ẩm thực",
     longDescription: [
       "Nơi hội tụ tinh hoa ẩm thực Đà Lạt",
@@ -337,7 +347,10 @@ const allItemsData = {
     location: "Tầng 1",
     image:
       "https://ik.imagekit.io/8u8lkoqkkm/image(2).png?updatedAt=1749000540091",
-    alt: "Cafe Bảo tàng",
+    alt: {
+      vi: "Cafe Bảo tàng",
+      en: "Musée Du Pin Cafe",
+    },
     tag: "Ẩm thực",
     longDescription: [
       "Nghệ thuật vị giác",
@@ -417,6 +430,7 @@ const allItemsData = {
 };
 
 const ExhibitionDetail = () => {
+  const { currentLang } = useTranslation();
   const { id } = useParams();
   const navigate = useNavigate();
   const [item, setItem] = useState(null);
@@ -428,14 +442,12 @@ const ExhibitionDetail = () => {
   const [galleryLoading, setGalleryLoading] = useState(false);
   const [galleryLoaded, setGalleryLoaded] = useState(false);
   const [galleryImagesCache, setGalleryImagesCache] = useState(() => {
-    // Sử dụng sessionStorage để cache trạng thái đã load ảnh gallery
     if (typeof window !== "undefined" && window.sessionStorage) {
       return window.sessionStorage.getItem("phucTangGalleryLoaded") === "true";
     }
     return false;
   });
 
-  // Refs for animation elements
   const heroRef = useRef(null);
   const contentRef = useRef(null);
   const relatedRef = useRef(null);
@@ -444,7 +456,6 @@ const ExhibitionDetail = () => {
     setTimeout(() => {
       const foundItem = allItemsData[id];
       if (foundItem) {
-        // If the item has a redirectTo property, navigate to that route
         if (foundItem.redirectTo) {
           navigate(foundItem.redirectTo);
           return;
@@ -452,7 +463,6 @@ const ExhibitionDetail = () => {
         setItem(foundItem);
         setLoading(false);
 
-        // Add animation to hero section
         if (heroRef.current) {
           heroRef.current.style.opacity = "0";
           heroRef.current.style.transform = "translateY(20px)";
@@ -470,7 +480,6 @@ const ExhibitionDetail = () => {
       }
     }, 300);
 
-    // Set up intersection observer for animations
     const observerOptions = {
       threshold: 0.1,
       rootMargin: "0px 0px -20px 0px",
@@ -480,10 +489,8 @@ const ExhibitionDetail = () => {
       entries.forEach((entry) => {
         if (entry.isIntersecting) {
           if (entry.target === relatedRef.current) {
-            console.log("Related section is visible now");
             setRelatedVisible(true);
           }
-          // Each observed element has a data-id attribute we can use
           if (entry.target.dataset.id) {
             console.log(
               `Element with id ${entry.target.dataset.id} is visible`
@@ -498,17 +505,14 @@ const ExhibitionDetail = () => {
       observerOptions
     );
 
-    // Observe main content section for scroll animations
     if (contentRef.current) {
       observer.observe(contentRef.current);
     }
 
-    // Observe related items section
     if (relatedRef.current) {
       observer.observe(relatedRef.current);
     }
 
-    // Backup mechanism: force visibility after 2 seconds if not triggered by observer
     const backupTimer = setTimeout(() => {
       setRelatedVisible(true);
     }, 2000);
@@ -520,7 +524,6 @@ const ExhibitionDetail = () => {
     };
   }, [id, navigate]);
 
-  // Khi mở modal gallery, nếu chưa từng load thì bắt đầu load tất cả ảnh
   useEffect(() => {
     if (
       showGallery &&
@@ -531,7 +534,6 @@ const ExhibitionDetail = () => {
       item.gallery
     ) {
       setGalleryLoading(true);
-      // Tạo promise load tất cả ảnh
       const loadPromises = item.gallery.map((g) => {
         return new Promise((resolve) => {
           const img = new window.Image();
@@ -555,10 +557,8 @@ const ExhibitionDetail = () => {
     }
   }, [showGallery, galleryLoaded, galleryImagesCache, item]);
 
-  // Handler for back button to maintain tab selection
   const handleBackClick = (e) => {
     e.preventDefault();
-    // Navigate based on the type of item
     if (item.redirectTo) {
       navigate(item.redirectTo);
     } else {
@@ -566,16 +566,29 @@ const ExhibitionDetail = () => {
     }
   };
 
-  // Update the related items filtering to match by tag instead of type
   const getRelatedItems = () => {
     return Object.values(allItemsData)
       .filter(
         (relatedItem) =>
           relatedItem.id !== id &&
-          !relatedItem.redirectTo && // Only show items without redirects
+          !relatedItem.redirectTo &&
           relatedItem.tag === item.tag
       )
       .slice(0, 3);
+  };
+
+  const getAltText = (item) => {
+    if (item.alt && typeof item.alt === "object") {
+      return item.alt[currentLang];
+    }
+    return item.alt;
+  };
+
+  const getCuratorDisplay = (curator) => {
+    if (curator === "Bảo tàng Thông | Musée Du Pin") {
+      return currentLang === "en" ? "Musée Du Pin" : "Bảo tàng Thông";
+    }
+    return curator;
   };
 
   if (loading) {
@@ -606,7 +619,7 @@ const ExhibitionDetail = () => {
         <div className="exhibition-detail-hero-image">
           <img
             src={getImageUrl(item.image)}
-            alt={item.alt}
+            alt={getAltText(item)}
             style={{
               objectFit:
                 item.id === "langbiang-khong-gian" ? "contain" : "cover",
@@ -724,7 +737,7 @@ const ExhibitionDetail = () => {
                 <h3>Tác giả</h3>
                 <ul>
                   {item.curators.map((curator, index) => (
-                    <li key={index}>{curator}</li>
+                    <li key={index}>{getCuratorDisplay(curator)}</li>
                   ))}
                 </ul>
               </div>

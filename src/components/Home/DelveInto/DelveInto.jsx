@@ -1,14 +1,21 @@
 import React, { useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import "./DelveInto.css";
 
 const imageList = [
   {
     url: "https://ik.imagekit.io/8u8lkoqkkm/phimdienanh_doc.jpg?updatedAt=1750298609321",
-    alt: "Phim điện ảnh dọc",
+    alt: {
+      vi: "Phim điện ảnh dọc",
+      en: "Cinema vertical",
+    },
   },
   {
     url: "https://ik.imagekit.io/8u8lkoqkkm/phimdienanh_ngang.jpg?updatedAt=1750298609073",
-    alt: "Phim điện ảnh ngang",
+    alt: {
+      vi: "Phim điện ảnh ngang",
+      en: "Cinema horizontal",
+    },
   },
   {
     url: "https://ik.imagekit.io/8u8lkoqkkm/PinD'amour2.jpg?updatedAt=1750001276276",
@@ -32,7 +39,10 @@ const imageList = [
   },
   {
     url: "https://ik.imagekit.io/8u8lkoqkkm/image(1).png?updatedAt=1749394994472",
-    alt: "Image 1",
+    alt: {
+      vi: "Bảo tàng Thông",
+      en: "Musée Du Pin",
+    },
   },
   {
     url: "https://ik.imagekit.io/8u8lkoqkkm/Giaidieudaingan_Ngoai.jpg?updatedAt=1749312109958",
@@ -85,6 +95,7 @@ const imageList = [
 ];
 
 const DelveInto = () => {
+  const { currentLang } = useTranslation();
   const gridRef = useRef(null);
   const [randomImages, setRandomImages] = useState([]);
 
@@ -150,19 +161,31 @@ const DelveInto = () => {
   return (
     <section className="delve-into-section">
       <div className="delve-into-container">
-        <h2 className="delve-into-title">Khám phá Musée Du Pin</h2>
+        <h2 className="delve-into-title">
+          {currentLang === "en"
+            ? "Explore Musée Du Pin"
+            : "Khám phá Bảo tàng Thông"}
+        </h2>
 
         <div className="delve-into-grid" ref={gridRef}>
           {randomImages.map((image, index) => (
             <div key={index} className={`grid-item grid-item-${index + 1}`}>
-              <img src={image.url} alt={image.alt} className="grid-image" />
+              <img
+                src={image.url}
+                alt={
+                  typeof image.alt === "object"
+                    ? image.alt[currentLang]
+                    : image.alt
+                }
+                className="grid-image"
+              />
             </div>
           ))}
         </div>
 
         <div className="explore-button-container">
           <button className="explore-button" onClick={handleExploreClick}>
-            Khám phá
+            {currentLang === "en" ? "Explore" : "Khám phá"}
           </button>
         </div>
       </div>

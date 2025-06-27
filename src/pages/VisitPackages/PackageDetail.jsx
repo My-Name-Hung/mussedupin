@@ -749,7 +749,9 @@ const PackageDetail = () => {
 
         <div className="package-detail-content">
           <button className="book-now-button">
-            <a href="https://ticket-museeduphin.netlify.app/" target="_blank">Đặt vé ngay</a>
+            <a href="https://ticket-museeduphin.netlify.app/" target="_blank">
+              Đặt vé ngay
+            </a>
           </button>
           <div className="content-wrapper">
             <div className="content-left">
@@ -1098,7 +1100,9 @@ const PackageDetail = () => {
 
       <div className="package-detail-content">
         <button className="book-now-button">
-          <a href="https://ticket-museeduphin.netlify.app/" target="_blank">Đặt vé ngay</a>
+          <a href="https://ticket-museeduphin.netlify.app/" target="_blank">
+            Đặt vé ngay
+          </a>
         </button>
         <div className="content-wrapper">
           <div className="content-left">

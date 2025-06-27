@@ -86,7 +86,7 @@ const trailsData = [
   },
   {
     id: 2,
-    title: "K'HO CHĂN NUÔI",
+    title: "Hơi thở đại ngàn",
     description:
       "Khám phá các công cụ và phương thức chăn nuôi truyền thống của người K'ho, từ lồng đa đa đến các vật dụng chăn nuôi khác.",
     image: "Lồng Đa Đa.webp",
@@ -95,7 +95,7 @@ const trailsData = [
   },
   {
     id: 3,
-    title: "K'HO LỄ HỘI",
+    title: "Lửa thiêng đêm núi",
     description:
       "Tìm hiểu về các lễ hội truyền thống và nghi thức văn hóa của người K'ho thông qua các hiện vật như Ché Ghò Sành.",
     image: "36 (2).webp",
@@ -104,7 +104,7 @@ const trailsData = [
   },
   {
     id: 4,
-    title: "K'HO ĐIÊU KHẮC",
+    title: "Hình hài bản sắc",
     description:
       "Chiêm ngưỡng nghệ thuật điêu khắc truyền thống của người K'ho qua các tác phẩm tượng và điêu khắc tinh xảo.",
     image: "Điêu Khắc.webp",
@@ -113,7 +113,7 @@ const trailsData = [
   },
   {
     id: 5,
-    title: "K'HO SĂN BẮN & HÁI LƯỢM",
+    title: "Những mùa no ấm",
     description:
       "Khám phá các công cụ săn bắn, hái lượm và canh tác truyền thống của người K'ho.",
     image: "Chiếc Gùi.webp",
@@ -122,7 +122,7 @@ const trailsData = [
   },
   {
     id: 6,
-    title: "K'HO SINH HOẠT THƯỜNG NHẬT",
+    title: "Hơi ấm buôn làng",
     description:
       "Tìm hiểu về đời sống hàng ngày của người K'ho qua các vật dụng sinh hoạt như nồi đất, bầu hồ lô.",
     image: "Nồi Đất.webp",
@@ -143,6 +143,38 @@ const trailsData = [
     description: "Tham quan vật liệu của người Tây Nguyên.",
     image: "Hoa Ban Trắng.webp",
     duration: "30P",
+    audioGuide: true,
+  },
+  {
+    id: 9,
+    title: "Redpine Art Studio",
+    description: "Không gian lưu trú nghệ thuật giữa rừng thông Đà Lạt.",
+    image: "luutrunghethuat.jpg",
+    duration: "45P",
+    audioGuide: true,
+  },
+  {
+    id: 10,
+    title: "Bề mặt ký ức",
+    description: "Bộ sưu tập về ký ức và hoài niệm",
+    image: "Lửa.webp",
+    duration: "45P",
+    audioGuide: true,
+  },
+  {
+    id: 11,
+    title: "Thiên nhiên Đà Lạt",
+    description: "Không gian lưu trú nghệ thuật giữa rừng thông Đà Lạt",
+    image: "Gió.webp",
+    duration: "45P",
+    audioGuide: true,
+  },
+  {
+    id: 12,
+    title: "Sắc màu Tây nguyên",
+    description: "Bộ sưu tập về sắc màu Tây nguyên",
+    image: "Đông.webp",
+    duration: "45P",
     audioGuide: true,
   },
 ];

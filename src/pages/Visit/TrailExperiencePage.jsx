@@ -197,10 +197,10 @@ const getArtworkData = (trailId) => {
       {
         id: 1,
         title: "DỤNG CỤ ÂM NHẠC TÂY NGUYÊN",
-        artist: "Nghệ nhân Tây Nguyên",
+        artist: "Musée Du Pin",
         image: "Cồng Chiên.webp",
         description:
-          "Cồng chiêng là nhạc cụ truyền thống bằng đồng của các dân tộc Tây Nguyên, là biểu tượng văn hóa và tín ngưỡng thiêng liêng.",
+          "Khám phá âm nhạc truyền thống của người Tây Nguyên qua các nhạc cụ độc đáo như cồng chiêng - biểu tượng văn hóa và tín ngưỡng thiêng liêng.",
         room: "Khu trưng bày nhạc cụ",
         images: [
           "Cồng Chiên.webp",
@@ -231,11 +231,11 @@ const getArtworkData = (trailId) => {
     2: [
       {
         id: 1,
-        title: "K'HO CHĂN NUÔI",
-        artist: "Nghệ nhân K'ho",
+        title: "Hơi thở đại ngàn",
+        artist: "Musée Du Pin",
         image: "Lồng Đa Đa.webp",
         description:
-          "Lồng đa đa của người K'ho được đan thủ công từ tre nứa, thể hiện sự khéo léo và mối liên kết với thiên nhiên.",
+          "Khám phá các công cụ và phương thức chăn nuôi truyền thống của người K'ho, từ lồng đa đa đến các vật dụng chăn nuôi khác.",
         room: "Khu trưng bày đời sống",
         images: [
           "Lồng Đa Đa.webp",
@@ -261,11 +261,11 @@ const getArtworkData = (trailId) => {
     3: [
       {
         id: 1,
-        title: "K'HO LỄ HỘI",
-        artist: "Cộng đồng K'ho",
+        title: "Lửa thiêng đêm núi",
+        artist: "Musée Du Pin",
         image: "36 (2).webp",
         description:
-          "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, là biểu tượng của sự giàu có và tín ngưỡng.",
+          "Tìm hiểu về các lễ hội truyền thống và nghi thức văn hóa của người K'ho thông qua các hiện vật như Ché Ghò Sành.",
         room: "Khu trưng bày lễ hội",
         images: [
           "36 (1).webp",
@@ -290,11 +290,11 @@ const getArtworkData = (trailId) => {
     4: [
       {
         id: 1,
-        title: "K'HO ĐIÊU KHẮC",
-        artist: "Nghệ nhân K'ho",
+        title: "Hình hài bản sắc",
+        artist: "Musée Du Pin",
         image: "Điêu Khắc.webp",
         description:
-          "Nghệ thuật điêu khắc K'ho thể hiện đặc trưng văn hóa và đời sống tinh thần của dân tộc.",
+          "Chiêm ngưỡng nghệ thuật điêu khắc truyền thống của người K'ho qua các tác phẩm tượng và điêu khắc tinh xảo.",
         room: "Khu trưng bày điêu khắc",
         images: [
           "Điêu Khắc.webp",
@@ -354,11 +354,11 @@ const getArtworkData = (trailId) => {
     5: [
       {
         id: 1,
-        title: "K'HO SĂN BẮN & HÁI LƯỢM",
-        artist: "Cộng đồng K'ho",
+        title: "Những mùa no ấm",
+        artist: "Musée Du Pin",
         image: "Chiếc Gùi.webp",
         description:
-          "Chiếc gùi - vật dụng không thể thiếu trong đời sống của người K'ho, dùng để đựng nông sản và đồ đạc.",
+          "Khám phá các công cụ săn bắn, hái lượm và canh tác truyền thống của người K'ho.",
         room: "Khu trưng bày đời sống",
         images: [
           "Chiếc Gùi.webp",
@@ -417,12 +417,12 @@ const getArtworkData = (trailId) => {
     6: [
       {
         id: 1,
-        title: "K'HO SINH HOẠT THƯỜNG NHẬT",
-        artist: "Cộng đồng K'ho",
+        title: "Hơi ấm buôn làng",
+        artist: "Musée Du Pin",
         image: "Nồi Đất.webp",
         description:
-          "Nồi đất và bầu hồ lô là những vật dụng thiết yếu trong sinh hoạt hàng ngày của người K'ho.",
-        room: "Khu trưng bày đời sống",
+          "Tìm hiểu về đời sống hàng ngày của người K'ho qua các vật dụng sinh hoạt như nồi đất, bầu hồ lô.",
+        room: "Khu trưng bày sinh hoạt",
         images: [
           "Nồi Đất.webp",
           "16 (1).webp",
@@ -464,10 +464,9 @@ const getArtworkData = (trailId) => {
       {
         id: 1,
         title: "PHỨC TẦNG",
-        artist: "Cộng đồng K'ho",
+        artist: "Musée Du Pin",
         image: "Thông 2.webp",
-        description:
-          "Đồi thông là biểu tượng của sự bền vững và tín ngưỡng thiêng liêng trong đời sống người dân Tây Nguyên.",
+        description: "Tham quan trải nghiệm thiên nhiên của đồi thông.",
         room: "Khu trưng bày phức tầng",
         images: [
           "Thông 1.webp",
@@ -496,10 +495,9 @@ const getArtworkData = (trailId) => {
       {
         id: 1,
         title: "VẬT LIỆU",
-        artist: "Cộng đồng K'ho",
+        artist: "Musée Du Pin",
         image: "Hoa Ban Trắng.webp",
-        description:
-          "Tại Musée Du Pin, mỗi chất liệu được chọn lựa kỹ lưỡng nhằm tôn vinh vẻ đẹp tự nhiên và bản sắc văn hóa Tây Nguyên.",
+        description: "Tham quan vật liệu của người Tây Nguyên.",
         room: "Khu trưng bày vật liệu",
         images: [
           "Hoa Ban Trắng.webp",
@@ -521,6 +519,150 @@ const getArtworkData = (trailId) => {
           {
             icon: <ArrowRightIcon />,
             text: "Đi theo chỉ dẫn đến khu trưng bày vật liệu",
+          },
+        ],
+      },
+    ],
+    9: [
+      {
+        id: 1,
+        title: "Redpine Art Studio",
+        artist: "Musée Du Pin",
+        image: "luutrunghethuat.jpg",
+        description: "Không gian lưu trú nghệ thuật giữa rừng thông Đà Lạt.",
+        room: "Khu trưng bày nghệ thuật",
+        images: [
+          "thechillhood.jpg",
+          "thechill1.jpg",
+          "thechill2.jpg",
+          "whitebauhinia.jpg",
+          "thememory.jpg",
+          "thesunset.jpg",
+          "thetrain.jpg",
+        ],
+        access: [
+          {
+            icon: <LocationIcon />,
+            text: "Vào qua cửa chính bảo tàng",
+          },
+          {
+            icon: <ArrowRightIcon />,
+            text: "Đi theo chỉ dẫn đến khu trưng bày nghệ thuật",
+          },
+        ],
+      },
+    ],
+    10: [
+      {
+        id: 1,
+        title: "Bề mặt ký ức",
+        artist: "Musée Du Pin",
+        image: "Lửa.webp",
+        description: "Bộ sưu tập về ký ức và hoài niệm.",
+        room: "Khu trưng bày ký ức",
+        images: [
+          "Bidoup.webp",
+          "bình yên 1 (1).webp",
+          "bình yên 1 (2).webp",
+          "bình yên 2 (1).webp",
+          "bình yên 2 (2).webp",
+          "bình yên 2 (3).webp",
+          "chiếc tổ (1).webp",
+          "chiếc tổ (2).webp",
+          "Đạ Lạch.webp",
+          "dâu tây.webp",
+          "Dung nham.webp",
+          "ga xe lửa (1).webp",
+          "ga xe lửa (2).webp",
+          "ga xe lửa (3).webp",
+          "ga xe lửa (4).webp",
+          "ga xe lửa (5).webp",
+          "ga xe lửa (6).webp",
+          "ký ức.webp",
+          "Langbiang3.webp",
+          "Lửa.webp",
+          "Dung nham.webp",
+          "ống khói (2).webp",
+          "ống khói (3).webp",
+          "ống khói (4).webp",
+          "Rạn 1.webp",
+          "Rạn 2.webp",
+          "Rạn 3.webp",
+          "thác đổ (1).webp",
+          "thác đổ (2).webp",
+          "thác đổ (3).webp",
+          "thác đổ (4).webp",
+          "thác đổ (5).webp",
+          "The Sunrise.webp",
+          "The Sunset 1.webp",
+          "The Sunset 2.webp",
+          "Thông 1-1(1).webp",
+          "Thông 1-1.webp",
+          "Thông 1-2.webp",
+          "Thông 1-3.webp",
+          "Thông 2-1.webp",
+          "Thông 2-2.webp",
+          "Thông 3.webp",
+          "Thông bì 1.webp",
+          "Thông bì 2.webp",
+          "Thông cháy 1.webp",
+          "Thông cháy 2.webp",
+        ],
+        access: [
+          {
+            icon: <LocationIcon />,
+            text: "Vào qua cửa chính bảo tàng",
+          },
+          {
+            icon: <ArrowRightIcon />,
+            text: "Đi theo chỉ dẫn đến khu trưng bày ký ức",
+          },
+        ],
+      },
+    ],
+    11: [
+      {
+        id: 1,
+        title: "Thiên nhiên Đà Lạt",
+        artist: "Musée Du Pin",
+        image: "Gió.webp",
+        description: "Bộ sưu tập về thiên nhiên Đà Lạt.",
+        room: "Khu trưng bày thiên nhiên",
+        images: [
+          "Sương sớm.webp",
+          "Hoàng hôn Đà Lạt.webp",
+          "Gió.webp",
+          "Bình Minh.webp",
+        ],
+        access: [
+          {
+            icon: <LocationIcon />,
+            text: "Vào qua cửa chính bảo tàng",
+          },
+          {
+            icon: <ArrowRightIcon />,
+            text: "Đi theo chỉ dẫn đến khu trưng bày thiên nhiên",
+          },
+        ],
+      },
+    ],
+    12: [
+      {
+        id: 1,
+        title: "Sắc màu Tây nguyên",
+        artist: "Musée Du Pin",
+        image: "Đông.webp",
+        description: "Bộ sưu tập về sắc màu Tây Nguyên.",
+        room: "Khu trưng bày sắc màu",
+        images: ["Đông.webp", "Xuân.webp", "Thu.webp", "Hạ.webp"],
+        access: [
+          {
+            icon: <LocationIcon />,
+            text: "Vào qua cửa chính bảo tàng",
+          },
+          {
+            icon: <ArrowRightIcon />,
+            text: "Đi theo chỉ dẫn đến khu trưng bày sắc màu",
           },
         ],
       },

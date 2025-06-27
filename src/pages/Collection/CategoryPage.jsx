@@ -731,24 +731,24 @@ const CategoryPage = () => {
     <div className="category-page">
       {/* Hero Section */}
       <section
-        className={`category-hero ${isLoaded ? "loaded" : ""} ${
+        className={`category-hero-collecttion ${isLoaded ? "loaded" : ""} ${
           heroLoaded ? "image-loaded" : ""
         }`}
       >
-        <div className="category-hero-slides-container">
-          <div className="category-hero-slide active">
+        <div className="category-hero-collecttion-slides-container">
+          <div className="category-hero-collecttion-slide active">
             {categoryData && (
               <img
                 ref={heroImageRef}
                 src={getImageUrl(categoryData.image)}
                 alt={categoryData.title}
-                className="category-hero-img"
+                className="category-hero-collecttion-img"
                 onLoad={handleHeroImageLoaded}
               />
             )}
           </div>
         </div>
-        <div className="category-hero-overlay"></div>
+        <div className="category-hero-collecttion-overlay"></div>
         <Link
           to="/collection#complete-collection"
           className="category-back-button"
@@ -771,19 +771,19 @@ const CategoryPage = () => {
           </svg>
           <span>Quay lại Bộ sưu tập</span>
         </Link>
-        <div className="category-hero-content">
+        <div className="category-hero-collecttion-content">
           <h1
-            className={`category-hero-title ${
+            className={`category-hero-collecttion-title ${
               categoryData?.title.length > 30 ? "long-title" : ""
             }`}
           ></h1>
         </div>
-        <div className="category-hero-scroll-indicator">
-          <div className="category-hero-scroll-mouse">
-            <div className="category-hero-scroll-wheel"></div>
+        {/* <div className="category-hero-collecttion-scroll-indicator">
+          <div className="category-hero-collecttion-scroll-mouse">
+            <div className="category-hero-collecttion-scroll-wheel"></div>
           </div>
           <span>CUỘN XUỐNG</span>
-        </div>
+        </div> */}
       </section>
 
       {/* Artworks Grid */}

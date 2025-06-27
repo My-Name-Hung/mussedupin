@@ -92,6 +92,9 @@ function Home() {
           className={`prepare-visit-bar ${
             showPrepareVisitBar ? "visible" : ""
           }`}
+          style={{
+            backgroundColor: "#2c2f11",
+          }}
         >
           <div className="prepare-visit-content">
             <div

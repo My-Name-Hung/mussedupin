@@ -16,7 +16,7 @@ const cards = [
     description:
       "Nơi âm thanh được tái hiện với độ trung thực đến mức khiến bạn có cảm giác mình đang ngồi ngay trên sân khấu, đối diện với ca sĩ thật.",
     image:
-      "https://ik.imagekit.io/8u8lkoqkkm/image(3).png?updatedAt=1749000530723",
+      "https://ik.imagekit.io/8u8lkoqkkm/hi-end3.jpg?updatedAt=1750989597877",
   },
 ];
 

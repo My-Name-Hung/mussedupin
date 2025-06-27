@@ -39,19 +39,17 @@ Với thiết kế 3 mặt kính trong suốt, mở ra toàn cảnh thành phố
           title: "Buổi biểu diễn tại Pind'amour",
           thumbnail: "https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg",
         },
-        {
-          id: "aozcRuYVPKw",
-          title: "Buổi biểu diễn tại Pind'amour",
-          thumbnail: "https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg",
-        },
       ],
     },
     "high-end": {
       title: "Phòng nghe High-end",
       title2: "Phòng nghe High-end",
       description: "",
-      image:
-        "https://ik.imagekit.io/8u8lkoqkkm/image(3).png?updatedAt=1749000530723",
+      heroImages: [
+        "https://ik.imagekit.io/8u8lkoqkkm/hi-end3.jpg?updatedAt=1750989597877",
+        "https://ik.imagekit.io/8u8lkoqkkm/hi-end2.jpg?updatedAt=1750989597877",
+        "https://ik.imagekit.io/8u8lkoqkkm/hi-end1.jpg?updatedAt=1750989597877",
+      ],
       content: `💡 Với những nhân vật đặc biệt, Bảo Tàng Thông còn có riêng một phòng nghe High-end chuyên dụng – nơi âm thanh được tái hiện với độ trung thực đến mức khiến bạn có cảm giác mình đang ngồi ngay trên sân khấu, đối diện với ca sĩ thật.
 
 🌿 Một không gian, hai nhịp đập:
@@ -60,16 +58,6 @@ Với thiết kế 3 mặt kính trong suốt, mở ra toàn cảnh thành phố
 
 "Chúng tôi tin rằng, âm thanh đẹp không chỉ để nghe – mà để chạm đến nơi sâu thẳm nhất của cảm xúc."`,
       videos: [
-        {
-          id: "aozcRuYVPKw",
-          title: "Trải nghiệm âm thanh tại High-end Room",
-          thumbnail: "https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg",
-        },
-        {
-          id: "aozcRuYVPKw",
-          title: "Trải nghiệm âm thanh tại High-end Room",
-          thumbnail: "https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg",
-        },
         {
           id: "aozcRuYVPKw",
           title: "Trải nghiệm âm thanh tại High-end Room",

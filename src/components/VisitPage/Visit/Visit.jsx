@@ -65,12 +65,10 @@ const Visit = () => {
     setIsScrollingDown(st > lastScrollTop.current && st > 200);
     lastScrollTop.current = st <= 0 ? 0 : st;
 
-    // Original scroll handling logic
-    if (heroRef.current && navRef.current) {
+    // Check if we should make nav sticky
+    if (heroRef.current) {
       const heroBottom = heroRef.current.getBoundingClientRect().bottom;
-      const navHeight = navRef.current.offsetHeight;
-
-      if (heroBottom <= navHeight) {
+      if (heroBottom <= 0) {
         setIsNavSticky(true);
       } else {
         setIsNavSticky(false);
@@ -79,7 +77,7 @@ const Visit = () => {
 
     // Determine which section is in view
     let currentSection = "hours";
-    const scrollPosition = window.scrollY + (isMobile ? 80 : 100); // Smaller offset for mobile
+    const scrollPosition = window.scrollY + (isMobile ? 80 : 100);
 
     // Check sections in reverse order (from bottom to top)
     if (
@@ -97,6 +95,16 @@ const Visit = () => {
     }
 
     setActiveSection(currentSection);
+
+    // Clear any existing scroll timeout
+    if (scrollTimeout.current) {
+      clearTimeout(scrollTimeout.current);
+    }
+
+    // Set new scroll timeout
+    scrollTimeout.current = setTimeout(() => {
+      setIsScrolling(false);
+    }, 150);
   }, [isMobile]);
 
   // Check if device is mobile
@@ -426,7 +434,7 @@ const Visit = () => {
                 }}
                 className="visit-nav-button"
               >
-                Giá vé
+                Các gói trải nghiệm
                 {ripples.map((ripple) => (
                   <span
                     key={ripple.id}
@@ -1138,7 +1146,6 @@ const Visit = () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [handleScroll]);
-
   const handleBlockHover = (block) => {
     setHoveredBlock(block);
     clearTimeout(tooltipTimeout.current);

@@ -474,7 +474,7 @@ const VisitInfo = () => {
       id: "baby-space",
       title: "Khu vực cho em bé",
       description:
-        "Studio – khu vực đặc biệt được thiết kế dành cho gia đình, nằm ở tầng trệt của cánh Richelieu – có khu vực dành cho em bé được trang bị máy hâm sữa, lò vi sóng và ghế cho con bú.",
+        "Studio – khu vực đặc biệt được thiết kế dành cho gia đình",
       image: "room8.jpg",
       icon: "baby",
       details: "Mọi thứ bạn cần cho sự thoải mái và chăm sóc em bé",
@@ -946,6 +946,20 @@ const VisitInfo = () => {
       answer:
         "Có, xe đẩy và nôi em bé được phép vào bảo tàng. Tuy nhiên, trong thời điểm đông khách, bạn có thể được yêu cầu gửi xe đẩy lớn tại phòng gửi đồ và sử dụng địu em bé thay thế. Tất cả các phòng trưng bày và không gian triển lãm đều có thể tiếp cận bằng xe đẩy thông qua thang máy.",
     },
+    {
+      question: "Tôi có thể mang thú cưng vào Bảo Tàng không?",
+      answer: "Thật tiếc, bạn không thể mang thú cưng vào Bảo Tàng",
+    },
+    {
+      question: "Trong trường hợp để quên đồ tại Bảo Tàng thì tôi phải làm gì?",
+      answer:
+        "Bạn cần thông báo cho hệ thống hỗ trợ online qua Zalo, fb Mes, Line, Viber ..để được khoanh vùng tìm kiếm đồ thất lạc, Bảo Tàng sẽ hỗ trợ hết sức cho quý khách nhưng không chịu trách nhiệm về việc này.",
+    },
+    {
+      question: "Bảo Tàng Thông có lắp máy lạnh không?",
+      answer:
+        "Bảo Tàng Thông hướng đến sứ mệnh bảo tồn thông và không khí trong lành nên không cung cấp máy điều hòa, nhưng các căn phòng được thiết kế và lắp đặt các thiết bị đặc biệt để đảm bảo nhiệt độ phòng luôn ở mức 22-25 độ. Quý khách lưu ý không được hút thuốc trong phòng.",
+    },
   ];
 
   // Render Hero Section with Slideshow
@@ -1020,7 +1034,7 @@ const VisitInfo = () => {
 
     return (
       <>
-        <div
+        {/* <div
           className={`visitinfo-nav-container ${isNavSticky ? "sticky" : ""} ${
             navScrolled ? "scrolled-right" : ""
           }`}
@@ -1074,7 +1088,7 @@ const VisitInfo = () => {
               </li>
             </ul>
           </div>
-        </div>
+        </div> */}
       </>
     );
   };

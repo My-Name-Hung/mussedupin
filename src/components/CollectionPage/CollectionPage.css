@@ -1,0 +1,260 @@
+.cp-image-loading {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.cp-image-loaded {
+  opacity: 1;
+}
+
+/* Optimize image containers */
+.cp-hero-image-container,
+.cp-category-image-container,
+.cp-featured-image-container,
+.cp-highlight-thumbnail {
+  background-color: rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  position: relative;
+}
+
+/* Add loading shimmer effect */
+.cp-image-shimmer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.1) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+/* Progressive loading styles */
+.cp-image-blur-up {
+  filter: blur(5px);
+  transition: filter 0.3s ease-out;
+}
+
+.cp-image-blur-up.loaded {
+  filter: blur(0);
+}
+
+/* Optimize image containers for better performance */
+.cp-hero-image,
+.cp-category-image,
+.cp-featured-image,
+.cp-highlight-img {
+  transform: translateZ(0);
+  will-change: opacity;
+  backface-visibility: hidden;
+}
+
+.cp-discover-works {
+  position: relative;
+  overflow: hidden;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.cp-discover-works::-webkit-scrollbar {
+  display: none;
+}
+
+.cp-discover-inner-container {
+  display: flex;
+  gap: 24px;
+  padding: 20px;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+/* Item animations */
+.cp-discover-artwork-item {
+  flex: 0 0 300px;
+  position: relative;
+  transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  transform-origin: center center;
+  will-change: transform, opacity;
+}
+
+/* Active item styles */
+.cp-discover-artwork-item.active {
+  transform: scale(1);
+  opacity: 1;
+  z-index: 2;
+}
+
+/* Previous items */
+.cp-discover-artwork-item.prev {
+  transform: scale(0.85) translateX(5%);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+/* Next items */
+.cp-discover-artwork-item.next {
+  transform: scale(0.85) translateX(-5%);
+  opacity: 0.6;
+  z-index: 1;
+}
+
+/* Far items */
+.cp-discover-artwork-item.far {
+  transform: scale(0.7) translateX(-10%);
+  opacity: 0.3;
+}
+
+/* Animation states */
+.cp-discover-works.sliding-next .cp-discover-artwork-item {
+  animation: slideNext 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+.cp-discover-works.sliding-prev .cp-discover-artwork-item {
+  animation: slidePrev 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+
+@keyframes slideNext {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes slidePrev {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+/* Navigation buttons */
+.cp-discover-nav {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(4px);
+}
+
+.cp-discover-nav:hover {
+  background: rgba(0, 0, 0, 0.9);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.cp-discover-nav:active {
+  transform: translateY(-50%) scale(0.95);
+}
+
+.cp-discover-nav.cp-discover-prev {
+  left: 20px;
+}
+
+.cp-discover-nav.cp-discover-next {
+  right: 20px;
+}
+
+.cp-discover-nav svg {
+  width: 24px;
+  height: 24px;
+  color: white;
+  transition: transform 0.3s ease;
+}
+
+.cp-discover-nav:hover svg {
+  transform: scale(1.1);
+}
+
+/* Smooth scroll animation */
+.cp-discover-works.scrolling {
+  scroll-behavior: smooth;
+}
+
+/* Mobile optimizations */
+@media (max-width: 768px) {
+  .cp-discover-artwork-item {
+    flex: 0 0 260px;
+  }
+
+  .cp-discover-nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  .cp-discover-inner-container {
+    gap: 16px;
+    padding: 16px;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) {
+  .cp-discover-works {
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .cp-discover-nav {
+    display: none;
+  }
+}
+
+/* Smooth scroll snap */
+.cp-discover-works {
+  scroll-snap-type: x mandatory;
+  scroll-padding: 0 20px;
+}
+
+.cp-discover-artwork-item {
+  scroll-snap-align: center;
+}
+
+/* Progress indicator */
+.cp-discover-progress {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  gap: 8px;
+}
+
+.cp-discover-progress-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.3);
+  transition: all 0.3s ease;
+}
+
+.cp-discover-progress-dot.active {
+  background: white;
+  transform: scale(1.2);
+}

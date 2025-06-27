@@ -245,8 +245,8 @@
 }
 
 .featured-card {
-  display: grid;
-  grid-template-columns: 1fr;
+  display: flex;
+  flex-direction: column;
   box-shadow: none;
   border-radius: 8px;
   overflow: hidden;
@@ -258,51 +258,22 @@
   background-size: 300px;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
+  max-width: 1400px;
+  margin: 0 auto;
 }
 
 .featured-card:hover {
   transform: translateY(-10px);
 }
 
-@media (min-width: 820px) {
-  .featured-card {
-    grid-template-columns: 1.3fr 1fr;
-  }
-}
-
-/* Exhibition Cards Common Styles */
-.exhibition-card-wrapper {
-  margin-bottom: 40px;
-}
-
-.exhibition-card-wrapper.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.exhibition-card {
-  position: relative;
-  height: 100%;
-  overflow: hidden;
-  border-radius: 8px;
-}
-
-.exhibition-card:hover {
-  box-shadow: none;
-  transform: translateY(-8px);
-}
-
-/* Card link wrapper */
-.card-link-wrapper {
+.featured-card .card-link-wrapper {
   display: flex;
   flex-direction: column;
-  height: 100%;
-  text-decoration: none;
-  color: inherit;
 }
 
-.featured-card .card-link-wrapper {
-  flex-direction: row;
+.featured-card .card-image-container {
+  width: 100%;
+  height: 500px;
 }
 
 .card-tag {
@@ -514,12 +485,14 @@
 @media (min-width: 576px) {
   .exhibitions-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
   }
 }
 
 @media (min-width: 768px) {
   .exhibitions-grid {
     grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
   }
 
   .exhibitions-hero-title {
@@ -532,12 +505,73 @@
 }
 
 @media (min-width: 992px) {
-  .exhibitions-grid {
-    grid-template-columns: repeat(3, 1fr);
+  .featured-card .card-image-container {
+    height: 700px;
   }
 
   .featured-card .card-content {
-    padding: 50px 40px;
+    padding: 40px;
+  }
+
+  .featured-card .card-title {
+    font-size: 3.2rem;
+    margin-bottom: 20px;
+  }
+
+  .featured-card .card-description {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    margin-bottom: 30px;
+  }
+
+  .featured-card .card-date {
+    font-size: 1.1rem;
+  }
+
+  /* Adjust card heights for better alignment */
+  .exhibition-card-wrapper {
+    height: 100%;
+  }
+
+  .exhibition-card {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-image-container {
+    height: 400px;
+  }
+
+  .card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .card-description {
+    flex: 1;
+  }
+}
+
+@media (min-width: 1200px) {
+  .featured-card .card-image-container {
+    height: 800px;
+  }
+
+  .featured-card .card-content {
+    padding: 50px;
+    max-width: 1000px;
+    margin: 0 auto;
+  }
+
+  .featured-card .card-title {
+    font-size: 3.6rem;
+  }
+
+  .featured-card .card-description {
+    font-size: 1.3rem;
+    max-width: 800px;
   }
 }
 
@@ -623,61 +657,21 @@
   }
 }
 
-/* Improved asymmetrical grid layout */
+/* Remove old asymmetrical grid layout */
 @media (min-width: 1200px) {
-  /* Asymmetrical artistic grid layout */
   .exhibitions-grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    grid-auto-rows: minmax(180px, auto);
-    gap: 30px;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 50px;
+    max-width: 1400px;
+    margin: 0 auto;
   }
 
-  /* Make first item wider and larger to showcase the image better */
-  .exhibitions-grid .exhibition-card-wrapper:nth-child(1) {
-    grid-column: span 6;
-    grid-row: span 2;
-    transform: translateY(0);
+  .exhibition-card-wrapper {
+    transform: none !important;
   }
 
-  .exhibitions-grid .exhibition-card-wrapper:nth-child(2) {
-    grid-column: 7 / span 6;
-    grid-row: span 1;
-  }
-
-  .exhibitions-grid .exhibition-card-wrapper:nth-child(3) {
-    grid-column: 7 / span 6;
-    grid-row: span 1;
-    transform: translateY(20px);
-  }
-
-  .exhibitions-grid .exhibition-card-wrapper:nth-child(4) {
-    grid-column: span 8;
-    grid-row: span 1;
-    transform: translateY(-20px);
-  }
-
-  .exhibitions-grid .exhibition-card-wrapper:nth-child(5) {
-    grid-column: 9 / span 4;
-    grid-row: span 2;
-  }
-
-  .exhibitions-grid .exhibition-card-wrapper:nth-child(6) {
-    grid-column: span 8;
-    grid-row: span 1;
-  }
-
-  /* Increase height for better image display on larger screens */
-  .exhibitions-grid
-    .exhibition-card-wrapper:nth-child(1)
-    .card-image-container {
+  .card-image-container {
     height: 450px;
-  }
-
-  .exhibitions-grid
-    .exhibition-card-wrapper:nth-child(5)
-    .card-image-container {
-    height: 380px;
   }
 
   /* Featured Card Improvements */
@@ -689,6 +683,18 @@
   .featured-card .card-image-container {
     height: 600px;
   }
+}
+
+/* Update animation for new grid layout */
+.exhibition-card-wrapper {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.exhibition-card-wrapper.visible {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 /* Additional Animation for Tab Switching */

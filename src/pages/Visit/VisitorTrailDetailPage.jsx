@@ -138,7 +138,7 @@ const trailsData = [
   },
   {
     id: 2,
-    title: "K'HO CHĂN NUÔI",
+    title: "Hơi thở đại ngàn",
     description:
       "Khám phá các công cụ và phương thức chăn nuôi truyền thống của người K'ho.",
     fullDescription:
@@ -161,7 +161,7 @@ const trailsData = [
   },
   {
     id: 3,
-    title: "K'HO LỄ HỘI",
+    title: "Lửa thiêng đêm núi",
     description:
       "Tìm hiểu về các lễ hội truyền thống và nghi thức văn hóa của người K'ho.",
     fullDescription:
@@ -183,7 +183,7 @@ const trailsData = [
   },
   {
     id: 4,
-    title: "K'HO ĐIÊU KHẮC",
+    title: "Hình hài bản sắc",
     description:
       "Chiêm ngưỡng nghệ thuật điêu khắc truyền thống của người K'ho.",
     fullDescription:
@@ -240,7 +240,7 @@ const trailsData = [
   },
   {
     id: 5,
-    title: "K'HO SĂN BẮN & HÁI LƯỢM",
+    title: "Những mùa no ấm",
     description:
       "Khám phá các công cụ săn bắn, hái lượm và canh tác truyền thống.",
     fullDescription:
@@ -296,7 +296,7 @@ const trailsData = [
   },
   {
     id: 6,
-    title: "K'HO SINH HOẠT THƯỜNG NHẬT",
+    title: "Hơi ấm buôn làng",
     description: "Tìm hiểu về đời sống hàng ngày của người K'ho.",
     fullDescription:
       "Tìm hiểu về đời sống hàng ngày của người K'ho qua các vật dụng sinh hoạt như nồi đất, bầu hồ lô.",
@@ -378,6 +378,114 @@ const trailsData = [
       "Tuổi ấu thơ.webp",
       "Ống khói.webp",
     ],
+  },
+  {
+    id: 9,
+    title: "Redpine Art Studio",
+    description: "Không gian lưu trú nghệ thuật giữa rừng thông Đà Lạt.",
+    image: "luutrunghethuat.jpg",
+    duration: "45P",
+    audioGuide: true,
+    accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
+    introduction:
+      "Redpine Art Studio là không gian lưu trú nghệ thuật độc đáo giữa rừng thông, nơi bạn có thể trải nghiệm nghệ thuật và thiên nhiên Đà Lạt.",
+    images: [
+      "thechillhood.jpg",
+      "thechill1.jpg",
+      "thechill2.jpg",
+      "whitebauhinia.jpg",
+      "thememory.jpg",
+      "thesunset.jpg",
+      "thetrain.jpg",
+    ],
+  },
+  {
+    id: 10,
+    title: "Bề mặt ký ức",
+    description: "Bộ sưu tập về ký ức và hoài niệm.",
+    image: "Lửa.webp",
+    duration: "45P",
+    audioGuide: true,
+    accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
+    introduction:
+      "Bộ sưu tập về ký ức và hoài niệm, từ các bức ảnh đến các đồ vật lưu trữ ký ức.",
+    images: [
+      "Bidoup.webp",
+      "bình yên 1 (1).webp",
+      "bình yên 1 (2).webp",
+      "bình yên 2 (1).webp",
+      "bình yên 2 (2).webp",
+      "bình yên 2 (3).webp",
+      "chiếc tổ (1).webp",
+      "chiếc tổ (2).webp",
+      "Đạ Lạch.webp",
+      "dâu tây.webp",
+      "Dung nham.webp",
+      "ga xe lửa (1).webp",
+      "ga xe lửa (2).webp",
+      "ga xe lửa (3).webp",
+      "ga xe lửa (4).webp",
+      "ga xe lửa (5).webp",
+      "ga xe lửa (6).webp",
+      "ký ức.webp",
+      "Langbiang3.webp",
+      "Lửa.webp",
+      "Dung nham.webp",
+      "ống khói (2).webp",
+      "ống khói (3).webp",
+      "ống khói (4).webp",
+      "Rạn 1.webp",
+      "Rạn 2.webp",
+      "Rạn 3.webp",
+      "thác đổ (1).webp",
+      "thác đổ (2).webp",
+      "thác đổ (3).webp",
+      "thác đổ (4).webp",
+      "thác đổ (5).webp",
+      "The Sunrise.webp",
+      "The Sunset 1.webp",
+      "The Sunset 2.webp",
+      "Thông 1-1(1).webp",
+      "Thông 1-1.webp",
+      "Thông 1-2.webp",
+      "Thông 1-3.webp",
+      "Thông 2-1.webp",
+      "Thông 2-2.webp",
+      "Thông 3.webp",
+      "Thông bì 1.webp",
+      "Thông bì 2.webp",
+      "Thông cháy 1.webp",
+      "Thông cháy 2.webp",
+    ],
+  },
+  {
+    id: 11,
+    title: "Thiên nhiên Đà Lạt",
+    description: "Bộ sưu tập về thiên nhiên Đà Lạt.",
+    image: "Gió.webp",
+    duration: "45P",
+    audioGuide: true,
+    accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
+    introduction:
+      "Thiên nhiên Đà Lạt là một trong những điểm đến hấp dẫn nhất trong khu vực, với những dãy núi, thác nước và rừng thông tạo nên một khung cảnh tuyệt vời.",
+    images: [
+      "Sương sớm.webp",
+      "Hoàng hôn Đà Lạt.webp",
+      "Gió.webp",
+      "Bình Minh.webp",
+    ],
+  },
+  {
+    id: 12,
+    title: "Sắc màu Tây nguyên",
+    description: "Bộ sưu tập về sắc màu Tây Nguyên.",
+    image: "Đông.webp",
+    duration: "45P",
+    audioGuide: true,
+    accessibility: "Thứ Hai, Thứ Tư, Thứ Năm, Thứ Sáu, Thứ Bảy và Chủ Nhật",
+    introduction:
+      "Sắc màu Tây Nguyên là một trong những điểm đến hấp dẫn nhất trong khu vực, với những dãy núi, thác nước và rừng thông tạo nên một khung cảnh tuyệt vời.",
+    images: ["Đông.webp", "Xuân.webp", "Thu.webp", "Hạ.webp"],
   },
 ];
 

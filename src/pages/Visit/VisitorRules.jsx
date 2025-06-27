@@ -83,6 +83,24 @@ const VisitorRules = () => {
           </ul>
         </div>
 
+                {/* Children Rules Section */}
+        <div className="section">
+          <h2>QUY ĐỊNH VỀ KHÁCH LƯU TRÚ</h2>
+          <ul>
+            <li>Hoàn tất thủ tục đăng kí trước khi nhận phòng, đọc kĩ các nội dung trong mẫu đăng kí</li>
+            <li>Không đưa thêm người vào phòng vượt số người đã đăng kí</li>
+            <li>Tiếp khách thăm viếng tại gian khánh tiết hoặc các không gian chung khác</li>
+            <li>Tự bảo vệ tài sản cá nhân</li>
+            <li>Không thay đổi xê dịch vị trí hiện vật, trang thiết bị</li>
+            <li>Chịu trách nhiệm bồi thường mua lại hiện vật, trang thiết bị nguyên trạng nếu làm hỏng, vấy bẩn hay gãy vỡ</li>
+            <li>Không nấu ăn giặt ủi trong phòng</li>
+            <li>Bảo Tàng kêu gọi bảo vệ môi trường nên khuyến nghị không sử dụng túi nilon hay bàn chải đánh răng dùng 1 lần, bàn chải dùng nhiều lần có thể được mua tại quầy hỗ trợ</li>
+            <li>Nước là nguồn tài nguyên quý giá của trái đất, để bảo vệ nguồn tài nguyên này, Bảo Tàng sẽ không thay ga, vỏ chăn vỏ gối và các loại khăn của quý khách trong thời gian lưu trú dưới 3 ngày. Các trường hợp có yêu cầu sẽ được tính phụ phí.</li>
+            <li>Bảo Tàng sử dụng hệ thống hỗ trợ online nên khách lưu trú cần add Fb Mes, Zalo, Line hay Viber để được hỗ trợ.</li>
+            <li>Bảo Tàng Thông hướng đến sứ mệnh bảo tồn thông và không khí trong lành nên không cung cấp máy điều hòa, nhưng các căn phòng được thiết kế và lắp đặt các thiết bị đặc biệt để đảm bảo nhiệt độ phòng luôn ở mức 22-25 độ. Quý khách lưu ý không được hút thuốc trong phòng.</li>
+          </ul>
+        </div>
+
         {/* Dress Code Section */}
         <div className="section">
           <h2>TRANG PHỤC</h2>

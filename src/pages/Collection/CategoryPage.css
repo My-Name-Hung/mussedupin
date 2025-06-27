@@ -202,7 +202,7 @@
 }
 
 /* Hero Section with Enhanced Design */
-.category-hero {
+.category-hero-collecttion {
   position: relative;
   height: 85vh;
   min-height: 600px;
@@ -217,12 +217,12 @@
   z-index: 1;
 }
 
-.category-hero.loaded {
+.category-hero-collecttion.loaded {
   opacity: 1;
   transform: translateY(0);
 }
 
-.category-hero-slides-container {
+.category-hero-collecttion-slides-container {
   position: absolute;
   width: 100%;
   height: 100%;
@@ -230,7 +230,7 @@
   left: 0;
 }
 
-.category-hero-slide {
+.category-hero-collecttion-slide {
   position: absolute;
   top: 0;
   left: 0;
@@ -241,12 +241,12 @@
   transform: scale(1.2);
 }
 
-.category-hero-slide.active {
+.category-hero-collecttion-slide.active {
   opacity: 1;
   transform: scale(1);
 }
 
-.category-hero-img {
+.category-hero-collecttion-img {
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -255,11 +255,11 @@
   transition: transform 1.5s ease;
 }
 
-.category-hero.image-loaded .category-hero-img {
+.category-hero-collecttion.image-loaded .category-hero-collecttion-img {
   transform: scale(1);
 }
 
-.category-hero-overlay {
+.category-hero-collecttion-overlay {
   position: absolute;
   top: 0;
   left: 0;
@@ -273,7 +273,7 @@
   z-index: 2;
 }
 
-.category-hero-content {
+.category-hero-collecttion-content {
   position: absolute;
   top: 50%;
   left: 10%;
@@ -318,7 +318,7 @@
   margin-right: 8px;
 }
 
-.category-hero-title {
+.category-hero-collecttion-title {
   font-family: var(--font-primary);
   font-size: 3.5rem;
   font-weight: 600;
@@ -335,7 +335,7 @@
   hyphens: auto;
 }
 
-.category-hero-description {
+.category-hero-collecttion-description {
   font-family: var(--font-secondary);
   font-size: 1.4rem;
   color: #f0f0f0;
@@ -348,7 +348,7 @@
 }
 
 /* Custom scroll indicator in hero section */
-.category-hero-scroll-indicator {
+.category-hero-collecttion-scroll-indicator {
   position: absolute;
   bottom: 40px;
   left: 50%;
@@ -367,7 +367,7 @@
   text-transform: uppercase;
 }
 
-.category-hero-scroll-mouse {
+.category-hero-collecttion-scroll-mouse {
   width: 30px;
   height: 50px;
   border: 2px solid rgba(255, 255, 255, 0.8);
@@ -376,7 +376,7 @@
   position: relative;
 }
 
-.category-hero-scroll-wheel {
+.category-hero-collecttion-scroll-wheel {
   position: absolute;
   width: 6px;
   height: 6px;
@@ -430,6 +430,7 @@
   max-width: 1800px;
   margin: 0 auto;
   padding: 0 3.5rem;
+  padding-top: 2rem;
 }
 
 .category-artworks-header {
@@ -1114,18 +1115,18 @@
 }
 
 @media (max-width: 992px) {
-  .category-hero {
+  .category-hero-collecttion {
     height: 70vh;
     min-height: 400px;
   }
 
-  .category-hero-title {
+  .category-hero-collecttion-title {
     font-size: 3rem;
     line-height: 1.3;
     max-width: 95%;
   }
 
-  .category-hero-description {
+  .category-hero-collecttion-description {
     font-size: 1.2rem;
     max-width: 80%;
   }
@@ -1472,17 +1473,17 @@
 }
 
 @media (max-width: 576px) {
-  .category-hero {
+  .category-hero-collecttion {
     height: 55vh;
     min-height: 300px;
   }
 
-  .category-hero-title {
+  .category-hero-collecttion-title {
     font-size: 2.8rem;
     line-height: 1.4;
   }
 
-  .category-hero-description {
+  .category-hero-collecttion-description {
     font-size: 1rem;
   }
 
@@ -1565,11 +1566,11 @@
   }
 
   /* Enhanced mobile scroll indicator */
-  .category-hero-scroll-indicator {
+  .category-hero-collecttion-scroll-indicator {
     bottom: 30px;
   }
 
-  .category-hero-scroll-mouse {
+  .category-hero-collecttion-scroll-mouse {
     width: 24px;
     height: 40px;
   }
@@ -1600,19 +1601,19 @@
 }
 
 @media (max-width: 420px) {
-  .category-hero {
+  .category-hero-collecttion {
     height: 50vh;
     min-height: 280px;
     /* Even steeper angle for very small screens */
     clip-path: polygon(0 0, 100% 0, 100% 96%, 0 100%);
   }
 
-  .category-hero-title {
+  .category-hero-collecttion-title {
     font-size: 2.3rem;
     text-shadow: 0 3px 15px rgba(0, 0, 0, 0.8);
   }
 
-  .category-hero-description {
+  .category-hero-collecttion-description {
     font-size: 0.95rem;
     line-height: 1.6;
   }
@@ -1650,12 +1651,12 @@
   }
 
   /* More elegant hero mobile experience */
-  .category-hero-title {
+  .category-hero-collecttion-title {
     font-size: 2.3rem;
     text-shadow: 0 3px 15px rgba(0, 0, 0, 0.8);
   }
 
-  .category-hero-description {
+  .category-hero-collecttion-description {
     font-size: 0.95rem;
     line-height: 1.6;
   }
@@ -1677,19 +1678,19 @@
 }
 
 /* Thêm style cho title dài */
-.category-hero-title.long-title {
+.category-hero-collecttion-title.long-title {
   font-size: 2.8rem;
   line-height: 1.3;
 }
 
 @media (max-width: 768px) {
-  .category-hero-title.long-title {
+  .category-hero-collecttion-title.long-title {
     font-size: 2.2rem;
   }
 }
 
 @media (max-width: 576px) {
-  .category-hero-title.long-title {
+  .category-hero-collecttion-title.long-title {
     font-size: 1.8rem;
   }
 }

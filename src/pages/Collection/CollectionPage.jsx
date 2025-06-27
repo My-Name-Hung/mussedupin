@@ -991,11 +991,11 @@ const CollectionPage = () => {
               </svg>
             </button>
 
-            <div className="cp-discover-counter">
+            {/* <div className="cp-discover-counter">
               <span className="current">{currentSlide}</span>
               <span className="separator">/</span>
               <span className="total">{collectionData.artworks.length}</span>
-            </div>
+            </div> */}
 
             <div
               className={`cp-discover-works cp-wavy-gallery ${

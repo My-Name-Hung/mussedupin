@@ -251,20 +251,20 @@ const MuseumMapPage = () => {
   const renderFromCentral = () => (
     <div className="map-content-section">
       <div className="map-central-info">
-        <h3 className="map-section-title">"ĐẾN CHỢ ĐÀ LẠT & HỒ XUÂN HƯƠNG"</h3>
+        <h3 className="map-section-title">ĐẾN CHỢ ĐÀ LẠT & HỒ XUÂN HƯƠNG</h3>
         <div className="map-distances">
-          <p>"Khoảng cách đến Chợ Đêm Đà Lạt: 1.2km"</p>
-          <p>"Khoảng cách đến Hồ Xuân Hương: 900m"</p>
+          <p>Khoảng cách đến Chợ Đêm Đà Lạt: 1.2km</p>
+          <p>Khoảng cách đến Hồ Xuân Hương: 900m</p>
         </div>
         <div className="map-directions">
-          <h4>"Chỉ đường:"</h4>
+          <h4>Chỉ đường:</h4>
           <p>
-            "Đi theo đường Hà Huy Tập đến đường Trần Phú để đến cả Chợ Đà Lạt và
-            Hồ Xuân Hương."
+            Đi theo đường Hà Huy Tập đến đường Trần Phú để đến cả Chợ Đà Lạt và
+            Hồ Xuân Hương.
           </p>
           <p className="map-direction-note">
-            "Quan trọng: CHỈ sử dụng tuyến đường Hà Huy Tập để tiếp cận tốt
-            nhất."
+            Quan trọng: CHỈ sử dụng tuyến đường Hà Huy Tập để tiếp cận tốt
+            nhất.
           </p>
         </div>
       </div>
@@ -274,11 +274,11 @@ const MuseumMapPage = () => {
   const renderMuseumMap = () => (
     <div className="map-content-section">
       <div className="map-section">
-        <h3 className="map-section-title">"Bản đồ bảo tàng"</h3>
+        <h3 className="map-section-title">Bản đồ bảo tàng</h3>
         <div className="map-placeholder large">
           <MapIcon />
-          <p>"Sơ đồ tầng bảo tàng tương tác sẽ được hiển thị tại đây"</p>
-          <button className="map-download-btn">"Tải bản đồ PDF"</button>
+          <p>Sơ đồ tầng bảo tàng tương tác sẽ được hiển thị tại đây</p>
+          <button className="map-download-btn">Tải bản đồ PDF</button>
         </div>
       </div>
     </div>

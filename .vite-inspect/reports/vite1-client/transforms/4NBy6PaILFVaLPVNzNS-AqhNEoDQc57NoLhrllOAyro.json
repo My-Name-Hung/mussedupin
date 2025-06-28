@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/lucide-react/dist/esm/icons/dribbble.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"circle\", { cx: \"12\", cy: \"12\", r: \"10\", key: \"1mglay\" }],\n  [\"path\", { d: \"M19.13 5.09C15.22 9.14 10 10.44 2.25 10.94\", key: \"hpej1\" }],\n  [\"path\", { d: \"M21.75 12.84c-6.62-1.41-12.14 1-16.38 6.32\", key: \"1tr44o\" }],\n  [\"path\", { d: \"M8.56 2.75c4.37 6 6 9.42 8 17.72\", key: \"kbh691\" }]\n];\nconst Dribbble = createLucideIcon(\"dribbble\", __iconNode);\n\nexport { __iconNode, Dribbble as default };\n//# sourceMappingURL=dribbble.js.map\n",
+      "start": 1751092529737,
+      "end": 1751092529838,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1751092529838,
+      "end": 1751092529838,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1751092529839,
+      "end": 1751092529839,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1751092529839,
+      "end": 1751092529839,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1751092529839,
+      "end": 1751092529839,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1751092529839,
+      "end": 1751092529839,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1751092529839,
+      "end": 1751092529839,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1751092529839,
+      "end": 1751092529839,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1751092529839,
+      "end": 1751092529839,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1751092529839,
+      "end": 1751092529839,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1751092529839,
+      "end": 1751092529839,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1751092529839,
+      "end": 1751092529839,
+      "order": "normal"
+    }
+  ]
+}

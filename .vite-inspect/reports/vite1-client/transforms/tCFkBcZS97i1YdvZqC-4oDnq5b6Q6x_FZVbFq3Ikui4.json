@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"circle\", { cx: \"12\", cy: \"12\", r: \"10\", key: \"1mglay\" }],\n  [\"path\", { d: \"m4.9 4.9 14.2 14.2\", key: \"1m5liu\" }]\n];\nconst Ban = createLucideIcon(\"ban\", __iconNode);\n\nexport { __iconNode, Ban as default };\n//# sourceMappingURL=ban.js.map\n",
-      "start": 1750747186756,
-      "end": 1750747186843,
+      "start": 1751092526822,
+      "end": 1751092526936,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750747186843,
-      "end": 1750747186843,
+      "start": 1751092526936,
+      "end": 1751092526936,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1750747186843,
-      "end": 1750747186843,
+      "start": 1751092526936,
+      "end": 1751092526936,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1750747186843,
-      "end": 1750747186843,
+      "start": 1751092526936,
+      "end": 1751092526936,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750747186843,
-      "end": 1750747186843,
+      "start": 1751092526936,
+      "end": 1751092526936,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750747186843,
-      "end": 1750747186843,
+      "start": 1751092526936,
+      "end": 1751092526936,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750747186843,
-      "end": 1750747186843,
+      "start": 1751092526936,
+      "end": 1751092526936,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750747186843,
-      "end": 1750747186843,
+      "start": 1751092526936,
+      "end": 1751092526936,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750747186843,
-      "end": 1750747186843,
+      "start": 1751092526936,
+      "end": 1751092526936,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750747186843,
-      "end": 1750747186843,
+      "start": 1751092526936,
+      "end": 1751092526936,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750747186843,
-      "end": 1750747186843,
+      "start": 1751092526936,
+      "end": 1751092526936,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750747186843,
-      "end": 1750747186843,
+      "start": 1751092526936,
+      "end": 1751092526936,
       "order": "normal"
     }
   ]

@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "var __assign = (this && this.__assign) || function () {\n    __assign = Object.assign || function(t) {\n        for (var s, i = 1, n = arguments.length; i < n; i++) {\n            s = arguments[i];\n            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))\n                t[p] = s[p];\n        }\n        return t;\n    };\n    return __assign.apply(this, arguments);\n};\nvar __rest = (this && this.__rest) || function (s, e) {\n    var t = {};\n    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)\n        t[p] = s[p];\n    if (s != null && typeof Object.getOwnPropertySymbols === \"function\")\n        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))\n                t[p[i]] = s[p[i]];\n        }\n    return t;\n};\nimport { jsx as _jsx } from \"react/jsx-runtime\";\nimport { getYear, getMonth, getDaysInMonth, getDayStart } from '@wojtekmaj/date-utils';\nimport TileGroup from '../TileGroup.js';\nimport Day from './Day.js';\nimport { getDayOfWeek } from '../shared/dates.js';\nexport default function Days(props) {\n    var activeStartDate = props.activeStartDate, calendarType = props.calendarType, hover = props.hover, showFixedNumberOfWeeks = props.showFixedNumberOfWeeks, showNeighboringMonth = props.showNeighboringMonth, value = props.value, valueType = props.valueType, otherProps = __rest(props, [\"activeStartDate\", \"calendarType\", \"hover\", \"showFixedNumberOfWeeks\", \"showNeighboringMonth\", \"value\", \"valueType\"]);\n    var year = getYear(activeStartDate);\n    var monthIndex = getMonth(activeStartDate);\n    var hasFixedNumberOfWeeks = showFixedNumberOfWeeks || showNeighboringMonth;\n    var dayOfWeek = getDayOfWeek(activeStartDate, calendarType);\n    var offset = hasFixedNumberOfWeeks ? 0 : dayOfWeek;\n    /**\n     * Defines on which day of the month the grid shall start. If we simply show current\n     * month, we obviously start on day one, but if showNeighboringMonth is set to\n     * true, we need to find the beginning of the week the first day of the month is in.\n     */\n    var start = (hasFixedNumberOfWeeks ? -dayOfWeek : 0) + 1;\n    /**\n     * Defines on which day of the month the grid shall end. If we simply show current\n     * month, we need to stop on the last day of the month, but if showNeighboringMonth\n     * is set to true, we need to find the end of the week the last day of the month is in.\n     */\n    var end = (function () {\n        if (showFixedNumberOfWeeks) {\n            // Always show 6 weeks\n            return start + 6 * 7 - 1;\n        }\n        var daysInMonth = getDaysInMonth(activeStartDate);\n        if (showNeighboringMonth) {\n            var activeEndDate = new Date();\n            activeEndDate.setFullYear(year, monthIndex, daysInMonth);\n            activeEndDate.setHours(0, 0, 0, 0);\n            var daysUntilEndOfTheWeek = 7 - getDayOfWeek(activeEndDate, calendarType) - 1;\n            return daysInMonth + daysUntilEndOfTheWeek;\n        }\n        return daysInMonth;\n    })();\n    return (_jsx(TileGroup, { className: \"react-calendar__month-view__days\", count: 7, dateTransform: function (day) {\n            var date = new Date();\n            date.setFullYear(year, monthIndex, day);\n            return getDayStart(date);\n        }, dateType: \"day\", hover: hover, end: end, renderTile: function (_a) {\n            var date = _a.date, otherTileProps = __rest(_a, [\"date\"]);\n            return (_jsx(Day, __assign({}, otherProps, otherTileProps, { activeStartDate: activeStartDate, calendarType: calendarType, currentMonthIndex: monthIndex, date: date }), date.getTime()));\n        }, offset: offset, start: start, value: value, valueType: valueType }));\n}\n",
-      "start": 1750747177621,
-      "end": 1750747177819,
+      "start": 1751092510144,
+      "end": 1751092511061,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750747177819,
-      "end": 1750747177819,
+      "start": 1751092511061,
+      "end": 1751092511061,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1750747177819,
-      "end": 1750747177819,
+      "start": 1751092511061,
+      "end": 1751092511061,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1750747177819,
-      "end": 1750747177819,
+      "start": 1751092511061,
+      "end": 1751092511061,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750747177819,
-      "end": 1750747177819,
+      "start": 1751092511061,
+      "end": 1751092511061,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750747177819,
-      "end": 1750747177819,
+      "start": 1751092511061,
+      "end": 1751092511061,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750747177819,
-      "end": 1750747177819,
+      "start": 1751092511061,
+      "end": 1751092511061,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750747177819,
-      "end": 1750747177819,
+      "start": 1751092511061,
+      "end": 1751092511061,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750747177820,
-      "end": 1750747177820,
+      "start": 1751092511062,
+      "end": 1751092511062,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750747177820,
-      "end": 1750747177820,
+      "start": 1751092511062,
+      "end": 1751092511062,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750747177820,
-      "end": 1750747177820,
+      "start": 1751092511062,
+      "end": 1751092511062,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750747177820,
-      "end": 1750747177820,
+      "start": 1751092511062,
+      "end": 1751092511062,
       "order": "normal"
     }
   ]

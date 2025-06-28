@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useState } from \"react\";\nimport { IoIosArrowDown, IoIosArrowUp } from \"react-icons/io\";\nimport \"./CartFooter.css\";\n\nconst CartFooter = ({\n  selectedDate,\n  selectedTime,\n  totalAmount,\n  tickets,\n  onNextStep,\n  currentStep,\n}) => {\n  const [showCart, setShowCart] = useState(false);\n\n  const toggleCart = () => {\n    setShowCart(!showCart);\n  };\n\n  const formatDate = (date) => {\n    if (!date) return \"\";\n    return new Date(date).toLocaleDateString(\"vi-VN\", {\n      weekday: \"long\",\n      year: \"numeric\",\n      month: \"numeric\",\n      day: \"numeric\",\n    });\n  };\n\n  return (\n    <>\n      <div className=\"cart-footer\">\n        <div className=\"cart-footer-content\">\n          <div className=\"cart-footer-left\">\n            <div className=\"selected-datetime\">\n              {selectedDate && (\n                <span className=\"date\">\n                  {formatDate(selectedDate)}\n                  {selectedTime && ` lúc ${selectedTime}`}\n                </span>\n              )}\n            </div>\n            <div className=\"total-amounts\">\n              <span>Tổng cộng:</span>\n              <span className=\"amount\">{totalAmount?.toLocaleString()}đ</span>\n            </div>\n          </div>\n\n          <button className=\"toggle-cart\" onClick={toggleCart}>\n            {showCart ? <IoIosArrowDown /> : <IoIosArrowUp />}\n          </button>\n\n          <div className=\"cart-footer-right\">\n            <button className=\"next-step\" onClick={onNextStep}>\n              {currentStep === 4 ? \"Hoàn tất\" : \"Kế tiếp\"}\n            </button>\n          </div>\n        </div>\n      </div>\n\n      {showCart && (\n        <div className=\"cart-modal\">\n          <div className=\"cart-modal-content\">\n            <h3>Giỏ hàng của bạn</h3>\n            {tickets.map((ticket, index) => (\n              <div key={index} className=\"cart-item\">\n                <h4>{ticket.title}</h4>\n                <p className=\"quantity\">Số lượng: {ticket.quantity}</p>\n                <p className=\"visitors\">\n                  {ticket.visitors.map((v) => v.name).join(\", \")}\n                </p>\n                <p className=\"datetime\">\n                  {formatDate(selectedDate)} {selectedTime}\n                </p>\n                <p className=\"price\">\n                  {(ticket.price * ticket.quantity).toLocaleString()}đ\n                </p>\n              </div>\n            ))}\n            <div className=\"cart-total\">\n              <span>Tổng cộng:</span>\n              <span>{totalAmount?.toLocaleString()}đ</span>\n            </div>\n          </div>\n        </div>\n      )}\n    </>\n  );\n};\n\nexport default CartFooter;\n",
-      "start": 1750747174758,
-      "end": 1750747175809,
+      "start": 1751092507773,
+      "end": 1751092508003,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750747175809,
-      "end": 1750747175809,
+      "start": 1751092508003,
+      "end": 1751092508003,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { Fragment, jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useState } from \"react\";\nimport { IoIosArrowDown, IoIosArrowUp } from \"react-icons/io\";\nimport \"./CartFooter.css\";\nconst CartFooter = ({\n  selectedDate,\n  selectedTime,\n  totalAmount,\n  tickets,\n  onNextStep,\n  currentStep\n}) => {\n  const [showCart, setShowCart] = useState(false);\n  const toggleCart = () => {\n    setShowCart(!showCart);\n  };\n  const formatDate = (date) => {\n    if (!date) return \"\";\n    return new Date(date).toLocaleDateString(\"vi-VN\", {\n      weekday: \"long\",\n      year: \"numeric\",\n      month: \"numeric\",\n      day: \"numeric\"\n    });\n  };\n  return /* @__PURE__ */ jsxs(Fragment, { children: [\n    /* @__PURE__ */ jsx(\"div\", { className: \"cart-footer\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"cart-footer-content\", children: [\n      /* @__PURE__ */ jsxs(\"div\", { className: \"cart-footer-left\", children: [\n        /* @__PURE__ */ jsx(\"div\", { className: \"selected-datetime\", children: selectedDate && /* @__PURE__ */ jsxs(\"span\", { className: \"date\", children: [\n          formatDate(selectedDate),\n          selectedTime && ` lúc ${selectedTime}`\n        ] }) }),\n        /* @__PURE__ */ jsxs(\"div\", { className: \"total-amounts\", children: [\n          /* @__PURE__ */ jsx(\"span\", { children: \"Tổng cộng:\" }),\n          /* @__PURE__ */ jsxs(\"span\", { className: \"amount\", children: [\n            totalAmount?.toLocaleString(),\n            \"đ\"\n          ] })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsx(\"button\", { className: \"toggle-cart\", onClick: toggleCart, children: showCart ? /* @__PURE__ */ jsx(IoIosArrowDown, {}) : /* @__PURE__ */ jsx(IoIosArrowUp, {}) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"cart-footer-right\", children: /* @__PURE__ */ jsx(\"button\", { className: \"next-step\", onClick: onNextStep, children: currentStep === 4 ? \"Hoàn tất\" : \"Kế tiếp\" }) })\n    ] }) }),\n    showCart && /* @__PURE__ */ jsx(\"div\", { className: \"cart-modal\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"cart-modal-content\", children: [\n      /* @__PURE__ */ jsx(\"h3\", { children: \"Giỏ hàng của bạn\" }),\n      tickets.map((ticket, index) => /* @__PURE__ */ jsxs(\"div\", { className: \"cart-item\", children: [\n        /* @__PURE__ */ jsx(\"h4\", { children: ticket.title }),\n        /* @__PURE__ */ jsxs(\"p\", { className: \"quantity\", children: [\n          \"Số lượng: \",\n          ticket.quantity\n        ] }),\n        /* @__PURE__ */ jsx(\"p\", { className: \"visitors\", children: ticket.visitors.map((v) => v.name).join(\", \") }),\n        /* @__PURE__ */ jsxs(\"p\", { className: \"datetime\", children: [\n          formatDate(selectedDate),\n          \" \",\n          selectedTime\n        ] }),\n        /* @__PURE__ */ jsxs(\"p\", { className: \"price\", children: [\n          (ticket.price * ticket.quantity).toLocaleString(),\n          \"đ\"\n        ] })\n      ] }, index)),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"cart-total\", children: [\n        /* @__PURE__ */ jsx(\"span\", { children: \"Tổng cộng:\" }),\n        /* @__PURE__ */ jsxs(\"span\", { children: [\n          totalAmount?.toLocaleString(),\n          \"đ\"\n        ] })\n      ] })\n    ] }) })\n  ] });\n};\nexport default CartFooter;\n",
-      "start": 1750747175809,
-      "end": 1750747175927,
+      "start": 1751092508003,
+      "end": 1751092508871,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1750747175927,
-      "end": 1750747175927,
+      "start": 1751092508871,
+      "end": 1751092508871,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750747175927,
-      "end": 1750747175927,
+      "start": 1751092508871,
+      "end": 1751092508871,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750747175927,
-      "end": 1750747175927,
+      "start": 1751092508871,
+      "end": 1751092508871,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750747175927,
-      "end": 1750747175927,
+      "start": 1751092508871,
+      "end": 1751092508871,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750747175927,
-      "end": 1750747175927,
+      "start": 1751092508871,
+      "end": 1751092508871,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750747175927,
-      "end": 1750747175927,
+      "start": 1751092508871,
+      "end": 1751092508871,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750747175927,
-      "end": 1750747175927,
+      "start": 1751092508871,
+      "end": 1751092508871,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750747175927,
-      "end": 1750747175927,
+      "start": 1751092508871,
+      "end": 1751092508872,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750747175928,
-      "end": 1750747175928,
+      "start": 1751092508872,
+      "end": 1751092508872,
       "order": "normal"
     }
   ]

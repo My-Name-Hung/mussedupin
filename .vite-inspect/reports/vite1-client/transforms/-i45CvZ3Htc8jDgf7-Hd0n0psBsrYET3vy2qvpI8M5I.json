@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { jsx } from 'react/jsx-runtime';\nimport { invariant } from 'motion-utils';\nimport * as React from 'react';\nimport { useConstant } from '../utils/use-constant.mjs';\nimport { LayoutGroup } from './LayoutGroup/index.mjs';\n\nlet id = 0;\nconst AnimateSharedLayout = ({ children }) => {\n    React.useEffect(() => {\n        invariant(false, \"AnimateSharedLayout is deprecated: https://www.framer.com/docs/guide-upgrade/##shared-layout-animations\");\n    }, []);\n    return (jsx(LayoutGroup, { id: useConstant(() => `asl-${id++}`), children: children }));\n};\n\nexport { AnimateSharedLayout };\n",
-      "start": 1751092523028,
-      "end": 1751092523291,
+      "start": 1751093182909,
+      "end": 1751093183030,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092523291,
-      "end": 1751092523291,
+      "start": 1751093183030,
+      "end": 1751093183030,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751092523291,
-      "end": 1751092523291,
+      "start": 1751093183031,
+      "end": 1751093183031,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751092523291,
-      "end": 1751092523291,
+      "start": 1751093183031,
+      "end": 1751093183031,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092523291,
-      "end": 1751092523291,
+      "start": 1751093183031,
+      "end": 1751093183031,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092523291,
-      "end": 1751092523291,
+      "start": 1751093183031,
+      "end": 1751093183031,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092523291,
-      "end": 1751092523291,
+      "start": 1751093183031,
+      "end": 1751093183031,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092523291,
-      "end": 1751092523291,
+      "start": 1751093183031,
+      "end": 1751093183031,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092523291,
-      "end": 1751092523291,
+      "start": 1751093183031,
+      "end": 1751093183031,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092523291,
-      "end": 1751092523291,
+      "start": 1751093183031,
+      "end": 1751093183031,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092523291,
-      "end": 1751092523291,
+      "start": 1751093183031,
+      "end": 1751093183031,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092523291,
-      "end": 1751092523291,
+      "start": 1751093183031,
+      "end": 1751093183031,
       "order": "normal"
     }
   ]

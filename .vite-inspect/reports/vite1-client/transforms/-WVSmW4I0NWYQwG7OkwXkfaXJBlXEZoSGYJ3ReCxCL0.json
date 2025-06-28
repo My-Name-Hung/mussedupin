@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { useState, useEffect } from 'react';\nimport { inView } from '../render/dom/viewport/index.mjs';\n\nfunction useInView(ref, { root, margin, amount, once = false, initial = false, } = {}) {\n    const [isInView, setInView] = useState(initial);\n    useEffect(() => {\n        if (!ref.current || (once && isInView))\n            return;\n        const onEnter = () => {\n            setInView(true);\n            return once ? undefined : () => setInView(false);\n        };\n        const options = {\n            root: (root && root.current) || undefined,\n            margin,\n            amount,\n        };\n        return inView(ref.current, onEnter, options);\n    }, [root, ref, margin, once, amount]);\n    return isInView;\n}\n\nexport { useInView };\n",
-      "start": 1751092522812,
-      "end": 1751092523286,
+      "start": 1751093182903,
+      "end": 1751093183020,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092523286,
-      "end": 1751092523286,
+      "start": 1751093183020,
+      "end": 1751093183020,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751092523286,
-      "end": 1751092523286,
+      "start": 1751093183020,
+      "end": 1751093183020,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751092523286,
-      "end": 1751092523286,
+      "start": 1751093183020,
+      "end": 1751093183020,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092523286,
-      "end": 1751092523286,
+      "start": 1751093183020,
+      "end": 1751093183020,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092523286,
-      "end": 1751092523286,
+      "start": 1751093183020,
+      "end": 1751093183020,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092523286,
-      "end": 1751092523286,
+      "start": 1751093183020,
+      "end": 1751093183020,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092523286,
-      "end": 1751092523286,
+      "start": 1751093183020,
+      "end": 1751093183020,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092523286,
-      "end": 1751092523286,
+      "start": 1751093183020,
+      "end": 1751093183020,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092523286,
-      "end": 1751092523286,
+      "start": 1751093183021,
+      "end": 1751093183021,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092523286,
-      "end": 1751092523286,
+      "start": 1751093183021,
+      "end": 1751093183021,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092523286,
-      "end": 1751092523286,
+      "start": 1751093183021,
+      "end": 1751093183021,
       "order": "normal"
     }
   ]

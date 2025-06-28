@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "var __assign = (this && this.__assign) || function () {\n    __assign = Object.assign || function(t) {\n        for (var s, i = 1, n = arguments.length; i < n; i++) {\n            s = arguments[i];\n            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))\n                t[p] = s[p];\n        }\n        return t;\n    };\n    return __assign.apply(this, arguments);\n};\nimport { jsx as _jsx } from \"react/jsx-runtime\";\nimport Years from './DecadeView/Years.js';\n/**\n * Displays a given decade.\n */\nexport default function DecadeView(props) {\n    function renderYears() {\n        return _jsx(Years, __assign({}, props));\n    }\n    return _jsx(\"div\", { className: \"react-calendar__decade-view\", children: renderYears() });\n}\n",
-      "start": 1751092509963,
-      "end": 1751092510087,
+      "start": 1751093177402,
+      "end": 1751093177422,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092510087,
-      "end": 1751092510087,
+      "start": 1751093177422,
+      "end": 1751093177422,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751092510087,
-      "end": 1751092510087,
+      "start": 1751093177422,
+      "end": 1751093177422,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751092510087,
-      "end": 1751092510087,
+      "start": 1751093177422,
+      "end": 1751093177422,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092510087,
-      "end": 1751092510087,
+      "start": 1751093177422,
+      "end": 1751093177422,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092510087,
-      "end": 1751092510087,
+      "start": 1751093177422,
+      "end": 1751093177422,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092510087,
-      "end": 1751092510087,
+      "start": 1751093177422,
+      "end": 1751093177422,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092510087,
-      "end": 1751092510087,
+      "start": 1751093177422,
+      "end": 1751093177422,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092510088,
-      "end": 1751092510088,
+      "start": 1751093177423,
+      "end": 1751093177423,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092510088,
-      "end": 1751092510088,
+      "start": 1751093177423,
+      "end": 1751093177423,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092510088,
-      "end": 1751092510088,
+      "start": 1751093177423,
+      "end": 1751093177423,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092510088,
-      "end": 1751092510088,
+      "start": 1751093177423,
+      "end": 1751093177423,
       "order": "normal"
     }
   ]

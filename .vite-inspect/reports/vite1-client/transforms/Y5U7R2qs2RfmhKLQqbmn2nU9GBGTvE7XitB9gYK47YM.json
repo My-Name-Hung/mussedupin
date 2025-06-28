@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import { useEffect, useState } from \"react\";\nimport \"./Hero.css\";\n\nconst images = [\n  \"https://ik.imagekit.io/8u8lkoqkkm/KhongLuuTru.jpg?updatedAt=1749267196332\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/Luutru.jpg?updatedAt=1749267196093\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/Chuongtrinhdinhky.jpg?updatedAt=1749267196289\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/fe26e39c6384d7da8e95.jpg?updatedAt=1749083704253\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/Honnui_Doc.jpg?updatedAt=1749269171601\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/image.png?updatedAt=1749008666857\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/Dangsuong_Doc.jpg?updatedAt=1749269171830\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/loirung_doc.png?updatedAt=1749269173624\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/DemThong_Trong.jpg?updatedAt=1749312390412\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/bongcay-doc.png?updatedAt=1750002737327\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/Tourdemhuyenthoai_Trong.jpg?updatedAt=1749312109881\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/Giaidieudaingan_Trong.jpg?updatedAt=1749311873117\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/6899dd753542811cd853.jpg?updatedAt=1749175097859\",\n];\n\nconst Hero = () => {\n  const [backgroundImage, setBackgroundImage] = useState(\"\");\n\n  useEffect(() => {\n    // Select a random image on component mount\n    const randomIndex = Math.floor(Math.random() * images.length);\n    setBackgroundImage(images[randomIndex]);\n  }, []);\n\n  return (\n    <section className=\"hero-container-home\">\n      <div\n        className=\"hero-background\"\n        style={{ backgroundImage: `url(${backgroundImage})` }}\n      >\n        <div className=\"hero-content\">\n          <h1 className=\"hero-titles\">\n            TRANG ĐẶT VÉ CHÍNH THỨC <br />\n            <p className=\"hero-titles-sub notranslate\">Musée Du Pin</p>\n          </h1>\n          <button className=\"book-ticket-button\">\n            <a href=\"/checkout/package\">Đặt vé</a>\n          </button>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default Hero;\n",
-      "start": 1751092507595,
-      "end": 1751092507939,
+      "start": 1751093175514,
+      "end": 1751093175816,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092507939,
-      "end": 1751092507939,
+      "start": 1751093175816,
+      "end": 1751093175816,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport { useEffect, useState } from \"react\";\nimport \"./Hero.css\";\nconst images = [\n  \"https://ik.imagekit.io/8u8lkoqkkm/KhongLuuTru.jpg?updatedAt=1749267196332\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/Luutru.jpg?updatedAt=1749267196093\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/Chuongtrinhdinhky.jpg?updatedAt=1749267196289\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/fe26e39c6384d7da8e95.jpg?updatedAt=1749083704253\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/Honnui_Doc.jpg?updatedAt=1749269171601\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/image.png?updatedAt=1749008666857\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/Dangsuong_Doc.jpg?updatedAt=1749269171830\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/loirung_doc.png?updatedAt=1749269173624\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/DemThong_Trong.jpg?updatedAt=1749312390412\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/bongcay-doc.png?updatedAt=1750002737327\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/Tourdemhuyenthoai_Trong.jpg?updatedAt=1749312109881\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/Giaidieudaingan_Trong.jpg?updatedAt=1749311873117\",\n  \"https://ik.imagekit.io/8u8lkoqkkm/6899dd753542811cd853.jpg?updatedAt=1749175097859\"\n];\nconst Hero = () => {\n  const [backgroundImage, setBackgroundImage] = useState(\"\");\n  useEffect(() => {\n    const randomIndex = Math.floor(Math.random() * images.length);\n    setBackgroundImage(images[randomIndex]);\n  }, []);\n  return /* @__PURE__ */ jsx(\"section\", { className: \"hero-container-home\", children: /* @__PURE__ */ jsx(\n    \"div\",\n    {\n      className: \"hero-background\",\n      style: { backgroundImage: `url(${backgroundImage})` },\n      children: /* @__PURE__ */ jsxs(\"div\", { className: \"hero-content\", children: [\n        /* @__PURE__ */ jsxs(\"h1\", { className: \"hero-titles\", children: [\n          \"TRANG ĐẶT VÉ CHÍNH THỨC \",\n          /* @__PURE__ */ jsx(\"br\", {}),\n          /* @__PURE__ */ jsx(\"p\", { className: \"hero-titles-sub notranslate\", children: \"Musée Du Pin\" })\n        ] }),\n        /* @__PURE__ */ jsx(\"button\", { className: \"book-ticket-button\", children: /* @__PURE__ */ jsx(\"a\", { href: \"/checkout/package\", children: \"Đặt vé\" }) })\n      ] })\n    }\n  ) });\n};\nexport default Hero;\n",
-      "start": 1751092507939,
-      "end": 1751092507971,
+      "start": 1751093175816,
+      "end": 1751093175888,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751092507971,
-      "end": 1751092507971,
+      "start": 1751093175888,
+      "end": 1751093175888,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092507971,
-      "end": 1751092507971,
+      "start": 1751093175888,
+      "end": 1751093175888,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092507971,
-      "end": 1751092507971,
+      "start": 1751093175888,
+      "end": 1751093175888,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092507971,
-      "end": 1751092507971,
+      "start": 1751093175897,
+      "end": 1751093175897,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092507972,
-      "end": 1751092507972,
+      "start": 1751093175897,
+      "end": 1751093175897,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092507974,
-      "end": 1751092507974,
+      "start": 1751093175897,
+      "end": 1751093175897,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092507974,
-      "end": 1751092507974,
+      "start": 1751093175897,
+      "end": 1751093175897,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092507974,
-      "end": 1751092507974,
+      "start": 1751093175897,
+      "end": 1751093175898,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092507974,
-      "end": 1751092507974,
+      "start": 1751093175898,
+      "end": 1751093175898,
       "order": "normal"
     }
   ]

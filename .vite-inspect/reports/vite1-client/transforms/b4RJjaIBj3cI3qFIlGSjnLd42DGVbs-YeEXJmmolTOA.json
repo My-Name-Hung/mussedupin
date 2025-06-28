@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import hoistNonReactStatics$1 from 'hoist-non-react-statics';\n\n// this file isolates this package that is not tree-shakeable\n// and if this module doesn't actually contain any logic of its own\n// then Rollup just use 'hoist-non-react-statics' directly in other chunks\n\nvar hoistNonReactStatics = (function (targetComponent, sourceComponent) {\n  return hoistNonReactStatics$1(targetComponent, sourceComponent);\n});\n\nexport { hoistNonReactStatics as default };\n",
-      "start": 1751092511584,
-      "end": 1751092511753,
+      "start": 1751093177503,
+      "end": 1751093177580,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092511753,
-      "end": 1751092511753,
+      "start": 1751093177580,
+      "end": 1751093177580,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751092511753,
-      "end": 1751092511753,
+      "start": 1751093177580,
+      "end": 1751093177580,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751092511753,
-      "end": 1751092511753,
+      "start": 1751093177580,
+      "end": 1751093177580,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092511753,
-      "end": 1751092511753,
+      "start": 1751093177580,
+      "end": 1751093177580,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092511753,
-      "end": 1751092511753,
+      "start": 1751093177580,
+      "end": 1751093177580,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092511753,
-      "end": 1751092511753,
+      "start": 1751093177580,
+      "end": 1751093177580,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092511753,
-      "end": 1751092511753,
+      "start": 1751093177580,
+      "end": 1751093177580,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092511753,
-      "end": 1751092511753,
+      "start": 1751093177580,
+      "end": 1751093177580,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092511753,
-      "end": 1751092511753,
+      "start": 1751093177580,
+      "end": 1751093177580,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092511753,
-      "end": 1751092511753,
+      "start": 1751093177580,
+      "end": 1751093177580,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092511753,
-      "end": 1751092511753,
+      "start": 1751093177580,
+      "end": 1751093177580,
       "order": "normal"
     }
   ]

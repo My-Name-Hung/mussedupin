@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import mimicFunction from 'mimic-function';\nconst cacheStore = new WeakMap();\nconst cacheTimerStore = new WeakMap();\n/**\n[Memoize](https://en.wikipedia.org/wiki/Memoization) functions - An optimization used to speed up consecutive function calls by caching the result of calls with identical input.\n\n@param function_ - The function to be memoized.\n\n@example\n```\nimport memoize from 'memoize';\n\nlet index = 0;\nconst counter = () => ++index;\nconst memoized = memoize(counter);\n\nmemoized('foo');\n//=> 1\n\n// Cached as it's the same argument\nmemoized('foo');\n//=> 1\n\n// Not cached anymore as the arguments changed\nmemoized('bar');\n//=> 2\n\nmemoized('bar');\n//=> 2\n```\n*/\nexport default function memoize(function_, { cacheKey, cache = new Map(), maxAge, } = {}) {\n    if (maxAge === 0) {\n        return function_;\n    }\n    if (typeof maxAge === 'number') {\n        const maxSetIntervalValue = 2_147_483_647;\n        if (maxAge > maxSetIntervalValue) {\n            throw new TypeError(`The \\`maxAge\\` option cannot exceed ${maxSetIntervalValue}.`);\n        }\n        if (maxAge < 0) {\n            throw new TypeError('The `maxAge` option should not be a negative number.');\n        }\n    }\n    const memoized = function (...arguments_) {\n        const key = cacheKey ? cacheKey(arguments_) : arguments_[0];\n        const cacheItem = cache.get(key);\n        if (cacheItem) {\n            return cacheItem.data;\n        }\n        const result = function_.apply(this, arguments_);\n        const computedMaxAge = typeof maxAge === 'function' ? maxAge(...arguments_) : maxAge;\n        cache.set(key, {\n            data: result,\n            maxAge: computedMaxAge ? Date.now() + computedMaxAge : Number.POSITIVE_INFINITY,\n        });\n        if (computedMaxAge && computedMaxAge > 0 && computedMaxAge !== Number.POSITIVE_INFINITY) {\n            const timer = setTimeout(() => {\n                cache.delete(key);\n            }, computedMaxAge);\n            timer.unref?.();\n            const timers = cacheTimerStore.get(function_) ?? new Set();\n            timers.add(timer);\n            cacheTimerStore.set(function_, timers);\n        }\n        return result;\n    };\n    mimicFunction(memoized, function_, {\n        ignoreNonConfigurable: true,\n    });\n    cacheStore.set(memoized, cache);\n    return memoized;\n}\n/**\n@returns A [decorator](https://github.com/tc39/proposal-decorators) to memoize class methods or static class methods.\n\n@example\n```\nimport {memoizeDecorator} from 'memoize';\n\nclass Example {\n    index = 0\n\n    @memoizeDecorator()\n    counter() {\n        return ++this.index;\n    }\n}\n\nclass ExampleWithOptions {\n    index = 0\n\n    @memoizeDecorator({maxAge: 1000})\n    counter() {\n        return ++this.index;\n    }\n}\n```\n*/\nexport function memoizeDecorator(options = {}) {\n    const instanceMap = new WeakMap();\n    return (target, propertyKey, descriptor) => {\n        const input = target[propertyKey]; // eslint-disable-line @typescript-eslint/no-unsafe-assignment\n        if (typeof input !== 'function') {\n            throw new TypeError('The decorated value must be a function');\n        }\n        delete descriptor.value;\n        delete descriptor.writable;\n        descriptor.get = function () {\n            if (!instanceMap.has(this)) {\n                const value = memoize(input, options);\n                instanceMap.set(this, value);\n                return value;\n            }\n            return instanceMap.get(this);\n        };\n    };\n}\n/**\nClear all cached data of a memoized function.\n\n@param function_ - The memoized function.\n*/\nexport function memoizeClear(function_) {\n    const cache = cacheStore.get(function_);\n    if (!cache) {\n        throw new TypeError('Can\\'t clear a function that was not memoized!');\n    }\n    if (typeof cache.clear !== 'function') {\n        throw new TypeError('The cache Map can\\'t be cleared!');\n    }\n    cache.clear();\n    for (const timer of cacheTimerStore.get(function_) ?? []) {\n        clearTimeout(timer);\n    }\n}\n",
-      "start": 1751092511496,
-      "end": 1751092511742,
+      "start": 1751093177581,
+      "end": 1751093177638,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092511742,
-      "end": 1751092511742,
+      "start": 1751093177638,
+      "end": 1751093177638,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751092511742,
-      "end": 1751092511743,
+      "start": 1751093177638,
+      "end": 1751093177638,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751092511743,
-      "end": 1751092511743,
+      "start": 1751093177638,
+      "end": 1751093177638,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092511743,
-      "end": 1751092511743,
+      "start": 1751093177638,
+      "end": 1751093177638,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092511743,
-      "end": 1751092511743,
+      "start": 1751093177638,
+      "end": 1751093177638,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092511743,
-      "end": 1751092511743,
+      "start": 1751093177638,
+      "end": 1751093177638,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092511743,
-      "end": 1751092511743,
+      "start": 1751093177638,
+      "end": 1751093177638,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092511744,
-      "end": 1751092511744,
+      "start": 1751093177639,
+      "end": 1751093177639,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092511744,
-      "end": 1751092511744,
+      "start": 1751093177639,
+      "end": 1751093177639,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092511744,
-      "end": 1751092511744,
+      "start": 1751093177639,
+      "end": 1751093177639,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092511744,
-      "end": 1751092511744,
+      "start": 1751093177639,
+      "end": 1751093177639,
       "order": "normal"
     }
   ]

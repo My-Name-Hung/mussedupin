@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "@font-face {\n  font-family: \"Mythical-Prince\";\n  src: url(\"../../../assets/font/museedupin/1FTV-VIP-Mythical-Prince.otf\")\n    format(\"opentype\");\n  font-weight: 400;\n  font-style: normal;\n  font-display: swap;\n}\n\n@font-face {\n  font-family: \"louvreserif\";\n  src: url(\"../../../assets/font/louvreserif/400/latin.woff2\")\n    format(\"opentype\");\n  font-weight: 400;\n  font-style: normal;\n  font-display: swap;\n}\n/* Container styles */\n.packages-container {\n  width: 100%;\n  min-height: 100vh;\n  position: relative;\n  overflow: hidden;\n}\n\n/* Hero section */\n.packages-hero {\n  position: relative;\n  width: 100%;\n  height: 100vh;\n  overflow: hidden;\n}\n\n.hero-image-container {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.hero-image {\n  position: absolute;\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  transform: scale(1.1);\n  transition: all 1.5s cubic-bezier(0.165, 0.84, 0.44, 1);\n  filter: brightness(0.85);\n}\n\n.hero-image.portrait {\n  width: auto;\n  height: 100%;\n  max-width: none;\n  object-fit: contain;\n  object-position: center;\n}\n\n.hero-image.landscape {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.hero-image.square {\n  width: 100%;\n  height: 100%;\n  object-fit: contain;\n  max-height: 100vh;\n}\n\n/* Hero Content */\n.packages-hero-content {\n  position: absolute;\n  top: 80%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  text-align: center;\n  color: #fff;\n  z-index: 2;\n  width: 90%;\n  max-width: 1200px;\n}\n\n.packages-hero::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(\n    to bottom,\n    rgba(0, 0, 0, 0) 0%,\n    rgba(0, 0, 0, 0.3) 100%\n  );\n  z-index: 1;\n}\n\n.packages-title {\n    font-family: \"Mythical-Prince\", \"LouvreSerif\", Georgia, \"Times New Roman\",\n    serif;\n  font-size: 2.4rem;\n  color: #fff;\n  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);\n  opacity: 1;\n  transform: translateY(30px);\n  animation: fadeInUp 0.8s ease forwards;\n}\n\n.packages-subtitle {\n  font-size: 1.2rem;\n  line-height: 1.6;\n  max-width: 800px;\n  margin: 0 auto;\n  color: rgba(255, 255, 255, 0.9);\n  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);\n  opacity: 0;\n  transform: translateY(20px);\n  animation: fadeInUp 0.8s ease 0.2s forwards;\n}\n\n/* Content section */\n.packages-content {\n  position: relative;\n  width: 100%;\n  margin: 0 auto;\n  background-image: url(\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784842/background/Background2.webp\");\n  background-repeat: repeat;\n  background-position: center;\n  background-size: 300px;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: crisp-edges;\n  overflow: hidden;\n}\n\n.packages-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));\n  gap: 10px;\n  padding-top: 10px;\n  opacity: 0;\n  transform: translateY(30px);\n  animation: fadeInUp 0.8s ease forwards;\n}\n\n/* Package cards */\n.visit-cardss {\n  position: relative;\n  border-radius: 5px;\n  overflow: hidden;\n  cursor: pointer;\n  width: 100%;\n  height: 100%;\n  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);\n  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);\n}\n\n.visit-cardss:hover {\n  transform: translateY(-10px);\n  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);\n}\n\n.visit-cards-img-wrap {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.visit-cards-img {\n  width: 100%;\n  height: 100%;\n  object-fit: contain;\n  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);\n}\n\n.visit-cards-img.portrait {\n  height: 100%;\n  width: 100%;\n  max-width: none;\n  object-fit: contain;\n}\n\n.visit-cards-img.landscape {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.visit-cards-img.square {\n  width: 100%;\n  height: 100%;\n  object-fit: contain;\n}\n\n.visit-cards:hover .visit-cards-img {\n  transform: scale(1.1);\n}\n\n.visit-cards-overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(\n    to bottom,\n    rgba(0, 0, 0, 0),\n    rgba(0, 0, 0, 0.2) 30%,\n    rgba(0, 0, 0, 0.5)\n  );\n  opacity: 0.9;\n  transition: opacity 0.3s ease;\n}\n\n.visit-cards:hover .visit-cards-overlay {\n  opacity: 1;\n}\n\n.visit-card-content {\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  color: #fff;\n  z-index: 2;\n  transform: translateY(10px);\n  transition: transform 0.4s ease;\n}\n\n.visit-cards:hover .visit-card-content {\n  transform: translateY(0);\n}\n\n.visit-card-content h2 {\n  font-family: \"Meholrax\", serif;\n  font-size: 1.3rem;\n  font-weight: 700;\n  margin-bottom: 5px;\n  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);\n}\n\n.visit-card-content p {\n  font-size: 0.9rem;\n  line-height: 1.6;\n  opacity: 0.9;\n  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);\n}\n\n@keyframes fadeInUp {\n  from {\n    opacity: 0;\n    transform: translateY(30px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n/* Responsive styles\n@media (max-width: 1200px) {\n  .packages-title {\n    font-size: 3.5rem;\n  }\n\n  .packages-grid {\n    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));\n  }\n}\n\n@media (max-width: 768px) {\n  .packages-title {\n    font-size: 2.8rem;\n  }\n\n  .packages-subtitle {\n    font-size: 1rem;\n  }\n\n  .visit-cards-img-wrap {\n    height: 350px;\n  }\n\n  .visit-card-content {\n    padding: 30px;\n  }\n\n  .visit-card-content h2 {\n    font-size: 1.8rem;\n  }\n\n  .slide-nav {\n    width: 40px;\n    height: 40px;\n  }\n\n  .slide-nav.prev {\n    left: 15px;\n  }\n\n  .slide-nav.next {\n    right: 15px;\n  }\n\n  .slide.portrait img {\n    width: 100%;\n    height: 100%;\n    object-fit: cover;\n  }\n\n  .visit-cards-img.portrait {\n    width: 100%;\n    height: 100%;\n    object-fit: cover;\n  }\n\n  .slide::after {\n    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.6);\n  }\n}\n\n@media (max-width: 576px) {\n  .packages-title {\n    font-size: 2.2rem;\n  }\n\n  .packages-grid {\n    grid-template-columns: 1fr;\n    gap: 30px;\n  }\n\n  .visit-cards-img-wrap {\n    height: 300px;\n  }\n\n  .visit-card-content h2 {\n    font-size: 1.5rem;\n  }\n\n  .visit-card-content p {\n    font-size: 1rem;\n  }\n\n  .slide.portrait img,\n  .slide.square img,\n  .visit-cards-img.portrait,\n  .visit-cards-img.square {\n    width: 100%;\n    height: 100%;\n    object-fit: cover;\n  }\n\n  .slide::after {\n    box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.5);\n  }\n} */\n\n.back-button1 {\n  position: absolute;\n  top: 30px;\n  left: 30px;\n  z-index: 10;\n  background: rgba(255, 255, 255, 0.1);\n  backdrop-filter: blur(8px);\n  border: none;\n  border-radius: 50%;\n  color: #fff;\n  width: 45px;\n  height: 45px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n  transition: all 0.3s ease;\n}\n\n.back-button1:hover {\n  background: rgba(255, 255, 255, 0.2);\n  transform: scale(1.1);\n}\n",
-      "start": 1751092507986,
-      "end": 1751092508568,
+      "start": 1751093175676,
+      "end": 1751093175885,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092508568,
-      "end": 1751092508568,
+      "start": 1751093175886,
+      "end": 1751093175886,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751092508581,
-      "end": 1751092508581,
+      "start": 1751093176103,
+      "end": 1751093176103,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751092508581,
-      "end": 1751092508581,
+      "start": 1751093176103,
+      "end": 1751093176103,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092508581,
-      "end": 1751092508581,
+      "start": 1751093176103,
+      "end": 1751093176103,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092508581,
-      "end": 1751092508581,
+      "start": 1751093176104,
+      "end": 1751093176104,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092508581,
-      "end": 1751092508581,
+      "start": 1751093176104,
+      "end": 1751093176104,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092508581,
-      "end": 1751092508581,
+      "start": 1751093176104,
+      "end": 1751093176104,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092508581,
-      "end": 1751092508581,
+      "start": 1751093176104,
+      "end": 1751093176104,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092508581,
-      "end": 1751092508581,
+      "start": 1751093176105,
+      "end": 1751093176105,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092508581,
-      "end": 1751092508581,
+      "start": 1751093176105,
+      "end": 1751093176106,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092508581,
-      "end": 1751092508581,
+      "start": 1751093176107,
+      "end": 1751093176107,
       "order": "normal"
     }
   ]

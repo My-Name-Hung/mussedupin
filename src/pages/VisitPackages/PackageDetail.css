@@ -14,39 +14,39 @@
 .package-detail-hero {
   position: relative;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
   display: flex;
   align-items: center;
   justify-content: center;
+  background-color: #000;
 }
 
 .package-detail-hero-img {
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover;
   transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .package-detail-hero-img.portrait {
-  width: 100%;
+  width: auto;
   height: 100%;
-  max-width: none;
-  object-fit: contain;
+  max-height: 100vh;
+  margin: 0 auto;
 }
 
 .package-detail-hero-img.landscape {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
 }
 
 .package-detail-hero-img.square {
-  width: 100%;
+  width: auto;
   height: 100%;
-  object-fit: contain;
   max-height: 100vh;
+  margin: 0 auto;
 }
 
 .package-detail-hero-overlay {
@@ -60,33 +60,98 @@
     rgba(0, 0, 0, 0.2) 0%,
     rgba(0, 0, 0, 0.6) 100%
   );
+  z-index: 1;
 }
 
 .package-detail-hero-content {
   position: absolute;
   bottom: 10%;
   left: 50%;
-  align-items: center;
-  justify-content: center;
-  text-align: center;
   transform: translateX(-50%);
   width: 100%;
   max-width: 1200px;
   color: #fff;
   text-align: left;
+  z-index: 2;
+  padding: 0 40px;
 }
 
 .package-detail-hero-content h1 {
-  font-family: "Mythical-Prince", "louvreserif", "times new roman", serif;
-  font-size: 2.3rem;
-  margin-bottom: 1rem;
+  font-family: "Mythical-Prince", "louvreserif", "Times New Roman", Times, serif;
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
   text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease forwards;
 }
 
 .package-detail-hero-content p {
-  font-size: 1.2rem;
+  font-size: 1.4rem;
   line-height: 1.6;
+  max-width: 800px;
   text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  opacity: 0;
+  transform: translateY(20px);
+  animation: fadeInUp 0.8s ease 0.2s forwards;
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Media Queries */
+@media (max-width: 1200px) {
+  .package-detail-hero-content {
+    padding: 0 30px;
+  }
+
+  .package-detail-hero-content h1 {
+    font-size: 3rem;
+  }
+
+  .package-detail-hero-content p {
+    font-size: 1.3rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .package-detail-hero-content {
+    padding: 0 20px;
+    bottom: 15%;
+  }
+
+  .package-detail-hero-content h1 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .package-detail-hero-content p {
+    font-size: 1.1rem;
+  }
+
+  .package-detail-hero-img.portrait {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+@media (max-width: 480px) {
+  .package-detail-hero-content h1 {
+    font-size: 2rem;
+  }
+
+  .package-detail-hero-content p {
+    font-size: 1rem;
+  }
 }
 
 .back-button2 {
@@ -328,6 +393,12 @@
   justify-content: center;
   transition: all 0.3s ease;
   z-index: 1001;
+}
+@media (min-width: 769px) {
+  .close-modal2 {
+     top: 50px;
+    left: 60rem;
+  }
 }
 
 .close-modal2:hover {

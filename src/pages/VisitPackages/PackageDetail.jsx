@@ -245,8 +245,10 @@ const PackageDetail = () => {
           "1 phần nước uống tự chọn",
         ],
         video: {
-          id: "aozcRuYVPKw",
-          title: `Trải nghiệm Lối Rừng tại <span class="notranslate">Musée Du Pin</span>`,
+          id: "lb8HcNFDFtU",
+          title: `Trải nghiệm Lối Rừng tại ${(
+            <span className="notranslate">Musée Du Pin</span>
+          )}`,
         },
       },
       "dang-suong": {
@@ -266,7 +268,7 @@ const PackageDetail = () => {
           "1 phần nước uống tự chọn",
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "gJL4YdOunvA",
           title: "Khám Phá Dáng Sương",
         },
       },
@@ -287,7 +289,7 @@ const PackageDetail = () => {
           "Tặng gói chụp ảnh nghệ thuật (1 tiếng)",
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "1lVoCgIxUm4",
           title: "Workshop Nghệ Nhân",
         },
       },
@@ -309,12 +311,12 @@ const PackageDetail = () => {
           "Bữa trưa nhẹ gồm 01 món ăn và 01 thức uống",
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "3hr-yyLqAy4",
           title: "Trải Nghiệm Hồn Núi",
         },
       },
       "lua-thieng": {
-        title: "LỬA THIÊNG / Pind' Amour",
+        title: "LỬA THIÊNG / Pin d'Amour",
         description:
           "Buổi tối bùng cháy với âm nhạc, nghệ thuật, văn hóa, rượu và không gian view toàn cảnh Đà Lạt về đêm",
         fullDescription: `Buổi tối bùng cháy với âm nhạc, nghệ thuật, văn hóa, rượu và không gian view toàn cảnh Đà Lạt về đêm`,
@@ -330,7 +332,7 @@ const PackageDetail = () => {
           'Trải nghiệm sân khấu Pind\'amour với chương trình Vin Acoustic "Thông Hát" và rượu vang thượng hạng và 01 phần ăn nhẹ',
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "_qP_eGPzVJE",
           title: "Đêm Lửa Thiêng",
         },
       },
@@ -349,7 +351,7 @@ const PackageDetail = () => {
           "Bữa sáng với đặc sản địa phương",
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "Ja3XeTu-r54",
           title: "Đêm Thông",
         },
       },
@@ -371,7 +373,7 @@ const PackageDetail = () => {
           "Tặng gói chụp ảnh nghệ thuật (1 tiếng)",
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "2zuGLmyZgfU",
           title: "Bóng Cây Kơnia",
         },
       },
@@ -392,7 +394,7 @@ const PackageDetail = () => {
           "Bộ ảnh nghệ thuật chuyên nghiệp",
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "OI6r5SW9BiM",
           title: "Trường Ca Langbiang",
         },
       },
@@ -433,9 +435,9 @@ const PackageDetail = () => {
         },
       },
       "uom-mam-sang-tao": {
-        title: "ƯƠM MẦM SÁNG TẠO",
-        description: "Các gói trải nghiệm cho bé",
-        fullDescription: `Các gói trải nghiệm cho bé`,
+        title: "",
+        description: "",
+        fullDescription: ``,
         image:
           "https://ik.imagekit.io/8u8lkoqkkm/6899dd753542811cd853.jpg?updatedAt=1749175097859",
         price: "299.000đ",
@@ -454,7 +456,7 @@ const PackageDetail = () => {
         title: "CHỤP ẢNH NGHỆ THUẬT",
         description:
           "Du khách sẽ được sở hữu những tấm ảnh nghệ thuật của chính mình trong không gian Bảo Tàng",
-        fullDescription: `Du khách sẽ được sở hữu những tấm ảnh nghệ thuật của chính mình trong không gian Bảo Tàng hay trong từng căn phòng art studio, cùng với nghệ nhân hay nhân vật theo chủ đề. Bảo Tàng Thông cung cấp trang phục, đạo cụ riêng phù hợp với từng không gian`,
+        fullDescription: `Du khách sẽ được sở hữu những tấm ảnh nghệ thuật của chính mình trong không gian Bảo Tàng hay trong từng căn phòng art studio, cùng với nghệ nhân hay nhân vật theo chủ đề. Bảo Tàng cung cấp trang phục, đạo cụ riêng phù hợp với từng không gian`,
         image:
           "https://ik.imagekit.io/8u8lkoqkkm/chupanhnghethuat_ngang.jpg?updatedAt=1750298609133",
         price: "Liên hệ: +84 86 235 6368",
@@ -468,7 +470,9 @@ const PackageDetail = () => {
         ],
         video: {
           id: "aozcRuYVPKw",
-          title: "Chụp ảnh nghệ thuật tại Musée Du Pin",
+          title: `Chụp ảnh nghệ thuật tại ${(
+            <span className="notranslate">Musée Du Pin</span>
+          )}`,
         },
       },
       "phim-dien-anh": {
@@ -489,7 +493,9 @@ const PackageDetail = () => {
         ],
         video: {
           id: "aozcRuYVPKw",
-          title: "Dịch vụ quay phim tại Musée Du Pin",
+          title: `Dịch vụ quay phim tại ${(
+            <span className="notranslate">Musée Du Pin</span>
+          )}`,
         },
       },
       "the-childhood": {

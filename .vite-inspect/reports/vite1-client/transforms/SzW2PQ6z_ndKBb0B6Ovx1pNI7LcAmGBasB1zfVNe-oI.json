@@ -4,75 +4,75 @@
     {
       "name": "vite:load-fallback",
       "result": "<!DOCTYPE html>\r\n<html lang=\"vi\">\r\n  <head>\r\n    <meta charset=\"UTF-8\" />\r\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\r\n\r\n    <!-- SEO Title tối ưu cho trang đặt vé -->\r\n    <title>Đặt vé tham quan Bảo tàng Thông | Giá vé & Gói trải nghiệm - Musee Du Pin Đà Lạt</title>\r\n\r\n    <!-- Meta Description tối ưu cho trang đặt vé -->\r\n    <meta\r\n      name=\"description\"\r\n      content=\"Đặt vé tham quan Bảo tàng Thông - Musee Du Pin với nhiều gói trải nghiệm hấp dẫn: vé ngày, gói lưu trú, chương trình định kỳ. Đặt vé trực tuyến, thanh toán dễ dàng.\"\r\n    />\r\n\r\n    <!-- Meta Keywords liên quan đến đặt vé -->\r\n    <meta\r\n      name=\"keywords\"\r\n      content=\"đặt vé bảo tàng thông, vé musee du pin, giá vé bảo tàng thông, gói trải nghiệm musee du pin, vé tham quan đà lạt\"\r\n    />\r\n    <meta name=\"google-site-verification\" content=\"nrcZ5VenmSlmvmE_y8IiqwmnvcWTWjXhddg-jBASX7s\" />\r\n\r\n    <!-- Canonical URL cho trang đặt vé -->\r\n    <link rel=\"canonical\" href=\"https://museedupin.com/visit\" />\r\n\r\n    <meta name=\"robots\" content=\"index, follow\" />\r\n\r\n    <link rel=\"preconnect\" href=\"https://res.cloudinary.com\" />\r\n    <link rel=\"preload\" href=\"/src/styles/critical.css\" as=\"style\" />\r\n    <link rel=\"stylesheet\" href=\"/src/styles/critical.css\" />\r\n\r\n    <link\r\n      rel=\"icon\"\r\n      type=\"image/png\"\r\n      href=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png\"\r\n      sizes=\"86x86\"\r\n    />\r\n\r\n    <!-- Open Graph tối ưu cho trang đặt vé -->\r\n    <meta property=\"og:type\" content=\"website\" />\r\n    <meta property=\"og:title\" content=\"Đặt vé tham quan Bảo tàng Thông | Musee Du Pin Đà Lạt\" />\r\n    <meta\r\n      property=\"og:description\"\r\n      content=\"Đặt vé tham quan Bảo tàng Thông với các gói trải nghiệm đa dạng. Khám phá nghệ thuật và văn hóa tại Musee Du Pin Đà Lạt.\"\r\n    />\r\n    <meta\r\n      property=\"og:image\"\r\n      content=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png\"\r\n    />\r\n    <meta property=\"og:url\" content=\"https://museedupin.com/visit\" />\r\n\r\n    <!-- Twitter Card tối ưu cho trang đặt vé -->\r\n    <meta name=\"twitter:card\" content=\"summary_large_image\" />\r\n    <meta name=\"twitter:title\" content=\"Đặt vé tham quan Bảo tàng Thông | Musee Du Pin Đà Lạt\" />\r\n    <meta\r\n      name=\"twitter:description\"\r\n      content=\"Đặt vé tham quan Bảo tàng Thông với các gói trải nghiệm đa dạng. Khám phá nghệ thuật và văn hóa tại Musee Du Pin Đà Lạt.\"\r\n    />\r\n    <meta\r\n      name=\"twitter:image\"\r\n      content=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png\"\r\n    />\r\n\r\n    <!-- JSON-LD Structured Data tối ưu cho trang đặt vé -->\r\n    <script type=\"application/ld+json\">\r\n      {\r\n        \"@context\": \"https://schema.org\",\r\n        \"@graph\": [\r\n          {\r\n            \"@type\": \"Organization\",\r\n            \"@id\": \"https://museedupin.com\",\r\n            \"name\": \"Bảo tàng Thông\",\r\n            \"url\": \"https://museedupin.com/\",\r\n            \"logo\": \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png\",\r\n            \"sameAs\": [\r\n              \"https://www.facebook.com/BaoTangThongDalat\"\r\n            ],\r\n            \"contactPoint\": {\r\n              \"@type\": \"ContactPoint\",\r\n              \"telephone\": \"0862356368\",\r\n              \"contactType\": \"Bảo Tàng Thông- Musee du Pin\",\r\n              \"areaServed\": \"Đà Lạt\"\r\n            }\r\n          },\r\n          {\r\n            \"@type\": \"Museum\",\r\n            \"@id\": \"https://museedupin.com\",\r\n            \"name\": \"Bảo tàng Thông | Musee Du Pin\",\r\n            \"description\": \"Đặt vé tham quan Bảo tàng Thông với các gói trải nghiệm: vé ngày, gói lưu trú và chương trình định kỳ.\",\r\n            \"url\": \"https://ticket-museedupin.com\",\r\n            \"image\": \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png\",\r\n            \"address\": {\r\n              \"@type\": \"PostalAddress\",\r\n              \"streetAddress\": \"29-31 Đống Đa, phường 3, Đà Lạt\",\r\n              \"addressLocality\": \"Đà Lạt\",\r\n              \"addressCountry\": \"Việt Nam\"\r\n            },\r\n            \"geo\": {\r\n              \"@type\": \"GeoCoordinates\",\r\n              \"latitude\": 11.92384504845912,\r\n              \"longitude\": 108.4446307502475\r\n            },\r\n            \"telephone\": \"0862356368\",\r\n            \"openingHours\": \"09:00-21:00\",\r\n            \"sameAs\": [\r\n              \"https://www.facebook.com/BaoTangThongDalat\"\r\n            ],\r\n            \"offers\": {\r\n              \"@type\": \"Offer\",\r\n              \"availability\": \"https://schema.org/InStock\",\r\n              \"priceCurrency\": \"VND\",\r\n              \"url\": \"https://museedupin.com/visit\"\r\n            }\r\n          }\r\n        ]\r\n      }\r\n    </script>\r\n  </head>\r\n  <body>\r\n    <div id=\"root\"></div>\r\n    <script type=\"module\" src=\"/src/main.jsx\"></script>\r\n  </body>\r\n</html>\r\n",
-      "start": 1751092506567,
-      "end": 1751092506611,
+      "start": 1751093174977,
+      "end": 1751093174980,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092506612,
-      "end": 1751092506612,
+      "start": 1751093174980,
+      "end": 1751093174981,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751092506613,
-      "end": 1751092506613,
+      "start": 1751093174981,
+      "end": 1751093174981,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751092506613,
-      "end": 1751092506614,
+      "start": 1751093174982,
+      "end": 1751093174982,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092506614,
-      "end": 1751092506614,
+      "start": 1751093174982,
+      "end": 1751093174982,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
       "result": "import \"vite/modulepreload-polyfill\";\n\nimport \"/src/main.jsx\"",
-      "start": 1751092506614,
-      "end": 1751092506873,
+      "start": 1751093174982,
+      "end": 1751093175039,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092506873,
-      "end": 1751092506873,
+      "start": 1751093175039,
+      "end": 1751093175039,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092506879,
-      "end": 1751092506879,
+      "start": 1751093175042,
+      "end": 1751093175042,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092506879,
-      "end": 1751092506880,
+      "start": 1751093175043,
+      "end": 1751093175043,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092506880,
-      "end": 1751092506880,
+      "start": 1751093175043,
+      "end": 1751093175043,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092506880,
-      "end": 1751092506880,
+      "start": 1751093175043,
+      "end": 1751093175043,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092506880,
-      "end": 1751092506880,
+      "start": 1751093175043,
+      "end": 1751093175043,
       "order": "normal"
     }
   ]

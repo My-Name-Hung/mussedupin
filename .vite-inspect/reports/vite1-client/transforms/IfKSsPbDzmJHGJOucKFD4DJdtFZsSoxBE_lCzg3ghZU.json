@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "var __assign = (this && this.__assign) || function () {\n    __assign = Object.assign || function(t) {\n        for (var s, i = 1, n = arguments.length; i < n; i++) {\n            s = arguments[i];\n            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))\n                t[p] = s[p];\n        }\n        return t;\n    };\n    return __assign.apply(this, arguments);\n};\nvar __rest = (this && this.__rest) || function (s, e) {\n    var t = {};\n    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)\n        t[p] = s[p];\n    if (s != null && typeof Object.getOwnPropertySymbols === \"function\")\n        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))\n                t[p[i]] = s[p[i]];\n        }\n    return t;\n};\nvar __spreadArray = (this && this.__spreadArray) || function (to, from, pack) {\n    if (pack || arguments.length === 2) for (var i = 0, l = from.length, ar; i < l; i++) {\n        if (ar || !(i in from)) {\n            if (!ar) ar = Array.prototype.slice.call(from, 0, i);\n            ar[i] = from[i];\n        }\n    }\n    return to.concat(ar || Array.prototype.slice.call(from));\n};\nimport React, { useContext, useEffect } from 'react';\nimport { HeaderContext } from '../utils/tableContext';\nimport allowed from '../utils/allowed';\nfunction TrInner(_a) {\n    var children = _a.children, inHeader = _a.inHeader, props = __rest(_a, [\"children\", \"inHeader\"]);\n    var context = useContext(HeaderContext);\n    if (!context) {\n        throw new Error('TrInner must be used as a child of the Table component');\n    }\n    var setHeaders = context.setHeaders, headers = context.headers;\n    useEffect(function () {\n        if (inHeader) {\n            var updatedHeaders_1 = __spreadArray([], headers, true);\n            React.Children.forEach(children, function (child, i) {\n                if (React.isValidElement(child)) {\n                    updatedHeaders_1[i] = child.props.children;\n                }\n            });\n            setHeaders(updatedHeaders_1);\n        }\n    }, [inHeader, children]);\n    return (React.createElement(\"tr\", __assign({ \"data-testid\": \"tr\" }, allowed(props)), children &&\n        React.Children.map(children, function (child, i) {\n            return React.isValidElement(child)\n                ? React.cloneElement(child, {\n                    key: i,\n                    columnKey: i,\n                })\n                : null;\n        })));\n}\nexport default TrInner;\n",
-      "start": 1751092509690,
-      "end": 1751092510056,
+      "start": 1751093177370,
+      "end": 1751093177409,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092510056,
-      "end": 1751092510056,
+      "start": 1751093177409,
+      "end": 1751093177409,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751092510056,
-      "end": 1751092510056,
+      "start": 1751093177409,
+      "end": 1751093177409,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751092510056,
-      "end": 1751092510056,
+      "start": 1751093177409,
+      "end": 1751093177409,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092510056,
-      "end": 1751092510056,
+      "start": 1751093177409,
+      "end": 1751093177409,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092510056,
-      "end": 1751092510056,
+      "start": 1751093177409,
+      "end": 1751093177409,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092510056,
-      "end": 1751092510056,
+      "start": 1751093177409,
+      "end": 1751093177409,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092510057,
-      "end": 1751092510057,
+      "start": 1751093177409,
+      "end": 1751093177409,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092510058,
-      "end": 1751092510058,
+      "start": 1751093177410,
+      "end": 1751093177410,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092510058,
-      "end": 1751092510058,
+      "start": 1751093177410,
+      "end": 1751093177410,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092510058,
-      "end": 1751092510058,
+      "start": 1751093177410,
+      "end": 1751093177410,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092510058,
-      "end": 1751092510058,
+      "start": 1751093177410,
+      "end": 1751093177410,
       "order": "normal"
     }
   ]

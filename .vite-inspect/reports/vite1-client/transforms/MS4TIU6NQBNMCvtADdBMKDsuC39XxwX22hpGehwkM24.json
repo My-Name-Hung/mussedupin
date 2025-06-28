@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "var __assign = (this && this.__assign) || function () {\n    __assign = Object.assign || function(t) {\n        for (var s, i = 1, n = arguments.length; i < n; i++) {\n            s = arguments[i];\n            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))\n                t[p] = s[p];\n        }\n        return t;\n    };\n    return __assign.apply(this, arguments);\n};\nvar __rest = (this && this.__rest) || function (s, e) {\n    var t = {};\n    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)\n        t[p] = s[p];\n    if (s != null && typeof Object.getOwnPropertySymbols === \"function\")\n        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))\n                t[p[i]] = s[p[i]];\n        }\n    return t;\n};\nimport { jsx as _jsx, jsxs as _jsxs } from \"react/jsx-runtime\";\nimport clsx from 'clsx';\nimport Days from './MonthView/Days.js';\nimport Weekdays from './MonthView/Weekdays.js';\nimport WeekNumbers from './MonthView/WeekNumbers.js';\nimport { CALENDAR_TYPES, CALENDAR_TYPE_LOCALES } from './shared/const.js';\nfunction getCalendarTypeFromLocale(locale) {\n    if (locale) {\n        for (var _i = 0, _a = Object.entries(CALENDAR_TYPE_LOCALES); _i < _a.length; _i++) {\n            var _b = _a[_i], calendarType = _b[0], locales = _b[1];\n            if (locales.includes(locale)) {\n                return calendarType;\n            }\n        }\n    }\n    return CALENDAR_TYPES.ISO_8601;\n}\n/**\n * Displays a given month.\n */\nexport default function MonthView(props) {\n    var activeStartDate = props.activeStartDate, locale = props.locale, onMouseLeave = props.onMouseLeave, showFixedNumberOfWeeks = props.showFixedNumberOfWeeks;\n    var _a = props.calendarType, calendarType = _a === void 0 ? getCalendarTypeFromLocale(locale) : _a, formatShortWeekday = props.formatShortWeekday, formatWeekday = props.formatWeekday, onClickWeekNumber = props.onClickWeekNumber, showWeekNumbers = props.showWeekNumbers, childProps = __rest(props, [\"calendarType\", \"formatShortWeekday\", \"formatWeekday\", \"onClickWeekNumber\", \"showWeekNumbers\"]);\n    function renderWeekdays() {\n        return (_jsx(Weekdays, { calendarType: calendarType, formatShortWeekday: formatShortWeekday, formatWeekday: formatWeekday, locale: locale, onMouseLeave: onMouseLeave }));\n    }\n    function renderWeekNumbers() {\n        if (!showWeekNumbers) {\n            return null;\n        }\n        return (_jsx(WeekNumbers, { activeStartDate: activeStartDate, calendarType: calendarType, onClickWeekNumber: onClickWeekNumber, onMouseLeave: onMouseLeave, showFixedNumberOfWeeks: showFixedNumberOfWeeks }));\n    }\n    function renderDays() {\n        return _jsx(Days, __assign({ calendarType: calendarType }, childProps));\n    }\n    var className = 'react-calendar__month-view';\n    return (_jsx(\"div\", { className: clsx(className, showWeekNumbers ? \"\".concat(className, \"--weekNumbers\") : ''), children: _jsxs(\"div\", { style: {\n                display: 'flex',\n                alignItems: 'flex-end',\n            }, children: [renderWeekNumbers(), _jsxs(\"div\", { style: {\n                        flexGrow: 1,\n                        width: '100%',\n                    }, children: [renderWeekdays(), renderDays()] })] }) }));\n}\n",
-      "start": 1751092509963,
-      "end": 1751092510086,
+      "start": 1751093177402,
+      "end": 1751093177424,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092510086,
-      "end": 1751092510086,
+      "start": 1751093177424,
+      "end": 1751093177424,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751092510086,
-      "end": 1751092510086,
+      "start": 1751093177424,
+      "end": 1751093177424,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751092510086,
-      "end": 1751092510086,
+      "start": 1751093177424,
+      "end": 1751093177424,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092510086,
-      "end": 1751092510086,
+      "start": 1751093177424,
+      "end": 1751093177424,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092510086,
-      "end": 1751092510086,
+      "start": 1751093177424,
+      "end": 1751093177424,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092510086,
-      "end": 1751092510086,
+      "start": 1751093177424,
+      "end": 1751093177424,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092510086,
-      "end": 1751092510086,
+      "start": 1751093177424,
+      "end": 1751093177424,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092510087,
-      "end": 1751092510087,
+      "start": 1751093177424,
+      "end": 1751093177424,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092510087,
-      "end": 1751092510087,
+      "start": 1751093177424,
+      "end": 1751093177424,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092510087,
-      "end": 1751092510087,
+      "start": 1751093177424,
+      "end": 1751093177424,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092510087,
-      "end": 1751092510087,
+      "start": 1751093177424,
+      "end": 1751093177424,
       "order": "normal"
     }
   ]

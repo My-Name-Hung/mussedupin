@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useEffect, useState } from \"react\";\r\nimport { useLocation } from \"react-router-dom\";\r\nimport \"./ScrollToTopButton.css\";\r\n\r\nconst ScrollToTopButton = () => {\r\n  const [visible, setVisible] = useState(false);\r\n  const [isMobile, setIsMobile] = useState(false);\r\n  const location = useLocation();\r\n\r\n  // Check if device is mobile\r\n  useEffect(() => {\r\n    const checkMobile = () => {\r\n      setIsMobile(window.innerWidth <= 768);\r\n    };\r\n\r\n    checkMobile();\r\n    window.addEventListener(\"resize\", checkMobile);\r\n\r\n    return () => {\r\n      window.removeEventListener(\"resize\", checkMobile);\r\n    };\r\n  }, []);\r\n\r\n  useEffect(() => {\r\n    // Reset visibility on page change\r\n    setVisible(false);\r\n\r\n    const setupObserver = () => {\r\n      // Try to find significant page sections by various selectors\r\n      const firstSection =\r\n        document.querySelector(\"section:first-of-type\") ||\r\n        document.querySelector(\".hero-container\") ||\r\n        document.querySelector(\".dupin-plus-header\") ||\r\n        document.querySelector(\"header:first-of-type\") ||\r\n        document.querySelector(\".main-content\") ||\r\n        document.querySelector(\"main > div:first-child\");\r\n\r\n      // Use either explicit second section or just use scroll position as fallback\r\n      const secondSection =\r\n        document.querySelector(\"section:nth-of-type(2)\") ||\r\n        document.querySelector(\".highlights-section\") ||\r\n        document.querySelector(\".collections-section\") ||\r\n        document.querySelector(\".filter-section\");\r\n\r\n      // If we can't find proper sections, fall back to scroll position\r\n      if (!firstSection || !secondSection) {\r\n        // Fallback: Use scroll position\r\n        const handleScroll = () => {\r\n          // Show button when scrolled down more than 200px on mobile, 300px on desktop\r\n          const scrollThreshold = isMobile ? 200 : 300;\r\n          const scrollTop =\r\n            window.pageYOffset || document.documentElement.scrollTop;\r\n          setVisible(scrollTop > scrollThreshold);\r\n        };\r\n\r\n        window.addEventListener(\"scroll\", handleScroll);\r\n        return () => window.removeEventListener(\"scroll\", handleScroll);\r\n      }\r\n\r\n      // Observer options\r\n      const options = {\r\n        root: null,\r\n        rootMargin: isMobile ? \"-5% 0px\" : \"-10% 0px\", // More sensitive on mobile\r\n        threshold: 0,\r\n      };\r\n\r\n      // Observer for the first section (to hide button when at top)\r\n      const firstSectionObserver = new IntersectionObserver((entries) => {\r\n        const [entry] = entries;\r\n        if (entry.isIntersecting) {\r\n          setVisible(false);\r\n        }\r\n      }, options);\r\n\r\n      // Observer for the second section (to show button when scrolled down)\r\n      const secondSectionObserver = new IntersectionObserver((entries) => {\r\n        const [entry] = entries;\r\n        if (entry.isIntersecting) {\r\n          setVisible(true);\r\n        }\r\n      }, options);\r\n\r\n      firstSectionObserver.observe(firstSection);\r\n      secondSectionObserver.observe(secondSection);\r\n\r\n      return () => {\r\n        firstSectionObserver.disconnect();\r\n        secondSectionObserver.disconnect();\r\n      };\r\n    };\r\n\r\n    // Wait for the DOM to be fully loaded before setting up observers\r\n    const timer = setTimeout(() => {\r\n      setupObserver();\r\n    }, 500);\r\n\r\n    return () => {\r\n      clearTimeout(timer);\r\n    };\r\n  }, [location.pathname, isMobile]); // Re-run when route changes or mobile status changes\r\n\r\n  const scrollToTop = () => {\r\n    // Smoother scroll on desktop, faster on mobile\r\n    window.scrollTo({\r\n      top: 0,\r\n      behavior: isMobile ? \"auto\" : \"smooth\",\r\n    });\r\n  };\r\n\r\n  return (\r\n    <button\r\n      className={`scroll-to-top-button fixed-mobile-element ${\r\n        visible ? \"visible\" : \"\"\r\n      }`}\r\n      onClick={scrollToTop}\r\n      aria-label=\"Scroll to top\"\r\n    >\r\n      <svg\r\n        viewBox=\"0 0 16 16\"\r\n        width=\"1em\"\r\n        height=\"1em\"\r\n        focusable=\"false\"\r\n        fill=\"currentColor\"\r\n        aria-hidden=\"true\"\r\n        className=\"SvgRWrapper\"\r\n      >\r\n        <path d=\"m3.7 6.7 3.8-3.8V15h1V2.9l3.8 3.8.7-.7-5-5-5 5z\"></path>\r\n      </svg>\r\n    </button>\r\n  );\r\n};\r\n\r\nexport default ScrollToTopButton;\r\n",
-      "start": 1751092506991,
-      "end": 1751092507313,
+      "start": 1751093175096,
+      "end": 1751093175301,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092507314,
-      "end": 1751092507314,
+      "start": 1751093175301,
+      "end": 1751093175301,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx } from \"react/jsx-runtime\";\nimport React, { useEffect, useState } from \"react\";\nimport { useLocation } from \"react-router-dom\";\nimport \"./ScrollToTopButton.css\";\nconst ScrollToTopButton = () => {\n  const [visible, setVisible] = useState(false);\n  const [isMobile, setIsMobile] = useState(false);\n  const location = useLocation();\n  useEffect(() => {\n    const checkMobile = () => {\n      setIsMobile(window.innerWidth <= 768);\n    };\n    checkMobile();\n    window.addEventListener(\"resize\", checkMobile);\n    return () => {\n      window.removeEventListener(\"resize\", checkMobile);\n    };\n  }, []);\n  useEffect(() => {\n    setVisible(false);\n    const setupObserver = () => {\n      const firstSection = document.querySelector(\"section:first-of-type\") || document.querySelector(\".hero-container\") || document.querySelector(\".dupin-plus-header\") || document.querySelector(\"header:first-of-type\") || document.querySelector(\".main-content\") || document.querySelector(\"main > div:first-child\");\n      const secondSection = document.querySelector(\"section:nth-of-type(2)\") || document.querySelector(\".highlights-section\") || document.querySelector(\".collections-section\") || document.querySelector(\".filter-section\");\n      if (!firstSection || !secondSection) {\n        const handleScroll = () => {\n          const scrollThreshold = isMobile ? 200 : 300;\n          const scrollTop = window.pageYOffset || document.documentElement.scrollTop;\n          setVisible(scrollTop > scrollThreshold);\n        };\n        window.addEventListener(\"scroll\", handleScroll);\n        return () => window.removeEventListener(\"scroll\", handleScroll);\n      }\n      const options = {\n        root: null,\n        rootMargin: isMobile ? \"-5% 0px\" : \"-10% 0px\",\n        // More sensitive on mobile\n        threshold: 0\n      };\n      const firstSectionObserver = new IntersectionObserver((entries) => {\n        const [entry] = entries;\n        if (entry.isIntersecting) {\n          setVisible(false);\n        }\n      }, options);\n      const secondSectionObserver = new IntersectionObserver((entries) => {\n        const [entry] = entries;\n        if (entry.isIntersecting) {\n          setVisible(true);\n        }\n      }, options);\n      firstSectionObserver.observe(firstSection);\n      secondSectionObserver.observe(secondSection);\n      return () => {\n        firstSectionObserver.disconnect();\n        secondSectionObserver.disconnect();\n      };\n    };\n    const timer = setTimeout(() => {\n      setupObserver();\n    }, 500);\n    return () => {\n      clearTimeout(timer);\n    };\n  }, [location.pathname, isMobile]);\n  const scrollToTop = () => {\n    window.scrollTo({\n      top: 0,\n      behavior: isMobile ? \"auto\" : \"smooth\"\n    });\n  };\n  return /* @__PURE__ */ jsx(\n    \"button\",\n    {\n      className: `scroll-to-top-button fixed-mobile-element ${visible ? \"visible\" : \"\"}`,\n      onClick: scrollToTop,\n      \"aria-label\": \"Scroll to top\",\n      children: /* @__PURE__ */ jsx(\n        \"svg\",\n        {\n          viewBox: \"0 0 16 16\",\n          width: \"1em\",\n          height: \"1em\",\n          focusable: \"false\",\n          fill: \"currentColor\",\n          \"aria-hidden\": \"true\",\n          className: \"SvgRWrapper\",\n          children: /* @__PURE__ */ jsx(\"path\", { d: \"m3.7 6.7 3.8-3.8V15h1V2.9l3.8 3.8.7-.7-5-5-5 5z\" })\n        }\n      )\n    }\n  );\n};\nexport default ScrollToTopButton;\n",
-      "start": 1751092507314,
-      "end": 1751092507637,
+      "start": 1751093175301,
+      "end": 1751093175573,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751092507637,
-      "end": 1751092507637,
+      "start": 1751093175574,
+      "end": 1751093175574,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092507637,
-      "end": 1751092507637,
+      "start": 1751093175574,
+      "end": 1751093175574,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092507637,
-      "end": 1751092507637,
+      "start": 1751093175574,
+      "end": 1751093175574,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092507637,
-      "end": 1751092507637,
+      "start": 1751093175574,
+      "end": 1751093175574,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092507637,
-      "end": 1751092507637,
+      "start": 1751093175574,
+      "end": 1751093175574,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092507638,
-      "end": 1751092507638,
+      "start": 1751093175574,
+      "end": 1751093175574,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092507638,
-      "end": 1751092507638,
+      "start": 1751093175574,
+      "end": 1751093175574,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092507638,
-      "end": 1751092507639,
+      "start": 1751093175574,
+      "end": 1751093175575,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092507639,
-      "end": 1751092507639,
+      "start": 1751093175575,
+      "end": 1751093175575,
       "order": "normal"
     }
   ]

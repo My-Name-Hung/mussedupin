@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\nimport { useNavigate } from \"react-router-dom\";\nimport \"./Visit.css\";\n\nconst Visit = () => {\n  const navigate = useNavigate();\n\n  return (\n    <div className=\"visit-page\">\n      <section className=\"ticket-section\">\n        <div className=\"visit-section-container\">\n          <h2 className=\"visit-section-title\">\n            <span>CÁC GÓI TRẢI NGHIỆM</span>\n          </h2>\n\n          <div className=\"visit-cards\">\n            <div\n              className=\"visit-card visit-card-vertical\"\n              onClick={() => navigate(\"/visit/non-residential\")}\n            >\n              <div className=\"visit-card-img-wrap\">\n                <img\n                  src=\"https://ik.imagekit.io/8u8lkoqkkm/KhongLuuTru.jpg?updatedAt=1749267196332\"\n                  alt=\"Gói không lưu trú\"\n                  className=\"visit-card-img\"\n                />\n                <div className=\"visit-card-overlay\" />\n                <div className=\"visit-card-content\">\n                  <h2>Gói không lưu trú</h2>\n                  <p>\n                    Trải nghiệm nghệ thuật và văn hóa trong ngày tại Musée Du\n                    Pin\n                  </p>\n                </div>\n              </div>\n            </div>\n\n            <div\n              className=\"visit-card visit-card-vertical\"\n              onClick={() => navigate(\"/visit/residential\")}\n            >\n              <div className=\"visit-card-img-wrap\">\n                <img\n                  src=\"https://ik.imagekit.io/8u8lkoqkkm/Luutru.jpg?updatedAt=1749267196093\"\n                  alt=\"Gói lưu trú\"\n                  className=\"visit-card-img\"\n                />\n                <div className=\"visit-card-overlay\" />\n                <div className=\"visit-card-content\">\n                  <h2>Gói lưu trú</h2>\n                  <p>\n                    Nghỉ dưỡng và trải nghiệm nghệ thuật trọn vẹn tại Musée Du\n                    Pin\n                  </p>\n                </div>\n              </div>\n            </div>\n\n            <div\n              className=\"visit-card visit-card-vertical\"\n              onClick={() => navigate(\"/visit/regular\")}\n            >\n              <div className=\"visit-card-img-wrap\">\n                <img\n                  src=\"https://ik.imagekit.io/8u8lkoqkkm/Chuongtrinhdinhky.jpg?updatedAt=1749267196289\"\n                  alt=\"Chương trình định kỳ\"\n                  className=\"visit-card-img\"\n                />\n                <div className=\"visit-card-overlay\" />\n                <div className=\"visit-card-content\">\n                  <h2>Chương trình định kỳ</h2>\n                  <p>\n                    Các sự kiện nghệ thuật đặc sắc diễn ra thường xuyên tại\n                    Musée Du Pin\n                  </p>\n                </div>\n              </div>\n            </div>\n\n            <div\n              className=\"visit-card visit-card-vertical\"\n              onClick={() => navigate(\"/visit/art-rooms\")}\n            >\n              <div className=\"visit-card-img-wrap\">\n                <img\n                  src=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748932457/wnggxcv1dn4b6meviasq.png\"\n                  alt=\"Các căn phòng nghệ thuật\"\n                  className=\"visit-card-img\"\n                />\n                <div className=\"visit-card-overlay\" />\n                <div className=\"visit-card-content\">\n                  <h2>CÁC CĂN PHÒNG NGHỆ THUẬT</h2>\n                  <p>\n                    Khám phá không gian nghệ thuật độc đáo trong từng căn phòng\n                  </p>\n                </div>\n              </div>\n            </div>\n\n            <div\n              className=\"visit-card visit-card-vertical\"\n              onClick={() => navigate(\"/visit/package/chup-anh-nghe-thuat\")}\n            >\n              <div className=\"visit-card-img-wrap\">\n                <img\n                  src=\"https://ik.imagekit.io/8u8lkoqkkm/chupanhnghethuat_doc.jpg?updatedAt=1750298609358\"\n                  alt=\"Chụp ảnh nghệ thuật\"\n                  className=\"visit-card-img\"\n                />\n                <div className=\"visit-card-overlay\" />\n                <div className=\"visit-card-content\">\n                  <h2>Chụp ảnh nghệ thuật</h2>\n                  <p>\n                    Sở hữu những tấm ảnh nghệ thuật độc đáo trong không gian Bảo\n                    Tàng\n                  </p>\n                </div>\n              </div>\n            </div>\n\n            <div\n              className=\"visit-card visit-card-vertical\"\n              onClick={() => navigate(\"/visit/package/phim-dien-anh\")}\n            >\n              <div className=\"visit-card-img-wrap\">\n                <img\n                  src=\"https://ik.imagekit.io/8u8lkoqkkm/phimdienanh_doc.jpg?updatedAt=1750298609321\"\n                  alt=\"Phim điện ảnh\"\n                  className=\"visit-card-img\"\n                />\n                <div className=\"visit-card-overlay\" />\n                <div className=\"visit-card-content\">\n                  <h2>Phim điện ảnh</h2>\n                  <p>\n                    Lưu giữ kỷ niệm chuyến đi bằng thước phim điện ảnh chuyên\n                    nghiệp\n                  </p>\n                </div>\n              </div>\n            </div>\n          </div>\n        </div>\n      </section>\n    </div>\n  );\n};\n\nexport default Visit;\n",
-      "start": 1751092506991,
-      "end": 1751092507551,
+      "start": 1751093175096,
+      "end": 1751093175302,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092507552,
-      "end": 1751092507552,
+      "start": 1751093175302,
+      "end": 1751093175302,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { useNavigate } from \"react-router-dom\";\nimport \"./Visit.css\";\nconst Visit = () => {\n  const navigate = useNavigate();\n  return /* @__PURE__ */ jsx(\"div\", { className: \"visit-page\", children: /* @__PURE__ */ jsx(\"section\", { className: \"ticket-section\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"visit-section-container\", children: [\n    /* @__PURE__ */ jsx(\"h2\", { className: \"visit-section-title\", children: /* @__PURE__ */ jsx(\"span\", { children: \"CÁC GÓI TRẢI NGHIỆM\" }) }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"visit-cards\", children: [\n      /* @__PURE__ */ jsx(\n        \"div\",\n        {\n          className: \"visit-card visit-card-vertical\",\n          onClick: () => navigate(\"/visit/non-residential\"),\n          children: /* @__PURE__ */ jsxs(\"div\", { className: \"visit-card-img-wrap\", children: [\n            /* @__PURE__ */ jsx(\n              \"img\",\n              {\n                src: \"https://ik.imagekit.io/8u8lkoqkkm/KhongLuuTru.jpg?updatedAt=1749267196332\",\n                alt: \"Gói không lưu trú\",\n                className: \"visit-card-img\"\n              }\n            ),\n            /* @__PURE__ */ jsx(\"div\", { className: \"visit-card-overlay\" }),\n            /* @__PURE__ */ jsxs(\"div\", { className: \"visit-card-content\", children: [\n              /* @__PURE__ */ jsx(\"h2\", { children: \"Gói không lưu trú\" }),\n              /* @__PURE__ */ jsx(\"p\", { children: \"Trải nghiệm nghệ thuật và văn hóa trong ngày tại Musée Du Pin\" })\n            ] })\n          ] })\n        }\n      ),\n      /* @__PURE__ */ jsx(\n        \"div\",\n        {\n          className: \"visit-card visit-card-vertical\",\n          onClick: () => navigate(\"/visit/residential\"),\n          children: /* @__PURE__ */ jsxs(\"div\", { className: \"visit-card-img-wrap\", children: [\n            /* @__PURE__ */ jsx(\n              \"img\",\n              {\n                src: \"https://ik.imagekit.io/8u8lkoqkkm/Luutru.jpg?updatedAt=1749267196093\",\n                alt: \"Gói lưu trú\",\n                className: \"visit-card-img\"\n              }\n            ),\n            /* @__PURE__ */ jsx(\"div\", { className: \"visit-card-overlay\" }),\n            /* @__PURE__ */ jsxs(\"div\", { className: \"visit-card-content\", children: [\n              /* @__PURE__ */ jsx(\"h2\", { children: \"Gói lưu trú\" }),\n              /* @__PURE__ */ jsx(\"p\", { children: \"Nghỉ dưỡng và trải nghiệm nghệ thuật trọn vẹn tại Musée Du Pin\" })\n            ] })\n          ] })\n        }\n      ),\n      /* @__PURE__ */ jsx(\n        \"div\",\n        {\n          className: \"visit-card visit-card-vertical\",\n          onClick: () => navigate(\"/visit/regular\"),\n          children: /* @__PURE__ */ jsxs(\"div\", { className: \"visit-card-img-wrap\", children: [\n            /* @__PURE__ */ jsx(\n              \"img\",\n              {\n                src: \"https://ik.imagekit.io/8u8lkoqkkm/Chuongtrinhdinhky.jpg?updatedAt=1749267196289\",\n                alt: \"Chương trình định kỳ\",\n                className: \"visit-card-img\"\n              }\n            ),\n            /* @__PURE__ */ jsx(\"div\", { className: \"visit-card-overlay\" }),\n            /* @__PURE__ */ jsxs(\"div\", { className: \"visit-card-content\", children: [\n              /* @__PURE__ */ jsx(\"h2\", { children: \"Chương trình định kỳ\" }),\n              /* @__PURE__ */ jsx(\"p\", { children: \"Các sự kiện nghệ thuật đặc sắc diễn ra thường xuyên tại Musée Du Pin\" })\n            ] })\n          ] })\n        }\n      ),\n      /* @__PURE__ */ jsx(\n        \"div\",\n        {\n          className: \"visit-card visit-card-vertical\",\n          onClick: () => navigate(\"/visit/art-rooms\"),\n          children: /* @__PURE__ */ jsxs(\"div\", { className: \"visit-card-img-wrap\", children: [\n            /* @__PURE__ */ jsx(\n              \"img\",\n              {\n                src: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748932457/wnggxcv1dn4b6meviasq.png\",\n                alt: \"Các căn phòng nghệ thuật\",\n                className: \"visit-card-img\"\n              }\n            ),\n            /* @__PURE__ */ jsx(\"div\", { className: \"visit-card-overlay\" }),\n            /* @__PURE__ */ jsxs(\"div\", { className: \"visit-card-content\", children: [\n              /* @__PURE__ */ jsx(\"h2\", { children: \"CÁC CĂN PHÒNG NGHỆ THUẬT\" }),\n              /* @__PURE__ */ jsx(\"p\", { children: \"Khám phá không gian nghệ thuật độc đáo trong từng căn phòng\" })\n            ] })\n          ] })\n        }\n      ),\n      /* @__PURE__ */ jsx(\n        \"div\",\n        {\n          className: \"visit-card visit-card-vertical\",\n          onClick: () => navigate(\"/visit/package/chup-anh-nghe-thuat\"),\n          children: /* @__PURE__ */ jsxs(\"div\", { className: \"visit-card-img-wrap\", children: [\n            /* @__PURE__ */ jsx(\n              \"img\",\n              {\n                src: \"https://ik.imagekit.io/8u8lkoqkkm/chupanhnghethuat_doc.jpg?updatedAt=1750298609358\",\n                alt: \"Chụp ảnh nghệ thuật\",\n                className: \"visit-card-img\"\n              }\n            ),\n            /* @__PURE__ */ jsx(\"div\", { className: \"visit-card-overlay\" }),\n            /* @__PURE__ */ jsxs(\"div\", { className: \"visit-card-content\", children: [\n              /* @__PURE__ */ jsx(\"h2\", { children: \"Chụp ảnh nghệ thuật\" }),\n              /* @__PURE__ */ jsx(\"p\", { children: \"Sở hữu những tấm ảnh nghệ thuật độc đáo trong không gian Bảo Tàng\" })\n            ] })\n          ] })\n        }\n      ),\n      /* @__PURE__ */ jsx(\n        \"div\",\n        {\n          className: \"visit-card visit-card-vertical\",\n          onClick: () => navigate(\"/visit/package/phim-dien-anh\"),\n          children: /* @__PURE__ */ jsxs(\"div\", { className: \"visit-card-img-wrap\", children: [\n            /* @__PURE__ */ jsx(\n              \"img\",\n              {\n                src: \"https://ik.imagekit.io/8u8lkoqkkm/phimdienanh_doc.jpg?updatedAt=1750298609321\",\n                alt: \"Phim điện ảnh\",\n                className: \"visit-card-img\"\n              }\n            ),\n            /* @__PURE__ */ jsx(\"div\", { className: \"visit-card-overlay\" }),\n            /* @__PURE__ */ jsxs(\"div\", { className: \"visit-card-content\", children: [\n              /* @__PURE__ */ jsx(\"h2\", { children: \"Phim điện ảnh\" }),\n              /* @__PURE__ */ jsx(\"p\", { children: \"Lưu giữ kỷ niệm chuyến đi bằng thước phim điện ảnh chuyên nghiệp\" })\n            ] })\n          ] })\n        }\n      )\n    ] })\n  ] }) }) });\n};\nexport default Visit;\n",
-      "start": 1751092507552,
-      "end": 1751092507659,
+      "start": 1751093175302,
+      "end": 1751093175573,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751092507659,
-      "end": 1751092507659,
+      "start": 1751093175574,
+      "end": 1751093175574,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092507659,
-      "end": 1751092507659,
+      "start": 1751093175574,
+      "end": 1751093175574,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092507659,
-      "end": 1751092507659,
+      "start": 1751093175574,
+      "end": 1751093175574,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092507659,
-      "end": 1751092507659,
+      "start": 1751093175574,
+      "end": 1751093175574,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092507659,
-      "end": 1751092507659,
+      "start": 1751093175574,
+      "end": 1751093175574,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092507659,
-      "end": 1751092507659,
+      "start": 1751093175574,
+      "end": 1751093175574,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092507659,
-      "end": 1751092507659,
+      "start": 1751093175574,
+      "end": 1751093175574,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092507659,
-      "end": 1751092507660,
+      "start": 1751093175574,
+      "end": 1751093175575,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092507660,
-      "end": 1751092507660,
+      "start": 1751093175575,
+      "end": 1751093175575,
       "order": "normal"
     }
   ]

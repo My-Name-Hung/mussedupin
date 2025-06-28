@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\r\nimport { Helmet } from \"react-helmet\";\r\nimport \"./LegalNotice.css\";\r\n\r\n// Import header image\r\n\r\nconst LegalNotice = () => {\r\n  return (\r\n    <div className=\"legal-notice-container\">\r\n      <Helmet>\r\n        <title>Điều khoản pháp lý | Bảo tàng Du Pin</title>\r\n        <meta\r\n          name=\"description\"\r\n          content=\"Thông tin pháp lý và điều khoản sử dụng cho website Bảo tàng Du Pin.\"\r\n        />\r\n      </Helmet>\r\n\r\n      {/* Header Banner */}\r\n      <div className=\"legal-banner\">\r\n        <img\r\n          src=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784642/collections/louvre-sunset.jpg\"\r\n          alt=\"Bảo tàng Du Pin\"\r\n        />\r\n        <div className=\"banner-overlay\">\r\n          <h1>ĐIỀU KHOẢN PHÁP LÝ</h1>\r\n        </div>\r\n      </div>\r\n\r\n      <div className=\"legal-content\">\r\n        {/* Publishing Section */}\r\n        <div className=\"section\">\r\n          <h2>THÔNG TIN XUẤT BẢN</h2>\r\n          <p>\r\n            <span className=\"notranslate\">Musée Du Pin</span>, Bảo tàng Thông,\r\n            <br />\r\n            MST: 0106157152-001\r\n            <br />\r\n            Địa chỉ: 29-31 Đống Đa, phường 3, tp. Đà Lạt, Lâm Đồng\r\n            <br />\r\n            Điện thoại: +84 2633 818 968; +84 86 235 6368\r\n            <br />\r\n            Giám đốc xuất bản: <span className=\"notranslate\">Musée Du Pin</span>\r\n          </p>\r\n        </div>\r\n\r\n        {/* Website Content Section */}\r\n        <div className=\"section\">\r\n          <h2>NỘI DUNG WEBSITE</h2>\r\n          <p>\r\n            <span className=\"notranslate\">Musée Du Pin</span>\r\n            <br />\r\n            Phòng Sản xuất Kỹ thuật số và Nghe nhìn\r\n            <br />\r\n            29-31 Đống Đa, phường 3, Đà Lạt\r\n            <br />\r\n            baotangthong2024@gmail.com\r\n          </p>\r\n        </div>\r\n\r\n        {/* Intellectual Property Section */}\r\n        <div className=\"section\">\r\n          <h2>QUYỀN SỞ HỮU TRÍ TUỆ</h2>\r\n          <h3>Phát triển website</h3>\r\n          <p>\r\n            Cấu trúc chung của website này là tài sản độc quyền của Bảo tàng Du\r\n            Pin. Mọi hình thức sao chép, trình bày, toàn bộ hoặc một phần, sử\r\n            dụng, điều chỉnh, cung cấp hoặc sửa đổi bằng bất kỳ quy trình, cá\r\n            nhân và phương tiện nào (đặc biệt là bán, tiếp thị, cho thuê, v.v.)\r\n            mà không có sự cho phép rõ ràng của bảo tàng, bất kỳ tác giả hoặc\r\n            chủ sở hữu quyền nào đều bị nghiêm cấm và cấu thành vi phạm Bộ luật\r\n            Sở hữu Trí tuệ.\r\n          </p>\r\n\r\n          <h3>Nội dung Website</h3>\r\n          <p>\r\n            Theo luật sở hữu trí tuệ, nội dung khoa học, văn hóa và giáo dục\r\n            (bao gồm nhưng không giới hạn ở văn bản, hình ảnh, ảnh chụp, bản ghi\r\n            âm và tài liệu nghe nhìn và đa phương tiện) của website này là tài\r\n            sản của Bảo tàng Du Pin.\r\n          </p>\r\n          <p>\r\n            Do đó, mọi hình thức sao chép, trình bày, toàn bộ hoặc một phần, sử\r\n            dụng, điều chỉnh, cung cấp hoặc sửa đổi nội dung này bằng bất kỳ quy\r\n            trình, cá nhân và phương tiện nào (đặc biệt là bán, tiếp thị, cho\r\n            thuê, v.v.) mà không có sự cho phép rõ ràng của tác giả hoặc chủ sở\r\n            hữu quyền đều bị nghiêm cấm và cấu thành vi phạm Bộ luật Sở hữu Trí\r\n            tuệ.\r\n          </p>\r\n\r\n          <h3>Hình ảnh</h3>\r\n          <p>\r\n            Hình ảnh có ghi © Musée du Pin / [...] là tài sản độc quyền của Bảo\r\n            tàng Du Pin và được Bảo tàng Du Pin sử dụng với sự cho phép của tác\r\n            giả hoặc chủ sở hữu quyền.\r\n          </p>\r\n          <p>\r\n            Hình ảnh có ghi © Tác giả, Musée du Pin / [...] là tài sản của Tác\r\n            giả. Việc tái sử dụng phi thương mại được cho phép, với điều kiện\r\n            phải ghi nhận nguồn gốc và tác giả.\r\n          </p>\r\n          <p>\r\n            Đối với bất kỳ việc tái sử dụng thương mại và/hoặc biên tập lại hình\r\n            ảnh từ bộ sưu tập của Bảo tàng Thông và các Phòng trưng bày Quốc gia\r\n            khác, vui lòng liên hệ với Bảo Tàng qua hotline: +84 86 235 6368\r\n            hoặc gửi email đến hộp thư: baotangthong2024@gmail.com\r\n          </p>\r\n\r\n          <h3>Thương hiệu và logo</h3>\r\n          <p>\r\n            Các thương hiệu của Bảo Tàng Thông và đối tác của nó, cũng như các\r\n            logo hiển thị trên trang web, đã được đăng ký với Cục Sở Hữu Trí Tuệ\r\n            Việt Nam.\r\n          </p>\r\n          <p>\r\n            Mọi hình thức sao chép, toàn bộ hoặc một phần, các thương hiệu\r\n            và/hoặc logo này được tạo ra từ các yếu tố của website mà không có\r\n            sự cho phép rõ ràng của chủ sở hữu đều bị nghiêm cấm và cấu thành vi\r\n            phạm Bộ luật Sở hữu Trí tuệ.\r\n          </p>\r\n        </div>\r\n\r\n        {/* Public Sector Information Section */}\r\n        <div className=\"section\">\r\n          <h2>THÔNG TIN KHU VỰC CÔNG</h2>\r\n          <p>\r\n            Nội dung thông tin và lập trình trên website này là thông tin bản\r\n            quyền. Thông tin này có thể được tái sử dụng, với điều kiện không bị\r\n            thay đổi, không bị bóp méo ý nghĩa và phải ghi rõ nguồn gốc và ngày\r\n            cập nhật gần nhất.\r\n          </p>\r\n          <p>\r\n            Quyền đối với thông tin khu vực công hành chính không được chuyển\r\n            giao cho người tái sử dụng.\r\n          </p>\r\n        </div>\r\n\r\n        {/* Hypertext Links Section */}\r\n        <div className=\"section\">\r\n          <h2>LIÊN KẾT SIÊU VĂN BẢN</h2>\r\n          <p>\r\n            Website Bảo tàng Thông (www.museedupin.com) cho phép sử dụng liên\r\n            kết siêu văn bản đến nội dung của mình với điều kiện:\r\n          </p>\r\n          <ul>\r\n            <li>\r\n              Không sử dụng liên kết sâu, nghĩa là các trang từ website Bảo tàng\r\n              Thông, không được nhúng trong các trang của một trang web khác, mà\r\n              phải được mở trong cửa sổ mải ghi rõ nguồn gốc khi liên kết siêu\r\n              văn bản dẫn trực tiếp đến nội dung.\r\n            </li>\r\n          </ul>\r\n          <p>\r\n            Thông tin chỉ được sử dụng cho mục đích cá nhân, hiệp hội hoặc\r\n            chuyên môn; mọi sử dụng cho mục đích thương mại hoặc quảng cáo đều\r\n            bị nghiêm cấm.\r\n          </p>\r\n          <p>\r\n            Không cấp phép cho các website có nội dung được coi là xúc phạm nhân\r\n            phẩm, trật tự công cộng hoặc đạo đức công cộng.\r\n          </p>\r\n        </div>\r\n\r\n        {/* Liability Section */}\r\n        <div className=\"section\">\r\n          <h2>TRÁCH NHIỆM PHÁP LÝ</h2>\r\n          <p>\r\n            Bảo tàng Thông nỗ lực hết sức để đảm bảo thông tin trên website\r\n            www.museedupin.com luôn sẵn có, chính xác và cập nhật, và có quyền\r\n            sửa đổi thông tin bất cứ lúc nào mà không cần thông báo trước. Tuy\r\n            nhiên, Bảo tàng Thông không thể đảm bảo tính sẵn có, chính xác, thời\r\n            sự hoặc đầy đủ của thông tin được trình bày. Việc sử dụng thông tin\r\n            có sẵn hoặc được cung cấp trên website này là trách nhiệm của người\r\n            dùng.\r\n          </p>\r\n          <p>\r\n            Bảo tàng Du Pin không chịu trách nhiệm về nội dung của các trang web\r\n            này, và sẽ không chịu trách nhiệm về bất kỳ thiệt hại hoặc tổn\r\n            thương nào phát sinh từ chúng. Các liên kết đến các trang web khác\r\n            chỉ được cung cấp cho người dùng để thuận tiện.\r\n          </p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default LegalNotice;\r\n",
-      "start": 1751092506991,
-      "end": 1751092507554,
+      "start": 1751093175096,
+      "end": 1751093175304,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092507554,
-      "end": 1751092507554,
+      "start": 1751093175305,
+      "end": 1751093175305,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { Helmet } from \"react-helmet\";\nimport \"./LegalNotice.css\";\nconst LegalNotice = () => {\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"legal-notice-container\", children: [\n    /* @__PURE__ */ jsxs(Helmet, { children: [\n      /* @__PURE__ */ jsx(\"title\", { children: \"Điều khoản pháp lý | Bảo tàng Du Pin\" }),\n      /* @__PURE__ */ jsx(\n        \"meta\",\n        {\n          name: \"description\",\n          content: \"Thông tin pháp lý và điều khoản sử dụng cho website Bảo tàng Du Pin.\"\n        }\n      )\n    ] }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"legal-banner\", children: [\n      /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784642/collections/louvre-sunset.jpg\",\n          alt: \"Bảo tàng Du Pin\"\n        }\n      ),\n      /* @__PURE__ */ jsx(\"div\", { className: \"banner-overlay\", children: /* @__PURE__ */ jsx(\"h1\", { children: \"ĐIỀU KHOẢN PHÁP LÝ\" }) })\n    ] }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"legal-content\", children: [\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"THÔNG TIN XUẤT BẢN\" }),\n        /* @__PURE__ */ jsxs(\"p\", { children: [\n          /* @__PURE__ */ jsx(\"span\", { className: \"notranslate\", children: \"Musée Du Pin\" }),\n          \", Bảo tàng Thông,\",\n          /* @__PURE__ */ jsx(\"br\", {}),\n          \"MST: 0106157152-001\",\n          /* @__PURE__ */ jsx(\"br\", {}),\n          \"Địa chỉ: 29-31 Đống Đa, phường 3, tp. Đà Lạt, Lâm Đồng\",\n          /* @__PURE__ */ jsx(\"br\", {}),\n          \"Điện thoại: +84 2633 818 968; +84 86 235 6368\",\n          /* @__PURE__ */ jsx(\"br\", {}),\n          \"Giám đốc xuất bản: \",\n          /* @__PURE__ */ jsx(\"span\", { className: \"notranslate\", children: \"Musée Du Pin\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"NỘI DUNG WEBSITE\" }),\n        /* @__PURE__ */ jsxs(\"p\", { children: [\n          /* @__PURE__ */ jsx(\"span\", { className: \"notranslate\", children: \"Musée Du Pin\" }),\n          /* @__PURE__ */ jsx(\"br\", {}),\n          \"Phòng Sản xuất Kỹ thuật số và Nghe nhìn\",\n          /* @__PURE__ */ jsx(\"br\", {}),\n          \"29-31 Đống Đa, phường 3, Đà Lạt\",\n          /* @__PURE__ */ jsx(\"br\", {}),\n          \"baotangthong2024@gmail.com\"\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"QUYỀN SỞ HỮU TRÍ TUỆ\" }),\n        /* @__PURE__ */ jsx(\"h3\", { children: \"Phát triển website\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Cấu trúc chung của website này là tài sản độc quyền của Bảo tàng Du Pin. Mọi hình thức sao chép, trình bày, toàn bộ hoặc một phần, sử dụng, điều chỉnh, cung cấp hoặc sửa đổi bằng bất kỳ quy trình, cá nhân và phương tiện nào (đặc biệt là bán, tiếp thị, cho thuê, v.v.) mà không có sự cho phép rõ ràng của bảo tàng, bất kỳ tác giả hoặc chủ sở hữu quyền nào đều bị nghiêm cấm và cấu thành vi phạm Bộ luật Sở hữu Trí tuệ.\" }),\n        /* @__PURE__ */ jsx(\"h3\", { children: \"Nội dung Website\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Theo luật sở hữu trí tuệ, nội dung khoa học, văn hóa và giáo dục (bao gồm nhưng không giới hạn ở văn bản, hình ảnh, ảnh chụp, bản ghi âm và tài liệu nghe nhìn và đa phương tiện) của website này là tài sản của Bảo tàng Du Pin.\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Do đó, mọi hình thức sao chép, trình bày, toàn bộ hoặc một phần, sử dụng, điều chỉnh, cung cấp hoặc sửa đổi nội dung này bằng bất kỳ quy trình, cá nhân và phương tiện nào (đặc biệt là bán, tiếp thị, cho thuê, v.v.) mà không có sự cho phép rõ ràng của tác giả hoặc chủ sở hữu quyền đều bị nghiêm cấm và cấu thành vi phạm Bộ luật Sở hữu Trí tuệ.\" }),\n        /* @__PURE__ */ jsx(\"h3\", { children: \"Hình ảnh\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Hình ảnh có ghi © Musée du Pin / [...] là tài sản độc quyền của Bảo tàng Du Pin và được Bảo tàng Du Pin sử dụng với sự cho phép của tác giả hoặc chủ sở hữu quyền.\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Hình ảnh có ghi © Tác giả, Musée du Pin / [...] là tài sản của Tác giả. Việc tái sử dụng phi thương mại được cho phép, với điều kiện phải ghi nhận nguồn gốc và tác giả.\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Đối với bất kỳ việc tái sử dụng thương mại và/hoặc biên tập lại hình ảnh từ bộ sưu tập của Bảo tàng Thông và các Phòng trưng bày Quốc gia khác, vui lòng liên hệ với Bảo Tàng qua hotline: +84 86 235 6368 hoặc gửi email đến hộp thư: baotangthong2024@gmail.com\" }),\n        /* @__PURE__ */ jsx(\"h3\", { children: \"Thương hiệu và logo\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Các thương hiệu của Bảo Tàng Thông và đối tác của nó, cũng như các logo hiển thị trên trang web, đã được đăng ký với Cục Sở Hữu Trí Tuệ Việt Nam.\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Mọi hình thức sao chép, toàn bộ hoặc một phần, các thương hiệu và/hoặc logo này được tạo ra từ các yếu tố của website mà không có sự cho phép rõ ràng của chủ sở hữu đều bị nghiêm cấm và cấu thành vi phạm Bộ luật Sở hữu Trí tuệ.\" })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"THÔNG TIN KHU VỰC CÔNG\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Nội dung thông tin và lập trình trên website này là thông tin bản quyền. Thông tin này có thể được tái sử dụng, với điều kiện không bị thay đổi, không bị bóp méo ý nghĩa và phải ghi rõ nguồn gốc và ngày cập nhật gần nhất.\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Quyền đối với thông tin khu vực công hành chính không được chuyển giao cho người tái sử dụng.\" })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"LIÊN KẾT SIÊU VĂN BẢN\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Website Bảo tàng Thông (www.museedupin.com) cho phép sử dụng liên kết siêu văn bản đến nội dung của mình với điều kiện:\" }),\n        /* @__PURE__ */ jsx(\"ul\", { children: /* @__PURE__ */ jsx(\"li\", { children: \"Không sử dụng liên kết sâu, nghĩa là các trang từ website Bảo tàng Thông, không được nhúng trong các trang của một trang web khác, mà phải được mở trong cửa sổ mải ghi rõ nguồn gốc khi liên kết siêu văn bản dẫn trực tiếp đến nội dung.\" }) }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Thông tin chỉ được sử dụng cho mục đích cá nhân, hiệp hội hoặc chuyên môn; mọi sử dụng cho mục đích thương mại hoặc quảng cáo đều bị nghiêm cấm.\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Không cấp phép cho các website có nội dung được coi là xúc phạm nhân phẩm, trật tự công cộng hoặc đạo đức công cộng.\" })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"TRÁCH NHIỆM PHÁP LÝ\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Bảo tàng Thông nỗ lực hết sức để đảm bảo thông tin trên website www.museedupin.com luôn sẵn có, chính xác và cập nhật, và có quyền sửa đổi thông tin bất cứ lúc nào mà không cần thông báo trước. Tuy nhiên, Bảo tàng Thông không thể đảm bảo tính sẵn có, chính xác, thời sự hoặc đầy đủ của thông tin được trình bày. Việc sử dụng thông tin có sẵn hoặc được cung cấp trên website này là trách nhiệm của người dùng.\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Bảo tàng Du Pin không chịu trách nhiệm về nội dung của các trang web này, và sẽ không chịu trách nhiệm về bất kỳ thiệt hại hoặc tổn thương nào phát sinh từ chúng. Các liên kết đến các trang web khác chỉ được cung cấp cho người dùng để thuận tiện.\" })\n      ] })\n    ] })\n  ] });\n};\nexport default LegalNotice;\n",
-      "start": 1751092507554,
-      "end": 1751092507652,
+      "start": 1751093175305,
+      "end": 1751093175405,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751092507653,
-      "end": 1751092507653,
+      "start": 1751093175405,
+      "end": 1751093175405,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092507653,
-      "end": 1751092507653,
+      "start": 1751093175405,
+      "end": 1751093175405,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092507653,
-      "end": 1751092507653,
+      "start": 1751093175405,
+      "end": 1751093175405,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092507653,
-      "end": 1751092507653,
+      "start": 1751093175405,
+      "end": 1751093175405,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092507653,
-      "end": 1751092507653,
+      "start": 1751093175405,
+      "end": 1751093175405,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092507654,
-      "end": 1751092507654,
+      "start": 1751093175405,
+      "end": 1751093175405,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092507654,
-      "end": 1751092507654,
+      "start": 1751093175405,
+      "end": 1751093175405,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092507654,
-      "end": 1751092507655,
+      "start": 1751093175406,
+      "end": 1751093175406,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092507655,
-      "end": 1751092507655,
+      "start": 1751093175406,
+      "end": 1751093175406,
       "order": "normal"
     }
   ]

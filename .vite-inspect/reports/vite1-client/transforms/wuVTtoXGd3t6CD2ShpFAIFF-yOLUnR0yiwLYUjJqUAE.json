@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "function effectInit(params) {\n  const {\n    effect,\n    swiper,\n    on,\n    setTranslate,\n    setTransition,\n    overwriteParams,\n    perspective,\n    recreateShadows,\n    getEffectParams\n  } = params;\n  on('beforeInit', () => {\n    if (swiper.params.effect !== effect) return;\n    swiper.classNames.push(`${swiper.params.containerModifierClass}${effect}`);\n    if (perspective && perspective()) {\n      swiper.classNames.push(`${swiper.params.containerModifierClass}3d`);\n    }\n    const overwriteParamsResult = overwriteParams ? overwriteParams() : {};\n    Object.assign(swiper.params, overwriteParamsResult);\n    Object.assign(swiper.originalParams, overwriteParamsResult);\n  });\n  on('setTranslate _virtualUpdated', () => {\n    if (swiper.params.effect !== effect) return;\n    setTranslate();\n  });\n  on('setTransition', (_s, duration) => {\n    if (swiper.params.effect !== effect) return;\n    setTransition(duration);\n  });\n  on('transitionEnd', () => {\n    if (swiper.params.effect !== effect) return;\n    if (recreateShadows) {\n      if (!getEffectParams || !getEffectParams().slideShadows) return;\n      // remove shadows\n      swiper.slides.forEach(slideEl => {\n        slideEl.querySelectorAll('.swiper-slide-shadow-top, .swiper-slide-shadow-right, .swiper-slide-shadow-bottom, .swiper-slide-shadow-left').forEach(shadowEl => shadowEl.remove());\n      });\n      // create new one\n      recreateShadows();\n    }\n  });\n  let requireUpdateOnVirtual;\n  on('virtualUpdate', () => {\n    if (swiper.params.effect !== effect) return;\n    if (!swiper.slides.length) {\n      requireUpdateOnVirtual = true;\n    }\n    requestAnimationFrame(() => {\n      if (requireUpdateOnVirtual && swiper.slides && swiper.slides.length) {\n        setTranslate();\n        requireUpdateOnVirtual = false;\n      }\n    });\n  });\n}\n\nexport { effectInit as e };\n",
-      "start": 1750779205378,
-      "end": 1750779205710,
+      "start": 1751092502061,
+      "end": 1751092502339,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750779205711,
-      "end": 1750779205711,
+      "start": 1751092502339,
+      "end": 1751092502339,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1750779205711,
-      "end": 1750779205711,
+      "start": 1751092502339,
+      "end": 1751092502339,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1750779205711,
-      "end": 1750779205711,
+      "start": 1751092502339,
+      "end": 1751092502339,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750779205711,
-      "end": 1750779205711,
+      "start": 1751092502339,
+      "end": 1751092502339,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750779205711,
-      "end": 1750779205711,
+      "start": 1751092502339,
+      "end": 1751092502339,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750779205711,
-      "end": 1750779205711,
+      "start": 1751092502339,
+      "end": 1751092502339,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750779205711,
-      "end": 1750779205711,
+      "start": 1751092502339,
+      "end": 1751092502339,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750779205711,
-      "end": 1750779205711,
+      "start": 1751092502339,
+      "end": 1751092502339,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750779205711,
-      "end": 1750779205711,
+      "start": 1751092502339,
+      "end": 1751092502339,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750779205725,
-      "end": 1750779205725,
+      "start": 1751092502339,
+      "end": 1751092502339,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750779205725,
-      "end": 1750779205725,
+      "start": 1751092502339,
+      "end": 1751092502339,
       "order": "normal"
     }
   ]

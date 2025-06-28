@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": ".artists-page {\n  background-image: url(\"https://res.cloudinary.com/dn0br7hj0/image/upload/background/Background2.webp\");\n  background-repeat: repeat;\n  background-position: top center;\n  background-size: 300px;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: crisp-edges;\n  padding: 40px 20px;\n}\n\n.artists-title {\n  font-family: \"Mythical-Prince\", \"LouvreSerif\", Georgia, \"Times New Roman\",\n    serif;\n  font-size: 3rem;\n  text-align: center;\n  margin-bottom: 40px;\n  color: #2c2f11;\n}\n\n.section-title {\n  font-family: \"Meholrax\", serif;\n  font-size: 2rem;\n  margin-bottom: 30px;\n  color: #2c2f11;\n}\n\n.artists-exhibition {\n  max-width: 1200px;\n  margin: 0 auto 60px;\n}\n\n.artists-exhibition-grid {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 30px;\n}\n\n.artists-exhibition-item {\n  text-decoration: none;\n  text-align: center;\n}\n\n.artist-image {\n  width: 100%;\n  aspect-ratio: 1;\n  margin-bottom: 15px;\n  overflow: hidden;\n  border-radius: 50%;\n}\n\n.artist-image img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n}\n\n.artist-name {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.2rem;\n  color: #2c2f11;\n  margin-bottom: 5px;\n}\n\n.artist-count {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 0.9rem;\n  color: #666;\n}\n\n.all-artists {\n  max-width: 1200px;\n  margin: 0 auto;\n}\n\n.search-artists {\n  margin-bottom: 20px;\n}\n\n.search-artists input {\n  width: 100%;\n  max-width: 400px;\n  padding: 12px 20px;\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1rem;\n  border: 1px solid #ddd;\n  border-radius: 4px;\n  color: #000;\n  background: none;\n}\n\n.artists-count {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1rem;\n  color: #666;\n  margin-bottom: 20px;\n}\n\n.artists-list {\n  display: grid;\n  grid-template-columns: 1fr;\n  gap: 0;\n}\n\n.artist-list-item {\n  display: grid;\n  grid-template-columns: 1fr auto;\n  align-items: center;\n  padding: 15px 0;\n  text-decoration: none;\n  border-top: 1px solid #ddd;\n}\n\n.artist-list-item:last-child {\n  border-bottom: 1px solid #ddd;\n}\n\n.artist-list-name {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.1rem;\n  color: #2c2f11;\n}\n\n.artist-list-count {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 0.9rem;\n  color: #666;\n}\n\n@media (max-width: 768px) {\n  .artists-exhibition-grid {\n    grid-template-columns: repeat(2, 1fr);\n    gap: 20px;\n  }\n\n  .artists-title {\n    font-size: 2.5rem;\n  }\n\n  .section-title {\n    font-size: 1.8rem;\n  }\n\n  .artist-name {\n    font-size: 1rem;\n  }\n\n  .artist-count {\n    font-size: 0.8rem;\n  }\n}\n",
-      "start": 1750779199063,
-      "end": 1750779200067,
+      "start": 1751092498607,
+      "end": 1751092499017,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750779200067,
-      "end": 1750779200067,
+      "start": 1751092499017,
+      "end": 1751092499017,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1750779200098,
-      "end": 1750779200098,
+      "start": 1751092499044,
+      "end": 1751092499044,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1750779200098,
-      "end": 1750779200098,
+      "start": 1751092499044,
+      "end": 1751092499044,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750779200098,
-      "end": 1750779200098,
+      "start": 1751092499044,
+      "end": 1751092499044,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750779200098,
-      "end": 1750779200098,
+      "start": 1751092499044,
+      "end": 1751092499044,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750779200098,
-      "end": 1750779200098,
+      "start": 1751092499044,
+      "end": 1751092499044,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750779200098,
-      "end": 1750779200098,
+      "start": 1751092499044,
+      "end": 1751092499056,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750779200098,
-      "end": 1750779200098,
+      "start": 1751092499056,
+      "end": 1751092499056,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750779200098,
-      "end": 1750779200098,
+      "start": 1751092499056,
+      "end": 1751092499056,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750779200098,
-      "end": 1750779200098,
+      "start": 1751092499056,
+      "end": 1751092499056,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750779200098,
-      "end": 1750779200098,
+      "start": 1751092499056,
+      "end": 1751092499056,
       "order": "normal"
     }
   ]

@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "// Cloudinary configuration\r\nconst CLOUD_NAME = \"dco63bsah\";\r\nconst VERSION = \"v1750338666\"; // Add version number\r\n\r\n// Base URL for Cloudinary\r\nconst CLOUDINARY_BASE_URL = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload`;\r\n\r\n// Helper function to build Cloudinary URL with transformations\r\nconst buildCloudinaryUrl = (publicId, options = {}) => {\r\n  if (!publicId) return \"\";\r\n\r\n  // Convert options to Cloudinary transformation string\r\n  const transformations = Object.entries(options)\r\n    .filter(([, value]) => value !== undefined)\r\n    .map(([key, value]) => {\r\n      if (key === \"width\" || key === \"height\" || key === \"crop\") {\r\n        return `${key}_${value}`;\r\n      }\r\n      return `${key},${value}`;\r\n    })\r\n    .join(\",\");\r\n\r\n  // Build the final URL with version number\r\n  return `${CLOUDINARY_BASE_URL}/${VERSION}/${\r\n    transformations ? transformations + \"/\" : \"\"\r\n  }${publicId}`;\r\n};\r\n\r\n// Helper functions for each category\r\nexport const getKhuyenTaiImageUrl = (filename) => {\r\n  if (!filename) return \"\";\r\n  const publicId = `khuyentai/${filename}`;\r\n  return buildCloudinaryUrl(publicId);\r\n};\r\n\r\nexport const getAnPhamImageUrl = (filename) => {\r\n  if (!filename) return \"\";\r\n  const publicId = `Anpham/${filename}`;\r\n  return buildCloudinaryUrl(publicId);\r\n};\r\n\r\nexport const getInTheoYeuCauImageUrl = (filename) => {\r\n  if (!filename) return \"\";\r\n  const publicId = `inyeucau/${filename}`;\r\n  return buildCloudinaryUrl(publicId);\r\n};\r\n\r\nexport const getHoiThaoNgheThuatImageUrl = (filename) => {\r\n  if (!filename) return \"\";\r\n  const publicId = `hoithaonghethuat/${filename}`;\r\n  return buildCloudinaryUrl(publicId);\r\n};\r\n\r\nexport const getThoiTrangImageUrl = (filename) => {\r\n  if (!filename) return \"\";\r\n  const publicId = `thoitrang/${filename}`;\r\n  return buildCloudinaryUrl(publicId);\r\n};\r\n\r\nexport const getDoTrangSucImageUrl = (filename) => {\r\n  if (!filename) return \"\";\r\n  const publicId = `dotrangsuc/${filename}`;\r\n  return buildCloudinaryUrl(publicId);\r\n};\r\n\r\nexport const getThoCamImageUrl = (filename) => {\r\n  if (!filename) return \"\";\r\n  const publicId = `thocam/${filename}`;\r\n  return buildCloudinaryUrl(publicId);\r\n};\r\n\r\nexport const getSanPhamTuThongImageUrl = (filename) => {\r\n  if (!filename) return \"\";\r\n  const publicId = `sanphamtuthong/${filename}`;\r\n  return buildCloudinaryUrl(publicId);\r\n};\r\n",
-      "start": 1750779196814,
-      "end": 1750779198805,
+      "start": 1751092498916,
+      "end": 1751092499380,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750779198805,
-      "end": 1750779198805,
+      "start": 1751092499380,
+      "end": 1751092499380,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1750779198805,
-      "end": 1750779198805,
+      "start": 1751092499380,
+      "end": 1751092499380,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1750779198805,
-      "end": 1750779198805,
+      "start": 1751092499380,
+      "end": 1751092499380,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750779198805,
-      "end": 1750779198805,
+      "start": 1751092499380,
+      "end": 1751092499380,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750779198805,
-      "end": 1750779198805,
+      "start": 1751092499380,
+      "end": 1751092499380,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750779198805,
-      "end": 1750779198805,
+      "start": 1751092499380,
+      "end": 1751092499380,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750779198805,
-      "end": 1750779198805,
+      "start": 1751092499380,
+      "end": 1751092499380,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750779198805,
-      "end": 1750779198805,
+      "start": 1751092499380,
+      "end": 1751092499380,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750779198820,
-      "end": 1750779198820,
+      "start": 1751092499380,
+      "end": 1751092499380,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750779198820,
-      "end": 1750779198820,
+      "start": 1751092499380,
+      "end": 1751092499381,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750779198820,
-      "end": 1750779198821,
+      "start": 1751092499381,
+      "end": 1751092499381,
       "order": "normal"
     }
   ]

@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport { Link } from \"react-router-dom\";\nimport \"./BlocksWrapper.css\";\n\nconst BlocksWrapper = () => {\n  const blocks = [\n    {\n      image: \"https://i.postimg.cc/Wzp7Pp94/i-u-Kh-c.webp\",\n      title: \"Điêu khắc\",\n      subtitle: \"Xem tất cả sản phẩm\",\n      categoryLink: \"/category/do-trang-suc\",\n      description: \"Khám phá những tác phẩm điêu khắc độc đáo\",\n    },\n    {\n      image:\n        \"https://boutique.louvre.fr/files/contents/400060/691026-ad27ca49-xxl/contents-691026.jpg\",\n      title: \"Sản phẩm nổi bật\",\n      subtitle: \"Xem tất cả sản phẩm\",\n      categoryLink: \"/category/xuat-ban\",\n    },\n  ];\n\n  return (\n    <section className=\"blocks-wrapper\">\n      <div className=\"blocks-container\">\n        {blocks.map((block, index) => (\n          <Link to={block.categoryLink} key={index} className=\"block\">\n            <div className=\"block-image-container\">\n              <img\n                src={block.image}\n                alt={block.title}\n                className=\"block-image\"\n                loading=\"lazy\"\n              />\n            </div>\n            <div className=\"block-content\">\n              <h2 className=\"block-title\">{block.title}</h2>\n              <p className=\"block-description\">{block.description}</p>\n              <div className=\"block-subtitle\">\n                {block.subtitle}\n                <IoIosArrowRoundForward className=\"arrow-icon\" />\n              </div>\n            </div>\n          </Link>\n        ))}\n      </div>\n    </section>\n  );\n};\n\nexport default BlocksWrapper;\n",
-      "start": 1750779198804,
-      "end": 1750779199936,
+      "start": 1751092498545,
+      "end": 1751092498938,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750779199936,
-      "end": 1750779199936,
+      "start": 1751092498938,
+      "end": 1751092498938,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport { Link } from \"react-router-dom\";\nimport \"./BlocksWrapper.css\";\nconst BlocksWrapper = () => {\n  const blocks = [\n    {\n      image: \"https://i.postimg.cc/Wzp7Pp94/i-u-Kh-c.webp\",\n      title: \"Điêu khắc\",\n      subtitle: \"Xem tất cả sản phẩm\",\n      categoryLink: \"/category/do-trang-suc\",\n      description: \"Khám phá những tác phẩm điêu khắc độc đáo\"\n    },\n    {\n      image: \"https://boutique.louvre.fr/files/contents/400060/691026-ad27ca49-xxl/contents-691026.jpg\",\n      title: \"Sản phẩm nổi bật\",\n      subtitle: \"Xem tất cả sản phẩm\",\n      categoryLink: \"/category/xuat-ban\"\n    }\n  ];\n  return /* @__PURE__ */ jsx(\"section\", { className: \"blocks-wrapper\", children: /* @__PURE__ */ jsx(\"div\", { className: \"blocks-container\", children: blocks.map((block, index) => /* @__PURE__ */ jsxs(Link, { to: block.categoryLink, className: \"block\", children: [\n    /* @__PURE__ */ jsx(\"div\", { className: \"block-image-container\", children: /* @__PURE__ */ jsx(\n      \"img\",\n      {\n        src: block.image,\n        alt: block.title,\n        className: \"block-image\",\n        loading: \"lazy\"\n      }\n    ) }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"block-content\", children: [\n      /* @__PURE__ */ jsx(\"h2\", { className: \"block-title\", children: block.title }),\n      /* @__PURE__ */ jsx(\"p\", { className: \"block-description\", children: block.description }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"block-subtitle\", children: [\n        block.subtitle,\n        /* @__PURE__ */ jsx(IoIosArrowRoundForward, { className: \"arrow-icon\" })\n      ] })\n    ] })\n  ] }, index)) }) });\n};\nexport default BlocksWrapper;\n",
-      "start": 1750779199936,
-      "end": 1750779201705,
+      "start": 1751092498939,
+      "end": 1751092499371,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1750779201706,
-      "end": 1750779201706,
+      "start": 1751092499372,
+      "end": 1751092499372,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750779201706,
-      "end": 1750779201706,
+      "start": 1751092499372,
+      "end": 1751092499372,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750779201706,
-      "end": 1750779201706,
+      "start": 1751092499372,
+      "end": 1751092499372,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750779201706,
-      "end": 1750779201706,
+      "start": 1751092499372,
+      "end": 1751092499372,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750779201706,
-      "end": 1750779201706,
+      "start": 1751092499372,
+      "end": 1751092499372,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750779201706,
-      "end": 1750779201706,
+      "start": 1751092499372,
+      "end": 1751092499372,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750779201706,
-      "end": 1750779201706,
+      "start": 1751092499372,
+      "end": 1751092499372,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750779201706,
-      "end": 1750779201707,
+      "start": 1751092499372,
+      "end": 1751092499374,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750779201707,
-      "end": 1750779201708,
+      "start": 1751092499374,
+      "end": 1751092499374,
       "order": "normal"
     }
   ]

@@ -51,7 +51,6 @@ const Footer = () => {
                     to="https://museedupin.netlify.app/about"
                     target="_blank"
                   >
-                    Bảo tàng {" "} <span className="notranslate">Thông -</span>{" "}
                     <span className="notranslate">Musée Du Pin</span> tại Việt
                     Nam
                   </Link>

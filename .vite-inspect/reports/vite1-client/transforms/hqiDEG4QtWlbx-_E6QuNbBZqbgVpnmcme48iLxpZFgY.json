@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { LeafletContext, createContainerComponent, createControlHook, createElementHook, createElementObject, extendContext, useLeafletContext } from '@react-leaflet/core';\nimport { Control } from 'leaflet';\nimport React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';\nexport const useLayersControlElement = createElementHook(function createLayersControl({ children: _c, ...options }, ctx) {\n    const control = new Control.Layers(undefined, undefined, options);\n    return createElementObject(control, extendContext(ctx, {\n        layersControl: control\n    }));\n}, function updateLayersControl(control, props, prevProps) {\n    if (props.collapsed !== prevProps.collapsed) {\n        if (props.collapsed === true) {\n            control.collapse();\n        } else {\n            control.expand();\n        }\n    }\n});\nexport const useLayersControl = createControlHook(useLayersControlElement);\n// @ts-ignore\nexport const LayersControl = createContainerComponent(useLayersControl);\nexport function createControlledLayer(addLayerToControl) {\n    return function ControlledLayer(props) {\n        const parentContext = useLeafletContext();\n        const propsRef = useRef(props);\n        const [layer, setLayer] = useState(null);\n        const { layersControl, map } = parentContext;\n        const addLayer = useCallback((layerToAdd)=>{\n            if (layersControl != null) {\n                if (propsRef.current.checked) {\n                    map.addLayer(layerToAdd);\n                }\n                addLayerToControl(layersControl, layerToAdd, propsRef.current.name);\n                setLayer(layerToAdd);\n            }\n        }, [\n            addLayerToControl,\n            layersControl,\n            map\n        ]);\n        const removeLayer = useCallback((layerToRemove)=>{\n            layersControl?.removeLayer(layerToRemove);\n            setLayer(null);\n        }, [\n            layersControl\n        ]);\n        const context = useMemo(()=>{\n            return extendContext(parentContext, {\n                layerContainer: {\n                    addLayer,\n                    removeLayer\n                }\n            });\n        }, [\n            parentContext,\n            addLayer,\n            removeLayer\n        ]);\n        useEffect(()=>{\n            if (layer !== null && propsRef.current !== props) {\n                if (props.checked === true && (propsRef.current.checked == null || propsRef.current.checked === false)) {\n                    map.addLayer(layer);\n                } else if (propsRef.current.checked === true && (props.checked == null || props.checked === false)) {\n                    map.removeLayer(layer);\n                }\n                propsRef.current = props;\n            }\n        });\n        return props.children ? /*#__PURE__*/ React.createElement(LeafletContext, {\n            value: context\n        }, props.children) : null;\n    };\n}\nLayersControl.BaseLayer = createControlledLayer(function addBaseLayer(layersControl, layer, name) {\n    layersControl.addBaseLayer(layer, name);\n});\nLayersControl.Overlay = createControlledLayer(function addOverlay(layersControl, layer, name) {\n    layersControl.addOverlay(layer, name);\n});\n",
-      "start": 1750779218518,
-      "end": 1750779219305,
+      "start": 1751092506726,
+      "end": 1751092507373,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750779219305,
-      "end": 1750779219305,
+      "start": 1751092507373,
+      "end": 1751092507373,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1750779219305,
-      "end": 1750779219305,
+      "start": 1751092507373,
+      "end": 1751092507373,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1750779219305,
-      "end": 1750779219305,
+      "start": 1751092507373,
+      "end": 1751092507373,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750779219305,
-      "end": 1750779219305,
+      "start": 1751092507373,
+      "end": 1751092507373,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750779219305,
-      "end": 1750779219305,
+      "start": 1751092507373,
+      "end": 1751092507373,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750779219305,
-      "end": 1750779219305,
+      "start": 1751092507373,
+      "end": 1751092507373,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750779219305,
-      "end": 1750779219305,
+      "start": 1751092507373,
+      "end": 1751092507373,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750779219306,
-      "end": 1750779219306,
+      "start": 1751092507377,
+      "end": 1751092507377,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750779219306,
-      "end": 1750779219306,
+      "start": 1751092507377,
+      "end": 1751092507377,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750779219306,
-      "end": 1750779219306,
+      "start": 1751092507377,
+      "end": 1751092507377,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750779219306,
-      "end": 1750779219326,
+      "start": 1751092507377,
+      "end": 1751092507377,
       "order": "normal"
     }
   ]

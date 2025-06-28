@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useEffect, useState } from \"react\";\nimport { Link } from \"react-router-dom\";\nimport {\n  getAnPhamImageUrl,\n  getThoCamImageUrl,\n  getInTheoYeuCauImageUrl,\n  getKhuyenTaiImageUrl,\n  getThoiTrangImageUrl,\n  getSanPhamTuThongImageUrl,\n  getHoiThaoNgheThuatImageUrl,\n} from \"../../../utils/cloudinary\";\nimport \"./Categories.css\";\n\nconst categoryImages = {\n  khuyentai: [\n    \"khuyentai-hero (1).webp\",\n    \"khuyentai-hero (2).webp\",\n    \"khuyentai-hero (3).webp\",\n    \"khuyentai-hero (4).webp\",\n    \"khuyentai-hero (5).webp\",\n    \"khuyentai-hero (6).webp\",\n    \"khuyentai-hero (7).webp\",\n    \"khuyentai-hero (8).webp\",\n    \"khuyentai-hero (9).webp\",\n    \"khuyentai-hero (10).webp\",\n    \"khuyentai-hero (11).webp\",\n    \"khuyentai-hero (12).webp\",\n    \"khuyentai-hero (13).webp\",\n    \"khuyentai-hero (14).webp\",\n    \"khuyentai-hero (15).webp\",\n    \"khuyentai-hero (16).webp\",\n    \"khuyentai-hero (17).webp\",\n    \"khuyentai-hero (18).webp\",\n    \"khuyentai-hero (19).webp\",\n  ],\n  anpham: [\"tuoitho.png\", \"dautay.png\", \"hoabantrang.png\"],\n  \"hoi-thao-nghe-thuat\": [\"hoithaonghethuat.jpg\"],\n  inyeucau: [\n    \"BTT01209-HDR.webp\",\n    \"BTT01405-HDR.webp\",\n    \"BTT01421-HDR.webp\",\n    \"BTT01438-HDR.webp\",\n    \"BTT01451-HDR.webp\",\n    \"BTT01498-HDR.webp\",\n    \"BTT01513-HDR.webp\",\n    \"BTT01517-HDR.webp\",\n    \"BTT01529-HDR.webp\",\n  ],\n  thoitrang: [\"aophong.png\"],\n  thocam: [\n    \"Cravat 03.webp\",\n    \"Kẹp tóc 02.webp\",\n    \"Sơ mi nam 03.webp\",\n    \"Sơ mi nam 01.webp\",\n    \"Gôi trang trí 1.webp\",\n    \"Đầm_trẻ_em_mã_04_05_06.webp\",\n    \"Set hộp đồ trang điểm 3 size.webp\",\n    \"Túi khoác vai.webp\",\n    \"Túi xách.webp\",\n    \"Váy_ngắn_mã_01_02_03_04.webp\",\n    \"Váy ngắn mã 05.webp\",\n  ],\n  sanphamtuthong: [\n    \"Vòng quả thông 09.jpg\",\n    \"Vòng quả thông 10.jpg\",\n    \"Tranh Theo yêu cầu 02.jpg\",\n    \"Tranh mini 02.jpg\",\n    \"Tranh mini 01.jpg\",\n    \"Tranh độc bản 06.jpg\",\n    \"Tranh độc bản 01.jpg\",\n    \"Tranh A4 14.jpg\",\n    \"Tranh A4 12.jpg\",\n    \"Tranh 40x40 (04).jpg\",\n    \"Tranh 40x40 (01).jpg\",\n    \"Tranh 20x20 (01).jpg\",\n    \"Tranh 20x20 (04).jpg\",\n    \"Tranh 15x20 (02).jpg\",\n    \"moc khoa 02.jpg\",\n    \"moc khoa 01.jpg\",\n    \"Lọ hoa lớn 01.jpg\",\n    \"Lo hoa bé 09.jpg\",\n    \"Lo hoa bé 05.jpg\",\n    \"bó hoa 1 bong.jpg\",\n  ],\n};\n\nconst getRandomImage = (category) => {\n  const images = categoryImages[category];\n  if (!images || images.length === 0) return \"\";\n\n  const randomIndex = Math.floor(Math.random() * images.length);\n  const filename = images[randomIndex];\n\n  // ĐỂ TẠM THỜI\n  switch (category) {\n    case \"khuyentai\":\n      return getKhuyenTaiImageUrl(filename);\n    case \"anpham\":\n      return getAnPhamImageUrl(filename);\n    case \"hoi-thao-nghe-thuat\":\n      return getHoiThaoNgheThuatImageUrl(filename);\n    case \"inyeucau\":\n      return getInTheoYeuCauImageUrl(filename);\n    case \"thoitrang\":\n      return getThoiTrangImageUrl(filename);\n    case \"thocam\":\n    return getThoCamImageUrl(filename);\n    case \"sanphamtuthong\":\n      return getSanPhamTuThongImageUrl(filename);\n    default:\n      return \"\";\n  }\n};\n\nconst categories = [\n  {\n    title: \"Trang sức\",\n    category: \"khuyentai\",\n    link: \"/category/khuyentai\",\n  },\n  {\n    title: \"Ấn phẩm\",\n    category: \"anpham\",\n    link: \"/category/anpham\",\n  },\n  {\n    title: \"Hội thảo nghệ thuật\",\n    category: \"hoi-thao-nghe-thuat\",\n    link: \"/category/hoi-thao-nghe-thuat\",\n  },\n  {\n    title: \"In theo yêu cầu\",\n    category: \"inyeucau\",\n    link: \"/category/in-theo-yeu-cau\",\n  },\n  {\n    title: \"Thời trang và phụ kiện\",\n    category: \"thoitrang\",\n    link: \"/category/thoi-trang-va-phu-kien\",\n  },\n\n  {\n    title: \"Thổ cẩm\",\n    category: \"thocam\",\n    link: \"/category/thocam\",\n  },\n  {\n    title: \"Sản phẩm từ thông\",\n    category: \"sanphamtuthong\",\n    link: \"/category/sanphamtuthong\",\n  },\n];\n\nconst Categories = () => {\n  const [categoryList, setCategoryList] = useState(categories);\n\n  useEffect(() => {\n    // Cập nhật ảnh ngẫu nhiên cho mỗi danh mục khi component được mount\n    const updatedCategories = categories.map((category) => ({\n      ...category,\n      image: getRandomImage(category.category),\n    }));\n    setCategoryList(updatedCategories);\n  }, []);\n\n  return (\n    <section className=\"categories-section\">\n      <h2 className=\"categories-title\">DANH MỤC</h2>\n      <div className=\"categories-grid\">\n        {categoryList.map((category, index) => (\n          <Link to={category.link} key={index} className=\"category-card\">\n            <div className=\"category-image-container\">\n              <img\n                src={category.image}\n                alt={category.title}\n                className=\"category-image\"\n              />\n            </div>\n            <h3 className=\"category-title\">\n              <span className=\"title-text\">{category.title}</span>\n            </h3>\n          </Link>\n        ))}\n      </div>\n    </section>\n  );\n};\n\nexport default Categories;\n",
-      "start": 1750779198805,
-      "end": 1750779199952,
+      "start": 1751092498545,
+      "end": 1751092498959,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750779199952,
-      "end": 1750779199952,
+      "start": 1751092498959,
+      "end": 1751092498959,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect, useState } from \"react\";\nimport { Link } from \"react-router-dom\";\nimport {\n  getAnPhamImageUrl,\n  getThoCamImageUrl,\n  getInTheoYeuCauImageUrl,\n  getKhuyenTaiImageUrl,\n  getThoiTrangImageUrl,\n  getSanPhamTuThongImageUrl,\n  getHoiThaoNgheThuatImageUrl\n} from \"../../../utils/cloudinary\";\nimport \"./Categories.css\";\nconst categoryImages = {\n  khuyentai: [\n    \"khuyentai-hero (1).webp\",\n    \"khuyentai-hero (2).webp\",\n    \"khuyentai-hero (3).webp\",\n    \"khuyentai-hero (4).webp\",\n    \"khuyentai-hero (5).webp\",\n    \"khuyentai-hero (6).webp\",\n    \"khuyentai-hero (7).webp\",\n    \"khuyentai-hero (8).webp\",\n    \"khuyentai-hero (9).webp\",\n    \"khuyentai-hero (10).webp\",\n    \"khuyentai-hero (11).webp\",\n    \"khuyentai-hero (12).webp\",\n    \"khuyentai-hero (13).webp\",\n    \"khuyentai-hero (14).webp\",\n    \"khuyentai-hero (15).webp\",\n    \"khuyentai-hero (16).webp\",\n    \"khuyentai-hero (17).webp\",\n    \"khuyentai-hero (18).webp\",\n    \"khuyentai-hero (19).webp\"\n  ],\n  anpham: [\"tuoitho.png\", \"dautay.png\", \"hoabantrang.png\"],\n  \"hoi-thao-nghe-thuat\": [\"hoithaonghethuat.jpg\"],\n  inyeucau: [\n    \"BTT01209-HDR.webp\",\n    \"BTT01405-HDR.webp\",\n    \"BTT01421-HDR.webp\",\n    \"BTT01438-HDR.webp\",\n    \"BTT01451-HDR.webp\",\n    \"BTT01498-HDR.webp\",\n    \"BTT01513-HDR.webp\",\n    \"BTT01517-HDR.webp\",\n    \"BTT01529-HDR.webp\"\n  ],\n  thoitrang: [\"aophong.png\"],\n  thocam: [\n    \"Cravat 03.webp\",\n    \"Kẹp tóc 02.webp\",\n    \"Sơ mi nam 03.webp\",\n    \"Sơ mi nam 01.webp\",\n    \"Gôi trang trí 1.webp\",\n    \"Đầm_trẻ_em_mã_04_05_06.webp\",\n    \"Set hộp đồ trang điểm 3 size.webp\",\n    \"Túi khoác vai.webp\",\n    \"Túi xách.webp\",\n    \"Váy_ngắn_mã_01_02_03_04.webp\",\n    \"Váy ngắn mã 05.webp\"\n  ],\n  sanphamtuthong: [\n    \"Vòng quả thông 09.jpg\",\n    \"Vòng quả thông 10.jpg\",\n    \"Tranh Theo yêu cầu 02.jpg\",\n    \"Tranh mini 02.jpg\",\n    \"Tranh mini 01.jpg\",\n    \"Tranh độc bản 06.jpg\",\n    \"Tranh độc bản 01.jpg\",\n    \"Tranh A4 14.jpg\",\n    \"Tranh A4 12.jpg\",\n    \"Tranh 40x40 (04).jpg\",\n    \"Tranh 40x40 (01).jpg\",\n    \"Tranh 20x20 (01).jpg\",\n    \"Tranh 20x20 (04).jpg\",\n    \"Tranh 15x20 (02).jpg\",\n    \"moc khoa 02.jpg\",\n    \"moc khoa 01.jpg\",\n    \"Lọ hoa lớn 01.jpg\",\n    \"Lo hoa bé 09.jpg\",\n    \"Lo hoa bé 05.jpg\",\n    \"bó hoa 1 bong.jpg\"\n  ]\n};\nconst getRandomImage = (category) => {\n  const images = categoryImages[category];\n  if (!images || images.length === 0) return \"\";\n  const randomIndex = Math.floor(Math.random() * images.length);\n  const filename = images[randomIndex];\n  switch (category) {\n    case \"khuyentai\":\n      return getKhuyenTaiImageUrl(filename);\n    case \"anpham\":\n      return getAnPhamImageUrl(filename);\n    case \"hoi-thao-nghe-thuat\":\n      return getHoiThaoNgheThuatImageUrl(filename);\n    case \"inyeucau\":\n      return getInTheoYeuCauImageUrl(filename);\n    case \"thoitrang\":\n      return getThoiTrangImageUrl(filename);\n    case \"thocam\":\n      return getThoCamImageUrl(filename);\n    case \"sanphamtuthong\":\n      return getSanPhamTuThongImageUrl(filename);\n    default:\n      return \"\";\n  }\n};\nconst categories = [\n  {\n    title: \"Trang sức\",\n    category: \"khuyentai\",\n    link: \"/category/khuyentai\"\n  },\n  {\n    title: \"Ấn phẩm\",\n    category: \"anpham\",\n    link: \"/category/anpham\"\n  },\n  {\n    title: \"Hội thảo nghệ thuật\",\n    category: \"hoi-thao-nghe-thuat\",\n    link: \"/category/hoi-thao-nghe-thuat\"\n  },\n  {\n    title: \"In theo yêu cầu\",\n    category: \"inyeucau\",\n    link: \"/category/in-theo-yeu-cau\"\n  },\n  {\n    title: \"Thời trang và phụ kiện\",\n    category: \"thoitrang\",\n    link: \"/category/thoi-trang-va-phu-kien\"\n  },\n  {\n    title: \"Thổ cẩm\",\n    category: \"thocam\",\n    link: \"/category/thocam\"\n  },\n  {\n    title: \"Sản phẩm từ thông\",\n    category: \"sanphamtuthong\",\n    link: \"/category/sanphamtuthong\"\n  }\n];\nconst Categories = () => {\n  const [categoryList, setCategoryList] = useState(categories);\n  useEffect(() => {\n    const updatedCategories = categories.map((category) => ({\n      ...category,\n      image: getRandomImage(category.category)\n    }));\n    setCategoryList(updatedCategories);\n  }, []);\n  return /* @__PURE__ */ jsxs(\"section\", { className: \"categories-section\", children: [\n    /* @__PURE__ */ jsx(\"h2\", { className: \"categories-title\", children: \"DANH MỤC\" }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"categories-grid\", children: categoryList.map((category, index) => /* @__PURE__ */ jsxs(Link, { to: category.link, className: \"category-card\", children: [\n      /* @__PURE__ */ jsx(\"div\", { className: \"category-image-container\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: category.image,\n          alt: category.title,\n          className: \"category-image\"\n        }\n      ) }),\n      /* @__PURE__ */ jsx(\"h3\", { className: \"category-title\", children: /* @__PURE__ */ jsx(\"span\", { className: \"title-text\", children: category.title }) })\n    ] }, index)) })\n  ] });\n};\nexport default Categories;\n",
-      "start": 1750779199952,
-      "end": 1750779201705,
+      "start": 1751092498959,
+      "end": 1751092499371,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1750779201706,
-      "end": 1750779201706,
+      "start": 1751092499372,
+      "end": 1751092499372,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750779201706,
-      "end": 1750779201706,
+      "start": 1751092499372,
+      "end": 1751092499372,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750779201706,
-      "end": 1750779201706,
+      "start": 1751092499372,
+      "end": 1751092499372,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750779201706,
-      "end": 1750779201706,
+      "start": 1751092499372,
+      "end": 1751092499372,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750779201706,
-      "end": 1750779201706,
+      "start": 1751092499372,
+      "end": 1751092499372,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750779201706,
-      "end": 1750779201706,
+      "start": 1751092499372,
+      "end": 1751092499372,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750779201706,
-      "end": 1750779201706,
+      "start": 1751092499372,
+      "end": 1751092499372,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750779201706,
-      "end": 1750779201707,
+      "start": 1751092499372,
+      "end": 1751092499374,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750779201708,
-      "end": 1750779201708,
+      "start": 1751092499374,
+      "end": 1751092499374,
       "order": "normal"
     }
   ]

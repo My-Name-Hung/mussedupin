@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/mussedupin-0f2501a9a053b0e75502c49e74876d2dc852c693/node_modules/react-i18next/dist/es/i18nInstance.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "let i18nInstance;\nexport const setI18n = instance => {\n  i18nInstance = instance;\n};\nexport const getI18n = () => i18nInstance;",
+      "start": 1751036294621,
+      "end": 1751036295700,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1751036295700,
+      "end": 1751036295700,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1751036295700,
+      "end": 1751036295700,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1751036295700,
+      "end": 1751036295700,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1751036295700,
+      "end": 1751036295700,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1751036295700,
+      "end": 1751036295700,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1751036295700,
+      "end": 1751036295700,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1751036295700,
+      "end": 1751036295700,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1751036295700,
+      "end": 1751036295700,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1751036295700,
+      "end": 1751036295700,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1751036295700,
+      "end": 1751036295700,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1751036295700,
+      "end": 1751036295700,
+      "order": "normal"
+    }
+  ]
+}

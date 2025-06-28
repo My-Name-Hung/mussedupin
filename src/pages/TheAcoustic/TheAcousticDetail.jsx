@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "../../contexts/TranslationContext";
 import "./TheAcousticDetail.css";
 
 const TheAcousticDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { currentLang } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [showVideoModal, setShowVideoModal] = useState(false);
@@ -26,7 +28,16 @@ const TheAcousticDetail = () => {
         "https://ik.imagekit.io/8u8lkoqkkm/PinD'amour2.jpg?updatedAt=1750001276276",
         "https://ik.imagekit.io/8u8lkoqkkm/PinD'amour1.jpg?updatedAt=1750001275424",
       ],
-      content: `– Khi âm thanh trở thành một tác phẩm nghệ thuật –
+      content:
+        currentLang === "en"
+          ? `When sound becomes a work of art
+
+At the highest roof of Musée Du Pin – amidst the Dalat sky, where light and air seem to whisper – there is a special auditorium named Pind'amour.
+
+This is not just a venue for pure analog acoustic performances. It's an artistic space where sound returns to its purest essence – crystal clear, meticulous, pristine in every detail.
+
+With three transparent glass walls opening to a panoramic view of the romantic Dalat city, the auditorium seems to float among the clouds. The modern sound system combined with high-end equipment delivers an authentic, crisp, and emotionally rich audio experience. No effects. No noise. Just beautiful voices, inner strength, and rustic instrument notes, resonating in a space created specifically for art.`
+          : `Khi âm thanh trở thành một tác phẩm nghệ thuật
 
 Trên đỉnh mái cao nhất của Bảo Tàng Thông – giữa lưng trời Đà Lạt, nơi ánh sáng và không khí dường như cũng biết thì thầm – có một khán phòng đặc biệt mang tên Pind'amour.
 
@@ -50,7 +61,16 @@ Với thiết kế 3 mặt kính trong suốt, mở ra toàn cảnh thành phố
         "https://ik.imagekit.io/8u8lkoqkkm/hi-end2.jpg?updatedAt=1750989597877",
         "https://ik.imagekit.io/8u8lkoqkkm/hi-end1.jpg?updatedAt=1750989597877",
       ],
-      content: `💡 Với những nhân vật đặc biệt, Bảo Tàng Thông còn có riêng một phòng nghe High-end chuyên dụng – nơi âm thanh được tái hiện với độ trung thực đến mức khiến bạn có cảm giác mình đang ngồi ngay trên sân khấu, đối diện với ca sĩ thật.
+      content:
+        currentLang === "en"
+          ? `💡 For special guests, Musée Du Pin also has a dedicated High-end listening room – where sound is reproduced with such fidelity that you feel as if you're sitting right on stage, face to face with the actual singer.
+
+🌿 One space, two heartbeats:
+– An auditorium opening to a panoramic city view.
+– A private room, dedicated to those who love sound as much as they love life itself.
+
+"We believe that beautiful sound is not just for listening – but to touch the deepest part of emotions."`
+          : `💡 Với những nhân vật đặc biệt, Bảo Tàng Thông còn có riêng một phòng nghe High-end chuyên dụng – nơi âm thanh được tái hiện với độ trung thực đến mức khiến bạn có cảm giác mình đang ngồi ngay trên sân khấu, đối diện với ca sĩ thật.
 
 🌿 Một không gian, hai nhịp đập:
 – Một khán phòng mở ra toàn cảnh thành phố.
@@ -82,23 +102,6 @@ Với thiết kế 3 mặt kính trong suốt, mở ra toàn cảnh thành phố
       }
     };
   }, [isAutoPlaying, currentData.heroImages]);
-
-  // Handle manual navigation for hero slideshow
-  const nextHeroSlide = () => {
-    if (currentData.heroImages) {
-      setCurrentSlide((prev) => (prev + 1) % currentData.heroImages.length);
-      setIsAutoPlaying(false);
-    }
-  };
-
-  const prevHeroSlide = () => {
-    if (currentData.heroImages) {
-      setCurrentSlide((prev) =>
-        prev === 0 ? currentData.heroImages.length - 1 : prev - 1
-      );
-      setIsAutoPlaying(false);
-    }
-  };
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % currentData.videos.length);

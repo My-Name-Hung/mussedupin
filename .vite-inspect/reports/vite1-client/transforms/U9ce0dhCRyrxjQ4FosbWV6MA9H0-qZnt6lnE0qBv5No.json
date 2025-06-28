@@ -1,0 +1,77 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/mussedupin-0f2501a9a053b0e75502c49e74876d2dc852c693/node_modules/leaflet/dist/leaflet-src.js?commonjs-entry",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import { getDefaultExportFromCjs } from \"\u0000commonjsHelpers.js\";\nimport { __require as requireLeafletSrc } from \"C:/Users/.Freelancer/mussedupin-0f2501a9a053b0e75502c49e74876d2dc852c693/node_modules/leaflet/dist/leaflet-src.js\";\nvar leafletSrcExports = requireLeafletSrc();\nexport { leafletSrcExports as __moduleExports };\nexport default /*@__PURE__*/getDefaultExportFromCjs(leafletSrcExports);",
+      "start": 1751036307703,
+      "end": 1751036307703
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1751036307703,
+      "end": 1751036307703,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1751036307703,
+      "end": 1751036307703,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1751036307703,
+      "end": 1751036307703,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1751036307703,
+      "end": 1751036307703,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1751036307703,
+      "end": 1751036307703,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1751036307704,
+      "end": 1751036307704,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1751036307704,
+      "end": 1751036307704,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1751036307704,
+      "end": 1751036307704,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1751036307704,
+      "end": 1751036307704,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1751036307704,
+      "end": 1751036307704,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1751036307704,
+      "end": 1751036307704,
+      "order": "normal"
+    }
+  ]
+}

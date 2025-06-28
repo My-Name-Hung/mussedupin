@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/mussedupin-0f2501a9a053b0e75502c49e74876d2dc852c693/node_modules/void-elements/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * This file automatically generated from `pre-publish.js`.\n * Do not manually edit.\n */\n\nmodule.exports = {\n  \"area\": true,\n  \"base\": true,\n  \"br\": true,\n  \"col\": true,\n  \"embed\": true,\n  \"hr\": true,\n  \"img\": true,\n  \"input\": true,\n  \"link\": true,\n  \"meta\": true,\n  \"param\": true,\n  \"source\": true,\n  \"track\": true,\n  \"wbr\": true\n};\n",
+      "start": 1751036296287,
+      "end": 1751036296582,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1751036296582,
+      "end": 1751036296582,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1751036296582,
+      "end": 1751036296582,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1751036296582,
+      "end": 1751036296582,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1751036296582,
+      "end": 1751036296582,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1751036296582,
+      "end": 1751036296582,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1751036296582,
+      "end": 1751036296582,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1751036296582,
+      "end": 1751036296582,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1751036296584,
+      "end": 1751036296584,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1751036296584,
+      "end": 1751036296584,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1751036296584,
+      "end": 1751036296584,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1751036296584,
+      "end": 1751036296584,
+      "order": "normal"
+    }
+  ]
+}

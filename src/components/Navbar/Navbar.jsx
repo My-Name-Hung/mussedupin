@@ -1207,7 +1207,7 @@ const Navbar = () => {
                   style={{ marginTop: "30px" }}
                 >
                   <h3>
-                    Hỗ trợ <span className="notranslate">Musée Du Pin</span>
+                    Hỗ trợ {" "} <span className="notranslate">Musée Du Pin</span>
                   </h3>
                   <Link
                     to="/support"
@@ -1618,7 +1618,7 @@ const Navbar = () => {
             className="mobile-secondary-item"
             onClick={() => handleNavItemClick("/support")}
           >
-            Hỗ trợ <span className="notranslate">Musée Du Pin</span>
+            Hỗ trợ {" "} <span className="notranslate">Musée Du Pin</span>
           </div>
         </div>
 

@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { motionValue } from 'motion-dom';\nimport { warning } from 'motion-utils';\nimport { useEffect } from 'react';\nimport { scroll } from '../render/dom/scroll/index.mjs';\nimport { useConstant } from '../utils/use-constant.mjs';\nimport { useIsomorphicLayoutEffect } from '../utils/use-isomorphic-effect.mjs';\n\nfunction refWarning(name, ref) {\n    warning(Boolean(!ref || ref.current), `You have defined a ${name} options but the provided ref is not yet hydrated, probably because it's defined higher up the tree. Try calling useScroll() in the same component as the ref, or setting its \\`layoutEffect: false\\` option.`);\n}\nconst createScrollMotionValues = () => ({\n    scrollX: motionValue(0),\n    scrollY: motionValue(0),\n    scrollXProgress: motionValue(0),\n    scrollYProgress: motionValue(0),\n});\nfunction useScroll({ container, target, layoutEffect = true, ...options } = {}) {\n    const values = useConstant(createScrollMotionValues);\n    const useLifecycleEffect = layoutEffect\n        ? useIsomorphicLayoutEffect\n        : useEffect;\n    useLifecycleEffect(() => {\n        refWarning(\"target\", target);\n        refWarning(\"container\", container);\n        return scroll((_progress, { x, y, }) => {\n            values.scrollX.set(x.current);\n            values.scrollXProgress.set(x.progress);\n            values.scrollY.set(y.current);\n            values.scrollYProgress.set(y.progress);\n        }, {\n            ...options,\n            container: container?.current || undefined,\n            target: target?.current || undefined,\n        });\n    }, [container, target, JSON.stringify(options.offset)]);\n    return values;\n}\n\nexport { useScroll };\n",
-      "start": 1750951460803,
-      "end": 1750951463137,
+      "start": 1751036306430,
+      "end": 1751036307488,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750951463137,
-      "end": 1750951463137,
+      "start": 1751036307488,
+      "end": 1751036307488,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1750951463137,
-      "end": 1750951463137,
+      "start": 1751036307488,
+      "end": 1751036307488,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1750951463137,
-      "end": 1750951463137,
+      "start": 1751036307488,
+      "end": 1751036307488,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750951463137,
-      "end": 1750951463137,
+      "start": 1751036307488,
+      "end": 1751036307488,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750951463137,
-      "end": 1750951463137,
+      "start": 1751036307488,
+      "end": 1751036307488,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750951463137,
-      "end": 1750951463137,
+      "start": 1751036307488,
+      "end": 1751036307488,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750951463137,
-      "end": 1750951463137,
+      "start": 1751036307488,
+      "end": 1751036307488,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750951463137,
-      "end": 1750951463137,
+      "start": 1751036307488,
+      "end": 1751036307488,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750951463137,
-      "end": 1750951463137,
+      "start": 1751036307488,
+      "end": 1751036307488,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750951463137,
-      "end": 1750951463137,
+      "start": 1751036307488,
+      "end": 1751036307488,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750951463137,
-      "end": 1750951463137,
+      "start": 1751036307488,
+      "end": 1751036307488,
       "order": "normal"
     }
   ]

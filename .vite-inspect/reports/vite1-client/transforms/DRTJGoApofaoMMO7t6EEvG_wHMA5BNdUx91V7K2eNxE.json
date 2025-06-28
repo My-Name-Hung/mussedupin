@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import { useEffect } from \"react\";\nimport { useLocation } from \"react-router-dom\";\n\n// This component will scroll to the top of the page\n// whenever the URL/route changes\nfunction ScrollToTop() {\n  const { pathname } = useLocation();\n\n  useEffect(() => {\n    // Scroll to top with a slight delay to ensure DOM is ready\n    setTimeout(() => {\n      window.scrollTo({\n        top: 0,\n        behavior: \"instant\", // Use \"instant\" for immediate scroll without animation\n      });\n    }, 0);\n  }, [pathname]); // Re-run when pathname changes\n\n  return null; // This component doesn't render anything\n}\n\nexport default ScrollToTop;\n",
-      "start": 1750951454024,
-      "end": 1750951454080,
+      "start": 1751036293287,
+      "end": 1751036293354,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750951454080,
-      "end": 1750951454080,
+      "start": 1751036293354,
+      "end": 1751036293354,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { useEffect } from \"react\";\nimport { useLocation } from \"react-router-dom\";\nfunction ScrollToTop() {\n  const { pathname } = useLocation();\n  useEffect(() => {\n    setTimeout(() => {\n      window.scrollTo({\n        top: 0,\n        behavior: \"instant\"\n        // Use \"instant\" for immediate scroll without animation\n      });\n    }, 0);\n  }, [pathname]);\n  return null;\n}\nexport default ScrollToTop;\n",
-      "start": 1750951454081,
-      "end": 1750951454177,
+      "start": 1751036293355,
+      "end": 1751036296255,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1750951454177,
-      "end": 1750951454177,
+      "start": 1751036296255,
+      "end": 1751036296255,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750951454177,
-      "end": 1750951454177,
+      "start": 1751036296255,
+      "end": 1751036296255,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750951454177,
-      "end": 1750951454178,
+      "start": 1751036296255,
+      "end": 1751036296255,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750951454178,
-      "end": 1750951454178,
+      "start": 1751036296255,
+      "end": 1751036296255,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750951454178,
-      "end": 1750951454178,
+      "start": 1751036296255,
+      "end": 1751036296255,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750951454178,
-      "end": 1750951454178,
+      "start": 1751036296256,
+      "end": 1751036296256,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750951454178,
-      "end": 1750951454178,
+      "start": 1751036296256,
+      "end": 1751036296256,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750951454178,
-      "end": 1750951454178,
+      "start": 1751036296256,
+      "end": 1751036296257,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750951454178,
-      "end": 1750951454178,
+      "start": 1751036296257,
+      "end": 1751036296257,
       "order": "normal"
     }
   ]

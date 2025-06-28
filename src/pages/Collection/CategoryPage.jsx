@@ -861,7 +861,7 @@ const CategoryPage = () => {
                       <h3 className="category-artwork-title">
                         {artwork.title}
                       </h3>
-                      <p className="category-artwork-artist">
+                      <p className="category-artwork-artist notranslate">
                         {artwork.artist}
                       </p>
                       <p className="category-artwork-year">{artwork.year}</p>
@@ -1003,7 +1003,7 @@ const CategoryPage = () => {
                 <div className="modal-metadata-grid">
                   <div className="modal-meta-item">
                     <div className="modal-meta-label">TÁC GIẢ</div>
-                    <div className="modal-meta-value">
+                    <div className="modal-meta-value notranslate">
                       {allModalImages[currentImageIndex].artist}
                     </div>
                   </div>

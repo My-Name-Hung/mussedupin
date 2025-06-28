@@ -96,7 +96,7 @@ const SupportPage = () => {
     },
     {
       title: "Về chúng tôi",
-      description: "Tìm hiểu thêm về Bảo tàng Du Pin và sứ mệnh của chúng tôi",
+      description: "Tìm hiểu thêm về Bảo tàng và sứ mệnh của chúng tôi",
       icon: <FaInfoCircle />,
       path: "/about",
     },
@@ -148,7 +148,7 @@ const SupportPage = () => {
           <h1 className="heross-title">Hỗ trợ khách tham quan</h1>
           <p className="heross-subtitle">
             Chúng tôi luôn sẵn sàng hỗ trợ để bạn có trải nghiệm tốt nhất tại
-            Bảo tàng Du Pin
+            {" "}<span className="notranslate">Musée Du Pin</span>
           </p>
         </div>
       </section>

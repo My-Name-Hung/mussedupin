@@ -245,8 +245,8 @@ const PackageDetail = () => {
           "1 phần nước uống tự chọn",
         ],
         video: {
-          id: "aozcRuYVPKw",
-          title: `Trải nghiệm Lối Rừng tại <span class="notranslate">Musée Du Pin</span>`,
+          id: "lb8HcNFDFtU",
+          title: `Trải nghiệm Lối Rừng tại ${<span className="notranslate">Musée Du Pin</span>}`,
         },
       },
       "dang-suong": {
@@ -454,7 +454,7 @@ const PackageDetail = () => {
         title: "CHỤP ẢNH NGHỆ THUẬT",
         description:
           "Du khách sẽ được sở hữu những tấm ảnh nghệ thuật của chính mình trong không gian Bảo Tàng",
-        fullDescription: `Du khách sẽ được sở hữu những tấm ảnh nghệ thuật của chính mình trong không gian Bảo Tàng hay trong từng căn phòng art studio, cùng với nghệ nhân hay nhân vật theo chủ đề. Bảo Tàng Thông cung cấp trang phục, đạo cụ riêng phù hợp với từng không gian`,
+        fullDescription: `Du khách sẽ được sở hữu những tấm ảnh nghệ thuật của chính mình trong không gian Bảo Tàng hay trong từng căn phòng art studio, cùng với nghệ nhân hay nhân vật theo chủ đề. Bảo Tàng cung cấp trang phục, đạo cụ riêng phù hợp với từng không gian`,
         image:
           "https://ik.imagekit.io/8u8lkoqkkm/chupanhnghethuat_ngang.jpg?updatedAt=1750298609133",
         price: "Liên hệ: +84 86 235 6368",
@@ -468,7 +468,7 @@ const PackageDetail = () => {
         ],
         video: {
           id: "aozcRuYVPKw",
-          title: "Chụp ảnh nghệ thuật tại Musée Du Pin",
+          title: `Chụp ảnh nghệ thuật tại ${<span className="notranslate">Musée Du Pin</span>}`,
         },
       },
       "phim-dien-anh": {
@@ -489,7 +489,7 @@ const PackageDetail = () => {
         ],
         video: {
           id: "aozcRuYVPKw",
-          title: "Dịch vụ quay phim tại Musée Du Pin",
+          title: `Dịch vụ quay phim tại ${<span className="notranslate">Musée Du Pin</span>}`,
         },
       },
       "the-childhood": {

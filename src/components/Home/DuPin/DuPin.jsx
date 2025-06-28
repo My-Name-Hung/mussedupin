@@ -149,6 +149,16 @@ const videoData = [
       "https://i.ytimg.com/vi/epnBikruPUM/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG2CIAC0AWKAgwIABABGD4gQihyMA8=&rs=AOn4CLCybz6fVtK17RW4ZlrHrBfDMcmiPw", // This will be replaced with actual thumbnails
     category: "Âm nhạc",
   },
+    {
+    id: 14,
+    title: "Có những câu chuyện chỉ có thể lắng nghe khi ta đủ tĩnh lặ<ng></ng>",
+    subtitle: "Góc nhìn từ Bảo Tàng Thông",
+    youtubeId: "EM-XJW7zyoo", // Replace with actual YouTube ID
+    duration: "41s",
+    thumbnail:
+      "https://i.ytimg.com/vi/EM-XJW7zyoo/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG2CIAC0AWKAgwIABABGD4gQihyMA8=&rs=AOn4CLCybz6fVtK17RW4ZlrHrBfDMcmiPw", // This will be replaced with actual thumbnails
+    category: "Thiên nhiên",
+  },
 ];
 
 const DuPin = () => {

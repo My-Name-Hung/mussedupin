@@ -94,11 +94,11 @@ const MuseumMapPage = () => {
       name: "Bằng máy bay",
       description: "Từ sân bay Liên Khương",
       details: [
-        "Đi taxi hoặc sử dụng dịch vụ xe đưa đón của bảo tàng",
-        "Đi theo đường cao tốc Đà Lạt - Liên Khương",
-        "Sau đèo Prenn, rẽ trái tại đường 3/4 vào đường Đống Đa",
-        "Đi tiếp qua trường Tiểu học Cửu Long",
-        "Tìm vườn dâu tây xanh bên cạnh tòa nhà hình cây thông - đó là Musée Du Pin",
+        <span>Đi taxi hoặc sử dụng dịch vụ xe đưa đón của bảo tàng</span>,
+        <span>Đi theo đường cao tốc Đà Lạt - Liên Khương</span>,
+        <span>Sau đèo Prenn, rẽ trái tại đường 3/4 vào đường Đống Đa</span>,
+        <span>Đi tiếp qua trường Tiểu học Cửu Long</span>,
+        <span>Tìm vườn dâu tây xanh bên cạnh tòa nhà hình cây thông - đó là {" "} <span className="notranslate">Musée Du Pin</span></span>,
       ],
     },
     {
@@ -161,7 +161,7 @@ const MuseumMapPage = () => {
     <div className="map-content-section">
       <div className="map-notice">
         <p>
-          Musée Du Pin tọa lạc tại 29-31 đường Đống Đa, Phường 3, Thành phố Đà
+          <span className="notranslate">Musée Du Pin</span> {" "} tọa lạc tại 29-31 đường Đống Đa, Phường 3, Thành phố Đà
           Lạt.
         </p>
       </div>
@@ -169,7 +169,7 @@ const MuseumMapPage = () => {
       <div className="map-getting-here-section">
         <h3 className="map-section-title">Đường đến bảo tàng</h3>
         <p className="map-section-description">
-          Chọn phương tiện di chuyển ưa thích để đến Musée Du Pin.
+          Chọn phương tiện di chuyển ưa thích để đến {" "} <span className="notranslate">Musée Du Pin</span>.
         </p>
       </div>
 
@@ -316,7 +316,7 @@ const MuseumMapPage = () => {
 
         <div className="map-hero-content">
           <p className="map-hero-subtitle">BẢN ĐỒ & CHỈ ĐƯỜNG</p>
-          <h1 className="map-hero-title">Làm thế nào để đến Musée Du Pin</h1>
+          <h1 className="map-hero-title">Làm thế nào để đến {" "} <span className="notranslate">Musée Du Pin</span></h1>
         </div>
       </div>
 

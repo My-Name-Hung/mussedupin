@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { useTranslation } from "../../contexts/TranslationContext";
 import { getImageUrl } from "../../utils/cloudinary";
 import "./LifeAtMuseumPage.css";
 
@@ -18,6 +19,7 @@ const newsData = [
   {
     id: 1,
     title: "Khám phá Bảo tàng Thông | Lâm Đồng TV",
+    titleEn: "Discover Musée Du Pin | Lam Dong TV",
     date: "8 THÁNG 6 NĂM 2025",
     image: "https://i.ytimg.com/vi/3Diuvj86K1M/maxresdefault.jpg",
     excerpt:
@@ -32,6 +34,7 @@ const newsData = [
 ];
 
 const LifeAtMuseumPage = () => {
+  const { currentLang } = useTranslation();
   const [selectedFilter, setSelectedFilter] = useState("All");
   const [displayCount, setDisplayCount] = useState(10);
 
@@ -107,7 +110,7 @@ const LifeAtMuseumPage = () => {
           <img
             className="lm-hero-img"
             src="https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784642/collections/louvre-sunset.jpg"
-            alt="Bảo tàng Thông - Hero"
+            alt="Musée Du Pin - Hero"
           />
         </div>
         <div className="lm-hero-overlay"></div>
@@ -179,7 +182,13 @@ const LifeAtMuseumPage = () => {
                   </div>
                 </div>
                 <div className="lm-news-content">
-                  <h3 className="lm-news-title">{newsItem.title}</h3>
+                  <h3 className="lm-news-title">
+                    {currentLang === "en" ? (
+                      <span className="notranslate">{newsItem.titleEn}</span>
+                    ) : (
+                      newsItem.title
+                    )}
+                  </h3>
                   <p className="lm-news-excerpt">{newsItem.excerpt}</p>
                   <time className="lm-news-date">{newsItem.date}</time>
                 </div>

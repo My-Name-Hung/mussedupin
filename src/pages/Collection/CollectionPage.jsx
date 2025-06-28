@@ -34,7 +34,7 @@ const collectionData = {
     },
     {
       id: "channuoi-1",
-      title: "K'ho chăn nuôi",
+      title: "Hơi thở đại ngàn",
       artist: "Lồng đa đa",
       year: "2024",
       image: "Lồng Đa Đa.webp",
@@ -45,7 +45,7 @@ const collectionData = {
     },
     {
       id: "dieukhac-1",
-      title: "K'ho điêu khắc",
+      title: "Hình hài bản sắc",
       artist: "Tượng phụ nữ",
       year: "2024",
       image: "Điêu Khắc.webp",
@@ -56,10 +56,10 @@ const collectionData = {
     },
     {
       id: "lehoi-1",
-      title: "K'ho lễ hội",
+      title: "Những mùa no ấm",
       artist: "Ché Ghò Sành",
       year: "2024",
-      image: "36 (2).webp",
+      image: "Chiếc Gùi.webp",
       description:
         "Ché Ghò Sành là một loại ché cổ nổi tiếng của Tây Nguyên, hiện đang được trưng bày tại Musée Du Pin, đây là biểu tượng của sự giàu có, quyền uy và tín ngưỡng tâm linh trong đời sống người bản địa.",
       location: "Khu trưng bày lễ hội",
@@ -67,7 +67,7 @@ const collectionData = {
     },
     {
       id: "sinhoat-1",
-      title: "K'ho sinh hoạt thường nhật",
+      title: "Hơi ấm buôn làng",
       artist: "Nồi đất",
       year: "2024",
       image: "Nồi Đất.webp",
@@ -78,8 +78,8 @@ const collectionData = {
     },
     {
       id: "sinhoat-2",
-      title: "K'ho sinh hoạt thường nhật",
-      artist: "Bầu hồ lô",
+      title: "Lửa thiêng đêm núi",
+      artist: "36 (2).webp",
       year: "2024",
       image: "46.webp",
       description:
@@ -805,9 +805,7 @@ const CollectionPage = () => {
         <div className="artwork-frame">
           <div className="artwork-image-container">
             <img
-              src={
-                getImageUrl(artwork.image)
-              }
+              src={getImageUrl(artwork.image)}
               alt={artwork.title}
               className="artwork-image"
               loading={index < 4 ? "eager" : "lazy"}
@@ -1060,9 +1058,7 @@ const CollectionPage = () => {
               >
                 <div className="cp-category-image-container">
                   <img
-                    src={
-                     getImageUrl(category.image)
-                    }
+                    src={getImageUrl(category.image)}
                     alt={category.title}
                     className="cp-category-image"
                     loading="lazy"
@@ -1082,11 +1078,9 @@ const CollectionPage = () => {
           <div className="cp-featured-left">
             <div className="cp-featured-image-container">
               <img
-                src={
-                  getImageUrl(
-                        collectionData.artworks[selectedArtwork].image
-                      )
-                }
+                src={getImageUrl(
+                  collectionData.artworks[selectedArtwork].image
+                )}
                 alt={collectionData.artworks[selectedArtwork].title}
                 className="cp-featured-image"
               />
@@ -1393,9 +1387,7 @@ const CollectionPage = () => {
                     >
                       <div className="cp-category-artwork-image-container">
                         <img
-                          src={
-                           getImageUrl(artwork.image)
-                          }
+                          src={getImageUrl(artwork.image)}
                           alt={artwork.title}
                           loading="lazy"
                         />
@@ -1450,11 +1442,9 @@ const CollectionPage = () => {
             <div className="cp-artwork-modal-body">
               <div className="cp-artwork-modal-image-container">
                 <img
-                  src={
-                    getImageUrl(
-                          collectionData.artworks[selectedArtwork].image
-                        )
-                  }
+                  src={getImageUrl(
+                    collectionData.artworks[selectedArtwork].image
+                  )}
                   alt={collectionData.artworks[selectedArtwork].title}
                   className="cp-artwork-modal-image"
                 />

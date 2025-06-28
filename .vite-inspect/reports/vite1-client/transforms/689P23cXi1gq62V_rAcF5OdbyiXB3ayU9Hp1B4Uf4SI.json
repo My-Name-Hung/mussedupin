@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\nimport { useNavigate } from \"react-router-dom\";\nimport \"./TheTaste.css\";\n\nconst cards = [\n  {\n    id: \"restaurant\",\n    title: \"Nghệ thuật vị giác\",\n    description: \"Nghệ thuật vị giác\",\n    image:\n      \"https://ik.imagekit.io/8u8lkoqkkm/image(1).png?updatedAt=1749000543046\",\n  },\n  {\n    id: \"cafe\",\n    title: \"Nghệ thuật vị giác\",\n    description: \"Nghệ thuật vị giác\",\n    image:\n      \"https://ik.imagekit.io/8u8lkoqkkm/image(2).png?updatedAt=1749000540091\",\n  },\n];\n\nconst TheTaste = () => {\n  const navigate = useNavigate();\n\n  const handleCardClick = (cardId) => {\n    navigate(`/the-taste/${cardId}`);\n  };\n\n  return (\n    <div className=\"thetaste-container\">\n      <div className=\"thetaste-hero\">\n        <img\n          src=\"https://ik.imagekit.io/8u8lkoqkkm/image(4).png?updatedAt=1749000545941\"\n          alt=\"Khuôn viên bảo tàng\"\n          className=\"thetaste-hero-img\"\n        />\n        <div className=\"thetaste-hero-overlay\" />\n        <div className=\"thetaste-hero-content\">\n          <h1>Nghệ thuật vị giác</h1>\n          <p>Nghệ thuật vị giác</p>\n        </div>\n      </div>\n      <div className=\"thetaste-cards\">\n        {cards.map((card, idx) => (\n          <div\n            className=\"thetaste-card\"\n            key={idx}\n            onClick={() => handleCardClick(card.id)}\n          >\n            <div className=\"thetaste-card-img-wrap\">\n              <img\n                src={card.image}\n                alt={card.title}\n                className=\"thetaste-card-img\"\n              />\n              <div className=\"thetaste-card-overlay\" />\n              <div className=\"thetaste-card-content\">\n                <h2>{card.title}</h2>\n                <p>{card.description}</p>\n              </div>\n            </div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n};\n\nexport default TheTaste;\n",
-      "start": 1750951454082,
-      "end": 1750951454215,
+      "start": 1751036293381,
+      "end": 1751036293690,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750951454215,
-      "end": 1750951454215,
+      "start": 1751036293690,
+      "end": 1751036293690,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { useNavigate } from \"react-router-dom\";\nimport \"./TheTaste.css\";\nconst cards = [\n  {\n    id: \"restaurant\",\n    title: \"Nghệ thuật vị giác\",\n    description: \"Nghệ thuật vị giác\",\n    image: \"https://ik.imagekit.io/8u8lkoqkkm/image(1).png?updatedAt=1749000543046\"\n  },\n  {\n    id: \"cafe\",\n    title: \"Nghệ thuật vị giác\",\n    description: \"Nghệ thuật vị giác\",\n    image: \"https://ik.imagekit.io/8u8lkoqkkm/image(2).png?updatedAt=1749000540091\"\n  }\n];\nconst TheTaste = () => {\n  const navigate = useNavigate();\n  const handleCardClick = (cardId) => {\n    navigate(`/the-taste/${cardId}`);\n  };\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"thetaste-container\", children: [\n    /* @__PURE__ */ jsxs(\"div\", { className: \"thetaste-hero\", children: [\n      /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: \"https://ik.imagekit.io/8u8lkoqkkm/image(4).png?updatedAt=1749000545941\",\n          alt: \"Khuôn viên bảo tàng\",\n          className: \"thetaste-hero-img\"\n        }\n      ),\n      /* @__PURE__ */ jsx(\"div\", { className: \"thetaste-hero-overlay\" }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"thetaste-hero-content\", children: [\n        /* @__PURE__ */ jsx(\"h1\", { children: \"Nghệ thuật vị giác\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Nghệ thuật vị giác\" })\n      ] })\n    ] }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"thetaste-cards\", children: cards.map((card, idx) => /* @__PURE__ */ jsx(\n      \"div\",\n      {\n        className: \"thetaste-card\",\n        onClick: () => handleCardClick(card.id),\n        children: /* @__PURE__ */ jsxs(\"div\", { className: \"thetaste-card-img-wrap\", children: [\n          /* @__PURE__ */ jsx(\n            \"img\",\n            {\n              src: card.image,\n              alt: card.title,\n              className: \"thetaste-card-img\"\n            }\n          ),\n          /* @__PURE__ */ jsx(\"div\", { className: \"thetaste-card-overlay\" }),\n          /* @__PURE__ */ jsxs(\"div\", { className: \"thetaste-card-content\", children: [\n            /* @__PURE__ */ jsx(\"h2\", { children: card.title }),\n            /* @__PURE__ */ jsx(\"p\", { children: card.description })\n          ] })\n        ] })\n      },\n      idx\n    )) })\n  ] });\n};\nexport default TheTaste;\n",
-      "start": 1750951454215,
-      "end": 1750951455182,
+      "start": 1751036293690,
+      "end": 1751036296666,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1750951455182,
-      "end": 1750951455182,
+      "start": 1751036296667,
+      "end": 1751036296667,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750951455182,
-      "end": 1750951455182,
+      "start": 1751036296667,
+      "end": 1751036296667,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750951455182,
-      "end": 1750951455182,
+      "start": 1751036296667,
+      "end": 1751036296667,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750951455182,
-      "end": 1750951455182,
+      "start": 1751036296667,
+      "end": 1751036296667,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750951455182,
-      "end": 1750951455182,
+      "start": 1751036296667,
+      "end": 1751036296667,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750951455182,
-      "end": 1750951455182,
+      "start": 1751036296667,
+      "end": 1751036296667,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750951455182,
-      "end": 1750951455182,
+      "start": 1751036296667,
+      "end": 1751036296667,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750951455182,
-      "end": 1750951455183,
+      "start": 1751036296667,
+      "end": 1751036296668,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750951455183,
-      "end": 1750951455183,
+      "start": 1751036296668,
+      "end": 1751036296668,
       "order": "normal"
     }
   ]

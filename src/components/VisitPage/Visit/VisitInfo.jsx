@@ -809,8 +809,22 @@ const VisitInfo = () => {
         en: "What are the opening hours of Musée Du Pin?",
       },
       answer: {
-        vi: "Bạn có thể tìm hiểu giờ mở cửa của Bảo Tàng trong mục Giờ mở cửa & chi phí các gói trải nghiệm",
-        en: "You can find our opening hours in the Opening Hours & Experience Packages section",
+        vi: (
+          <>
+            Bạn có thể tìm hiểu giờ mở cửa của Bảo Tàng trong mục{" "}
+            <a href="/visit" style={{ cursor: "pointer", color: "#00695c" }}>
+              <strong>Giờ mở cửa & chi phí các gói trải nghiệm</strong>
+            </a>
+          </>
+        ),
+        en: (
+          <>
+            You can find our opening hours in the{" "}
+            <a href="/visit" style={{ cursor: "pointer", color: "#00695c" }}>
+              <strong>Opening Hours & Experience Packages</strong>
+            </a>
+          </>
+        ),
       },
     },
     {
@@ -819,8 +833,29 @@ const VisitInfo = () => {
         en: "How do I get to Musée Du Pin?",
       },
       answer: {
-        vi: "Bạn có thể tìm hiểu đường đi đến Bảo Tàng và từ Bảo Tàng đi đến các địa điểm khác trong mục Bản đồ, đường đi & chỉ dẫn",
-        en: "You can find directions to and from the museum in our Map, Directions & Guide section",
+        vi: (
+          <>
+            Bạn có thể tìm hiểu đường đi đến Bảo Tàng và từ Bảo Tàng đi đến các
+            địa điểm khác trong mục{" "}
+            <a
+              href="/museum-map"
+              style={{ cursor: "pointer", color: "#00695c" }}
+            >
+              <strong>Bản đồ, đường đi & chỉ dẫn</strong>
+            </a>
+          </>
+        ),
+        en: (
+          <>
+            You can find directions to and from the museum in our{" "}
+            <a
+              href="/museum-map"
+              style={{ cursor: "pointer", color: "#00695c" }}
+            >
+              <strong>Map, Directions & Guide</strong>
+            </a>
+          </>
+        ),
       },
     },
     {
@@ -829,8 +864,24 @@ const VisitInfo = () => {
         en: "What are the admission fees for Musée Du Pin?",
       },
       answer: {
-        vi: "Bạn có thể tìm hiểu chi tiết các gói trải nghiệm và chi phí tham khảo tại mục Giờ mở cửa & chi phí các gói trải nghiệm",
-        en: "You can find detailed information about experience packages and fees in our Opening Hours & Experience Packages section",
+        vi: (
+          <>
+            Bạn có thể tìm hiểu chi tiết các gói trải nghiệm và chi phí tham
+            khảo tại mục{" "}
+            <a href="/visit" style={{ cursor: "pointer", color: "#00695c" }}>
+              <strong>Giờ mở cửa & chi phí các gói trải nghiệm</strong>
+            </a>
+          </>
+        ),
+        en: (
+          <>
+            You can find detailed information about experience packages and fees
+            in our{" "}
+            <a href="/visit" style={{ cursor: "pointer", color: "#00695c" }}>
+              <strong>Opening Hours & Experience Packages</strong>
+            </a>
+          </>
+        ),
       },
     },
     {

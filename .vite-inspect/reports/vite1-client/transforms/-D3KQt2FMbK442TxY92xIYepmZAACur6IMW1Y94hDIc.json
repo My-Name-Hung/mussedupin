@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/mussedupin-0f2501a9a053b0e75502c49e74876d2dc852c693/node_modules/lucide-react/dist/esm/icons/fan.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\n    \"path\",\n    {\n      d: \"M10.827 16.379a6.082 6.082 0 0 1-8.618-7.002l5.412 1.45a6.082 6.082 0 0 1 7.002-8.618l-1.45 5.412a6.082 6.082 0 0 1 8.618 7.002l-5.412-1.45a6.082 6.082 0 0 1-7.002 8.618l1.45-5.412Z\",\n      key: \"484a7f\"\n    }\n  ],\n  [\"path\", { d: \"M12 12v.01\", key: \"u5ubse\" }]\n];\nconst Fan = createLucideIcon(\"fan\", __iconNode);\n\nexport { __iconNode, Fan as default };\n//# sourceMappingURL=fan.js.map\n",
+      "start": 1751036313649,
+      "end": 1751036313693,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1751036313693,
+      "end": 1751036313693,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1751036313694,
+      "end": 1751036313694,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1751036313694,
+      "end": 1751036313694,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1751036313694,
+      "end": 1751036313694,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1751036313695,
+      "end": 1751036313695,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1751036313695,
+      "end": 1751036313695,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1751036313695,
+      "end": 1751036313695,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1751036313695,
+      "end": 1751036313695,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1751036313696,
+      "end": 1751036313696,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1751036313696,
+      "end": 1751036313696,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1751036313696,
+      "end": 1751036313696,
+      "order": "normal"
+    }
+  ]
+}

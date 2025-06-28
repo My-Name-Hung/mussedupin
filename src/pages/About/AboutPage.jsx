@@ -347,7 +347,13 @@ const AboutPage = () => {
           <div className="contact-content">
             <div className="contact-info">
               <div className="contact-details">
-                <h3>Bảo tàng Thông - Musée Du Pin</h3>
+                <h3>
+                  <>
+                    {currentLang === "en"
+                      ? <span className="notranslate">Musée Du Pin</span>
+                      : "Bảo tàng Thông - Musée Du Pin"}
+                  </>
+                </h3>
                 <p>
                   <FaMapMarkerAlt className="contact-icon" />
                   <a href="https://www.google.com/maps?ll=11.923688,108.444684&z=16&t=m&hl=vi&gl=US&mapclient=embed&q=29+%C4%90%E1%BB%91ng+%C4%90a+Ph%C6%B0%E1%BB%9Dng+3+%C4%90%C3%A0+L%E1%BA%A1t+L%C3%A2m+%C4%90%E1%BB%93ng">

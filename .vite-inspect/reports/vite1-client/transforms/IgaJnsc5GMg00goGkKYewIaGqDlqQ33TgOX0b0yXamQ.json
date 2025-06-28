@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useEffect, useRef, useState } from \"react\";\nimport { IoIosArrowBack, IoIosArrowForward } from \"react-icons/io\";\nimport { useNavigate, useParams } from \"react-router-dom\";\nimport \"./ThePlace.css\";\n\nconst ThePlaceDetail = () => {\n  const { id } = useParams();\n  const navigate = useNavigate();\n  const [currentSlide, setCurrentSlide] = useState(0);\n  const [isAutoPlaying, setIsAutoPlaying] = useState(true);\n  const [showVideoModal, setShowVideoModal] = useState(false);\n  const [selectedVideo, setSelectedVideo] = useState(null);\n  const autoPlayRef = useRef(null);\n\n  // Mock data for each place\n  const placeData = {\n    langbiang: {\n      title: \"KHÔNG GIAN NGHỆ THUẬT VÀ VƯỜN TRONG BẢO TÀNG\",\n      title2: \"Khám phá nghệ thuật và văn hóa Langbiang\",\n      description: \"Văn hóa và nghệ thuật của vùng đất Đà Lạt.\",\n      image:\n        \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784839/about/khonggian.jpg\",\n      content: `– Không gian nghệ thuật Langbiang –\\n\\nNơi hội tụ tinh hoa văn hóa và nghệ thuật của vùng đất Langbiang, Đà Lạt.\\n\\nTại đây, du khách sẽ được chiêm ngưỡng các tác phẩm nghệ thuật độc đáo, trải nghiệm các hoạt động giao lưu văn hóa và tìm hiểu về lịch sử, con người địa phương.\\n\\nKhông gian mở, gần gũi với thiên nhiên, mang lại cảm giác thư thái và truyền cảm hứng sáng tạo cho mọi người.`,\n      videos: [\n        {\n          id: \"aozcRuYVPKw\",\n          title: \"Trải nghiệm nghệ thuật Langbiang\",\n          thumbnail: \"https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg\",\n        },\n      ],\n    },\n    exhibition: {\n      title: \"KHÔNG GIAN NGHỆ THUẬT VÀ VƯỜN TRONG BẢO TÀNG\",\n      title2: \"16 phòng trưng bày chủ đề đa dạng\",\n      description:\n        \"16 phòng trưng bày với các chủ đề đa dạng, từ thiên nhiên, lịch sử đến nghệ thuật.\",\n      image:\n        \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784839/about/khonggian.jpg\",\n      content: `– 16 phòng triển lãm chủ đề –\\n\\nKhám phá các chủ đề từ thiên nhiên, lịch sử, nghệ thuật đến văn hóa bản địa.\\n\\nMỗi phòng trưng bày là một thế giới riêng, mang đến trải nghiệm độc đáo và kiến thức bổ ích cho du khách ở mọi lứa tuổi.\\n\\nCác hoạt động tương tác, workshop và hướng dẫn viên chuyên nghiệp luôn sẵn sàng đồng hành cùng bạn.`,\n      videos: [\n        {\n          id: \"aozcRuYVPKw\",\n          title: \"Khám phá phòng triển lãm\",\n          thumbnail: \"https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg\",\n        },\n        {\n          id: \"aozcRuYVPKw\",\n          title: \"Khám phá phòng triển lãm\",\n          thumbnail: \"https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg\",\n        },\n      ],\n    },\n  };\n\n  const currentData = placeData[id];\n\n  useEffect(() => {\n    if (isAutoPlaying) {\n      autoPlayRef.current = setInterval(() => {\n        setCurrentSlide((prev) => (prev + 1) % currentData.videos.length);\n      }, 5000);\n    }\n    return () => {\n      if (autoPlayRef.current) {\n        clearInterval(autoPlayRef.current);\n      }\n    };\n  }, [isAutoPlaying, currentData.videos.length]);\n\n  const nextSlide = () => {\n    setCurrentSlide((prev) => (prev + 1) % currentData.videos.length);\n    setIsAutoPlaying(false);\n  };\n\n  const prevSlide = () => {\n    setCurrentSlide((prev) =>\n      prev === 0 ? currentData.videos.length - 1 : prev - 1\n    );\n    setIsAutoPlaying(false);\n  };\n\n  const openVideoModal = (video) => {\n    setSelectedVideo(video);\n    setShowVideoModal(true);\n  };\n\n  const closeVideoModal = () => {\n    setShowVideoModal(false);\n    setSelectedVideo(null);\n  };\n\n  if (!currentData) {\n    return <div>Không tìm thấy thông tin</div>;\n  }\n\n  return (\n    <div className=\"theplace-detail-container\">\n      {/* Hero Section */}\n      <div className=\"theplace-detail-hero\">\n        <img\n          src={currentData.image}\n          alt={currentData.title}\n          className=\"theplace-detail-hero-img\"\n        />\n        <div className=\"theplace-detail-hero-overlay\" />\n        <button className=\"back-button\" onClick={() => navigate(\"/the-place\")}>\n          <svg viewBox=\"0 0 24 24\" fill=\"currentColor\" width=\"24\" height=\"24\">\n            <path d=\"M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z\" />\n          </svg>\n          Quay lại\n        </button>\n        <div className=\"theplace-detail-hero-content\">\n          <h1>{currentData.title}</h1>\n          <p>{currentData.description}</p>\n        </div>\n      </div>\n\n      {/* Content Section */}\n      <div className=\"theplace-detail-content\">\n        <div className=\"content-wrapper-theplace\">\n          <h2>{currentData.title2}</h2>\n          <p>{currentData.content}</p>\n        </div>\n      </div>\n\n      {/* Video Slideshow Section */}\n      <div className=\"theplace-detail-slideshow\">\n        <div className=\"slideshow-container\">\n          <button className=\"slide-nav prev\" onClick={prevSlide}>\n            <IoIosArrowBack size={24} />\n          </button>\n\n          <div\n            className=\"slides-wrapper\"\n            style={{ transform: `translateX(-${currentSlide * 100}%)` }}\n          >\n            {currentData.videos.map((video, index) => (\n              <div\n                key={index}\n                className=\"slide\"\n                onClick={() => openVideoModal(video)}\n              >\n                <img src={video.thumbnail} alt={video.title} />\n                <div className=\"play-button\">\n                  <svg\n                    viewBox=\"0 0 24 24\"\n                    fill=\"currentColor\"\n                    width=\"48\"\n                    height=\"48\"\n                  >\n                    <path d=\"M8 5v14l11-7z\" />\n                  </svg>\n                </div>\n              </div>\n            ))}\n          </div>\n\n          <button className=\"slide-nav next\" onClick={nextSlide}>\n            <IoIosArrowForward size={24} />\n          </button>\n        </div>\n\n        <div className=\"slide-indicators\">\n          {currentData.videos.map((_, index) => (\n            <button\n              key={index}\n              className={`indicator ${index === currentSlide ? \"active\" : \"\"}`}\n              onClick={() => setCurrentSlide(index)}\n            />\n          ))}\n          <span className=\"slide-count\">\n            {currentSlide + 1} / {currentData.videos.length}\n          </span>\n        </div>\n      </div>\n\n      {/* Video Modal */}\n      {showVideoModal && selectedVideo && (\n        <div className=\"video-modal\">\n          <button className=\"close-modal\" onClick={closeVideoModal}>\n            <svg viewBox=\"0 0 24 24\" fill=\"currentColor\" width=\"24\" height=\"24\">\n              <path d=\"M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z\" />\n            </svg>\n          </button>\n          <div className=\"video-container\">\n            <iframe\n              width=\"100%\"\n              height=\"100%\"\n              src={`https://www.youtube.com/embed/${selectedVideo.id}?autoplay=1`}\n              title={selectedVideo.title}\n              frameBorder=\"0\"\n              allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\"\n              allowFullScreen\n            />\n          </div>\n        </div>\n      )}\n    </div>\n  );\n};\n\nexport default ThePlaceDetail;\n",
-      "start": 1750951454081,
-      "end": 1750951454216,
+      "start": 1751036293369,
+      "end": 1751036293680,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1750951454216,
-      "end": 1750951454216,
+      "start": 1751036293680,
+      "end": 1751036293680,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect, useRef, useState } from \"react\";\nimport { IoIosArrowBack, IoIosArrowForward } from \"react-icons/io\";\nimport { useNavigate, useParams } from \"react-router-dom\";\nimport \"./ThePlace.css\";\nconst ThePlaceDetail = () => {\n  const { id } = useParams();\n  const navigate = useNavigate();\n  const [currentSlide, setCurrentSlide] = useState(0);\n  const [isAutoPlaying, setIsAutoPlaying] = useState(true);\n  const [showVideoModal, setShowVideoModal] = useState(false);\n  const [selectedVideo, setSelectedVideo] = useState(null);\n  const autoPlayRef = useRef(null);\n  const placeData = {\n    langbiang: {\n      title: \"KHÔNG GIAN NGHỆ THUẬT VÀ VƯỜN TRONG BẢO TÀNG\",\n      title2: \"Khám phá nghệ thuật và văn hóa Langbiang\",\n      description: \"Văn hóa và nghệ thuật của vùng đất Đà Lạt.\",\n      image: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784839/about/khonggian.jpg\",\n      content: `– Không gian nghệ thuật Langbiang –\n\nNơi hội tụ tinh hoa văn hóa và nghệ thuật của vùng đất Langbiang, Đà Lạt.\n\nTại đây, du khách sẽ được chiêm ngưỡng các tác phẩm nghệ thuật độc đáo, trải nghiệm các hoạt động giao lưu văn hóa và tìm hiểu về lịch sử, con người địa phương.\n\nKhông gian mở, gần gũi với thiên nhiên, mang lại cảm giác thư thái và truyền cảm hứng sáng tạo cho mọi người.`,\n      videos: [\n        {\n          id: \"aozcRuYVPKw\",\n          title: \"Trải nghiệm nghệ thuật Langbiang\",\n          thumbnail: \"https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg\"\n        }\n      ]\n    },\n    exhibition: {\n      title: \"KHÔNG GIAN NGHỆ THUẬT VÀ VƯỜN TRONG BẢO TÀNG\",\n      title2: \"16 phòng trưng bày chủ đề đa dạng\",\n      description: \"16 phòng trưng bày với các chủ đề đa dạng, từ thiên nhiên, lịch sử đến nghệ thuật.\",\n      image: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784839/about/khonggian.jpg\",\n      content: `– 16 phòng triển lãm chủ đề –\n\nKhám phá các chủ đề từ thiên nhiên, lịch sử, nghệ thuật đến văn hóa bản địa.\n\nMỗi phòng trưng bày là một thế giới riêng, mang đến trải nghiệm độc đáo và kiến thức bổ ích cho du khách ở mọi lứa tuổi.\n\nCác hoạt động tương tác, workshop và hướng dẫn viên chuyên nghiệp luôn sẵn sàng đồng hành cùng bạn.`,\n      videos: [\n        {\n          id: \"aozcRuYVPKw\",\n          title: \"Khám phá phòng triển lãm\",\n          thumbnail: \"https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg\"\n        },\n        {\n          id: \"aozcRuYVPKw\",\n          title: \"Khám phá phòng triển lãm\",\n          thumbnail: \"https://img.youtube.com/vi/aozcRuYVPKw/maxresdefault.jpg\"\n        }\n      ]\n    }\n  };\n  const currentData = placeData[id];\n  useEffect(() => {\n    if (isAutoPlaying) {\n      autoPlayRef.current = setInterval(() => {\n        setCurrentSlide((prev) => (prev + 1) % currentData.videos.length);\n      }, 5e3);\n    }\n    return () => {\n      if (autoPlayRef.current) {\n        clearInterval(autoPlayRef.current);\n      }\n    };\n  }, [isAutoPlaying, currentData.videos.length]);\n  const nextSlide = () => {\n    setCurrentSlide((prev) => (prev + 1) % currentData.videos.length);\n    setIsAutoPlaying(false);\n  };\n  const prevSlide = () => {\n    setCurrentSlide(\n      (prev) => prev === 0 ? currentData.videos.length - 1 : prev - 1\n    );\n    setIsAutoPlaying(false);\n  };\n  const openVideoModal = (video) => {\n    setSelectedVideo(video);\n    setShowVideoModal(true);\n  };\n  const closeVideoModal = () => {\n    setShowVideoModal(false);\n    setSelectedVideo(null);\n  };\n  if (!currentData) {\n    return /* @__PURE__ */ jsx(\"div\", { children: \"Không tìm thấy thông tin\" });\n  }\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"theplace-detail-container\", children: [\n    /* @__PURE__ */ jsxs(\"div\", { className: \"theplace-detail-hero\", children: [\n      /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: currentData.image,\n          alt: currentData.title,\n          className: \"theplace-detail-hero-img\"\n        }\n      ),\n      /* @__PURE__ */ jsx(\"div\", { className: \"theplace-detail-hero-overlay\" }),\n      /* @__PURE__ */ jsxs(\"button\", { className: \"back-button\", onClick: () => navigate(\"/the-place\"), children: [\n        /* @__PURE__ */ jsx(\"svg\", { viewBox: \"0 0 24 24\", fill: \"currentColor\", width: \"24\", height: \"24\", children: /* @__PURE__ */ jsx(\"path\", { d: \"M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z\" }) }),\n        \"Quay lại\"\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"theplace-detail-hero-content\", children: [\n        /* @__PURE__ */ jsx(\"h1\", { children: currentData.title }),\n        /* @__PURE__ */ jsx(\"p\", { children: currentData.description })\n      ] })\n    ] }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"theplace-detail-content\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"content-wrapper-theplace\", children: [\n      /* @__PURE__ */ jsx(\"h2\", { children: currentData.title2 }),\n      /* @__PURE__ */ jsx(\"p\", { children: currentData.content })\n    ] }) }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"theplace-detail-slideshow\", children: [\n      /* @__PURE__ */ jsxs(\"div\", { className: \"slideshow-container\", children: [\n        /* @__PURE__ */ jsx(\"button\", { className: \"slide-nav prev\", onClick: prevSlide, children: /* @__PURE__ */ jsx(IoIosArrowBack, { size: 24 }) }),\n        /* @__PURE__ */ jsx(\n          \"div\",\n          {\n            className: \"slides-wrapper\",\n            style: { transform: `translateX(-${currentSlide * 100}%)` },\n            children: currentData.videos.map((video, index) => /* @__PURE__ */ jsxs(\n              \"div\",\n              {\n                className: \"slide\",\n                onClick: () => openVideoModal(video),\n                children: [\n                  /* @__PURE__ */ jsx(\"img\", { src: video.thumbnail, alt: video.title }),\n                  /* @__PURE__ */ jsx(\"div\", { className: \"play-button\", children: /* @__PURE__ */ jsx(\n                    \"svg\",\n                    {\n                      viewBox: \"0 0 24 24\",\n                      fill: \"currentColor\",\n                      width: \"48\",\n                      height: \"48\",\n                      children: /* @__PURE__ */ jsx(\"path\", { d: \"M8 5v14l11-7z\" })\n                    }\n                  ) })\n                ]\n              },\n              index\n            ))\n          }\n        ),\n        /* @__PURE__ */ jsx(\"button\", { className: \"slide-nav next\", onClick: nextSlide, children: /* @__PURE__ */ jsx(IoIosArrowForward, { size: 24 }) })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"slide-indicators\", children: [\n        currentData.videos.map((_, index) => /* @__PURE__ */ jsx(\n          \"button\",\n          {\n            className: `indicator ${index === currentSlide ? \"active\" : \"\"}`,\n            onClick: () => setCurrentSlide(index)\n          },\n          index\n        )),\n        /* @__PURE__ */ jsxs(\"span\", { className: \"slide-count\", children: [\n          currentSlide + 1,\n          \" / \",\n          currentData.videos.length\n        ] })\n      ] })\n    ] }),\n    showVideoModal && selectedVideo && /* @__PURE__ */ jsxs(\"div\", { className: \"video-modal\", children: [\n      /* @__PURE__ */ jsx(\"button\", { className: \"close-modal\", onClick: closeVideoModal, children: /* @__PURE__ */ jsx(\"svg\", { viewBox: \"0 0 24 24\", fill: \"currentColor\", width: \"24\", height: \"24\", children: /* @__PURE__ */ jsx(\"path\", { d: \"M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z\" }) }) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"video-container\", children: /* @__PURE__ */ jsx(\n        \"iframe\",\n        {\n          width: \"100%\",\n          height: \"100%\",\n          src: `https://www.youtube.com/embed/${selectedVideo.id}?autoplay=1`,\n          title: selectedVideo.title,\n          frameBorder: \"0\",\n          allow: \"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture\",\n          allowFullScreen: true\n        }\n      ) })\n    ] })\n  ] });\n};\nexport default ThePlaceDetail;\n",
-      "start": 1750951454216,
-      "end": 1750951455640,
+      "start": 1751036293680,
+      "end": 1751036296666,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1750951455642,
-      "end": 1750951455642,
+      "start": 1751036296667,
+      "end": 1751036296667,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1750951455642,
-      "end": 1750951455642,
+      "start": 1751036296667,
+      "end": 1751036296667,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1750951455642,
-      "end": 1750951455642,
+      "start": 1751036296667,
+      "end": 1751036296667,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1750951455642,
-      "end": 1750951455642,
+      "start": 1751036296667,
+      "end": 1751036296667,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1750951455642,
-      "end": 1750951455642,
+      "start": 1751036296667,
+      "end": 1751036296667,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1750951455642,
-      "end": 1750951455642,
+      "start": 1751036296667,
+      "end": 1751036296667,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1750951455642,
-      "end": 1750951455642,
+      "start": 1751036296667,
+      "end": 1751036296667,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1750951455642,
-      "end": 1750951455659,
+      "start": 1751036296667,
+      "end": 1751036296668,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1750951455661,
-      "end": 1750951455661,
+      "start": 1751036296668,
+      "end": 1751036296668,
       "order": "normal"
     }
   ]

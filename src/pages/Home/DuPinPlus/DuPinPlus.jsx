@@ -226,6 +226,26 @@ const allVideos = [
       "https://ik.imagekit.io/8u8lkoqkkm/Thumbnail%20Ngh%E1%BB%87%20Nh%C3%A2n%20D%E1%BB%8Dc.png?updatedAt=1750322897358",
     category: "Triển lãm",
   },
+  {
+    id: 22,
+    title: "Có những câu chuyện chỉ có thể lắng nghe khi ta đủ tĩnh lặng",
+    subtitle: "Góc nhìn từ Bảo Tàng Thông",
+    youtubeId: "EM-XJW7zyoo",
+    duration: "0:41",
+    thumbnail:
+      "https://i.ytimg.com/vi/EM-XJW7zyoo/hqdefault.jpg?sqp=-oaymwFBCNACELwBSFryq4qpAzMIARUAAIhCGAHYAQHiAQoIGBACGAY4AUAB8AEB-AG2CIAC0AWKAgwIABABGD4gQihyMA8=&rs=AOn4CLCybz6fVtK17RW4ZlrHrBfDMcmiPw",
+    category: "Thiên nhiên",
+  },
+  {
+    id: 23,
+    title: "Lối rừng",
+    subtitle: "Lối rừng",
+    youtubeId: "lb8HcNFDFtU",
+    duration: "1:38s",
+    thumbnail:
+      "https://ik.imagekit.io/8u8lkoqkkm/loirung_ngang.jpg?updatedAt=1749269171985",
+    category: "Triển lãm",
+  },
 ];
 
 // Define categories and tags

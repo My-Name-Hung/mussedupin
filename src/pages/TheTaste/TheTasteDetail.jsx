@@ -1,11 +1,13 @@
 import React, { useEffect, useRef, useState } from "react";
 import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 import { useNavigate, useParams } from "react-router-dom";
+import { useTranslation } from "../../contexts/TranslationContext";
 import "./TheTasteDetail.css";
 
 const TheTasteDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
+  const { currentLang } = useTranslation();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isAutoPlaying, setIsAutoPlaying] = useState(true);
   const [showVideoModal, setShowVideoModal] = useState(false);
@@ -16,11 +18,23 @@ const TheTasteDetail = () => {
   const tasteData = {
     restaurant: {
       title: "Nghệ thuật vị giác",
-      title2: "🍽️ Thưởng thức ẩm thực đặc sắc tại Nhà hàng Bảo Tàng Thông",
+      title2:
+        currentLang === "en"
+          ? "🍽️ Fine dining at Musée Du Pin Restaurant"
+          : "🍽️ Thưởng thức ẩm thực đặc sắc tại Nhà hàng Bảo Tàng Thông",
       description: "Nơi hội tụ tinh hoa ẩm thực Đà Lạt",
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/image(1).png?updatedAt=1749000543046",
-      content: `– Nơi hội tụ tinh hoa ẩm thực Đà Lạt –
+      content:
+        currentLang === "en"
+          ? `Where Dalat's culinary excellence meets
+
+At Musée Du Pin Restaurant, we offer you a unique dining experience, where the essence of Dalat and world cuisine converge.
+
+Each dish is a work of art, prepared from the finest ingredients, combined with unique recipes and endless creativity of our talented chef team.
+
+With an elegant, cozy atmosphere and panoramic views of Dalat city, Musée Du Pin Restaurant is the ideal destination for family gatherings, friend meetups or romantic evenings.`
+          : `Nơi hội tụ tinh hoa ẩm thực Đà Lạt
 
 Tại Nhà hàng Bảo Tàng Thông, chúng tôi mang đến cho bạn một trải nghiệm ẩm thực độc đáo, nơi hội tụ tinh hoa của ẩm thực Đà Lạt và thế giới.
 
@@ -42,11 +56,23 @@ Với không gian sang trọng, ấm cúng và view toàn cảnh thành phố Đ
     },
     cafe: {
       title: "Nghệ thuật vị giác",
-      title2: "☕ Thưởng thức cà phê đặc sản tại Bảo Tàng Thông",
+      title2:
+        currentLang === "en"
+          ? "☕ Experience specialty coffee at Musée Du Pin"
+          : "☕ Thưởng thức cà phê đặc sản tại Bảo Tàng Thông",
       description: "Nơi hương vị cà phê hòa quyện cùng không gian nghệ thuật",
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/image(2).png?updatedAt=1749000540091",
-      content: `– Nơi hương vị cà phê hòa quyện cùng không gian nghệ thuật –
+      content:
+        currentLang === "en"
+          ? `Where coffee flavors blend with artistic space
+
+At Musée Du Pin, we bring you a unique coffee experience, where the essence of brewing art meets creative space.
+
+Each cup of coffee tells a story, told through the rich flavor of Dalat coffee beans, combined with the sophisticated roasting and brewing techniques of our professional barista team.
+
+With an open space, panoramic city views and unique design, Musée Du Pin café is the ideal destination for relaxing mornings or romantic afternoons.`
+          : `Nơi hương vị cà phê hòa quyện cùng không gian nghệ thuật
 
 Tại Bảo Tàng Thông, chúng tôi mang đến cho bạn một trải nghiệm cà phê độc đáo, nơi hội tụ tinh hoa của nghệ thuật pha chế và không gian sáng tạo.
 

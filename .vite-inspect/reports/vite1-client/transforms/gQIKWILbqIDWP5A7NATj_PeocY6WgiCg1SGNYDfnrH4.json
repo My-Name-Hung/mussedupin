@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useEffect } from \"react\";\nimport { MdArrowBack } from \"react-icons/md\";\nimport { useNavigate } from \"react-router-dom\";\nimport { useTranslation } from \"../../contexts/TranslationContext\";\nimport \"./VisitPackages.css\";\n\nconst translations = {\n  \"dem-thong\": {\n    vi: {\n      title: \"ĐÊM THÔNG\",\n      description:\n        \"Không gian tĩnh lặng để nghỉ ngơi, kết nối nội tâm với thiên nhiên.\",\n      details: [\n        \"Thưởng thức trà atiso chào mừng\",\n        \"Tham quan và nghe thuyết minh về phòng nghệ thuật sẽ lưu trú\",\n        \"Lưu trú 1 đêm\",\n        \"Bữa sáng với đặc sản địa phương\",\n      ],\n    },\n    en: {\n      title: \"PINE NIGHT\",\n      description:\n        \"A tranquil space for rest, connecting inner self with nature.\",\n      details: [\n        \"Welcome artichoke tea\",\n        \"Tour and presentation about your art room accommodation\",\n        \"One night stay\",\n        \"Breakfast with local specialties\",\n      ],\n    },\n  },\n  \"bong-cay-konia\": {\n    vi: {\n      title: \"BÓNG CÂY KƠNIA\",\n      description:\n        \"Hành trình khám phá rừng nguyên sinh ngàn năm, kết hợp nghỉ dưỡng đẳng cấp\",\n      details: [\n        \"Thưởng thức trà atiso chào mừng\",\n        \"Tham quan và nghe thuyết minh về phòng nghệ thuật sẽ lưu trú\",\n        \"Lưu trú 1 đêm\",\n        \"Bữa sáng với đặc sản địa phương\",\n        \"Tham quan có hướng dẫn viên các không gian bảo tàng\",\n        \"Tour khám phá rừng nguyên sinh ngàn năm\",\n        \"Tặng gói chụp ảnh nghệ thuật (1 tiếng)\",\n      ],\n    },\n    en: {\n      title: \"KONIA TREE SHADE\",\n      description:\n        \"A journey exploring thousand-year-old primitive forests combined with luxury stays\",\n      details: [\n        \"Welcome artichoke tea\",\n        \"Tour and presentation about your art room accommodation\",\n        \"One night stay\",\n        \"Breakfast with local specialties\",\n        \"Guided museum space tours\",\n        \"Ancient forest discovery tour\",\n        \"Complimentary art photo session (1 hour)\",\n      ],\n    },\n  },\n  \"truong-ca-langbiang\": {\n    vi: {\n      title: \"TRƯỜNG CA LANGBIANG\",\n      description:\n        \"Trải nghiệm toàn diện như bản trường ca sống động nhất về Đà Lạt.\",\n      details: [\n        \"Đưa đón từ sân bay Liên Khương bằng xe VIP\",\n        \"Lưu trú 1 đêm tại phòng nghệ thuật\",\n        \"Tour VIP tham quan toàn bộ bảo tàng + Rừng nguyên sinh\",\n        'Chương trình \"Thông Hát\" riêng tư + Rượu vang hảo hạng',\n        \"Workshop Vẽ tranh, dệt thổ cẩm hoặc nấu ăn cùng nghệ nhân\",\n        \"Bộ ảnh nghệ thuật chuyên nghiệp\",\n      ],\n    },\n    en: {\n      title: \"LANGBIANG EPIC\",\n      description: \"The most vivid and comprehensive Da Lat experience.\",\n      details: [\n        \"VIP transfer from Lien Khuong airport\",\n        \"One night stay in art room\",\n        \"VIP tour of entire museum + Primitive forest\",\n        'Private \"Pine Singing\" program + Premium wine',\n        \"Painting, brocade weaving or cooking workshop with artisans\",\n        \"Professional art photo collection\",\n      ],\n    },\n  },\n};\n\nconst ResidentialPackages = () => {\n  const navigate = useNavigate();\n  const { currentLang, registerTranslations } = useTranslation();\n\n  // Register translations on mount\n  useEffect(() => {\n    registerTranslations(\"residentialPackages\", translations);\n  }, [registerTranslations]);\n\n  const packages = [\n    {\n      id: \"dem-thong\",\n      title: translations[\"dem-thong\"][currentLang].title,\n      image:\n        \"https://ik.imagekit.io/8u8lkoqkkm/DemThong_Ngoai.jpg?updatedAt=1749312390523\",\n      orientation: \"landscape\",\n      description: translations[\"dem-thong\"][currentLang].description,\n      price: \"499.000 - 899.000\",\n      details: translations[\"dem-thong\"][currentLang].details,\n    },\n    {\n      id: \"bong-cay-konia\",\n      title: translations[\"bong-cay-konia\"][currentLang].title,\n      image:\n        \"https://ik.imagekit.io/8u8lkoqkkm/bongcay-ngang.png?updatedAt=1750002737098\",\n      orientation: \"landscape\",\n      description: translations[\"bong-cay-konia\"][currentLang].description,\n      price:\n        currentLang === \"en\"\n          ? \"Contact: +84 86 235 6368\"\n          : \"Liên hệ: +84 86 235 6368\",\n      details: translations[\"bong-cay-konia\"][currentLang].details,\n    },\n    {\n      id: \"truong-ca-langbiang\",\n      title: translations[\"truong-ca-langbiang\"][currentLang].title,\n      image:\n        \"https://ik.imagekit.io/8u8lkoqkkm/truongcaLBA_ngang.jpg?updatedAt=1749269172336\",\n      orientation: \"square\",\n      description: translations[\"truong-ca-langbiang\"][currentLang].description,\n      price:\n        currentLang === \"en\"\n          ? \"Contact: +84 86 235 6368\"\n          : \"Liên hệ: +84 86 235 6368\",\n      details: translations[\"truong-ca-langbiang\"][currentLang].details,\n    },\n  ];\n\n  return (\n    <div className=\"packages-container\">\n      <div className=\"packages-hero\">\n        <button className=\"back-button1\" onClick={() => navigate(\"/visit\")}>\n          <MdArrowBack />\n        </button>\n        <div className=\"hero-image-container\">\n          <img\n            src=\"https://ik.imagekit.io/8u8lkoqkkm/Luutru_Trong.jpg?updatedAt=1749268862975\"\n            alt={\n              currentLang === \"en\" ? \"Accommodation Packages\" : \"Gói lưu trú\"\n            }\n            className=\"hero-image portrait\"\n          />\n        </div>\n        <div className=\"packages-hero-content\">\n          <h1 className=\"packages-title\">\n            {currentLang === \"en\" ? \"ACCOMMODATION PACKAGES\" : \"GÓI LƯU TRÚ\"}\n          </h1>\n        </div>\n      </div>\n\n      <div className=\"packages-content\">\n        <div className=\"packages-grid\">\n          {packages.map((pkg) => (\n            <div\n              key={pkg.id}\n              className=\"visit-cardss\"\n              onClick={() => navigate(`/visit/package/${pkg.id}`)}\n            >\n              <div className=\"visit-cards-img-wrap\">\n                <img\n                  src={pkg.image}\n                  alt={pkg.title}\n                  className={`visit-cards-img ${pkg.orientation}`}\n                />\n                <div className=\"visit-cards-overlay\" />\n                <div className=\"visit-card-content\">\n                  <h2>{pkg.title}</h2>\n                </div>\n              </div>\n            </div>\n          ))}\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default ResidentialPackages;\n",
-      "start": 1751301164226,
-      "end": 1751301165275,
+      "start": 1751301745913,
+      "end": 1751301746064,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751301165275,
-      "end": 1751301165275,
+      "start": 1751301746064,
+      "end": 1751301746064,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect } from \"react\";\nimport { MdArrowBack } from \"react-icons/md\";\nimport { useNavigate } from \"react-router-dom\";\nimport { useTranslation } from \"../../contexts/TranslationContext\";\nimport \"./VisitPackages.css\";\nconst translations = {\n  \"dem-thong\": {\n    vi: {\n      title: \"ĐÊM THÔNG\",\n      description: \"Không gian tĩnh lặng để nghỉ ngơi, kết nối nội tâm với thiên nhiên.\",\n      details: [\n        \"Thưởng thức trà atiso chào mừng\",\n        \"Tham quan và nghe thuyết minh về phòng nghệ thuật sẽ lưu trú\",\n        \"Lưu trú 1 đêm\",\n        \"Bữa sáng với đặc sản địa phương\"\n      ]\n    },\n    en: {\n      title: \"PINE NIGHT\",\n      description: \"A tranquil space for rest, connecting inner self with nature.\",\n      details: [\n        \"Welcome artichoke tea\",\n        \"Tour and presentation about your art room accommodation\",\n        \"One night stay\",\n        \"Breakfast with local specialties\"\n      ]\n    }\n  },\n  \"bong-cay-konia\": {\n    vi: {\n      title: \"BÓNG CÂY KƠNIA\",\n      description: \"Hành trình khám phá rừng nguyên sinh ngàn năm, kết hợp nghỉ dưỡng đẳng cấp\",\n      details: [\n        \"Thưởng thức trà atiso chào mừng\",\n        \"Tham quan và nghe thuyết minh về phòng nghệ thuật sẽ lưu trú\",\n        \"Lưu trú 1 đêm\",\n        \"Bữa sáng với đặc sản địa phương\",\n        \"Tham quan có hướng dẫn viên các không gian bảo tàng\",\n        \"Tour khám phá rừng nguyên sinh ngàn năm\",\n        \"Tặng gói chụp ảnh nghệ thuật (1 tiếng)\"\n      ]\n    },\n    en: {\n      title: \"KONIA TREE SHADE\",\n      description: \"A journey exploring thousand-year-old primitive forests combined with luxury stays\",\n      details: [\n        \"Welcome artichoke tea\",\n        \"Tour and presentation about your art room accommodation\",\n        \"One night stay\",\n        \"Breakfast with local specialties\",\n        \"Guided museum space tours\",\n        \"Ancient forest discovery tour\",\n        \"Complimentary art photo session (1 hour)\"\n      ]\n    }\n  },\n  \"truong-ca-langbiang\": {\n    vi: {\n      title: \"TRƯỜNG CA LANGBIANG\",\n      description: \"Trải nghiệm toàn diện như bản trường ca sống động nhất về Đà Lạt.\",\n      details: [\n        \"Đưa đón từ sân bay Liên Khương bằng xe VIP\",\n        \"Lưu trú 1 đêm tại phòng nghệ thuật\",\n        \"Tour VIP tham quan toàn bộ bảo tàng + Rừng nguyên sinh\",\n        'Chương trình \"Thông Hát\" riêng tư + Rượu vang hảo hạng',\n        \"Workshop Vẽ tranh, dệt thổ cẩm hoặc nấu ăn cùng nghệ nhân\",\n        \"Bộ ảnh nghệ thuật chuyên nghiệp\"\n      ]\n    },\n    en: {\n      title: \"LANGBIANG EPIC\",\n      description: \"The most vivid and comprehensive Da Lat experience.\",\n      details: [\n        \"VIP transfer from Lien Khuong airport\",\n        \"One night stay in art room\",\n        \"VIP tour of entire museum + Primitive forest\",\n        'Private \"Pine Singing\" program + Premium wine',\n        \"Painting, brocade weaving or cooking workshop with artisans\",\n        \"Professional art photo collection\"\n      ]\n    }\n  }\n};\nconst ResidentialPackages = () => {\n  const navigate = useNavigate();\n  const { currentLang, registerTranslations } = useTranslation();\n  useEffect(() => {\n    registerTranslations(\"residentialPackages\", translations);\n  }, [registerTranslations]);\n  const packages = [\n    {\n      id: \"dem-thong\",\n      title: translations[\"dem-thong\"][currentLang].title,\n      image: \"https://ik.imagekit.io/8u8lkoqkkm/DemThong_Ngoai.jpg?updatedAt=1749312390523\",\n      orientation: \"landscape\",\n      description: translations[\"dem-thong\"][currentLang].description,\n      price: \"499.000 - 899.000\",\n      details: translations[\"dem-thong\"][currentLang].details\n    },\n    {\n      id: \"bong-cay-konia\",\n      title: translations[\"bong-cay-konia\"][currentLang].title,\n      image: \"https://ik.imagekit.io/8u8lkoqkkm/bongcay-ngang.png?updatedAt=1750002737098\",\n      orientation: \"landscape\",\n      description: translations[\"bong-cay-konia\"][currentLang].description,\n      price: currentLang === \"en\" ? \"Contact: +84 86 235 6368\" : \"Liên hệ: +84 86 235 6368\",\n      details: translations[\"bong-cay-konia\"][currentLang].details\n    },\n    {\n      id: \"truong-ca-langbiang\",\n      title: translations[\"truong-ca-langbiang\"][currentLang].title,\n      image: \"https://ik.imagekit.io/8u8lkoqkkm/truongcaLBA_ngang.jpg?updatedAt=1749269172336\",\n      orientation: \"square\",\n      description: translations[\"truong-ca-langbiang\"][currentLang].description,\n      price: currentLang === \"en\" ? \"Contact: +84 86 235 6368\" : \"Liên hệ: +84 86 235 6368\",\n      details: translations[\"truong-ca-langbiang\"][currentLang].details\n    }\n  ];\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"packages-container\", children: [\n    /* @__PURE__ */ jsxs(\"div\", { className: \"packages-hero\", children: [\n      /* @__PURE__ */ jsx(\"button\", { className: \"back-button1\", onClick: () => navigate(\"/visit\"), children: /* @__PURE__ */ jsx(MdArrowBack, {}) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"hero-image-container\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: \"https://ik.imagekit.io/8u8lkoqkkm/Luutru_Trong.jpg?updatedAt=1749268862975\",\n          alt: currentLang === \"en\" ? \"Accommodation Packages\" : \"Gói lưu trú\",\n          className: \"hero-image portrait\"\n        }\n      ) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"packages-hero-content\", children: /* @__PURE__ */ jsx(\"h1\", { className: \"packages-title\", children: currentLang === \"en\" ? \"ACCOMMODATION PACKAGES\" : \"GÓI LƯU TRÚ\" }) })\n    ] }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"packages-content\", children: /* @__PURE__ */ jsx(\"div\", { className: \"packages-grid\", children: packages.map((pkg) => /* @__PURE__ */ jsx(\n      \"div\",\n      {\n        className: \"visit-cardss\",\n        onClick: () => navigate(`/visit/package/${pkg.id}`),\n        children: /* @__PURE__ */ jsxs(\"div\", { className: \"visit-cards-img-wrap\", children: [\n          /* @__PURE__ */ jsx(\n            \"img\",\n            {\n              src: pkg.image,\n              alt: pkg.title,\n              className: `visit-cards-img ${pkg.orientation}`\n            }\n          ),\n          /* @__PURE__ */ jsx(\"div\", { className: \"visit-cards-overlay\" }),\n          /* @__PURE__ */ jsx(\"div\", { className: \"visit-card-content\", children: /* @__PURE__ */ jsx(\"h2\", { children: pkg.title }) })\n        ] })\n      },\n      pkg.id\n    )) }) })\n  ] });\n};\nexport default ResidentialPackages;\n",
-      "start": 1751301165276,
-      "end": 1751301166268,
+      "start": 1751301746064,
+      "end": 1751301746303,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751301166269,
-      "end": 1751301166269,
+      "start": 1751301746303,
+      "end": 1751301746303,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751301166269,
-      "end": 1751301166269,
+      "start": 1751301746303,
+      "end": 1751301746303,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751301166271,
-      "end": 1751301166271,
+      "start": 1751301746303,
+      "end": 1751301746303,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751301166275,
-      "end": 1751301166275,
+      "start": 1751301746305,
+      "end": 1751301746305,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751301166275,
-      "end": 1751301166276,
+      "start": 1751301746305,
+      "end": 1751301746305,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751301166293,
-      "end": 1751301166293,
+      "start": 1751301746315,
+      "end": 1751301746315,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751301166311,
-      "end": 1751301166311,
+      "start": 1751301746316,
+      "end": 1751301746316,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751301166324,
-      "end": 1751301166324,
+      "start": 1751301746320,
+      "end": 1751301746320,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751301166324,
-      "end": 1751301166324,
+      "start": 1751301746320,
+      "end": 1751301746320,
       "order": "normal"
     }
   ]

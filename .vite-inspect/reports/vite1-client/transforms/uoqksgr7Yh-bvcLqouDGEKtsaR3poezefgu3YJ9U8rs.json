@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { createElementObject, createLayerComponent, extendContext } from '@react-leaflet/core';\nimport { Marker as LeafletMarker } from 'leaflet';\nexport const Marker = createLayerComponent(function createMarker({ position, ...options }, ctx) {\n    const marker = new LeafletMarker(position, options);\n    return createElementObject(marker, extendContext(ctx, {\n        overlayContainer: marker\n    }));\n}, function updateMarker(marker, props, prevProps) {\n    if (props.position !== prevProps.position) {\n        marker.setLatLng(props.position);\n    }\n    if (props.icon != null && props.icon !== prevProps.icon) {\n        marker.setIcon(props.icon);\n    }\n    if (props.zIndexOffset != null && props.zIndexOffset !== prevProps.zIndexOffset) {\n        marker.setZIndexOffset(props.zIndexOffset);\n    }\n    if (props.opacity != null && props.opacity !== prevProps.opacity) {\n        marker.setOpacity(props.opacity);\n    }\n    if (marker.dragging != null && props.draggable !== prevProps.draggable) {\n        if (props.draggable === true) {\n            marker.dragging.enable();\n        } else {\n            marker.dragging.disable();\n        }\n    }\n});\n",
-      "start": 1751301174781,
-      "end": 1751301177217,
+      "start": 1751301750678,
+      "end": 1751301751491,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751301177217,
-      "end": 1751301177240,
+      "start": 1751301751491,
+      "end": 1751301751491,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751301177240,
-      "end": 1751301177240,
+      "start": 1751301751491,
+      "end": 1751301751491,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751301177240,
-      "end": 1751301177240,
+      "start": 1751301751491,
+      "end": 1751301751491,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751301177240,
-      "end": 1751301177240,
+      "start": 1751301751491,
+      "end": 1751301751491,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751301177240,
-      "end": 1751301177240,
+      "start": 1751301751491,
+      "end": 1751301751491,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751301177240,
-      "end": 1751301177240,
+      "start": 1751301751491,
+      "end": 1751301751491,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751301177240,
-      "end": 1751301177240,
+      "start": 1751301751491,
+      "end": 1751301751491,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751301177240,
-      "end": 1751301177240,
+      "start": 1751301751492,
+      "end": 1751301751492,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751301177241,
-      "end": 1751301177241,
+      "start": 1751301751492,
+      "end": 1751301751492,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751301177241,
-      "end": 1751301177241,
+      "start": 1751301751492,
+      "end": 1751301751492,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751301177241,
-      "end": 1751301177241,
+      "start": 1751301751492,
+      "end": 1751301751492,
       "order": "normal"
     }
   ]

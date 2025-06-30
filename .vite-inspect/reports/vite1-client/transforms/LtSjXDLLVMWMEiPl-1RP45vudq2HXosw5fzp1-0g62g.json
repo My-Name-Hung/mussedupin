@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "export { Trans } from './Trans.js';\nexport { Trans as TransWithoutContext } from './TransWithoutContext.js';\nexport { useTranslation } from './useTranslation.js';\nexport { withTranslation } from './withTranslation.js';\nexport { Translation } from './Translation.js';\nexport { I18nextProvider } from './I18nextProvider.js';\nexport { withSSR } from './withSSR.js';\nexport { useSSR } from './useSSR.js';\nexport { initReactI18next } from './initReactI18next.js';\nexport { setDefaults, getDefaults } from './defaults.js';\nexport { setI18n, getI18n } from './i18nInstance.js';\nexport { I18nContext, composeInitialProps, getInitialProps } from './context.js';\nexport const date = () => '';\nexport const time = () => '';\nexport const number = () => '';\nexport const select = () => '';\nexport const plural = () => '';\nexport const selectOrdinal = () => '';",
-      "start": 1751301164313,
-      "end": 1751301165280,
+      "start": 1751301746136,
+      "end": 1751301746499,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751301165280,
-      "end": 1751301165280,
+      "start": 1751301746499,
+      "end": 1751301746499,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751301165280,
-      "end": 1751301165280,
+      "start": 1751301746499,
+      "end": 1751301746499,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751301165280,
-      "end": 1751301165280,
+      "start": 1751301746499,
+      "end": 1751301746499,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751301165280,
-      "end": 1751301165280,
+      "start": 1751301746499,
+      "end": 1751301746499,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751301165280,
-      "end": 1751301165280,
+      "start": 1751301746499,
+      "end": 1751301746499,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751301165280,
-      "end": 1751301165280,
+      "start": 1751301746499,
+      "end": 1751301746499,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751301165280,
-      "end": 1751301165280,
+      "start": 1751301746499,
+      "end": 1751301746499,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751301165283,
-      "end": 1751301165283,
+      "start": 1751301746500,
+      "end": 1751301746500,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751301165283,
-      "end": 1751301165283,
+      "start": 1751301746500,
+      "end": 1751301746500,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751301165283,
-      "end": 1751301165283,
+      "start": 1751301746500,
+      "end": 1751301746500,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751301165283,
-      "end": 1751301165283,
+      "start": 1751301746500,
+      "end": 1751301746502,
       "order": "normal"
     }
   ]

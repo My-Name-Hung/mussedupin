@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "/* Support Page Styles */\n.support-page {\n  width: 100%;\n  overflow-x: hidden;\n  background-image: url(\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784842/background/Background2.webp\");\n  background-repeat: repeat;\n  background-position: center;\n  background-size: 300px;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: crisp-edges;\n  box-sizing: border-box;\n  overflow: visible;\n  z-index: 0;\n  min-height: 100vh;\n  font-family: \"Roboto\", sans-serif;\n  position: relative;\n  color: var(--text-color);\n}\n\n.support-page::before {\n  content: \"\";\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  pointer-events: none;\n}\n\n/* Navigation Sidebar */\n.support-nav {\n  position: fixed;\n  right: 40px;\n  top: 50%;\n  transform: translateY(-50%);\n  z-index: 100;\n  background: rgba(44, 47, 17, 0.8);\n  backdrop-filter: blur(10px);\n  border-radius: 30px;\n  padding: 20px 10px;\n  box-shadow: 0 4px 30px rgba(179, 135, 65, 0.1);\n  border: 1px solid rgba(179, 135, 65, 0.1);\n}\n\n.support-nav ul {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n.support-nav button {\n  background: none;\n  border: none;\n  color: #fff;\n  padding: 15px 25px;\n  margin: 5px 0;\n  cursor: pointer;\n  font-size: 14px;\n  position: relative;\n  transition: all 0.3s ease;\n  opacity: 0.7;\n  font-family: \"Meholrax\", serif;\n  letter-spacing: 1px;\n  width: 100%;\n  text-align: right;\n}\n\n.support-nav button::after {\n  content: \"\";\n  position: absolute;\n  right: -10px;\n  top: 50%;\n  transform: translateY(-50%);\n  width: 6px;\n  height: 6px;\n  border-radius: 50%;\n  background-color: #b38741;\n  opacity: 0;\n  transition: all 0.3s ease;\n  box-shadow: 0 0 10px #b38741;\n}\n\n.support-nav button:hover,\n.support-nav button.active {\n  opacity: 1;\n  color: #b38741;\n  transform: translateX(-5px);\n}\n\n.support-nav button.active::after {\n  opacity: 1;\n  right: -5px;\n}\n\n/* Hero Section */\n.support-heross {\n  height: 100vh;\n  position: relative;\n  overflow: hidden;\n  clip-path: polygon(0 0, 100% 0, 100% 92%, 0 100%);\n}\n\n.heross-video-container {\n  width: 100%;\n  height: 100%;\n  position: relative;\n}\n\n.heross-video {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  opacity: 0;\n  transition: opacity 1.5s ease;\n  transform: scale(1.1);\n}\n\n.heross-video.loaded {\n  opacity: 1;\n  transform: scale(1);\n}\n\n.heross-overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(\n    to bottom,\n    rgba(44, 47, 17, 0.3),\n    rgba(44, 47, 17, 0.95)\n  );\n  z-index: 1;\n}\n\n.heross-content {\n  position: absolute;\n  bottom: 30%;\n  left: 10%;\n  z-index: 2;\n  opacity: 0;\n  transform: translateY(30px);\n  animation: fadeInUp 1.5s ease 0.5s forwards;\n}\n\n.heross-title {\n  font-family: \"Mythical-Prince\", \"LouvreSerif\", Georgia, \"Times New Roman\",\n    serif;\n  font-size: 4.5rem;\n  font-weight: 600;\n  margin-bottom: 1.5rem;\n  color: #f1b24b;\n  letter-spacing: 2px;\n  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);\n  position: relative;\n  line-height: 1.2;\n}\n\n.heross-title::after {\n  content: \"\";\n  position: absolute;\n  bottom: -15px;\n  left: 0;\n  width: 100px;\n  height: 3px;\n  background: linear-gradient(to right, #b38741, transparent);\n}\n\n.heross-subtitle {\n  font-size: 1.6rem;\n  max-width: 600px;\n  font-weight: 400;\n  line-height: 1.6;\n  opacity: 0;\n  animation: fadeInUp 1s ease 1s forwards;\n  font-family: \"Roboto\", sans-serif;\n  letter-spacing: 1px;\n  color: #fff;\n}\n\n/* Categories Section */\n.categories-section {\n  padding: 150px 0;\n  position: relative;\n  background: rgba(255, 255, 255, 0.02);\n}\n\n.categories-container {\n  max-width: 1400px;\n  margin: 0 auto;\n  padding: 0 20px;\n  position: relative;\n  z-index: 1;\n}\n\n.section-title {\n  font-family: \"Meholrax\", serif;\n  font-size: 3.5rem;\n  color: #b38741;\n  margin-bottom: 70px;\n  text-align: center;\n  position: relative;\n}\n\n.section-title::after {\n  content: \"\";\n  position: absolute;\n  bottom: -20px;\n  left: 50%;\n  transform: translateX(-50%);\n  width: 100px;\n  height: 3px;\n  background: linear-gradient(to right, transparent, #b38741, transparent);\n}\n\n.categories-grid {\n  display: grid;\n  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));\n  gap: 30px;\n  padding: 20px;\n}\n\n.category-card {\n  background: rgba(255, 255, 255, 0.05);\n  border: 1px solid rgba(179, 135, 65, 0.1);\n  border-radius: 15px;\n  padding: 30px;\n  transition: all 0.3s ease;\n  cursor: pointer;\n  position: relative;\n  overflow: hidden;\n  backdrop-filter: blur(10px);\n}\n\n.category-card::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(\n    45deg,\n    transparent,\n    rgba(179, 135, 65, 0.05),\n    transparent\n  );\n  transform: translateX(-100%);\n  transition: transform 0.6s ease;\n}\n\n.category-card:hover {\n  transform: translateY(-5px);\n  border-color: rgba(179, 135, 65, 0.3);\n  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);\n}\n\n.category-card:hover::before {\n  transform: translateX(100%);\n}\n\n.category-icon {\n  font-size: 2.5rem;\n  color: #b38741;\n  margin-bottom: 20px;\n  transition: all 0.3s ease;\n}\n\n.category-card:hover .category-icon {\n  transform: scale(1.1);\n}\n\n.category-card h3 {\n  font-family: \"Meholrax\", serif;\n  font-size: 1.5rem;\n  color: #333;\n  margin-bottom: 15px;\n}\n\n.category-card p {\n  color: #666;\n  line-height: 1.6;\n  margin-bottom: 20px;\n}\n\n.category-arrow {\n  position: absolute;\n  bottom: 20px;\n  right: 30px;\n  font-size: 1.5rem;\n  color: #b38741;\n  opacity: 0;\n  transform: translateX(-20px);\n  transition: all 0.3s ease;\n}\n\n.category-card:hover .category-arrow {\n  opacity: 1;\n  transform: translateX(0);\n}\n\n/* Animations */\n@keyframes fadeInUp {\n  from {\n    opacity: 0;\n    transform: translateY(30px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n/* Responsive Design */\n@media (max-width: 1200px) {\n  .support-nav {\n    right: 20px;\n  }\n\n  .heross-title {\n    font-size: 4rem;\n  }\n\n  .section-title {\n    font-size: 3rem;\n  }\n\n  .categories-grid {\n    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));\n  }\n}\n\n@media (max-width: 768px) {\n  .support-nav {\n    position: fixed;\n    right: 0;\n    top: auto;\n    bottom: 0;\n    transform: none;\n    width: 100%;\n    border-radius: 0;\n    padding: 10px;\n    background: rgba(44, 47, 17, 0.95);\n  }\n\n  .support-nav ul {\n    display: flex;\n    justify-content: space-around;\n  }\n\n  .support-nav button {\n    padding: 10px;\n    text-align: center;\n    font-size: 12px;\n  }\n\n  .heross-title {\n    font-size: 3rem;\n  }\n\n  .heross-subtitle {\n    font-size: 1.3rem;\n  }\n\n  .section-title {\n    font-size: 2.5rem;\n  }\n\n  .categories-section {\n    padding: 100px 0;\n  }\n\n  .category-card {\n    padding: 20px;\n  }\n\n  .category-icon {\n    font-size: 2rem;\n  }\n\n  .category-card h3 {\n    font-size: 1.3rem;\n  }\n}\n\n@media (max-width: 480px) {\n  .heross-title {\n    font-size: 2.5rem;\n  }\n\n  .heross-subtitle {\n    font-size: 1.1rem;\n  }\n\n  .section-title {\n    font-size: 2rem;\n  }\n\n  .categories-grid {\n    grid-template-columns: 1fr;\n    gap: 20px;\n  }\n\n  .category-card {\n    padding: 15px;\n  }\n}\n",
-      "start": 1751301167751,
-      "end": 1751301168541,
+      "start": 1751301746357,
+      "end": 1751301746830,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751301168541,
-      "end": 1751301168541,
+      "start": 1751301746830,
+      "end": 1751301746830,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751301168546,
-      "end": 1751301168546,
+      "start": 1751301746831,
+      "end": 1751301746831,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751301168546,
-      "end": 1751301168546,
+      "start": 1751301746831,
+      "end": 1751301746831,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751301168546,
-      "end": 1751301168546,
+      "start": 1751301746831,
+      "end": 1751301746831,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751301168546,
-      "end": 1751301168546,
+      "start": 1751301746831,
+      "end": 1751301746831,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751301168546,
-      "end": 1751301168546,
+      "start": 1751301746831,
+      "end": 1751301746831,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751301168546,
-      "end": 1751301168546,
+      "start": 1751301746831,
+      "end": 1751301746831,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751301168546,
-      "end": 1751301168546,
+      "start": 1751301746831,
+      "end": 1751301746831,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751301168546,
-      "end": 1751301168546,
+      "start": 1751301746831,
+      "end": 1751301746831,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751301168546,
-      "end": 1751301168546,
+      "start": 1751301746831,
+      "end": 1751301746831,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751301168546,
-      "end": 1751301168546,
+      "start": 1751301746831,
+      "end": 1751301746831,
       "order": "normal"
     }
   ]

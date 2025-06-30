@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { createContext } from 'react';\nimport { getDefaults, setDefaults } from './defaults.js';\nimport { getI18n, setI18n } from './i18nInstance.js';\nimport { initReactI18next } from './initReactI18next.js';\nexport { getDefaults, setDefaults, getI18n, setI18n, initReactI18next };\nexport const I18nContext = createContext();\nexport class ReportNamespaces {\n  constructor() {\n    this.usedNamespaces = {};\n  }\n  addUsedNamespaces(namespaces) {\n    namespaces.forEach(ns => {\n      if (!this.usedNamespaces[ns]) this.usedNamespaces[ns] = true;\n    });\n  }\n  getUsedNamespaces() {\n    return Object.keys(this.usedNamespaces);\n  }\n}\nexport const composeInitialProps = ForComponent => async ctx => {\n  const componentsInitialProps = (await ForComponent.getInitialProps?.(ctx)) ?? {};\n  const i18nInitialProps = getInitialProps();\n  return {\n    ...componentsInitialProps,\n    ...i18nInitialProps\n  };\n};\nexport const getInitialProps = () => {\n  const i18n = getI18n();\n  const namespaces = i18n.reportNamespaces?.getUsedNamespaces() ?? [];\n  const ret = {};\n  const initialI18nStore = {};\n  i18n.languages.forEach(l => {\n    initialI18nStore[l] = {};\n    namespaces.forEach(ns => {\n      initialI18nStore[l][ns] = i18n.getResourceBundle(l, ns) || {};\n    });\n  });\n  ret.initialI18nStore = initialI18nStore;\n  ret.initialLanguage = i18n.language;\n  return ret;\n};",
-      "start": 1751301166370,
-      "end": 1751301167555,
+      "start": 1751301747247,
+      "end": 1751301748343,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751301167555,
-      "end": 1751301167555,
+      "start": 1751301748343,
+      "end": 1751301748343,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751301167555,
-      "end": 1751301167555,
+      "start": 1751301748343,
+      "end": 1751301748343,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751301167555,
-      "end": 1751301167555,
+      "start": 1751301748343,
+      "end": 1751301748343,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751301167555,
-      "end": 1751301167555,
+      "start": 1751301748343,
+      "end": 1751301748343,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751301167555,
-      "end": 1751301167555,
+      "start": 1751301748343,
+      "end": 1751301748343,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751301167555,
-      "end": 1751301167555,
+      "start": 1751301748343,
+      "end": 1751301748343,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751301167555,
-      "end": 1751301167555,
+      "start": 1751301748343,
+      "end": 1751301748343,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751301167557,
-      "end": 1751301167557,
+      "start": 1751301748344,
+      "end": 1751301748344,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751301167558,
-      "end": 1751301167558,
+      "start": 1751301748344,
+      "end": 1751301748344,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751301167558,
-      "end": 1751301167558,
+      "start": 1751301748344,
+      "end": 1751301748344,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751301167558,
-      "end": 1751301167558,
+      "start": 1751301748344,
+      "end": 1751301748344,
       "order": "normal"
     }
   ]

@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { useTranslation } from "../../../contexts/TranslationContext";
-import { getImageUrl } from "../../../utils/cloudinary";
+import { getImageUrls } from "../../../utils/cloudinary";
 import "./VisitInfo.css";
 
 import { FaBaby, FaCar, FaSearch, FaUser } from "react-icons/fa";
@@ -1948,10 +1948,15 @@ const VisitInfo = () => {
 
   // Modify the homestay card render to include capacity options
   const renderHomestayCard = (homestay) => (
-    <div className="homestay-card modern" key={homestay.id}>
+    <div
+      className="homestay-card modern"
+      key={homestay.id}
+      onClick={() => openDetailsSidebar(homestay)}
+      style={{ cursor: "pointer" }}
+    >
       <div className="homestay-card-image">
         <img
-          src={getImageUrl(homestay.image)}
+          src={getImageUrls(homestay.image)}
           alt={getLocalizedContent(homestay.title)}
           className="notranslate"
         />
@@ -2251,7 +2256,7 @@ const VisitInfo = () => {
           <div className="homestay-gallery">
             <div className="gallery-main" onClick={() => openGalleryModal(0)}>
               <img
-                src={getImageUrl(gallery[0] || selectedHomestay.image)}
+                src={getImageUrls(gallery[0] || selectedHomestay.image)}
                 alt={selectedHomestay.title}
               />
               <div className="gallery-zoom-icon">
@@ -2279,7 +2284,7 @@ const VisitInfo = () => {
                   }}
                 >
                   <img
-                    src={getImageUrl(img)}
+                    src={getImageUrls(img)}
                     alt={`${selectedHomestay.title} - hình ${index + 1}`}
                   />
                 </div>
@@ -2456,7 +2461,7 @@ const VisitInfo = () => {
 
           <div className="booking-homestay-info modern">
             <img
-              src={getImageUrl(selectedHomestay.image)}
+              src={getImageUrls(selectedHomestay.image)}
               alt={getLocalizedContent(selectedHomestay.title)}
             />
             <div>
@@ -2974,7 +2979,7 @@ const VisitInfo = () => {
           </button>
 
           <img
-            src={getImageUrl(gallery[activeImageIndex])}
+            src={getImageUrls(gallery[activeImageIndex])}
             alt={`${selectedHomestay.title} - hình ${activeImageIndex + 1}`}
           />
 
@@ -3001,7 +3006,7 @@ const VisitInfo = () => {
               onClick={() => setActiveImageIndex(index)}
             >
               <img
-                src={getImageUrl(img)}
+                src={getImageUrls(img)}
                 alt={`${selectedHomestay.title} - thumbnail ${index + 1}`}
               />
             </div>

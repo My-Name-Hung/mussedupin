@@ -32,7 +32,7 @@ const isDirectUrl = (url) => {
 };
 
 // Helper function to get exhibition image URL
-export const getImageUrl = (imagePath) => {
+export const getImageUrls = (imagePath) => {
   // Check if the path is already a full URL
   if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) {
     return imagePath;
@@ -40,6 +40,15 @@ export const getImageUrl = (imagePath) => {
 
   // Otherwise, treat it as a Cloudinary image ID
   return `https://res.cloudinary.com/dn0br7hj0/image/upload/${imagePath}`;
+};
+
+export const getImageUrl = (filename) => {
+  if (!filename) return "";
+  // If it's already a direct URL, return it as is
+  if (isDirectUrl(filename)) return filename;
+  // Otherwise treat as Cloudinary asset
+  const publicId = `collections/${filename}`;
+  return buildCloudinaryUrl(publicId);
 };
 
 // Helper function to get gallery image URL

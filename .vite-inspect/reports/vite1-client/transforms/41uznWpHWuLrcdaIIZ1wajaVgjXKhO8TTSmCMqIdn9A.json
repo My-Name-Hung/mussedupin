@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "/* TrailExperiencePage.css */\n.trail-experience-page {\n  background-color: #2c2f11;\n  color: #fff;\n  min-height: 100vh;\n  font-family: \"Roboto\", sans-serif;\n  display: flex;\n  flex-direction: column;\n  padding-top: 5px; /* Add padding to prevent overlap with navbar */\n}\n\n.back-arrow {\n  color: #b38741;\n  cursor: pointer;\n  transform: rotate(270deg);\n  font-size: 20px;\n  width: 24px;\n  height: 24px;\n}\n\n.museum-name {\n  font-family: \"Mythical-Prince\", serif;\n  color: #b38741;\n  text-transform: uppercase;\n  font-size: 18px;\n  letter-spacing: 1px;\n}\n\n.edit-icon {\n  color: #fff;\n  opacity: 0.7;\n  width: 24px;\n  height: 24px;\n}\n\n.trail-exp-header {\n  padding: 20px;\n  position: relative;\n  background-color: #2c2f11;\n  border-bottom: 1px solid rgba(255, 255, 255, 0.1);\n}\n\n.trail-exp-title {\n  font-family: \"Meholrax\", serif;\n  font-size: 30px;\n  text-transform: uppercase;\n  letter-spacing: 0.5px;\n  margin: 0;\n  padding: 15px 0;\n  line-height: 1.3;\n}\n\n.trail-exp-main-content {\n  padding-bottom: 70px; /* Space for bottom navigation */\n  flex: 1;\n}\n\n/* Artwork image */\n.trail-exp-artwork {\n  width: 100%;\n  height: auto;\n  display: block;\n  animation: fadeIn 0.5s ease-out;\n}\n\n/* Access section */\n.trail-exp-access {\n  background-color: #f8f8f8;\n  border-radius: 8px;\n  margin-bottom: 20px;\n  overflow: hidden;\n}\n\n.trail-exp-access-header {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 15px 20px;\n  cursor: pointer;\n  background-color: #2c2f11;\n  color: #fff;\n  transition: background-color 0.3s ease;\n}\n\n.trail-exp-access-header:hover {\n  background-color: #3a3d1e;\n}\n\n.trail-exp-access-title {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  font-size: 1rem;\n  font-weight: 500;\n  letter-spacing: 0.05em;\n}\n\n.trail-exp-access-title svg {\n  color: #ffffff;\n}\n\n.trail-exp-access-content {\n  padding: 0;\n  max-height: 0;\n  overflow: hidden;\n  transition: all 0.3s ease-in-out;\n  background-image: url(\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784842/background/Background2.webp\");\n  background-repeat: repeat;\n  background-position: center;\n  background-size: 300px;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: crisp-edges;\n  opacity: 0;\n  transform: translateY(-10px);\n}\n\n.trail-exp-access.show .trail-exp-access-content {\n  padding: 20px;\n  max-height: 500px;\n  opacity: 1;\n  transform: translateY(0);\n}\n\n.trail-exp-access-item {\n  display: flex;\n  align-items: center;\n  gap: 15px;\n  padding: 12px 0;\n  border-bottom: 1px solid rgba(0, 0, 0, 0.05);\n}\n\n.trail-exp-access-item:last-child {\n  border-bottom: none;\n}\n\n.trail-exp-access-icon {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 32px;\n  height: 32px;\n  background-color: #f0f0f0;\n  border-radius: 50%;\n  color: #2c2f11;\n}\n\n.trail-exp-access-text {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 0.95rem;\n  color: #333;\n  flex: 1;\n}\n\n.trail-exp-room {\n  margin-top: 0;\n  margin-bottom: 10px;\n  font-weight: 500;\n  color: rgba(255, 255, 255, 0.7);\n}\n\n/* Artwork information */\n.trail-exp-artwork-info {\n  padding: 20px;\n  background-color: rgba(44, 47, 17, 0.8);\n  animation: fadeIn 0.6s ease-out;\n}\n\n.trail-exp-artwork-title {\n  font-size: 24px;\n  text-transform: uppercase;\n  font-weight: 600;\n  letter-spacing: 0.5px;\n  color: #fff;\n  margin-bottom: 10px;\n}\n\n.trail-exp-artwork-artist {\n  color: #b38741;\n  margin-bottom: 15px;\n  font-size: 16px;\n}\n\n.trail-exp-artwork-description {\n  font-size: 15px;\n  line-height: 1.6;\n  margin-bottom: 20px;\n}\n\n/* Additional information sections */\n.trail-exp-section {\n  margin: 30px 0;\n  padding: 0 20px;\n  animation: fadeIn 0.7s ease-out;\n}\n\n.trail-exp-section-header {\n  display: flex;\n  align-items: center;\n  gap: 15px;\n  margin-bottom: 15px;\n}\n\n.trail-exp-section-icon {\n  width: 30px;\n  height: 30px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  color: #9acd32;\n}\n\n.trail-exp-section-title {\n  font-size: 18px;\n  text-transform: uppercase;\n  letter-spacing: 0.5px;\n  font-weight: 600;\n}\n\n.trail-exp-section-content {\n  font-size: 15px;\n  line-height: 1.6;\n}\n\n/* Bottom navigation */\n.trail-exp-nav {\n  position: fixed;\n  bottom: 0;\n  left: 0;\n  right: 0;\n  background-color: #2c2f11;\n  padding: 15px 20px;\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  z-index: 10;\n  border: 1px solid yellowgreen;\n}\n\n.trail-exp-nav-counter {\n  display: flex;\n  align-items: center;\n  gap: 10px;\n  cursor: pointer;\n  padding: 8px;\n  border-radius: 8px;\n  transition: background-color 0.2s ease;\n}\n\n.trail-exp-nav-counter:hover {\n  background-color: rgba(255, 255, 255, 0.1);\n}\n\n.trail-exp-nav-position {\n  font-size: 14px;\n  color: rgba(255, 255, 255, 0.8);\n}\n\n.trail-exp-nav-buttons {\n  display: flex;\n  gap: 20px;\n}\n\n.trail-exp-nav-button {\n  background: none;\n  border: none;\n  color: white;\n  cursor: pointer;\n  width: 30px;\n  height: 30px;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  transition: opacity 0.2s ease;\n}\n\n.trail-exp-nav-button:disabled {\n  opacity: 0.3;\n  cursor: not-allowed;\n}\n\n/* Artworks List Modal */\n.trail-exp-modal-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background-color: rgba(0, 0, 0, 0.9);\n  z-index: 1000;\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  animation: fadeIn 0.3s ease-out;\n}\n\n.trail-exp-modal {\n  background-color: #f5f5f5;\n  width: 90%;\n  max-width: 400px;\n  max-height: 90vh;\n  border-radius: 12px;\n  overflow: hidden;\n  display: flex;\n  flex-direction: column;\n  animation: slideUp 0.3s ease-out;\n}\n\n.trail-exp-modal-header {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 16px 20px;\n  background-image: url(\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784842/background/Background2.webp\");\n  background-repeat: repeat;\n  background-position: center;\n  background-size: 300px;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: crisp-edges;\n  border-bottom: 1px solid #e0e0e0;\n}\n\n.trail-exp-modal-back,\n.trail-exp-modal-close {\n  background: none;\n  border: none;\n  cursor: pointer;\n  padding: 4px;\n  color: #333;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.trail-exp-modal-close {\n  font-size: 24px;\n  font-weight: 300;\n  width: 28px;\n  height: 28px;\n}\n\n.trail-exp-modal-title {\n  font-size: 16px;\n  font-weight: 600;\n  color: #333;\n  margin: 0;\n  text-align: center;\n  flex: 1;\n  padding: 0 20px;\n}\n\n.trail-exp-modal-content {\n  flex: 1;\n  overflow-y: auto;\n  background-color: #f5f5f5;\n}\n\n.trail-exp-modal-item {\n  display: flex;\n  align-items: center;\n  padding: 16px 20px;\n  border-bottom: 1px solid #e0e0e0;\n  cursor: pointer;\n  transition: background-color 0.2s ease;\n  background-image: url(\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784842/background/Background2.webp\");\n  background-repeat: repeat;\n  background-position: center;\n  background-size: 300px;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: crisp-edges;\n}\n\n.trail-exp-modal-item:hover {\n  background-color: #f8f8f8;\n}\n\n.trail-exp-modal-item.active {\n  background-color: #e8f5e8;\n  border-left: 4px solid #2c2f11;\n}\n\n.trail-exp-modal-item-number {\n  font-size: 18px;\n  font-weight: 600;\n  color: #9acd32;\n  margin-right: 16px;\n  min-width: 28px;\n  text-align: center;\n}\n\n.trail-exp-modal-item-image {\n  width: 60px;\n  height: 60px;\n  object-fit: cover;\n  border-radius: 8px;\n  margin-right: 16px;\n}\n\n.trail-exp-modal-item-info {\n  flex: 1;\n}\n\n.trail-exp-modal-item-title {\n  font-size: 14px;\n  font-weight: 600;\n  color: #333;\n  margin: 0 0 4px 0;\n  line-height: 1.3;\n  text-transform: uppercase;\n  letter-spacing: 0.3px;\n}\n\n.trail-exp-modal-item-room {\n  font-size: 12px;\n  color: #666;\n  margin: 0;\n  line-height: 1.2;\n}\n\n.trail-exp-modal-footer {\n  display: flex;\n  align-items: center;\n  justify-content: space-between;\n  padding: 16px 20px;\n  background-image: url(\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784842/background/Background2.webp\");\n  background-repeat: repeat;\n  background-position: center;\n  background-size: 300px;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: crisp-edges;\n  border-top: 1px solid yellowgreen;\n}\n\n.trail-exp-modal-counter {\n  font-size: 14px;\n  color: #666;\n  font-weight: 500;\n}\n\n.trail-exp-modal-nav {\n  display: flex;\n  gap: 12px;\n}\n\n.trail-exp-modal-nav-button {\n  background: none;\n  border: 1px solid #ddd;\n  color: #333;\n  cursor: pointer;\n  width: 36px;\n  height: 36px;\n  border-radius: 50%;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  transition: all 0.2s ease;\n}\n\n.trail-exp-modal-nav-button:hover:not(:disabled) {\n  background-color: #f0f0f0;\n  border-color: #ccc;\n}\n\n.trail-exp-modal-nav-button:disabled {\n  opacity: 0.3;\n  cursor: not-allowed;\n}\n\n/* Modal animations */\n@keyframes slideUp {\n  from {\n    transform: translateY(20px);\n    opacity: 0;\n  }\n  to {\n    transform: translateY(0);\n    opacity: 1;\n  }\n}\n\n/* Animation for ACCESS toggle */\n.chevron-icon {\n  transition: transform 0.3s ease;\n  color: #ffffff;\n}\n\n.chevron-icon.open {\n  transform: rotate(180deg);\n}\n\n/* Animation for artwork transitions */\n@keyframes fadeIn {\n  from {\n    opacity: 0;\n    transform: translateY(10px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n/* Responsive design */\n@media (min-width: 768px) {\n  .trail-exp-title {\n    font-size: 28px;\n    padding: 20px 30px;\n  }\n\n  .trail-exp-content-grid {\n    display: grid;\n    grid-template-columns: 1fr 400px;\n    gap: 30px;\n    padding: 30px;\n    max-width: 1440px;\n    margin: 0 auto;\n  }\n\n  .trail-exp-artwork-container {\n    width: 100%;\n    height: calc(100vh - 250px);\n    display: flex;\n    justify-content: center;\n    align-items: center;\n    overflow: hidden;\n    background-color: rgba(0, 0, 0, 0.1);\n    border-radius: 8px;\n    position: sticky;\n    top: 30px;\n  }\n\n  .trail-exp-artwork.main-artwork {\n    width: auto;\n    height: 100%;\n    max-width: 100%;\n    object-fit: contain;\n    border-radius: 8px;\n    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);\n    transition: transform 0.3s ease;\n  }\n\n  .trail-exp-artwork-info {\n    background-color: rgba(44, 47, 17, 0.8);\n    padding: 30px;\n    border-radius: 8px;\n    height: fit-content;\n  }\n\n  .trail-exp-artwork-title {\n    font-size: 28px;\n    margin-bottom: 20px;\n  }\n\n  .trail-exp-artwork-artist {\n    font-size: 18px;\n    margin-bottom: 20px;\n  }\n\n  .trail-exp-artwork-description {\n    font-size: 16px;\n    line-height: 1.8;\n    margin-bottom: 30px;\n  }\n\n  .trail-exp-section {\n    margin-top: 30px;\n    padding: 0;\n  }\n\n  .trail-exp-access {\n    max-width: 1440px;\n    margin: 0 auto 30px;\n  }\n\n  .trail-exp-main-content {\n    padding: 0;\n  }\n}\n\n/* Loading and error states */\n.loading-container,\n.error-container {\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  min-height: 70vh;\n  padding: 20px;\n  text-align: center;\n}\n\n.loading-spinner {\n  width: 40px;\n  height: 40px;\n  border: 4px solid rgba(255, 255, 255, 0.3);\n  border-radius: 50%;\n  border-top-color: #9acd32;\n  animation: spin 1s ease-in-out infinite;\n  margin-bottom: 15px;\n}\n\n@keyframes spin {\n  to {\n    transform: rotate(360deg);\n  }\n}\n\n.error-container h2 {\n  font-size: 24px;\n  margin-bottom: 15px;\n  color: #fff;\n}\n\n.error-container p {\n  margin-bottom: 20px;\n  color: rgba(255, 255, 255, 0.8);\n}\n\n.error-container button {\n  background-color: #9acd32;\n  color: #000;\n  border: none;\n  padding: 12px 25px;\n  border-radius: 30px;\n  font-size: 16px;\n  cursor: pointer;\n  transition: all 0.3s ease;\n}\n\n.error-container button:hover {\n  background-color: #b3ff00;\n  transform: translateY(-2px);\n}\n\n.trail-exp-artwork-gallery {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  gap: 2rem;\n  margin: 2rem 0;\n}\n\n.main-artwork {\n  width: 100%;\n  height: auto;\n  border-radius: 8px;\n  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);\n}\n\n.trail-exp-additional-images {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));\n  gap: 1rem;\n  width: 100%;\n}\n\n.additional-artwork {\n  width: 100%;\n  height: 200px;\n  object-fit: cover;\n  border-radius: 8px;\n  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);\n  transition: transform 0.3s ease, box-shadow 0.3s ease;\n  cursor: pointer;\n}\n\n.additional-artwork:hover {\n  transform: translateY(-4px);\n  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);\n}\n\n/* Responsive styles */\n@media (max-width: 768px) {\n  .trail-exp-additional-images {\n    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));\n  }\n\n  .additional-artwork {\n    height: 150px;\n  }\n\n  .trail-exp-access-header {\n    padding: 12px 15px;\n  }\n\n  .trail-exp-access-title {\n    font-size: 0.9rem;\n  }\n\n  .trail-exp-access-item {\n    padding: 10px 0;\n  }\n\n  .trail-exp-access-icon {\n    width: 28px;\n    height: 28px;\n  }\n\n  .trail-exp-access-text {\n    font-size: 0.9rem;\n  }\n}\n\n@media (max-width: 480px) {\n  .trail-exp-additional-images {\n    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));\n  }\n\n  .additional-artwork {\n    height: 120px;\n  }\n}\n\n/* Animation for access content */\n@keyframes slideDown {\n  from {\n    opacity: 0;\n    transform: translateY(-10px);\n  }\n  to {\n    opacity: 1;\n    transform: translateY(0);\n  }\n}\n\n.trail-exp-back-button {\n  display: inline-flex;\n  align-items: center;\n  gap: 8px;\n  padding: 10px 20px;\n  background-color: #2c2f11;\n  color: #fff;\n  border: none;\n  border-radius: 30px;\n  font-family: \"Roboto\", sans-serif;\n  font-size: 14px;\n  text-decoration: none;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  margin-bottom: 15px;\n  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);\n}\n\n.trail-exp-back-button:hover {\n  background-color: #3a3d1e;\n  transform: translateX(-5px);\n  color: yellowgreen;\n  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);\n}\n\n.trail-exp-back-button svg {\n  transition: transform 0.3s ease;\n}\n\n.trail-exp-back-button:hover svg {\n  transform: translateX(-3px);\n}\n\n/* Mobile responsive */\n@media (max-width: 768px) {\n  .trail-exp-header {\n    padding: 15px;\n  }\n\n  .trail-exp-title {\n    font-size: 24px;\n    padding: 10px 0;\n  }\n\n  .trail-exp-back-button {\n    padding: 8px 16px;\n    font-size: 13px;\n    margin-bottom: 10px;\n  }\n}\n\n@media (max-width: 576px) {\n  .trail-exp-header {\n    padding: 10px;\n  }\n\n  .trail-exp-title {\n    font-size: 20px;\n    padding: 8px 0;\n  }\n\n  .trail-exp-back-button {\n    padding: 6px 12px;\n    font-size: 12px;\n    margin-bottom: 8px;\n  }\n}\n",
-      "start": 1751301167866,
-      "end": 1751301168582,
+      "start": 1751301746435,
+      "end": 1751301746856,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751301168582,
-      "end": 1751301168582,
+      "start": 1751301746856,
+      "end": 1751301746856,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751301168622,
-      "end": 1751301168622,
+      "start": 1751301746859,
+      "end": 1751301746859,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751301168622,
-      "end": 1751301168622,
+      "start": 1751301746860,
+      "end": 1751301746860,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751301168622,
-      "end": 1751301168622,
+      "start": 1751301746860,
+      "end": 1751301746860,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751301168622,
-      "end": 1751301168622,
+      "start": 1751301746860,
+      "end": 1751301746860,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751301168622,
-      "end": 1751301168622,
+      "start": 1751301746860,
+      "end": 1751301746860,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751301168622,
-      "end": 1751301168623,
+      "start": 1751301746860,
+      "end": 1751301746860,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751301168623,
-      "end": 1751301168623,
+      "start": 1751301746860,
+      "end": 1751301746860,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751301168623,
-      "end": 1751301168623,
+      "start": 1751301746860,
+      "end": 1751301746860,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751301168623,
-      "end": 1751301168623,
+      "start": 1751301746860,
+      "end": 1751301746860,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751301168623,
-      "end": 1751301168623,
+      "start": 1751301746860,
+      "end": 1751301746860,
       "order": "normal"
     }
   ]

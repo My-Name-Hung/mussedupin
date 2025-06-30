@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\nimport { FaCheck } from \"react-icons/fa\";\nimport \"./OrderSteps.css\";\n\nconst OrderSteps = ({ currentStep, onStepClick }) => {\n  const steps = [\n    { number: 1, title: \"Thông tin nhận hàng\" },\n    { number: 2, title: \"Thanh toán đơn hàng\" },\n    { number: 3, title: \"Hoàn tất\" },\n  ];\n\n  const handleStepClick = (stepNumber) => {\n    // Chỉ cho phép click vào các step trước step hiện tại\n    if (stepNumber < currentStep) {\n      onStepClick(stepNumber);\n    }\n  };\n\n  return (\n    <div className=\"order-steps\">\n      {steps.map((step, index) => (\n        <div\n          key={step.number}\n          className={`step ${currentStep === step.number ? \"active\" : \"\"} ${\n            currentStep > step.number ? \"completed clickable\" : \"\"\n          }`}\n          onClick={() => handleStepClick(step.number)}\n        >\n          <div className=\"step-indicator\">\n            {currentStep > step.number ? (\n              <FaCheck className=\"check-icon\" />\n            ) : (\n              <span>{step.number}</span>\n            )}\n          </div>\n          <span className=\"step-title\">{step.title}</span>\n          {index < steps.length - 1 && <div className=\"step-line\" />}\n        </div>\n      ))}\n    </div>\n  );\n};\n\nexport default OrderSteps;\n ",
-      "start": 1751092498840,
-      "end": 1751092499325,
+      "start": 1751253945567,
+      "end": 1751253945967,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092499325,
-      "end": 1751092499325,
+      "start": 1751253945967,
+      "end": 1751253945967,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { FaCheck } from \"react-icons/fa\";\nimport \"./OrderSteps.css\";\nconst OrderSteps = ({ currentStep, onStepClick }) => {\n  const steps = [\n    { number: 1, title: \"Thông tin nhận hàng\" },\n    { number: 2, title: \"Thanh toán đơn hàng\" },\n    { number: 3, title: \"Hoàn tất\" }\n  ];\n  const handleStepClick = (stepNumber) => {\n    if (stepNumber < currentStep) {\n      onStepClick(stepNumber);\n    }\n  };\n  return /* @__PURE__ */ jsx(\"div\", { className: \"order-steps\", children: steps.map((step, index) => /* @__PURE__ */ jsxs(\n    \"div\",\n    {\n      className: `step ${currentStep === step.number ? \"active\" : \"\"} ${currentStep > step.number ? \"completed clickable\" : \"\"}`,\n      onClick: () => handleStepClick(step.number),\n      children: [\n        /* @__PURE__ */ jsx(\"div\", { className: \"step-indicator\", children: currentStep > step.number ? /* @__PURE__ */ jsx(FaCheck, { className: \"check-icon\" }) : /* @__PURE__ */ jsx(\"span\", { children: step.number }) }),\n        /* @__PURE__ */ jsx(\"span\", { className: \"step-title\", children: step.title }),\n        index < steps.length - 1 && /* @__PURE__ */ jsx(\"div\", { className: \"step-line\" })\n      ]\n    },\n    step.number\n  )) });\n};\nexport default OrderSteps;\n",
-      "start": 1751092499325,
-      "end": 1751092499522,
+      "start": 1751253945967,
+      "end": 1751253946123,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751092499522,
-      "end": 1751092499522,
+      "start": 1751253946123,
+      "end": 1751253946123,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092499522,
-      "end": 1751092499522,
+      "start": 1751253946123,
+      "end": 1751253946123,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092499522,
-      "end": 1751092499522,
+      "start": 1751253946123,
+      "end": 1751253946123,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092499522,
-      "end": 1751092499522,
+      "start": 1751253946123,
+      "end": 1751253946123,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092499522,
-      "end": 1751092499522,
+      "start": 1751253946123,
+      "end": 1751253946123,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092499522,
-      "end": 1751092499522,
+      "start": 1751253946123,
+      "end": 1751253946123,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092499522,
-      "end": 1751092499522,
+      "start": 1751253946123,
+      "end": 1751253946123,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092499522,
-      "end": 1751092499522,
+      "start": 1751253946123,
+      "end": 1751253946124,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092499522,
-      "end": 1751092499522,
+      "start": 1751253946124,
+      "end": 1751253946124,
       "order": "normal"
     }
   ]

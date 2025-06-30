@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": ".blocks-wrapper {\n  background-image: url(\"https://res.cloudinary.com/dn0br7hj0/image/upload/background/Background2.webp\");\n  background-repeat: repeat;\n  background-position: top center;\n  background-size: 300px;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: crisp-edges;\n  width: 100vw;\n  height: 100vh;\n  overflow: hidden;\n}\n\n.blocks-container {\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n}\n\n@media (min-width: 769px) {\n  .blocks-container {\n    flex-direction: row;\n    padding: 2rem;\n    gap: 2rem;\n  }\n\n  .block {\n    flex: 1;\n    height: calc(100vh - 4rem);\n    border-radius: 20px;\n    transition: all 0.5s ease;\n  }\n\n  .block:hover {\n    flex: 1.2;\n  }\n\n  .block-image-container {\n    border-radius: 20px;\n  }\n\n  .block-content {\n    padding-top: 0;\n    opacity: 0;\n    transform: translateY(20px);\n    transition: all 0.3s ease;\n  }\n\n  .block:hover .block-content {\n    opacity: 1;\n    transform: translateY(0);\n  }\n\n  .block-title {\n    font-size: 3.5rem;\n    margin-bottom: 1rem;\n  }\n\n  .block-description {\n    font-size: 1.1rem;\n    margin-bottom: 1.5rem;\n    max-width: 80%;\n    line-height: 1.6;\n    opacity: 0;\n    transform: translateY(10px);\n    transition: all 0.3s ease 0.1s;\n  }\n\n  .block:hover .block-description {\n    opacity: 1;\n    transform: translateY(0);\n  }\n\n  .block-subtitle {\n    font-size: 1.3rem;\n    opacity: 0;\n    transform: translateY(10px);\n    transition: all 0.3s ease 0.2s;\n  }\n\n  .block:hover .block-subtitle {\n    opacity: 1;\n    transform: translateY(0);\n  }\n\n  .block::after {\n    background: linear-gradient(\n      to bottom,\n      rgba(0, 0, 0, 0.1),\n      rgba(0, 0, 0, 0.7)\n    );\n    opacity: 0;\n    transition: opacity 0.3s ease;\n  }\n\n  .block:hover::after {\n    opacity: 1;\n  }\n}\n\n.block {\n  position: relative;\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.block-image-container {\n  width: 100%;\n  height: 100%;\n  overflow: hidden;\n  position: absolute;\n  top: 0;\n  left: 0;\n}\n\n.block-image {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  transition: transform 0.3s ease;\n}\n\n.block:hover .block-image {\n  transform: scale(1.05);\n}\n\n.block-content {\n  position: relative;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  text-align: center;\n  color: #fff;\n  z-index: 2;\n  padding-top: 150px;\n  max-width: 80%;\n}\n\n.block-title {\n  font-family: \"Meholrax\", serif;\n  font-size: 2.5rem;\n  margin-bottom: 10px;\n  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);\n}\n\n.block-description {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1rem;\n  margin-bottom: 1rem;\n  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);\n  display: none;\n}\n\n.block-subtitle {\n  font-family: \"Roboto\", sans-serif;\n  font-size: 1.1rem;\n  display: flex;\n  align-items: center;\n  gap: 5px;\n  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);\n}\n\n.arrow-icon {\n  font-size: 1.5rem;\n  transition: transform 0.3s ease;\n}\n\n.block:hover .arrow-icon {\n  transform: translateX(5px);\n}\n\n.block::after {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(\n    to bottom,\n    rgba(0, 0, 0, 0.3),\n    rgba(0, 0, 0, 0.5)\n  );\n  pointer-events: none;\n}\n\n/* Responsive styles */\n@media (max-width: 768px) {\n  .block-content {\n    max-width: 90%;\n  }\n\n  .block-title {\n    font-size: 2rem;\n  }\n\n  .block-subtitle {\n    font-size: 1rem;\n  }\n\n  .block-description {\n    display: none;\n  }\n}\n\n@media (max-width: 480px) {\n  .block-content {\n    max-width: 95%;\n  }\n\n  .block-title {\n    font-size: 1.8rem;\n  }\n\n  .block-subtitle {\n    font-size: 0.9rem;\n  }\n}\n",
-      "start": 1751092501282,
-      "end": 1751092501396,
+      "start": 1751253946476,
+      "end": 1751253947433,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092501396,
-      "end": 1751092501396,
+      "start": 1751253947433,
+      "end": 1751253947433,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751092501397,
-      "end": 1751092501397,
+      "start": 1751253947440,
+      "end": 1751253947440,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751092501397,
-      "end": 1751092501397,
+      "start": 1751253947440,
+      "end": 1751253947440,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092501397,
-      "end": 1751092501397,
+      "start": 1751253947440,
+      "end": 1751253947440,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092501398,
-      "end": 1751092501398,
+      "start": 1751253947441,
+      "end": 1751253947441,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092501398,
-      "end": 1751092501398,
+      "start": 1751253947441,
+      "end": 1751253947441,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092501398,
-      "end": 1751092501398,
+      "start": 1751253947441,
+      "end": 1751253947441,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092501398,
-      "end": 1751092501398,
+      "start": 1751253947441,
+      "end": 1751253947441,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092501398,
-      "end": 1751092501398,
+      "start": 1751253947441,
+      "end": 1751253947441,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092501398,
-      "end": 1751092501398,
+      "start": 1751253947441,
+      "end": 1751253947441,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092501398,
-      "end": 1751092501398,
+      "start": 1751253947441,
+      "end": 1751253947441,
       "order": "normal"
     }
   ]

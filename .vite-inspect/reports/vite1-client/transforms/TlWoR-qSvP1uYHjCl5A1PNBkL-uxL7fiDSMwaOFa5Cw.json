@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { createElementObject, createLayerComponent, extendContext } from '@react-leaflet/core';\nimport { LayerGroup as LeafletLayerGroup } from 'leaflet';\nexport const LayerGroup = createLayerComponent(function createLayerGroup({ children: _c, ...options }, ctx) {\n    const group = new LeafletLayerGroup([], options);\n    return createElementObject(group, extendContext(ctx, {\n        layerContainer: group\n    }));\n});\n",
-      "start": 1751092506726,
-      "end": 1751092507380,
+      "start": 1751253959327,
+      "end": 1751253959494,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092507380,
-      "end": 1751092507380,
+      "start": 1751253959494,
+      "end": 1751253959494,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751092507381,
-      "end": 1751092507381,
+      "start": 1751253959494,
+      "end": 1751253959494,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751092507381,
-      "end": 1751092507381,
+      "start": 1751253959494,
+      "end": 1751253959494,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092507381,
-      "end": 1751092507381,
+      "start": 1751253959494,
+      "end": 1751253959494,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092507381,
-      "end": 1751092507381,
+      "start": 1751253959494,
+      "end": 1751253959494,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092507381,
-      "end": 1751092507381,
+      "start": 1751253959494,
+      "end": 1751253959494,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092507381,
-      "end": 1751092507381,
+      "start": 1751253959494,
+      "end": 1751253959494,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092507381,
-      "end": 1751092507381,
+      "start": 1751253959494,
+      "end": 1751253959494,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092507381,
-      "end": 1751092507381,
+      "start": 1751253959494,
+      "end": 1751253959494,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092507381,
-      "end": 1751092507381,
+      "start": 1751253959494,
+      "end": 1751253959494,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092507381,
-      "end": 1751092507381,
+      "start": 1751253959494,
+      "end": 1751253959494,
       "order": "normal"
     }
   ]

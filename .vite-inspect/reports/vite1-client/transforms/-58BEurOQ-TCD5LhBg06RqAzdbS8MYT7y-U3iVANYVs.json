@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import {IMPORT, LAYER, COMMENT, RULESET, DECLARATION, KEYFRAMES} from './Enum.js'\nimport {strlen, sizeof} from './Utility.js'\n\n/**\n * @param {object[]} children\n * @param {function} callback\n * @return {string}\n */\nexport function serialize (children, callback) {\n\tvar output = ''\n\tvar length = sizeof(children)\n\n\tfor (var i = 0; i < length; i++)\n\t\toutput += callback(children[i], i, children, callback) || ''\n\n\treturn output\n}\n\n/**\n * @param {object} element\n * @param {number} index\n * @param {object[]} children\n * @param {function} callback\n * @return {string}\n */\nexport function stringify (element, index, children, callback) {\n\tswitch (element.type) {\n\t\tcase LAYER: if (element.children.length) break\n\t\tcase IMPORT: case DECLARATION: return element.return = element.return || element.value\n\t\tcase COMMENT: return ''\n\t\tcase KEYFRAMES: return element.return = element.value + '{' + serialize(element.children, callback) + '}'\n\t\tcase RULESET: element.value = element.props.join(',')\n\t}\n\n\treturn strlen(children = serialize(element.children, callback)) ? element.return = element.value + '{' + children + '}' : ''\n}\n",
-      "start": 1751092503607,
-      "end": 1751092503697,
+      "start": 1751253951980,
+      "end": 1751253952052,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092503697,
-      "end": 1751092503697,
+      "start": 1751253952052,
+      "end": 1751253952052,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751092503697,
-      "end": 1751092503697,
+      "start": 1751253952052,
+      "end": 1751253952052,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751092503697,
-      "end": 1751092503697,
+      "start": 1751253952052,
+      "end": 1751253952052,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092503697,
-      "end": 1751092503697,
+      "start": 1751253952052,
+      "end": 1751253952052,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092503697,
-      "end": 1751092503697,
+      "start": 1751253952052,
+      "end": 1751253952052,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092503697,
-      "end": 1751092503697,
+      "start": 1751253952052,
+      "end": 1751253952052,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092503697,
-      "end": 1751092503697,
+      "start": 1751253952052,
+      "end": 1751253952052,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092503698,
-      "end": 1751092503698,
+      "start": 1751253952053,
+      "end": 1751253952053,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092503698,
-      "end": 1751092503698,
+      "start": 1751253952053,
+      "end": 1751253952053,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092503698,
-      "end": 1751092503698,
+      "start": 1751253952053,
+      "end": 1751253952053,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092503698,
-      "end": 1751092503698,
+      "start": 1751253952053,
+      "end": 1751253952053,
       "order": "normal"
     }
   ]

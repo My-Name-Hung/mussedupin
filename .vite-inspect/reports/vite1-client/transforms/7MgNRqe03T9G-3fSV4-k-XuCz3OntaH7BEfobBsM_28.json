@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\r\nimport { Helmet } from \"react-helmet\";\r\nimport \"./PrivacyPolicy.css\";\r\n\r\n// Import header image\r\n\r\nconst PrivacyPolicy = () => {\r\n  return (\r\n    <div className=\"privacy-policy-container\">\r\n      <Helmet>\r\n        <title>\r\n          Chính sách bảo mật | Bảo tàng{\" \"}\r\n          <span className=\"notranslate\">Thông -</span>{\" \"}\r\n          <span className=\"notranslate\">Musée Du Pin</span>\r\n        </title>\r\n        <meta\r\n          name=\"description\"\r\n          content=\"Chính sách bảo mật và quy định về bảo vệ dữ liệu cá nhân của Bảo tàng Thông - Musée Du Pin.\"\r\n        />\r\n      </Helmet>\r\n\r\n      {/* Header Banner */}\r\n      <div className=\"privacy-banner\">\r\n        <img\r\n          src=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784642/collections/louvre-sunset.jpg\"\r\n          alt=\"Bảo tàng Thông - Musée Du Pin\"\r\n          className=\"notranslate\"\r\n        />\r\n        <div className=\"banner-overlay\">\r\n          <h1>CHÍNH SÁCH BẢO MẬT</h1>\r\n        </div>\r\n      </div>\r\n\r\n      <div className=\"privacy-content\">\r\n        {/* Introduction Section */}\r\n        <div className=\"section\">\r\n          <h2>GIỚI THIỆU</h2>\r\n          <p>\r\n            Bảo tàng <span className=\"notranslate\">Thông -</span>{\" \"}\r\n            <span className=\"notranslate\">Musée Du Pin</span> cam kết bảo vệ\r\n            quyền riêng tư và dữ liệu cá nhân của quý khách. Chính sách bảo mật\r\n            này mô tả cách chúng tôi thu thập, sử dụng, lưu trữ và bảo vệ thông\r\n            tin của quý khách khi truy cập website và sử dụng dịch vụ hay các\r\n            sản phẩm của bảo tàng.\r\n          </p>\r\n        </div>\r\n\r\n        {/* Data Collection Section */}\r\n        <div className=\"section\">\r\n          <h2>THU THẬP DỮ LIỆU</h2>\r\n          <h3>Thông tin chúng tôi thu thập</h3>\r\n          <p>Chúng tôi thu thập các thông tin sau khi quý khách cung cấp:</p>\r\n          <ul>\r\n            <li>Thông tin cá nhân (họ tên, email, số điện thoại)</li>\r\n            <li>Thông tin thanh toán khi mua vé hoặc sản phẩm</li>\r\n            <li>Thông tin đăng ký tham gia sự kiện và tour tham quan</li>\r\n            <li>Phản hồi và đánh giá về trải nghiệm tại bảo tàng</li>\r\n          </ul>\r\n\r\n          <h3>Dữ liệu tự động thu thập</h3>\r\n          <p>\r\n            Website của chúng tôi tự động thu thập một số thông tin khi quý\r\n            khách truy cập:\r\n          </p>\r\n          <ul>\r\n            <li>Địa chỉ IP và thông tin thiết bị</li>\r\n            <li>Thông tin trình duyệt và hệ điều hành</li>\r\n            <li>Dữ liệu về cách sử dụng website</li>\r\n            <li>Cookie và công nghệ theo dõi tương tự</li>\r\n          </ul>\r\n        </div>\r\n\r\n        {/* Data Usage Section */}\r\n        <div className=\"section\">\r\n          <h2>SỬ DỤNG DỮ LIỆU</h2>\r\n          <p>Chúng tôi sử dụng thông tin thu thập được cho các mục đích sau:</p>\r\n          <ul>\r\n            <li>Xử lý đơn đặt vé và giao dịch thanh toán</li>\r\n            <li>Cung cấp thông tin về sự kiện và triển lãm</li>\r\n            <li>Cải thiện trải nghiệm của khách tham quan</li>\r\n            <li>Nghiên cứu và phân tích thống kê</li>\r\n            <li>Liên lạc về các vấn đề hành chính và dịch vụ</li>\r\n          </ul>\r\n        </div>\r\n\r\n        {/* Data Protection Section */}\r\n        <div className=\"section\">\r\n          <h2>BẢO VỆ DỮ LIỆU</h2>\r\n          <p>\r\n            Bảo tàng <span className=\"notranslate\">Thông -</span>{\" \"}\r\n            <span className=\"notranslate\">Musée Du Pin</span> áp dụng các biện\r\n            pháp bảo mật thích hợp để bảo vệ thông tin của quý khách khỏi khách\r\n            khỏi truy cập trái phép, thay đổi, tiết lộ hoặc phá hủy. Các biện\r\n            pháp này bao gồm:\r\n          </p>\r\n          <ul>\r\n            <li>Mã hóa dữ liệu trong quá trình truyền tải</li>\r\n            <li>Hạn chế quyền truy cập vào dữ liệu cá nhân</li>\r\n            <li>Duy trì các biện pháp bảo mật vật lý và điện tử</li>\r\n            <li>Đào tạo nhân viên về bảo mật dữ liệu</li>\r\n          </ul>\r\n        </div>\r\n\r\n        {/* Data Sharing Section */}\r\n        <div className=\"section\">\r\n          <h2>CHIA SẺ DỮ LIỆU</h2>\r\n          <p>\r\n            Chúng tôi không bán, cho thuê hoặc trao đổi thông tin cá nhân của\r\n            quý khách với bên thứ ba. Tuy nhiên, chúng tôi có thể chia sẻ thông\r\n            tin trong các trường hợp sau:\r\n          </p>\r\n          <ul>\r\n            <li>Với các đối tác cung cấp dịch vụ cho bảo tàng</li>\r\n            <li>Khi có yêu cầu của cơ quan pháp luật</li>\r\n            <li>Để bảo vệ quyền lợi và tài sản của bảo tàng</li>\r\n          </ul>\r\n        </div>\r\n\r\n        {/* Cookie Policy Section */}\r\n        <div className=\"section\">\r\n          <h2>CHÍNH SÁCH COOKIE</h2>\r\n          <p>\r\n            Website của chúng tôi sử dụng cookie và các công nghệ tương tự để\r\n            cải thiện trải nghiệm của người dùng. Cookie là các tệp văn bản nhỏ\r\n            được lưu trữ trên thiết bị của quý khách khi truy cập website.\r\n          </p>\r\n          <h3>Các loại cookie chúng tôi sử dụng:</h3>\r\n          <ul>\r\n            <li>Cookie cần thiết: Để website hoạt động bình thường</li>\r\n            <li>Cookie phân tích: Để hiểu cách người dùng sử dụng website</li>\r\n            <li>Cookie chức năng: Để ghi nhớ tùy chọn của người dùng</li>\r\n          </ul>\r\n        </div>\r\n\r\n        {/* User Rights Section */}\r\n        <div className=\"section\">\r\n          <h2>QUYỀN CỦA NGƯỜI DÙNG</h2>\r\n          <p>Quý khách có các quyền sau đối với dữ liệu cá nhân của mình:</p>\r\n          <ul>\r\n            <li>Quyền truy cập và xem thông tin đã thu thập</li>\r\n            <li>Quyền yêu cầu chỉnh sửa thông tin không chính xác</li>\r\n            <li>Quyền yêu cầu xóa thông tin cá nhân</li>\r\n            <li>Quyền phản đối việc xử lý dữ liệu</li>\r\n            <li>Quyền hạn chế việc xử lý dữ liệu</li>\r\n          </ul>\r\n        </div>\r\n\r\n        {/* Contact Section */}\r\n        <div className=\"section\">\r\n          <h2>LIÊN HỆ</h2>\r\n          <p>\r\n            Nếu quý khách có bất kỳ câu hỏi nào về chính sách bảo mật hoặc cách\r\n            chúng tôi xử lý dữ liệu cá nhân, vui lòng liên hệ:\r\n          </p>\r\n          <p>\r\n            Bảo tàng <span className=\"notranslate\">Thông -</span>{\" \"}\r\n            <span className=\"notranslate\">Musée Du Pin</span>\r\n            <br />\r\n            Email: baotangthong2024@gmail.com\r\n            <br />\r\n            Điện thoại: +84 2633 818 968; +84 86 235 6368\r\n            <br />\r\n            Địa chỉ: 29-31 Đống Đa, Phường 3, Tp Đà Lạt, tỉnh Lâm Đồng, Việt Nam\r\n          </p>\r\n        </div>\r\n\r\n        {/* Updates Section */}\r\n        <div className=\"section\">\r\n          <h2>CẬP NHẬT CHÍNH SÁCH</h2>\r\n          <p>\r\n            Chúng tôi có thể cập nhật chính sách bảo mật này theo thời gian để\r\n            phản ánh những thay đổi trong hoạt động của bảo tàng hoặc nghĩa vụ\r\n            pháp lý. Mọi thay đổi sẽ được thông báo trên website này. Quý khách\r\n            nên kiểm tra định kỳ để cập nhật thông tin mới nhất về cách chúng\r\n            tôi bảo vệ dữ liệu cá nhân của quý khách.\r\n          </p>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default PrivacyPolicy;\r\n",
-      "start": 1751092498232,
-      "end": 1751092498512,
+      "start": 1751253944810,
+      "end": 1751253945110,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092498512,
-      "end": 1751092498512,
+      "start": 1751253945110,
+      "end": 1751253945110,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { Helmet } from \"react-helmet\";\nimport \"./PrivacyPolicy.css\";\nconst PrivacyPolicy = () => {\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"privacy-policy-container\", children: [\n    /* @__PURE__ */ jsxs(Helmet, { children: [\n      /* @__PURE__ */ jsxs(\"title\", { children: [\n        \"Chính sách bảo mật | Bảo tàng\",\n        \" \",\n        /* @__PURE__ */ jsx(\"span\", { className: \"notranslate\", children: \"Thông -\" }),\n        \" \",\n        /* @__PURE__ */ jsx(\"span\", { className: \"notranslate\", children: \"Musée Du Pin\" })\n      ] }),\n      /* @__PURE__ */ jsx(\n        \"meta\",\n        {\n          name: \"description\",\n          content: \"Chính sách bảo mật và quy định về bảo vệ dữ liệu cá nhân của Bảo tàng Thông - Musée Du Pin.\"\n        }\n      )\n    ] }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"privacy-banner\", children: [\n      /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784642/collections/louvre-sunset.jpg\",\n          alt: \"Bảo tàng Thông - Musée Du Pin\",\n          className: \"notranslate\"\n        }\n      ),\n      /* @__PURE__ */ jsx(\"div\", { className: \"banner-overlay\", children: /* @__PURE__ */ jsx(\"h1\", { children: \"CHÍNH SÁCH BẢO MẬT\" }) })\n    ] }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"privacy-content\", children: [\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"GIỚI THIỆU\" }),\n        /* @__PURE__ */ jsxs(\"p\", { children: [\n          \"Bảo tàng \",\n          /* @__PURE__ */ jsx(\"span\", { className: \"notranslate\", children: \"Thông -\" }),\n          \" \",\n          /* @__PURE__ */ jsx(\"span\", { className: \"notranslate\", children: \"Musée Du Pin\" }),\n          \" cam kết bảo vệ quyền riêng tư và dữ liệu cá nhân của quý khách. Chính sách bảo mật này mô tả cách chúng tôi thu thập, sử dụng, lưu trữ và bảo vệ thông tin của quý khách khi truy cập website và sử dụng dịch vụ hay các sản phẩm của bảo tàng.\"\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"THU THẬP DỮ LIỆU\" }),\n        /* @__PURE__ */ jsx(\"h3\", { children: \"Thông tin chúng tôi thu thập\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Chúng tôi thu thập các thông tin sau khi quý khách cung cấp:\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Thông tin cá nhân (họ tên, email, số điện thoại)\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Thông tin thanh toán khi mua vé hoặc sản phẩm\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Thông tin đăng ký tham gia sự kiện và tour tham quan\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Phản hồi và đánh giá về trải nghiệm tại bảo tàng\" })\n        ] }),\n        /* @__PURE__ */ jsx(\"h3\", { children: \"Dữ liệu tự động thu thập\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Website của chúng tôi tự động thu thập một số thông tin khi quý khách truy cập:\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Địa chỉ IP và thông tin thiết bị\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Thông tin trình duyệt và hệ điều hành\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Dữ liệu về cách sử dụng website\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Cookie và công nghệ theo dõi tương tự\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"SỬ DỤNG DỮ LIỆU\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Chúng tôi sử dụng thông tin thu thập được cho các mục đích sau:\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Xử lý đơn đặt vé và giao dịch thanh toán\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Cung cấp thông tin về sự kiện và triển lãm\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Cải thiện trải nghiệm của khách tham quan\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Nghiên cứu và phân tích thống kê\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Liên lạc về các vấn đề hành chính và dịch vụ\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"BẢO VỆ DỮ LIỆU\" }),\n        /* @__PURE__ */ jsxs(\"p\", { children: [\n          \"Bảo tàng \",\n          /* @__PURE__ */ jsx(\"span\", { className: \"notranslate\", children: \"Thông -\" }),\n          \" \",\n          /* @__PURE__ */ jsx(\"span\", { className: \"notranslate\", children: \"Musée Du Pin\" }),\n          \" áp dụng các biện pháp bảo mật thích hợp để bảo vệ thông tin của quý khách khỏi khách khỏi truy cập trái phép, thay đổi, tiết lộ hoặc phá hủy. Các biện pháp này bao gồm:\"\n        ] }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Mã hóa dữ liệu trong quá trình truyền tải\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Hạn chế quyền truy cập vào dữ liệu cá nhân\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Duy trì các biện pháp bảo mật vật lý và điện tử\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Đào tạo nhân viên về bảo mật dữ liệu\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"CHIA SẺ DỮ LIỆU\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Chúng tôi không bán, cho thuê hoặc trao đổi thông tin cá nhân của quý khách với bên thứ ba. Tuy nhiên, chúng tôi có thể chia sẻ thông tin trong các trường hợp sau:\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Với các đối tác cung cấp dịch vụ cho bảo tàng\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Khi có yêu cầu của cơ quan pháp luật\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Để bảo vệ quyền lợi và tài sản của bảo tàng\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"CHÍNH SÁCH COOKIE\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Website của chúng tôi sử dụng cookie và các công nghệ tương tự để cải thiện trải nghiệm của người dùng. Cookie là các tệp văn bản nhỏ được lưu trữ trên thiết bị của quý khách khi truy cập website.\" }),\n        /* @__PURE__ */ jsx(\"h3\", { children: \"Các loại cookie chúng tôi sử dụng:\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Cookie cần thiết: Để website hoạt động bình thường\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Cookie phân tích: Để hiểu cách người dùng sử dụng website\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Cookie chức năng: Để ghi nhớ tùy chọn của người dùng\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"QUYỀN CỦA NGƯỜI DÙNG\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Quý khách có các quyền sau đối với dữ liệu cá nhân của mình:\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Quyền truy cập và xem thông tin đã thu thập\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Quyền yêu cầu chỉnh sửa thông tin không chính xác\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Quyền yêu cầu xóa thông tin cá nhân\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Quyền phản đối việc xử lý dữ liệu\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Quyền hạn chế việc xử lý dữ liệu\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"LIÊN HỆ\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Nếu quý khách có bất kỳ câu hỏi nào về chính sách bảo mật hoặc cách chúng tôi xử lý dữ liệu cá nhân, vui lòng liên hệ:\" }),\n        /* @__PURE__ */ jsxs(\"p\", { children: [\n          \"Bảo tàng \",\n          /* @__PURE__ */ jsx(\"span\", { className: \"notranslate\", children: \"Thông -\" }),\n          \" \",\n          /* @__PURE__ */ jsx(\"span\", { className: \"notranslate\", children: \"Musée Du Pin\" }),\n          /* @__PURE__ */ jsx(\"br\", {}),\n          \"Email: baotangthong2024@gmail.com\",\n          /* @__PURE__ */ jsx(\"br\", {}),\n          \"Điện thoại: +84 2633 818 968; +84 86 235 6368\",\n          /* @__PURE__ */ jsx(\"br\", {}),\n          \"Địa chỉ: 29-31 Đống Đa, Phường 3, Tp Đà Lạt, tỉnh Lâm Đồng, Việt Nam\"\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"section\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"CẬP NHẬT CHÍNH SÁCH\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Chúng tôi có thể cập nhật chính sách bảo mật này theo thời gian để phản ánh những thay đổi trong hoạt động của bảo tàng hoặc nghĩa vụ pháp lý. Mọi thay đổi sẽ được thông báo trên website này. Quý khách nên kiểm tra định kỳ để cập nhật thông tin mới nhất về cách chúng tôi bảo vệ dữ liệu cá nhân của quý khách.\" })\n      ] })\n    ] })\n  ] });\n};\nexport default PrivacyPolicy;\n",
-      "start": 1751092498512,
-      "end": 1751092498870,
+      "start": 1751253945110,
+      "end": 1751253945667,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751092498871,
-      "end": 1751092498871,
+      "start": 1751253945667,
+      "end": 1751253945667,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092498871,
-      "end": 1751092498871,
+      "start": 1751253945667,
+      "end": 1751253945667,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092498871,
-      "end": 1751092498871,
+      "start": 1751253945667,
+      "end": 1751253945667,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092498871,
-      "end": 1751092498871,
+      "start": 1751253945669,
+      "end": 1751253945669,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092498871,
-      "end": 1751092498871,
+      "start": 1751253945669,
+      "end": 1751253945669,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092498871,
-      "end": 1751092498871,
+      "start": 1751253945672,
+      "end": 1751253945672,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092498871,
-      "end": 1751092498871,
+      "start": 1751253945672,
+      "end": 1751253945672,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092498871,
-      "end": 1751092498871,
+      "start": 1751253945672,
+      "end": 1751253945673,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092498871,
-      "end": 1751092498871,
+      "start": 1751253945673,
+      "end": 1751253945673,
       "order": "normal"
     }
   ]

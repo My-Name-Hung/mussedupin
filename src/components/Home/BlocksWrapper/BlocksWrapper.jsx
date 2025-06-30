@@ -6,18 +6,19 @@ import "./BlocksWrapper.css";
 const BlocksWrapper = () => {
   const blocks = [
     {
-      image: "https://i.postimg.cc/Wzp7Pp94/i-u-Kh-c.webp",
-      title: "Điêu khắc",
+      image:
+        "https://res.cloudinary.com/dco63bsah/image/upload/v1750338666/sanphamtuthong/Tranh%20A4%2002.jpg",
+      title: "Sản phẩm từ Thông",
       subtitle: "Xem tất cả sản phẩm",
-      categoryLink: "/category/do-trang-suc",
-      description: "Khám phá những tác phẩm điêu khắc độc đáo",
+      categoryLink: "/category/sanphamtuthong",
+      description: "Khám phá những tác phẩm được tạo tác từ Thông độc đáo",
     },
     {
       image:
-        "https://boutique.louvre.fr/files/contents/400060/691026-ad27ca49-xxl/contents-691026.jpg",
+        "https://res.cloudinary.com/dco63bsah/image/upload/v1750338666/inyeucau/BTT01405-HDR.webp",
       title: "Sản phẩm nổi bật",
       subtitle: "Xem tất cả sản phẩm",
-      categoryLink: "/category/xuat-ban",
+      categoryLink: "/category/bestseller",
     },
   ];
 

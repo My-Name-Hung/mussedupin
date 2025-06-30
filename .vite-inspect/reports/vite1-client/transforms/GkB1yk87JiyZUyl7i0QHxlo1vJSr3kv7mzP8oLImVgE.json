@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useState } from \"react\";\r\nimport { FaFacebook, FaYoutube } from \"react-icons/fa\";\r\nimport { SiTiktok } from \"react-icons/si\";\r\nimport { Link, useNavigate } from \"react-router-dom\";\r\nimport FeedbackModal from \"../FeedbackModal/FeedbackModal\";\r\nimport \"./Footer.css\";\r\n\r\nconst Footer = () => {\r\n  const [openSections, setOpenSections] = useState([]);\r\n  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);\r\n  const navigate = useNavigate();\r\n\r\n  const toggleSection = (index) => {\r\n    setOpenSections((prev) => {\r\n      if (prev.includes(index)) {\r\n        return prev.filter((i) => i !== index);\r\n      } else {\r\n        return [...prev, index];\r\n      }\r\n    });\r\n  };\r\n\r\n  const handleContactClick = (e) => {\r\n    e.preventDefault();\r\n    navigate(\"https://museedupin.netlify.app/about\");\r\n    setTimeout(() => {\r\n      const element = document.getElementById(\"contact-section\");\r\n      if (element) {\r\n        element.scrollIntoView({ behavior: \"smooth\" });\r\n      }\r\n    }, 100);\r\n  };\r\n\r\n  return (\r\n    <>\r\n      <footer className=\"site-footer\">\r\n        <div className=\"footer-content\">\r\n          <div className=\"footer-sections\">\r\n            {/* About Section */}\r\n            <div\r\n              className={`footer-section ${\r\n                openSections.includes(0) ? \"open\" : \"\"\r\n              }`}\r\n            >\r\n              <h3 className=\"footer-heading\" onClick={() => toggleSection(0)}>\r\n                GIỚI THIỆU\r\n              </h3>\r\n              <ul className=\"footer-links\">\r\n                <li>\r\n                  <Link\r\n                    to=\"https://museedupin.netlify.app/about\"\r\n                    target=\"_blank\"\r\n                  >\r\n                    <span className=\"notranslate\">Musée Du Pin</span> tại Việt\r\n                    Nam\r\n                  </Link>\r\n                </li>\r\n                <li>\r\n                  <Link\r\n                    to=\"https://museedupin.netlify.app/visitor-rules\"\r\n                    target=\"_blank\"\r\n                  >\r\n                    Nội quy tham quan\r\n                  </Link>\r\n                </li>\r\n              </ul>\r\n            </div>\r\n\r\n            {/* Our Websites Section */}\r\n            <div\r\n              className={`footer-section ${\r\n                openSections.includes(1) ? \"open\" : \"\"\r\n              }`}\r\n            >\r\n              <h3 className=\"footer-heading\" onClick={() => toggleSection(1)}>\r\n                TRANG WEB CỦA CHÚNG TÔI\r\n              </h3>\r\n              <ul className=\"footer-links\">\r\n                <li>\r\n                  <Link\r\n                    to=\"https://ticket-museeduphin.netlify.app/\"\r\n                    target=\"_blank\"\r\n                  >\r\n                    Dịch vụ đặt vé trực tuyến\r\n                  </Link>\r\n                </li>\r\n                <li>\r\n                  <Link\r\n                    to=\"https://museedupin.netlify.app/collection\"\r\n                    target=\"_blank\"\r\n                  >\r\n                    Bộ sưu tập\r\n                  </Link>\r\n                </li>\r\n              </ul>\r\n            </div>\r\n\r\n            {/* Contact Section */}\r\n            <div\r\n              className={`footer-section ${\r\n                openSections.includes(2) ? \"open\" : \"\"\r\n              }`}\r\n            >\r\n              <h3 className=\"footer-heading\" onClick={() => toggleSection(2)}>\r\n                LIÊN HỆ\r\n              </h3>\r\n              <ul className=\"footer-links\">\r\n                <li>\r\n                  <Link\r\n                    to=\"https://museedupin.netlify.app/visit-info#faq\"\r\n                    target=\"_blank\"\r\n                  >\r\n                    Câu hỏi thường gặp\r\n                  </Link>\r\n                </li>\r\n                <li>\r\n                  <a href=\"#\" onClick={handleContactClick}>\r\n                    Liên hệ với chúng tôi\r\n                  </a>\r\n                </li>\r\n                <li>\r\n                  <a\r\n                    href=\"#\"\r\n                    onClick={(e) => {\r\n                      e.preventDefault();\r\n                      setIsFeedbackModalOpen(true);\r\n                    }}\r\n                  >\r\n                    Gửi phản hồi cho chúng tôi!\r\n                  </a>\r\n                </li>\r\n              </ul>\r\n            </div>\r\n\r\n            {/* Follow Us Section */}\r\n            <div\r\n              className={`footer-section social-section ${\r\n                openSections.includes(3) ? \"open\" : \"\"\r\n              }`}\r\n            >\r\n              <h3 className=\"footer-heading\" onClick={() => toggleSection(3)}>\r\n                THEO DÕI CHÚNG TÔI\r\n              </h3>\r\n              <div className=\"social-icons\">\r\n                <a\r\n                  href=\"https://www.facebook.com/BaoTangThongDalat\"\r\n                  target=\"_blank\"\r\n                  rel=\"noopener noreferrer\"\r\n                  aria-label=\"Facebook\"\r\n                >\r\n                  <FaFacebook />\r\n                </a>\r\n                <a\r\n                  href=\"https://www.tiktok.com/@baotangthongdalat?_t=ZS-8wcfw9TGrnm&_r=1\"\r\n                  target=\"_blank\"\r\n                  rel=\"noopener noreferrer\"\r\n                  aria-label=\"TikTok\"\r\n                >\r\n                  <SiTiktok />\r\n                </a>\r\n                <a\r\n                  href=\"https://www.youtube.com/channel/UCyxLbhgBPZ3KnGD_KeLCo9A\"\r\n                  target=\"_blank\"\r\n                  rel=\"noopener noreferrer\"\r\n                  aria-label=\"YouTube\"\r\n                >\r\n                  <FaYoutube />\r\n                </a>\r\n              </div>\r\n            </div>\r\n          </div>\r\n\r\n          {/* Bottom Legal Links */}\r\n          <div className=\"footer-legal\">\r\n            <div className=\"legal-links\">\r\n              <Link to=\"/legal-notice\">Thông báo pháp lý</Link>\r\n              <Link to=\"/privacy-policy\">Chính sách bảo mật</Link>\r\n              <Link to=\"/copyrights\">Bản quyền</Link>\r\n            </div>\r\n          </div>\r\n\r\n          {/* Logo */}\r\n          <div className=\"footer-logo\">\r\n            <Link to=\"/\">\r\n              <img\r\n                src=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/icon.png\"\r\n                alt=\"Logo Bảo tàng Du Pin\"\r\n              />\r\n            </Link>\r\n          </div>\r\n        </div>\r\n      </footer>\r\n\r\n      <FeedbackModal\r\n        isOpen={isFeedbackModalOpen}\r\n        onClose={() => setIsFeedbackModalOpen(false)}\r\n      />\r\n    </>\r\n  );\r\n};\r\n\r\nexport default Footer;\r\n",
-      "start": 1751092498096,
-      "end": 1751092498230,
+      "start": 1751253944668,
+      "end": 1751253944985,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092498230,
-      "end": 1751092498230,
+      "start": 1751253944985,
+      "end": 1751253944985,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { Fragment, jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useState } from \"react\";\nimport { FaFacebook, FaYoutube } from \"react-icons/fa\";\nimport { SiTiktok } from \"react-icons/si\";\nimport { Link, useNavigate } from \"react-router-dom\";\nimport FeedbackModal from \"../FeedbackModal/FeedbackModal\";\nimport \"./Footer.css\";\nconst Footer = () => {\n  const [openSections, setOpenSections] = useState([]);\n  const [isFeedbackModalOpen, setIsFeedbackModalOpen] = useState(false);\n  const navigate = useNavigate();\n  const toggleSection = (index) => {\n    setOpenSections((prev) => {\n      if (prev.includes(index)) {\n        return prev.filter((i) => i !== index);\n      } else {\n        return [...prev, index];\n      }\n    });\n  };\n  const handleContactClick = (e) => {\n    e.preventDefault();\n    navigate(\"https://museedupin.netlify.app/about\");\n    setTimeout(() => {\n      const element = document.getElementById(\"contact-section\");\n      if (element) {\n        element.scrollIntoView({ behavior: \"smooth\" });\n      }\n    }, 100);\n  };\n  return /* @__PURE__ */ jsxs(Fragment, { children: [\n    /* @__PURE__ */ jsx(\"footer\", { className: \"site-footer\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"footer-content\", children: [\n      /* @__PURE__ */ jsxs(\"div\", { className: \"footer-sections\", children: [\n        /* @__PURE__ */ jsxs(\n          \"div\",\n          {\n            className: `footer-section ${openSections.includes(0) ? \"open\" : \"\"}`,\n            children: [\n              /* @__PURE__ */ jsx(\"h3\", { className: \"footer-heading\", onClick: () => toggleSection(0), children: \"GIỚI THIỆU\" }),\n              /* @__PURE__ */ jsxs(\"ul\", { className: \"footer-links\", children: [\n                /* @__PURE__ */ jsx(\"li\", { children: /* @__PURE__ */ jsxs(\n                  Link,\n                  {\n                    to: \"https://museedupin.netlify.app/about\",\n                    target: \"_blank\",\n                    children: [\n                      /* @__PURE__ */ jsx(\"span\", { className: \"notranslate\", children: \"Musée Du Pin\" }),\n                      \" tại Việt Nam\"\n                    ]\n                  }\n                ) }),\n                /* @__PURE__ */ jsx(\"li\", { children: /* @__PURE__ */ jsx(\n                  Link,\n                  {\n                    to: \"https://museedupin.netlify.app/visitor-rules\",\n                    target: \"_blank\",\n                    children: \"Nội quy tham quan\"\n                  }\n                ) })\n              ] })\n            ]\n          }\n        ),\n        /* @__PURE__ */ jsxs(\n          \"div\",\n          {\n            className: `footer-section ${openSections.includes(1) ? \"open\" : \"\"}`,\n            children: [\n              /* @__PURE__ */ jsx(\"h3\", { className: \"footer-heading\", onClick: () => toggleSection(1), children: \"TRANG WEB CỦA CHÚNG TÔI\" }),\n              /* @__PURE__ */ jsxs(\"ul\", { className: \"footer-links\", children: [\n                /* @__PURE__ */ jsx(\"li\", { children: /* @__PURE__ */ jsx(\n                  Link,\n                  {\n                    to: \"https://ticket-museeduphin.netlify.app/\",\n                    target: \"_blank\",\n                    children: \"Dịch vụ đặt vé trực tuyến\"\n                  }\n                ) }),\n                /* @__PURE__ */ jsx(\"li\", { children: /* @__PURE__ */ jsx(\n                  Link,\n                  {\n                    to: \"https://museedupin.netlify.app/collection\",\n                    target: \"_blank\",\n                    children: \"Bộ sưu tập\"\n                  }\n                ) })\n              ] })\n            ]\n          }\n        ),\n        /* @__PURE__ */ jsxs(\n          \"div\",\n          {\n            className: `footer-section ${openSections.includes(2) ? \"open\" : \"\"}`,\n            children: [\n              /* @__PURE__ */ jsx(\"h3\", { className: \"footer-heading\", onClick: () => toggleSection(2), children: \"LIÊN HỆ\" }),\n              /* @__PURE__ */ jsxs(\"ul\", { className: \"footer-links\", children: [\n                /* @__PURE__ */ jsx(\"li\", { children: /* @__PURE__ */ jsx(\n                  Link,\n                  {\n                    to: \"https://museedupin.netlify.app/visit-info#faq\",\n                    target: \"_blank\",\n                    children: \"Câu hỏi thường gặp\"\n                  }\n                ) }),\n                /* @__PURE__ */ jsx(\"li\", { children: /* @__PURE__ */ jsx(\"a\", { href: \"#\", onClick: handleContactClick, children: \"Liên hệ với chúng tôi\" }) }),\n                /* @__PURE__ */ jsx(\"li\", { children: /* @__PURE__ */ jsx(\n                  \"a\",\n                  {\n                    href: \"#\",\n                    onClick: (e) => {\n                      e.preventDefault();\n                      setIsFeedbackModalOpen(true);\n                    },\n                    children: \"Gửi phản hồi cho chúng tôi!\"\n                  }\n                ) })\n              ] })\n            ]\n          }\n        ),\n        /* @__PURE__ */ jsxs(\n          \"div\",\n          {\n            className: `footer-section social-section ${openSections.includes(3) ? \"open\" : \"\"}`,\n            children: [\n              /* @__PURE__ */ jsx(\"h3\", { className: \"footer-heading\", onClick: () => toggleSection(3), children: \"THEO DÕI CHÚNG TÔI\" }),\n              /* @__PURE__ */ jsxs(\"div\", { className: \"social-icons\", children: [\n                /* @__PURE__ */ jsx(\n                  \"a\",\n                  {\n                    href: \"https://www.facebook.com/BaoTangThongDalat\",\n                    target: \"_blank\",\n                    rel: \"noopener noreferrer\",\n                    \"aria-label\": \"Facebook\",\n                    children: /* @__PURE__ */ jsx(FaFacebook, {})\n                  }\n                ),\n                /* @__PURE__ */ jsx(\n                  \"a\",\n                  {\n                    href: \"https://www.tiktok.com/@baotangthongdalat?_t=ZS-8wcfw9TGrnm&_r=1\",\n                    target: \"_blank\",\n                    rel: \"noopener noreferrer\",\n                    \"aria-label\": \"TikTok\",\n                    children: /* @__PURE__ */ jsx(SiTiktok, {})\n                  }\n                ),\n                /* @__PURE__ */ jsx(\n                  \"a\",\n                  {\n                    href: \"https://www.youtube.com/channel/UCyxLbhgBPZ3KnGD_KeLCo9A\",\n                    target: \"_blank\",\n                    rel: \"noopener noreferrer\",\n                    \"aria-label\": \"YouTube\",\n                    children: /* @__PURE__ */ jsx(FaYoutube, {})\n                  }\n                )\n              ] })\n            ]\n          }\n        )\n      ] }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"footer-legal\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"legal-links\", children: [\n        /* @__PURE__ */ jsx(Link, { to: \"/legal-notice\", children: \"Thông báo pháp lý\" }),\n        /* @__PURE__ */ jsx(Link, { to: \"/privacy-policy\", children: \"Chính sách bảo mật\" }),\n        /* @__PURE__ */ jsx(Link, { to: \"/copyrights\", children: \"Bản quyền\" })\n      ] }) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"footer-logo\", children: /* @__PURE__ */ jsx(Link, { to: \"/\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/icon.png\",\n          alt: \"Logo Bảo tàng Du Pin\"\n        }\n      ) }) })\n    ] }) }),\n    /* @__PURE__ */ jsx(\n      FeedbackModal,\n      {\n        isOpen: isFeedbackModalOpen,\n        onClose: () => setIsFeedbackModalOpen(false)\n      }\n    )\n  ] });\n};\nexport default Footer;\n",
-      "start": 1751092498230,
-      "end": 1751092498290,
+      "start": 1751253944985,
+      "end": 1751253945134,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751092498290,
-      "end": 1751092498290,
+      "start": 1751253945134,
+      "end": 1751253945134,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092498290,
-      "end": 1751092498290,
+      "start": 1751253945134,
+      "end": 1751253945134,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092498290,
-      "end": 1751092498290,
+      "start": 1751253945134,
+      "end": 1751253945134,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092498290,
-      "end": 1751092498290,
+      "start": 1751253945135,
+      "end": 1751253945135,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092498290,
-      "end": 1751092498290,
+      "start": 1751253945135,
+      "end": 1751253945135,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092498290,
-      "end": 1751092498290,
+      "start": 1751253945135,
+      "end": 1751253945135,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092498290,
-      "end": 1751092498290,
+      "start": 1751253945135,
+      "end": 1751253945135,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092498290,
-      "end": 1751092498291,
+      "start": 1751253945135,
+      "end": 1751253945137,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092498291,
-      "end": 1751092498291,
+      "start": 1751253945137,
+      "end": 1751253945137,
       "order": "normal"
     }
   ]

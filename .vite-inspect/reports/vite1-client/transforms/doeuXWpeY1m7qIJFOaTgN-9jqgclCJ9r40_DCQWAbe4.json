@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useEffect, useState } from \"react\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport { Link } from \"react-router-dom\";\nimport \"./Collaborate.css\";\n\nconst Collaborate = () => {\n  const [currentSlide, setCurrentSlide] = useState(0);\n  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);\n\n  const collaborators = [\n    {\n      image:\n        \"https://boutique.louvre.fr/files/contents/400564/697889-5b1c2d67-xl/harry-nuriev-2.jpg\",\n      title: \"Harry Nuriev\",\n    },\n    {\n      image:\n        \"https://boutique.louvre.fr/files/contents/400549/695234-89885e78-xl/philippe-apeloig.jpg\",\n      title: \"Philippe Apeloig\",\n    },\n    {\n      image:\n        \"https://boutique.louvre.fr/files/contents/400573/697532-920cc925-xl/barbapapa-2.jpg\",\n      title: \"Barbapapa\",\n    },\n    {\n      image:\n        \"https://boutique.louvre.fr/files/contents/400578/695362-10bf7f9a-xl/jean-michel-othoniel-2.jpg\",\n      title: \"Jean-Michel Othoniel\",\n    },\n  ];\n\n  useEffect(() => {\n    const handleResize = () => {\n      setIsMobile(window.innerWidth <= 768);\n    };\n\n    window.addEventListener(\"resize\", handleResize);\n    return () => window.removeEventListener(\"resize\", handleResize);\n  }, []);\n\n  useEffect(() => {\n    if (isMobile) {\n      const interval = setInterval(() => {\n        setCurrentSlide((prev) => (prev + 1) % collaborators.length);\n      }, 5000);\n\n      return () => clearInterval(interval);\n    }\n  }, [isMobile]);\n\n  const handleDotClick = (index) => {\n    setCurrentSlide(index);\n  };\n\n  return (\n    <section className=\"collaborate\">\n      <div className=\"collaborate-container\">\n        <div className=\"collaborate-header\">\n          <h2 className=\"collaborate-title\">Sự hợp tác</h2>\n          <Link to=\"/collaborate\" className=\"collaborate-view-all\">\n            Xem tất cả <IoIosArrowRoundForward />\n          </Link>\n        </div>\n        <div className=\"slideshow-container\">\n          <div\n            className=\"slides-wrapper\"\n            style={\n              isMobile\n                ? { transform: `translateX(-${currentSlide * 100}%)` }\n                : {}\n            }\n          >\n            {collaborators.map((item, index) => (\n              <div key={index} className=\"slide\">\n                <Link\n                  to={`/collaborate/${encodeURIComponent(item.title)}`}\n                  className=\"slide-image-container\"\n                >\n                  <img\n                    src={item.image}\n                    alt={item.title}\n                    className=\"slide-image\"\n                  />\n                  <h3 className=\"slide-title\">{item.title}</h3>\n                </Link>\n              </div>\n            ))}\n          </div>\n          {isMobile && (\n            <div className=\"dots-navigation\">\n              {collaborators.map((_, index) => (\n                <button\n                  key={index}\n                  className={`dot ${currentSlide === index ? \"active\" : \"\"}`}\n                  onClick={() => handleDotClick(index)}\n                  aria-label={`Slide ${index + 1}`}\n                />\n              ))}\n            </div>\n          )}\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default Collaborate;\n",
-      "start": 1751092498545,
-      "end": 1751092499056,
+      "start": 1751253945051,
+      "end": 1751253945624,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092499056,
-      "end": 1751092499056,
+      "start": 1751253945624,
+      "end": 1751253945624,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect, useState } from \"react\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport { Link } from \"react-router-dom\";\nimport \"./Collaborate.css\";\nconst Collaborate = () => {\n  const [currentSlide, setCurrentSlide] = useState(0);\n  const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);\n  const collaborators = [\n    {\n      image: \"https://boutique.louvre.fr/files/contents/400564/697889-5b1c2d67-xl/harry-nuriev-2.jpg\",\n      title: \"Harry Nuriev\"\n    },\n    {\n      image: \"https://boutique.louvre.fr/files/contents/400549/695234-89885e78-xl/philippe-apeloig.jpg\",\n      title: \"Philippe Apeloig\"\n    },\n    {\n      image: \"https://boutique.louvre.fr/files/contents/400573/697532-920cc925-xl/barbapapa-2.jpg\",\n      title: \"Barbapapa\"\n    },\n    {\n      image: \"https://boutique.louvre.fr/files/contents/400578/695362-10bf7f9a-xl/jean-michel-othoniel-2.jpg\",\n      title: \"Jean-Michel Othoniel\"\n    }\n  ];\n  useEffect(() => {\n    const handleResize = () => {\n      setIsMobile(window.innerWidth <= 768);\n    };\n    window.addEventListener(\"resize\", handleResize);\n    return () => window.removeEventListener(\"resize\", handleResize);\n  }, []);\n  useEffect(() => {\n    if (isMobile) {\n      const interval = setInterval(() => {\n        setCurrentSlide((prev) => (prev + 1) % collaborators.length);\n      }, 5e3);\n      return () => clearInterval(interval);\n    }\n  }, [isMobile]);\n  const handleDotClick = (index) => {\n    setCurrentSlide(index);\n  };\n  return /* @__PURE__ */ jsx(\"section\", { className: \"collaborate\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"collaborate-container\", children: [\n    /* @__PURE__ */ jsxs(\"div\", { className: \"collaborate-header\", children: [\n      /* @__PURE__ */ jsx(\"h2\", { className: \"collaborate-title\", children: \"Sự hợp tác\" }),\n      /* @__PURE__ */ jsxs(Link, { to: \"/collaborate\", className: \"collaborate-view-all\", children: [\n        \"Xem tất cả \",\n        /* @__PURE__ */ jsx(IoIosArrowRoundForward, {})\n      ] })\n    ] }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"slideshow-container\", children: [\n      /* @__PURE__ */ jsx(\n        \"div\",\n        {\n          className: \"slides-wrapper\",\n          style: isMobile ? { transform: `translateX(-${currentSlide * 100}%)` } : {},\n          children: collaborators.map((item, index) => /* @__PURE__ */ jsx(\"div\", { className: \"slide\", children: /* @__PURE__ */ jsxs(\n            Link,\n            {\n              to: `/collaborate/${encodeURIComponent(item.title)}`,\n              className: \"slide-image-container\",\n              children: [\n                /* @__PURE__ */ jsx(\n                  \"img\",\n                  {\n                    src: item.image,\n                    alt: item.title,\n                    className: \"slide-image\"\n                  }\n                ),\n                /* @__PURE__ */ jsx(\"h3\", { className: \"slide-title\", children: item.title })\n              ]\n            }\n          ) }, index))\n        }\n      ),\n      isMobile && /* @__PURE__ */ jsx(\"div\", { className: \"dots-navigation\", children: collaborators.map((_, index) => /* @__PURE__ */ jsx(\n        \"button\",\n        {\n          className: `dot ${currentSlide === index ? \"active\" : \"\"}`,\n          onClick: () => handleDotClick(index),\n          \"aria-label\": `Slide ${index + 1}`\n        },\n        index\n      )) })\n    ] })\n  ] }) });\n};\nexport default Collaborate;\n",
-      "start": 1751092499056,
-      "end": 1751092499371,
+      "start": 1751253945624,
+      "end": 1751253945845,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751092499372,
-      "end": 1751092499372,
+      "start": 1751253945845,
+      "end": 1751253945845,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092499372,
-      "end": 1751092499372,
+      "start": 1751253945845,
+      "end": 1751253945845,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092499372,
-      "end": 1751092499372,
+      "start": 1751253945845,
+      "end": 1751253945845,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092499372,
-      "end": 1751092499372,
+      "start": 1751253945845,
+      "end": 1751253945846,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092499372,
-      "end": 1751092499372,
+      "start": 1751253945846,
+      "end": 1751253945846,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092499372,
-      "end": 1751092499372,
+      "start": 1751253945846,
+      "end": 1751253945846,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092499372,
-      "end": 1751092499372,
+      "start": 1751253945846,
+      "end": 1751253945846,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092499372,
-      "end": 1751092499374,
+      "start": 1751253945846,
+      "end": 1751253945847,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092499374,
-      "end": 1751092499374,
+      "start": 1751253945847,
+      "end": 1751253945847,
       "order": "normal"
     }
   ]

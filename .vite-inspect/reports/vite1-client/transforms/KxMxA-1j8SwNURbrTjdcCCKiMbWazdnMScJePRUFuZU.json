@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useEffect, useState } from \"react\";\r\nimport Bestseller from \"./Bestseller/Bestseller\";\r\nimport BlockContentExhibition from \"./BlockContent-exhibition/BlockContent-exhibition\";\r\nimport BlockContent from \"./BlockContent/BlockContent\";\r\nimport BlocksWrapper from \"./BlocksWrapper/BlocksWrapper\";\r\nimport Categories from \"./Categories/Categories\";\r\nimport Collaborate from \"./Collaborate/Collaborate\";\r\nimport Hero from \"./Hero/Hero\";\r\n\r\nfunction Home() {\r\n  const [showPrepareVisitBar, setShowPrepareVisitBar] = useState(false);\r\n  const [hideNavbar, setHideNavbar] = useState(false);\r\n  const [isMobile, setIsMobile] = useState(false);\r\n\r\n  useEffect(() => {\r\n    const checkMobile = () => {\r\n      setIsMobile(window.innerWidth <= 768);\r\n    };\r\n\r\n    checkMobile();\r\n    window.addEventListener(\"resize\", checkMobile);\r\n\r\n    return () => {\r\n      window.removeEventListener(\"resize\", checkMobile);\r\n    };\r\n  }, []);\r\n\r\n  // Handle when the Highlights section becomes visible\r\n  const handleHighlightsVisible = () => {\r\n    setShowPrepareVisitBar(true);\r\n    setHideNavbar(true);\r\n  };\r\n\r\n  // Handle when the Highlights section is no longer visible\r\n  const handleHighlightsHidden = () => {\r\n    setShowPrepareVisitBar(false);\r\n    setHideNavbar(false);\r\n  };\r\n\r\n  // Icon cho Online Boutique\r\n  const BoutiqueIcon = () => (\r\n    <svg\r\n      viewBox=\"0 0 24 24\"\r\n      width=\"1em\"\r\n      height=\"1em\"\r\n      fill=\"currentColor\"\r\n      focusable=\"false\"\r\n      aria-hidden=\"true\"\r\n    >\r\n      <path d=\"M11.57 2c-1.78 0-3.2 1.28-3.2 2.86V7H5.14a.71.71 0 0 0-.72.64L3 21.21a.72.72 0 0 0 .72.79h15.71a.71.71 0 0 0 .72-.79L18.72 7.64A.71.71 0 0 0 18 7h-3.22V4.86c0-1.58-1.43-2.86-3.21-2.86zM9.8 4.86c0-.8.8-1.43 1.78-1.43 1 0 1.8.64 1.8 1.43V7h-3.6V4.86zm7.57 3.57 1.28 12.14H4.51L5.79 8.43h2.57v1.43a.71.71 0 1 0 1.43 0V8.43h3.57v1.43a.71.71 0 1 0 1.43 0V8.43h2.57z\"></path>\r\n    </svg>\r\n  );\r\n\r\n  // Icon cho Tickets\r\n  const TicketIcon = () => (\r\n    <svg\r\n      viewBox=\"0 0 16 16\"\r\n      width=\"1em\"\r\n      height=\"1em\"\r\n      fill=\"currentColor\"\r\n      focusable=\"false\"\r\n      aria-hidden=\"true\"\r\n    >\r\n      <path d=\"M9.13.5a.9.9 0 0 1 1.28 0l1.17 1.18c.2.2.3.5.25.79a1.48 1.48 0 0 0 1.7 1.7c.3-.04.59.05.79.25l1.17 1.17a.9.9 0 0 1 0 1.28L6.87 15.5a.9.9 0 0 1-1.28 0L.51 10.41a.9.9 0 0 1 0-1.28zm.64.78L1.28 9.77l4.95 4.95 8.49-8.49-1.1-1.1c-.74.15-1.52-.1-2.08-.67s-.82-1.34-.7-2.14L9.77 1.28zm.53 5.13c.1-.1.25-.1.35 0l.35.35c.1.1.1.26 0 .36l-4.59 4.6a.27.27 0 0 1-.36 0l-.35-.36a.25.25 0 0 1 0-.36l4.6-4.59zm-2.24-.59c.1-.1.26-.1.35 0l.36.35c.1.1.1.26 0 .36L5 10.3c-.1.1-.26.1-.36 0l-.35-.35a.25.25 0 0 1 0-.36l3.77-3.77z\"></path>\r\n    </svg>\r\n  );\r\n\r\n  return (\r\n    <div className=\"home-container\">\r\n      {/* Add className to control navbar visibility */}\r\n      <div className={`home-content ${hideNavbar ? \"hide-navbar\" : \"\"}`}>\r\n        {/* Phần Hero - Hiển thị banner chính của trang */}\r\n        <Hero />\r\n        {/* Phần Categories - Hiển thị danh mục sản phẩm */}\r\n        <Categories />\r\n        {/* Phần Blocks Wrapper - Hiển thị các khối hình ảnh */}\r\n        <BlocksWrapper />\r\n        {/* Phần Exhibition - Hiển thị thông tin triển lãm */}\r\n        <BlockContentExhibition />\r\n        {/* Phần Block Content - Hiển thị danh sách nghệ sĩ */}\r\n        <BlockContent />\r\n        {/* Phần Collaborate - Hiển thị các đối tác hợp tác */}\r\n        <Collaborate />\r\n        {/* Phần Bestseller - Hiển thị sản phẩm bán chạy */}\r\n        <Bestseller />\r\n      </div>\r\n\r\n      {/* Prepare your visit bar */}\r\n\r\n    </div>\r\n  );\r\n}\r\n\r\nexport default Home;\r\n",
-      "start": 1751092498096,
-      "end": 1751092498254,
+      "start": 1751253944668,
+      "end": 1751253944810,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092498254,
-      "end": 1751092498254,
+      "start": 1751253944810,
+      "end": 1751253944810,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect, useState } from \"react\";\nimport Bestseller from \"./Bestseller/Bestseller\";\nimport BlockContentExhibition from \"./BlockContent-exhibition/BlockContent-exhibition\";\nimport BlockContent from \"./BlockContent/BlockContent\";\nimport BlocksWrapper from \"./BlocksWrapper/BlocksWrapper\";\nimport Categories from \"./Categories/Categories\";\nimport Collaborate from \"./Collaborate/Collaborate\";\nimport Hero from \"./Hero/Hero\";\nfunction Home() {\n  const [showPrepareVisitBar, setShowPrepareVisitBar] = useState(false);\n  const [hideNavbar, setHideNavbar] = useState(false);\n  const [isMobile, setIsMobile] = useState(false);\n  useEffect(() => {\n    const checkMobile = () => {\n      setIsMobile(window.innerWidth <= 768);\n    };\n    checkMobile();\n    window.addEventListener(\"resize\", checkMobile);\n    return () => {\n      window.removeEventListener(\"resize\", checkMobile);\n    };\n  }, []);\n  const handleHighlightsVisible = () => {\n    setShowPrepareVisitBar(true);\n    setHideNavbar(true);\n  };\n  const handleHighlightsHidden = () => {\n    setShowPrepareVisitBar(false);\n    setHideNavbar(false);\n  };\n  const BoutiqueIcon = () => /* @__PURE__ */ jsx(\n    \"svg\",\n    {\n      viewBox: \"0 0 24 24\",\n      width: \"1em\",\n      height: \"1em\",\n      fill: \"currentColor\",\n      focusable: \"false\",\n      \"aria-hidden\": \"true\",\n      children: /* @__PURE__ */ jsx(\"path\", { d: \"M11.57 2c-1.78 0-3.2 1.28-3.2 2.86V7H5.14a.71.71 0 0 0-.72.64L3 21.21a.72.72 0 0 0 .72.79h15.71a.71.71 0 0 0 .72-.79L18.72 7.64A.71.71 0 0 0 18 7h-3.22V4.86c0-1.58-1.43-2.86-3.21-2.86zM9.8 4.86c0-.8.8-1.43 1.78-1.43 1 0 1.8.64 1.8 1.43V7h-3.6V4.86zm7.57 3.57 1.28 12.14H4.51L5.79 8.43h2.57v1.43a.71.71 0 1 0 1.43 0V8.43h3.57v1.43a.71.71 0 1 0 1.43 0V8.43h2.57z\" })\n    }\n  );\n  const TicketIcon = () => /* @__PURE__ */ jsx(\n    \"svg\",\n    {\n      viewBox: \"0 0 16 16\",\n      width: \"1em\",\n      height: \"1em\",\n      fill: \"currentColor\",\n      focusable: \"false\",\n      \"aria-hidden\": \"true\",\n      children: /* @__PURE__ */ jsx(\"path\", { d: \"M9.13.5a.9.9 0 0 1 1.28 0l1.17 1.18c.2.2.3.5.25.79a1.48 1.48 0 0 0 1.7 1.7c.3-.04.59.05.79.25l1.17 1.17a.9.9 0 0 1 0 1.28L6.87 15.5a.9.9 0 0 1-1.28 0L.51 10.41a.9.9 0 0 1 0-1.28zm.64.78L1.28 9.77l4.95 4.95 8.49-8.49-1.1-1.1c-.74.15-1.52-.1-2.08-.67s-.82-1.34-.7-2.14L9.77 1.28zm.53 5.13c.1-.1.25-.1.35 0l.35.35c.1.1.1.26 0 .36l-4.59 4.6a.27.27 0 0 1-.36 0l-.35-.36a.25.25 0 0 1 0-.36l4.6-4.59zm-2.24-.59c.1-.1.26-.1.35 0l.36.35c.1.1.1.26 0 .36L5 10.3c-.1.1-.26.1-.36 0l-.35-.35a.25.25 0 0 1 0-.36l3.77-3.77z\" })\n    }\n  );\n  return /* @__PURE__ */ jsx(\"div\", { className: \"home-container\", children: /* @__PURE__ */ jsxs(\"div\", { className: `home-content ${hideNavbar ? \"hide-navbar\" : \"\"}`, children: [\n    /* @__PURE__ */ jsx(Hero, {}),\n    /* @__PURE__ */ jsx(Categories, {}),\n    /* @__PURE__ */ jsx(BlocksWrapper, {}),\n    /* @__PURE__ */ jsx(BlockContentExhibition, {}),\n    /* @__PURE__ */ jsx(BlockContent, {}),\n    /* @__PURE__ */ jsx(Collaborate, {}),\n    /* @__PURE__ */ jsx(Bestseller, {})\n  ] }) });\n}\nexport default Home;\n",
-      "start": 1751092498254,
-      "end": 1751092498463,
+      "start": 1751253944810,
+      "end": 1751253945022,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751092498463,
-      "end": 1751092498463,
+      "start": 1751253945022,
+      "end": 1751253945022,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092498463,
-      "end": 1751092498463,
+      "start": 1751253945022,
+      "end": 1751253945022,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092498463,
-      "end": 1751092498463,
+      "start": 1751253945022,
+      "end": 1751253945022,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092498463,
-      "end": 1751092498463,
+      "start": 1751253945022,
+      "end": 1751253945022,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092498463,
-      "end": 1751092498463,
+      "start": 1751253945022,
+      "end": 1751253945022,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092498463,
-      "end": 1751092498463,
+      "start": 1751253945022,
+      "end": 1751253945022,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092498463,
-      "end": 1751092498463,
+      "start": 1751253945022,
+      "end": 1751253945022,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092498463,
-      "end": 1751092498464,
+      "start": 1751253945022,
+      "end": 1751253945022,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092498464,
-      "end": 1751092498464,
+      "start": 1751253945022,
+      "end": 1751253945022,
       "order": "normal"
     }
   ]

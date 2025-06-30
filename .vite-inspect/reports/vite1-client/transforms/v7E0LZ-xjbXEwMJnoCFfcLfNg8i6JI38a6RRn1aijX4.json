@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useEffect, useState } from \"react\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../../../pages/CategoryDetail/CategoryDetail\";\nimport {\n  getAnPhamImageUrl,\n  getThoCamImageUrl,\n  getHoiThaoNgheThuatImageUrl,\n  getInTheoYeuCauImageUrl,\n  getKhuyenTaiImageUrl,\n  getThoiTrangImageUrl,\n  getSanPhamTuThongImageUrl,\n} from \"../../../utils/cloudinary\";\nimport \"./Bestseller.css\";\n\nconst Bestseller = () => {\n  const [randomProducts, setRandomProducts] = useState([]);\n\n  // Helper function to get image URL based on category\n  const getImageUrl = (category, filename) => {\n    switch (category) {\n      case \"khuyentai\":\n        return getKhuyenTaiImageUrl(filename);\n      case \"anpham\":\n        return getAnPhamImageUrl(filename);\n      case \"in-theo-yeu-cau\":\n        return getInTheoYeuCauImageUrl(filename);\n      case \"hoi-thao-nghe-thuat\":\n        return getHoiThaoNgheThuatImageUrl(filename);\n      case \"thoi-trang-va-phu-kien\":\n        return getThoiTrangImageUrl(filename);\n      case \"thocam\":\n        return getThoCamImageUrl(filename);\n      case \"sanphamtuthong\":\n        return getSanPhamTuThongImageUrl(filename);\n      default:\n        return \"\";\n    }\n  };\n\n  useEffect(() => {\n    // Get all products from all categories and flatten into a single array\n    const allProducts = Object.values(sampleProducts).flat();\n\n    // Filter trending products\n    const trendingProducts = allProducts.filter(\n      (product) => product.isTrending\n    );\n\n    // Get 3 random products\n    const shuffled = [...trendingProducts].sort(() => 0.5 - Math.random());\n    setRandomProducts(shuffled.slice(0, 3));\n  }, []); // Empty dependency array means this runs once on mount\n\n  return (\n    <section className=\"bestseller\">\n      <div className=\"bestseller-container\">\n        <div className=\"bestseller-header\">\n          <h2 className=\"bestseller-title\">Sản phẩm bán chạy nhất</h2>\n          <Link to=\"/bestseller\" className=\"bestseller-view-all\">\n            Xem tất cả <IoIosArrowRoundForward />\n          </Link>\n        </div>\n        <div className=\"bestseller-grid\">\n          {randomProducts.map((product) => (\n            <div key={product.id} className=\"bestseller-card\">\n              <Link to={`/product/${product.id}`}>\n                <div className=\"card-image-container\">\n                  <img\n                    src={getImageUrl(product.category, product.image)}\n                    alt={product.title}\n                    className=\"card-image\"\n                  />\n                </div>\n                <div className=\"card-content\">\n                  <h3 className=\"card-title\">{product.title}</h3>\n                  <p className=\"card-price\">{product.price}</p>\n                </div>\n              </Link>\n            </div>\n          ))}\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default Bestseller;\n",
-      "start": 1751092498545,
-      "end": 1751092498935,
+      "start": 1751253945050,
+      "end": 1751253945623,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751092498935,
-      "end": 1751092498935,
+      "start": 1751253945623,
+      "end": 1751253945623,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect, useState } from \"react\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../../../pages/CategoryDetail/CategoryDetail\";\nimport {\n  getAnPhamImageUrl,\n  getThoCamImageUrl,\n  getHoiThaoNgheThuatImageUrl,\n  getInTheoYeuCauImageUrl,\n  getKhuyenTaiImageUrl,\n  getThoiTrangImageUrl,\n  getSanPhamTuThongImageUrl\n} from \"../../../utils/cloudinary\";\nimport \"./Bestseller.css\";\nconst Bestseller = () => {\n  const [randomProducts, setRandomProducts] = useState([]);\n  const getImageUrl = (category, filename) => {\n    switch (category) {\n      case \"khuyentai\":\n        return getKhuyenTaiImageUrl(filename);\n      case \"anpham\":\n        return getAnPhamImageUrl(filename);\n      case \"in-theo-yeu-cau\":\n        return getInTheoYeuCauImageUrl(filename);\n      case \"hoi-thao-nghe-thuat\":\n        return getHoiThaoNgheThuatImageUrl(filename);\n      case \"thoi-trang-va-phu-kien\":\n        return getThoiTrangImageUrl(filename);\n      case \"thocam\":\n        return getThoCamImageUrl(filename);\n      case \"sanphamtuthong\":\n        return getSanPhamTuThongImageUrl(filename);\n      default:\n        return \"\";\n    }\n  };\n  useEffect(() => {\n    const allProducts = Object.values(sampleProducts).flat();\n    const trendingProducts = allProducts.filter(\n      (product) => product.isTrending\n    );\n    const shuffled = [...trendingProducts].sort(() => 0.5 - Math.random());\n    setRandomProducts(shuffled.slice(0, 3));\n  }, []);\n  return /* @__PURE__ */ jsx(\"section\", { className: \"bestseller\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"bestseller-container\", children: [\n    /* @__PURE__ */ jsxs(\"div\", { className: \"bestseller-header\", children: [\n      /* @__PURE__ */ jsx(\"h2\", { className: \"bestseller-title\", children: \"Sản phẩm bán chạy nhất\" }),\n      /* @__PURE__ */ jsxs(Link, { to: \"/bestseller\", className: \"bestseller-view-all\", children: [\n        \"Xem tất cả \",\n        /* @__PURE__ */ jsx(IoIosArrowRoundForward, {})\n      ] })\n    ] }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"bestseller-grid\", children: randomProducts.map((product) => /* @__PURE__ */ jsx(\"div\", { className: \"bestseller-card\", children: /* @__PURE__ */ jsxs(Link, { to: `/product/${product.id}`, children: [\n      /* @__PURE__ */ jsx(\"div\", { className: \"card-image-container\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: getImageUrl(product.category, product.image),\n          alt: product.title,\n          className: \"card-image\"\n        }\n      ) }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"card-content\", children: [\n        /* @__PURE__ */ jsx(\"h3\", { className: \"card-title\", children: product.title }),\n        /* @__PURE__ */ jsx(\"p\", { className: \"card-price\", children: product.price })\n      ] })\n    ] }) }, product.id)) })\n  ] }) });\n};\nexport default Bestseller;\n",
-      "start": 1751092498935,
-      "end": 1751092499135,
+      "start": 1751253945623,
+      "end": 1751253945845,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751092499135,
-      "end": 1751092499135,
+      "start": 1751253945845,
+      "end": 1751253945845,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751092499135,
-      "end": 1751092499135,
+      "start": 1751253945845,
+      "end": 1751253945845,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751092499135,
-      "end": 1751092499135,
+      "start": 1751253945845,
+      "end": 1751253945845,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751092499135,
-      "end": 1751092499135,
+      "start": 1751253945845,
+      "end": 1751253945845,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751092499136,
-      "end": 1751092499136,
+      "start": 1751253945846,
+      "end": 1751253945846,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751092499136,
-      "end": 1751092499136,
+      "start": 1751253945846,
+      "end": 1751253945846,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751092499136,
-      "end": 1751092499136,
+      "start": 1751253945846,
+      "end": 1751253945846,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751092499136,
-      "end": 1751092499145,
+      "start": 1751253945846,
+      "end": 1751253945847,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751092499145,
-      "end": 1751092499145,
+      "start": 1751253945847,
+      "end": 1751253945847,
       "order": "normal"
     }
   ]

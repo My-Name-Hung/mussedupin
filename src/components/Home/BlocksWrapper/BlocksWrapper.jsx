@@ -18,7 +18,7 @@ const BlocksWrapper = () => {
         "https://res.cloudinary.com/dco63bsah/image/upload/v1750338666/inyeucau/BTT01405-HDR.webp",
       title: "Sản phẩm nổi bật",
       subtitle: "Xem tất cả sản phẩm",
-      categoryLink: "/category/bestseller",
+      categoryLink: "/bestseller",
     },
   ];
 

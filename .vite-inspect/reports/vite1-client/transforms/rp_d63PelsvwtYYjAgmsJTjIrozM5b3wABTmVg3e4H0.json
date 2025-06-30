@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "\"use client\";\nimport { jsx } from 'react/jsx-runtime';\nimport { useContext, useMemo } from 'react';\nimport { MotionConfigContext } from '../../context/MotionConfigContext.mjs';\nimport { loadExternalIsValidProp } from '../../render/dom/utils/filter-props.mjs';\nimport { useConstant } from '../../utils/use-constant.mjs';\n\n/**\n * `MotionConfig` is used to set configuration options for all children `motion` components.\n *\n * ```jsx\n * import { motion, MotionConfig } from \"framer-motion\"\n *\n * export function App() {\n *   return (\n *     <MotionConfig transition={{ type: \"spring\" }}>\n *       <motion.div animate={{ x: 100 }} />\n *     </MotionConfig>\n *   )\n * }\n * ```\n *\n * @public\n */\nfunction MotionConfig({ children, isValidProp, ...config }) {\n    isValidProp && loadExternalIsValidProp(isValidProp);\n    /**\n     * Inherit props from any parent MotionConfig components\n     */\n    config = { ...useContext(MotionConfigContext), ...config };\n    /**\n     * Don't allow isStatic to change between renders as it affects how many hooks\n     * motion components fire.\n     */\n    config.isStatic = useConstant(() => config.isStatic);\n    /**\n     * Creating a new config context object will re-render every `motion` component\n     * every time it renders. So we only want to create a new one sparingly.\n     */\n    const context = useMemo(() => config, [\n        JSON.stringify(config.transition),\n        config.transformPagePoint,\n        config.reducedMotion,\n    ]);\n    return (jsx(MotionConfigContext.Provider, { value: context, children: children }));\n}\n\nexport { MotionConfig };\n",
-      "start": 1751253956971,
-      "end": 1751253957119,
+      "start": 1751254468013,
+      "end": 1751254468048,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751253957119,
-      "end": 1751253957119,
+      "start": 1751254468048,
+      "end": 1751254468048,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751253957119,
-      "end": 1751253957119,
+      "start": 1751254468048,
+      "end": 1751254468048,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751253957119,
-      "end": 1751253957119,
+      "start": 1751254468048,
+      "end": 1751254468048,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751253957119,
-      "end": 1751253957119,
+      "start": 1751254468048,
+      "end": 1751254468048,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751253957119,
-      "end": 1751253957120,
+      "start": 1751254468048,
+      "end": 1751254468048,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751253957135,
-      "end": 1751253957135,
+      "start": 1751254468048,
+      "end": 1751254468048,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751253957135,
-      "end": 1751253957135,
+      "start": 1751254468048,
+      "end": 1751254468048,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751253957135,
-      "end": 1751253957135,
+      "start": 1751254468048,
+      "end": 1751254468048,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751253957135,
-      "end": 1751253957135,
+      "start": 1751254468049,
+      "end": 1751254468049,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751253957135,
-      "end": 1751253957135,
+      "start": 1751254468049,
+      "end": 1751254468049,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751253957135,
-      "end": 1751253957135,
+      "start": 1751254468049,
+      "end": 1751254468049,
       "order": "normal"
     }
   ]

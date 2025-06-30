@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useMemo, useState } from \"react\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../CategoryDetail/CategoryDetail\";\nimport \"./Artists.css\";\n\nconst Artists = () => {\n  const [searchTerm, setSearchTerm] = useState(\"\");\n\n  const artists = useMemo(() => {\n    // Get unique artists and count their products\n    const artistCounts = {};\n\n    // Iterate through each category and its products\n    Object.values(sampleProducts).forEach((products) => {\n      products.forEach((product) => {\n        artistCounts[product.artist] = (artistCounts[product.artist] || 0) + 1;\n      });\n    });\n\n    // Convert to array and sort by count\n    return Object.entries(artistCounts)\n      .map(([name, count]) => ({\n        name,\n        count,\n        image:\n          \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/icon.png\",\n      }))\n      .sort((a, b) => b.count - a.count);\n  }, []);\n\n  const filteredArtists = useMemo(() => {\n    return artists.filter((artist) =>\n      artist.name.toLowerCase().includes(searchTerm.toLowerCase())\n    );\n  }, [artists, searchTerm]);\n\n  const featuredArtists = artists.slice(0, 4);\n\n  return (\n    <div className=\"artists-page\">\n      <h1 className=\"artists-title\">Nghệ sĩ</h1>\n\n      <section className=\"artists-exhibition\">\n        <h2 className=\"section-title\">Điểm nổi bật</h2>\n        <div className=\"artists-exhibition-grid\">\n          {featuredArtists.map((artist, index) => (\n            <Link\n              to={`/contents/artists/${encodeURIComponent(artist.name)}`}\n              key={index}\n              className=\"artists-exhibition-item\"\n            >\n              <div className=\"artist-image\">\n                <img src={artist.image} alt={artist.name} />\n              </div>\n              <h3 className=\"artist-name\">{artist.name}</h3>\n              <p className=\"artist-count\">{artist.count} sản phẩm</p>\n            </Link>\n          ))}\n        </div>\n      </section>\n\n      <section className=\"all-artists\">\n        <h2 className=\"section-title\">Tất cả nghệ sĩ</h2>\n        <div className=\"search-artists\">\n          <input\n            type=\"text\"\n            placeholder=\"Tìm kiếm nghệ sĩ...\"\n            value={searchTerm}\n            onChange={(e) => setSearchTerm(e.target.value)}\n          />\n        </div>\n        <p className=\"artists-count\">{filteredArtists.length} nghệ sĩ</p>\n        <div className=\"artists-list\">\n          {filteredArtists.map((artist, index) => (\n            <Link\n              to={`/contents/artists/${encodeURIComponent(artist.name)}`}\n              key={index}\n              className=\"artist-list-item\"\n            >\n              <span className=\"artist-list-name\">{artist.name}</span>\n              <span className=\"artist-list-count\">{artist.count} sản phẩm</span>\n            </Link>\n          ))}\n        </div>\n      </section>\n    </div>\n  );\n};\n\nexport default Artists;\n",
-      "start": 1751253944682,
-      "end": 1751253945003,
+      "start": 1751254461626,
+      "end": 1751254461679,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751253945003,
-      "end": 1751253945004,
+      "start": 1751254461680,
+      "end": 1751254461680,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useMemo, useState } from \"react\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../CategoryDetail/CategoryDetail\";\nimport \"./Artists.css\";\nconst Artists = () => {\n  const [searchTerm, setSearchTerm] = useState(\"\");\n  const artists = useMemo(() => {\n    const artistCounts = {};\n    Object.values(sampleProducts).forEach((products) => {\n      products.forEach((product) => {\n        artistCounts[product.artist] = (artistCounts[product.artist] || 0) + 1;\n      });\n    });\n    return Object.entries(artistCounts).map(([name, count]) => ({\n      name,\n      count,\n      image: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/icon.png\"\n    })).sort((a, b) => b.count - a.count);\n  }, []);\n  const filteredArtists = useMemo(() => {\n    return artists.filter(\n      (artist) => artist.name.toLowerCase().includes(searchTerm.toLowerCase())\n    );\n  }, [artists, searchTerm]);\n  const featuredArtists = artists.slice(0, 4);\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"artists-page\", children: [\n    /* @__PURE__ */ jsx(\"h1\", { className: \"artists-title\", children: \"Nghệ sĩ\" }),\n    /* @__PURE__ */ jsxs(\"section\", { className: \"artists-exhibition\", children: [\n      /* @__PURE__ */ jsx(\"h2\", { className: \"section-title\", children: \"Điểm nổi bật\" }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"artists-exhibition-grid\", children: featuredArtists.map((artist, index) => /* @__PURE__ */ jsxs(\n        Link,\n        {\n          to: `/contents/artists/${encodeURIComponent(artist.name)}`,\n          className: \"artists-exhibition-item\",\n          children: [\n            /* @__PURE__ */ jsx(\"div\", { className: \"artist-image\", children: /* @__PURE__ */ jsx(\"img\", { src: artist.image, alt: artist.name }) }),\n            /* @__PURE__ */ jsx(\"h3\", { className: \"artist-name\", children: artist.name }),\n            /* @__PURE__ */ jsxs(\"p\", { className: \"artist-count\", children: [\n              artist.count,\n              \" sản phẩm\"\n            ] })\n          ]\n        },\n        index\n      )) })\n    ] }),\n    /* @__PURE__ */ jsxs(\"section\", { className: \"all-artists\", children: [\n      /* @__PURE__ */ jsx(\"h2\", { className: \"section-title\", children: \"Tất cả nghệ sĩ\" }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"search-artists\", children: /* @__PURE__ */ jsx(\n        \"input\",\n        {\n          type: \"text\",\n          placeholder: \"Tìm kiếm nghệ sĩ...\",\n          value: searchTerm,\n          onChange: (e) => setSearchTerm(e.target.value)\n        }\n      ) }),\n      /* @__PURE__ */ jsxs(\"p\", { className: \"artists-count\", children: [\n        filteredArtists.length,\n        \" nghệ sĩ\"\n      ] }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"artists-list\", children: filteredArtists.map((artist, index) => /* @__PURE__ */ jsxs(\n        Link,\n        {\n          to: `/contents/artists/${encodeURIComponent(artist.name)}`,\n          className: \"artist-list-item\",\n          children: [\n            /* @__PURE__ */ jsx(\"span\", { className: \"artist-list-name\", children: artist.name }),\n            /* @__PURE__ */ jsxs(\"span\", { className: \"artist-list-count\", children: [\n              artist.count,\n              \" sản phẩm\"\n            ] })\n          ]\n        },\n        index\n      )) })\n    ] })\n  ] });\n};\nexport default Artists;\n",
-      "start": 1751253945004,
-      "end": 1751253945072,
+      "start": 1751254461680,
+      "end": 1751254461861,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751253945072,
-      "end": 1751253945072,
+      "start": 1751254461861,
+      "end": 1751254461862,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751253945072,
-      "end": 1751253945072,
+      "start": 1751254461862,
+      "end": 1751254461862,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751253945072,
-      "end": 1751253945072,
+      "start": 1751254461862,
+      "end": 1751254461862,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751253945072,
-      "end": 1751253945072,
+      "start": 1751254461862,
+      "end": 1751254461862,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751253945072,
-      "end": 1751253945072,
+      "start": 1751254461862,
+      "end": 1751254461862,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751253945072,
-      "end": 1751253945072,
+      "start": 1751254461862,
+      "end": 1751254461862,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751253945072,
-      "end": 1751253945072,
+      "start": 1751254461862,
+      "end": 1751254461862,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751253945072,
-      "end": 1751253945074,
+      "start": 1751254461862,
+      "end": 1751254461863,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751253945074,
-      "end": 1751253945074,
+      "start": 1751254461864,
+      "end": 1751254461864,
       "order": "normal"
     }
   ]

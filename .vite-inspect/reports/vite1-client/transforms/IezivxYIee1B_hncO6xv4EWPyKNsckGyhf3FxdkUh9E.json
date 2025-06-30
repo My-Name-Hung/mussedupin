@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M15 7h1a2 2 0 0 1 2 2v6a2 2 0 0 1-2 2h-2\", key: \"1sdynx\" }],\n  [\"path\", { d: \"M6 7H4a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h1\", key: \"1gkd3k\" }],\n  [\"path\", { d: \"m11 7-3 5h4l-3 5\", key: \"b4a64w\" }],\n  [\"line\", { x1: \"22\", x2: \"22\", y1: \"11\", y2: \"13\", key: \"4dh1rd\" }]\n];\nconst BatteryCharging = createLucideIcon(\"battery-charging\", __iconNode);\n\nexport { __iconNode, BatteryCharging as default };\n//# sourceMappingURL=battery-charging.js.map\n",
-      "start": 1751253963470,
-      "end": 1751253963591,
+      "start": 1751254469222,
+      "end": 1751254469249,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751253963591,
-      "end": 1751253963591,
+      "start": 1751254469249,
+      "end": 1751254469249,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751253963591,
-      "end": 1751253963591,
+      "start": 1751254469249,
+      "end": 1751254469249,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751253963591,
-      "end": 1751253963591,
+      "start": 1751254469249,
+      "end": 1751254469249,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751253963591,
-      "end": 1751253963591,
+      "start": 1751254469249,
+      "end": 1751254469249,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751253963591,
-      "end": 1751253963591,
+      "start": 1751254469249,
+      "end": 1751254469249,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751253963591,
-      "end": 1751253963591,
+      "start": 1751254469249,
+      "end": 1751254469249,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751253963591,
-      "end": 1751253963591,
+      "start": 1751254469249,
+      "end": 1751254469249,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751253963591,
-      "end": 1751253963591,
+      "start": 1751254469249,
+      "end": 1751254469249,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751253963596,
-      "end": 1751253963596,
+      "start": 1751254469249,
+      "end": 1751254469249,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751253963596,
-      "end": 1751253963596,
+      "start": 1751254469249,
+      "end": 1751254469249,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751253963596,
-      "end": 1751253963596,
+      "start": 1751254469249,
+      "end": 1751254469249,
       "order": "normal"
     }
   ]

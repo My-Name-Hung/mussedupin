@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "export {default as Virtual} from './virtual.mjs';\nexport {default as Keyboard} from './keyboard.mjs';\nexport {default as Mousewheel} from './mousewheel.mjs';\nexport {default as Navigation} from './navigation.mjs';\nexport {default as Pagination} from './pagination.mjs';\nexport {default as Scrollbar} from './scrollbar.mjs';\nexport {default as Parallax} from './parallax.mjs';\nexport {default as Zoom} from './zoom.mjs';\nexport {default as Controller} from './controller.mjs';\nexport {default as A11y} from './a11y.mjs';\nexport {default as History} from './history.mjs';\nexport {default as HashNavigation} from './hash-navigation.mjs';\nexport {default as Autoplay} from './autoplay.mjs';\nexport {default as Thumbs} from './thumbs.mjs';\nexport {default as FreeMode} from './free-mode.mjs';\nexport {default as Grid} from './grid.mjs';\nexport {default as Manipulation} from './manipulation.mjs';\nexport {default as EffectFade} from './effect-fade.mjs';\nexport {default as EffectCube} from './effect-cube.mjs';\nexport {default as EffectFlip} from './effect-flip.mjs';\nexport {default as EffectCoverflow} from './effect-coverflow.mjs';\nexport {default as EffectCreative} from './effect-creative.mjs';\nexport {default as EffectCards} from './effect-cards.mjs';",
-      "start": 1751253945743,
-      "end": 1751253946167,
+      "start": 1751254462175,
+      "end": 1751254462544,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751253946167,
-      "end": 1751253946167,
+      "start": 1751254462544,
+      "end": 1751254462544,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751253946167,
-      "end": 1751253946167,
+      "start": 1751254462544,
+      "end": 1751254462544,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751253946167,
-      "end": 1751253946167,
+      "start": 1751254462544,
+      "end": 1751254462544,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751253946167,
-      "end": 1751253946167,
+      "start": 1751254462544,
+      "end": 1751254462544,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751253946167,
-      "end": 1751253946167,
+      "start": 1751254462544,
+      "end": 1751254462544,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751253946167,
-      "end": 1751253946170,
+      "start": 1751254462544,
+      "end": 1751254462544,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751253946170,
-      "end": 1751253946170,
+      "start": 1751254462544,
+      "end": 1751254462544,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751253946170,
-      "end": 1751253946170,
+      "start": 1751254462544,
+      "end": 1751254462544,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751253946170,
-      "end": 1751253946170,
+      "start": 1751254462545,
+      "end": 1751254462545,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751253946170,
-      "end": 1751253946170,
+      "start": 1751254462545,
+      "end": 1751254462545,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751253946170,
-      "end": 1751253946170,
+      "start": 1751254462545,
+      "end": 1751254462545,
       "order": "normal"
     }
   ]

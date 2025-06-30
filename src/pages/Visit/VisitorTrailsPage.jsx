@@ -196,7 +196,7 @@ const VisitorTrailsPage = () => {
   }, []);
 
   useEffect(() => {
-    document.title = "Lộ trình tham quan | Bảo tàng Du Pin";
+    document.title = "Lộ trình tham quan | Musée Du Pin";
 
     // Preload hero image
     const heroImg = new Image();

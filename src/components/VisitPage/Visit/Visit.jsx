@@ -364,7 +364,7 @@ const Visit = () => {
     <div className="visit-hero" ref={heroRef}>
       <div className="visit-hero-image-container">
         <img
-          src={getImageUrl("Thông 4.webp", {
+          src={getImageUrl("collections/Thông 4.webp", {
             width: 1920,
             height: 1080,
             crop: "fill",
@@ -883,7 +883,7 @@ const Visit = () => {
 
         <div
           className="visit-card visit-card-vertical"
-          onClick={() => navigate("/visit/art-rooms")}
+          onClick={() => navigate("/visit-info?section=homestay")}
         >
           <div className="visit-card-img-wrap">
             <img

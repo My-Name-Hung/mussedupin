@@ -1,0 +1,90 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/MUSSEEDUPIN/src/components/Loading/Loading.jsx",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import React from \"react\";\nimport \"./Loading.css\";\n\nconst Loading = ({ progress, priorityDone, children }) => {\n  return (\n    <div className={`loading-screen ${priorityDone ? \"priority-loaded\" : \"\"}`}>\n      <div className=\"loading-content\">\n        <div className=\"logo-container\">\n          <img\n            src=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784841/logo/icon.png\"\n            alt=\"Musée Du Pin Logo\"\n            className=\"loading-logo\"\n            fetchPriority=\"high\"\n            onError={(e) => {\n              console.error(\"Error loading logo:\", e);\n              e.target.style.display = \"none\";\n            }}\n          />\n        </div>\n        <h1 className=\"loading-title\">Musée Du Pin</h1>\n        <div className=\"loading-bar-container\">\n          <div\n            className=\"loading-bar\"\n            style={{\n              width: `${progress}%`,\n              transition: priorityDone ? \"width 0.3s ease-out\" : \"none\",\n            }}\n          ></div>\n        </div>\n        <div className=\"loading-text\">\n          {priorityDone ? (\n            <span>Đang tải nội dung bổ sung ({progress}%)</span>\n          ) : (\n            <span>Đang tải nội dung chính ({progress}%)</span>\n          )}\n        </div>\n      </div>\n\n      {/* Render children in background when priority content is loaded */}\n      <div\n        className={`loading-background-content ${\n          priorityDone ? \"visible\" : \"\"\n        }`}\n      >\n        {priorityDone && children}\n      </div>\n    </div>\n  );\n};\n\nexport default Loading;\n",
+      "start": 1751301164798,
+      "end": 1751301165910,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1751301165910,
+      "end": 1751301165910,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport \"./Loading.css\";\nconst Loading = ({ progress, priorityDone, children }) => {\n  return /* @__PURE__ */ jsxs(\"div\", { className: `loading-screen ${priorityDone ? \"priority-loaded\" : \"\"}`, children: [\n    /* @__PURE__ */ jsxs(\"div\", { className: \"loading-content\", children: [\n      /* @__PURE__ */ jsx(\"div\", { className: \"logo-container\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784841/logo/icon.png\",\n          alt: \"Musée Du Pin Logo\",\n          className: \"loading-logo\",\n          fetchPriority: \"high\",\n          onError: (e) => {\n            console.error(\"Error loading logo:\", e);\n            e.target.style.display = \"none\";\n          }\n        }\n      ) }),\n      /* @__PURE__ */ jsx(\"h1\", { className: \"loading-title\", children: \"Musée Du Pin\" }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"loading-bar-container\", children: /* @__PURE__ */ jsx(\n        \"div\",\n        {\n          className: \"loading-bar\",\n          style: {\n            width: `${progress}%`,\n            transition: priorityDone ? \"width 0.3s ease-out\" : \"none\"\n          }\n        }\n      ) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"loading-text\", children: priorityDone ? /* @__PURE__ */ jsxs(\"span\", { children: [\n        \"Đang tải nội dung bổ sung (\",\n        progress,\n        \"%)\"\n      ] }) : /* @__PURE__ */ jsxs(\"span\", { children: [\n        \"Đang tải nội dung chính (\",\n        progress,\n        \"%)\"\n      ] }) })\n    ] }),\n    /* @__PURE__ */ jsx(\n      \"div\",\n      {\n        className: `loading-background-content ${priorityDone ? \"visible\" : \"\"}`,\n        children: priorityDone && children\n      }\n    )\n  ] });\n};\nexport default Loading;\n",
+      "start": 1751301165910,
+      "end": 1751301166268,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/MUSSEEDUPIN/src/components/Loading/Loading.jsx"
+        ],
+        "sourcesContent": [
+          "import React from \"react\";\nimport \"./Loading.css\";\n\nconst Loading = ({ progress, priorityDone, children }) => {\n  return (\n    <div className={`loading-screen ${priorityDone ? \"priority-loaded\" : \"\"}`}>\n      <div className=\"loading-content\">\n        <div className=\"logo-container\">\n          <img\n            src=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784841/logo/icon.png\"\n            alt=\"Musée Du Pin Logo\"\n            className=\"loading-logo\"\n            fetchPriority=\"high\"\n            onError={(e) => {\n              console.error(\"Error loading logo:\", e);\n              e.target.style.display = \"none\";\n            }}\n          />\n        </div>\n        <h1 className=\"loading-title\">Musée Du Pin</h1>\n        <div className=\"loading-bar-container\">\n          <div\n            className=\"loading-bar\"\n            style={{\n              width: `${progress}%`,\n              transition: priorityDone ? \"width 0.3s ease-out\" : \"none\",\n            }}\n          ></div>\n        </div>\n        <div className=\"loading-text\">\n          {priorityDone ? (\n            <span>Đang tải nội dung bổ sung ({progress}%)</span>\n          ) : (\n            <span>Đang tải nội dung chính ({progress}%)</span>\n          )}\n        </div>\n      </div>\n\n      {/* Render children in background when priority content is loaded */}\n      <div\n        className={`loading-background-content ${\n          priorityDone ? \"visible\" : \"\"\n        }`}\n      >\n        {priorityDone && children}\n      </div>\n    </div>\n  );\n};\n\nexport default Loading;\n"
+        ],
+        "mappings": "AAQU,cAuBE,YAvBF;AARV,OAAO,WAAW;AAClB,OAAO;AAEP,MAAM,UAAU,CAAC,EAAE,UAAU,cAAc,SAAS,MAAM;AACxD,SACE,qBAAC,SAAI,WAAW,kBAAkB,eAAe,oBAAoB,EAAE,IACrE;AAAA,yBAAC,SAAI,WAAU,mBACb;AAAA,0BAAC,SAAI,WAAU,kBACb;AAAA,QAAC;AAAA;AAAA,UACC,KAAI;AAAA,UACJ,KAAI;AAAA,UACJ,WAAU;AAAA,UACV,eAAc;AAAA,UACd,SAAS,CAAC,MAAM;AACd,oBAAQ,MAAM,uBAAuB,CAAC;AACtC,cAAE,OAAO,MAAM,UAAU;AAAA,UAC3B;AAAA;AAAA,MACF,GACF;AAAA,MACA,oBAAC,QAAG,WAAU,iBAAgB,0BAAY;AAAA,MAC1C,oBAAC,SAAI,WAAU,yBACb;AAAA,QAAC;AAAA;AAAA,UACC,WAAU;AAAA,UACV,OAAO;AAAA,YACL,OAAO,GAAG,QAAQ;AAAA,YAClB,YAAY,eAAe,wBAAwB;AAAA,UACrD;AAAA;AAAA,MACD,GACH;AAAA,MACA,oBAAC,SAAI,WAAU,gBACZ,yBACC,qBAAC,UAAK;AAAA;AAAA,QAA4B;AAAA,QAAS;AAAA,SAAE,IAE7C,qBAAC,UAAK;AAAA;AAAA,QAA0B;AAAA,QAAS;AAAA,SAAE,GAE/C;AAAA,OACF;AAAA,IAGA;AAAA,MAAC;AAAA;AAAA,QACC,WAAW,8BACT,eAAe,YAAY,EAC7B;AAAA,QAEC,0BAAgB;AAAA;AAAA,IACnB;AAAA,KACF;AAEJ;AAEA,eAAe;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1751301166269,
+      "end": 1751301166269,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1751301166269,
+      "end": 1751301166269,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1751301166271,
+      "end": 1751301166271,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1751301166275,
+      "end": 1751301166275,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1751301166275,
+      "end": 1751301166276,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1751301166293,
+      "end": 1751301166293,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1751301166311,
+      "end": 1751301166311,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1751301166324,
+      "end": 1751301166324,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1751301166324,
+      "end": 1751301166324,
+      "order": "normal"
+    }
+  ]
+}

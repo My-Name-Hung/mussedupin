@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/MUSSEEDUPIN/node_modules/react-leaflet/lib/SVGOverlay.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { createElementHook, createElementObject, createLayerHook, updateMediaOverlay } from '@react-leaflet/core';\nimport { SVGOverlay as LeafletSVGOverlay } from 'leaflet';\nimport { forwardRef, useImperativeHandle } from 'react';\nimport { createPortal } from 'react-dom';\nexport const useSVGOverlayElement = createElementHook(function createSVGOverlay(props, context) {\n    const { attributes, bounds, ...options } = props;\n    const container = document.createElementNS('http://www.w3.org/2000/svg', 'svg');\n    container.setAttribute('xmlns', 'http://www.w3.org/2000/svg');\n    if (attributes != null) {\n        for (const name of Object.keys(attributes)){\n            container.setAttribute(name, attributes[name]);\n        }\n    }\n    const overlay = new LeafletSVGOverlay(container, bounds, options);\n    return createElementObject(overlay, context, container);\n}, updateMediaOverlay);\nexport const useSVGOverlay = createLayerHook(useSVGOverlayElement);\nfunction SVGOverlayComponent({ children, ...options }, forwardedRef) {\n    const { instance, container } = useSVGOverlay(options).current;\n    useImperativeHandle(forwardedRef, ()=>instance);\n    return container == null || children == null ? null : /*#__PURE__*/ createPortal(children, container);\n}\nexport const SVGOverlay = /*#__PURE__*/ forwardRef(SVGOverlayComponent);\n",
+      "start": 1751301174781,
+      "end": 1751301177260,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1751301177260,
+      "end": 1751301177260,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1751301177260,
+      "end": 1751301177260,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1751301177260,
+      "end": 1751301177260,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1751301177260,
+      "end": 1751301177260,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1751301177260,
+      "end": 1751301177260,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1751301177260,
+      "end": 1751301177260,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1751301177260,
+      "end": 1751301177260,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1751301177261,
+      "end": 1751301177261,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1751301177261,
+      "end": 1751301177261,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1751301177261,
+      "end": 1751301177264,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1751301177264,
+      "end": 1751301177264,
+      "order": "normal"
+    }
+  ]
+}

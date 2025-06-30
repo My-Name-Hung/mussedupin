@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/MUSSEEDUPIN/node_modules/lucide-react/dist/esm/icons/corner-right-up.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"polyline\", { points: \"10 9 15 4 20 9\", key: \"1lr6px\" }],\n  [\"path\", { d: \"M4 20h7a4 4 0 0 0 4-4V4\", key: \"1plgdj\" }]\n];\nconst CornerRightUp = createLucideIcon(\"corner-right-up\", __iconNode);\n\nexport { __iconNode, CornerRightUp as default };\n//# sourceMappingURL=corner-right-up.js.map\n",
+      "start": 1751301187933,
+      "end": 1751301188264,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1751301188264,
+      "end": 1751301188264,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1751301188264,
+      "end": 1751301188264,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1751301188264,
+      "end": 1751301188264,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1751301188264,
+      "end": 1751301188264,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1751301188264,
+      "end": 1751301188264,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1751301188264,
+      "end": 1751301188264,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1751301188264,
+      "end": 1751301188264,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1751301188265,
+      "end": 1751301188265,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1751301188265,
+      "end": 1751301188265,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1751301188265,
+      "end": 1751301188265,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1751301188265,
+      "end": 1751301188265,
+      "order": "normal"
+    }
+  ]
+}

@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/MUSSEEDUPIN/node_modules/react-i18next/dist/es/withTranslation.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { createElement, forwardRef as forwardRefReact } from 'react';\nimport { useTranslation } from './useTranslation.js';\nimport { getDisplayName } from './utils.js';\nexport const withTranslation = (ns, options = {}) => function Extend(WrappedComponent) {\n  function I18nextWithTranslation({\n    forwardedRef,\n    ...rest\n  }) {\n    const [t, i18n, ready] = useTranslation(ns, {\n      ...rest,\n      keyPrefix: options.keyPrefix\n    });\n    const passDownProps = {\n      ...rest,\n      t,\n      i18n,\n      tReady: ready\n    };\n    if (options.withRef && forwardedRef) {\n      passDownProps.ref = forwardedRef;\n    } else if (!options.withRef && forwardedRef) {\n      passDownProps.forwardedRef = forwardedRef;\n    }\n    return createElement(WrappedComponent, passDownProps);\n  }\n  I18nextWithTranslation.displayName = `withI18nextTranslation(${getDisplayName(WrappedComponent)})`;\n  I18nextWithTranslation.WrappedComponent = WrappedComponent;\n  const forwardRef = (props, ref) => createElement(I18nextWithTranslation, Object.assign({}, props, {\n    forwardedRef: ref\n  }));\n  return options.withRef ? forwardRefReact(forwardRef) : I18nextWithTranslation;\n};",
+      "start": 1751301165910,
+      "end": 1751301166812,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1751301166812,
+      "end": 1751301166812,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1751301166813,
+      "end": 1751301166813,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1751301166813,
+      "end": 1751301166813,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1751301166813,
+      "end": 1751301166813,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1751301166813,
+      "end": 1751301166813,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1751301166813,
+      "end": 1751301166813,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1751301166813,
+      "end": 1751301166813,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1751301166813,
+      "end": 1751301166813,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1751301166813,
+      "end": 1751301166813,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1751301166813,
+      "end": 1751301166813,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1751301166813,
+      "end": 1751301166813,
+      "order": "normal"
+    }
+  ]
+}

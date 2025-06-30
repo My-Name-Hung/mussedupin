@@ -4,7 +4,7 @@ import { useTranslation } from "../../../contexts/TranslationContext";
 import { getImageUrl } from "../../../utils/cloudinary";
 import "./VisitInfo.css";
 
-import { FaBaby, FaCar, FaSearch } from "react-icons/fa";
+import { FaBaby, FaCar, FaSearch, FaUser } from "react-icons/fa";
 
 const VisitInfo = () => {
   const { currentLang } = useTranslation();
@@ -97,7 +97,7 @@ const VisitInfo = () => {
     phone: "",
     checkIn: "",
     checkOut: "",
-    guests: 1,
+
     specialRequests: "",
   });
   const [formErrors, setFormErrors] = useState({});
@@ -109,28 +109,55 @@ const VisitInfo = () => {
   const [selectedTime, setSelectedTime] = useState(null);
   const [activeFaq, setActiveFaq] = useState(null);
 
+  // Add new state for capacity selection
+  const [selectedCapacity, setSelectedCapacity] = useState({});
+
   const sectionRefs = {
     amenities: useRef(null),
     homestay: useRef(null),
     faq: useRef(null),
   };
 
-  // Handle hash links when component mounts
+  // Add price calculation helper
+  const calculatePrice = (homestayId) => {
+    const selectedOption = selectedCapacity[homestayId];
+    if (selectedOption) {
+      return selectedOption.price;
+    }
+    const homestay = homestayData.find((h) => h.id === homestayId);
+    return homestay ? homestay.price : 0;
+  };
+
+  // Handle query parameters and hash links when component mounts
   useEffect(() => {
+    // Get the section from query parameter
+    const params = new URLSearchParams(location.search);
+    const sectionFromQuery = params.get("section");
+
     // Get the hash from the URL
     const hash = location.hash.replace("#", "");
 
-    // If there's a hash and it corresponds to one of our sections, set it as active
-    if (hash && sectionRefs[hash]) {
-      setActiveSection(hash);
+    // Use section from query parameter first, then hash
+    const targetSection = sectionFromQuery || hash;
+
+    // If there's a target section and it corresponds to one of our sections, set it as active
+    if (targetSection && sectionRefs[targetSection]) {
+      setActiveSection(targetSection);
 
       // Add a small delay to ensure DOM is fully loaded
       setTimeout(() => {
         // Scroll to the section
-        sectionRefs[hash].current?.scrollIntoView({ behavior: "smooth" });
+        sectionRefs[targetSection].current?.scrollIntoView({
+          behavior: "smooth",
+        });
       }, 300);
     }
   }, [location]);
+
+  // Filter homestays when category changes
+  useEffect(() => {
+    filterHomestays(activeCategory);
+  }, [activeCategory]);
 
   // Handle scroll
   const handleScroll = useCallback(() => {
@@ -154,11 +181,6 @@ const VisitInfo = () => {
       }
     };
   }, [handleScroll]);
-
-  // Filter homestays when category changes
-  useEffect(() => {
-    filterHomestays(activeCategory);
-  }, [activeCategory]);
 
   // Filter homestays based on selected category
   const filterHomestays = (category) => {
@@ -186,9 +208,37 @@ const VisitInfo = () => {
     }
   };
 
+  // Helper function to get localized content
+  const getLocalizedContent = (field) => {
+    if (typeof field === "object" && (field.vi || field.en)) {
+      return field[currentLang] || field.en;
+    }
+    return field;
+  };
+
   // Open details sidebar for a homestay
   const openDetailsSidebar = (homestay) => {
-    setSelectedHomestay(homestay);
+    // Create a new object with localized content
+    const localizedHomestay = {
+      ...homestay,
+      description: getLocalizedContent(homestay.description),
+      location: getLocalizedContent(homestay.location),
+      roomType: getLocalizedContent(homestay.roomType),
+      beds: getLocalizedContent(homestay.beds),
+      amenities: Array.isArray(homestay.amenities)
+        ? homestay.amenities
+        : getLocalizedContent(homestay.amenities),
+      rules: Array.isArray(homestay.rules)
+        ? homestay.rules
+        : getLocalizedContent(homestay.rules),
+      cancellation: getLocalizedContent(homestay.cancellation),
+      capacityOptions: homestay.capacityOptions?.map((option) => ({
+        ...option,
+        description: getLocalizedContent(option.description),
+      })),
+    };
+
+    setSelectedHomestay(localizedHomestay);
     setShowDetailsSidebar(true);
 
     // Make sure booking sidebar is closed
@@ -197,7 +247,7 @@ const VisitInfo = () => {
     // Prevent background scrolling
     document.body.style.overflow = "hidden";
 
-    // Add a small delay to ensure the sidebar is rendered with the selected homestay
+    // Add a small delay to ensure the sidebar is rendered
     setTimeout(() => {
       if (detailsSidebarRef.current) {
         detailsSidebarRef.current.scrollTop = 0;
@@ -211,9 +261,39 @@ const VisitInfo = () => {
     document.body.style.overflow = "auto";
   };
 
-  // Open booking sidebar for a homestay
+  // Helper function to get current price based on selected capacity
+  const getCurrentPrice = (homestayId) => {
+    const selectedCapacityOption = selectedCapacity[homestayId];
+    return (
+      selectedCapacityOption?.price ||
+      homestayData.find((h) => h.id === homestayId)?.price ||
+      0
+    );
+  };
+
+  // Update openBookingSidebar
   const openBookingSidebar = (homestay) => {
-    setSelectedHomestay(homestay);
+    const localizedHomestay = {
+      ...homestay,
+      description: getLocalizedContent(homestay.description),
+      location: getLocalizedContent(homestay.location),
+      roomType: getLocalizedContent(homestay.roomType),
+      beds: getLocalizedContent(homestay.beds),
+      amenities: Array.isArray(homestay.amenities)
+        ? homestay.amenities
+        : getLocalizedContent(homestay.amenities),
+      rules: Array.isArray(homestay.rules)
+        ? homestay.rules
+        : getLocalizedContent(homestay.rules),
+      cancellation: getLocalizedContent(homestay.cancellation),
+      capacityOptions: homestay.capacityOptions?.map((option) => ({
+        ...option,
+        description: getLocalizedContent(option.description),
+      })),
+      price: getCurrentPrice(homestay.id),
+    };
+
+    setSelectedHomestay(localizedHomestay);
     setShowBookingSidebar(true);
     setShowDetailsSidebar(false);
     document.body.style.overflow = "hidden";
@@ -273,20 +353,13 @@ const VisitInfo = () => {
       errors.checkOut = "Ngày trả phòng phải sau ngày nhận phòng";
     }
 
-    if (!bookingFormData.guests || bookingFormData.guests < 1) {
-      errors.guests = "Vui lòng chọn ít nhất 1 khách";
-    }
-
     return errors;
   };
 
-  // Handle booking form submission
+  // Update handleBookingSubmit
   const handleBookingSubmit = async (e) => {
     e.preventDefault();
-
-    // Validate the form
     const errors = validateForm();
-
     if (Object.keys(errors).length > 0) {
       setFormErrors(errors);
       return;
@@ -295,41 +368,32 @@ const VisitInfo = () => {
     setIsSubmitting(true);
 
     try {
-      // Format data for submission
+      const currentPrice = getCurrentPrice(selectedHomestay.id);
+      const nights = Math.max(
+        1,
+        Math.ceil(
+          (new Date(bookingFormData.checkOut) -
+            new Date(bookingFormData.checkIn)) /
+            (1000 * 60 * 60 * 24)
+        )
+      );
+
       const formattedData = {
         homestay: selectedHomestay?.title,
-        price: selectedHomestay?.price,
+        price: currentPrice,
+        totalPrice: currentPrice * nights,
         location: selectedHomestay?.location,
         host: selectedHomestay?.host,
         checkIn: bookingFormData.checkIn,
         checkOut: bookingFormData.checkOut,
         selectedTime: selectedTime,
-        nights: Math.max(
-          1,
-          Math.ceil(
-            (new Date(bookingFormData.checkOut) -
-              new Date(bookingFormData.checkIn)) /
-              (1000 * 60 * 60 * 24)
-          )
-        ),
-        totalPrice:
-          selectedHomestay?.price *
-          Math.max(
-            1,
-            Math.ceil(
-              (new Date(bookingFormData.checkOut) -
-                new Date(bookingFormData.checkIn)) /
-                (1000 * 60 * 60 * 24)
-            )
-          ),
+        nights: nights,
         ...bookingFormData,
         date: new Date().toISOString(),
       };
 
-      // Save the booking data before reset
       setSuccessBookingData(formattedData);
 
-      // Try to save to booking server
       try {
         const bookingServerUrl = "https://mussedupin.onrender.com/api/bookings";
         const serverResponse = await fetch(bookingServerUrl, {
@@ -343,27 +407,19 @@ const VisitInfo = () => {
         if (!serverResponse.ok) {
           throw new Error("Không thể lưu đặt phòng lên máy chủ");
         }
-
-        console.log(
-          "Đã lưu đặt phòng lên máy chủ:",
-          await serverResponse.json()
-        );
       } catch (serverError) {
         console.error("Không thể lưu lên máy chủ đặt phòng:", serverError);
       }
 
-      // Show success modal even if server call fails (for demonstration purposes)
       setShowBookingSidebar(false);
       setShowSuccessModal(true);
-
-      // Reset form data
       setBookingFormData({
         name: "",
         email: "",
         phone: "",
         checkIn: "",
         checkOut: "",
-        guests: 1,
+
         specialRequests: "",
       });
       setSelectedTime(null);
@@ -477,15 +533,39 @@ const VisitInfo = () => {
 
   // Homestay data with expanded information for detailed view
   const homestayData = [
+    // Chill 1
     {
-      id: "traditional",
-      title: "The ChildHood",
+      id: "room1",
+      title: {
+        vi: "Bình Yên I",
+        en: "The Chill I",
+      },
       description: {
         vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
         en: "Authentic local house with traditional decorations and home-cooked meals.",
       },
-      image: "thechillhood.jpg",
-      price: 2800000,
+      image:
+        "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20I-%20The%20Chill%20I/z6735017008335_1f53d54c8c667e714237c694c6fb2bf0.jpg?updatedAt=1751274193309",
+      capacityOptions: [
+        {
+          capacity: 4,
+          price: 3500000,
+          description: {
+            vi: "Phù hợp cho 4 người",
+            en: "Suitable for 4 people",
+          },
+        },
+        {
+          capacity: 5,
+          price: 4000000,
+          description: {
+            vi: "Phù hợp cho 5 người",
+            en: "Suitable for 5 people",
+          },
+        },
+      ],
+      selectedCapacityIndex: 0, // Default to first option
+      price: 3500000, // Default price
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
@@ -529,274 +609,826 @@ const VisitInfo = () => {
         vi: "Hủy miễn phí đến 48 giờ trước khi nhận phòng",
         en: "Free cancellation up to 48 hours before check-in",
       },
+      gallery: [
+        "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20I-%20The%20Chill%20I/z6735017010424_c5b5d136ffaa05d5e408ad90609b90e9.jpg?updatedAt=1751274193547",
+        "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20I-%20The%20Chill%20I/z6735017013301_84ce9b1c810327e7b57fe8a2f5e22b6a.jpg?updatedAt=1751274193462",
+        "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20I-%20The%20Chill%20I/z6735017020976_93d6bcd5ab2b41226790e91f84997612.jpg?updatedAt=1751274193461",
+      ],
     },
+    // Chill 2
     {
-      id: "modern",
-      title: "White Bauhunia",
+      id: "room2",
+      title: {
+        vi: "Bình Yên II",
+        en: "The Chill II",
+      },
       description: {
-        vi: "Căn hộ sang trọng với đầy đủ tiện nghi, cách bảo tàng 10 phút đi bộ.",
-        en: "Luxurious apartment with full amenities, 10 minutes walk from the museum.",
+        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
+        en: "Authentic local house with traditional decorations and home-cooked meals.",
       },
-      image: "whitebauhinia.jpg",
-      price: 4200000,
-      rating: 4.9,
+      image:
+        "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20II-%20The%20Chill%20II/z6735017019144_2e97325679ec2dbf6248ee217d2c005e.jpg?updatedAt=1751274217344",
+      capacityOptions: [
+        {
+          capacity: 4,
+          price: 3500000,
+          description: {
+            vi: "Phù hợp cho 4 người",
+            en: "Suitable for 4 people",
+          },
+        },
+        {
+          capacity: 5,
+          price: 4000000,
+          description: {
+            vi: "Phù hợp cho 5 người",
+            en: "Suitable for 5 people",
+          },
+        },
+      ],
+      selectedCapacityIndex: 0, // Default to first option
+      price: 3500000, // Default price
+      rating: 4.8,
       tags: {
-        vi: ["Đánh giá cao", "Sang trọng", "Vị trí trung tâm"],
-        en: ["Highly Rated", "Luxury", "Central Location"],
+        vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
+        en: ["Recommended", "Traditional", "Breakfast included"],
       },
-      category: ["popular", "top-rated"],
-      location: "Cách bảo tàng 10 phút đi bộ",
+      category: ["popular", "recommended"],
+      location: {
+        vi: "Cách bảo tàng 5 phút đi bộ",
+        en: "5 minutes walk from Musée Du Pin",
+      },
       host: "Musée Du Pin",
-      roomType: "Toàn bộ căn hộ",
-      beds: "1 giường king, 1 giường sofa",
-      amenities: [
-        "Wi-Fi miễn phí",
-        "Bếp đầy đủ",
-        "Máy giặt/sấy",
-        "TV thông minh",
-        "Thang máy",
-        "View thành phố",
-      ],
-      rules: ["Không hút thuốc", "Cho phép thú cưng", "Không tổ chức tiệc"],
-      cancellation: "Hủy miễn phí đến 24 giờ trước khi nhận phòng",
+      roomType: {
+        vi: "Phòng riêng trong nhà truyền thống",
+        en: "Private room in traditional house",
+      },
+      beds: {
+        vi: "1 giường đôi",
+        en: "1 double bed",
+      },
+      amenities: {
+        vi: [
+          "Wi-Fi miễn phí",
+          "Bao gồm bữa sáng",
+          "Điều hòa nhiệt độ",
+          "Vườn",
+          "Phòng tắm riêng",
+        ],
+        en: [
+          "Free Wi-Fi",
+          "Breakfast included",
+          "Air conditioning",
+          "Garden",
+          "Private bathroom",
+        ],
+      },
+      rules: {
+        vi: ["Không hút thuốc", "Không thú cưng", "Không tổ chức tiệc"],
+        en: ["No smoking", "No pets", "No parties"],
+      },
+      cancellation: {
+        vi: "Hủy miễn phí đến 48 giờ trước khi nhận phòng",
+        en: "Free cancellation up to 48 hours before check-in",
+      },
       gallery: [
-        "thesunset.jpg",
-        "thetrain.jpg",
-        "thechill1.jpg",
-        "thechill2.jpg",
-      ],
-      reviews: [
-        {
-          author: "Lisa",
-          rating: 5,
-          comment: "Căn hộ đẹp với view tuyệt vời! Rất sạch sẽ và hiện đại.",
-        },
-        {
-          author: "David",
-          rating: 4.8,
-          comment: "Vị trí tuyệt vời và trang bị đầy đủ. Sẽ quay lại!",
-        },
+        "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20II-%20The%20Chill%20II/z6735017028190_4bdb8e9026399940cbee00981cc6c901.jpg?updatedAt=1751274217128",
+        "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20II-%20The%20Chill%20II/z6735017048095_70539aee860e54a572e65d6d8894cfaf.jpg?updatedAt=1751274217824",
+        "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20II-%20The%20Chill%20II/z6735017022334_9cfa421a31bbc0ccd98d0b48f74c68d7.jpg?updatedAt=1751274218002",
       ],
     },
+    // Cánh diều
     {
-      id: "luxury",
-      title: "The chill 1",
-      description:
-        "Biệt thự tuyệt đẹp với vườn riêng, dịch vụ cao cấp và view thành phố ngoạn mục.",
-      image: "thechill1.jpg",
-      price: 8200000,
-      rating: 5.0,
-      tags: ["Cao cấp", "Riêng tư", "Dịch vụ đầy đủ"],
-      category: ["top-rated", "luxury"],
-      location: "Cách bảo tàng 15 phút lái xe",
+      id: "room3",
+      title: {
+        vi: "Cánh diều",
+        en: "The Kite",
+      },
+      description: {
+        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
+        en: "Authentic local house with traditional decorations and home-cooked meals.",
+      },
+      image:
+        "https://ik.imagekit.io/8u8lkoqkkm/C%C3%A1nh%20di%E1%BB%81u-%20The%20Kite/404%20-%201.png?updatedAt=1751274406678",
+      capacityOptions: [
+        {
+          capacity: 4,
+          price: 3500000,
+          description: {
+            vi: "Phù hợp cho 4 người",
+            en: "Suitable for 4 people",
+          },
+        },
+        {
+          capacity: 5,
+          price: 4000000,
+          description: {
+            vi: "Phù hợp cho 5 người",
+            en: "Suitable for 5 people",
+          },
+        },
+      ],
+      selectedCapacityIndex: 0, // Default to first option
+      price: 3500000, // Default price
+      rating: 4.8,
+      tags: {
+        vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
+        en: ["Recommended", "Traditional", "Breakfast included"],
+      },
+      category: ["popular", "recommended"],
+      location: {
+        vi: "Cách bảo tàng 5 phút đi bộ",
+        en: "5 minutes walk from Musée Du Pin",
+      },
       host: "Musée Du Pin",
-      roomType: "Toàn bộ biệt thự",
-      beds: "2 giường king, 1 giường queen",
-      amenities: [
-        "Wi-Fi miễn phí",
-        "Hồ bơi",
-        "Bếp đầy đủ",
-        "Vườn",
-        "Bãi đậu xe",
-        "Dịch vụ dọn phòng hàng ngày",
-        "Lễ tân",
-      ],
-      rules: [
-        "Không hút thuốc trong nhà",
-        "Không thú cưng",
-        "Cho phép tổ chức sự kiện với sự đồng ý trước",
-      ],
-      cancellation: "Hủy miễn phí đến 7 ngày trước khi nhận phòng",
+      roomType: {
+        vi: "Phòng riêng trong nhà truyền thống",
+        en: "Private room in traditional house",
+      },
+      beds: {
+        vi: "1 giường đôi",
+        en: "1 double bed",
+      },
+      amenities: {
+        vi: [
+          "Wi-Fi miễn phí",
+          "Bao gồm bữa sáng",
+          "Điều hòa nhiệt độ",
+          "Vườn",
+          "Phòng tắm riêng",
+        ],
+        en: [
+          "Free Wi-Fi",
+          "Breakfast included",
+          "Air conditioning",
+          "Garden",
+          "Private bathroom",
+        ],
+      },
+      rules: {
+        vi: ["Không hút thuốc", "Không thú cưng", "Không tổ chức tiệc"],
+        en: ["No smoking", "No pets", "No parties"],
+      },
+      cancellation: {
+        vi: "Hủy miễn phí đến 48 giờ trước khi nhận phòng",
+        en: "Free cancellation up to 48 hours before check-in",
+      },
       gallery: [
-        "thesunset.jpg",
-        "thetrain.jpg",
-        "thechillhood.jpg",
-        "thememory.jpg",
-      ],
-      reviews: [
-        {
-          author: "James",
-          rating: 5,
-          comment: "Sang trọng tuyệt đối! Biệt thự vượt quá mong đợi.",
-        },
-        {
-          author: "Sophia",
-          rating: 5,
-          comment:
-            "Dịch vụ xuất sắc và cơ sở vật chất tuyệt vời. Xứng đáng với giá tiền!",
-        },
+        "https://ik.imagekit.io/8u8lkoqkkm/C%C3%A1nh%20di%E1%BB%81u-%20The%20Kite/404%20-%202.png?updatedAt=1751274405347",
+        "https://ik.imagekit.io/8u8lkoqkkm/C%C3%A1nh%20di%E1%BB%81u-%20The%20Kite/404%20-%204.png?updatedAt=1751274406373",
+        "https://ik.imagekit.io/8u8lkoqkkm/C%C3%A1nh%20di%E1%BB%81u-%20The%20Kite/404%20-%203.png?updatedAt=1751274407347",
       ],
     },
+    // Dâu Tây
     {
-      id: "budget",
-      title: "The Chill 2",
-      description:
-        "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
-      image: "thechill2.jpg",
-      price: 1750000,
-      rating: 4.5,
-      tags: ["Giá tốt", "Thuận tiện", "Đáng giá"],
-      category: ["recommended", "budget-friendly"],
-      location: "Cách bảo tàng 20 phút đi tàu điện ngầm",
+      id: "room4",
+      title: {
+        vi: "Dâu Tây",
+        en: "Strawberry",
+      },
+      description: {
+        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
+        en: "Authentic local house with traditional decorations and home-cooked meals.",
+      },
+      image:
+        "https://ik.imagekit.io/8u8lkoqkkm/D%C3%A2u%20t%C3%A2y-%20Strawberry/z6735068946993_6566743fb95325c53d9b69e966e2ae4a.jpg?updatedAt=1751274423030",
+      capacityOptions: [
+        {
+          capacity: 4,
+          price: 3500000,
+          description: {
+            vi: "Phù hợp cho 4 người",
+            en: "Suitable for 4 people",
+          },
+        },
+        {
+          capacity: 5,
+          price: 4000000,
+          description: {
+            vi: "Phù hợp cho 5 người",
+            en: "Suitable for 5 people",
+          },
+        },
+      ],
+      selectedCapacityIndex: 0, // Default to first option
+      price: 3500000, // Default price
+      rating: 4.8,
+      tags: {
+        vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
+        en: ["Recommended", "Traditional", "Breakfast included"],
+      },
+      category: ["popular", "recommended"],
+      location: {
+        vi: "Cách bảo tàng 5 phút đi bộ",
+        en: "5 minutes walk from Musée Du Pin",
+      },
       host: "Musée Du Pin",
-      roomType: "Phòng riêng trong căn hộ chung",
-      beds: "1 giường đôi",
-      amenities: [
-        "Wi-Fi miễn phí",
-        "Phòng tắm chung",
-        "Bếp chung",
-        "Máy giặt",
-        "Gần ga tàu điện ngầm",
-      ],
-      rules: ["Không hút thuốc", "Không thú cưng", "Yên tĩnh sau 22:00"],
-      cancellation: "Hủy miễn phí đến 24 giờ trước khi nhận phòng",
+      roomType: {
+        vi: "Phòng riêng trong nhà truyền thống",
+        en: "Private room in traditional house",
+      },
+      beds: {
+        vi: "1 giường đôi",
+        en: "1 double bed",
+      },
+      amenities: {
+        vi: [
+          "Wi-Fi miễn phí",
+          "Bao gồm bữa sáng",
+          "Điều hòa nhiệt độ",
+          "Vườn",
+          "Phòng tắm riêng",
+        ],
+        en: [
+          "Free Wi-Fi",
+          "Breakfast included",
+          "Air conditioning",
+          "Garden",
+          "Private bathroom",
+        ],
+      },
+      rules: {
+        vi: ["Không hút thuốc", "Không thú cưng", "Không tổ chức tiệc"],
+        en: ["No smoking", "No pets", "No parties"],
+      },
+      cancellation: {
+        vi: "Hủy miễn phí đến 48 giờ trước khi nhận phòng",
+        en: "Free cancellation up to 48 hours before check-in",
+      },
       gallery: [
-        "thesunset.jpg",
-        "thetrain.jpg",
-        "thechillhood.jpg",
-        "thememory.jpg",
-      ],
-      reviews: [
-        {
-          author: "Michael",
-          rating: 4.3,
-          comment: "Giá trị tuyệt vời và vị trí thuận tiện gần tàu điện ngầm.",
-        },
-        {
-          author: "Anna",
-          rating: 4.7,
-          comment:
-            "Phòng sạch sẽ và thoải mái. Claire là một chủ nhà rất nhiệt tình!",
-        },
+        "https://ik.imagekit.io/8u8lkoqkkm/D%C3%A2u%20t%C3%A2y-%20Strawberry/z6735068946993_6566743fb95325c53d9b69e966e2ae4a.jpg?updatedAt=1751274423030",
       ],
     },
+    // Tuổi ấu thơ - The childhood
     {
-      id: "budgets",
-      title: "The Memory",
-      description:
-        "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
-      image: "thememory.jpg",
-      price: 1750000,
-      rating: 4.5,
-      tags: ["Giá tốt", "Thuận tiện", "Đáng giá"],
-      category: ["recommended", "budget-friendly"],
-      location: "Cách bảo tàng 20 phút đi tàu điện ngầm",
+      id: "room5",
+      title: {
+        vi: "Tuổi ấu thơ",
+        en: "The Childhood",
+      },
+      description: {
+        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
+        en: "Authentic local house with traditional decorations and home-cooked meals.",
+      },
+      image:
+        "https://ik.imagekit.io/8u8lkoqkkm/Tu%E1%BB%95i%20%E1%BA%A5u%20th%C6%A1-%20The%20Childhood/z6735013755648_e134fda3141c25a0a9fc67efa73d00de.jpg?updatedAt=1751274451818",
+      capacityOptions: [
+        {
+          capacity: 4,
+          price: 3500000,
+          description: {
+            vi: "Phù hợp cho 4 người",
+            en: "Suitable for 4 people",
+          },
+        },
+        {
+          capacity: 5,
+          price: 4000000,
+          description: {
+            vi: "Phù hợp cho 5 người",
+            en: "Suitable for 5 people",
+          },
+        },
+      ],
+      selectedCapacityIndex: 0, // Default to first option
+      price: 3500000, // Default price
+      rating: 4.8,
+      tags: {
+        vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
+        en: ["Recommended", "Traditional", "Breakfast included"],
+      },
+      category: ["popular", "recommended"],
+      location: {
+        vi: "Cách bảo tàng 5 phút đi bộ",
+        en: "5 minutes walk from Musée Du Pin",
+      },
       host: "Musée Du Pin",
-      roomType: "Phòng riêng trong căn hộ chung",
-      beds: "1 giường đôi",
-      amenities: [
-        "Wi-Fi miễn phí",
-        "Phòng tắm chung",
-        "Bếp chung",
-        "Máy giặt",
-        "Gần ga tàu điện ngầm",
-      ],
-      rules: ["Không hút thuốc", "Không thú cưng", "Yên tĩnh sau 22:00"],
-      cancellation: "Hủy miễn phí đến 24 giờ trước khi nhận phòng",
+      roomType: {
+        vi: "Phòng riêng trong nhà truyền thống",
+        en: "Private room in traditional house",
+      },
+      beds: {
+        vi: "1 giường đôi",
+        en: "1 double bed",
+      },
+      amenities: {
+        vi: [
+          "Wi-Fi miễn phí",
+          "Bao gồm bữa sáng",
+          "Điều hòa nhiệt độ",
+          "Vườn",
+          "Phòng tắm riêng",
+        ],
+        en: [
+          "Free Wi-Fi",
+          "Breakfast included",
+          "Air conditioning",
+          "Garden",
+          "Private bathroom",
+        ],
+      },
+      rules: {
+        vi: ["Không hút thuốc", "Không thú cưng", "Không tổ chức tiệc"],
+        en: ["No smoking", "No pets", "No parties"],
+      },
+      cancellation: {
+        vi: "Hủy miễn phí đến 48 giờ trước khi nhận phòng",
+        en: "Free cancellation up to 48 hours before check-in",
+      },
       gallery: [
-        "thesunset.jpg",
-        "thetrain.jpg",
-        "thechillhood.jpg",
-        "whitebauhinia.jpg",
-      ],
-      reviews: [
-        {
-          author: "Michael",
-          rating: 4.3,
-          comment: "Giá trị tuyệt vời và vị trí thuận tiện gần tàu điện ngầm.",
-        },
-        {
-          author: "Anna",
-          rating: 4.7,
-          comment:
-            "Phòng sạch sẽ và thoải mái. Claire là một chủ nhà rất nhiệt tình!",
-        },
+        "https://ik.imagekit.io/8u8lkoqkkm/Tu%E1%BB%95i%20%E1%BA%A5u%20th%C6%A1-%20The%20Childhood/z6735015414889_8182efceb44c665d14cccab4af6c22d5.jpg?updatedAt=1751274450072",
+        "https://ik.imagekit.io/8u8lkoqkkm/Tu%E1%BB%95i%20%E1%BA%A5u%20th%C6%A1-%20The%20Childhood/z6735015437354_27e632b3dae9519ab10ab29fdd0b83dc.jpg?updatedAt=1751274451715",
+        "https://ik.imagekit.io/8u8lkoqkkm/Tu%E1%BB%95i%20%E1%BA%A5u%20th%C6%A1-%20The%20Childhood/z6735015432747_e1b425b09fae43c72ebd35d6346d26f9.jpg?updatedAt=1751274451957",
       ],
     },
+    // Toa tàu - The train
     {
-      id: "budgetss",
-      title: "The Sunset",
-      description:
-        "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
-      image: "thesunset.jpg",
-      price: 1750000,
-      rating: 4.5,
-      tags: ["Giá tốt", "Thuận tiện", "Đáng giá"],
-      category: ["recommended", "budget-friendly"],
-      location: "Cách bảo tàng 20 phút đi tàu điện ngầm",
+      id: "room6",
+      title: {
+        vi: "Toa tàu",
+        en: "The Train",
+      },
+      description: {
+        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
+        en: "Authentic local house with traditional decorations and home-cooked meals.",
+      },
+      image:
+        "https://ik.imagekit.io/8u8lkoqkkm/Toa%20t%C3%A0u-%20The%20Train/z6735013970930_367d839a1762df6694ba9fde11f52475.jpg?updatedAt=1751274451540",
+      capacityOptions: [
+        {
+          capacity: 4,
+          price: 3500000,
+          description: {
+            vi: "Phù hợp cho 4 người",
+            en: "Suitable for 4 people",
+          },
+        },
+        {
+          capacity: 5,
+          price: 4000000,
+          description: {
+            vi: "Phù hợp cho 5 người",
+            en: "Suitable for 5 people",
+          },
+        },
+      ],
+      selectedCapacityIndex: 0, // Default to first option
+      price: 3500000, // Default price
+      rating: 4.8,
+      tags: {
+        vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
+        en: ["Recommended", "Traditional", "Breakfast included"],
+      },
+      category: ["popular", "recommended"],
+      location: {
+        vi: "Cách bảo tàng 5 phút đi bộ",
+        en: "5 minutes walk from Musée Du Pin",
+      },
       host: "Musée Du Pin",
-      roomType: "Phòng riêng trong căn hộ chung",
-      beds: "1 giường đôi",
-      amenities: [
-        "Wi-Fi miễn phí",
-        "Phòng tắm chung",
-        "Bếp chung",
-        "Máy giặt",
-        "Gần ga tàu điện ngầm",
-      ],
-      rules: ["Không hút thuốc", "Không thú cưng", "Yên tĩnh sau 22:00"],
-      cancellation: "Hủy miễn phí đến 24 giờ trước khi nhận phòng",
+      roomType: {
+        vi: "Phòng riêng trong nhà truyền thống",
+        en: "Private room in traditional house",
+      },
+      beds: {
+        vi: "1 giường đôi",
+        en: "1 double bed",
+      },
+      amenities: {
+        vi: [
+          "Wi-Fi miễn phí",
+          "Bao gồm bữa sáng",
+          "Điều hòa nhiệt độ",
+          "Vườn",
+          "Phòng tắm riêng",
+        ],
+        en: [
+          "Free Wi-Fi",
+          "Breakfast included",
+          "Air conditioning",
+          "Garden",
+          "Private bathroom",
+        ],
+      },
+      rules: {
+        vi: ["Không hút thuốc", "Không thú cưng", "Không tổ chức tiệc"],
+        en: ["No smoking", "No pets", "No parties"],
+      },
+      cancellation: {
+        vi: "Hủy miễn phí đến 48 giờ trước khi nhận phòng",
+        en: "Free cancellation up to 48 hours before check-in",
+      },
       gallery: [
-        "thechill1.jpg",
-        "thetrain.jpg",
-        "thechillhood.jpg",
-        "thememory.jpg",
-      ],
-      reviews: [
-        {
-          author: "Michael",
-          rating: 4.3,
-          comment: "Giá trị tuyệt vời và vị trí thuận tiện gần tàu điện ngầm.",
-        },
-        {
-          author: "Anna",
-          rating: 4.7,
-          comment:
-            "Phòng sạch sẽ và thoải mái. Claire là một chủ nhà rất nhiệt tình!",
-        },
+        "https://ik.imagekit.io/8u8lkoqkkm/Toa%20t%C3%A0u-%20The%20Train/z6735013964771_3b247b38f20745fe94884841d38fe804.jpg?updatedAt=1751274450576",
+        "https://ik.imagekit.io/8u8lkoqkkm/Toa%20t%C3%A0u-%20The%20Train/z6735014096525_05d0b212d9e6a930811003b02bb71cd4.jpg?updatedAt=1751274452100",
+        "https://ik.imagekit.io/8u8lkoqkkm/Toa%20t%C3%A0u-%20The%20Train/z6735014101876_72374c25ca14f96e1ce8040d596f3800.jpg?updatedAt=1751274452125",
       ],
     },
+    // Thác đổ - The Fall
     {
-      id: "budgetssss",
-      title: "The Train",
-      description:
-        "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
-      image: "thetrain.jpg",
-      price: 1750000,
-      rating: 4.5,
-      tags: ["Giá tốt", "Thuận tiện", "Đáng giá"],
-      category: ["recommended", "budget-friendly"],
-      location: "Cách bảo tàng 20 phút đi tàu điện ngầm",
+      id: "room7",
+      title: {
+        vi: "Thác đổ",
+        en: "The Fall",
+      },
+      description: {
+        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
+        en: "Authentic local house with traditional decorations and home-cooked meals.",
+      },
+      image:
+        "https://ik.imagekit.io/8u8lkoqkkm/Th%C3%A1c%20%C4%91%E1%BB%95-%20The%20Fall/z6735013550592_06292038d263699476dd8144aa005946.jpg?updatedAt=1751274451608",
+      capacityOptions: [
+        {
+          capacity: 4,
+          price: 3500000,
+          description: {
+            vi: "Phù hợp cho 4 người",
+            en: "Suitable for 4 people",
+          },
+        },
+        {
+          capacity: 5,
+          price: 4000000,
+          description: {
+            vi: "Phù hợp cho 5 người",
+            en: "Suitable for 5 people",
+          },
+        },
+      ],
+      selectedCapacityIndex: 0, // Default to first option
+      price: 3500000, // Default price
+      rating: 4.8,
+      tags: {
+        vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
+        en: ["Recommended", "Traditional", "Breakfast included"],
+      },
+      category: ["popular", "recommended"],
+      location: {
+        vi: "Cách bảo tàng 5 phút đi bộ",
+        en: "5 minutes walk from Musée Du Pin",
+      },
       host: "Musée Du Pin",
-      roomType: "Phòng riêng trong căn hộ chung",
-      beds: "1 giường đôi",
-      amenities: [
-        "Wi-Fi miễn phí",
-        "Phòng tắm chung",
-        "Bếp chung",
-        "Máy giặt",
-        "Gần ga tàu điện ngầm",
-      ],
-      rules: ["Không hút thuốc", "Không thú cưng", "Yên tĩnh sau 22:00"],
-      cancellation: "Hủy miễn phí đến 24 giờ trước khi nhận phòng",
+      roomType: {
+        vi: "Phòng riêng trong nhà truyền thống",
+        en: "Private room in traditional house",
+      },
+      beds: {
+        vi: "1 giường đôi",
+        en: "1 double bed",
+      },
+      amenities: {
+        vi: [
+          "Wi-Fi miễn phí",
+          "Bao gồm bữa sáng",
+          "Điều hòa nhiệt độ",
+          "Vườn",
+          "Phòng tắm riêng",
+        ],
+        en: [
+          "Free Wi-Fi",
+          "Breakfast included",
+          "Air conditioning",
+          "Garden",
+          "Private bathroom",
+        ],
+      },
+      rules: {
+        vi: ["Không hút thuốc", "Không thú cưng", "Không tổ chức tiệc"],
+        en: ["No smoking", "No pets", "No parties"],
+      },
+      cancellation: {
+        vi: "Hủy miễn phí đến 48 giờ trước khi nhận phòng",
+        en: "Free cancellation up to 48 hours before check-in",
+      },
       gallery: [
-        "thesunset.jpg",
-        "thechill2.jpg",
-        "thechillhood.jpg",
-        "thememory.jpg",
+        "https://ik.imagekit.io/8u8lkoqkkm/Th%C3%A1c%20%C4%91%E1%BB%95-%20The%20Fall/z6735013550592_06292038d263699476dd8144aa005946.jpg?updatedAt=1751274451608",
       ],
-      reviews: [
+    },
+    // Đồi thông -The Pine Hill
+    {
+      id: "room8",
+      title: {
+        vi: "Đồi thông",
+        en: "The Pine Hill",
+      },
+      description: {
+        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
+        en: "Authentic local house with traditional decorations and home-cooked meals.",
+      },
+      image:
+        "https://ik.imagekit.io/8u8lkoqkkm/%C4%90%E1%BB%93i%20Th%C3%B4ng-%20The%20Pine%20Hill/z6735015682281_4f24f3571385b7a2b97d36acd8ba8113.jpg?updatedAt=1751274459265",
+      capacityOptions: [
         {
-          author: "Michael",
-          rating: 4.3,
-          comment: "Giá trị tuyệt vời và vị trí thuận tiện gần tàu điện ngầm.",
+          capacity: 4,
+          price: 3500000,
+          description: {
+            vi: "Phù hợp cho 4 người",
+            en: "Suitable for 4 people",
+          },
         },
         {
-          author: "Anna",
-          rating: 4.7,
-          comment:
-            "Phòng sạch sẽ và thoải mái. Claire là một chủ nhà rất nhiệt tình!",
+          capacity: 5,
+          price: 4000000,
+          description: {
+            vi: "Phù hợp cho 5 người",
+            en: "Suitable for 5 people",
+          },
         },
+      ],
+      selectedCapacityIndex: 0, // Default to first option
+      price: 3500000, // Default price
+      rating: 4.8,
+      tags: {
+        vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
+        en: ["Recommended", "Traditional", "Breakfast included"],
+      },
+      category: ["popular", "recommended"],
+      location: {
+        vi: "Cách bảo tàng 5 phút đi bộ",
+        en: "5 minutes walk from Musée Du Pin",
+      },
+      host: "Musée Du Pin",
+      roomType: {
+        vi: "Phòng riêng trong nhà truyền thống",
+        en: "Private room in traditional house",
+      },
+      beds: {
+        vi: "1 giường đôi",
+        en: "1 double bed",
+      },
+      amenities: {
+        vi: [
+          "Wi-Fi miễn phí",
+          "Bao gồm bữa sáng",
+          "Điều hòa nhiệt độ",
+          "Vườn",
+          "Phòng tắm riêng",
+        ],
+        en: [
+          "Free Wi-Fi",
+          "Breakfast included",
+          "Air conditioning",
+          "Garden",
+          "Private bathroom",
+        ],
+      },
+      rules: {
+        vi: ["Không hút thuốc", "Không thú cưng", "Không tổ chức tiệc"],
+        en: ["No smoking", "No pets", "No parties"],
+      },
+      cancellation: {
+        vi: "Hủy miễn phí đến 48 giờ trước khi nhận phòng",
+        en: "Free cancellation up to 48 hours before check-in",
+      },
+      gallery: [
+        "https://ik.imagekit.io/8u8lkoqkkm/%C4%90%E1%BB%93i%20Th%C3%B4ng-%20The%20Pine%20Hill/z6735015651739_dd2f31f8ccdc5ae1358d841e5aa339e3.jpg?updatedAt=1751274452128",
+        "https://ik.imagekit.io/8u8lkoqkkm/%C4%90%E1%BB%93i%20Th%C3%B4ng-%20The%20Pine%20Hill/z6735015656377_198f2a9fee105f5a84f871cf035e5f05.jpg?updatedAt=1751274456308",
+        "https://ik.imagekit.io/8u8lkoqkkm/%C4%90%E1%BB%93i%20Th%C3%B4ng-%20The%20Pine%20Hill/z6735015681039_b9e5db9d15115a6704e041f7ac2213a2.jpg?updatedAt=1751274457855",
+      ],
+    },
+    //  Hoa ban Trắng - Bauhinia
+    {
+      id: "room9",
+      title: {
+        vi: "Hoa ban trắng",
+        en: "White Bauhinia",
+      },
+      description: {
+        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
+        en: "Authentic local house with traditional decorations and home-cooked meals.",
+      },
+      image:
+        "https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng-%20Bauhinia/z6735015913658_0a13ac137c59ccacc8e376f1d7f63ce8.jpg?updatedAt=1751274467967",
+      capacityOptions: [
+        {
+          capacity: 4,
+          price: 3500000,
+          description: {
+            vi: "Phù hợp cho 4 người",
+            en: "Suitable for 4 people",
+          },
+        },
+        {
+          capacity: 5,
+          price: 4000000,
+          description: {
+            vi: "Phù hợp cho 5 người",
+            en: "Suitable for 5 people",
+          },
+        },
+      ],
+      selectedCapacityIndex: 0, // Default to first option
+      price: 3500000, // Default price
+      rating: 4.8,
+      tags: {
+        vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
+        en: ["Recommended", "Traditional", "Breakfast included"],
+      },
+      category: ["popular", "recommended"],
+      location: {
+        vi: "Cách bảo tàng 5 phút đi bộ",
+        en: "5 minutes walk from Musée Du Pin",
+      },
+      host: "Musée Du Pin",
+      roomType: {
+        vi: "Phòng riêng trong nhà truyền thống",
+        en: "Private room in traditional house",
+      },
+      beds: {
+        vi: "1 giường đôi",
+        en: "1 double bed",
+      },
+      amenities: {
+        vi: [
+          "Wi-Fi miễn phí",
+          "Bao gồm bữa sáng",
+          "Điều hòa nhiệt độ",
+          "Vườn",
+          "Phòng tắm riêng",
+        ],
+        en: [
+          "Free Wi-Fi",
+          "Breakfast included",
+          "Air conditioning",
+          "Garden",
+          "Private bathroom",
+        ],
+      },
+      rules: {
+        vi: ["Không hút thuốc", "Không thú cưng", "Không tổ chức tiệc"],
+        en: ["No smoking", "No pets", "No parties"],
+      },
+      cancellation: {
+        vi: "Hủy miễn phí đến 48 giờ trước khi nhận phòng",
+        en: "Free cancellation up to 48 hours before check-in",
+      },
+      gallery: [
+        "https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng-%20Bauhinia/z6735015923186_fb855bfe42041484c06d0353b44d1b60.jpg?updatedAt=1751274468374",
+        "https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng-%20Bauhinia/z6735015923187_251ad2d47355a5578157b82480eb7b95.jpg?updatedAt=1751274467506",
+        "https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng-%20Bauhinia/z6735015922844_0a7c9d60d7894368b407ce87bc5b3150.jpg?updatedAt=1751274467244",
+      ],
+    },
+    //  Hoài niệm - The Memory
+    {
+      id: "room10",
+      title: {
+        vi: "Hoài niệm",
+        en: "The Memory",
+      },
+      description: {
+        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
+        en: "Authentic local house with traditional decorations and home-cooked meals.",
+      },
+      image:
+        "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0i%20Ni%E1%BB%87m-%20The%20Memory/z6735016111786_26063d0dd74c1796f25a106e4e7e48cb.jpg?updatedAt=1751274468488",
+      capacityOptions: [
+        {
+          capacity: 4,
+          price: 3500000,
+          description: {
+            vi: "Phù hợp cho 4 người",
+            en: "Suitable for 4 people",
+          },
+        },
+        {
+          capacity: 5,
+          price: 4000000,
+          description: {
+            vi: "Phù hợp cho 5 người",
+            en: "Suitable for 5 people",
+          },
+        },
+      ],
+      selectedCapacityIndex: 0, // Default to first option
+      price: 3500000, // Default price
+      rating: 4.8,
+      tags: {
+        vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
+        en: ["Recommended", "Traditional", "Breakfast included"],
+      },
+      category: ["popular", "recommended"],
+      location: {
+        vi: "Cách bảo tàng 5 phút đi bộ",
+        en: "5 minutes walk from Musée Du Pin",
+      },
+      host: "Musée Du Pin",
+      roomType: {
+        vi: "Phòng riêng trong nhà truyền thống",
+        en: "Private room in traditional house",
+      },
+      beds: {
+        vi: "1 giường đôi",
+        en: "1 double bed",
+      },
+      amenities: {
+        vi: [
+          "Wi-Fi miễn phí",
+          "Bao gồm bữa sáng",
+          "Điều hòa nhiệt độ",
+          "Vườn",
+          "Phòng tắm riêng",
+        ],
+        en: [
+          "Free Wi-Fi",
+          "Breakfast included",
+          "Air conditioning",
+          "Garden",
+          "Private bathroom",
+        ],
+      },
+      rules: {
+        vi: ["Không hút thuốc", "Không thú cưng", "Không tổ chức tiệc"],
+        en: ["No smoking", "No pets", "No parties"],
+      },
+      cancellation: {
+        vi: "Hủy miễn phí đến 48 giờ trước khi nhận phòng",
+        en: "Free cancellation up to 48 hours before check-in",
+      },
+      gallery: [
+        "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0i%20Ni%E1%BB%87m-%20The%20Memory/z6735016139332_9e4c468a4db746027f4835319416b5d1.jpg?updatedAt=1751274469979",
+        "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0i%20Ni%E1%BB%87m-%20The%20Memory/z6735016113451_2c39f07f4a532e6486fc3f89a454faf6.jpg?updatedAt=1751274468667",
+        "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0i%20Ni%E1%BB%87m-%20The%20Memory/z6735016139166_47732a3209a66ed5ec0769c69885f790.jpg?updatedAt=1751274468172",
+      ],
+    },
+    // Hoàng hôn - The sunset
+    {
+      id: "room11",
+      title: {
+        vi: "Hoàng hôn",
+        en: "The Sunset",
+      },
+      description: {
+        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
+        en: "Authentic local house with traditional decorations and home-cooked meals.",
+      },
+      image:
+        "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0ng%20h%C3%B4n-%20The%20Sunset/z6735016357613_e2751dcece85c553aaa0c8e54f9e5d11.jpg?updatedAt=1751274470184",
+      capacityOptions: [
+        {
+          capacity: 4,
+          price: 3500000,
+          description: {
+            vi: "Phù hợp cho 4 người",
+            en: "Suitable for 4 people",
+          },
+        },
+        {
+          capacity: 5,
+          price: 4000000,
+          description: {
+            vi: "Phù hợp cho 5 người",
+            en: "Suitable for 5 people",
+          },
+        },
+      ],
+      selectedCapacityIndex: 0, // Default to first option
+      price: 3500000, // Default price
+      rating: 4.8,
+      tags: {
+        vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
+        en: ["Recommended", "Traditional", "Breakfast included"],
+      },
+      category: ["popular", "recommended"],
+      location: {
+        vi: "Cách bảo tàng 5 phút đi bộ",
+        en: "5 minutes walk from Musée Du Pin",
+      },
+      host: "Musée Du Pin",
+      roomType: {
+        vi: "Phòng riêng trong nhà truyền thống",
+        en: "Private room in traditional house",
+      },
+      beds: {
+        vi: "1 giường đôi",
+        en: "1 double bed",
+      },
+      amenities: {
+        vi: [
+          "Wi-Fi miễn phí",
+          "Bao gồm bữa sáng",
+          "Điều hòa nhiệt độ",
+          "Vườn",
+          "Phòng tắm riêng",
+        ],
+        en: [
+          "Free Wi-Fi",
+          "Breakfast included",
+          "Air conditioning",
+          "Garden",
+          "Private bathroom",
+        ],
+      },
+      rules: {
+        vi: ["Không hút thuốc", "Không thú cưng", "Không tổ chức tiệc"],
+        en: ["No smoking", "No pets", "No parties"],
+      },
+      cancellation: {
+        vi: "Hủy miễn phí đến 48 giờ trước khi nhận phòng",
+        en: "Free cancellation up to 48 hours before check-in",
+      },
+      gallery: [
+        "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0ng%20h%C3%B4n-%20The%20Sunset/z6735016690802_762b3a5d04bcb103be8152d001aa15d7.jpg?updatedAt=1751274474962",
+        "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0ng%20h%C3%B4n-%20The%20Sunset/z6735016523535_29ce25f6fc23a6a23e581953b38fe622.jpg?updatedAt=1751274474498",
+        "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0ng%20h%C3%B4n-%20The%20Sunset/z6735016246537_1ff98d5fc90a563c082cb96def7ae557.jpg?updatedAt=1751274470104",
       ],
     },
   ];
@@ -1290,7 +1922,141 @@ const VisitInfo = () => {
     }).format(price);
   };
 
-  // Render Homestay Section
+  // Add capacity selection handler
+  const handleCapacityChange = (homestayId, capacityIndex) => {
+    const homestay = homestayData.find((h) => h.id === homestayId);
+    if (homestay && homestay.capacityOptions) {
+      const option = homestay.capacityOptions[capacityIndex];
+      setSelectedCapacity({
+        ...selectedCapacity,
+        [homestayId]: {
+          index: capacityIndex,
+          price: option.price,
+          capacity: option.capacity,
+        },
+      });
+
+      // If this is the currently selected homestay, update its price
+      if (selectedHomestay && selectedHomestay.id === homestayId) {
+        setSelectedHomestay({
+          ...selectedHomestay,
+          price: option.price,
+        });
+      }
+    }
+  };
+
+  // Modify the homestay card render to include capacity options
+  const renderHomestayCard = (homestay) => (
+    <div className="homestay-card modern" key={homestay.id}>
+      <div className="homestay-card-image">
+        <img
+          src={getImageUrl(homestay.image)}
+          alt={getLocalizedContent(homestay.title)}
+          className="notranslate"
+        />
+        {(() => {
+          const tags = homestay.tags;
+          if (!tags) return null;
+
+          const tagsToRender =
+            typeof tags === "object" && !Array.isArray(tags)
+              ? tags[currentLang] || []
+              : tags;
+
+          return (
+            Array.isArray(tagsToRender) &&
+            tagsToRender.map(
+              (tag, index) =>
+                index < 1 && (
+                  <div
+                    className="homestay-card-tag notranslate"
+                    key={`${homestay.id}-tag-${index}`}
+                  >
+                    {tag}
+                  </div>
+                )
+            )
+          );
+        })()}
+      </div>
+      <div className="homestay-card-content">
+        <h3 className="homestay-card-title notranslate">
+          {getLocalizedContent(homestay.title)}
+        </h3>
+        <p className="homestay-card-description notranslate">
+          {getLocalizedContent(homestay.description)}
+        </p>
+
+        {/* Add capacity options */}
+        {homestay.capacityOptions && (
+          <div className="capacity-options">
+            {homestay.capacityOptions.map((option, index) => (
+              <div
+                key={index}
+                className={`capacity-option ${
+                  selectedCapacity[homestay.id]?.index === index
+                    ? "selected"
+                    : ""
+                }`}
+                onClick={() => handleCapacityChange(homestay.id, index)}
+              >
+                <div className="capacity-icon">
+                  <FaUser />
+                  <span>x{option.capacity}</span>
+                </div>
+                <div className="capacity-price">
+                  {formatPrice(option.price)}
+                </div>
+                <div className="capacity-description notranslate">
+                  {getLocalizedContent(option.description)}
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
+
+        <div className="homestay-card-location">
+          <svg viewBox="0 0 24 24" width="16" height="16">
+            <path
+              d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
+              fill="currentColor"
+            />
+          </svg>
+          <span className="notranslate">
+            {getLocalizedContent(homestay.location)}
+          </span>
+        </div>
+
+        <div className="homestay-card-footer">
+          <div className="homestay-card-price">
+            <span className="price-value">
+              {formatPrice(
+                selectedCapacity[homestay.id]?.price || homestay.price
+              )}
+            </span>
+            <span className="price-unit">mỗi đêm</span>
+          </div>
+          <div className="homestay-card-actions">
+            <button
+              className="btn-view"
+              onClick={() => openDetailsSidebar(homestay)}
+            >
+              Xem chi tiết
+            </button>
+            <button
+              className="btn-book"
+              onClick={() => openBookingSidebar(homestay)}
+            >
+              Đặt ngay
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+
+  // Update the renderHomestaySection to use the new renderHomestayCard
   const renderHomestaySection = () => (
     <section
       className="homestay-section"
@@ -1384,80 +2150,7 @@ const VisitInfo = () => {
         </div>
 
         <div className="homestay-grid modern">
-          {filteredHomestays.map((homestay) => (
-            <div className="homestay-card modern" key={homestay.id}>
-              <div className="homestay-card-image">
-                <img src={getImageUrl(homestay.image)} alt={homestay.title} />
-                {(() => {
-                  const tags = homestay.tags;
-                  if (!tags) return null;
-
-                  const tagsToRender =
-                    typeof tags === "object" && !Array.isArray(tags)
-                      ? tags[currentLang] || []
-                      : tags;
-
-                  return (
-                    Array.isArray(tagsToRender) &&
-                    tagsToRender.map(
-                      (tag, index) =>
-                        index < 1 && (
-                          <div
-                            className="homestay-card-tag"
-                            key={`${homestay.id}-tag-${index}`}
-                          >
-                            {tag}
-                          </div>
-                        )
-                    )
-                  );
-                })()}
-              </div>
-              <div className="homestay-card-content">
-                <h3 className="homestay-card-title">{homestay.title}</h3>
-                <p className="homestay-card-description">
-                  {typeof homestay.description === "object"
-                    ? homestay.description[currentLang]
-                    : homestay.description}
-                </p>
-                <div className="homestay-card-location">
-                  <svg viewBox="0 0 24 24" width="16" height="16">
-                    <path
-                      d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                      fill="currentColor"
-                    />
-                  </svg>
-                  <span>
-                    {typeof homestay.location === "object"
-                      ? homestay.location[currentLang]
-                      : homestay.location}
-                  </span>
-                </div>
-                <div className="homestay-card-footer">
-                  <div className="homestay-card-price">
-                    <span className="price-value">
-                      {formatPrice(homestay.price)}
-                    </span>
-                    <span className="price-unit">mỗi đêm</span>
-                  </div>
-                  <div className="homestay-card-actions">
-                    <button
-                      className="btn-view"
-                      onClick={() => openDetailsSidebar(homestay)}
-                    >
-                      Xem chi tiết
-                    </button>
-                    <button
-                      className="btn-book"
-                      onClick={() => openBookingSidebar(homestay)}
-                    >
-                      Đặt ngay
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
-          ))}
+          {filteredHomestays.map((homestay) => renderHomestayCard(homestay))}
         </div>
       </div>
     </section>
@@ -1521,6 +2214,14 @@ const VisitInfo = () => {
 
     const gallery = selectedHomestay.gallery || [];
 
+    // Helper function to get localized content
+    const getLocalizedContent = (field) => {
+      if (typeof field === "object") {
+        return field[currentLang] || field.en; // Fallback to English if current language not found
+      }
+      return field;
+    };
+
     return (
       <div
         className={`homestay-details-sidebar ${
@@ -1540,7 +2241,9 @@ const VisitInfo = () => {
               />
             </svg>
           </button>
-          <h2>{selectedHomestay.title}</h2>
+          <h2 className="notranslate">
+            {getLocalizedContent(selectedHomestay.title)}
+          </h2>
           <div style={{ width: "32px" }}></div>
         </div>
 
@@ -1586,16 +2289,42 @@ const VisitInfo = () => {
 
           <div className="homestay-details-info">
             <h3 className="homestay-details-subtitle">
-              {typeof selectedHomestay.roomType === "object"
-                ? selectedHomestay.roomType[currentLang]
-                : selectedHomestay.roomType}
+              {getLocalizedContent(selectedHomestay.roomType)}
             </h3>
 
             <p className="homestay-details-description">
-              {typeof selectedHomestay.description === "object"
-                ? selectedHomestay.description[currentLang]
-                : selectedHomestay.description}
+              {getLocalizedContent(selectedHomestay.description)}
             </p>
+
+            {/* Capacity Options */}
+            {selectedHomestay.capacityOptions && (
+              <div className="capacity-options">
+                {selectedHomestay.capacityOptions.map((option, index) => (
+                  <div
+                    key={index}
+                    className={`capacity-option ${
+                      selectedCapacity[selectedHomestay.id]?.index === index
+                        ? "selected"
+                        : ""
+                    }`}
+                    onClick={() =>
+                      handleCapacityChange(selectedHomestay.id, index)
+                    }
+                  >
+                    <div className="capacity-icon">
+                      <FaUser />
+                      <span>x{option.capacity}</span>
+                    </div>
+                    <div className="capacity-price">
+                      {formatPrice(option.price)}
+                    </div>
+                    <div className="capacity-description">
+                      {getLocalizedContent(option.description)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
 
             <div className="homestay-details-location">
               <svg viewBox="0 0 24 24" width="18" height="18">
@@ -1604,11 +2333,7 @@ const VisitInfo = () => {
                   fill="currentColor"
                 />
               </svg>
-              <span>
-                {typeof selectedHomestay.location === "object"
-                  ? selectedHomestay.location[currentLang]
-                  : selectedHomestay.location}
-              </span>
+              <span>{getLocalizedContent(selectedHomestay.location)}</span>
             </div>
 
             <div className="homestay-details-host">
@@ -1628,20 +2353,16 @@ const VisitInfo = () => {
                   fill="currentColor"
                 />
               </svg>
-              <span>
-                {typeof selectedHomestay.beds === "object"
-                  ? selectedHomestay.beds[currentLang]
-                  : selectedHomestay.beds}
-              </span>
+              <span>{getLocalizedContent(selectedHomestay.beds)}</span>
             </div>
 
             <div className="homestay-details-section">
               <h3>Tiện nghi</h3>
               <ul className="amenities-list">
-                {(typeof selectedHomestay.amenities === "object"
-                  ? selectedHomestay.amenities[currentLang]
-                  : selectedHomestay.amenities
-                )?.map((amenity, index) => (
+                {(Array.isArray(selectedHomestay.amenities)
+                  ? selectedHomestay.amenities
+                  : getLocalizedContent(selectedHomestay.amenities)
+                ).map((amenity, index) => (
                   <li key={index}>
                     <svg viewBox="0 0 24 24" width="16" height="16">
                       <path
@@ -1658,10 +2379,10 @@ const VisitInfo = () => {
             <div className="homestay-details-section">
               <h3>Nội quy</h3>
               <ul className="rules-list">
-                {(typeof selectedHomestay.rules === "object"
-                  ? selectedHomestay.rules[currentLang]
-                  : selectedHomestay.rules
-                )?.map((rule, index) => (
+                {(Array.isArray(selectedHomestay.rules)
+                  ? selectedHomestay.rules
+                  : getLocalizedContent(selectedHomestay.rules)
+                ).map((rule, index) => (
                   <li key={index}>{rule}</li>
                 ))}
               </ul>
@@ -1669,18 +2390,17 @@ const VisitInfo = () => {
 
             <div className="homestay-details-section">
               <h3>Chính sách hủy phòng</h3>
-              <p>
-                {typeof selectedHomestay.cancellation === "object"
-                  ? selectedHomestay.cancellation[currentLang]
-                  : selectedHomestay.cancellation}
-              </p>
+              <p>{getLocalizedContent(selectedHomestay.cancellation)}</p>
             </div>
           </div>
 
           <div className="homestay-booking-card">
             <div className="booking-card-price">
               <span className="price-value">
-                {formatPrice(selectedHomestay.price)}
+                {formatPrice(
+                  selectedCapacity[selectedHomestay.id]?.price ||
+                    selectedHomestay.price
+                )}
               </span>
               <span className="price-unit">mỗi đêm</span>
             </div>
@@ -1699,6 +2419,10 @@ const VisitInfo = () => {
   // Render Booking Sidebar
   const renderBookingSidebar = () => {
     if (!selectedHomestay) return null;
+
+    // Get the current price based on capacity selection
+    const currentPrice =
+      selectedCapacity[selectedHomestay.id]?.price || selectedHomestay.price;
 
     return (
       <div
@@ -1733,10 +2457,10 @@ const VisitInfo = () => {
           <div className="booking-homestay-info modern">
             <img
               src={getImageUrl(selectedHomestay.image)}
-              alt={selectedHomestay.title}
+              alt={getLocalizedContent(selectedHomestay.title)}
             />
             <div>
-              <h3>{selectedHomestay.title}</h3>
+              <h3>{getLocalizedContent(selectedHomestay.title)}</h3>
               <div className="booking-homestay-location">
                 <svg viewBox="0 0 24 24" width="14" height="14">
                   <path
@@ -1747,9 +2471,7 @@ const VisitInfo = () => {
                 <span>{selectedHomestay.location}</span>
               </div>
               <div className="booking-homestay-price">
-                <span className="price-value">
-                  {formatPrice(selectedHomestay.price)}
-                </span>
+                <span className="price-value">{formatPrice(currentPrice)}</span>
                 <span className="price-unit">mỗi đêm</span>
               </div>
             </div>
@@ -1807,24 +2529,6 @@ const VisitInfo = () => {
               )}
             </div>
 
-            <div
-              className={`form-group ${formErrors.guests ? "has-error" : ""}`}
-            >
-              <label htmlFor="guests">Số lượng khách</label>
-              <input
-                type="number"
-                id="guests"
-                name="guests"
-                value={bookingFormData.guests}
-                onChange={handleBookingInputChange}
-                min="1"
-                max="10"
-              />
-              {formErrors.guests && (
-                <div className="error-message">{formErrors.guests}</div>
-              )}
-            </div>
-
             <div className="form-group">
               <label htmlFor="specialRequests">Yêu cầu</label>
               <textarea
@@ -1840,7 +2544,7 @@ const VisitInfo = () => {
             <div className="booking-summary modern">
               <div className="summary-row">
                 <span>Giá mỗi đêm</span>
-                <span>{formatPrice(selectedHomestay.price)}</span>
+                <span>{formatPrice(currentPrice)}</span>
               </div>
 
               {bookingFormData.checkIn && bookingFormData.checkOut && (
@@ -1863,7 +2567,7 @@ const VisitInfo = () => {
                     <span>Tổng cộng</span>
                     <span>
                       {formatPrice(
-                        selectedHomestay.price *
+                        currentPrice *
                           Math.max(
                             1,
                             Math.ceil(

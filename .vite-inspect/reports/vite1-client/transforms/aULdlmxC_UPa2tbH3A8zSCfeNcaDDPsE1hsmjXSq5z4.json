@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/MUSSEEDUPIN/node_modules/react-leaflet/lib/index.js",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "export { useMap, useMapEvent, useMapEvents } from './hooks.js';\nexport { AttributionControl } from './AttributionControl.js';\nexport { Circle } from './Circle.js';\nexport { CircleMarker } from './CircleMarker.js';\nexport { FeatureGroup } from './FeatureGroup.js';\nexport { GeoJSON } from './GeoJSON.js';\nexport { ImageOverlay } from './ImageOverlay.js';\nexport { LayerGroup } from './LayerGroup.js';\nexport { LayersControl } from './LayersControl.js';\nexport { MapContainer } from './MapContainer.js';\nexport { Marker } from './Marker.js';\nexport { Pane } from './Pane.js';\nexport { Polygon } from './Polygon.js';\nexport { Polyline } from './Polyline.js';\nexport { Popup } from './Popup.js';\nexport { Rectangle } from './Rectangle.js';\nexport { ScaleControl } from './ScaleControl.js';\nexport { SVGOverlay } from './SVGOverlay.js';\nexport { TileLayer } from './TileLayer.js';\nexport { Tooltip } from './Tooltip.js';\nexport { VideoOverlay } from './VideoOverlay.js';\nexport { WMSTileLayer } from './WMSTileLayer.js';\nexport { ZoomControl } from './ZoomControl.js';\n",
+      "start": 1751301174505,
+      "end": 1751301174583,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1751301174583,
+      "end": 1751301174583,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1751301174583,
+      "end": 1751301174583,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1751301174583,
+      "end": 1751301174583,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1751301174583,
+      "end": 1751301174583,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1751301174583,
+      "end": 1751301174583,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1751301174583,
+      "end": 1751301174583,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1751301174583,
+      "end": 1751301174583,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1751301174583,
+      "end": 1751301174583,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1751301174583,
+      "end": 1751301174583,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1751301174583,
+      "end": 1751301174583,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1751301174583,
+      "end": 1751301174585,
+      "order": "normal"
+    }
+  ]
+}

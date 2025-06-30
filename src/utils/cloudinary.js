@@ -1,6 +1,6 @@
 // Cloudinary configuration
 const CLOUD_NAME = "dn0br7hj0";
-const VERSION = "v1748784653"; // Add version number
+const VERSION = "v1748784675"; // Add version number
 
 // Base URL for Cloudinary
 const CLOUDINARY_BASE_URL = `https://res.cloudinary.com/${CLOUD_NAME}/image/upload`;
@@ -32,13 +32,14 @@ const isDirectUrl = (url) => {
 };
 
 // Helper function to get exhibition image URL
-export const getImageUrl = (filename) => {
-  if (!filename) return "";
-  // If it's already a direct URL, return it as is
-  if (isDirectUrl(filename)) return filename;
-  // Otherwise treat as Cloudinary asset
-  const publicId = `collections/${filename}`;
-  return buildCloudinaryUrl(publicId);
+export const getImageUrl = (imagePath) => {
+  // Check if the path is already a full URL
+  if (imagePath.startsWith("http://") || imagePath.startsWith("https://")) {
+    return imagePath;
+  }
+
+  // Otherwise, treat it as a Cloudinary image ID
+  return `https://res.cloudinary.com/dn0br7hj0/image/upload/${imagePath}`;
 };
 
 // Helper function to get gallery image URL

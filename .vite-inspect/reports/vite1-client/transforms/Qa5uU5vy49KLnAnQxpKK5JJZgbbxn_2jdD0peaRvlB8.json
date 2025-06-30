@@ -1,0 +1,90 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/MUSSEEDUPIN/src/pages/NotFound.jsx",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import React from \"react\";\nimport { Link, useLocation } from \"react-router-dom\";\nimport \"../styles/NotFound.css\";\n\nconst NotFound = () => {\n  const location = useLocation();\n  const query = new URLSearchParams(location.search).get(\"q\") || \"\";\n\n  return (\n    <div className=\"not-found-page\">\n      <div className=\"not-found-container\">\n        <div className=\"breadcrumb\">\n          <Link to=\"/\">\n            <img\n              src=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.webp\"\n              alt=\"Logo\"\n              className=\"breadcrumb-logo\"\n            />\n          </Link>\n          <span className=\"breadcrumb-separator\">›</span>\n          <span className=\"breadcrumb-label\">Kết quả tìm kiếm</span>\n        </div>\n\n        <div className=\"not-found-content\">\n          <h1 className=\"not-found-title\">Không tìm thấy kết quả</h1>\n\n          <p className=\"not-found-message\">\n            Chúng tôi không thể tìm thấy kết quả nào cho tìm kiếm của bạn: «{\" \"}\n            {query} »\n          </p>\n\n          <div className=\"not-found-suggestions\">\n            <h2>Gợi ý:</h2>\n            <ul>\n              <li>Kiểm tra chính tả của từ khóa tìm kiếm</li>\n              <li>Thử sử dụng từ khóa chung hơn</li>\n              <li>Thử sử dụng từ khóa khác</li>\n              <li>Duyệt bộ sưu tập của chúng tôi theo danh mục</li>\n            </ul>\n          </div>\n\n          <div className=\"search-again-container\">\n            <h3 className=\"search-again-title\">Thử tìm kiếm khác</h3>\n\n            <div className=\"search-bar\">\n              <input\n                type=\"text\"\n                defaultValue={query}\n                onChange={(e) => {\n                  if (e.key === \"Enter\") {\n                    window.location.href = `/search-results?q=${encodeURIComponent(\n                      e.target.value\n                    )}`;\n                  }\n                }}\n                onKeyDown={(e) => {\n                  if (e.key === \"Enter\") {\n                    window.location.href = `/search-results?q=${encodeURIComponent(\n                      e.target.value\n                    )}`;\n                  }\n                }}\n                className=\"search-input\"\n                placeholder=\"Tìm kiếm\"\n              />\n              <button\n                type=\"button\"\n                className=\"search-button\"\n                onClick={(e) => {\n                  const input = e.target\n                    .closest(\".search-bar\")\n                    .querySelector(\"input\");\n                  window.location.href = `/search-results?q=${encodeURIComponent(\n                    input.value\n                  )}`;\n                }}\n              >\n                <svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\">\n                  <path\n                    d=\"M5 12h14M12 5l7 7-7 7\"\n                    stroke=\"currentColor\"\n                    fill=\"none\"\n                    strokeWidth=\"2\"\n                    strokeLinecap=\"round\"\n                    strokeLinejoin=\"round\"\n                  />\n                </svg>\n              </button>\n            </div>\n          </div>\n\n          <div className=\"back-to-home\">\n            <Link to=\"/\" className=\"home-link\">\n              Quay lại trang chủ\n            </Link>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default NotFound;\n",
+      "start": 1751301163695,
+      "end": 1751301164307,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1751301164307,
+      "end": 1751301164307,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { Link, useLocation } from \"react-router-dom\";\nimport \"../styles/NotFound.css\";\nconst NotFound = () => {\n  const location = useLocation();\n  const query = new URLSearchParams(location.search).get(\"q\") || \"\";\n  return /* @__PURE__ */ jsx(\"div\", { className: \"not-found-page\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"not-found-container\", children: [\n    /* @__PURE__ */ jsxs(\"div\", { className: \"breadcrumb\", children: [\n      /* @__PURE__ */ jsx(Link, { to: \"/\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.webp\",\n          alt: \"Logo\",\n          className: \"breadcrumb-logo\"\n        }\n      ) }),\n      /* @__PURE__ */ jsx(\"span\", { className: \"breadcrumb-separator\", children: \"›\" }),\n      /* @__PURE__ */ jsx(\"span\", { className: \"breadcrumb-label\", children: \"Kết quả tìm kiếm\" })\n    ] }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"not-found-content\", children: [\n      /* @__PURE__ */ jsx(\"h1\", { className: \"not-found-title\", children: \"Không tìm thấy kết quả\" }),\n      /* @__PURE__ */ jsxs(\"p\", { className: \"not-found-message\", children: [\n        \"Chúng tôi không thể tìm thấy kết quả nào cho tìm kiếm của bạn: «\",\n        \" \",\n        query,\n        \" »\"\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"not-found-suggestions\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"Gợi ý:\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Kiểm tra chính tả của từ khóa tìm kiếm\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Thử sử dụng từ khóa chung hơn\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Thử sử dụng từ khóa khác\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Duyệt bộ sưu tập của chúng tôi theo danh mục\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"search-again-container\", children: [\n        /* @__PURE__ */ jsx(\"h3\", { className: \"search-again-title\", children: \"Thử tìm kiếm khác\" }),\n        /* @__PURE__ */ jsxs(\"div\", { className: \"search-bar\", children: [\n          /* @__PURE__ */ jsx(\n            \"input\",\n            {\n              type: \"text\",\n              defaultValue: query,\n              onChange: (e) => {\n                if (e.key === \"Enter\") {\n                  window.location.href = `/search-results?q=${encodeURIComponent(\n                    e.target.value\n                  )}`;\n                }\n              },\n              onKeyDown: (e) => {\n                if (e.key === \"Enter\") {\n                  window.location.href = `/search-results?q=${encodeURIComponent(\n                    e.target.value\n                  )}`;\n                }\n              },\n              className: \"search-input\",\n              placeholder: \"Tìm kiếm\"\n            }\n          ),\n          /* @__PURE__ */ jsx(\n            \"button\",\n            {\n              type: \"button\",\n              className: \"search-button\",\n              onClick: (e) => {\n                const input = e.target.closest(\".search-bar\").querySelector(\"input\");\n                window.location.href = `/search-results?q=${encodeURIComponent(\n                  input.value\n                )}`;\n              },\n              children: /* @__PURE__ */ jsx(\"svg\", { viewBox: \"0 0 24 24\", width: \"24\", height: \"24\", children: /* @__PURE__ */ jsx(\n                \"path\",\n                {\n                  d: \"M5 12h14M12 5l7 7-7 7\",\n                  stroke: \"currentColor\",\n                  fill: \"none\",\n                  strokeWidth: \"2\",\n                  strokeLinecap: \"round\",\n                  strokeLinejoin: \"round\"\n                }\n              ) })\n            }\n          )\n        ] })\n      ] }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"back-to-home\", children: /* @__PURE__ */ jsx(Link, { to: \"/\", className: \"home-link\", children: \"Quay lại trang chủ\" }) })\n    ] })\n  ] }) });\n};\nexport default NotFound;\n",
+      "start": 1751301164307,
+      "end": 1751301166049,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/MUSSEEDUPIN/src/pages/NotFound.jsx"
+        ],
+        "sourcesContent": [
+          "import React from \"react\";\nimport { Link, useLocation } from \"react-router-dom\";\nimport \"../styles/NotFound.css\";\n\nconst NotFound = () => {\n  const location = useLocation();\n  const query = new URLSearchParams(location.search).get(\"q\") || \"\";\n\n  return (\n    <div className=\"not-found-page\">\n      <div className=\"not-found-container\">\n        <div className=\"breadcrumb\">\n          <Link to=\"/\">\n            <img\n              src=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.webp\"\n              alt=\"Logo\"\n              className=\"breadcrumb-logo\"\n            />\n          </Link>\n          <span className=\"breadcrumb-separator\">›</span>\n          <span className=\"breadcrumb-label\">Kết quả tìm kiếm</span>\n        </div>\n\n        <div className=\"not-found-content\">\n          <h1 className=\"not-found-title\">Không tìm thấy kết quả</h1>\n\n          <p className=\"not-found-message\">\n            Chúng tôi không thể tìm thấy kết quả nào cho tìm kiếm của bạn: «{\" \"}\n            {query} »\n          </p>\n\n          <div className=\"not-found-suggestions\">\n            <h2>Gợi ý:</h2>\n            <ul>\n              <li>Kiểm tra chính tả của từ khóa tìm kiếm</li>\n              <li>Thử sử dụng từ khóa chung hơn</li>\n              <li>Thử sử dụng từ khóa khác</li>\n              <li>Duyệt bộ sưu tập của chúng tôi theo danh mục</li>\n            </ul>\n          </div>\n\n          <div className=\"search-again-container\">\n            <h3 className=\"search-again-title\">Thử tìm kiếm khác</h3>\n\n            <div className=\"search-bar\">\n              <input\n                type=\"text\"\n                defaultValue={query}\n                onChange={(e) => {\n                  if (e.key === \"Enter\") {\n                    window.location.href = `/search-results?q=${encodeURIComponent(\n                      e.target.value\n                    )}`;\n                  }\n                }}\n                onKeyDown={(e) => {\n                  if (e.key === \"Enter\") {\n                    window.location.href = `/search-results?q=${encodeURIComponent(\n                      e.target.value\n                    )}`;\n                  }\n                }}\n                className=\"search-input\"\n                placeholder=\"Tìm kiếm\"\n              />\n              <button\n                type=\"button\"\n                className=\"search-button\"\n                onClick={(e) => {\n                  const input = e.target\n                    .closest(\".search-bar\")\n                    .querySelector(\"input\");\n                  window.location.href = `/search-results?q=${encodeURIComponent(\n                    input.value\n                  )}`;\n                }}\n              >\n                <svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\">\n                  <path\n                    d=\"M5 12h14M12 5l7 7-7 7\"\n                    stroke=\"currentColor\"\n                    fill=\"none\"\n                    strokeWidth=\"2\"\n                    strokeLinecap=\"round\"\n                    strokeLinejoin=\"round\"\n                  />\n                </svg>\n              </button>\n            </div>\n          </div>\n\n          <div className=\"back-to-home\">\n            <Link to=\"/\" className=\"home-link\">\n              Quay lại trang chủ\n            </Link>\n          </div>\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default NotFound;\n"
+        ],
+        "mappings": "AAWQ,SAEI,KAFJ;AAXR,OAAO,WAAW;AAClB,SAAS,MAAM,mBAAmB;AAClC,OAAO;AAEP,MAAM,WAAW,MAAM;AACrB,QAAM,WAAW,YAAY;AAC7B,QAAM,QAAQ,IAAI,gBAAgB,SAAS,MAAM,EAAE,IAAI,GAAG,KAAK;AAE/D,SACE,oBAAC,SAAI,WAAU,kBACb,+BAAC,SAAI,WAAU,uBACb;AAAA,yBAAC,SAAI,WAAU,cACb;AAAA,0BAAC,QAAK,IAAG,KACP;AAAA,QAAC;AAAA;AAAA,UACC,KAAI;AAAA,UACJ,KAAI;AAAA,UACJ,WAAU;AAAA;AAAA,MACZ,GACF;AAAA,MACA,oBAAC,UAAK,WAAU,wBAAuB,eAAC;AAAA,MACxC,oBAAC,UAAK,WAAU,oBAAmB,8BAAgB;AAAA,OACrD;AAAA,IAEA,qBAAC,SAAI,WAAU,qBACb;AAAA,0BAAC,QAAG,WAAU,mBAAkB,oCAAsB;AAAA,MAEtD,qBAAC,OAAE,WAAU,qBAAoB;AAAA;AAAA,QACkC;AAAA,QAChE;AAAA,QAAM;AAAA,SACT;AAAA,MAEA,qBAAC,SAAI,WAAU,yBACb;AAAA,4BAAC,QAAG,oBAAM;AAAA,QACV,qBAAC,QACC;AAAA,8BAAC,QAAG,oDAAsC;AAAA,UAC1C,oBAAC,QAAG,2CAA6B;AAAA,UACjC,oBAAC,QAAG,sCAAwB;AAAA,UAC5B,oBAAC,QAAG,0DAA4C;AAAA,WAClD;AAAA,SACF;AAAA,MAEA,qBAAC,SAAI,WAAU,0BACb;AAAA,4BAAC,QAAG,WAAU,sBAAqB,+BAAiB;AAAA,QAEpD,qBAAC,SAAI,WAAU,cACb;AAAA;AAAA,YAAC;AAAA;AAAA,cACC,MAAK;AAAA,cACL,cAAc;AAAA,cACd,UAAU,CAAC,MAAM;AACf,oBAAI,EAAE,QAAQ,SAAS;AACrB,yBAAO,SAAS,OAAO,qBAAqB;AAAA,oBAC1C,EAAE,OAAO;AAAA,kBACX,CAAC;AAAA,gBACH;AAAA,cACF;AAAA,cACA,WAAW,CAAC,MAAM;AAChB,oBAAI,EAAE,QAAQ,SAAS;AACrB,yBAAO,SAAS,OAAO,qBAAqB;AAAA,oBAC1C,EAAE,OAAO;AAAA,kBACX,CAAC;AAAA,gBACH;AAAA,cACF;AAAA,cACA,WAAU;AAAA,cACV,aAAY;AAAA;AAAA,UACd;AAAA,UACA;AAAA,YAAC;AAAA;AAAA,cACC,MAAK;AAAA,cACL,WAAU;AAAA,cACV,SAAS,CAAC,MAAM;AACd,sBAAM,QAAQ,EAAE,OACb,QAAQ,aAAa,EACrB,cAAc,OAAO;AACxB,uBAAO,SAAS,OAAO,qBAAqB;AAAA,kBAC1C,MAAM;AAAA,gBACR,CAAC;AAAA,cACH;AAAA,cAEA,8BAAC,SAAI,SAAQ,aAAY,OAAM,MAAK,QAAO,MACzC;AAAA,gBAAC;AAAA;AAAA,kBACC,GAAE;AAAA,kBACF,QAAO;AAAA,kBACP,MAAK;AAAA,kBACL,aAAY;AAAA,kBACZ,eAAc;AAAA,kBACd,gBAAe;AAAA;AAAA,cACjB,GACF;AAAA;AAAA,UACF;AAAA,WACF;AAAA,SACF;AAAA,MAEA,oBAAC,SAAI,WAAU,gBACb,8BAAC,QAAK,IAAG,KAAI,WAAU,aAAY,gCAEnC,GACF;AAAA,OACF;AAAA,KACF,GACF;AAEJ;AAEA,eAAe;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1751301166049,
+      "end": 1751301166049,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1751301166049,
+      "end": 1751301166049,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1751301166049,
+      "end": 1751301166049,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1751301166049,
+      "end": 1751301166049,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1751301166049,
+      "end": 1751301166050,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1751301166050,
+      "end": 1751301166050,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1751301166050,
+      "end": 1751301166050,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1751301166050,
+      "end": 1751301166053,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1751301166053,
+      "end": 1751301166053,
+      "order": "normal"
+    }
+  ]
+}

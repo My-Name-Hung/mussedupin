@@ -832,7 +832,7 @@ const TrailExperiencePage = () => {
           <div className="trail-exp-artwork-info">
             <h2 className="trail-exp-artwork-title">{currentImage.title}</h2>
             {currentImage.artist && (
-              <div className="trail-exp-artwork-artist">
+              <div className="trail-exp-artwork-artist notranslate">
                 {currentImage.artist}
               </div>
             )}

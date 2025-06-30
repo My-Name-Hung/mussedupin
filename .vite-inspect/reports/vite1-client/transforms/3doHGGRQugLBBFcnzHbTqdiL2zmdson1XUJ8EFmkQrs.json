@@ -1,0 +1,90 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/MUSSEEDUPIN/src/components/FeedbackModal/FeedbackModal.jsx",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import React, { useState } from \"react\";\nimport \"./FeedbackModal.css\";\n\nconst FeedbackModal = ({ isOpen, onClose }) => {\n  const [formData, setFormData] = useState({\n    name: \"\",\n    email: \"\",\n    feedback: \"\",\n  });\n  const [isSubmitting, setIsSubmitting] = useState(false);\n  const [submitStatus, setSubmitStatus] = useState(null);\n\n  const handleChange = (e) => {\n    const { name, value } = e.target;\n    setFormData((prev) => ({\n      ...prev,\n      [name]: value,\n    }));\n  };\n\n  const handleSubmit = async (e) => {\n    e.preventDefault();\n    setIsSubmitting(true);\n    setSubmitStatus(null);\n\n    try {\n      const response = await fetch(\n        \"https://mussedupin.onrender.com/api/feedback\",\n        {\n          method: \"POST\",\n          headers: {\n            \"Content-Type\": \"application/json\",\n          },\n          body: JSON.stringify(formData),\n        }\n      );\n\n      const data = await response.json();\n\n      if (data.success) {\n        setSubmitStatus({\n          type: \"success\",\n          message:\n            \"Cảm ơn bạn đã gửi phản hồi! Chúng tôi sẽ phản hồi sớm nhất có thể.\",\n        });\n        setTimeout(() => {\n          onClose();\n          setFormData({ name: \"\", email: \"\", feedback: \"\" });\n          setSubmitStatus(null);\n        }, 3000);\n      } else {\n        throw new Error(data.message || \"Có lỗi xảy ra\");\n      }\n    } catch (error) {\n      console.error(\"Error submitting feedback:\", error);\n      setSubmitStatus({\n        type: \"error\",\n        message: \"Có lỗi xảy ra khi gửi phản hồi. Vui lòng thử lại sau.\",\n      });\n    } finally {\n      setIsSubmitting(false);\n    }\n  };\n\n  if (!isOpen) return null;\n\n  return (\n    <div className=\"feedback-modal-overlay\">\n      <div className=\"feedback-modal\">\n        <button className=\"close-button\" onClick={onClose}>\n          &times;\n        </button>\n\n        <div className=\"modal-header\">\n          <h2>Gửi phản hồi</h2>\n        </div>\n\n        {submitStatus && (\n          <div className={`submit-status ${submitStatus.type}`}>\n            {submitStatus.message}\n          </div>\n        )}\n\n        <form onSubmit={handleSubmit}>\n          <div className=\"form-group\">\n            <label htmlFor=\"name\">Họ và tên</label>\n            <div className=\"input-container\">\n              <input\n                type=\"text\"\n                id=\"name\"\n                name=\"name\"\n                value={formData.name}\n                onChange={handleChange}\n                required\n                placeholder=\"Nhập họ và tên của bạn\"\n              />\n            </div>\n          </div>\n\n          <div className=\"form-group\">\n            <label htmlFor=\"email\">Email</label>\n            <div className=\"input-container\">\n              <input\n                type=\"email\"\n                id=\"email\"\n                name=\"email\"\n                value={formData.email}\n                onChange={handleChange}\n                required\n                placeholder=\"Nhập địa chỉ email của bạn\"\n              />\n            </div>\n          </div>\n\n          <div className=\"form-group\">\n            <label htmlFor=\"feedback\">Nội dung phản hồi</label>\n            <div className=\"input-container\">\n              <textarea\n                id=\"feedback\"\n                name=\"feedback\"\n                value={formData.feedback}\n                onChange={handleChange}\n                required\n                placeholder=\"Nhập nội dung phản hồi của bạn\"\n                rows=\"5\"\n              />\n            </div>\n          </div>\n\n          <button\n            type=\"submit\"\n            className=\"submit-button\"\n            disabled={isSubmitting}\n          >\n            {isSubmitting ? \"Đang gửi...\" : \"Gửi phản hồi\"}\n          </button>\n        </form>\n      </div>\n    </div>\n  );\n};\n\nexport default FeedbackModal;\n",
+      "start": 1751301166404,
+      "end": 1751301167558,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1751301167558,
+      "end": 1751301167558,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useState } from \"react\";\nimport \"./FeedbackModal.css\";\nconst FeedbackModal = ({ isOpen, onClose }) => {\n  const [formData, setFormData] = useState({\n    name: \"\",\n    email: \"\",\n    feedback: \"\"\n  });\n  const [isSubmitting, setIsSubmitting] = useState(false);\n  const [submitStatus, setSubmitStatus] = useState(null);\n  const handleChange = (e) => {\n    const { name, value } = e.target;\n    setFormData((prev) => ({\n      ...prev,\n      [name]: value\n    }));\n  };\n  const handleSubmit = async (e) => {\n    e.preventDefault();\n    setIsSubmitting(true);\n    setSubmitStatus(null);\n    try {\n      const response = await fetch(\n        \"https://mussedupin.onrender.com/api/feedback\",\n        {\n          method: \"POST\",\n          headers: {\n            \"Content-Type\": \"application/json\"\n          },\n          body: JSON.stringify(formData)\n        }\n      );\n      const data = await response.json();\n      if (data.success) {\n        setSubmitStatus({\n          type: \"success\",\n          message: \"Cảm ơn bạn đã gửi phản hồi! Chúng tôi sẽ phản hồi sớm nhất có thể.\"\n        });\n        setTimeout(() => {\n          onClose();\n          setFormData({ name: \"\", email: \"\", feedback: \"\" });\n          setSubmitStatus(null);\n        }, 3e3);\n      } else {\n        throw new Error(data.message || \"Có lỗi xảy ra\");\n      }\n    } catch (error) {\n      console.error(\"Error submitting feedback:\", error);\n      setSubmitStatus({\n        type: \"error\",\n        message: \"Có lỗi xảy ra khi gửi phản hồi. Vui lòng thử lại sau.\"\n      });\n    } finally {\n      setIsSubmitting(false);\n    }\n  };\n  if (!isOpen) return null;\n  return /* @__PURE__ */ jsx(\"div\", { className: \"feedback-modal-overlay\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"feedback-modal\", children: [\n    /* @__PURE__ */ jsx(\"button\", { className: \"close-button\", onClick: onClose, children: \"×\" }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"modal-header\", children: /* @__PURE__ */ jsx(\"h2\", { children: \"Gửi phản hồi\" }) }),\n    submitStatus && /* @__PURE__ */ jsx(\"div\", { className: `submit-status ${submitStatus.type}`, children: submitStatus.message }),\n    /* @__PURE__ */ jsxs(\"form\", { onSubmit: handleSubmit, children: [\n      /* @__PURE__ */ jsxs(\"div\", { className: \"form-group\", children: [\n        /* @__PURE__ */ jsx(\"label\", { htmlFor: \"name\", children: \"Họ và tên\" }),\n        /* @__PURE__ */ jsx(\"div\", { className: \"input-container\", children: /* @__PURE__ */ jsx(\n          \"input\",\n          {\n            type: \"text\",\n            id: \"name\",\n            name: \"name\",\n            value: formData.name,\n            onChange: handleChange,\n            required: true,\n            placeholder: \"Nhập họ và tên của bạn\"\n          }\n        ) })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"form-group\", children: [\n        /* @__PURE__ */ jsx(\"label\", { htmlFor: \"email\", children: \"Email\" }),\n        /* @__PURE__ */ jsx(\"div\", { className: \"input-container\", children: /* @__PURE__ */ jsx(\n          \"input\",\n          {\n            type: \"email\",\n            id: \"email\",\n            name: \"email\",\n            value: formData.email,\n            onChange: handleChange,\n            required: true,\n            placeholder: \"Nhập địa chỉ email của bạn\"\n          }\n        ) })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"form-group\", children: [\n        /* @__PURE__ */ jsx(\"label\", { htmlFor: \"feedback\", children: \"Nội dung phản hồi\" }),\n        /* @__PURE__ */ jsx(\"div\", { className: \"input-container\", children: /* @__PURE__ */ jsx(\n          \"textarea\",\n          {\n            id: \"feedback\",\n            name: \"feedback\",\n            value: formData.feedback,\n            onChange: handleChange,\n            required: true,\n            placeholder: \"Nhập nội dung phản hồi của bạn\",\n            rows: \"5\"\n          }\n        ) })\n      ] }),\n      /* @__PURE__ */ jsx(\n        \"button\",\n        {\n          type: \"submit\",\n          className: \"submit-button\",\n          disabled: isSubmitting,\n          children: isSubmitting ? \"Đang gửi...\" : \"Gửi phản hồi\"\n        }\n      )\n    ] })\n  ] }) });\n};\nexport default FeedbackModal;\n",
+      "start": 1751301167558,
+      "end": 1751301167719,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/MUSSEEDUPIN/src/components/FeedbackModal/FeedbackModal.jsx"
+        ],
+        "sourcesContent": [
+          "import React, { useState } from \"react\";\nimport \"./FeedbackModal.css\";\n\nconst FeedbackModal = ({ isOpen, onClose }) => {\n  const [formData, setFormData] = useState({\n    name: \"\",\n    email: \"\",\n    feedback: \"\",\n  });\n  const [isSubmitting, setIsSubmitting] = useState(false);\n  const [submitStatus, setSubmitStatus] = useState(null);\n\n  const handleChange = (e) => {\n    const { name, value } = e.target;\n    setFormData((prev) => ({\n      ...prev,\n      [name]: value,\n    }));\n  };\n\n  const handleSubmit = async (e) => {\n    e.preventDefault();\n    setIsSubmitting(true);\n    setSubmitStatus(null);\n\n    try {\n      const response = await fetch(\n        \"https://mussedupin.onrender.com/api/feedback\",\n        {\n          method: \"POST\",\n          headers: {\n            \"Content-Type\": \"application/json\",\n          },\n          body: JSON.stringify(formData),\n        }\n      );\n\n      const data = await response.json();\n\n      if (data.success) {\n        setSubmitStatus({\n          type: \"success\",\n          message:\n            \"Cảm ơn bạn đã gửi phản hồi! Chúng tôi sẽ phản hồi sớm nhất có thể.\",\n        });\n        setTimeout(() => {\n          onClose();\n          setFormData({ name: \"\", email: \"\", feedback: \"\" });\n          setSubmitStatus(null);\n        }, 3000);\n      } else {\n        throw new Error(data.message || \"Có lỗi xảy ra\");\n      }\n    } catch (error) {\n      console.error(\"Error submitting feedback:\", error);\n      setSubmitStatus({\n        type: \"error\",\n        message: \"Có lỗi xảy ra khi gửi phản hồi. Vui lòng thử lại sau.\",\n      });\n    } finally {\n      setIsSubmitting(false);\n    }\n  };\n\n  if (!isOpen) return null;\n\n  return (\n    <div className=\"feedback-modal-overlay\">\n      <div className=\"feedback-modal\">\n        <button className=\"close-button\" onClick={onClose}>\n          &times;\n        </button>\n\n        <div className=\"modal-header\">\n          <h2>Gửi phản hồi</h2>\n        </div>\n\n        {submitStatus && (\n          <div className={`submit-status ${submitStatus.type}`}>\n            {submitStatus.message}\n          </div>\n        )}\n\n        <form onSubmit={handleSubmit}>\n          <div className=\"form-group\">\n            <label htmlFor=\"name\">Họ và tên</label>\n            <div className=\"input-container\">\n              <input\n                type=\"text\"\n                id=\"name\"\n                name=\"name\"\n                value={formData.name}\n                onChange={handleChange}\n                required\n                placeholder=\"Nhập họ và tên của bạn\"\n              />\n            </div>\n          </div>\n\n          <div className=\"form-group\">\n            <label htmlFor=\"email\">Email</label>\n            <div className=\"input-container\">\n              <input\n                type=\"email\"\n                id=\"email\"\n                name=\"email\"\n                value={formData.email}\n                onChange={handleChange}\n                required\n                placeholder=\"Nhập địa chỉ email của bạn\"\n              />\n            </div>\n          </div>\n\n          <div className=\"form-group\">\n            <label htmlFor=\"feedback\">Nội dung phản hồi</label>\n            <div className=\"input-container\">\n              <textarea\n                id=\"feedback\"\n                name=\"feedback\"\n                value={formData.feedback}\n                onChange={handleChange}\n                required\n                placeholder=\"Nhập nội dung phản hồi của bạn\"\n                rows=\"5\"\n              />\n            </div>\n          </div>\n\n          <button\n            type=\"submit\"\n            className=\"submit-button\"\n            disabled={isSubmitting}\n          >\n            {isSubmitting ? \"Đang gửi...\" : \"Gửi phản hồi\"}\n          </button>\n        </form>\n      </div>\n    </div>\n  );\n};\n\nexport default FeedbackModal;\n"
+        ],
+        "mappings": "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",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1751301167719,
+      "end": 1751301167719,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1751301167719,
+      "end": 1751301167719,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1751301167719,
+      "end": 1751301167719,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1751301167719,
+      "end": 1751301167719,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1751301167719,
+      "end": 1751301167719,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1751301167719,
+      "end": 1751301167719,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1751301167719,
+      "end": 1751301167719,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1751301167719,
+      "end": 1751301167719,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1751301167719,
+      "end": 1751301167719,
+      "order": "normal"
+    }
+  ]
+}

@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useEffect, useState } from \"react\";\nimport { Link } from \"react-router-dom\";\nimport { useTranslation } from \"../../contexts/TranslationContext\";\nimport { getImageUrl } from \"../../utils/cloudinary\";\nimport \"./LifeAtMuseumPage.css\";\n\n// Helper function to create URL-friendly slugs from titles\nconst createSlug = (title) => {\n  return title\n    .toLowerCase()\n    .replace(/[^\\w\\s-]/g, \"\") // Remove special characters\n    .replace(/\\s+/g, \"-\") // Replace spaces with hyphens\n    .replace(/--+/g, \"-\") // Replace multiple hyphens with single hyphen\n    .trim(); // Remove leading/trailing spaces\n};\n\n// Sample news data\nconst newsData = [\n  {\n    id: 1,\n    title: \"Khám phá Bảo tàng Thông | Lâm Đồng TV\",\n    titleEn: \"Discover Musée Du Pin | Lam Dong TV\",\n    date: \"8 THÁNG 6 NĂM 2025\",\n    image: \"https://i.ytimg.com/vi/3Diuvj86K1M/maxresdefault.jpg\",\n    excerpt:\n      \"Hành trình khám phá không gian nghệ thuật độc đáo giữa rừng thông Đà Lạt, nơi hội tụ và giao thoa của nghệ thuật đương đại và văn hóa bản địa.\",\n    category: \"Video\",\n    subcategory: \"Giới thiệu\",\n    youtubeUrl: \"https://youtu.be/3Diuvj86K1M?si=_Obk6XAH3dFvYqEL&sfnsn=mo\",\n    content: \"\",\n  },\n\n  // Add more news items here to test pagination...\n];\n\nconst LifeAtMuseumPage = () => {\n  const { currentLang } = useTranslation();\n  const [selectedFilter, setSelectedFilter] = useState(\"All\");\n  const [displayCount, setDisplayCount] = useState(10);\n\n  // Get all unique categories and subcategories from news data\n  const getCategories = () => {\n    const categories = new Set();\n    newsData.forEach((item) => {\n      if (item.category) categories.add(item.category);\n    });\n    return [\"All\", ...Array.from(categories)];\n  };\n\n  const categories = getCategories();\n\n  // Intersection observer for animations\n  useEffect(() => {\n    const observer = new IntersectionObserver(\n      (entries) => {\n        entries.forEach((entry) => {\n          if (entry.isIntersecting) {\n            entry.target.classList.add(\"visible\");\n            observer.unobserve(entry.target);\n          }\n        });\n      },\n      { threshold: 0.15 }\n    );\n\n    document.querySelectorAll(\".animate-section\").forEach((section) => {\n      observer.observe(section);\n    });\n\n    return () => {\n      observer.disconnect();\n    };\n  }, []);\n\n  // Filter news based on selected category\n  const getFilteredNews = () => {\n    if (selectedFilter === \"All\") {\n      return newsData;\n    }\n    return newsData.filter(\n      (item) =>\n        item.category === selectedFilter || item.subcategory === selectedFilter\n    );\n  };\n\n  // Get displayed news based on filter and display count\n  const getDisplayedNews = () => {\n    const filteredNews = getFilteredNews();\n    return filteredNews.slice(0, displayCount);\n  };\n\n  // Handle load more\n  const handleLoadMore = () => {\n    setDisplayCount((prev) => prev + 10);\n  };\n\n  // Handle news item click\n  const handleNewsClick = (newsItem, e) => {\n    e.preventDefault();\n    if (newsItem.youtubeUrl) {\n      window.open(newsItem.youtubeUrl, \"_blank\");\n    }\n  };\n\n  return (\n    <div className=\"life-museum-page\">\n      {/* Hero Section */}\n      <section className=\"lm-hero animate-section\">\n        <div className=\"lm-hero-img-wrapper\">\n          <img\n            className=\"lm-hero-img\"\n            src=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784642/collections/louvre-sunset.jpg\"\n            alt=\"Musée Du Pin - Hero\"\n          />\n        </div>\n        <div className=\"lm-hero-overlay\"></div>\n        <div className=\"lm-hero-content\">\n          <h1 className=\"lm-hero-title\">TIN TỨC</h1>\n        </div>\n      </section>\n\n      {/* News Section */}\n      <section className=\"lm-news-section animate-section\">\n        <div className=\"lm-section-header\">\n          <h2 className=\"lm-section-title\">Tất cả tin tức</h2>\n        </div>\n\n        {/* Filters */}\n        <div className=\"lm-filter-container\">\n          <div className=\"lm-filter-label\">Lọc theo:</div>\n          <div className=\"lm-filter-options\">\n            {categories.map((category) => (\n              <button\n                key={category}\n                className={`lm-filter-option ${\n                  selectedFilter === category ? \"active\" : \"\"\n                }`}\n                onClick={() => setSelectedFilter(category)}\n              >\n                {category === \"All\" ? \"Tất cả\" : category}\n              </button>\n            ))}\n          </div>\n        </div>\n\n        {/* News Grid */}\n        <div className=\"lm-news-grid\">\n          {getDisplayedNews().map((newsItem) => (\n            <article\n              key={newsItem.id}\n              className=\"lm-news-item\"\n              data-type={newsItem.youtubeUrl ? \"video\" : \"article\"}\n            >\n              <Link\n                to={`/life-at-the-museum/${createSlug(newsItem.title)}`}\n                onClick={(e) => handleNewsClick(newsItem, e)}\n              >\n                <div className=\"lm-news-image-container\">\n                  <img\n                    src={\n                      newsItem.useCloudinary\n                        ? getImageUrl(newsItem.image)\n                        : newsItem.image\n                    }\n                    alt={newsItem.title}\n                    className=\"lm-news-image\"\n                  />\n                  {newsItem.youtubeUrl && (\n                    <div className=\"lm-news-play-button\">\n                      <svg viewBox=\"0 0 24 24\" fill=\"currentColor\">\n                        <path d=\"M8 5v14l11-7z\" />\n                      </svg>\n                    </div>\n                  )}\n                  <div className=\"lm-news-categories\">\n                    <span className=\"lm-news-category\">\n                      {newsItem.category}\n                    </span>\n                    <span className=\"lm-news-subcategory\">\n                      {newsItem.subcategory}\n                    </span>\n                  </div>\n                </div>\n                <div className=\"lm-news-content\">\n                  <h3 className=\"lm-news-title\">\n                    {currentLang === \"en\" ? (\n                      <span className=\"notranslate\">{newsItem.titleEn}</span>\n                    ) : (\n                      newsItem.title\n                    )}\n                  </h3>\n                  <p className=\"lm-news-excerpt\">{newsItem.excerpt}</p>\n                  <time className=\"lm-news-date\">{newsItem.date}</time>\n                </div>\n              </Link>\n            </article>\n          ))}\n        </div>\n\n        {/* Load More Button - only show if newsData has more than 10 items */}\n        {newsData.length > 10 && getFilteredNews().length > displayCount && (\n          <button className=\"lm-see-more-button\" onClick={handleLoadMore}>\n            <span className=\"lm-plus-icon\">+</span> Xem thêm bài viết\n          </button>\n        )}\n      </section>\n    </div>\n  );\n};\n\nexport default LifeAtMuseumPage;\n",
-      "start": 1751301745893,
-      "end": 1751301745913,
+      "start": 1751302841016,
+      "end": 1751302841132,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751301745913,
-      "end": 1751301745913,
+      "start": 1751302841132,
+      "end": 1751302841132,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect, useState } from \"react\";\nimport { Link } from \"react-router-dom\";\nimport { useTranslation } from \"../../contexts/TranslationContext\";\nimport { getImageUrl } from \"../../utils/cloudinary\";\nimport \"./LifeAtMuseumPage.css\";\nconst createSlug = (title) => {\n  return title.toLowerCase().replace(/[^\\w\\s-]/g, \"\").replace(/\\s+/g, \"-\").replace(/--+/g, \"-\").trim();\n};\nconst newsData = [\n  {\n    id: 1,\n    title: \"Khám phá Bảo tàng Thông | Lâm Đồng TV\",\n    titleEn: \"Discover Musée Du Pin | Lam Dong TV\",\n    date: \"8 THÁNG 6 NĂM 2025\",\n    image: \"https://i.ytimg.com/vi/3Diuvj86K1M/maxresdefault.jpg\",\n    excerpt: \"Hành trình khám phá không gian nghệ thuật độc đáo giữa rừng thông Đà Lạt, nơi hội tụ và giao thoa của nghệ thuật đương đại và văn hóa bản địa.\",\n    category: \"Video\",\n    subcategory: \"Giới thiệu\",\n    youtubeUrl: \"https://youtu.be/3Diuvj86K1M?si=_Obk6XAH3dFvYqEL&sfnsn=mo\",\n    content: \"\"\n  }\n  // Add more news items here to test pagination...\n];\nconst LifeAtMuseumPage = () => {\n  const { currentLang } = useTranslation();\n  const [selectedFilter, setSelectedFilter] = useState(\"All\");\n  const [displayCount, setDisplayCount] = useState(10);\n  const getCategories = () => {\n    const categories2 = /* @__PURE__ */ new Set();\n    newsData.forEach((item) => {\n      if (item.category) categories2.add(item.category);\n    });\n    return [\"All\", ...Array.from(categories2)];\n  };\n  const categories = getCategories();\n  useEffect(() => {\n    const observer = new IntersectionObserver(\n      (entries) => {\n        entries.forEach((entry) => {\n          if (entry.isIntersecting) {\n            entry.target.classList.add(\"visible\");\n            observer.unobserve(entry.target);\n          }\n        });\n      },\n      { threshold: 0.15 }\n    );\n    document.querySelectorAll(\".animate-section\").forEach((section) => {\n      observer.observe(section);\n    });\n    return () => {\n      observer.disconnect();\n    };\n  }, []);\n  const getFilteredNews = () => {\n    if (selectedFilter === \"All\") {\n      return newsData;\n    }\n    return newsData.filter(\n      (item) => item.category === selectedFilter || item.subcategory === selectedFilter\n    );\n  };\n  const getDisplayedNews = () => {\n    const filteredNews = getFilteredNews();\n    return filteredNews.slice(0, displayCount);\n  };\n  const handleLoadMore = () => {\n    setDisplayCount((prev) => prev + 10);\n  };\n  const handleNewsClick = (newsItem, e) => {\n    e.preventDefault();\n    if (newsItem.youtubeUrl) {\n      window.open(newsItem.youtubeUrl, \"_blank\");\n    }\n  };\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"life-museum-page\", children: [\n    /* @__PURE__ */ jsxs(\"section\", { className: \"lm-hero animate-section\", children: [\n      /* @__PURE__ */ jsx(\"div\", { className: \"lm-hero-img-wrapper\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          className: \"lm-hero-img\",\n          src: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784642/collections/louvre-sunset.jpg\",\n          alt: \"Musée Du Pin - Hero\"\n        }\n      ) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"lm-hero-overlay\" }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"lm-hero-content\", children: /* @__PURE__ */ jsx(\"h1\", { className: \"lm-hero-title\", children: \"TIN TỨC\" }) })\n    ] }),\n    /* @__PURE__ */ jsxs(\"section\", { className: \"lm-news-section animate-section\", children: [\n      /* @__PURE__ */ jsx(\"div\", { className: \"lm-section-header\", children: /* @__PURE__ */ jsx(\"h2\", { className: \"lm-section-title\", children: \"Tất cả tin tức\" }) }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"lm-filter-container\", children: [\n        /* @__PURE__ */ jsx(\"div\", { className: \"lm-filter-label\", children: \"Lọc theo:\" }),\n        /* @__PURE__ */ jsx(\"div\", { className: \"lm-filter-options\", children: categories.map((category) => /* @__PURE__ */ jsx(\n          \"button\",\n          {\n            className: `lm-filter-option ${selectedFilter === category ? \"active\" : \"\"}`,\n            onClick: () => setSelectedFilter(category),\n            children: category === \"All\" ? \"Tất cả\" : category\n          },\n          category\n        )) })\n      ] }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"lm-news-grid\", children: getDisplayedNews().map((newsItem) => /* @__PURE__ */ jsx(\n        \"article\",\n        {\n          className: \"lm-news-item\",\n          \"data-type\": newsItem.youtubeUrl ? \"video\" : \"article\",\n          children: /* @__PURE__ */ jsxs(\n            Link,\n            {\n              to: `/life-at-the-museum/${createSlug(newsItem.title)}`,\n              onClick: (e) => handleNewsClick(newsItem, e),\n              children: [\n                /* @__PURE__ */ jsxs(\"div\", { className: \"lm-news-image-container\", children: [\n                  /* @__PURE__ */ jsx(\n                    \"img\",\n                    {\n                      src: newsItem.useCloudinary ? getImageUrl(newsItem.image) : newsItem.image,\n                      alt: newsItem.title,\n                      className: \"lm-news-image\"\n                    }\n                  ),\n                  newsItem.youtubeUrl && /* @__PURE__ */ jsx(\"div\", { className: \"lm-news-play-button\", children: /* @__PURE__ */ jsx(\"svg\", { viewBox: \"0 0 24 24\", fill: \"currentColor\", children: /* @__PURE__ */ jsx(\"path\", { d: \"M8 5v14l11-7z\" }) }) }),\n                  /* @__PURE__ */ jsxs(\"div\", { className: \"lm-news-categories\", children: [\n                    /* @__PURE__ */ jsx(\"span\", { className: \"lm-news-category\", children: newsItem.category }),\n                    /* @__PURE__ */ jsx(\"span\", { className: \"lm-news-subcategory\", children: newsItem.subcategory })\n                  ] })\n                ] }),\n                /* @__PURE__ */ jsxs(\"div\", { className: \"lm-news-content\", children: [\n                  /* @__PURE__ */ jsx(\"h3\", { className: \"lm-news-title\", children: currentLang === \"en\" ? /* @__PURE__ */ jsx(\"span\", { className: \"notranslate\", children: newsItem.titleEn }) : newsItem.title }),\n                  /* @__PURE__ */ jsx(\"p\", { className: \"lm-news-excerpt\", children: newsItem.excerpt }),\n                  /* @__PURE__ */ jsx(\"time\", { className: \"lm-news-date\", children: newsItem.date })\n                ] })\n              ]\n            }\n          )\n        },\n        newsItem.id\n      )) }),\n      newsData.length > 10 && getFilteredNews().length > displayCount && /* @__PURE__ */ jsxs(\"button\", { className: \"lm-see-more-button\", onClick: handleLoadMore, children: [\n        /* @__PURE__ */ jsx(\"span\", { className: \"lm-plus-icon\", children: \"+\" }),\n        \" Xem thêm bài viết\"\n      ] })\n    ] })\n  ] });\n};\nexport default LifeAtMuseumPage;\n",
-      "start": 1751301745913,
-      "end": 1751301746146,
+      "start": 1751302841132,
+      "end": 1751302841260,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -36,56 +36,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751301746146,
-      "end": 1751301746146,
+      "start": 1751302841260,
+      "end": 1751302841260,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751301746146,
-      "end": 1751301746146,
+      "start": 1751302841260,
+      "end": 1751302841260,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751301746146,
-      "end": 1751301746146,
+      "start": 1751302841260,
+      "end": 1751302841260,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751301746146,
-      "end": 1751301746146,
+      "start": 1751302841260,
+      "end": 1751302841260,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751301746146,
-      "end": 1751301746146,
+      "start": 1751302841260,
+      "end": 1751302841260,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751301746147,
-      "end": 1751301746147,
+      "start": 1751302841260,
+      "end": 1751302841260,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751301746147,
-      "end": 1751301746147,
+      "start": 1751302841260,
+      "end": 1751302841260,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751301746147,
-      "end": 1751301746147,
+      "start": 1751302841260,
+      "end": 1751302841261,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751301746147,
-      "end": 1751301746147,
+      "start": 1751302841261,
+      "end": 1751302841261,
       "order": "normal"
     }
   ]

@@ -541,10 +541,16 @@
 .homestay-section {
   position: relative;
   overflow: hidden;
-  clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+  
   margin-top: -20px;
   padding-top: 120px !important;
   background: none !important;
+}
+
+@media (max-width: 768px) {
+  .homestay-section {
+    clip-path: polygon(0 5%, 100% 0, 100% 100%, 0 100%);
+  }
 }
 
 .homestay-section .decorative-circle {
@@ -2344,7 +2350,7 @@
   left: 0;
   width: 0;
   height: 1px;
-  background: #2563eb;
+  background: yellowgreen;
   transition: width 0.3s ease;
 }
 

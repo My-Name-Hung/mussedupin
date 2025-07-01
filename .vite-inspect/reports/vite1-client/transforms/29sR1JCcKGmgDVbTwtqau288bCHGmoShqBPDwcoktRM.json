@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\n\nconst CloudinaryPlayer = ({\n  cloudName,\n  publicId,\n  profile = \"cld-looping\",\n  width = \"100%\",\n  height = \"100%\",\n}) => {\n  const url = `https://player.cloudinary.com/embed/?cloud_name=${cloudName}&public_id=${encodeURIComponent(\n    publicId\n  )}&profile=${profile}`;\n  return (\n    <iframe\n      title=\"Cloudinary Video Player\"\n      src={url}\n      width={width}\n      height={height}\n      allow=\"autoplay; fullscreen\"\n      allowFullScreen\n      frameBorder=\"0\"\n      style={{ border: \"none\", width, height }}\n    />\n  );\n};\n\nexport default CloudinaryPlayer;\n",
-      "start": 1751301747259,
-      "end": 1751301748344,
+      "start": 1751302842040,
+      "end": 1751302843725,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751301748345,
-      "end": 1751301748345,
+      "start": 1751302843725,
+      "end": 1751302843725,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx } from \"react/jsx-runtime\";\nimport React from \"react\";\nconst CloudinaryPlayer = ({\n  cloudName,\n  publicId,\n  profile = \"cld-looping\",\n  width = \"100%\",\n  height = \"100%\"\n}) => {\n  const url = `https://player.cloudinary.com/embed/?cloud_name=${cloudName}&public_id=${encodeURIComponent(\n    publicId\n  )}&profile=${profile}`;\n  return /* @__PURE__ */ jsx(\n    \"iframe\",\n    {\n      title: \"Cloudinary Video Player\",\n      src: url,\n      width,\n      height,\n      allow: \"autoplay; fullscreen\",\n      allowFullScreen: true,\n      frameBorder: \"0\",\n      style: { border: \"none\", width, height }\n    }\n  );\n};\nexport default CloudinaryPlayer;\n",
-      "start": 1751301748345,
-      "end": 1751301748400,
+      "start": 1751302843725,
+      "end": 1751302843986,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751301748400,
-      "end": 1751301748400,
+      "start": 1751302843986,
+      "end": 1751302843986,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751301748400,
-      "end": 1751301748400,
+      "start": 1751302843986,
+      "end": 1751302843986,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751301748400,
-      "end": 1751301748400,
+      "start": 1751302843986,
+      "end": 1751302843986,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751301748400,
-      "end": 1751301748400,
+      "start": 1751302843987,
+      "end": 1751302843987,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751301748400,
-      "end": 1751301748400,
+      "start": 1751302843987,
+      "end": 1751302843987,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751301748400,
-      "end": 1751301748400,
+      "start": 1751302843989,
+      "end": 1751302843989,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751301748401,
-      "end": 1751301748401,
+      "start": 1751302843989,
+      "end": 1751302843989,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751301748401,
-      "end": 1751301748402,
+      "start": 1751302843989,
+      "end": 1751302843989,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751301748402,
-      "end": 1751301748402,
+      "start": 1751302843989,
+      "end": 1751302843989,
       "order": "normal"
     }
   ]

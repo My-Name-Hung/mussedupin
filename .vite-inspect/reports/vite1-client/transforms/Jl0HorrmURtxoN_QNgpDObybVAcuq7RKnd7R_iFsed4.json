@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { useCallback, useRef } from \"react\";\n\n// Memory cache for fastest access\nconst memoryCache = new Map();\n\n// IndexedDB setup\nconst DB_NAME = \"imageCache\";\nconst STORE_NAME = \"images\";\nconst DB_VERSION = 1;\n\nconst openDB = () => {\n  return new Promise((resolve, reject) => {\n    const request = indexedDB.open(DB_NAME, DB_VERSION);\n\n    request.onerror = () => reject(request.error);\n    request.onsuccess = () => resolve(request.result);\n\n    request.onupgradeneeded = (event) => {\n      const db = event.target.result;\n      if (!db.objectStoreNames.contains(STORE_NAME)) {\n        db.createObjectStore(STORE_NAME);\n      }\n    };\n  });\n};\n\n// Helper to get sessionStorage key\nconst getSessionKey = (src) => `imagecache_${src}`;\n\nexport default function useImageCache() {\n  const loadingRef = useRef(new Set());\n\n  const preload = useCallback(async (src) => {\n    if (!src) return false;\n\n    // Check memory cache first\n    if (memoryCache.has(src)) {\n      return true;\n    }\n\n    // Check if already loading\n    if (loadingRef.current.has(src)) {\n      return new Promise((resolve) => {\n        const checkLoaded = () => {\n          if (memoryCache.has(src) || !loadingRef.current.has(src)) {\n            resolve(true);\n          } else {\n            setTimeout(checkLoaded, 100);\n          }\n        };\n        checkLoaded();\n      });\n    }\n\n    loadingRef.current.add(src);\n\n    try {\n      // Check sessionStorage first\n      const sessionKey = getSessionKey(src);\n      const sessionData = sessionStorage.getItem(sessionKey);\n\n      if (sessionData) {\n        const blob = new Blob([new Uint8Array(JSON.parse(sessionData))]);\n        const url = URL.createObjectURL(blob);\n        memoryCache.set(src, url);\n        loadingRef.current.delete(src);\n        return true;\n      }\n\n      // Check IndexedDB\n      try {\n        const db = await openDB();\n        const transaction = db.transaction([STORE_NAME], \"readonly\");\n        const store = transaction.objectStore(STORE_NAME);\n        const result = await new Promise((resolve, reject) => {\n          const request = store.get(src);\n          request.onsuccess = () => resolve(request.result);\n          request.onerror = () => reject(request.error);\n        });\n\n        if (result) {\n          const url = URL.createObjectURL(result);\n          memoryCache.set(src, url);\n          loadingRef.current.delete(src);\n          return true;\n        }\n      } catch (dbError) {\n        console.warn(\"IndexedDB error:\", dbError);\n      }\n\n      // Fetch and cache\n      const response = await fetch(src);\n      if (!response.ok) throw new Error(`Failed to load: ${response.status}`);\n\n      const blob = await response.blob();\n      const url = URL.createObjectURL(blob);\n\n      // Store in memory cache\n      memoryCache.set(src, url);\n\n      // Store in sessionStorage (limit size)\n      if (blob.size < 1024 * 1024) {\n        // 1MB limit\n        try {\n          const arrayBuffer = await blob.arrayBuffer();\n          const uint8Array = new Uint8Array(arrayBuffer);\n          sessionStorage.setItem(\n            sessionKey,\n            JSON.stringify(Array.from(uint8Array))\n          );\n        } catch (storageError) {\n          console.warn(\"SessionStorage error:\", storageError);\n        }\n      }\n\n      // Store in IndexedDB\n      try {\n        const db = await openDB();\n        const transaction = db.transaction([STORE_NAME], \"readwrite\");\n        const store = transaction.objectStore(STORE_NAME);\n        store.put(blob, src);\n      } catch (dbError) {\n        console.warn(\"IndexedDB store error:\", dbError);\n      }\n\n      loadingRef.current.delete(src);\n      return true;\n    } catch (error) {\n      console.error(\"Preload error:\", error);\n      loadingRef.current.delete(src);\n    return false;\n    }\n  }, []);\n\n  // New function to preload multiple assets\n  const preloadAll = useCallback(\n    async (assetList, concurrency = 6) => {\n      if (!assetList || assetList.length === 0) return [];\n\n      const results = [];\n      for (let i = 0; i < assetList.length; i += concurrency) {\n        const batch = assetList.slice(i, i + concurrency);\n        const batchPromises = batch.map((asset) => preload(asset));\n        const batchResults = await Promise.allSettled(batchPromises);\n        results.push(...batchResults);\n      }\n\n      return results;\n    },\n    [preload]\n  );\n\n  const getCachedUrl = useCallback((src) => {\n    return memoryCache.get(src) || src;\n  }, []);\n\n  const isLoaded = useCallback((src) => {\n    return memoryCache.has(src);\n  }, []);\n\n  const clearCache = useCallback(() => {\n    memoryCache.clear();\n    loadingRef.current.clear();\n\n    // Clear sessionStorage\n    for (let i = 0; i < sessionStorage.length; i++) {\n      const key = sessionStorage.key(i);\n      if (key && key.startsWith(\"imagecache_\")) {\n        sessionStorage.removeItem(key);\n      }\n    }\n\n    // Clear IndexedDB\n    openDB()\n      .then((db) => {\n        const transaction = db.transaction([STORE_NAME], \"readwrite\");\n        const store = transaction.objectStore(STORE_NAME);\n        store.clear();\n      })\n      .catch(console.warn);\n  }, []);\n\n  return {\n    preload,\n    preloadAll,\n    getCachedUrl,\n    isLoaded,\n    clearCache,\n  };\n}\n",
-      "start": 1751301746137,
-      "end": 1751301746572,
+      "start": 1751302841146,
+      "end": 1751302841377,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751301746572,
-      "end": 1751301746572,
+      "start": 1751302841377,
+      "end": 1751302841377,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751301746572,
-      "end": 1751301746572,
+      "start": 1751302841377,
+      "end": 1751302841377,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751301746572,
-      "end": 1751301746572,
+      "start": 1751302841377,
+      "end": 1751302841377,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751301746572,
-      "end": 1751301746572,
+      "start": 1751302841377,
+      "end": 1751302841377,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751301746572,
-      "end": 1751301746572,
+      "start": 1751302841377,
+      "end": 1751302841377,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751301746572,
-      "end": 1751301746572,
+      "start": 1751302841377,
+      "end": 1751302841377,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751301746572,
-      "end": 1751301746572,
+      "start": 1751302841377,
+      "end": 1751302841377,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751301746572,
-      "end": 1751301746572,
+      "start": 1751302841377,
+      "end": 1751302841377,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751301746572,
-      "end": 1751301746572,
+      "start": 1751302841377,
+      "end": 1751302841377,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751301746572,
-      "end": 1751301746572,
+      "start": 1751302841377,
+      "end": 1751302841378,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751301746572,
-      "end": 1751301746572,
+      "start": 1751302841378,
+      "end": 1751302841378,
       "order": "normal"
     }
   ]

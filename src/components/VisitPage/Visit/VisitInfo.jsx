@@ -1444,7 +1444,7 @@ const VisitInfo = () => {
         vi: (
           <>
             Bạn có thể tìm hiểu giờ mở cửa của Bảo Tàng trong mục{" "}
-            <a href="/visit" style={{ cursor: "pointer", color: "#00695c" }}>
+            <a href="/visit" style={{ cursor: "pointer", color: "#2c2f11" }}>
               <strong>Giờ mở cửa & chi phí các gói trải nghiệm</strong>
             </a>
           </>
@@ -1452,7 +1452,7 @@ const VisitInfo = () => {
         en: (
           <>
             You can find our opening hours in the{" "}
-            <a href="/visit" style={{ cursor: "pointer", color: "#00695c" }}>
+            <a href="/visit" style={{ cursor: "pointer", color: "#2c2f11" }}>
               <strong>Opening Hours & Experience Packages</strong>
             </a>
           </>
@@ -1471,7 +1471,7 @@ const VisitInfo = () => {
             địa điểm khác trong mục{" "}
             <a
               href="/museum-map"
-              style={{ cursor: "pointer", color: "#00695c" }}
+              style={{ cursor: "pointer", color: "#2c2f11" }}
             >
               <strong>Bản đồ, đường đi & chỉ dẫn</strong>
             </a>
@@ -1482,7 +1482,7 @@ const VisitInfo = () => {
             You can find directions to and from the museum in our{" "}
             <a
               href="/museum-map"
-              style={{ cursor: "pointer", color: "#00695c" }}
+              style={{ cursor: "pointer", color: "#2c2f11" }}
             >
               <strong>Map, Directions & Guide</strong>
             </a>
@@ -1500,7 +1500,7 @@ const VisitInfo = () => {
           <>
             Bạn có thể tìm hiểu chi tiết các gói trải nghiệm và chi phí tham
             khảo tại mục{" "}
-            <a href="/visit" style={{ cursor: "pointer", color: "#00695c" }}>
+            <a href="/visit" style={{ cursor: "pointer", color: "#2c2f11" }}>
               <strong>Giờ mở cửa & chi phí các gói trải nghiệm</strong>
             </a>
           </>
@@ -1509,7 +1509,7 @@ const VisitInfo = () => {
           <>
             You can find detailed information about experience packages and fees
             in our{" "}
-            <a href="/visit" style={{ cursor: "pointer", color: "#00695c" }}>
+            <a href="/visit" style={{ cursor: "pointer", color: "#2c2f11" }}>
               <strong>Opening Hours & Experience Packages</strong>
             </a>
           </>
@@ -1522,18 +1522,69 @@ const VisitInfo = () => {
         en: "What activities are available at Musée Du Pin?",
       },
       answer: {
-        vi: "Bảo Tàng Thông có nhiều hoạt động đa dạng, từ triển lãm thường trực đến các workshop nghệ thuật và chương trình giáo dục. Vui lòng xem mục Khám phá và Trải nghiệm để biết thêm chi tiết.",
-        en: "Musée Du Pin offers a variety of activities, from permanent exhibitions to art workshops and educational programs. Please check our Explore and Experience sections for more details.",
+        vi: (
+          <>
+            Bảo Tàng Thông có nhiều hoạt động đa dạng, từ triển lãm thường trực
+            đến các workshop nghệ thuật và chương trình giáo dục. Vui lòng xem
+            mục{" "}
+            <a href="/" style={{ cursor: "pointer", color: "#2c2f11" }}>
+              <strong>Khám phá</strong>
+            </a>
+            và{" "}
+            <a href="/" style={{ cursor: "pointer", color: "#2c2f11" }}>
+              <strong>Trải nghiệm</strong>
+            </a>{" "}
+            để biết thêm chi tiết.
+          </>
+        ),
+        en: (
+          <>
+            Musée Du Pin offers a variety of activities, from permanent
+            exhibitions to art workshops and educational programs. Please check
+            our{" "}
+            <a href="/" style={{ cursor: "pointer", color: "#2c2f11" }}>
+              <strong>Explore</strong>
+            </a>
+            and{" "}
+            <a href="/" style={{ cursor: "pointer", color: "#2c2f11" }}>
+              <strong>Experience</strong>
+            </a>{" "}
+            sections for more details.
+          </>
+        ),
       },
     },
+
     {
       question: {
         vi: "Bảo Tàng Thông có các hoạt động nào cho trẻ em?",
         en: "What activities are available for children?",
       },
       answer: {
-        vi: "Có rất nhiều hoạt động workshop giáo dục cho trẻ em, bạn có thể tham khảo tại mục Các Chương Trình Định Kỳ",
-        en: "We offer many educational workshops for children. You can find more information in our Regular Programs section",
+        vi: (
+          <>
+            Có rất nhiều hoạt động workshop giáo dục cho trẻ em, bạn có thể tham
+            khảo tại mục{" "}
+            <a
+              href="/visit/regular"
+              style={{ cursor: "pointer", color: "#2c2f11" }}
+            >
+              <strong>Các Chương Trình Định Kỳ</strong>
+            </a>
+          </>
+        ),
+        en: (
+          <>
+            We offer many educational workshops for children. You can find more
+            information in our{" "}
+            <a
+              href="/visit/regular"
+              style={{ cursor: "pointer", color: "#2c2f11" }}
+            >
+              <strong>Regular Programs section</strong>
+            </a>
+          </>
+        ),
       },
     },
     {
@@ -1579,56 +1630,12 @@ const VisitInfo = () => {
     {
       question: {
         vi: "Bảo Tàng Thông có lắp máy lạnh không?",
-        en: "Does the museum have air conditioning?",
+        en: "Does the Musée Du Pin have air conditioning?",
       },
       answer: {
-        vi: (
-          <>
-            Bạn có thể tìm hiểu chi tiết các gói trải nghiệm và chi phí tham
-            khảo tại mục{" "}
-            <a href="/visit#tickets">
-              <strong style={{ cursor: "pointer", color: "#00695c" }}>
-                Giờ mở cửa & chi phí các gói trải nghiệm
-              </strong>
-            </a>
-          </>
-        ),
-        en: (
-          <>
-            You can find detailed information about experience packages and fees
-            in our{" "}
-            <a href="/visit#tickets">
-              <strong style={{ cursor: "pointer", color: "#00695c" }}>
-                Opening Hours & Experience Packages
-              </strong>
-            </a>
-          </>
-        ),
+        vi: "Bảo Tàng Thông hướng đến sứ mệnh bảo tồn thông và không khí trong lành nên không cung cấp máy điều hòa, nhưng các căn phòng được thiết kế và lắp đặt các thiết bị đặc biệt để đảm bảo nhiệt độ phòng luôn ở mức 22-25 độ. Quý khách lưu ý không được hút thuốc trong phòng.",
+        en: "Pine Museum aims to preserve pine and fresh air so it does not provide air conditioning, but the rooms are designed and equipped with special equipment to ensure the room temperature is always at 22-25 degrees. Please note that smoking is not allowed in the rooms.",
       },
-    },
-    {
-      question: "Những vật dụng nào không được phép mang vào bảo tàng?",
-      answer:
-        "Các vật dụng không được phép mang vào bảo tàng gồm đồ ăn thức uống(trừ chai nước), và các vật sắc nhọn. Những vật dụng này phải được gửi tại phòng gửi đồ. Chúng tôi cũng cấm chạm vào tác phẩm nghệ thuật, hút thuốc trong không gian trưng bày.",
-    },
-    {
-      question: "Có cho phép xe đẩy em bé vào bảo tàng không?",
-      answer:
-        "Có, xe đẩy và nôi em bé được phép vào bảo tàng. Tuy nhiên, trong thời điểm đông khách, bạn có thể được yêu cầu gửi xe đẩy lớn tại phòng gửi đồ và sử dụng địu em bé thay thế. Tất cả các phòng trưng bày và không gian triển lãm đều có thể tiếp cận bằng xe đẩy thông qua thang máy.",
-    },
-    {
-      question: "Tôi có thể mang thú cưng vào Bảo Tàng không?",
-      answer: "Thật tiếc, bạn không thể mang thú cưng vào Bảo Tàng",
-    },
-    {
-      question: "Trong trường hợp để quên đồ tại Bảo Tàng thì tôi phải làm gì?",
-      answer:
-        "Bạn cần thông báo cho hệ thống hỗ trợ online qua Zalo, fb Mes, Line, Viber ..để được khoanh vùng tìm kiếm đồ thất lạc, Bảo Tàng sẽ hỗ trợ hết sức cho quý khách nhưng không chịu trách nhiệm về việc này.",
-    },
-    {
-      question: "Bảo Tàng Thông có lắp máy lạnh không?",
-      answer:
-        "Bảo Tàng Thông hướng đến sứ mệnh bảo tồn thông và không khí trong lành nên không cung cấp máy điều hòa, nhưng các căn phòng được thiết kế và lắp đặt các thiết bị đặc biệt để đảm bảo nhiệt độ phòng luôn ở mức 22-25 độ. Quý khách lưu ý không được hút thuốc trong phòng.",
     },
   ];
 

@@ -123,10 +123,10 @@ const allItems = [
     description:
       "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
     image:
-      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748840047/collections/thechillhood.jpg",
+      "https://ik.imagekit.io/8u8lkoqkkm/Tu%E1%BB%95i%20%E1%BA%A5u%20th%C6%A1-%20The%20Childhood/z6735013755648_e134fda3141c25a0a9fc67efa73d00de.jpg?updatedAt=1751274451818",
     alt: "The Childhood",
     tag: "Lưu trú",
-    link: "/visit/package/the-childhood",
+    link: "/visit-info?section=homestay",
   },
   {
     id: "white-bauhunia",
@@ -134,10 +134,10 @@ const allItems = [
     description:
       "Căn hộ sang trọng với đầy đủ tiện nghi, cách bảo tàng 10 phút đi bộ.",
     image:
-      "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846791/collections/whitebauhinia.jpg",
+      "https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng-%20Bauhinia/z6735015913658_0a13ac137c59ccacc8e376f1d7f63ce8.jpg?updatedAt=1751274467967",
     alt: "White Bauhunia",
     tag: "Lưu trú",
-    link: "/visit/package/white-bauhunia",
+    link: "/visit-info?section=homestay",
   },
   // Additional packages from PackageDetail
   {

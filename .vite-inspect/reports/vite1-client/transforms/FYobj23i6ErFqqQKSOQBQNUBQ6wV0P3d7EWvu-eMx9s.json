@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\nimport { MdArrowBack } from \"react-icons/md\";\nimport { useNavigate } from \"react-router-dom\";\nimport \"./VisitPackages.css\";\n\nconst ArtRooms = () => {\n  const navigate = useNavigate();\n\n  const rooms = [\n    {\n      id: \"the-childhood\",\n      title: \"\",\n      image:\n        \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748840047/collections/thechillhood.jpg\",\n      orientation: \"landscape\",\n      description:\n        \"Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.\",\n    },\n    {\n      id: \"white-bauhunia\",\n      title: \"\",\n      image:\n        \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846791/collections/whitebauhinia.jpg\",\n      orientation: \"landscape\",\n      description:\n        \"Căn hộ sang trọng với đầy đủ tiện nghi, cách bảo tàng 10 phút đi bộ.\",\n    },\n    {\n      id: \"the-chill-1\",\n      title: \"\",\n      image:\n        \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846806/collections/thechill1.jpg\",\n      orientation: \"landscape\",\n      description:\n        \"Biệt thự tuyệt đẹp với vườn riêng, dịch vụ cao cấp và view thành phố ngoạn mục.\",\n    },\n    {\n      id: \"the-chill-2\",\n      title: \"\",\n      image:\n        \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846806/collections/thechill2.jpg\",\n      orientation: \"landscape\",\n      description:\n        \"Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.\",\n    },\n    {\n      id: \"the-memory\",\n      title: \"\",\n      image:\n        \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846800/collections/thememory.jpg\",\n      orientation: \"landscape\",\n      description:\n        \"Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.\",\n    },\n    {\n      id: \"the-sunset\",\n      title: \"\",\n      image:\n        \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846798/collections/thesunset.jpg\",\n      orientation: \"landscape\",\n      description:\n        \"Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.\",\n    },\n    {\n      id: \"the-train\",\n      title: \"\",\n      image:\n        \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846795/collections/thetrain.jpg\",\n      orientation: \"landscape\",\n      description:\n        \"Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.\",\n    },\n  ];\n\n  return (\n    <div className=\"packages-container\">\n      <div className=\"packages-hero\">\n        <button className=\"back-button1\" onClick={() => navigate(\"/visit\")}>\n          <MdArrowBack />\n        </button>\n        <div className=\"hero-image-container\">\n          <img\n            src=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748841943/collections/luutrunghethuat.jpg\"\n            alt=\"Các căn phòng nghệ thuật\"\n            className=\"hero-image landscape\"\n          />\n        </div>\n        <div className=\"packages-hero-content\">\n          <h1 className=\"packages-title\"></h1>\n        </div>\n      </div>\n\n      <div className=\"packages-content\">\n        <div className=\"packages-grid\">\n          {rooms.map((room) => (\n            <div\n              key={room.id}\n              className=\"visit-cardss\"\n              onClick={() => navigate(`/visit/package/${room.id}`)}\n            >\n              <div className=\"visit-cards-img-wrap\">\n                <img\n                  src={room.image}\n                  alt={room.title}\n                  className={`visit-cards-img ${room.orientation}`}\n                />\n                <div className=\"visit-cards-overlay\" />\n                <div className=\"visit-card-content\">\n                  <h2>{room.title}</h2>\n                </div>\n              </div>\n            </div>\n          ))}\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default ArtRooms;\n",
-      "start": 1751301745905,
-      "end": 1751301745927,
+      "start": 1751302841034,
+      "end": 1751302841204,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751301745927,
-      "end": 1751301745927,
+      "start": 1751302841204,
+      "end": 1751302841204,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { MdArrowBack } from \"react-icons/md\";\nimport { useNavigate } from \"react-router-dom\";\nimport \"./VisitPackages.css\";\nconst ArtRooms = () => {\n  const navigate = useNavigate();\n  const rooms = [\n    {\n      id: \"the-childhood\",\n      title: \"\",\n      image: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748840047/collections/thechillhood.jpg\",\n      orientation: \"landscape\",\n      description: \"Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.\"\n    },\n    {\n      id: \"white-bauhunia\",\n      title: \"\",\n      image: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846791/collections/whitebauhinia.jpg\",\n      orientation: \"landscape\",\n      description: \"Căn hộ sang trọng với đầy đủ tiện nghi, cách bảo tàng 10 phút đi bộ.\"\n    },\n    {\n      id: \"the-chill-1\",\n      title: \"\",\n      image: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846806/collections/thechill1.jpg\",\n      orientation: \"landscape\",\n      description: \"Biệt thự tuyệt đẹp với vườn riêng, dịch vụ cao cấp và view thành phố ngoạn mục.\"\n    },\n    {\n      id: \"the-chill-2\",\n      title: \"\",\n      image: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846806/collections/thechill2.jpg\",\n      orientation: \"landscape\",\n      description: \"Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.\"\n    },\n    {\n      id: \"the-memory\",\n      title: \"\",\n      image: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846800/collections/thememory.jpg\",\n      orientation: \"landscape\",\n      description: \"Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.\"\n    },\n    {\n      id: \"the-sunset\",\n      title: \"\",\n      image: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846798/collections/thesunset.jpg\",\n      orientation: \"landscape\",\n      description: \"Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.\"\n    },\n    {\n      id: \"the-train\",\n      title: \"\",\n      image: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846795/collections/thetrain.jpg\",\n      orientation: \"landscape\",\n      description: \"Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.\"\n    }\n  ];\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"packages-container\", children: [\n    /* @__PURE__ */ jsxs(\"div\", { className: \"packages-hero\", children: [\n      /* @__PURE__ */ jsx(\"button\", { className: \"back-button1\", onClick: () => navigate(\"/visit\"), children: /* @__PURE__ */ jsx(MdArrowBack, {}) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"hero-image-container\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748841943/collections/luutrunghethuat.jpg\",\n          alt: \"Các căn phòng nghệ thuật\",\n          className: \"hero-image landscape\"\n        }\n      ) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"packages-hero-content\", children: /* @__PURE__ */ jsx(\"h1\", { className: \"packages-title\" }) })\n    ] }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"packages-content\", children: /* @__PURE__ */ jsx(\"div\", { className: \"packages-grid\", children: rooms.map((room) => /* @__PURE__ */ jsx(\n      \"div\",\n      {\n        className: \"visit-cardss\",\n        onClick: () => navigate(`/visit/package/${room.id}`),\n        children: /* @__PURE__ */ jsxs(\"div\", { className: \"visit-cards-img-wrap\", children: [\n          /* @__PURE__ */ jsx(\n            \"img\",\n            {\n              src: room.image,\n              alt: room.title,\n              className: `visit-cards-img ${room.orientation}`\n            }\n          ),\n          /* @__PURE__ */ jsx(\"div\", { className: \"visit-cards-overlay\" }),\n          /* @__PURE__ */ jsx(\"div\", { className: \"visit-card-content\", children: /* @__PURE__ */ jsx(\"h2\", { children: room.title }) })\n        ] })\n      },\n      room.id\n    )) }) })\n  ] });\n};\nexport default ArtRooms;\n",
-      "start": 1751301745927,
-      "end": 1751301746155,
+      "start": 1751302841204,
+      "end": 1751302841266,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751301746155,
-      "end": 1751301746155,
+      "start": 1751302841266,
+      "end": 1751302841266,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751301746155,
-      "end": 1751301746155,
+      "start": 1751302841266,
+      "end": 1751302841266,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751301746155,
-      "end": 1751301746155,
+      "start": 1751302841266,
+      "end": 1751302841266,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751301746155,
-      "end": 1751301746155,
+      "start": 1751302841266,
+      "end": 1751302841266,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751301746155,
-      "end": 1751301746155,
+      "start": 1751302841266,
+      "end": 1751302841266,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751301746155,
-      "end": 1751301746155,
+      "start": 1751302841266,
+      "end": 1751302841266,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751301746155,
-      "end": 1751301746155,
+      "start": 1751302841266,
+      "end": 1751302841266,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751301746155,
-      "end": 1751301746156,
+      "start": 1751302841266,
+      "end": 1751302841267,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751301746156,
-      "end": 1751301746156,
+      "start": 1751302841267,
+      "end": 1751302841267,
       "order": "normal"
     }
   ]

@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "export var CALENDAR_TYPES = {\n    GREGORY: 'gregory',\n    HEBREW: 'hebrew',\n    ISLAMIC: 'islamic',\n    ISO_8601: 'iso8601',\n};\nexport var CALENDAR_TYPE_LOCALES = {\n    gregory: [\n        'en-CA',\n        'en-US',\n        'es-AR',\n        'es-BO',\n        'es-CL',\n        'es-CO',\n        'es-CR',\n        'es-DO',\n        'es-EC',\n        'es-GT',\n        'es-HN',\n        'es-MX',\n        'es-NI',\n        'es-PA',\n        'es-PE',\n        'es-PR',\n        'es-SV',\n        'es-VE',\n        'pt-BR',\n    ],\n    hebrew: ['he', 'he-IL'],\n    islamic: [\n        // ar-LB, ar-MA intentionally missing\n        'ar',\n        'ar-AE',\n        'ar-BH',\n        'ar-DZ',\n        'ar-EG',\n        'ar-IQ',\n        'ar-JO',\n        'ar-KW',\n        'ar-LY',\n        'ar-OM',\n        'ar-QA',\n        'ar-SA',\n        'ar-SD',\n        'ar-SY',\n        'ar-YE',\n        'dv',\n        'dv-MV',\n        'ps',\n        'ps-AR',\n    ],\n};\nexport var WEEKDAYS = [0, 1, 2, 3, 4, 5, 6];\n",
-      "start": 1751093177482,
-      "end": 1751093177562,
+      "start": 1751267824295,
+      "end": 1751267824535,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751093177562,
-      "end": 1751093177562,
+      "start": 1751267824535,
+      "end": 1751267824535,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751093177562,
-      "end": 1751093177562,
+      "start": 1751267824535,
+      "end": 1751267824535,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751093177562,
-      "end": 1751093177562,
+      "start": 1751267824535,
+      "end": 1751267824535,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751093177562,
-      "end": 1751093177562,
+      "start": 1751267824535,
+      "end": 1751267824535,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751093177562,
-      "end": 1751093177562,
+      "start": 1751267824541,
+      "end": 1751267824541,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751093177562,
-      "end": 1751093177562,
+      "start": 1751267824541,
+      "end": 1751267824541,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751093177562,
-      "end": 1751093177562,
+      "start": 1751267824541,
+      "end": 1751267824541,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751093177562,
-      "end": 1751093177562,
+      "start": 1751267824541,
+      "end": 1751267824541,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751093177562,
-      "end": 1751093177562,
+      "start": 1751267824541,
+      "end": 1751267824541,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751093177562,
-      "end": 1751093177562,
+      "start": 1751267824541,
+      "end": 1751267824541,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751093177562,
-      "end": 1751093177562,
+      "start": 1751267824541,
+      "end": 1751267824541,
       "order": "normal"
     }
   ]

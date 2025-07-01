@@ -9,6 +9,8 @@ const CartFooter = ({
   tickets,
   onNextStep,
   currentStep,
+  packageData,
+  selectedCapacity,
 }) => {
   const [showCart, setShowCart] = useState(false);
 
@@ -25,6 +27,9 @@ const CartFooter = ({
       day: "numeric",
     });
   };
+
+  // Check if this is a room package (has capacityOptions)
+  const isRoomPackage = packageData?.capacityOptions;
 
   return (
     <>
@@ -61,21 +66,44 @@ const CartFooter = ({
         <div className="cart-modal">
           <div className="cart-modal-content">
             <h3>Giỏ hàng của bạn</h3>
-            {tickets.map((ticket, index) => (
-              <div key={index} className="cart-item">
-                <h4>{ticket.title}</h4>
-                <p className="quantity">Số lượng: {ticket.quantity}</p>
-                <p className="visitors">
-                  {ticket.visitors.map((v) => v.name).join(", ")}
+
+            {isRoomPackage ? (
+              // Display for room packages (with capacityOptions)
+              <div className="cart-item">
+                <h4>{packageData?.title}</h4>
+                <p className="capacity-info">
+                  Số người: {selectedCapacity?.capacity || 0} người
                 </p>
                 <p className="datetime">
                   {formatDate(selectedDate)} {selectedTime}
                 </p>
                 <p className="price">
-                  {(ticket.price * ticket.quantity).toLocaleString()}đ
+                  {selectedCapacity?.price?.toLocaleString() ||
+                    totalAmount?.toLocaleString()}
+                  đ
                 </p>
               </div>
-            ))}
+            ) : (
+              // Display for regular packages
+              tickets.map((ticket, index) => (
+                <div key={index} className="cart-item">
+                  <h4>{ticket.title}</h4>
+                  <p className="quantity">Số lượng: {ticket.quantity}</p>
+                  {ticket.visitors && ticket.visitors.length > 0 && (
+                    <p className="visitors">
+                      {ticket.visitors.map((v) => v.name).join(", ")}
+                    </p>
+                  )}
+                  <p className="datetime">
+                    {formatDate(selectedDate)} {selectedTime}
+                  </p>
+                  <p className="price">
+                    {(ticket.price * ticket.quantity).toLocaleString()}đ
+                  </p>
+                </div>
+              ))
+            )}
+
             <div className="cart-total">
               <span>Tổng cộng:</span>
               <span>{totalAmount?.toLocaleString()}đ</span>

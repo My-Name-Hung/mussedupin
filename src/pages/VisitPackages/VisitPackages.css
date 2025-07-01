@@ -101,7 +101,7 @@
 }
 
 .packages-title {
-    font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
+  font-family: "Mythical-Prince", "LouvreSerif", Georgia, "Times New Roman",
     serif;
   font-size: 2.4rem;
   color: #fff;
@@ -385,4 +385,22 @@
 .back-button1:hover {
   background: rgba(255, 255, 255, 0.2);
   transform: scale(1.1);
+}
+
+.room-capacity-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 8px;
+  color: #fff;
+  font-size: 0.9rem;
+}
+
+.room-capacity-info svg {
+  font-size: 1.1rem;
+}
+
+.room-price {
+  margin-left: auto;
+  font-weight: 600;
 }

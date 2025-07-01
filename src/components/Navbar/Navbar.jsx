@@ -1038,7 +1038,7 @@ const Navbar = () => {
                   to="#"
                   onClick={(e) => {
                     e.preventDefault();
-                    openMobileSubmenu("GÓI KHÔNG LƯU TRÚ");
+                    handleNavItemClick("/visit/non-residential");
                   }}
                 >
                   GÓI KHÔNG LƯU TRÚ
@@ -1055,7 +1055,7 @@ const Navbar = () => {
                   to="#"
                   onClick={(e) => {
                     e.preventDefault();
-                    openMobileSubmenu("GÓI LƯU TRÚ");
+                    handleNavItemClick("/visit/residential");
                   }}
                 >
                   GÓI LƯU TRÚ
@@ -1072,7 +1072,7 @@ const Navbar = () => {
                   to="#"
                   onClick={(e) => {
                     e.preventDefault();
-                    openMobileSubmenu("CÁC CHƯƠNG TRÌNH ĐỊNH KỲ");
+                    handleNavItemClick("/visit/regular");
                   }}
                 >
                   CÁC CHƯƠNG TRÌNH ĐỊNH KỲ
@@ -1089,7 +1089,7 @@ const Navbar = () => {
                   to="#"
                   onClick={(e) => {
                     e.preventDefault();
-                    openMobileSubmenu("CÁC CĂN PHÒNG NGHỆ THUẬT");
+                    handleNavItemClick("/visit/art-rooms");
                   }}
                 >
                   CÁC CĂN PHÒNG NGHỆ THUẬT
@@ -1214,28 +1214,28 @@ const Navbar = () => {
           <div className="mobile-nav-links">
             <div
               className="mobile-nav-item"
-              onClick={() => openMobileSubmenu("GÓI KHÔNG LƯU TRÚ")}
+              onClick={() => handleNavItemClick("/visit/non-residential")}
             >
               GÓI KHÔNG LƯU TRÚ
               <ChevronRight />
             </div>
             <div
               className="mobile-nav-item"
-              onClick={() => openMobileSubmenu("GÓI LƯU TRÚ")}
+              onClick={() => handleNavItemClick("/visit/residential")}
             >
               GÓI LƯU TRÚ
               <ChevronRight />
             </div>
             <div
               className="mobile-nav-item"
-              onClick={() => openMobileSubmenu("CÁC CHƯƠNG TRÌNH ĐỊNH KỲ")}
+              onClick={() => handleNavItemClick("/visit/regular")}
             >
               CÁC CHƯƠNG TRÌNH ĐỊNH KỲ
               <ChevronRight />
             </div>
             <div
               className="mobile-nav-item"
-              onClick={() => openMobileSubmenu("CÁC CĂN PHÒNG NGHỆ THUẬT")}
+              onClick={() => handleNavItemClick("/visit/art-rooms")}
             >
               CÁC CĂN PHÒNG NGHỆ THUẬT
               <ChevronRight />

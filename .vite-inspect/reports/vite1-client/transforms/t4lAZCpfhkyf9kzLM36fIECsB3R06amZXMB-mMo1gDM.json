@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { animationControls } from './animation-controls.mjs';\nimport { useConstant } from '../../utils/use-constant.mjs';\nimport { useIsomorphicLayoutEffect } from '../../utils/use-isomorphic-effect.mjs';\n\n/**\n * Creates `AnimationControls`, which can be used to manually start, stop\n * and sequence animations on one or more components.\n *\n * The returned `AnimationControls` should be passed to the `animate` property\n * of the components you want to animate.\n *\n * These components can then be animated with the `start` method.\n *\n * ```jsx\n * import * as React from 'react'\n * import { motion, useAnimation } from 'framer-motion'\n *\n * export function MyComponent(props) {\n *    const controls = useAnimation()\n *\n *    controls.start({\n *        x: 100,\n *        transition: { duration: 0.5 },\n *    })\n *\n *    return <motion.div animate={controls} />\n * }\n * ```\n *\n * @returns Animation controller with `start` and `stop` methods\n *\n * @public\n */\nfunction useAnimationControls() {\n    const controls = useConstant(animationControls);\n    useIsomorphicLayoutEffect(controls.mount, []);\n    return controls;\n}\nconst useAnimation = useAnimationControls;\n\nexport { useAnimation, useAnimationControls };\n",
-      "start": 1751093182775,
-      "end": 1751093182904,
+      "start": 1751267838422,
+      "end": 1751267839156,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751093182904,
-      "end": 1751093182904,
+      "start": 1751267839156,
+      "end": 1751267839156,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751093182904,
-      "end": 1751093182904,
+      "start": 1751267839156,
+      "end": 1751267839156,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751093182904,
-      "end": 1751093182904,
+      "start": 1751267839156,
+      "end": 1751267839156,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751093182904,
-      "end": 1751093182904,
+      "start": 1751267839156,
+      "end": 1751267839156,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751093182904,
-      "end": 1751093182904,
+      "start": 1751267839156,
+      "end": 1751267839156,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751093182904,
-      "end": 1751093182904,
+      "start": 1751267839166,
+      "end": 1751267839166,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751093182904,
-      "end": 1751093182904,
+      "start": 1751267839166,
+      "end": 1751267839166,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751093182904,
-      "end": 1751093182904,
+      "start": 1751267839166,
+      "end": 1751267839166,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751093182905,
-      "end": 1751093182905,
+      "start": 1751267839166,
+      "end": 1751267839166,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751093182905,
-      "end": 1751093182905,
+      "start": 1751267839166,
+      "end": 1751267839166,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751093182905,
-      "end": 1751093182905,
+      "start": 1751267839166,
+      "end": 1751267839166,
       "order": "normal"
     }
   ]

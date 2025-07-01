@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { jsx as _jsx } from \"react/jsx-runtime\";\nimport { getYear, getMonth, getDate, getDaysInMonth } from '@wojtekmaj/date-utils';\nimport WeekNumber from './WeekNumber.js';\nimport Flex from '../Flex.js';\nimport { getBeginOfWeek, getDayOfWeek, getWeekNumber } from '../shared/dates.js';\nexport default function WeekNumbers(props) {\n    var activeStartDate = props.activeStartDate, calendarType = props.calendarType, onClickWeekNumber = props.onClickWeekNumber, onMouseLeave = props.onMouseLeave, showFixedNumberOfWeeks = props.showFixedNumberOfWeeks;\n    var numberOfWeeks = (function () {\n        if (showFixedNumberOfWeeks) {\n            return 6;\n        }\n        var numberOfDays = getDaysInMonth(activeStartDate);\n        var startWeekday = getDayOfWeek(activeStartDate, calendarType);\n        var days = numberOfDays - (7 - startWeekday);\n        return 1 + Math.ceil(days / 7);\n    })();\n    var dates = (function () {\n        var year = getYear(activeStartDate);\n        var monthIndex = getMonth(activeStartDate);\n        var day = getDate(activeStartDate);\n        var result = [];\n        for (var index = 0; index < numberOfWeeks; index += 1) {\n            result.push(getBeginOfWeek(new Date(year, monthIndex, day + index * 7), calendarType));\n        }\n        return result;\n    })();\n    var weekNumbers = dates.map(function (date) { return getWeekNumber(date, calendarType); });\n    return (_jsx(Flex, { className: \"react-calendar__month-view__weekNumbers\", count: numberOfWeeks, direction: \"column\", onFocus: onMouseLeave, onMouseOver: onMouseLeave, style: { flexBasis: 'calc(100% * (1 / 8)', flexShrink: 0 }, children: weekNumbers.map(function (weekNumber, weekIndex) {\n            var date = dates[weekIndex];\n            if (!date) {\n                throw new Error('date is not defined');\n            }\n            return (_jsx(WeekNumber, { date: date, onClickWeekNumber: onClickWeekNumber, weekNumber: weekNumber }, weekNumber));\n        }) }));\n}\n",
-      "start": 1751093177482,
-      "end": 1751093177560,
+      "start": 1751267824281,
+      "end": 1751267824534,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751093177560,
-      "end": 1751093177560,
+      "start": 1751267824534,
+      "end": 1751267824534,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751093177560,
-      "end": 1751093177560,
+      "start": 1751267824534,
+      "end": 1751267824534,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751093177560,
-      "end": 1751093177560,
+      "start": 1751267824534,
+      "end": 1751267824534,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751093177560,
-      "end": 1751093177560,
+      "start": 1751267824535,
+      "end": 1751267824535,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751093177561,
-      "end": 1751093177561,
+      "start": 1751267824535,
+      "end": 1751267824535,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751093177561,
-      "end": 1751093177561,
+      "start": 1751267824535,
+      "end": 1751267824535,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751093177561,
-      "end": 1751093177561,
+      "start": 1751267824535,
+      "end": 1751267824535,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751093177561,
-      "end": 1751093177561,
+      "start": 1751267824535,
+      "end": 1751267824535,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751093177561,
-      "end": 1751093177561,
+      "start": 1751267824535,
+      "end": 1751267824535,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751093177561,
-      "end": 1751093177561,
+      "start": 1751267824535,
+      "end": 1751267824535,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751093177561,
-      "end": 1751093177561,
+      "start": 1751267824535,
+      "end": 1751267824535,
       "order": "normal"
     }
   ]

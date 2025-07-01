@@ -83,7 +83,7 @@
 /* Cart Modal Styles */
 .cart-modal {
   position: fixed;
-  bottom: 80px;
+  bottom: 50px;
   left: 0;
   right: 0;
   background: #2c2f11;
@@ -130,6 +130,20 @@
   font-weight: bold;
   font-size: 1.1rem;
   color: white;
+}
+
+.cart-item .capacity-info {
+  font-size: 1rem;
+  color: #2c2f11;
+  font-weight: 600;
+  margin: 0.5rem 0;
+}
+
+.cart-item .visitors {
+  font-size: 0.9rem;
+  color: #666;
+  margin: 0.3rem 0;
+  font-style: italic;
 }
 
 @media (max-width: 768px) {

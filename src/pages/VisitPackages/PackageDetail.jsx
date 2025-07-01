@@ -36,6 +36,184 @@ const PackageDetail = () => {
   const [showSuccessModal, setShowSuccessModal] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPlaying, setIsPlaying] = useState(true);
+  const [selectedCapacity, setSelectedCapacity] = useState(null);
+
+  const roomImages = {
+    "the-childhood": [
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Tu%E1%BB%95i%20%E1%BA%A5u%20th%C6%A1-%20The%20Childhood/z6735015432747_e1b425b09fae43c72ebd35d6346d26f9.jpg?updatedAt=1751274451957",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Tu%E1%BB%95i%20%E1%BA%A5u%20th%C6%A1-%20The%20Childhood/z6735015437354_27e632b3dae9519ab10ab29fdd0b83dc.jpg?updatedAt=1751274451715",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Tu%E1%BB%95i%20%E1%BA%A5u%20th%C6%A1-%20The%20Childhood/z6735015414889_8182efceb44c665d14cccab4af6c22d5.jpg?updatedAt=1751274450072",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Tu%E1%BB%95i%20%E1%BA%A5u%20th%C6%A1-%20The%20Childhood/z6735013755648_e134fda3141c25a0a9fc67efa73d00de.jpg?updatedAt=1751274451818",
+        type: "landscape-luutru",
+      },
+    ],
+    "white-bauhunia": [
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng-%20Bauhinia/z6735015923186_fb855bfe42041484c06d0353b44d1b60.jpg?updatedAt=1751274468374",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng-%20Bauhinia/z6735015913658_0a13ac137c59ccacc8e376f1d7f63ce8.jpg?updatedAt=1751274467967",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng-%20Bauhinia/z6735015923187_251ad2d47355a5578157b82480eb7b95.jpg?updatedAt=1751274467506",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng-%20Bauhinia/z6735015922844_0a7c9d60d7894368b407ce87bc5b3150.jpg?updatedAt=1751274467244",
+        type: "landscape-luutru",
+      },
+    ],
+    "the-chill-1": [
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20I-%20The%20Chill%20I/z6735017010424_c5b5d136ffaa05d5e408ad90609b90e9.jpg?updatedAt=1751274193547",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20I-%20The%20Chill%20I/z6735017013301_84ce9b1c810327e7b57fe8a2f5e22b6a.jpg?updatedAt=1751274193462",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20I-%20The%20Chill%20I/z6735017020976_93d6bcd5ab2b41226790e91f84997612.jpg?updatedAt=1751274193461",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20I-%20The%20Chill%20I/z6735017008335_1f53d54c8c667e714237c694c6fb2bf0.jpg?updatedAt=1751274193309",
+        type: "landscape-luutru",
+      },
+    ],
+    "the-chill-2": [
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20II-%20The%20Chill%20II/z6735017022334_9cfa421a31bbc0ccd98d0b48f74c68d7.jpg?updatedAt=1751274218002",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20II-%20The%20Chill%20II/z6735017048095_70539aee860e54a572e65d6d8894cfaf.jpg?updatedAt=1751274217824",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20II-%20The%20Chill%20II/z6735017019144_2e97325679ec2dbf6248ee217d2c005e.jpg?updatedAt=1751274217344",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20II-%20The%20Chill%20II/z6735017028190_4bdb8e9026399940cbee00981cc6c901.jpg?updatedAt=1751274217128",
+        type: "landscape-luutru",
+      },
+    ],
+    "the-memory": [
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0i%20Ni%E1%BB%87m-%20The%20Memory/z6735016139332_9e4c468a4db746027f4835319416b5d1.jpg?updatedAt=1751274469979",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0i%20Ni%E1%BB%87m-%20The%20Memory/z6735016113451_2c39f07f4a532e6486fc3f89a454faf6.jpg?updatedAt=1751274468667",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0i%20Ni%E1%BB%87m-%20The%20Memory/z6735016111786_26063d0dd74c1796f25a106e4e7e48cb.jpg?updatedAt=1751274468488",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0i%20Ni%E1%BB%87m-%20The%20Memory/z6735016139166_47732a3209a66ed5ec0769c69885f790.jpg?updatedAt=1751274468172",
+        type: "landscape-luutru",
+      },
+    ],
+    "the-sunset": [
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0ng%20h%C3%B4n-%20The%20Sunset/z6735016690802_762b3a5d04bcb103be8152d001aa15d7.jpg?updatedAt=1751274474962",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0ng%20h%C3%B4n-%20The%20Sunset/z6735016523535_29ce25f6fc23a6a23e581953b38fe622.jpg?updatedAt=1751274474498",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0ng%20h%C3%B4n-%20The%20Sunset/z6735016357613_e2751dcece85c553aaa0c8e54f9e5d11.jpg?updatedAt=1751274470184",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0ng%20h%C3%B4n-%20The%20Sunset/z6735016246537_1ff98d5fc90a563c082cb96def7ae557.jpg?updatedAt=1751274470104",
+        type: "landscape-luutru",
+      },
+    ],
+    "the-train": [
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Toa%20t%C3%A0u-%20The%20Train/z6735014101876_72374c25ca14f96e1ce8040d596f3800.jpg?updatedAt=1751274452125",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Toa%20t%C3%A0u-%20The%20Train/z6735014096525_05d0b212d9e6a930811003b02bb71cd4.jpg?updatedAt=1751274452100",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Toa%20t%C3%A0u-%20The%20Train/z6735013970930_367d839a1762df6694ba9fde11f52475.jpg?updatedAt=1751274451540",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Toa%20t%C3%A0u-%20The%20Train/z6735013964771_3b247b38f20745fe94884841d38fe804.jpg?updatedAt=1751274450576",
+        type: "landscape-luutru",
+      },
+    ],
+    "the-pine-hill": [
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/%C4%90%E1%BB%93i%20Th%C3%B4ng-%20The%20Pine%20Hill/z6735015682281_4f24f3571385b7a2b97d36acd8ba8113.jpg?updatedAt=1751274459265",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/%C4%90%E1%BB%93i%20Th%C3%B4ng-%20The%20Pine%20Hill/z6735015681039_b9e5db9d15115a6704e041f7ac2213a2.jpg?updatedAt=1751274457855",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/%C4%90%E1%BB%93i%20Th%C3%B4ng-%20The%20Pine%20Hill/z6735015656377_198f2a9fee105f5a84f871cf035e5f05.jpg?updatedAt=1751274456308",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/%C4%90%E1%BB%93i%20Th%C3%B4ng-%20The%20Pine%20Hill/z6735015651739_dd2f31f8ccdc5ae1358d841e5aa339e3.jpg?updatedAt=1751274452128",
+        type: "landscape-luutru",
+      },
+    ],
+    "the-fall": [
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/Th%C3%A1c%20%C4%91%E1%BB%95-%20The%20Fall/z6735013550592_06292038d263699476dd8144aa005946.jpg?updatedAt=1751274451608",
+        type: "landscape-luutru",
+      },
+    ],
+    "the-kite": [
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/C%C3%A1nh%20di%E1%BB%81u-%20The%20Kite/404%20-%203.png?updatedAt=1751274407347",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/C%C3%A1nh%20di%E1%BB%81u-%20The%20Kite/404%20-%201.png?updatedAt=1751274406678",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/C%C3%A1nh%20di%E1%BB%81u-%20The%20Kite/404%20-%204.png?updatedAt=1751274406373",
+        type: "landscape-luutru",
+      },
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/C%C3%A1nh%20di%E1%BB%81u-%20The%20Kite/404%20-%202.png?updatedAt=1751274405347",
+        type: "landscape-luutru",
+      },
+    ],
+    "the-strawberry": [
+      {
+        url: "https://ik.imagekit.io/8u8lkoqkkm/D%C3%A2u%20t%C3%A2y-%20Strawberry/z6735068946993_6566743fb95325c53d9b69e966e2ae4a.jpg?updatedAt=1751274423030",
+        type: "landscape-luutru",
+      },
+    ],
+  };
 
   const handleBack = () => {
     try {
@@ -500,12 +678,17 @@ const PackageDetail = () => {
       },
       "the-childhood": {
         title: "THE CHILDHOOD",
-        description: "",
+        description: "Tuổi ấu thơ - The Childhood",
         fullDescription:
           "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748840047/collections/thechillhood.jpg",
-        price: "2.800.000đ/đêm",
+          "https://ik.imagekit.io/8u8lkoqkkm/Tu%E1%BB%95i%20%E1%BA%A5u%20th%C6%A1-%20The%20Childhood/z6735013755648_e134fda3141c25a0a9fc67efa73d00de.jpg?updatedAt=1751274451818",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
         details: [
           "Phòng nghỉ thoải mái",
           "Trang trí truyền thống",
@@ -513,15 +696,24 @@ const PackageDetail = () => {
           "Không gian riêng tư",
           "Trải nghiệm văn hóa địa phương",
         ],
+        video: {
+          id: "1lVoCgIxUm4",
+          title: "Workshop Nghệ Nhân",
+        },
       },
       "white-bauhunia": {
         title: "WHITE BAUHUNIA",
-        description: "",
+        description: "Hoa Ban Trắng - Bauhinia",
         fullDescription:
           "Căn hộ sang trọng với đầy đủ tiện nghi, cách bảo tàng 10 phút đi bộ.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846791/collections/whitebauhinia.jpg",
-        price: "4.200.000đ/đêm",
+          "https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng-%20Bauhinia/z6735015913658_0a13ac137c59ccacc8e376f1d7f63ce8.jpg?updatedAt=1751274467967",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
         details: [
           "Thiết kế hiện đại",
           "Đầy đủ tiện nghi",
@@ -529,15 +721,24 @@ const PackageDetail = () => {
           "Dịch vụ cao cấp",
           "View thành phố",
         ],
+        video: {
+          id: "1lVoCgIxUm4",
+          title: "Workshop Nghệ Nhân",
+        },
       },
       "the-chill-1": {
-        title: "THE CHILL 1",
-        description: "",
+        title: "THE CHILL I",
+        description: "Bình yên I - The Chill I",
         fullDescription:
           "Biệt thự tuyệt đẹp với vườn riêng, dịch vụ cao cấp và view thành phố ngoạn mục.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846806/collections/thechill1.jpg",
-        price: "8.200.000đ/đêm",
+          "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20I-%20The%20Chill%20I/z6735017008335_1f53d54c8c667e714237c694c6fb2bf0.jpg?updatedAt=1751274193309",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
         details: [
           "Biệt thự riêng biệt",
           "Vườn riêng",
@@ -545,15 +746,24 @@ const PackageDetail = () => {
           "View thành phố",
           "Không gian rộng rãi",
         ],
+        video: {
+          id: "1lVoCgIxUm4",
+          title: "Workshop Nghệ Nhân",
+        },
       },
       "the-chill-2": {
-        title: "THE CHILL 2",
-        description: "",
+        title: "THE CHILL II",
+        description: "Bình yên II - The Chill II",
         fullDescription:
           "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846806/collections/thechill2.jpg",
-        price: "1.750.000đ/đêm",
+          "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20II-%20The%20Chill%20II/z6735017019144_2e97325679ec2dbf6248ee217d2c005e.jpg?updatedAt=1751274217344",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
         details: [
           "Phòng riêng thoải mái",
           "Giá cả hợp lý",
@@ -561,15 +771,23 @@ const PackageDetail = () => {
           "Tiện nghi đầy đủ",
           "Không gian chung rộng rãi",
         ],
+        video: {
+          id: "1lVoCgIxUm4",
+          title: "Workshop Nghệ Nhân",
+        },
       },
       "the-memory": {
         title: "THE MEMORY",
-        description: "",
-        fullDescription:
-          "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
+        description: "Hoài Niệm - The Memory",
+        fullDescription: "Không gian hoài cổ với nội thất tinh tế và view đẹp.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846800/collections/thememory.jpg",
-        price: "1.750.000đ/đêm",
+          "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0i%20Ni%E1%BB%87m-%20The%20Memory/z6735016111786_26063d0dd74c1796f25a106e4e7e48cb.jpg?updatedAt=1751274468488",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
         details: [
           "Thiết kế hoài cổ",
           "Không gian yên tĩnh",
@@ -577,15 +795,24 @@ const PackageDetail = () => {
           "View đẹp",
           "Dịch vụ chu đáo",
         ],
+        video: {
+          id: "1lVoCgIxUm4",
+          title: "Workshop Nghệ Nhân",
+        },
       },
       "the-sunset": {
         title: "THE SUNSET",
-        description: "",
+        description: "Hoàng hôn - The Sunset",
         fullDescription:
-          "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
+          "Phòng nghỉ với view hoàng hôn tuyệt đẹp và không gian yên tĩnh.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846798/collections/thesunset.jpg",
-        price: "Liên hệ: +84 86 235 6368",
+          "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0ng%20h%C3%B4n-%20The%20Sunset/z6735016357613_e2751dcece85c553aaa0c8e54f9e5d11.jpg?updatedAt=1751274470184",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
         details: [
           "View hoàng hôn tuyệt đẹp",
           "Ban công riêng",
@@ -593,15 +820,24 @@ const PackageDetail = () => {
           "Dịch vụ 24/7",
           "Không gian yên tĩnh",
         ],
+        video: {
+          id: "1lVoCgIxUm4",
+          title: "Workshop Nghệ Nhân",
+        },
       },
       "the-train": {
         title: "THE TRAIN",
-        description: "",
+        description: "Toa tàu - The Train",
         fullDescription:
-          "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
+          "Trải nghiệm độc đáo trong không gian thiết kế theo phong cách toa tàu.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846795/collections/thetrain.jpg",
-        price: "Liên hệ: +84 86 235 6368",
+          "https://ik.imagekit.io/8u8lkoqkkm/Toa%20t%C3%A0u-%20The%20Train/z6735013970930_367d839a1762df6694ba9fde11f52475.jpg?updatedAt=1751274451540",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
         details: [
           "Thiết kế độc đáo",
           "Trải nghiệm mới lạ",
@@ -609,6 +845,110 @@ const PackageDetail = () => {
           "View đặc biệt",
           "Dịch vụ chuyên nghiệp",
         ],
+        video: {
+          id: "1lVoCgIxUm4",
+          title: "Workshop Nghệ Nhân",
+        },
+      },
+      "the-pine-hill": {
+        title: "THE PINE HILL",
+        description: "Đồi Thông - The Pine Hill",
+        fullDescription:
+          "Phòng nghỉ với view đồi thông và không gian yên bình.",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/%C4%90%E1%BB%93i%20Th%C3%B4ng-%20The%20Pine%20Hill/z6735015682281_4f24f3571385b7a2b97d36acd8ba8113.jpg?updatedAt=1751274459265",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
+        details: [
+          "View đồi thông",
+          "Không gian yên bình",
+          "Tiện nghi hiện đại",
+          "Dịch vụ chu đáo",
+          "Phù hợp nghỉ dưỡng",
+        ],
+        video: {
+          id: "1lVoCgIxUm4",
+          title: "Workshop Nghệ Nhân",
+        },
+      },
+      "the-fall": {
+        title: "THE FALL",
+        description: "Thác đổ - The Fall",
+        fullDescription:
+          "Phòng nghỉ với thiết kế độc đáo lấy cảm hứng từ thác nước.",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/Th%C3%A1c%20%C4%91%E1%BB%95-%20The%20Fall/z6735013550592_06292038d263699476dd8144aa005946.jpg?updatedAt=1751274451608",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
+        details: [
+          "Thiết kế độc đáo",
+          "Không gian thư giãn",
+          "Tiện nghi hiện đại",
+          "View đẹp",
+          "Dịch vụ chuyên nghiệp",
+        ],
+        video: {
+          id: "1lVoCgIxUm4",
+          title: "Workshop Nghệ Nhân",
+        },
+      },
+      "the-kite": {
+        title: "THE KITE",
+        description: "Cánh diều - The Kite",
+        fullDescription:
+          "Phòng nghỉ với không gian thoáng đãng và view panorama.",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/C%C3%A1nh%20di%E1%BB%81u-%20The%20Kite/404%20-%201.png?updatedAt=1751274406678",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
+        details: [
+          "View panorama",
+          "Không gian thoáng đãng",
+          "Tiện nghi cao cấp",
+          "Dịch vụ 24/7",
+          "Thiết kế hiện đại",
+        ],
+        video: {
+          id: "1lVoCgIxUm4",
+          title: "Workshop Nghệ Nhân",
+        },
+      },
+      "the-strawberry": {
+        title: "THE STRAWBERRY",
+        description: "Dâu tây - Strawberry",
+        fullDescription:
+          "Phòng nghỉ với thiết kế dễ thương lấy cảm hứng từ vườn dâu tây.",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/D%C3%A2u%20t%C3%A2y-%20Strawberry/z6735068946993_6566743fb95325c53d9b69e966e2ae4a.jpg?updatedAt=1751274423030",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
+        details: [
+          "Thiết kế dễ thương",
+          "Không gian ấm cúng",
+          "Tiện nghi đầy đủ",
+          "Dịch vụ chu đáo",
+          "Phù hợp cặp đôi",
+        ],
+        video: {
+          id: "1lVoCgIxUm4",
+          title: "Workshop Nghệ Nhân",
+        },
       },
     };
 
@@ -651,15 +991,19 @@ const PackageDetail = () => {
   ];
 
   const nextSlide = useCallback(() => {
-    setCurrentSlide((prev) =>
-      prev === uomMamImages.length - 1 ? 0 : prev + 1
-    );
-  }, [uomMamImages.length]);
+    if (roomImages[packageId]) {
+      setCurrentSlide((prev) =>
+        prev === roomImages[packageId].length - 1 ? 0 : prev + 1
+      );
+    }
+  }, [packageId]);
 
   const prevSlide = () => {
-    setCurrentSlide((prev) =>
-      prev === 0 ? uomMamImages.length - 1 : prev - 1
-    );
+    if (roomImages[packageId]) {
+      setCurrentSlide((prev) =>
+        prev === 0 ? roomImages[packageId].length - 1 : prev - 1
+      );
+    }
   };
 
   const goToSlide = (index) => {
@@ -667,10 +1011,10 @@ const PackageDetail = () => {
   };
 
   useEffect(() => {
-    if (packageId === "uom-mam-sang-tao" && isPlaying) {
+    if (roomImages[packageId] && isPlaying) {
       const timer = setInterval(() => {
         nextSlide();
-      }, 1500);
+      }, 3000);
 
       return () => clearInterval(timer);
     }
@@ -682,6 +1026,22 @@ const PackageDetail = () => {
 
   const handleBookNow = () => {
     navigate(`/checkout/package/${packageId}`);
+  };
+
+  const handleCapacitySelect = (capacityOption) => {
+    setSelectedCapacity(capacityOption);
+    setBookingFormData({
+      ...bookingFormData,
+      guests: capacityOption.capacity,
+    });
+  };
+
+  // Get current price based on selected capacity
+  const getCurrentPrice = () => {
+    if (packageData?.capacityOptions) {
+      return selectedCapacity ? selectedCapacity.price : packageData.price;
+    }
+    return packageData?.price;
   };
 
   if (!packageData) {
@@ -769,10 +1129,50 @@ const PackageDetail = () => {
               <div className="package-price-info">
                 <h2>Chi phí</h2>
                 <p className="price">
-                  {packageData.price.includes("Liên hệ")
+                  {typeof packageData.price === "string" &&
+                  packageData.price.includes("Liên hệ")
                     ? packageData.price
+                    : packageData.capacityOptions
+                    ? `${new Intl.NumberFormat("vi-VN", {
+                        style: "currency",
+                        currency: "VND",
+                      }).format(getCurrentPrice())}/đêm`
                     : `${packageData.price}/người`}
                 </p>
+
+                {packageData.capacityOptions && (
+                  <div className="capacity-options-display">
+                    <h3>Lựa chọn số người:</h3>
+                    <div className="capacity-options-grid">
+                      {packageData.capacityOptions.map((option, index) => (
+                        <div
+                          key={index}
+                          className={`capacity-option-display-luutru ${
+                            selectedCapacity?.capacity === option.capacity
+                              ? "active"
+                              : ""
+                          }`}
+                          onClick={() => handleCapacitySelect(option)}
+                        >
+                          <div className="capacity-info">
+                            <FaUsers className="capacity-icon" />
+                            <span>{option.capacity} người</span>
+                          </div>
+                          <div className="capacity-price">
+                            {new Intl.NumberFormat("vi-VN", {
+                              style: "currency",
+                              currency: "VND",
+                            }).format(option.price)}
+                          </div>
+                          <div className="capacity-description">
+                            {option.description}
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
                 {packageData.childPrice && (
                   <p className="child-price">
                     Trẻ em: {packageData.childPrice}
@@ -863,8 +1263,14 @@ const PackageDetail = () => {
                       <div className="booking-price-row">
                         <span className="price-label">Giá:</span>
                         <span className="price-value">
-                          {packageData.price.includes("Liên hệ")
+                          {typeof packageData.price === "string" &&
+                          packageData.price.includes("Liên hệ")
                             ? packageData.price
+                            : packageData.capacityOptions
+                            ? `${new Intl.NumberFormat("vi-VN", {
+                                style: "currency",
+                                currency: "VND",
+                              }).format(getCurrentPrice())}/đêm`
                             : `${packageData.price}/người`}
                         </span>
                       </div>
@@ -1009,20 +1415,62 @@ const PackageDetail = () => {
                       <FaUsers />
                       Số lượng khách
                     </label>
-                    <input
-                      type="number"
-                      id="guests"
-                      name="guests"
-                      value={bookingFormData.guests}
-                      onChange={handleBookingInputChange}
-                      min="1"
-                      max="10"
-                    />
-                    {formErrors.guests && (
-                      <div className="error-message">
-                        <MdError />
-                        {formErrors.guests}
+                    {packageData.capacityOptions ? (
+                      <div className="capacity-selection-modal">
+                        {packageData.capacityOptions.map((option, index) => (
+                          <div
+                            key={index}
+                            className={`capacity-option-modal ${
+                              bookingFormData.guests === option.capacity
+                                ? "active"
+                                : ""
+                            }`}
+                            onClick={() => {
+                              setBookingFormData({
+                                ...bookingFormData,
+                                guests: option.capacity,
+                              });
+                              if (formErrors.guests) {
+                                setFormErrors({
+                                  ...formErrors,
+                                  guests: null,
+                                });
+                              }
+                            }}
+                          >
+                            <div className="capacity-info-modal">
+                              <FaUsers />
+                              <span>{option.capacity} người</span>
+                            </div>
+                            <div className="capacity-price-modal">
+                              {new Intl.NumberFormat("vi-VN", {
+                                style: "currency",
+                                currency: "VND",
+                              }).format(option.price)}
+                            </div>
+                          </div>
+                        ))}
                       </div>
+                    ) : (
+                      <select
+                        name="guests"
+                        value={bookingFormData.guests}
+                        onChange={handleBookingInputChange}
+                        required
+                      >
+                        {packageData?.capacityOptions?.map((option) => (
+                          <option key={option.capacity} value={option.capacity}>
+                            {option.capacity} người -{" "}
+                            {new Intl.NumberFormat("vi-VN", {
+                              style: "currency",
+                              currency: "VND",
+                            }).format(option.price)}
+                          </option>
+                        ))}
+                      </select>
+                    )}
+                    {formErrors.guests && (
+                      <span className="error-message">{formErrors.guests}</span>
                     )}
                   </div>
 
@@ -1090,15 +1538,59 @@ const PackageDetail = () => {
         <MdArrowBack />
       </button>
       <div className="package-detail-hero">
-        <img
-          src={packageData.image}
-          alt={packageData.title}
-          className={`package-detail-hero-img ${imageOrientation}`}
-        />
+        {roomImages[packageId] ? (
+          <div className="hero-slideshow-container">
+            <div className="hero-slides">
+              <div className="bg-hero-overlay" />
+              {roomImages[packageId].map((image, index) => (
+                <div
+                  key={index}
+                  className={`hero-slide ${
+                    index === currentSlide ? "active" : ""
+                  }`}
+                >
+                  <img
+                    src={image.url}
+                    alt={`${packageData?.title} - Slide ${index + 1}`}
+                    className={`hero-slide-image ${image.type}`}
+                  />
+                </div>
+              ))}
+            </div>
+
+            <button className="slide-nav prev" onClick={prevSlide}>
+              <FaChevronLeft />
+            </button>
+            <button className="slide-nav next" onClick={nextSlide}>
+              <FaChevronRight />
+            </button>
+
+            <div className="slide-dots">
+              {roomImages[packageId].map((_, index) => (
+                <button
+                  key={index}
+                  className={`slide-dot ${
+                    index === currentSlide ? "active" : ""
+                  }`}
+                  onClick={() => goToSlide(index)}
+                />
+              ))}
+            </div>
+
+            <button className="slideshow-control" onClick={togglePlayPause}>
+              {isPlaying ? <FaPause /> : <FaPlay />}
+            </button>
+          </div>
+        ) : (
+          <img
+            src={packageData.image}
+            alt={packageData.title}
+            className={`package-detail-hero-img ${imageOrientation}`}
+          />
+        )}
         <div className="package-detail-hero-overlay" />
         <div className="package-detail-hero-content">
-          {/* <h1>{packageData.title}</h1> */}
-          <p>{packageData.description}</p>
+          {/* <p>{packageData.description}</p> */}
         </div>
       </div>
 
@@ -1118,10 +1610,50 @@ const PackageDetail = () => {
             <div className="package-price-info">
               <h2>Chi phí</h2>
               <p className="price">
-                {packageData.price.includes("Liên hệ")
+                {typeof packageData.price === "string" &&
+                packageData.price.includes("Liên hệ")
                   ? packageData.price
+                  : packageData.capacityOptions
+                  ? `${new Intl.NumberFormat("vi-VN", {
+                      style: "currency",
+                      currency: "VND",
+                    }).format(getCurrentPrice())}/đêm`
                   : `${packageData.price}/người`}
               </p>
+
+              {packageData.capacityOptions && (
+                <div className="capacity-options-display">
+                  <h3>Lựa chọn số người:</h3>
+                  <div className="capacity-options-grid">
+                    {packageData.capacityOptions.map((option, index) => (
+                      <div
+                        key={index}
+                        className={`capacity-option-display-luutru ${
+                          selectedCapacity?.capacity === option.capacity
+                            ? "active"
+                            : ""
+                        }`}
+                        onClick={() => handleCapacitySelect(option)}
+                      >
+                        <div className="capacity-info">
+                          <FaUsers />
+                          <span>{option.capacity} người</span>
+                        </div>
+                        <div className="capacity-price">
+                          {new Intl.NumberFormat("vi-VN", {
+                            style: "currency",
+                            currency: "VND",
+                          }).format(option.price)}
+                        </div>
+                        <div className="capacity-description">
+                          {option.description}
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              )}
+
               {packageData.childPrice && (
                 <p className="child-price">Trẻ em: {packageData.childPrice}</p>
               )}
@@ -1210,8 +1742,14 @@ const PackageDetail = () => {
                     <div className="booking-price-row">
                       <span className="price-label">Giá:</span>
                       <span className="price-value">
-                        {packageData.price.includes("Liên hệ")
+                        {typeof packageData.price === "string" &&
+                        packageData.price.includes("Liên hệ")
                           ? packageData.price
+                          : packageData.capacityOptions
+                          ? `${new Intl.NumberFormat("vi-VN", {
+                              style: "currency",
+                              currency: "VND",
+                            }).format(getCurrentPrice())}/đêm`
                           : `${packageData.price}/người`}
                       </span>
                     </div>
@@ -1350,20 +1888,62 @@ const PackageDetail = () => {
                     <FaUsers />
                     Số lượng khách
                   </label>
-                  <input
-                    type="number"
-                    id="guests"
-                    name="guests"
-                    value={bookingFormData.guests}
-                    onChange={handleBookingInputChange}
-                    min="1"
-                    max="10"
-                  />
-                  {formErrors.guests && (
-                    <div className="error-message">
-                      <MdError />
-                      {formErrors.guests}
+                  {packageData.capacityOptions ? (
+                    <div className="capacity-selection-modal">
+                      {packageData.capacityOptions.map((option, index) => (
+                        <div
+                          key={index}
+                          className={`capacity-option-modal ${
+                            bookingFormData.guests === option.capacity
+                              ? "active"
+                              : ""
+                          }`}
+                          onClick={() => {
+                            setBookingFormData({
+                              ...bookingFormData,
+                              guests: option.capacity,
+                            });
+                            if (formErrors.guests) {
+                              setFormErrors({
+                                ...formErrors,
+                                guests: null,
+                              });
+                            }
+                          }}
+                        >
+                          <div className="capacity-info-modal">
+                            <FaUsers className="capacity-icon" />
+                            <span>{option.capacity} người</span>
+                          </div>
+                          <div className="capacity-price-modal">
+                            {new Intl.NumberFormat("vi-VN", {
+                              style: "currency",
+                              currency: "VND",
+                            }).format(option.price)}
+                          </div>
+                        </div>
+                      ))}
                     </div>
+                  ) : (
+                    <select
+                      name="guests"
+                      value={bookingFormData.guests}
+                      onChange={handleBookingInputChange}
+                      required
+                    >
+                      {packageData?.capacityOptions?.map((option) => (
+                        <option key={option.capacity} value={option.capacity}>
+                          {option.capacity} người -{" "}
+                          {new Intl.NumberFormat("vi-VN", {
+                            style: "currency",
+                            currency: "VND",
+                          }).format(option.price)}
+                        </option>
+                      ))}
+                    </select>
+                  )}
+                  {formErrors.guests && (
+                    <span className="error-message">{formErrors.guests}</span>
                   )}
                 </div>
 

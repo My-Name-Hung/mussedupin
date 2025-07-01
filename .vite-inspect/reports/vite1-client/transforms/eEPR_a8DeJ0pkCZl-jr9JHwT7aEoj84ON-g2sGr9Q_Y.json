@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "const copyProperty = (to, from, property, ignoreNonConfigurable) => {\n\t// `Function#length` should reflect the parameters of `to` not `from` since we keep its body.\n\t// `Function#prototype` is non-writable and non-configurable so can never be modified.\n\tif (property === 'length' || property === 'prototype') {\n\t\treturn;\n\t}\n\n\t// `Function#arguments` and `Function#caller` should not be copied. They were reported to be present in `Reflect.ownKeys` for some devices in React Native (#41), so we explicitly ignore them here.\n\tif (property === 'arguments' || property === 'caller') {\n\t\treturn;\n\t}\n\n\tconst toDescriptor = Object.getOwnPropertyDescriptor(to, property);\n\tconst fromDescriptor = Object.getOwnPropertyDescriptor(from, property);\n\n\tif (!canCopyProperty(toDescriptor, fromDescriptor) && ignoreNonConfigurable) {\n\t\treturn;\n\t}\n\n\tObject.defineProperty(to, property, fromDescriptor);\n};\n\n// `Object.defineProperty()` throws if the property exists, is not configurable and either:\n// - one its descriptors is changed\n// - it is non-writable and its value is changed\nconst canCopyProperty = function (toDescriptor, fromDescriptor) {\n\treturn toDescriptor === undefined || toDescriptor.configurable || (\n\t\ttoDescriptor.writable === fromDescriptor.writable\n\t\t&& toDescriptor.enumerable === fromDescriptor.enumerable\n\t\t&& toDescriptor.configurable === fromDescriptor.configurable\n\t\t&& (toDescriptor.writable || toDescriptor.value === fromDescriptor.value)\n\t);\n};\n\nconst changePrototype = (to, from) => {\n\tconst fromPrototype = Object.getPrototypeOf(from);\n\tif (fromPrototype === Object.getPrototypeOf(to)) {\n\t\treturn;\n\t}\n\n\tObject.setPrototypeOf(to, fromPrototype);\n};\n\nconst wrappedToString = (withName, fromBody) => `/* Wrapped ${withName}*/\\n${fromBody}`;\n\nconst toStringDescriptor = Object.getOwnPropertyDescriptor(Function.prototype, 'toString');\nconst toStringName = Object.getOwnPropertyDescriptor(Function.prototype.toString, 'name');\n\n// We call `from.toString()` early (not lazily) to ensure `from` can be garbage collected.\n// We use `bind()` instead of a closure for the same reason.\n// Calling `from.toString()` early also allows caching it in case `to.toString()` is called several times.\nconst changeToString = (to, from, name) => {\n\tconst withName = name === '' ? '' : `with ${name.trim()}() `;\n\tconst newToString = wrappedToString.bind(null, withName, from.toString());\n\t// Ensure `to.toString.toString` is non-enumerable and has the same `same`\n\tObject.defineProperty(newToString, 'name', toStringName);\n\tconst {writable, enumerable, configurable} = toStringDescriptor; // We destructue to avoid a potential `get` descriptor.\n\tObject.defineProperty(to, 'toString', {value: newToString, writable, enumerable, configurable});\n};\n\nexport default function mimicFunction(to, from, {ignoreNonConfigurable = false} = {}) {\n\tconst {name} = to;\n\n\tfor (const property of Reflect.ownKeys(from)) {\n\t\tcopyProperty(to, from, property, ignoreNonConfigurable);\n\t}\n\n\tchangePrototype(to, from);\n\tchangeToString(to, from, name);\n\n\treturn to;\n}\n",
-      "start": 1751093177664,
-      "end": 1751093177747,
+      "start": 1751267825499,
+      "end": 1751267825664,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751093177747,
-      "end": 1751093177747,
+      "start": 1751267825664,
+      "end": 1751267825664,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751093177747,
-      "end": 1751093177747,
+      "start": 1751267825664,
+      "end": 1751267825664,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751093177747,
-      "end": 1751093177747,
+      "start": 1751267825664,
+      "end": 1751267825664,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751093177747,
-      "end": 1751093177747,
+      "start": 1751267825664,
+      "end": 1751267825664,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751093177747,
-      "end": 1751093177747,
+      "start": 1751267825664,
+      "end": 1751267825664,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751093177747,
-      "end": 1751093177747,
+      "start": 1751267825664,
+      "end": 1751267825664,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751093177747,
-      "end": 1751093177747,
+      "start": 1751267825664,
+      "end": 1751267825664,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751093177748,
-      "end": 1751093177748,
+      "start": 1751267825665,
+      "end": 1751267825665,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751093177748,
-      "end": 1751093177748,
+      "start": 1751267825665,
+      "end": 1751267825665,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751093177748,
-      "end": 1751093177748,
+      "start": 1751267825665,
+      "end": 1751267825665,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751093177748,
-      "end": 1751093177748,
+      "start": 1751267825665,
+      "end": 1751267825665,
       "order": "normal"
     }
   ]

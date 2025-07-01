@@ -27,8 +27,10 @@ const TicketList = () => {
           "1 phần nước uống tự chọn",
         ],
         video: {
-          id: "aozcRuYVPKw",
-          title: "Trải nghiệm Lối Rừng",
+          id: "lb8HcNFDFtU",
+          title: `Trải nghiệm Lối Rừng tại ${(
+            <span className="notranslate">Musée Du Pin</span>
+          )}`,
         },
       },
       "dang-suong": {
@@ -48,7 +50,7 @@ const TicketList = () => {
           "1 phần nước uống tự chọn",
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "gJL4YdOunvA",
           title: "Khám Phá Dáng Sương",
         },
       },
@@ -58,7 +60,7 @@ const TicketList = () => {
           "Hòa mình vào thế giới sáng tạo với workshop thổ cẩm, vẽ tranh cùng nghệ nhân, họa sỹ",
         fullDescription: `Hòa mình vào thế giới sáng tạo với workshop thổ cẩm, vẽ tranh cùng nghệ nhân, họa sỹ`,
         image:
-          "https://ik.imagekit.io/8u8lkoqkkm/Thumbnail%20Ngh%E1%BB%87%20Nh%C3%A2n.png?updatedAt=1750322897429",
+          "https://ik.imagekit.io/8u8lkoqkkm/Thumbnail%20Ngh%E1%BB%87%20Nh%C3%A2n%20D%E1%BB%8Dc.png?updatedAt=1750322897358",
         price: "399.000 - 599.000đ",
         childPrice: "50% giá người lớn",
         note: "Trẻ em phải có cha mẹ, người giám hộ đi kèm",
@@ -69,7 +71,7 @@ const TicketList = () => {
           "Tặng gói chụp ảnh nghệ thuật (1 tiếng)",
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "1lVoCgIxUm4",
           title: "Workshop Nghệ Nhân",
         },
       },
@@ -91,12 +93,12 @@ const TicketList = () => {
           "Bữa trưa nhẹ gồm 01 món ăn và 01 thức uống",
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "3hr-yyLqAy4",
           title: "Trải Nghiệm Hồn Núi",
         },
       },
       "lua-thieng": {
-        title: "LỬA THIÊNG / Pind' Amour",
+        title: "LỬA THIÊNG / Pin d'Amour",
         description:
           "Buổi tối bùng cháy với âm nhạc, nghệ thuật, văn hóa, rượu và không gian view toàn cảnh Đà Lạt về đêm",
         fullDescription: `Buổi tối bùng cháy với âm nhạc, nghệ thuật, văn hóa, rượu và không gian view toàn cảnh Đà Lạt về đêm`,
@@ -112,7 +114,7 @@ const TicketList = () => {
           'Trải nghiệm sân khấu Pind\'amour với chương trình Vin Acoustic "Thông Hát" và rượu vang thượng hạng và 01 phần ăn nhẹ',
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "_qP_eGPzVJE",
           title: "Đêm Lửa Thiêng",
         },
       },
@@ -131,7 +133,7 @@ const TicketList = () => {
           "Bữa sáng với đặc sản địa phương",
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "Ja3XeTu-r54",
           title: "Đêm Thông",
         },
       },
@@ -153,7 +155,7 @@ const TicketList = () => {
           "Tặng gói chụp ảnh nghệ thuật (1 tiếng)",
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "2zuGLmyZgfU",
           title: "Bóng Cây Kơnia",
         },
       },
@@ -174,7 +176,7 @@ const TicketList = () => {
           "Bộ ảnh nghệ thuật chuyên nghiệp",
         ],
         video: {
-          id: "aozcRuYVPKw",
+          id: "OI6r5SW9BiM",
           title: "Trường Ca Langbiang",
         },
       },
@@ -215,9 +217,9 @@ const TicketList = () => {
         },
       },
       "uom-mam-sang-tao": {
-        title: "ƯƠM MẦM SÁNG TẠO",
-        description: "Các gói trải nghiệm cho bé",
-        fullDescription: `Các gói trải nghiệm cho bé`,
+        title: "",
+        description: "",
+        fullDescription: ``,
         image:
           "https://ik.imagekit.io/8u8lkoqkkm/6899dd753542811cd853.jpg?updatedAt=1749175097859",
         price: "299.000đ",
@@ -236,9 +238,9 @@ const TicketList = () => {
         title: "CHỤP ẢNH NGHỆ THUẬT",
         description:
           "Du khách sẽ được sở hữu những tấm ảnh nghệ thuật của chính mình trong không gian Bảo Tàng",
-        fullDescription: `Du khách sẽ được sở hữu những tấm ảnh nghệ thuật của chính mình trong không gian Bảo Tàng hay trong từng căn phòng art studio, cùng với nghệ nhân hay nhân vật theo chủ đề. Bảo Tàng Thông cung cấp trang phục, đạo cụ riêng phù hợp với từng không gian`,
+        fullDescription: `Du khách sẽ được sở hữu những tấm ảnh nghệ thuật của chính mình trong không gian Bảo Tàng hay trong từng căn phòng art studio, cùng với nghệ nhân hay nhân vật theo chủ đề. Bảo Tàng cung cấp trang phục, đạo cụ riêng phù hợp với từng không gian`,
         image:
-          "https://ik.imagekit.io/8u8lkoqkkm/KhongLuuTru.jpg?updatedAt=1749267196332",
+          "https://ik.imagekit.io/8u8lkoqkkm/chupanhnghethuat_ngang.jpg?updatedAt=1750298609133",
         price: "Liên hệ: +84 86 235 6368",
         details: [
           "Chụp ảnh trong không gian Bảo Tàng",
@@ -250,7 +252,9 @@ const TicketList = () => {
         ],
         video: {
           id: "aozcRuYVPKw",
-          title: "Chụp ảnh nghệ thuật tại Musée Du Pin",
+          title: `Chụp ảnh nghệ thuật tại ${(
+            <span className="notranslate">Musée Du Pin</span>
+          )}`,
         },
       },
       "phim-dien-anh": {
@@ -259,7 +263,7 @@ const TicketList = () => {
           "Toàn bộ chuyến đi của du khách và gia đình sẽ được ê kíp đoàn làm phim ghi lại",
         fullDescription: `Toàn bộ chuyến đi của du khách và gia đình sẽ được ê kíp đoàn làm phim ghi lại với thiết bị máy móc hiện đại để chọn lọc tạo ra 1 thước phim điện ảnh riêng về hành trình du khảo.`,
         image:
-          "https://ik.imagekit.io/8u8lkoqkkm/KhongLuuTru.jpg?updatedAt=1749267196332",
+          "https://ik.imagekit.io/8u8lkoqkkm/phimdienanh_ngang.jpg?updatedAt=1750298609073",
         price: "Liên hệ: +84 86 235 6368",
         details: [
           "Quay phim bằng thiết bị hiện đại",
@@ -271,16 +275,18 @@ const TicketList = () => {
         ],
         video: {
           id: "aozcRuYVPKw",
-          title: "Dịch vụ quay phim tại Musée Du Pin",
+          title: `Dịch vụ quay phim tại ${(
+            <span className="notranslate">Musée Du Pin</span>
+          )}`,
         },
       },
       "the-childhood": {
         title: "THE CHILDHOOD",
-        description: "",
+        description: "Tuổi ấu thơ - The Childhood",
         fullDescription:
           "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748840047/collections/thechillhood.jpg",
+          "https://ik.imagekit.io/8u8lkoqkkm/Tu%E1%BB%95i%20%E1%BA%A5u%20th%C6%A1-%20The%20Childhood/z6735013755648_e134fda3141c25a0a9fc67efa73d00de.jpg?updatedAt=1751274451818",
         price: "2.800.000đ/đêm",
         details: [
           "Phòng nghỉ thoải mái",
@@ -292,11 +298,11 @@ const TicketList = () => {
       },
       "white-bauhunia": {
         title: "WHITE BAUHUNIA",
-        description: "",
+        description: "Hoa Ban Trắng - Bauhinia",
         fullDescription:
           "Căn hộ sang trọng với đầy đủ tiện nghi, cách bảo tàng 10 phút đi bộ.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846791/collections/whitebauhinia.jpg",
+          "https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng-%20Bauhinia/z6735015913658_0a13ac137c59ccacc8e376f1d7f63ce8.jpg?updatedAt=1751274467967",
         price: "4.200.000đ/đêm",
         details: [
           "Thiết kế hiện đại",
@@ -307,12 +313,12 @@ const TicketList = () => {
         ],
       },
       "the-chill-1": {
-        title: "THE CHILL 1",
-        description: "",
+        title: "THE CHILL I",
+        description: "Bình yên I - The Chill I",
         fullDescription:
           "Biệt thự tuyệt đẹp với vườn riêng, dịch vụ cao cấp và view thành phố ngoạn mục.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846806/collections/thechill1.jpg",
+          "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20I-%20The%20Chill%20I/z6735017008335_1f53d54c8c667e714237c694c6fb2bf0.jpg?updatedAt=1751274193309",
         price: "8.200.000đ/đêm",
         details: [
           "Biệt thự riêng biệt",
@@ -323,12 +329,12 @@ const TicketList = () => {
         ],
       },
       "the-chill-2": {
-        title: "THE CHILL 2",
-        description: "",
+        title: "THE CHILL II",
+        description: "Bình yên II - The Chill II",
         fullDescription:
           "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846806/collections/thechill2.jpg",
+          "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20II-%20The%20Chill%20II/z6735017019144_2e97325679ec2dbf6248ee217d2c005e.jpg?updatedAt=1751274217344",
         price: "1.750.000đ/đêm",
         details: [
           "Phòng riêng thoải mái",
@@ -340,11 +346,10 @@ const TicketList = () => {
       },
       "the-memory": {
         title: "THE MEMORY",
-        description: "",
-        fullDescription:
-          "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
+        description: "Hoài Niệm - The Memory",
+        fullDescription: "Không gian hoài cổ với nội thất tinh tế và view đẹp.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846800/collections/thememory.jpg",
+          "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0i%20Ni%E1%BB%87m-%20The%20Memory/z6735016111786_26063d0dd74c1796f25a106e4e7e48cb.jpg?updatedAt=1751274468488",
         price: "1.750.000đ/đêm",
         details: [
           "Thiết kế hoài cổ",
@@ -356,11 +361,11 @@ const TicketList = () => {
       },
       "the-sunset": {
         title: "THE SUNSET",
-        description: "",
+        description: "Hoàng hôn - The Sunset",
         fullDescription:
-          "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
+          "Phòng nghỉ với view hoàng hôn tuyệt đẹp và không gian yên tĩnh.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846798/collections/thesunset.jpg",
+          "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0ng%20h%C3%B4n-%20The%20Sunset/z6735016357613_e2751dcece85c553aaa0c8e54f9e5d11.jpg?updatedAt=1751274470184",
         price: "Liên hệ: +84 86 235 6368",
         details: [
           "View hoàng hôn tuyệt đẹp",
@@ -372,11 +377,11 @@ const TicketList = () => {
       },
       "the-train": {
         title: "THE TRAIN",
-        description: "",
+        description: "Toa tàu - The Train",
         fullDescription:
-          "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
+          "Trải nghiệm độc đáo trong không gian thiết kế theo phong cách toa tàu.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846795/collections/thetrain.jpg",
+          "https://ik.imagekit.io/8u8lkoqkkm/Toa%20t%C3%A0u-%20The%20Train/z6735013970930_367d839a1762df6694ba9fde11f52475.jpg?updatedAt=1751274451540",
         price: "Liên hệ: +84 86 235 6368",
         details: [
           "Thiết kế độc đáo",
@@ -384,6 +389,70 @@ const TicketList = () => {
           "Tiện nghi hiện đại",
           "View đặc biệt",
           "Dịch vụ chuyên nghiệp",
+        ],
+      },
+      "the-pine-hill": {
+        title: "THE PINE HILL",
+        description: "Đồi Thông - The Pine Hill",
+        fullDescription:
+          "Phòng nghỉ với view đồi thông và không gian yên bình.",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/%C4%90%E1%BB%93i%20Th%C3%B4ng-%20The%20Pine%20Hill/z6735015682281_4f24f3571385b7a2b97d36acd8ba8113.jpg?updatedAt=1751274459265",
+        price: "Liên hệ: +84 86 235 6368",
+        details: [
+          "View đồi thông",
+          "Không gian yên bình",
+          "Tiện nghi hiện đại",
+          "Dịch vụ chu đáo",
+          "Phù hợp nghỉ dưỡng",
+        ],
+      },
+      "the-fall": {
+        title: "THE FALL",
+        description: "Thác đổ - The Fall",
+        fullDescription:
+          "Phòng nghỉ với thiết kế độc đáo lấy cảm hứng từ thác nước.",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/Th%C3%A1c%20%C4%91%E1%BB%95-%20The%20Fall/z6735013550592_06292038d263699476dd8144aa005946.jpg?updatedAt=1751274451608",
+        price: "Liên hệ: +84 86 235 6368",
+        details: [
+          "Thiết kế độc đáo",
+          "Không gian thư giãn",
+          "Tiện nghi hiện đại",
+          "View đẹp",
+          "Dịch vụ chuyên nghiệp",
+        ],
+      },
+      "the-kite": {
+        title: "THE KITE",
+        description: "Cánh diều - The Kite",
+        fullDescription:
+          "Phòng nghỉ với không gian thoáng đãng và view panorama.",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/C%C3%A1nh%20di%E1%BB%81u-%20The%20Kite/404%20-%201.png?updatedAt=1751274406678",
+        price: "Liên hệ: +84 86 235 6368",
+        details: [
+          "View panorama",
+          "Không gian thoáng đãng",
+          "Tiện nghi cao cấp",
+          "Dịch vụ 24/7",
+          "Thiết kế hiện đại",
+        ],
+      },
+      "the-strawberry": {
+        title: "THE STRAWBERRY",
+        description: "Dâu tây - Strawberry",
+        fullDescription:
+          "Phòng nghỉ với thiết kế dễ thương lấy cảm hứng từ vườn dâu tây.",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/D%C3%A2u%20t%C3%A2y-%20Strawberry/z6735068946993_6566743fb95325c53d9b69e966e2ae4a.jpg?updatedAt=1751274423030",
+        price: "Liên hệ: +84 86 235 6368",
+        details: [
+          "Thiết kế dễ thương",
+          "Không gian ấm cúng",
+          "Tiện nghi đầy đủ",
+          "Dịch vụ chu đáo",
+          "Phù hợp cặp đôi",
         ],
       },
     };

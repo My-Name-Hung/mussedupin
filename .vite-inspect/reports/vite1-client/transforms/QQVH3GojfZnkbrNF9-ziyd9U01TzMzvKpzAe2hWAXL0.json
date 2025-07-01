@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useState } from \"react\";\nimport \"./TimeSelection.css\";\n\nconst TimeSelection = ({ selectedTime, onTimeChange }) => {\n  const [activeTab, setActiveTab] = useState(\"morning\");\n\n  const generateTimeSlots = (start, end) => {\n    const slots = [];\n    let current = start;\n    while (current <= end) {\n      const hour = Math.floor(current);\n      const minute = (current % 1) * 60;\n      slots.push(\n        `${hour.toString().padStart(2, \"0\")}:${minute\n          .toString()\n          .padStart(2, \"0\")}`\n      );\n      current += 0.5; // 30 minute intervals\n    }\n    return slots;\n  };\n\n  const morningSlots = generateTimeSlots(8, 13.5); // 8:00 to 13:30\n  const afternoonSlots = generateTimeSlots(14, 23); // 14:00 to 23:00\n\n  return (\n    <div className=\"time-selection-container\">\n      <h2>Chọn thời gian</h2>\n      <div className=\"time-tabs\">\n        <button\n          className={`tab ${activeTab === \"morning\" ? \"active\" : \"\"}`}\n          onClick={() => setActiveTab(\"morning\")}\n        >\n          Buổi sáng & trưa\n        </button>\n        <button\n          className={`tab ${activeTab === \"afternoon\" ? \"active\" : \"\"}`}\n          onClick={() => setActiveTab(\"afternoon\")}\n        >\n          Buổi chiều\n        </button>\n      </div>\n      <div className=\"time-slots\">\n        {(activeTab === \"morning\" ? morningSlots : afternoonSlots).map(\n          (time) => (\n            <label key={time} className=\"time-slot\">\n              <input\n                type=\"radio\"\n                name=\"time\"\n                value={time}\n                checked={selectedTime === time}\n                onChange={(e) => onTimeChange(e.target.value)}\n              />\n              <span>{time}</span>\n            </label>\n          )\n        )}\n      </div>\n    </div>\n  );\n};\n\nexport default TimeSelection;\n",
-      "start": 1751093175871,
-      "end": 1751093176321,
+      "start": 1751267814620,
+      "end": 1751267816717,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751093176321,
-      "end": 1751093176321,
+      "start": 1751267816717,
+      "end": 1751267816717,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useState } from \"react\";\nimport \"./TimeSelection.css\";\nconst TimeSelection = ({ selectedTime, onTimeChange }) => {\n  const [activeTab, setActiveTab] = useState(\"morning\");\n  const generateTimeSlots = (start, end) => {\n    const slots = [];\n    let current = start;\n    while (current <= end) {\n      const hour = Math.floor(current);\n      const minute = current % 1 * 60;\n      slots.push(\n        `${hour.toString().padStart(2, \"0\")}:${minute.toString().padStart(2, \"0\")}`\n      );\n      current += 0.5;\n    }\n    return slots;\n  };\n  const morningSlots = generateTimeSlots(8, 13.5);\n  const afternoonSlots = generateTimeSlots(14, 23);\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"time-selection-container\", children: [\n    /* @__PURE__ */ jsx(\"h2\", { children: \"Chọn thời gian\" }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"time-tabs\", children: [\n      /* @__PURE__ */ jsx(\n        \"button\",\n        {\n          className: `tab ${activeTab === \"morning\" ? \"active\" : \"\"}`,\n          onClick: () => setActiveTab(\"morning\"),\n          children: \"Buổi sáng & trưa\"\n        }\n      ),\n      /* @__PURE__ */ jsx(\n        \"button\",\n        {\n          className: `tab ${activeTab === \"afternoon\" ? \"active\" : \"\"}`,\n          onClick: () => setActiveTab(\"afternoon\"),\n          children: \"Buổi chiều\"\n        }\n      )\n    ] }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"time-slots\", children: (activeTab === \"morning\" ? morningSlots : afternoonSlots).map(\n      (time) => /* @__PURE__ */ jsxs(\"label\", { className: \"time-slot\", children: [\n        /* @__PURE__ */ jsx(\n          \"input\",\n          {\n            type: \"radio\",\n            name: \"time\",\n            value: time,\n            checked: selectedTime === time,\n            onChange: (e) => onTimeChange(e.target.value)\n          }\n        ),\n        /* @__PURE__ */ jsx(\"span\", { children: time })\n      ] }, time)\n    ) })\n  ] });\n};\nexport default TimeSelection;\n",
-      "start": 1751093176321,
-      "end": 1751093176671,
+      "start": 1751267816717,
+      "end": 1751267818998,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751093176671,
-      "end": 1751093176671,
+      "start": 1751267818998,
+      "end": 1751267818998,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751093176672,
-      "end": 1751093176672,
+      "start": 1751267818999,
+      "end": 1751267818999,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751093176672,
-      "end": 1751093176672,
+      "start": 1751267818999,
+      "end": 1751267818999,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751093176672,
-      "end": 1751093176672,
+      "start": 1751267818999,
+      "end": 1751267818999,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751093176672,
-      "end": 1751093176672,
+      "start": 1751267818999,
+      "end": 1751267818999,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751093176672,
-      "end": 1751093176672,
+      "start": 1751267818999,
+      "end": 1751267818999,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751093176672,
-      "end": 1751093176672,
+      "start": 1751267818999,
+      "end": 1751267818999,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751093176672,
-      "end": 1751093176673,
+      "start": 1751267818999,
+      "end": 1751267818999,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751093176673,
-      "end": 1751093176673,
+      "start": 1751267819029,
+      "end": 1751267819029,
       "order": "normal"
     }
   ]

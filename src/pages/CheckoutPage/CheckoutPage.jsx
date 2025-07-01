@@ -30,6 +30,7 @@ const CheckoutPage = () => {
   const [paymentMethod, setPaymentMethod] = useState("bank");
   const [qrCode, setQrCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+  const [selectedCapacity, setSelectedCapacity] = useState(null);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -326,12 +327,17 @@ const CheckoutPage = () => {
       },
       "the-childhood": {
         title: "THE CHILDHOOD",
-        description: "",
+        description: "Tuổi ấu thơ - The Childhood",
         fullDescription:
           "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748840047/collections/thechillhood.jpg",
-        price: "2.800.000đ/đêm",
+          "https://ik.imagekit.io/8u8lkoqkkm/Tu%E1%BB%95i%20%E1%BA%A5u%20th%C6%A1-%20The%20Childhood/z6735013755648_e134fda3141c25a0a9fc67efa73d00de.jpg?updatedAt=1751274451818",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
         details: [
           "Phòng nghỉ thoải mái",
           "Trang trí truyền thống",
@@ -342,12 +348,17 @@ const CheckoutPage = () => {
       },
       "white-bauhunia": {
         title: "WHITE BAUHUNIA",
-        description: "",
+        description: "Hoa Ban Trắng - Bauhinia",
         fullDescription:
           "Căn hộ sang trọng với đầy đủ tiện nghi, cách bảo tàng 10 phút đi bộ.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846791/collections/whitebauhinia.jpg",
-        price: "4.200.000đ/đêm",
+          "https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng-%20Bauhinia/z6735015913658_0a13ac137c59ccacc8e376f1d7f63ce8.jpg?updatedAt=1751274467967",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
         details: [
           "Thiết kế hiện đại",
           "Đầy đủ tiện nghi",
@@ -357,13 +368,18 @@ const CheckoutPage = () => {
         ],
       },
       "the-chill-1": {
-        title: "THE CHILL 1",
-        description: "",
+        title: "THE CHILL I",
+        description: "Bình yên I - The Chill I",
         fullDescription:
           "Biệt thự tuyệt đẹp với vườn riêng, dịch vụ cao cấp và view thành phố ngoạn mục.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846806/collections/thechill1.jpg",
-        price: "8.200.000đ/đêm",
+          "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20I-%20The%20Chill%20I/z6735017008335_1f53d54c8c667e714237c694c6fb2bf0.jpg?updatedAt=1751274193309",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
         details: [
           "Biệt thự riêng biệt",
           "Vườn riêng",
@@ -373,13 +389,18 @@ const CheckoutPage = () => {
         ],
       },
       "the-chill-2": {
-        title: "THE CHILL 2",
-        description: "",
+        title: "THE CHILL II",
+        description: "Bình yên II - The Chill II",
         fullDescription:
           "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846806/collections/thechill2.jpg",
-        price: "1.750.000đ/đêm",
+          "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20II-%20The%20Chill%20II/z6735017019144_2e97325679ec2dbf6248ee217d2c005e.jpg?updatedAt=1751274217344",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
         details: [
           "Phòng riêng thoải mái",
           "Giá cả hợp lý",
@@ -390,12 +411,16 @@ const CheckoutPage = () => {
       },
       "the-memory": {
         title: "THE MEMORY",
-        description: "",
-        fullDescription:
-          "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
+        description: "Hoài Niệm - The Memory",
+        fullDescription: "Không gian hoài cổ với nội thất tinh tế và view đẹp.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846800/collections/thememory.jpg",
-        price: "1.750.000đ/đêm",
+          "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0i%20Ni%E1%BB%87m-%20The%20Memory/z6735016111786_26063d0dd74c1796f25a106e4e7e48cb.jpg?updatedAt=1751274468488",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
         details: [
           "Thiết kế hoài cổ",
           "Không gian yên tĩnh",
@@ -406,12 +431,17 @@ const CheckoutPage = () => {
       },
       "the-sunset": {
         title: "THE SUNSET",
-        description: "",
+        description: "Hoàng hôn - The Sunset",
         fullDescription:
-          "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
+          "Phòng nghỉ với view hoàng hôn tuyệt đẹp và không gian yên tĩnh.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846798/collections/thesunset.jpg",
-        price: "Liên hệ: +84 86 235 6368",
+          "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0ng%20h%C3%B4n-%20The%20Sunset/z6735016357613_e2751dcece85c553aaa0c8e54f9e5d11.jpg?updatedAt=1751274470184",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
         details: [
           "View hoàng hôn tuyệt đẹp",
           "Ban công riêng",
@@ -422,12 +452,17 @@ const CheckoutPage = () => {
       },
       "the-train": {
         title: "THE TRAIN",
-        description: "",
+        description: "Toa tàu - The Train",
         fullDescription:
-          "Phòng riêng thoải mái và giá cả phải chăng trong căn hộ chung gần phương tiện công cộng.",
+          "Trải nghiệm độc đáo trong không gian thiết kế theo phong cách toa tàu.",
         image:
-          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748846795/collections/thetrain.jpg",
-        price: "Liên hệ: +84 86 235 6368",
+          "https://ik.imagekit.io/8u8lkoqkkm/Toa%20t%C3%A0u-%20The%20Train/z6735013970930_367d839a1762df6694ba9fde11f52475.jpg?updatedAt=1751274451540",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
         details: [
           "Thiết kế độc đáo",
           "Trải nghiệm mới lạ",
@@ -436,13 +471,111 @@ const CheckoutPage = () => {
           "Dịch vụ chuyên nghiệp",
         ],
       },
+      "the-pine-hill": {
+        title: "THE PINE HILL",
+        description: "Đồi Thông - The Pine Hill",
+        fullDescription:
+          "Phòng nghỉ với view đồi thông và không gian yên bình.",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/%C4%90%E1%BB%93i%20Th%C3%B4ng-%20The%20Pine%20Hill/z6735015682281_4f24f3571385b7a2b97d36acd8ba8113.jpg?updatedAt=1751274459265",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
+        details: [
+          "View đồi thông",
+          "Không gian yên bình",
+          "Tiện nghi hiện đại",
+          "Dịch vụ chu đáo",
+          "Phù hợp nghỉ dưỡng",
+        ],
+      },
+      "the-fall": {
+        title: "THE FALL",
+        description: "Thác đổ - The Fall",
+        fullDescription:
+          "Phòng nghỉ với thiết kế độc đáo lấy cảm hứng từ thác nước.",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/Th%C3%A1c%20%C4%91%E1%BB%95-%20The%20Fall/z6735013550592_06292038d263699476dd8144aa005946.jpg?updatedAt=1751274451608",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
+        details: [
+          "Thiết kế độc đáo",
+          "Không gian thư giãn",
+          "Tiện nghi hiện đại",
+          "View đẹp",
+          "Dịch vụ chuyên nghiệp",
+        ],
+      },
+      "the-kite": {
+        title: "THE KITE",
+        description: "Cánh diều - The Kite",
+        fullDescription:
+          "Phòng nghỉ với không gian thoáng đãng và view panorama.",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/C%C3%A1nh%20di%E1%BB%81u-%20The%20Kite/404%20-%201.png?updatedAt=1751274406678",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
+        details: [
+          "View panorama",
+          "Không gian thoáng đãng",
+          "Tiện nghi cao cấp",
+          "Dịch vụ 24/7",
+          "Thiết kế hiện đại",
+        ],
+      },
+      "the-strawberry": {
+        title: "THE STRAWBERRY",
+        description: "Dâu tây - Strawberry",
+        fullDescription:
+          "Phòng nghỉ với thiết kế dễ thương lấy cảm hứng từ vườn dâu tây.",
+        image:
+          "https://ik.imagekit.io/8u8lkoqkkm/D%C3%A2u%20t%C3%A2y-%20Strawberry/z6735068946993_6566743fb95325c53d9b69e966e2ae4a.jpg?updatedAt=1751274423030",
+        capacityOptions: [
+          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
+          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
+          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+        ],
+        price: 3000000,
+        details: [
+          "Thiết kế dễ thương",
+          "Không gian ấm cúng",
+          "Tiện nghi đầy đủ",
+          "Dịch vụ chu đáo",
+          "Phù hợp cặp đôi",
+        ],
+      },
     };
 
     const data = allPackages[packageId];
     if (data) {
       setPackageData(data);
-      // Check if price is contact-only
-      if (data.price.startsWith("Liên hệ:")) {
+
+      // Check if package has capacity options (room packages)
+      if (data.capacityOptions) {
+        // Set default capacity to first option
+        setSelectedCapacity(data.capacityOptions[0]);
+        setTickets([
+          {
+            title: `${data.title} - ${data.capacityOptions[0].capacity} người`,
+            price: data.capacityOptions[0].price,
+            quantity: 1,
+            visitors: [{ name: "" }],
+            capacity: data.capacityOptions[0].capacity,
+          },
+        ]);
+      } else if (data.price.startsWith("Liên hệ:")) {
+        // Contact-only packages
         setTickets([
           {
             title: `${data.title}`,
@@ -454,7 +587,7 @@ const CheckoutPage = () => {
           },
         ]);
       } else {
-        // Extract base price from price range
+        // Regular packages with price ranges
         const basePrice = parseInt(
           data.price.split(" - ")[0].replace(/\D/g, ""),
           10
@@ -495,25 +628,38 @@ const CheckoutPage = () => {
   };
 
   const handleQuantityChange = (ticketIndex, newQuantity) => {
-    setTickets((prevTickets) => {
-      const updatedTickets = [...prevTickets];
-      const ticket = { ...updatedTickets[ticketIndex] };
-
-      // Adjust visitors array based on new quantity
-      if (newQuantity > ticket.quantity) {
-        // Add new visitor slots
-        while (ticket.visitors.length < newQuantity) {
-          ticket.visitors.push({ name: "" });
-        }
-      } else {
-        // Remove excess visitor slots
-        ticket.visitors = ticket.visitors.slice(0, newQuantity);
+    if (packageData?.capacityOptions) {
+      // For room packages with capacity options
+      const capacity = packageData.capacityOptions.find(
+        (option) => option.capacity === newQuantity
+      );
+      if (capacity) {
+        setSelectedCapacity(capacity);
+        const updatedTickets = [...tickets];
+        updatedTickets[ticketIndex] = {
+          ...updatedTickets[ticketIndex],
+          title: `${packageData.title} - ${capacity.capacity} người`,
+          price: capacity.price,
+          quantity: 1,
+          capacity: capacity.capacity,
+          visitors: Array(capacity.capacity)
+            .fill()
+            .map(() => ({ name: "" })),
+        };
+        setTickets(updatedTickets);
       }
-
-      ticket.quantity = newQuantity;
-      updatedTickets[ticketIndex] = ticket;
-      return updatedTickets;
-    });
+    } else {
+      // For regular packages
+      const updatedTickets = [...tickets];
+      updatedTickets[ticketIndex] = {
+        ...updatedTickets[ticketIndex],
+        quantity: newQuantity,
+        visitors: Array(newQuantity)
+          .fill()
+          .map(() => ({ name: "" })),
+      };
+      setTickets(updatedTickets);
+    }
   };
 
   const handleVisitorNameChange = (ticketIndex, visitorIndex, name) => {
@@ -529,22 +675,36 @@ const CheckoutPage = () => {
   const handleNextStep = async () => {
     if (currentStep === 1) {
       // Validate date, time and tickets
-      if (
-        !selectedDate ||
-        !selectedTime ||
-        !tickets.some((t) => t.quantity > 0)
-      ) {
+      if (!selectedDate || !selectedTime) {
         alert("Vui lòng chọn đầy đủ thông tin đặt vé");
         return;
       }
-      // Validate visitor names
-      const missingNames = tickets.some(
-        (ticket) =>
-          ticket.quantity > 0 && ticket.visitors.some((v) => !v.name.trim())
-      );
-      if (missingNames) {
-        alert("Vui lòng nhập đầy đủ họ tên người tham quan");
+
+      // For capacity-based packages, check if capacity is selected
+      if (packageData?.capacityOptions && !selectedCapacity) {
+        alert("Vui lòng chọn số lượng người");
         return;
+      }
+
+      // For regular packages, check if tickets are selected
+      if (
+        !packageData?.capacityOptions &&
+        !tickets.some((t) => t.quantity > 0)
+      ) {
+        alert("Vui lòng chọn ít nhất 1 vé");
+        return;
+      }
+
+      // Validate visitor names only for non-room packages (packages without capacityOptions)
+      if (!packageData?.capacityOptions) {
+        const missingNames = tickets.some(
+          (ticket) =>
+            ticket.quantity > 0 && ticket.visitors.some((v) => !v.name.trim())
+        );
+        if (missingNames) {
+          alert("Vui lòng nhập đầy đủ họ tên người tham quan");
+          return;
+        }
       }
     }
 
@@ -596,6 +756,7 @@ const CheckoutPage = () => {
               selectedDate,
               selectedTime,
               tickets,
+              selectedCapacity,
               userId: userInfo.id,
               userInfo,
               paymentMethod,
@@ -623,12 +784,20 @@ const CheckoutPage = () => {
   };
 
   const calculateTotal = () => {
-    return tickets.reduce((total, ticket) => {
-      if (ticket.isContactOnly) {
-        return "Liên hệ";
-      }
-      return total + ticket.price * ticket.quantity;
-    }, 0);
+    if (!packageData) return 0;
+
+    if (packageData.capacityOptions && selectedCapacity) {
+      // For room packages with capacity selection
+      return selectedCapacity.price;
+    } else if (tickets.some((t) => t.isContactOnly)) {
+      // For contact-only packages
+      return 0;
+    } else {
+      // For regular packages
+      return tickets.reduce((total, ticket) => {
+        return total + ticket.price * ticket.quantity;
+      }, 0);
+    }
   };
 
   const handleLoginSuccess = () => {
@@ -680,12 +849,47 @@ const CheckoutPage = () => {
               selectedTime={selectedTime}
               onTimeChange={handleTimeChange}
             />
-            <TicketSelection
-              tickets={tickets}
-              onQuantityChange={handleQuantityChange}
-              onVisitorNameChange={handleVisitorNameChange}
-              packageData={packageData}
-            />
+            {packageData?.capacityOptions ? (
+              <div className="capacity-selection-section">
+                <h3>Chọn số lượng người</h3>
+                <div className="capacity-options-grid">
+                  {packageData.capacityOptions.map((option, index) => (
+                    <div
+                      key={index}
+                      className={`capacity-option-display-thanhtoan ${
+                        selectedCapacity?.capacity === option.capacity
+                          ? "active"
+                          : ""
+                      }`}
+                      onClick={() => handleQuantityChange(0, option.capacity)}
+                    >
+                      <div className="capacity-info">
+                        <span className="capacity-number">
+                          {option.capacity}
+                        </span>
+                        <span className="capacity-label">người</span>
+                      </div>
+                      <div className="capacity-price">
+                        {new Intl.NumberFormat("vi-VN", {
+                          style: "currency",
+                          currency: "VND",
+                        }).format(option.price)}
+                      </div>
+                      <div className="capacity-description">
+                        {option.description}
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : (
+              <TicketSelection
+                tickets={tickets}
+                onQuantityChange={handleQuantityChange}
+                onVisitorNameChange={handleVisitorNameChange}
+                packageData={packageData}
+              />
+            )}
           </>
         )}
 
@@ -738,7 +942,9 @@ const CheckoutPage = () => {
                     <Tr>
                       <Th>Vé</Th>
                       <Th>Số lượng</Th>
-                      <Th>Người tham quan</Th>
+                      {!packageData?.capacityOptions && (
+                        <Th>Người tham quan</Th>
+                      )}
                       <Th>Thời gian</Th>
                       <Th>Tổng tiền</Th>
                     </Tr>
@@ -750,9 +956,11 @@ const CheckoutPage = () => {
                           <Tr key={index}>
                             <Td>{ticket.title}</Td>
                             <Td>{ticket.quantity}</Td>
-                            <Td>
-                              {ticket.visitors.map((v) => v.name).join(", ")}
-                            </Td>
+                            {!packageData?.capacityOptions && (
+                              <Td>
+                                {ticket.visitors.map((v) => v.name).join(", ")}
+                              </Td>
+                            )}
                             <Td>
                               {new Date(selectedDate).toLocaleDateString(
                                 "vi-VN"
@@ -907,6 +1115,8 @@ const CheckoutPage = () => {
         tickets={tickets}
         onNextStep={handleNextStep}
         currentStep={currentStep}
+        packageData={packageData}
+        selectedCapacity={selectedCapacity}
       />
 
       {showLoginModal && (

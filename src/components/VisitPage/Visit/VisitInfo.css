@@ -541,7 +541,7 @@
 .homestay-section {
   position: relative;
   overflow: hidden;
-  
+
   margin-top: -20px;
   padding-top: 120px !important;
   background: none !important;
@@ -1750,7 +1750,6 @@
 .amenities-list {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 15px;
   list-style: none;
   padding: 0;
   margin: 0;
@@ -1765,6 +1764,14 @@
   padding: 10px 12px;
   border-radius: 8px;
   transition: all 0.3s ease;
+}
+
+.amenities-list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
 }
 
 .amenities-list li:hover {
@@ -4286,5 +4293,97 @@
 
   .capacity-option {
     width: 100%;
+  }
+}
+
+/* Homestay Card Highlights */
+.homestay-highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.homestay-highlights .highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 20px;
+}
+
+.homestay-highlights .highlight-icon {
+  width: 16px;
+  height: 16px;
+  object-fit: contain;
+}
+
+.homestay-highlights .highlight-text {
+  font-size: 12px;
+  color: #666;
+}
+
+/* Details Sidebar Highlights */
+.homestay-details-highlights {
+  margin: 24px 0;
+}
+
+.homestay-details-highlights h3 {
+  margin-bottom: 16px;
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.homestay-details-highlights .highlights-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 12px;
+}
+
+.homestay-details-highlights .highlight-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px;
+  border-radius: 8px;
+  transition: transform 0.2s ease;
+}
+
+.homestay-details-highlights .highlight-item:hover {
+  transform: translateY(-2px);
+}
+
+.homestay-details-highlights .highlight-icon {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+}
+
+.homestay-details-highlights .highlight-text {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .homestay-highlights {
+    gap: 6px;
+  }
+
+  .homestay-highlights .highlight-item {
+    padding: 4px 8px;
+  }
+
+  .homestay-highlights .highlight-icon {
+    width: 14px;
+    height: 14px;
+  }
+
+  .homestay-highlights .highlight-text {
+    font-size: 11px;
+  }
+
+  .homestay-details-highlights .highlights-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
 }

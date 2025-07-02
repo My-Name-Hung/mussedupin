@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/MUSSEEDUPIN/node_modules/framer-motion/dist/es/animation/utils/stagger.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "import { easingDefinitionToFunction } from 'motion-utils';\n\nfunction getOriginIndex(from, total) {\n    if (from === \"first\") {\n        return 0;\n    }\n    else {\n        const lastIndex = total - 1;\n        return from === \"last\" ? lastIndex : lastIndex / 2;\n    }\n}\nfunction stagger(duration = 0.1, { startDelay = 0, from = 0, ease } = {}) {\n    return (i, total) => {\n        const fromIndex = typeof from === \"number\" ? from : getOriginIndex(from, total);\n        const distance = Math.abs(fromIndex - i);\n        let delay = duration * distance;\n        if (ease) {\n            const maxDelay = total * duration;\n            const easingFunction = easingDefinitionToFunction(ease);\n            delay = easingFunction(delay / maxDelay) * maxDelay;\n        }\n        return startDelay + delay;\n    };\n}\n\nexport { getOriginIndex, stagger };\n",
+      "start": 1751470597100,
+      "end": 1751470597412,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1751470597413,
+      "end": 1751470597413,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1751470597413,
+      "end": 1751470597413,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1751470597413,
+      "end": 1751470597413,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1751470597413,
+      "end": 1751470597413,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1751470597413,
+      "end": 1751470597413,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1751470597413,
+      "end": 1751470597413,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1751470597413,
+      "end": 1751470597413,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1751470597413,
+      "end": 1751470597413,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1751470597413,
+      "end": 1751470597413,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1751470597413,
+      "end": 1751470597413,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1751470597413,
+      "end": 1751470597413,
+      "order": "normal"
+    }
+  ]
+}

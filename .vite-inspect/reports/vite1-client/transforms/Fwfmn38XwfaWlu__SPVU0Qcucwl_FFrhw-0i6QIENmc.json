@@ -4,75 +4,75 @@
     {
       "name": "vite:load-fallback",
       "result": "<!DOCTYPE html>\n<html lang=\"vi\">\n  <head>\n    <meta charset=\"UTF-8\" />\n    <!-- Đặt viewport để đảm bảo responsive với mobile -->\n    <meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\" />\n\n    <!-- Tiêu đề tối ưu: ưu tiên chứa từ khóa chính (\"Bảo tàng Thông\", \"Musee Du Pin\") -->\n    <title>\n      Bảo tàng Thông | Musee Du Pin – Nơi giữ gìn, nâng niu những giá trị Đà Lạt\n    </title>\n\n    <!-- Meta Description: giữ độ dài khoảng 150–160 ký tự để hiện đủ trên SERP -->\n    <meta\n      name=\"description\"\n      content=\"🌸 Nơi ký ức, nghệ thuật và thiên nhiên của Việt Nam tại Bảo Tàng Thông - Musee Du Pin.\"\n    />\n\n    <!-- Meta Keywords: ít được Google ưu tiên nhưng vẫn có thể giữ cho các search engine khác -->\n    <meta\n      name=\"keywords\"\n      content=\"bảo tàng thông, musee du pin, nghệ thuật việt nam, triển lãm, văn hóa việt nam, bảo tàng việt nam\"\n    />\n    <meta\n      name=\"google-site-verification\"\n      content=\"nrcZ5VenmSlmvmE_y8IiqwmnvcWTWjXhddg-jBASX7s\"\n    />\n\n    <!-- Canonical: tránh tình trạng duplicate content -->\n    <link rel=\"canonical\" href=\"https://museedupin.com/\" />\n\n    <!-- Xác định robots: cho phép index và theo dõi link -->\n    <meta name=\"robots\" content=\"index, follow\" />\n\n    <!-- Preconnect/Preload: ưu tiên kết nối nhanh đến các tài nguyên quan trọng (font, API, CDN) -->\n    <link rel=\"preconnect\" href=\"https://res.cloudinary.com\" />\n    <link rel=\"preload\" href=\"/src/styles/critical.css\" as=\"style\" />\n    <link rel=\"stylesheet\" href=\"/src/styles/critical.css\" />\n\n    <!-- Favicon chuẩn và kích thước -->\n    <link\n      rel=\"icon\"\n      type=\"image/png\"\n      href=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png\"\n      sizes=\"86x86\"\n    />\n\n    <!-- Open Graph (Facebook, LinkedIn …) -->\n    <meta property=\"og:type\" content=\"website\" />\n    <meta property=\"og:title\" content=\"Bảo tàng Thông | Musee Du Pin\" />\n    <meta\n      property=\"og:description\"\n      content=\"🌸 Nơi ký ức, nghệ thuật và thiên nhiên của Việt Nam tại Bảo Tàng Thông - Musee Du Pin.\"\n    />\n    <meta\n      property=\"og:image\"\n      content=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png\"\n    />\n    <meta property=\"og:url\" content=\"https://museedupin.com/\" />\n\n    <!-- Twitter Card -->\n    <meta name=\"twitter:card\" content=\"summary_large_image\" />\n    <meta name=\"twitter:title\" content=\"Bảo tàng Thông | Musee Du Pin\" />\n    <meta\n      name=\"twitter:description\"\n      content=\"🌸 Nơi ký ức, nghệ thuật và thiên nhiên của Việt Nam tại Bảo Tàng Thông - Musee Du Pin.\"\n    />\n    <meta\n      name=\"twitter:image\"\n      content=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png\"\n    />\n\n    <!-- JSON-LD Structured Data cho Organization + Museum -->\n    <script type=\"application/ld+json\">\n      {\n        \"@context\": \"https://schema.org\",\n        \"@graph\": [\n          {\n            \"@type\": \"Organization\",\n            \"@id\": \"https://museedupin.com/#organization\",\n            \"name\": \"Bảo tàng Thông\",\n            \"url\": \"https://museedupin.com/\",\n            \"logo\": \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png\",\n            \"sameAs\": [\"https://www.facebook.com/BaoTangThongDalat\"],\n            \"description\": \"🌸 Nơi ký ức, nghệ thuật và thiên nhiên của Việt Nam tại Bảo Tàng Thông - Musee Du Pin.\",\n            \"contactPoint\": {\n              \"@type\": \"ContactPoint\",\n              \"telephone\": \"0862356368\",\n              \"contactType\": \"Bảo Tàng Thông- Musee du Pin\",\n              \"areaServed\": \"Đà Lạt\"\n            }\n          },\n          {\n            \"@type\": \"Museum\",\n            \"@id\": \"https://museedupin.com/#museum\",\n            \"name\": \"Bảo tàng Thông | Musee Du Pin\",\n            \"description\": \"🌸 Nơi ký ức, nghệ thuật và thiên nhiên của Việt Nam tại Bảo Tàng Thông - Musee Du Pin.\",\n            \"url\": \"https://museedupin.com/\",\n            \"image\": \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.png\",\n            \"address\": {\n              \"@type\": \"PostalAddress\",\n              \"streetAddress\": \"29-31 Đống Đa, phường 3, Đà Lạt\",\n              \"addressLocality\": \"Đà Lạt\",\n              \"addressCountry\": \"Việt Nam\"\n            },\n            \"geo\": {\n              \"@type\": \"GeoCoordinates\",\n              \"latitude\": 11.92384504845912,\n              \"longitude\": 108.4446307502475\n            },\n            \"telephone\": \"0862356368\",\n            \"openingHours\": \"09:00-21:00\",\n            \"sameAs\": [\"https://www.facebook.com/BaoTangThongDalat\"]\n          }\n        ]\n      }\n    </script>\n  </head>\n  <body>\n    <div id=\"root\"></div>\n    <script type=\"module\" src=\"/src/main.jsx\"></script>\n  </body>\n</html>\n",
-      "start": 1751302840721,
-      "end": 1751302840722,
+      "start": 1751470573924,
+      "end": 1751470573925,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751302840723,
-      "end": 1751302840723,
+      "start": 1751470573926,
+      "end": 1751470573926,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751302840724,
-      "end": 1751302840724,
+      "start": 1751470573926,
+      "end": 1751470573927,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751302840725,
-      "end": 1751302840725,
+      "start": 1751470573927,
+      "end": 1751470573927,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751302840725,
-      "end": 1751302840726,
+      "start": 1751470573927,
+      "end": 1751470573927,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
       "result": "import \"vite/modulepreload-polyfill\";\n\nimport \"/src/main.jsx\"",
-      "start": 1751302840727,
-      "end": 1751302840779,
+      "start": 1751470573928,
+      "end": 1751470573985,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751302840779,
-      "end": 1751302840779,
+      "start": 1751470573985,
+      "end": 1751470573985,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751302840782,
-      "end": 1751302840782,
+      "start": 1751470573993,
+      "end": 1751470573993,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751302840782,
-      "end": 1751302840782,
+      "start": 1751470573993,
+      "end": 1751470573994,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751302840782,
-      "end": 1751302840782,
+      "start": 1751470573994,
+      "end": 1751470573994,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751302840782,
-      "end": 1751302840782,
+      "start": 1751470573994,
+      "end": 1751470573994,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751302840782,
-      "end": 1751302840783,
+      "start": 1751470573994,
+      "end": 1751470573994,
       "order": "normal"
     }
   ]

@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useEffect, useState } from \"react\";\nimport useImageCache from \"../../hooks/useImageCache\";\nimport usePreloadAssets from \"../../hooks/usePreloadAssets\";\nimport Loading from \"../Loading/Loading\";\n\nconst AppLoader = ({ children }) => {\n  const [allAssets, setAllAssets] = useState([]);\n  const [criticalAssets, setCriticalAssets] = useState([]);\n  const [showContent, setShowContent] = useState(false);\n  const { preloadAll } = useImageCache();\n\n  // Initialize assets\n  useEffect(() => {\n    const critical = [];\n    const secondary = [];\n\n    setCriticalAssets(critical);\n    setAllAssets([...critical, ...secondary]);\n  }, []);\n\n  // Use our preload hook for all assets\n  const { progress, done, priorityDone } = usePreloadAssets(allAssets);\n\n  // Preload critical assets with high priority\n  useEffect(() => {\n    if (criticalAssets.length > 0) {\n      // Preload critical assets immediately\n      preloadAll(criticalAssets).catch((error) => {\n        console.error(\"Error preloading critical assets:\", error);\n      });\n    }\n  }, [criticalAssets, preloadAll]);\n\n  // Show content when priority assets are loaded\n  useEffect(() => {\n    if (priorityDone) {\n      setShowContent(true);\n    }\n  }, [priorityDone]);\n\n  if (!showContent) {\n    return <Loading progress={progress} priorityDone={priorityDone} />;\n  }\n\n  return (\n    <>\n      {children}\n      {/* Continue loading secondary assets in background */}\n      {!done && (\n        <div style={{ display: \"none\" }}>\n          Loading secondary assets: {Math.round(progress)}%\n        </div>\n      )}\n    </>\n  );\n};\n\nexport default AppLoader;\n",
-      "start": 1751302840848,
-      "end": 1751302841018,
+      "start": 1751470574098,
+      "end": 1751470574151,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751302841018,
-      "end": 1751302841018,
+      "start": 1751470574151,
+      "end": 1751470574151,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { Fragment, jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect, useState } from \"react\";\nimport useImageCache from \"../../hooks/useImageCache\";\nimport usePreloadAssets from \"../../hooks/usePreloadAssets\";\nimport Loading from \"../Loading/Loading\";\nconst AppLoader = ({ children }) => {\n  const [allAssets, setAllAssets] = useState([]);\n  const [criticalAssets, setCriticalAssets] = useState([]);\n  const [showContent, setShowContent] = useState(false);\n  const { preloadAll } = useImageCache();\n  useEffect(() => {\n    const critical = [];\n    const secondary = [];\n    setCriticalAssets(critical);\n    setAllAssets([...critical, ...secondary]);\n  }, []);\n  const { progress, done, priorityDone } = usePreloadAssets(allAssets);\n  useEffect(() => {\n    if (criticalAssets.length > 0) {\n      preloadAll(criticalAssets).catch((error) => {\n        console.error(\"Error preloading critical assets:\", error);\n      });\n    }\n  }, [criticalAssets, preloadAll]);\n  useEffect(() => {\n    if (priorityDone) {\n      setShowContent(true);\n    }\n  }, [priorityDone]);\n  if (!showContent) {\n    return /* @__PURE__ */ jsx(Loading, { progress, priorityDone });\n  }\n  return /* @__PURE__ */ jsxs(Fragment, { children: [\n    children,\n    !done && /* @__PURE__ */ jsxs(\"div\", { style: { display: \"none\" }, children: [\n      \"Loading secondary assets: \",\n      Math.round(progress),\n      \"%\"\n    ] })\n  ] });\n};\nexport default AppLoader;\n",
-      "start": 1751302841018,
-      "end": 1751302841105,
+      "start": 1751470574151,
+      "end": 1751470574239,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751302841105,
-      "end": 1751302841105,
+      "start": 1751470574240,
+      "end": 1751470574240,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751302841105,
-      "end": 1751302841105,
+      "start": 1751470574240,
+      "end": 1751470574240,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751302841105,
-      "end": 1751302841105,
+      "start": 1751470574240,
+      "end": 1751470574240,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751302841105,
-      "end": 1751302841105,
+      "start": 1751470574240,
+      "end": 1751470574240,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751302841105,
-      "end": 1751302841105,
+      "start": 1751470574240,
+      "end": 1751470574240,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751302841105,
-      "end": 1751302841105,
+      "start": 1751470574240,
+      "end": 1751470574240,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751302841105,
-      "end": 1751302841105,
+      "start": 1751470574240,
+      "end": 1751470574240,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751302841105,
-      "end": 1751302841106,
+      "start": 1751470574240,
+      "end": 1751470574241,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751302841106,
-      "end": 1751302841106,
+      "start": 1751470574241,
+      "end": 1751470574241,
       "order": "normal"
     }
   ]

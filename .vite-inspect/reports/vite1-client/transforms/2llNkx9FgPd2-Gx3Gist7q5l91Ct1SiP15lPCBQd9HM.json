@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "@font-face {\n  font-family: \"Mythical-Prince\";\n  src: url(\"../../../assets/museedupin/1FTV-VIP-Mythical-Prince.otf\")\n    format(\"opentype\");\n  font-weight: 400;\n  font-style: normal;\n  font-display: swap;\n}\n\n.legal-notice-container {\n  width: 100%;\n  max-width: 100%;\n  overflow-x: hidden;\n}\n\n/* Banner styling */\n.legal-banner {\n  position: relative;\n  width: 100%;\n  height: 300px;\n  overflow: hidden;\n}\n\n.legal-banner img {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  filter: brightness(0.6);\n  transition: transform 0.5s ease-in-out;\n}\n\n.legal-banner:hover img {\n  transform: scale(1.05);\n}\n\n.banner-overlay {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  display: flex;\n  flex-direction: column;\n  justify-content: center;\n  align-items: center;\n  color: white;\n  text-align: center;\n  z-index: 2;\n}\n\n.banner-overlay h1 {\n  font-family: \"Mythical-Prince\", \"LouvreSerif\", Georgia, \"Times New Roman\",\n    serif;\n  font-size: 3.5rem;\n  color: white;\n  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);\n  font-weight: 600;\n  margin: 0;\n}\n\n/* Content styling */\n.legal-content {\n  margin: 0 auto;\n  padding: 2rem;\n  overflow-x: hidden;\n  background-image: url(\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784842/background/Background2.webp\");\n  background-repeat: repeat;\n  background-position: center;\n  background-size: 300px;\n  image-rendering: -webkit-optimize-contrast;\n  image-rendering: crisp-edges;\n  box-sizing: border-box;\n  overflow: visible;\n  border-radius: 5px;\n  margin-top: 0px;\n  position: relative;\n  z-index: 3;\n}\n\n.section {\n  margin-bottom: 2.5rem;\n}\n\n.section h2 {\n  font-size: 1.8rem;\n  color: #333;\n  margin-bottom: 1rem;\n  border-bottom: 2px solid #f0f0f0;\n  padding-bottom: 0.5rem;\n}\n\n.section h3 {\n  font-size: 1.4rem;\n  color: #444;\n  margin: 1.5rem 0 0.8rem;\n}\n\n.section p {\n  line-height: 1.6;\n  margin-bottom: 1rem;\n  color: #555;\n}\n\n.subsection {\n  margin-left: 1.5rem;\n  margin-top: 1rem;\n  margin-bottom: 1.5rem;\n}\n\n.subsection h4 {\n  font-size: 1.2rem;\n  color: #555;\n  margin-bottom: 0.8rem;\n}\n\n.subsection ul {\n  margin-left: 1.5rem;\n  margin-bottom: 1rem;\n}\n\n.subsection li {\n  margin-bottom: 0.5rem;\n  line-height: 1.5;\n}\n\n/* Highlight important information */\n.highlight {\n  padding: 1rem;\n  border-left: 4px solid #007bff;\n  margin: 1rem 0;\n}\n\n/* Link styling */\n.section a {\n  color: #007bff;\n  text-decoration: none;\n  transition: color 0.3s ease;\n}\n\n.section a:hover {\n  color: #0056b3;\n  text-decoration: underline;\n}\n\n/* Enhanced mobile responsiveness */\n@media screen and (max-width: 768px) {\n  .legal-banner {\n    height: 200px;\n    overflow: hidden;\n  }\n\n  .legal-banner img {\n    filter: brightness(0.5) contrast(1.1);\n    animation: subtleZoom 20s infinite alternate;\n  }\n\n  @keyframes subtleZoom {\n    0% {\n      transform: scale(1);\n    }\n    100% {\n      transform: scale(1.1);\n    }\n  }\n\n  .banner-overlay h1 {\n    font-size: 2.2rem;\n    margin-bottom: 1rem;\n    text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);\n    letter-spacing: 0.05em;\n    position: relative;\n    display: inline-block;\n  }\n\n  .banner-overlay h1::after {\n    content: \"\";\n    position: absolute;\n    bottom: -10px;\n    left: 50%;\n    transform: translateX(-50%);\n    width: 50px;\n    height: 2px;\n    background: linear-gradient(90deg, transparent, white, transparent);\n  }\n\n\n  .section {\n    position: relative;\n    padding: 0.5rem 0;\n    margin-bottom: 2rem;\n    transition: transform 0.3s ease;\n  }\n\n  .section:hover {\n    transform: translateY(-3px);\n  }\n\n  .section::before {\n    content: \"\";\n    position: absolute;\n    top: 0;\n    left: 0;\n    width: 3px;\n    height: 0;\n    background: linear-gradient(to bottom, #007bff, transparent);\n    transition: height 0.3s ease;\n  }\n\n  .section:hover::before {\n    height: 100%;\n  }\n\n  .section h2 {\n    font-size: 1.5rem;\n    padding-left: 1rem;\n  }\n\n  .section h3 {\n    font-size: 1.2rem;\n    margin: 1.5rem 0 0.8rem;\n    color: #555;\n  }\n\n  .section p {\n    padding-left: 1rem;\n    border-left: 1px solid #f0f0f0;\n    margin-left: 0.5rem;\n  }\n}\n\n@media screen and (max-width: 480px) {\n  .legal-banner {\n    height: 150px;\n  }\n\n  .banner-overlay h1 {\n    font-size: 1.8rem;\n  }\n\n  .banner-overlay h1::after {\n    width: 40px;\n    height: 1px;\n  }\n\n\n  .section h2 {\n    font-size: 1.3rem;\n    padding-left: 0.5rem;\n    letter-spacing: 0.03em;\n  }\n\n  .section h3 {\n    font-size: 1.1rem;\n    margin: 1.2rem 0 0.7rem;\n  }\n\n  .subsection {\n    margin-left: 0.5rem;\n  }\n\n  .section p {\n    font-size: 0.95rem;\n    line-height: 1.5;\n    padding-left: 0.5rem;\n  }\n\n  /* Creative on-scroll animation for sections */\n  .section {\n    opacity: 0.8;\n    transform: translateY(10px);\n    transition: opacity 0.5s ease, transform 0.5s ease;\n  }\n\n  .section:hover {\n    opacity: 1;\n    transform: translateY(0);\n  }\n\n  /* Add a subtle design element to lists */\n  ul {\n    list-style-type: none;\n  }\n\n  ul li {\n    position: relative;\n    padding-left: 1rem;\n    margin-bottom: 0.7rem;\n  }\n\n  ul li::before {\n    content: \"→\";\n    position: absolute;\n    left: 0;\n    color: #007bff;\n    font-size: 0.8rem;\n  }\n}\n",
-      "start": 1751302841386,
-      "end": 1751302841489,
+      "start": 1751470575851,
+      "end": 1751470576553,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751302841490,
-      "end": 1751302841490,
+      "start": 1751470576553,
+      "end": 1751470576553,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751302842562,
-      "end": 1751302842562,
+      "start": 1751470576555,
+      "end": 1751470576555,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751302842562,
-      "end": 1751302842562,
+      "start": 1751470576555,
+      "end": 1751470576555,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751302842563,
-      "end": 1751302842563,
+      "start": 1751470576555,
+      "end": 1751470576555,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751302842564,
-      "end": 1751302842564,
+      "start": 1751470576556,
+      "end": 1751470576556,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751302842565,
-      "end": 1751302842565,
+      "start": 1751470576556,
+      "end": 1751470576556,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751302842565,
-      "end": 1751302842565,
+      "start": 1751470576556,
+      "end": 1751470576556,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751302842566,
-      "end": 1751302842566,
+      "start": 1751470576556,
+      "end": 1751470576556,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751302842566,
-      "end": 1751302842566,
+      "start": 1751470576556,
+      "end": 1751470576556,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751302842566,
-      "end": 1751302842566,
+      "start": 1751470576556,
+      "end": 1751470576556,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751302842568,
-      "end": 1751302842569,
+      "start": 1751470576556,
+      "end": 1751470576556,
       "order": "normal"
     }
   ]

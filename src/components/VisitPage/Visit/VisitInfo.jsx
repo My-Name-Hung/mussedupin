@@ -541,26 +541,64 @@ const VisitInfo = () => {
         en: "The Chill I",
       },
       description: {
-        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
-        en: "Authentic local house with traditional decorations and home-cooked meals.",
+        vi: "Căn phòng mang hơi thở của sự bình yên thuần khiết.",
+        en: "A quiet space where the soul finds healing.",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20I-%20The%20Chill%20I/z6735017008335_1f53d54c8c667e714237c694c6fb2bf0.jpg?updatedAt=1751274193309",
+      highlights: {
+        vi: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Gần trung tâm",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Đánh giá cao",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "An toàn 24/7",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Phòng rộng rãi",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Dịch vụ chuyên nghiệp",
+          },
+        ],
+        en: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Near center",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Highly rated",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "24/7 security",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Spacious room",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Professional service",
+          },
+        ],
+      },
       capacityOptions: [
         {
-          capacity: 4,
+          capacity: 2,
           price: 3500000,
           description: {
-            vi: "Phù hợp cho 4 người",
-            en: "Suitable for 4 people",
-          },
-        },
-        {
-          capacity: 5,
-          price: 4000000,
-          description: {
-            vi: "Phù hợp cho 5 người",
-            en: "Suitable for 5 people",
+            vi: "Phù hợp cho 2 người",
+            en: "Suitable for 2 people",
           },
         },
       ],
@@ -568,37 +606,36 @@ const VisitInfo = () => {
       price: 3500000, // Default price
       rating: 4.8,
       tags: {
-        vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
-        en: ["Recommended", "Traditional", "Breakfast included"],
+        vi: ["Đề xuất", "Bình yên", "Phục vụ bữa sáng"],
+        en: ["Recommended", "Peaceful", "Breakfast included"],
       },
-      category: ["popular", "recommended"],
-      location: {
-        vi: "Cách bảo tàng 5 phút đi bộ",
-        en: "5 minutes walk from Musée Du Pin",
-      },
-      host: "Musée Du Pin",
-      roomType: {
-        vi: "Phòng riêng trong nhà truyền thống",
-        en: "Private room in traditional house",
-      },
-      beds: {
-        vi: "1 giường đôi",
-        en: "1 double bed",
-      },
+      category: [
+        "popular",
+        "recommended",
+        "budget-friendly",
+        "top-rated",
+        "breakfast-included",
+      ],
       amenities: {
         vi: [
           "Wi-Fi miễn phí",
-          "Bao gồm bữa sáng",
-          "Điều hòa nhiệt độ",
-          "Vườn",
-          "Phòng tắm riêng",
+          "Spa",
+          "Quán bar",
+          "Đưa đón sân bay",
+          "Đỗ xe miễn phí",
+          "Bàn tiếp tân [24 giờ]",
+          "Mát-xa",
+          "Phòng gia đình",
         ],
         en: [
           "Free Wi-Fi",
-          "Breakfast included",
-          "Air conditioning",
-          "Garden",
-          "Private bathroom",
+          "Spa",
+          "Bar",
+          "Airport transfer",
+          "Free parking",
+          "24-hour front desk",
+          "Massage",
+          "Family rooms",
         ],
       },
       rules: {
@@ -623,26 +660,64 @@ const VisitInfo = () => {
         en: "The Chill II",
       },
       description: {
-        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
-        en: "Authentic local house with traditional decorations and home-cooked meals.",
+        vi: "Bình yên II – nơi bạn được là chính mình trong sự nhẹ nhàng.",
+        en: "The Chill II – a place where you can be yourself in the gentle.",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20II-%20The%20Chill%20II/z6735017019144_2e97325679ec2dbf6248ee217d2c005e.jpg?updatedAt=1751274217344",
+      highlights: {
+        vi: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Gần trung tâm",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Đánh giá cao",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "An toàn 24/7",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Phòng rộng rãi",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Dịch vụ chuyên nghiệp",
+          },
+        ],
+        en: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Near center",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Highly rated",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "24/7 security",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Spacious room",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Professional service",
+          },
+        ],
+      },
       capacityOptions: [
         {
-          capacity: 4,
+          capacity: 2,
           price: 3500000,
           description: {
-            vi: "Phù hợp cho 4 người",
-            en: "Suitable for 4 people",
-          },
-        },
-        {
-          capacity: 5,
-          price: 4000000,
-          description: {
-            vi: "Phù hợp cho 5 người",
-            en: "Suitable for 5 people",
+            vi: "Phù hợp cho 2 người",
+            en: "Suitable for 2 people",
           },
         },
       ],
@@ -650,37 +725,36 @@ const VisitInfo = () => {
       price: 3500000, // Default price
       rating: 4.8,
       tags: {
-        vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
-        en: ["Recommended", "Traditional", "Breakfast included"],
+        vi: ["Đề xuất", "Bình yên", "Phục vụ bữa sáng"],
+        en: ["Recommended", "Peaceful", "Breakfast included"],
       },
-      category: ["popular", "recommended"],
-      location: {
-        vi: "Cách bảo tàng 5 phút đi bộ",
-        en: "5 minutes walk from Musée Du Pin",
-      },
-      host: "Musée Du Pin",
-      roomType: {
-        vi: "Phòng riêng trong nhà truyền thống",
-        en: "Private room in traditional house",
-      },
-      beds: {
-        vi: "1 giường đôi",
-        en: "1 double bed",
-      },
+      category: [
+        "popular",
+        "recommended",
+        "budget-friendly",
+        "top-rated",
+        "breakfast-included",
+      ],
       amenities: {
         vi: [
           "Wi-Fi miễn phí",
-          "Bao gồm bữa sáng",
-          "Điều hòa nhiệt độ",
-          "Vườn",
-          "Phòng tắm riêng",
+          "Spa",
+          "Quán bar",
+          "Đưa đón sân bay",
+          "Đỗ xe miễn phí",
+          "Bàn tiếp tân [24 giờ]",
+          "Mát-xa",
+          "Phòng gia đình",
         ],
         en: [
           "Free Wi-Fi",
-          "Breakfast included",
-          "Air conditioning",
-          "Garden",
-          "Private bathroom",
+          "Spa",
+          "Bar",
+          "Airport transfer",
+          "Free parking",
+          "24-hour front desk",
+          "Massage",
+          "Family rooms",
         ],
       },
       rules: {
@@ -705,26 +779,64 @@ const VisitInfo = () => {
         en: "The Kite",
       },
       description: {
-        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
-        en: "Authentic local house with traditional decorations and home-cooked meals.",
+        vi: "Căn phòng thổi hồn tự do như cánh diều bay giữa trời cao.",
+        en: "A room that breathes freedom, like a kite soaring in the sky.",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/C%C3%A1nh%20di%E1%BB%81u-%20The%20Kite/404%20-%201.png?updatedAt=1751274406678",
+      highlights: {
+        vi: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Gần trung tâm",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Đánh giá cao",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "An toàn 24/7",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Phòng rộng rãi",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Dịch vụ chuyên nghiệp",
+          },
+        ],
+        en: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Near center",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Highly rated",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "24/7 security",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Spacious room",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Professional service",
+          },
+        ],
+      },
       capacityOptions: [
         {
-          capacity: 4,
+          capacity: 3,
           price: 3500000,
           description: {
-            vi: "Phù hợp cho 4 người",
-            en: "Suitable for 4 people",
-          },
-        },
-        {
-          capacity: 5,
-          price: 4000000,
-          description: {
-            vi: "Phù hợp cho 5 người",
-            en: "Suitable for 5 people",
+            vi: "Phù hợp cho 3 người",
+            en: "Suitable for 3 people",
           },
         },
       ],
@@ -732,37 +844,36 @@ const VisitInfo = () => {
       price: 3500000, // Default price
       rating: 4.8,
       tags: {
-        vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
-        en: ["Recommended", "Traditional", "Breakfast included"],
+        vi: ["Đề xuất", "Phục vụ bữa sáng"],
+        en: ["Recommended", "Breakfast included"],
       },
-      category: ["popular", "recommended"],
-      location: {
-        vi: "Cách bảo tàng 5 phút đi bộ",
-        en: "5 minutes walk from Musée Du Pin",
-      },
-      host: "Musée Du Pin",
-      roomType: {
-        vi: "Phòng riêng trong nhà truyền thống",
-        en: "Private room in traditional house",
-      },
-      beds: {
-        vi: "1 giường đôi",
-        en: "1 double bed",
-      },
+      category: [
+        "popular",
+        "recommended",
+        "budget-friendly",
+        "top-rated",
+        "breakfast-included",
+      ],
       amenities: {
         vi: [
           "Wi-Fi miễn phí",
-          "Bao gồm bữa sáng",
-          "Điều hòa nhiệt độ",
-          "Vườn",
-          "Phòng tắm riêng",
+          "Spa",
+          "Quán bar",
+          "Đưa đón sân bay",
+          "Đỗ xe miễn phí",
+          "Bàn tiếp tân [24 giờ]",
+          "Mát-xa",
+          "Phòng gia đình",
         ],
         en: [
           "Free Wi-Fi",
-          "Breakfast included",
-          "Air conditioning",
-          "Garden",
-          "Private bathroom",
+          "Spa",
+          "Bar",
+          "Airport transfer",
+          "Free parking",
+          "24-hour front desk",
+          "Massage",
+          "Family rooms",
         ],
       },
       rules: {
@@ -787,26 +898,64 @@ const VisitInfo = () => {
         en: "Strawberry",
       },
       description: {
-        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
-        en: "Authentic local house with traditional decorations and home-cooked meals.",
+        vi: "Dâu Tây – một góc nhỏ ngọt ngào cho tâm hồn tươi trẻ.",
+        en: "Strawberry – a little sweet corner for a youthful soul.",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/D%C3%A2u%20t%C3%A2y-%20Strawberry/z6735068946993_6566743fb95325c53d9b69e966e2ae4a.jpg?updatedAt=1751274423030",
+      highlights: {
+        vi: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Gần trung tâm",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Đánh giá cao",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "An toàn 24/7",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Phòng rộng rãi",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Dịch vụ chuyên nghiệp",
+          },
+        ],
+        en: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Near center",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Highly rated",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "24/7 security",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Spacious room",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Professional service",
+          },
+        ],
+      },
       capacityOptions: [
         {
-          capacity: 4,
+          capacity: 2,
           price: 3500000,
           description: {
-            vi: "Phù hợp cho 4 người",
-            en: "Suitable for 4 people",
-          },
-        },
-        {
-          capacity: 5,
-          price: 4000000,
-          description: {
-            vi: "Phù hợp cho 5 người",
-            en: "Suitable for 5 people",
+            vi: "Phù hợp cho 2 người lớn và 1 trẻ em",
+            en: "Suitable for 2 adults and 1 child",
           },
         },
       ],
@@ -814,37 +963,36 @@ const VisitInfo = () => {
       price: 3500000, // Default price
       rating: 4.8,
       tags: {
-        vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
-        en: ["Recommended", "Traditional", "Breakfast included"],
+        vi: ["Phổ biến", "Phục vụ bữa sáng"],
+        en: ["Popular", "Breakfast included"],
       },
-      category: ["popular", "recommended"],
-      location: {
-        vi: "Cách bảo tàng 5 phút đi bộ",
-        en: "5 minutes walk from Musée Du Pin",
-      },
-      host: "Musée Du Pin",
-      roomType: {
-        vi: "Phòng riêng trong nhà truyền thống",
-        en: "Private room in traditional house",
-      },
-      beds: {
-        vi: "1 giường đôi",
-        en: "1 double bed",
-      },
+      category: [
+        "popular",
+        "recommended",
+        "budget-friendly",
+        "top-rated",
+        "breakfast-included",
+      ],
       amenities: {
         vi: [
           "Wi-Fi miễn phí",
-          "Bao gồm bữa sáng",
-          "Điều hòa nhiệt độ",
-          "Vườn",
-          "Phòng tắm riêng",
+          "Spa",
+          "Quán bar",
+          "Đưa đón sân bay",
+          "Đỗ xe miễn phí",
+          "Bàn tiếp tân [24 giờ]",
+          "Mát-xa",
+          "Phòng gia đình",
         ],
         en: [
           "Free Wi-Fi",
-          "Breakfast included",
-          "Air conditioning",
-          "Garden",
-          "Private bathroom",
+          "Spa",
+          "Bar",
+          "Airport transfer",
+          "Free parking",
+          "24-hour front desk",
+          "Massage",
+          "Family rooms",
         ],
       },
       rules: {
@@ -867,11 +1015,57 @@ const VisitInfo = () => {
         en: "The Childhood",
       },
       description: {
-        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
-        en: "Authentic local house with traditional decorations and home-cooked meals.",
+        vi: "Tuổi ấu thơ – nơi những ký ức đẹp nhất được đánh thức.",
+        en: "The Childhood – where the most beautiful memories come alive.",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/Tu%E1%BB%95i%20%E1%BA%A5u%20th%C6%A1-%20The%20Childhood/z6735013755648_e134fda3141c25a0a9fc67efa73d00de.jpg?updatedAt=1751274451818",
+      highlights: {
+        vi: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Gần trung tâm",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Đánh giá cao",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "An toàn 24/7",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Phòng rộng rãi",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Dịch vụ chuyên nghiệp",
+          },
+        ],
+        en: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Near center",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Highly rated",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "24/7 security",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Spacious room",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Professional service",
+          },
+        ],
+      },
       capacityOptions: [
         {
           capacity: 4,
@@ -881,50 +1075,41 @@ const VisitInfo = () => {
             en: "Suitable for 4 people",
           },
         },
-        {
-          capacity: 5,
-          price: 4000000,
-          description: {
-            vi: "Phù hợp cho 5 người",
-            en: "Suitable for 5 people",
-          },
-        },
       ],
       selectedCapacityIndex: 0, // Default to first option
       price: 3500000, // Default price
       rating: 4.8,
       tags: {
-        vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
-        en: ["Recommended", "Traditional", "Breakfast included"],
+        vi: ["Phổ biến", "Ưa thích", "Phục vụ bữa sáng"],
+        en: ["Popular", "Favorite", "Breakfast included"],
       },
-      category: ["popular", "recommended"],
-      location: {
-        vi: "Cách bảo tàng 5 phút đi bộ",
-        en: "5 minutes walk from Musée Du Pin",
-      },
-      host: "Musée Du Pin",
-      roomType: {
-        vi: "Phòng riêng trong nhà truyền thống",
-        en: "Private room in traditional house",
-      },
-      beds: {
-        vi: "1 giường đôi",
-        en: "1 double bed",
-      },
+      category: [
+        "popular",
+        "recommended",
+        "budget-friendly",
+        "top-rated",
+        "breakfast-included",
+      ],
       amenities: {
         vi: [
           "Wi-Fi miễn phí",
-          "Bao gồm bữa sáng",
-          "Điều hòa nhiệt độ",
-          "Vườn",
-          "Phòng tắm riêng",
+          "Spa",
+          "Quán bar",
+          "Đưa đón sân bay",
+          "Đỗ xe miễn phí",
+          "Bàn tiếp tân [24 giờ]",
+          "Mát-xa",
+          "Phòng gia đình",
         ],
         en: [
           "Free Wi-Fi",
-          "Breakfast included",
-          "Air conditioning",
-          "Garden",
-          "Private bathroom",
+          "Spa",
+          "Bar",
+          "Airport transfer",
+          "Free parking",
+          "24-hour front desk",
+          "Massage",
+          "Family rooms",
         ],
       },
       rules: {
@@ -949,23 +1134,61 @@ const VisitInfo = () => {
         en: "The Train",
       },
       description: {
-        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
-        en: "Authentic local house with traditional decorations and home-cooked meals.",
+        vi: "Toa tàu – không gian của những cuộc phiêu lưu và suy tư nhẹ nhàng.",
+        en: "The Train – a space for quiet adventures and gentle reflections.",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/Toa%20t%C3%A0u-%20The%20Train/z6735013970930_367d839a1762df6694ba9fde11f52475.jpg?updatedAt=1751274451540",
+      highlights: {
+        vi: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Gần trung tâm",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Đánh giá cao",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "An toàn 24/7",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Phòng rộng rãi",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Dịch vụ chuyên nghiệp",
+          },
+        ],
+        en: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Near center",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Highly rated",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "24/7 security",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Spacious room",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Professional service",
+          },
+        ],
+      },
       capacityOptions: [
         {
-          capacity: 4,
-          price: 3500000,
-          description: {
-            vi: "Phù hợp cho 4 người",
-            en: "Suitable for 4 people",
-          },
-        },
-        {
           capacity: 5,
-          price: 4000000,
+          price: 3500000,
           description: {
             vi: "Phù hợp cho 5 người",
             en: "Suitable for 5 people",
@@ -979,34 +1202,33 @@ const VisitInfo = () => {
         vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
         en: ["Recommended", "Traditional", "Breakfast included"],
       },
-      category: ["popular", "recommended"],
-      location: {
-        vi: "Cách bảo tàng 5 phút đi bộ",
-        en: "5 minutes walk from Musée Du Pin",
-      },
-      host: "Musée Du Pin",
-      roomType: {
-        vi: "Phòng riêng trong nhà truyền thống",
-        en: "Private room in traditional house",
-      },
-      beds: {
-        vi: "1 giường đôi",
-        en: "1 double bed",
-      },
+      category: [
+        "popular",
+        "recommended",
+        "budget-friendly",
+        "top-rated",
+        "breakfast-included",
+      ],
       amenities: {
         vi: [
           "Wi-Fi miễn phí",
-          "Bao gồm bữa sáng",
-          "Điều hòa nhiệt độ",
-          "Vườn",
-          "Phòng tắm riêng",
+          "Spa",
+          "Quán bar",
+          "Đưa đón sân bay",
+          "Đỗ xe miễn phí",
+          "Bàn tiếp tân [24 giờ]",
+          "Mát-xa",
+          "Phòng gia đình",
         ],
         en: [
           "Free Wi-Fi",
-          "Breakfast included",
-          "Air conditioning",
-          "Garden",
-          "Private bathroom",
+          "Spa",
+          "Bar",
+          "Airport transfer",
+          "Free parking",
+          "24-hour front desk",
+          "Massage",
+          "Family rooms",
         ],
       },
       rules: {
@@ -1031,26 +1253,65 @@ const VisitInfo = () => {
         en: "The Fall",
       },
       description: {
-        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
-        en: "Authentic local house with traditional decorations and home-cooked meals.",
+        vi: "Thác đổ – biểu tượng cho sức sống mãnh liệt và sự giải phóng tinh thần.",
+        en: "The Fall – a symbol of vitality and mental release.",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/Th%C3%A1c%20%C4%91%E1%BB%95-%20The%20Fall/z6735013550592_06292038d263699476dd8144aa005946.jpg?updatedAt=1751274451608",
+
+      highlights: {
+        vi: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Gần trung tâm",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Đánh giá cao",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "An toàn 24/7",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Phòng rộng rãi",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Dịch vụ chuyên nghiệp",
+          },
+        ],
+        en: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Near center",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Highly rated",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "24/7 security",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Spacious room",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Professional service",
+          },
+        ],
+      },
       capacityOptions: [
         {
-          capacity: 4,
-          price: 3500000,
-          description: {
-            vi: "Phù hợp cho 4 người",
-            en: "Suitable for 4 people",
-          },
-        },
-        {
-          capacity: 5,
+          capacity: 6,
           price: 4000000,
           description: {
-            vi: "Phù hợp cho 5 người",
-            en: "Suitable for 5 people",
+            vi: "Phù hợp cho 6 người",
+            en: "Suitable for 6 people",
           },
         },
       ],
@@ -1061,34 +1322,33 @@ const VisitInfo = () => {
         vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
         en: ["Recommended", "Traditional", "Breakfast included"],
       },
-      category: ["popular", "recommended"],
-      location: {
-        vi: "Cách bảo tàng 5 phút đi bộ",
-        en: "5 minutes walk from Musée Du Pin",
-      },
-      host: "Musée Du Pin",
-      roomType: {
-        vi: "Phòng riêng trong nhà truyền thống",
-        en: "Private room in traditional house",
-      },
-      beds: {
-        vi: "1 giường đôi",
-        en: "1 double bed",
-      },
+      category: [
+        "popular",
+        "recommended",
+        "budget-friendly",
+        "top-rated",
+        "breakfast-included",
+      ],
       amenities: {
         vi: [
           "Wi-Fi miễn phí",
-          "Bao gồm bữa sáng",
-          "Điều hòa nhiệt độ",
-          "Vườn",
-          "Phòng tắm riêng",
+          "Spa",
+          "Quán bar",
+          "Đưa đón sân bay",
+          "Đỗ xe miễn phí",
+          "Bàn tiếp tân [24 giờ]",
+          "Mát-xa",
+          "Phòng gia đình",
         ],
         en: [
           "Free Wi-Fi",
-          "Breakfast included",
-          "Air conditioning",
-          "Garden",
-          "Private bathroom",
+          "Spa",
+          "Bar",
+          "Airport transfer",
+          "Free parking",
+          "24-hour front desk",
+          "Massage",
+          "Family rooms",
         ],
       },
       rules: {
@@ -1111,20 +1371,58 @@ const VisitInfo = () => {
         en: "The Pine Hill",
       },
       description: {
-        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
-        en: "Authentic local house with traditional decorations and home-cooked meals.",
+        vi: "Đồi thông – nơi sự bình yên lan tỏa trong từng hơi thở.",
+        en: "The Pine Hill – where peace lingers in every breath.",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/%C4%90%E1%BB%93i%20Th%C3%B4ng-%20The%20Pine%20Hill/z6735015682281_4f24f3571385b7a2b97d36acd8ba8113.jpg?updatedAt=1751274459265",
-      capacityOptions: [
-        {
-          capacity: 4,
-          price: 3500000,
-          description: {
-            vi: "Phù hợp cho 4 người",
-            en: "Suitable for 4 people",
+      highlights: {
+        vi: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Gần trung tâm",
           },
-        },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Đánh giá cao",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "An toàn 24/7",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Phòng rộng rãi",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Dịch vụ chuyên nghiệp",
+          },
+        ],
+        en: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Near center",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Highly rated",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "24/7 security",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Spacious room",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Professional service",
+          },
+        ],
+      },
+      capacityOptions: [
         {
           capacity: 5,
           price: 4000000,
@@ -1141,34 +1439,33 @@ const VisitInfo = () => {
         vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
         en: ["Recommended", "Traditional", "Breakfast included"],
       },
-      category: ["popular", "recommended"],
-      location: {
-        vi: "Cách bảo tàng 5 phút đi bộ",
-        en: "5 minutes walk from Musée Du Pin",
-      },
-      host: "Musée Du Pin",
-      roomType: {
-        vi: "Phòng riêng trong nhà truyền thống",
-        en: "Private room in traditional house",
-      },
-      beds: {
-        vi: "1 giường đôi",
-        en: "1 double bed",
-      },
+      category: [
+        "popular",
+        "recommended",
+        "budget-friendly",
+        "top-rated",
+        "breakfast-included",
+      ],
       amenities: {
         vi: [
           "Wi-Fi miễn phí",
-          "Bao gồm bữa sáng",
-          "Điều hòa nhiệt độ",
-          "Vườn",
-          "Phòng tắm riêng",
+          "Spa",
+          "Quán bar",
+          "Đưa đón sân bay",
+          "Đỗ xe miễn phí",
+          "Bàn tiếp tân [24 giờ]",
+          "Mát-xa",
+          "Phòng gia đình",
         ],
         en: [
           "Free Wi-Fi",
-          "Breakfast included",
-          "Air conditioning",
-          "Garden",
-          "Private bathroom",
+          "Spa",
+          "Bar",
+          "Airport transfer",
+          "Free parking",
+          "24-hour front desk",
+          "Massage",
+          "Family rooms",
         ],
       },
       rules: {
@@ -1193,26 +1490,64 @@ const VisitInfo = () => {
         en: "White Bauhinia",
       },
       description: {
-        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
-        en: "Authentic local house with traditional decorations and home-cooked meals.",
+        vi: "Không gian mang dấu ấn tinh khôi của hoa ban trắng.",
+        en: "A space infused with the pure essence of white Bauhinia.",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng-%20Bauhinia/z6735015913658_0a13ac137c59ccacc8e376f1d7f63ce8.jpg?updatedAt=1751274467967",
+      highlights: {
+        vi: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Gần trung tâm",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Đánh giá cao",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "An toàn 24/7",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Phòng rộng rãi",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Dịch vụ chuyên nghiệp",
+          },
+        ],
+        en: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Near center",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Highly rated",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "24/7 security",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Spacious room",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Professional service",
+          },
+        ],
+      },
       capacityOptions: [
         {
-          capacity: 4,
+          capacity: 3,
           price: 3500000,
           description: {
-            vi: "Phù hợp cho 4 người",
-            en: "Suitable for 4 people",
-          },
-        },
-        {
-          capacity: 5,
-          price: 4000000,
-          description: {
-            vi: "Phù hợp cho 5 người",
-            en: "Suitable for 5 people",
+            vi: "Phù hợp cho 3 người",
+            en: "Suitable for 3 people",
           },
         },
       ],
@@ -1220,37 +1555,36 @@ const VisitInfo = () => {
       price: 3500000, // Default price
       rating: 4.8,
       tags: {
-        vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
-        en: ["Recommended", "Traditional", "Breakfast included"],
+        vi: ["Đề xuất", "Mới sửa sang"],
+        en: ["Recommended", "Newly renovated"],
       },
-      category: ["popular", "recommended"],
-      location: {
-        vi: "Cách bảo tàng 5 phút đi bộ",
-        en: "5 minutes walk from Musée Du Pin",
-      },
-      host: "Musée Du Pin",
-      roomType: {
-        vi: "Phòng riêng trong nhà truyền thống",
-        en: "Private room in traditional house",
-      },
-      beds: {
-        vi: "1 giường đôi",
-        en: "1 double bed",
-      },
+      category: [
+        "popular",
+        "recommended",
+        "budget-friendly",
+        "top-rated",
+        "breakfast-included",
+      ],
       amenities: {
         vi: [
           "Wi-Fi miễn phí",
-          "Bao gồm bữa sáng",
-          "Điều hòa nhiệt độ",
-          "Vườn",
-          "Phòng tắm riêng",
+          "Spa",
+          "Quán bar",
+          "Đưa đón sân bay",
+          "Đỗ xe miễn phí",
+          "Bàn tiếp tân [24 giờ]",
+          "Mát-xa",
+          "Phòng gia đình",
         ],
         en: [
           "Free Wi-Fi",
-          "Breakfast included",
-          "Air conditioning",
-          "Garden",
-          "Private bathroom",
+          "Spa",
+          "Bar",
+          "Airport transfer",
+          "Free parking",
+          "24-hour front desk",
+          "Massage",
+          "Family rooms",
         ],
       },
       rules: {
@@ -1275,11 +1609,57 @@ const VisitInfo = () => {
         en: "The Memory",
       },
       description: {
-        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
-        en: "Authentic local house with traditional decorations and home-cooked meals.",
+        vi: "Hoài Niệm – nơi quá khứ vẫn thổn thức trong từng chi tiết nhỏ.",
+        en: "The Memory – where the past lingers in every little detail.",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0i%20Ni%E1%BB%87m-%20The%20Memory/z6735016111786_26063d0dd74c1796f25a106e4e7e48cb.jpg?updatedAt=1751274468488",
+      highlights: {
+        vi: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Gần trung tâm",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Đánh giá cao",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "An toàn 24/7",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Phòng rộng rãi",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Dịch vụ chuyên nghiệp",
+          },
+        ],
+        en: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Near center",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Highly rated",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "24/7 security",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Spacious room",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Professional service",
+          },
+        ],
+      },
       capacityOptions: [
         {
           capacity: 4,
@@ -1287,14 +1667,6 @@ const VisitInfo = () => {
           description: {
             vi: "Phù hợp cho 4 người",
             en: "Suitable for 4 people",
-          },
-        },
-        {
-          capacity: 5,
-          price: 4000000,
-          description: {
-            vi: "Phù hợp cho 5 người",
-            en: "Suitable for 5 people",
           },
         },
       ],
@@ -1305,34 +1677,33 @@ const VisitInfo = () => {
         vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
         en: ["Recommended", "Traditional", "Breakfast included"],
       },
-      category: ["popular", "recommended"],
-      location: {
-        vi: "Cách bảo tàng 5 phút đi bộ",
-        en: "5 minutes walk from Musée Du Pin",
-      },
-      host: "Musée Du Pin",
-      roomType: {
-        vi: "Phòng riêng trong nhà truyền thống",
-        en: "Private room in traditional house",
-      },
-      beds: {
-        vi: "1 giường đôi",
-        en: "1 double bed",
-      },
+      category: [
+        "popular",
+        "recommended",
+        "budget-friendly",
+        "top-rated",
+        "breakfast-included",
+      ],
       amenities: {
         vi: [
           "Wi-Fi miễn phí",
-          "Bao gồm bữa sáng",
-          "Điều hòa nhiệt độ",
-          "Vườn",
-          "Phòng tắm riêng",
+          "Spa",
+          "Quán bar",
+          "Đưa đón sân bay",
+          "Đỗ xe miễn phí",
+          "Bàn tiếp tân [24 giờ]",
+          "Mát-xa",
+          "Phòng gia đình",
         ],
         en: [
           "Free Wi-Fi",
-          "Breakfast included",
-          "Air conditioning",
-          "Garden",
-          "Private bathroom",
+          "Spa",
+          "Bar",
+          "Airport transfer",
+          "Free parking",
+          "24-hour front desk",
+          "Massage",
+          "Family rooms",
         ],
       },
       rules: {
@@ -1357,11 +1728,57 @@ const VisitInfo = () => {
         en: "The Sunset",
       },
       description: {
-        vi: "Nhà ở địa phương đích thực với trang trí truyền thống và bữa ăn tự nấu.",
-        en: "Authentic local house with traditional decorations and home-cooked meals.",
+        vi: "Hoàng hôn – khoảnh khắc chạm vào những xúc cảm sâu lắng nhất trong tâm hồn.",
+        en: "The Sunset – a moment that touches the deepest corners of the soul.",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0ng%20h%C3%B4n-%20The%20Sunset/z6735016357613_e2751dcece85c553aaa0c8e54f9e5d11.jpg?updatedAt=1751274470184",
+      highlights: {
+        vi: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Gần trung tâm",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Đánh giá cao",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "An toàn 24/7",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Phòng rộng rãi",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Dịch vụ chuyên nghiệp",
+          },
+        ],
+        en: [
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bus.svg?s=600x",
+            text: "Near center",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/like.svg?s=600x",
+            text: "Highly rated",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/SafetyFeatures.svg?s=600x",
+            text: "24/7 security",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/bedKing.svg?s=600x",
+            text: "Spacious room",
+          },
+          {
+            icon: "https://cdn6.agoda.net/images/property/highlights/hotel.svg?s=600x",
+            text: "Professional service",
+          },
+        ],
+      },
       capacityOptions: [
         {
           capacity: 4,
@@ -1369,14 +1786,6 @@ const VisitInfo = () => {
           description: {
             vi: "Phù hợp cho 4 người",
             en: "Suitable for 4 people",
-          },
-        },
-        {
-          capacity: 5,
-          price: 4000000,
-          description: {
-            vi: "Phù hợp cho 5 người",
-            en: "Suitable for 5 people",
           },
         },
       ],
@@ -1387,34 +1796,33 @@ const VisitInfo = () => {
         vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
         en: ["Recommended", "Traditional", "Breakfast included"],
       },
-      category: ["popular", "recommended"],
-      location: {
-        vi: "Cách bảo tàng 5 phút đi bộ",
-        en: "5 minutes walk from Musée Du Pin",
-      },
-      host: "Musée Du Pin",
-      roomType: {
-        vi: "Phòng riêng trong nhà truyền thống",
-        en: "Private room in traditional house",
-      },
-      beds: {
-        vi: "1 giường đôi",
-        en: "1 double bed",
-      },
+      category: [
+        "popular",
+        "recommended",
+        "budget-friendly",
+        "top-rated",
+        "breakfast-included",
+      ],
       amenities: {
         vi: [
           "Wi-Fi miễn phí",
-          "Bao gồm bữa sáng",
-          "Điều hòa nhiệt độ",
-          "Vườn",
-          "Phòng tắm riêng",
+          "Spa",
+          "Quán bar",
+          "Đưa đón sân bay",
+          "Đỗ xe miễn phí",
+          "Bàn tiếp tân [24 giờ]",
+          "Mát-xa",
+          "Phòng gia đình",
         ],
         en: [
           "Free Wi-Fi",
-          "Breakfast included",
-          "Air conditioning",
-          "Garden",
-          "Private bathroom",
+          "Spa",
+          "Bar",
+          "Airport transfer",
+          "Free parking",
+          "24-hour front desk",
+          "Massage",
+          "Family rooms",
         ],
       },
       rules: {
@@ -2000,6 +2408,26 @@ const VisitInfo = () => {
           {getLocalizedContent(homestay.description)}
         </p>
 
+        {/* Add highlights */}
+        {homestay.highlights && (
+          <div className="homestay-highlights">
+            {getLocalizedContent(homestay.highlights).map(
+              (highlight, index) => (
+                <div key={index} className="highlight-item">
+                  <img
+                    src={highlight.icon}
+                    alt={highlight.text}
+                    className="highlight-icon"
+                  />
+                  <span className="highlight-text notranslate">
+                    {highlight.text}
+                  </span>
+                </div>
+              )
+            )}
+          </div>
+        )}
+
         {/* Add capacity options */}
         {homestay.capacityOptions && (
           <div className="capacity-options">
@@ -2027,18 +2455,6 @@ const VisitInfo = () => {
             ))}
           </div>
         )}
-
-        <div className="homestay-card-location">
-          <svg viewBox="0 0 24 24" width="16" height="16">
-            <path
-              d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-              fill="currentColor"
-            />
-          </svg>
-          <span className="notranslate">
-            {getLocalizedContent(homestay.location)}
-          </span>
-        </div>
 
         <div className="homestay-card-footer">
           <div className="homestay-card-price">
@@ -2141,6 +2557,14 @@ const VisitInfo = () => {
               onClick={() => handleCategoryChange("top-rated")}
             >
               Đánh giá cao
+            </div>
+            <div
+              className={`homestay-category ${
+                activeCategory === "breakfast-included" ? "active" : ""
+              }`}
+              onClick={() => handleCategoryChange("breakfast-included")}
+            >
+              Phục vụ bữa sáng
             </div>
             <div
               className={`homestay-category ${
@@ -2300,13 +2724,32 @@ const VisitInfo = () => {
           </div>
 
           <div className="homestay-details-info">
-            <h3 className="homestay-details-subtitle">
-              {getLocalizedContent(selectedHomestay.roomType)}
-            </h3>
-
             <p className="homestay-details-description">
               {getLocalizedContent(selectedHomestay.description)}
             </p>
+
+            {/* Highlights */}
+            {selectedHomestay.highlights && (
+              <div className="homestay-details-highlights">
+                <h3>Điểm nổi bật</h3>
+                <div className="highlights-grid">
+                  {getLocalizedContent(selectedHomestay.highlights).map(
+                    (highlight, index) => (
+                      <div key={index} className="highlight-item">
+                        <img
+                          src={highlight.icon}
+                          alt={highlight.text}
+                          className="highlight-icon"
+                        />
+                        <span className="highlight-text notranslate">
+                          {highlight.text}
+                        </span>
+                      </div>
+                    )
+                  )}
+                </div>
+              </div>
+            )}
 
             {/* Capacity Options */}
             {selectedHomestay.capacityOptions && (
@@ -2337,36 +2780,6 @@ const VisitInfo = () => {
                 ))}
               </div>
             )}
-
-            <div className="homestay-details-location">
-              <svg viewBox="0 0 24 24" width="18" height="18">
-                <path
-                  d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"
-                  fill="currentColor"
-                />
-              </svg>
-              <span>{getLocalizedContent(selectedHomestay.location)}</span>
-            </div>
-
-            <div className="homestay-details-host">
-              <svg viewBox="0 0 24 24" width="18" height="18">
-                <path
-                  d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"
-                  fill="currentColor"
-                />
-              </svg>
-              <span>Chủ sở hữu: {selectedHomestay.host}</span>
-            </div>
-
-            <div className="homestay-details-beds">
-              <svg viewBox="0 0 24 24" width="18" height="18">
-                <path
-                  d="M20 12c0-1.1-.9-2-2-2V7c0-1.1-.9-2-2-2H8c-1.1 0-2 .9-2 2v3c-1.1 0-2 .9-2 2v5h1.33L6 19h1l.67-2h8.67l.66 2h1l.67-2H20v-5zm-4-2H8V7h8v3z"
-                  fill="currentColor"
-                />
-              </svg>
-              <span>{getLocalizedContent(selectedHomestay.beds)}</span>
-            </div>
 
             <div className="homestay-details-section">
               <h3>Tiện nghi</h3>

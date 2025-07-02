@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/MUSSEEDUPIN/node_modules/framer-motion/dist/es/context/MotionConfigContext.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "\"use client\";\nimport { createContext } from 'react';\n\n/**\n * @public\n */\nconst MotionConfigContext = createContext({\n    transformPagePoint: (p) => p,\n    isStatic: false,\n    reducedMotion: \"never\",\n});\n\nexport { MotionConfigContext };\n",
+      "start": 1751470596640,
+      "end": 1751470597102,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1751470597102,
+      "end": 1751470597102,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1751470597102,
+      "end": 1751470597102,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1751470597102,
+      "end": 1751470597102,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1751470597102,
+      "end": 1751470597102,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1751470597102,
+      "end": 1751470597102,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1751470597102,
+      "end": 1751470597102,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1751470597102,
+      "end": 1751470597102,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1751470597103,
+      "end": 1751470597103,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1751470597103,
+      "end": 1751470597103,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1751470597103,
+      "end": 1751470597103,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1751470597103,
+      "end": 1751470597103,
+      "order": "normal"
+    }
+  ]
+}

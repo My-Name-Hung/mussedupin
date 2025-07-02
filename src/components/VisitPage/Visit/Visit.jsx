@@ -364,7 +364,7 @@ const Visit = () => {
     <div className="visit-hero" ref={heroRef}>
       <div className="visit-hero-image-container">
         <img
-          src={getImageUrl("collections/Thông 4.webp", {
+          src={getImageUrl("Thông 4.webp", {
             width: 1920,
             height: 1080,
             crop: "fill",

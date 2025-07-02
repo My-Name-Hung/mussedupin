@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useEffect, useRef, useState } from \"react\";\nimport { useTranslation } from \"react-i18next\";\nimport \"./DelveInto.css\";\n\nconst imageList = [\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/phimdienanh_doc.jpg?updatedAt=1750298609321\",\n    alt: {\n      vi: \"Phim điện ảnh dọc\",\n      en: \"Cinema vertical\",\n    },\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/phimdienanh_ngang.jpg?updatedAt=1750298609073\",\n    alt: {\n      vi: \"Phim điện ảnh ngang\",\n      en: \"Cinema horizontal\",\n    },\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/PinD'amour2.jpg?updatedAt=1750001276276\",\n    alt: \"Pin D'amour 2\",\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/PinD'amour4.jpg?updatedAt=1750001276251\",\n    alt: \"Pin D'amour 4\",\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/PinD'amour5.jpg?updatedAt=1750001275246\",\n    alt: \"Pin D'amour 5\",\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/Thông 2.webp?updatedAt=1749523250616\",\n    alt: \"Thông 2\",\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/PinD'amour6.jpg?updatedAt=1750001274965\",\n    alt: \"Pin D'amour 6\",\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/image(1).png?updatedAt=1749394994472\",\n    alt: {\n      vi: \"Bảo tàng Thông\",\n      en: \"Musée Du Pin\",\n    },\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/Giaidieudaingan_Ngoai.jpg?updatedAt=1749312109958\",\n    alt: \"Giai điệu dài ngắn ngoại\",\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/Tourdemhuyenthoai_Trong.jpg?updatedAt=1749312109881\",\n    alt: \"Tour đêm huyền thoại trong\",\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/Giaidieudaingan_Trong.jpg?updatedAt=1749311873117\",\n    alt: \"Giai điệu dài ngắn trong\",\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/uommamsangtao_Ngoai.jpg?updatedAt=1749311934281\",\n    alt: \"Ươm mầm sáng tạo ngoại\",\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/Chuongtrinhdinhky_Trong.jpg?updatedAt=1749268863163\",\n    alt: \"Chương trình định kỳ trong\",\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/Chuongtrinhdinhky.jpg?updatedAt=1749267196289\",\n    alt: \"Chương trình định kỳ\",\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/Luutru_Trong.jpg?updatedAt=1749268862975\",\n    alt: \"Lưu trữ trong\",\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/KhongLuuTru_Trong.jpg?updatedAt=1749268862925\",\n    alt: \"Không lưu trữ trong\",\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/KhongLuuTru.jpg?updatedAt=1749267196332\",\n    alt: \"Không lưu trữ\",\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/dddd4a06bb310f6f5620.jpg?updatedAt=1749190760200\",\n    alt: \"DDDD\",\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/image(4).png?updatedAt=1749394995088\",\n    alt: \"Image 4\",\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/image(2).png?updatedAt=1749000540091\",\n    alt: \"Image 2\",\n  },\n];\n\nconst DelveInto = () => {\n  const { currentLang } = useTranslation();\n  const gridRef = useRef(null);\n  const [randomImages, setRandomImages] = useState([]);\n\n  // Function to shuffle array and get first n elements\n  const getRandomImages = (array, n) => {\n    const shuffled = [...array].sort(() => Math.random() - 0.5);\n    return shuffled.slice(0, n);\n  };\n\n  // Set initial random images on component mount\n  useEffect(() => {\n    setRandomImages(getRandomImages(imageList, 6));\n  }, []);\n\n  // Add mouse movement effect for grid items\n  useEffect(() => {\n    const gridItems = document.querySelectorAll(\".grid-item\");\n\n    const handleMouseMove = (e) => {\n      gridItems.forEach((item) => {\n        const rect = item.getBoundingClientRect();\n        const x = e.clientX - rect.left;\n        const y = e.clientY - rect.top;\n\n        // Calculate mouse position as percentage of the element\n        const mouseX = Math.floor((x / rect.width) * 100);\n        const mouseY = Math.floor((y / rect.height) * 100);\n\n        item.style.setProperty(\"--mouse-x\", `${mouseX}%`);\n        item.style.setProperty(\"--mouse-y\", `${mouseY}%`);\n      });\n    };\n\n    document.addEventListener(\"mousemove\", handleMouseMove);\n\n    return () => {\n      document.removeEventListener(\"mousemove\", handleMouseMove);\n    };\n  }, []);\n\n  const handleExploreClick = () => {\n    // Get the navbar component's functions\n    const navbarElement = document.querySelector(\"header.navbar-container\");\n    if (navbarElement) {\n      // Show mobile menu first\n      const mobileMenu = navbarElement.querySelector(\".mobile-menu-overlay\");\n      if (mobileMenu) {\n        mobileMenu.classList.add(\"show\");\n      }\n\n      // Find and click the \"KHÁM PHÁ\" menu item to trigger its submenu\n      setTimeout(() => {\n        const khamPhaMenuItem = Array.from(\n          navbarElement.querySelectorAll(\".mobile-nav-item\")\n        ).find((item) => item.textContent.includes(\"KHÁM PHÁ\"));\n        if (khamPhaMenuItem) {\n          khamPhaMenuItem.click();\n        }\n      }, 100);\n    }\n  };\n\n  return (\n    <section className=\"delve-into-section\">\n      <div className=\"delve-into-container\">\n        <h2 className=\"delve-into-title\">\n          {currentLang === \"en\"\n            ? \"Explore Musée Du Pin\"\n            : \"Khám phá Bảo tàng Thông\"}\n        </h2>\n\n        <div className=\"delve-into-grid\" ref={gridRef}>\n          {randomImages.map((image, index) => (\n            <div key={index} className={`grid-item grid-item-${index + 1}`}>\n              <img\n                src={image.url}\n                alt={\n                  typeof image.alt === \"object\"\n                    ? image.alt[currentLang]\n                    : image.alt\n                }\n                className=\"grid-image\"\n              />\n            </div>\n          ))}\n        </div>\n\n        <div className=\"explore-button-container\">\n          <button className=\"explore-button\" onClick={handleExploreClick}>\n            {currentLang === \"en\" ? \"Explore\" : \"Khám phá\"}\n          </button>\n        </div>\n      </div>\n    </section>\n  );\n};\n\nexport default DelveInto;\n",
-      "start": 1751302841376,
-      "end": 1751302841470,
+      "start": 1751470574359,
+      "end": 1751470574999,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751302841470,
-      "end": 1751302841470,
+      "start": 1751470574999,
+      "end": 1751470574999,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect, useRef, useState } from \"react\";\nimport { useTranslation } from \"react-i18next\";\nimport \"./DelveInto.css\";\nconst imageList = [\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/phimdienanh_doc.jpg?updatedAt=1750298609321\",\n    alt: {\n      vi: \"Phim điện ảnh dọc\",\n      en: \"Cinema vertical\"\n    }\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/phimdienanh_ngang.jpg?updatedAt=1750298609073\",\n    alt: {\n      vi: \"Phim điện ảnh ngang\",\n      en: \"Cinema horizontal\"\n    }\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/PinD'amour2.jpg?updatedAt=1750001276276\",\n    alt: \"Pin D'amour 2\"\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/PinD'amour4.jpg?updatedAt=1750001276251\",\n    alt: \"Pin D'amour 4\"\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/PinD'amour5.jpg?updatedAt=1750001275246\",\n    alt: \"Pin D'amour 5\"\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/Thông 2.webp?updatedAt=1749523250616\",\n    alt: \"Thông 2\"\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/PinD'amour6.jpg?updatedAt=1750001274965\",\n    alt: \"Pin D'amour 6\"\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/image(1).png?updatedAt=1749394994472\",\n    alt: {\n      vi: \"Bảo tàng Thông\",\n      en: \"Musée Du Pin\"\n    }\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/Giaidieudaingan_Ngoai.jpg?updatedAt=1749312109958\",\n    alt: \"Giai điệu dài ngắn ngoại\"\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/Tourdemhuyenthoai_Trong.jpg?updatedAt=1749312109881\",\n    alt: \"Tour đêm huyền thoại trong\"\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/Giaidieudaingan_Trong.jpg?updatedAt=1749311873117\",\n    alt: \"Giai điệu dài ngắn trong\"\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/uommamsangtao_Ngoai.jpg?updatedAt=1749311934281\",\n    alt: \"Ươm mầm sáng tạo ngoại\"\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/Chuongtrinhdinhky_Trong.jpg?updatedAt=1749268863163\",\n    alt: \"Chương trình định kỳ trong\"\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/Chuongtrinhdinhky.jpg?updatedAt=1749267196289\",\n    alt: \"Chương trình định kỳ\"\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/Luutru_Trong.jpg?updatedAt=1749268862975\",\n    alt: \"Lưu trữ trong\"\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/KhongLuuTru_Trong.jpg?updatedAt=1749268862925\",\n    alt: \"Không lưu trữ trong\"\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/KhongLuuTru.jpg?updatedAt=1749267196332\",\n    alt: \"Không lưu trữ\"\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/dddd4a06bb310f6f5620.jpg?updatedAt=1749190760200\",\n    alt: \"DDDD\"\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/image(4).png?updatedAt=1749394995088\",\n    alt: \"Image 4\"\n  },\n  {\n    url: \"https://ik.imagekit.io/8u8lkoqkkm/image(2).png?updatedAt=1749000540091\",\n    alt: \"Image 2\"\n  }\n];\nconst DelveInto = () => {\n  const { currentLang } = useTranslation();\n  const gridRef = useRef(null);\n  const [randomImages, setRandomImages] = useState([]);\n  const getRandomImages = (array, n) => {\n    const shuffled = [...array].sort(() => Math.random() - 0.5);\n    return shuffled.slice(0, n);\n  };\n  useEffect(() => {\n    setRandomImages(getRandomImages(imageList, 6));\n  }, []);\n  useEffect(() => {\n    const gridItems = document.querySelectorAll(\".grid-item\");\n    const handleMouseMove = (e) => {\n      gridItems.forEach((item) => {\n        const rect = item.getBoundingClientRect();\n        const x = e.clientX - rect.left;\n        const y = e.clientY - rect.top;\n        const mouseX = Math.floor(x / rect.width * 100);\n        const mouseY = Math.floor(y / rect.height * 100);\n        item.style.setProperty(\"--mouse-x\", `${mouseX}%`);\n        item.style.setProperty(\"--mouse-y\", `${mouseY}%`);\n      });\n    };\n    document.addEventListener(\"mousemove\", handleMouseMove);\n    return () => {\n      document.removeEventListener(\"mousemove\", handleMouseMove);\n    };\n  }, []);\n  const handleExploreClick = () => {\n    const navbarElement = document.querySelector(\"header.navbar-container\");\n    if (navbarElement) {\n      const mobileMenu = navbarElement.querySelector(\".mobile-menu-overlay\");\n      if (mobileMenu) {\n        mobileMenu.classList.add(\"show\");\n      }\n      setTimeout(() => {\n        const khamPhaMenuItem = Array.from(\n          navbarElement.querySelectorAll(\".mobile-nav-item\")\n        ).find((item) => item.textContent.includes(\"KHÁM PHÁ\"));\n        if (khamPhaMenuItem) {\n          khamPhaMenuItem.click();\n        }\n      }, 100);\n    }\n  };\n  return /* @__PURE__ */ jsx(\"section\", { className: \"delve-into-section\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"delve-into-container\", children: [\n    /* @__PURE__ */ jsx(\"h2\", { className: \"delve-into-title\", children: currentLang === \"en\" ? \"Explore Musée Du Pin\" : \"Khám phá Bảo tàng Thông\" }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"delve-into-grid\", ref: gridRef, children: randomImages.map((image, index) => /* @__PURE__ */ jsx(\"div\", { className: `grid-item grid-item-${index + 1}`, children: /* @__PURE__ */ jsx(\n      \"img\",\n      {\n        src: image.url,\n        alt: typeof image.alt === \"object\" ? image.alt[currentLang] : image.alt,\n        className: \"grid-image\"\n      }\n    ) }, index)) }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"explore-button-container\", children: /* @__PURE__ */ jsx(\"button\", { className: \"explore-button\", onClick: handleExploreClick, children: currentLang === \"en\" ? \"Explore\" : \"Khám phá\" }) })\n  ] }) });\n};\nexport default DelveInto;\n",
-      "start": 1751302841471,
-      "end": 1751302841839,
+      "start": 1751470574999,
+      "end": 1751470576973,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751302841839,
-      "end": 1751302841839,
+      "start": 1751470576973,
+      "end": 1751470576973,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751302841839,
-      "end": 1751302841839,
+      "start": 1751470576973,
+      "end": 1751470576973,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751302841839,
-      "end": 1751302841839,
+      "start": 1751470576973,
+      "end": 1751470576973,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751302841839,
-      "end": 1751302841839,
+      "start": 1751470576973,
+      "end": 1751470576973,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751302841839,
-      "end": 1751302841839,
+      "start": 1751470576973,
+      "end": 1751470576973,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751302841839,
-      "end": 1751302841839,
+      "start": 1751470576973,
+      "end": 1751470576973,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751302841839,
-      "end": 1751302841839,
+      "start": 1751470576973,
+      "end": 1751470576973,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751302841839,
-      "end": 1751302841840,
+      "start": 1751470576973,
+      "end": 1751470576973,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751302841840,
-      "end": 1751302841840,
+      "start": 1751470576973,
+      "end": 1751470576973,
       "order": "normal"
     }
   ]

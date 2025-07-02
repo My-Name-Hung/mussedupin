@@ -1,0 +1,78 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/MUSSEEDUPIN/node_modules/framer-motion/dist/es/utils/is-browser.mjs",
+  "transforms": [
+    {
+      "name": "vite:load-fallback",
+      "result": "const isBrowser = typeof window !== \"undefined\";\n\nexport { isBrowser };\n",
+      "start": 1751470595538,
+      "end": 1751470595920,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1751470595920,
+      "end": 1751470595920,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1751470595920,
+      "end": 1751470595920,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1751470595920,
+      "end": 1751470595920,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1751470595920,
+      "end": 1751470595920,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-html",
+      "start": 1751470595920,
+      "end": 1751470595920,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1751470595920,
+      "end": 1751470595920,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1751470595920,
+      "end": 1751470595920,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1751470595920,
+      "end": 1751470595920,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1751470595920,
+      "end": 1751470595920,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:build-import-analysis",
+      "start": 1751470595920,
+      "end": 1751470595920,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:reporter",
+      "start": 1751470595921,
+      "end": 1751470595921,
+      "order": "normal"
+    }
+  ]
+}

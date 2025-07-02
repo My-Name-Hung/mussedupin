@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\nimport { MdArrowBack } from \"react-icons/md\";\nimport { useNavigate } from \"react-router-dom\";\nimport \"./VisitPackages.css\";\n\nconst NonResidentialPackages = () => {\n  const navigate = useNavigate();\n\n  const packages = [\n    {\n      id: \"loi-rung\",\n      title: \"LỐI RỪNG\",\n      image:\n        \"https://ik.imagekit.io/8u8lkoqkkm/loirung_ngang.jpg?updatedAt=1749269171985\",\n      orientation: \"landscape\",\n      description: \"Bước chân đầu tiên vào không gian ký ức Đà Lạt xưa.\",\n      price: \"150.000 - 250.000\",\n      childPrice: \"50% giá người lớn\",\n      details: [\n        \"Thưởng thức trà Atiso chào mừng\",\n        \"Tham quan tự do các không gian bảo tàng: hiện vật K'Ho, chân dung Yersin bằng vỏ thông, bộ sưu tập tranh Đà Lạt\",\n        \"1 phần nước uống tự chọn\",\n      ],\n    },\n    {\n      id: \"dang-suong\",\n      title: \"DÁNG SƯƠNG\",\n      image:\n        \"https://ik.imagekit.io/8u8lkoqkkm/Dangsuong_ngang.jpg?updatedAt=1749269172040\",\n      orientation: \"landscape\",\n      description:\n        \"Nhẹ nhàng chạm vào không gian nghệ thuật để lắng nghe và cảm nhận\",\n      price: \"350.000 - 450.000\",\n      childPrice: \"50% giá người lớn\",\n      details: [\n        \"Thưởng thức trà atiso chào mừng\",\n        \"Tham quan có hướng dẫn viên các không gian bảo tàng (hiện vật K'Ho, chân dung Yersin, tranh Đà Lạt)\",\n        \"Chụp ảnh nghệ thuật tại bảo tàng với trang phục dân tộc (30 phút)\",\n        \"1 phần nước uống tự chọn\",\n      ],\n    },\n    {\n      id: \"nghe-nhan\",\n      title: \"NGHỆ NHÂN\",\n      image:\n        \"https://ik.imagekit.io/8u8lkoqkkm/Thumbnail%20Ngh%E1%BB%87%20Nh%C3%A2n.png?updatedAt=1750322897429\",\n      orientation: \"landscape\",\n      description:\n        \"Hòa mình vào thế giới sáng tạo với workshop thổ cẩm, vẽ tranh cùng nghệ nhân, họa sỹ\",\n      price: \"399.000 - 599.000\",\n      childPrice: \"50% giá người lớn\",\n      details: [\n        \"Thưởng thức trà atiso chào mừng\",\n        \"Tham quan có hướng dẫn viên các không gian bảo tàng (hiện vật K'Ho, chân dung Yersin, tranh Đà Lạt)\",\n        \"Workshop vẽ tranh, dệt thổ cẩm hoặc nặn gốm (120 phút)\",\n        \"Tặng gói chụp ảnh nghệ thuật (1 tiếng)\",\n      ],\n    },\n    {\n      id: \"hon-nui\",\n      title: \"HỒN NÚI\",\n      image:\n        \"https://ik.imagekit.io/8u8lkoqkkm/Leaflet%20H%E1%BB%93n%20N%C3%BAi.png?updatedAt=1749083706305\",\n      orientation: \"square\",\n      description:\n        \"Trọn vẹn trải nghiệm văn hóa và thiên nhiên Đà Lạt, như tinh thần núi rừng thấm vào từng giác quan\",\n      price: \"799.000 - 999.000\",\n      childPrice: \"50% giá người lớn\",\n      note: \"Tour rừng tối thiểu 5 khách để đảm bảo an toàn\",\n      details: [\n        \"Thưởng thức trà atiso chào mừng\",\n        \"Tham quan có hướng dẫn viên các không gian bảo tàng (hiện vật K'Ho, chân dung Yersin, tranh Đà Lạt)\",\n        \"Chụp ảnh nghệ thuật tại bảo tàng với trang phục dân tộc (30 phút)\",\n        \"Lựa chọn Tour Khám phá rừng nguyên sinh hoặc Worshop (vẽ tranh, dệt thổ cẩm, làm gốm,...)\",\n        \"Bữa trưa nhẹ gồm 01 món ăn và 01 thức uống\",\n      ],\n    },\n    {\n      id: \"lua-thieng\",\n      title: \"LỬA THIÊNG / Pin D'amour\",\n      image:\n        \"https://ik.imagekit.io/8u8lkoqkkm/luathieng_ngang.jpg?updatedAt=1749269172114\",\n      orientation: \"square\",\n      description:\n        \"Buổi tối bùng cháy với âm nhạc, nghệ thuật, văn hóa, rượu và không gian view toàn cảnh Đà Lạt về đêm\",\n      price: \"999.000 - 1.999.000\",\n      time: \"18:00 - 22:30\",\n      note: \"Không áp dụng cho trẻ em\",\n      details: [\n        \"Thưởng thức welcome drink chào mừng\",\n        \"Tham quan có hướng dẫn viên các không gian bảo tàng (hiện vật K'Ho, chân dung Yersin, tranh Đà Lạt)\",\n        \"Chụp ảnh nghệ thuật tại bảo tàng (30 phút)\",\n        'Trải nghiệm sân khấu Pind\\'amour với chương trình Vin Acoustic \"Thông Hát\" và rượu vang thượng hạng và 01 phần ăn nhẹ',\n      ],\n    },\n  ];\n\n  return (\n    <div className=\"packages-container\">\n      <div className=\"packages-hero\">\n        <button className=\"back-button1\" onClick={() => navigate(\"/visit\")}>\n          <MdArrowBack />\n        </button>\n        <div className=\"hero-image-container\">\n          <img\n            src=\"https://ik.imagekit.io/8u8lkoqkkm/KhongLuuTru_Trong.jpg?updatedAt=1749268862925\"\n            alt=\"Gói không lưu trú\"\n            className=\"hero-image portrait\"\n          />\n        </div>\n        <div className=\"packages-hero-content\">\n          <h1 className=\"packages-title\">GÓI KHÔNG LƯU TRÚ</h1>\n        </div>\n      </div>\n\n      <div className=\"packages-content\">\n        <div className=\"packages-grid\">\n          {packages.map((pkg) => (\n            <div\n              key={pkg.id}\n              className=\"visit-cardss\"\n              onClick={() => navigate(`/visit/package/${pkg.id}`)}\n            >\n              <div className=\"visit-cards-img-wrap\">\n                <img\n                  src={pkg.image}\n                  alt={pkg.title}\n                  className={`visit-cards-img ${pkg.orientation}`}\n                />\n                <div className=\"visit-cards-overlay\" />\n                <div className=\"visit-card-content\">\n                  <h2>{pkg.title}</h2>\n                  {/* <p>{pkg.description}</p> */}\n                </div>\n              </div>\n            </div>\n          ))}\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default NonResidentialPackages;\n",
-      "start": 1751302841102,
-      "end": 1751302841270,
+      "start": 1751470574247,
+      "end": 1751470574799,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751302841270,
-      "end": 1751302841270,
+      "start": 1751470574799,
+      "end": 1751470574799,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { MdArrowBack } from \"react-icons/md\";\nimport { useNavigate } from \"react-router-dom\";\nimport \"./VisitPackages.css\";\nconst NonResidentialPackages = () => {\n  const navigate = useNavigate();\n  const packages = [\n    {\n      id: \"loi-rung\",\n      title: \"LỐI RỪNG\",\n      image: \"https://ik.imagekit.io/8u8lkoqkkm/loirung_ngang.jpg?updatedAt=1749269171985\",\n      orientation: \"landscape\",\n      description: \"Bước chân đầu tiên vào không gian ký ức Đà Lạt xưa.\",\n      price: \"150.000 - 250.000\",\n      childPrice: \"50% giá người lớn\",\n      details: [\n        \"Thưởng thức trà Atiso chào mừng\",\n        \"Tham quan tự do các không gian bảo tàng: hiện vật K'Ho, chân dung Yersin bằng vỏ thông, bộ sưu tập tranh Đà Lạt\",\n        \"1 phần nước uống tự chọn\"\n      ]\n    },\n    {\n      id: \"dang-suong\",\n      title: \"DÁNG SƯƠNG\",\n      image: \"https://ik.imagekit.io/8u8lkoqkkm/Dangsuong_ngang.jpg?updatedAt=1749269172040\",\n      orientation: \"landscape\",\n      description: \"Nhẹ nhàng chạm vào không gian nghệ thuật để lắng nghe và cảm nhận\",\n      price: \"350.000 - 450.000\",\n      childPrice: \"50% giá người lớn\",\n      details: [\n        \"Thưởng thức trà atiso chào mừng\",\n        \"Tham quan có hướng dẫn viên các không gian bảo tàng (hiện vật K'Ho, chân dung Yersin, tranh Đà Lạt)\",\n        \"Chụp ảnh nghệ thuật tại bảo tàng với trang phục dân tộc (30 phút)\",\n        \"1 phần nước uống tự chọn\"\n      ]\n    },\n    {\n      id: \"nghe-nhan\",\n      title: \"NGHỆ NHÂN\",\n      image: \"https://ik.imagekit.io/8u8lkoqkkm/Thumbnail%20Ngh%E1%BB%87%20Nh%C3%A2n.png?updatedAt=1750322897429\",\n      orientation: \"landscape\",\n      description: \"Hòa mình vào thế giới sáng tạo với workshop thổ cẩm, vẽ tranh cùng nghệ nhân, họa sỹ\",\n      price: \"399.000 - 599.000\",\n      childPrice: \"50% giá người lớn\",\n      details: [\n        \"Thưởng thức trà atiso chào mừng\",\n        \"Tham quan có hướng dẫn viên các không gian bảo tàng (hiện vật K'Ho, chân dung Yersin, tranh Đà Lạt)\",\n        \"Workshop vẽ tranh, dệt thổ cẩm hoặc nặn gốm (120 phút)\",\n        \"Tặng gói chụp ảnh nghệ thuật (1 tiếng)\"\n      ]\n    },\n    {\n      id: \"hon-nui\",\n      title: \"HỒN NÚI\",\n      image: \"https://ik.imagekit.io/8u8lkoqkkm/Leaflet%20H%E1%BB%93n%20N%C3%BAi.png?updatedAt=1749083706305\",\n      orientation: \"square\",\n      description: \"Trọn vẹn trải nghiệm văn hóa và thiên nhiên Đà Lạt, như tinh thần núi rừng thấm vào từng giác quan\",\n      price: \"799.000 - 999.000\",\n      childPrice: \"50% giá người lớn\",\n      note: \"Tour rừng tối thiểu 5 khách để đảm bảo an toàn\",\n      details: [\n        \"Thưởng thức trà atiso chào mừng\",\n        \"Tham quan có hướng dẫn viên các không gian bảo tàng (hiện vật K'Ho, chân dung Yersin, tranh Đà Lạt)\",\n        \"Chụp ảnh nghệ thuật tại bảo tàng với trang phục dân tộc (30 phút)\",\n        \"Lựa chọn Tour Khám phá rừng nguyên sinh hoặc Worshop (vẽ tranh, dệt thổ cẩm, làm gốm,...)\",\n        \"Bữa trưa nhẹ gồm 01 món ăn và 01 thức uống\"\n      ]\n    },\n    {\n      id: \"lua-thieng\",\n      title: \"LỬA THIÊNG / Pin D'amour\",\n      image: \"https://ik.imagekit.io/8u8lkoqkkm/luathieng_ngang.jpg?updatedAt=1749269172114\",\n      orientation: \"square\",\n      description: \"Buổi tối bùng cháy với âm nhạc, nghệ thuật, văn hóa, rượu và không gian view toàn cảnh Đà Lạt về đêm\",\n      price: \"999.000 - 1.999.000\",\n      time: \"18:00 - 22:30\",\n      note: \"Không áp dụng cho trẻ em\",\n      details: [\n        \"Thưởng thức welcome drink chào mừng\",\n        \"Tham quan có hướng dẫn viên các không gian bảo tàng (hiện vật K'Ho, chân dung Yersin, tranh Đà Lạt)\",\n        \"Chụp ảnh nghệ thuật tại bảo tàng (30 phút)\",\n        `Trải nghiệm sân khấu Pind'amour với chương trình Vin Acoustic \"Thông Hát\" và rượu vang thượng hạng và 01 phần ăn nhẹ`\n      ]\n    }\n  ];\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"packages-container\", children: [\n    /* @__PURE__ */ jsxs(\"div\", { className: \"packages-hero\", children: [\n      /* @__PURE__ */ jsx(\"button\", { className: \"back-button1\", onClick: () => navigate(\"/visit\"), children: /* @__PURE__ */ jsx(MdArrowBack, {}) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"hero-image-container\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: \"https://ik.imagekit.io/8u8lkoqkkm/KhongLuuTru_Trong.jpg?updatedAt=1749268862925\",\n          alt: \"Gói không lưu trú\",\n          className: \"hero-image portrait\"\n        }\n      ) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"packages-hero-content\", children: /* @__PURE__ */ jsx(\"h1\", { className: \"packages-title\", children: \"GÓI KHÔNG LƯU TRÚ\" }) })\n    ] }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"packages-content\", children: /* @__PURE__ */ jsx(\"div\", { className: \"packages-grid\", children: packages.map((pkg) => /* @__PURE__ */ jsx(\n      \"div\",\n      {\n        className: \"visit-cardss\",\n        onClick: () => navigate(`/visit/package/${pkg.id}`),\n        children: /* @__PURE__ */ jsxs(\"div\", { className: \"visit-cards-img-wrap\", children: [\n          /* @__PURE__ */ jsx(\n            \"img\",\n            {\n              src: pkg.image,\n              alt: pkg.title,\n              className: `visit-cards-img ${pkg.orientation}`\n            }\n          ),\n          /* @__PURE__ */ jsx(\"div\", { className: \"visit-cards-overlay\" }),\n          /* @__PURE__ */ jsx(\"div\", { className: \"visit-card-content\", children: /* @__PURE__ */ jsx(\"h2\", { children: pkg.title }) })\n        ] })\n      },\n      pkg.id\n    )) }) })\n  ] });\n};\nexport default NonResidentialPackages;\n",
-      "start": 1751302841270,
-      "end": 1751302841381,
+      "start": 1751470574799,
+      "end": 1751470576360,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751302841381,
-      "end": 1751302841381,
+      "start": 1751470576360,
+      "end": 1751470576360,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751302841381,
-      "end": 1751302841381,
+      "start": 1751470576360,
+      "end": 1751470576361,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751302841381,
-      "end": 1751302841381,
+      "start": 1751470576361,
+      "end": 1751470576361,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751302841381,
-      "end": 1751302841381,
+      "start": 1751470576361,
+      "end": 1751470576361,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751302841381,
-      "end": 1751302841381,
+      "start": 1751470576361,
+      "end": 1751470576361,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751302841381,
-      "end": 1751302841381,
+      "start": 1751470576361,
+      "end": 1751470576361,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751302841381,
-      "end": 1751302841381,
+      "start": 1751470576361,
+      "end": 1751470576361,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751302841381,
-      "end": 1751302841382,
+      "start": 1751470576361,
+      "end": 1751470576362,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751302841382,
-      "end": 1751302841382,
+      "start": 1751470576362,
+      "end": 1751470576362,
       "order": "normal"
     }
   ]

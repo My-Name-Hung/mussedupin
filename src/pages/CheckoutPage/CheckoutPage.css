@@ -324,7 +324,6 @@
 }
 
 .payment-summary {
-  background: #f8f8f8;
   padding: 1.5rem;
   border-radius: 8px;
 }
@@ -534,29 +533,119 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 20px;
+  gap: 30px;
   width: 100%;
-  height: 100%;
-  margin-bottom: 20px;
-  padding: 30px;
-  border-radius: 10px;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  border-radius: 16px;
 }
 
 .bank-payment h3 {
   font-family: "Roboto", sans-serif;
-  font-size: 1.3rem;
+  font-size: 1.8rem;
   color: #2c2f11;
   margin: 0;
+  text-align: center;
+  position: relative;
+}
+
+.bank-payment h3:after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 3px;
+  background-color: #2c2f11;
 }
 
 .bank-payment .qr-code {
-  width: 100%;
-  height: 100%;
+  width: auto;
+  height: 400px;
   object-fit: contain;
-  border-radius: 10px;
-  padding: 10px;
+  border-radius: 16px;
+  padding: 20px;
   background-color: white;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.bank-payment .qr-code:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+}
+
+.bank-payment .price-summary {
+  width: 100%;
+  max-width: 500px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  padding: 25px;
+  margin-top: 20px;
+}
+
+.bank-payment .price-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(44, 47, 17, 0.1);
+  font-size: 1.1rem;
+}
+
+.bank-payment .price-item:last-child {
+  border-bottom: none;
+  font-weight: bold;
+  font-size: 1.3rem;
+  color: #2c2f11;
+  padding-top: 20px;
+  margin-top: 10px;
+  border-top: 2px solid rgba(44, 47, 17, 0.1);
+}
+
+/* Preserve mobile layout */
+@media (max-width: 768px) {
+  .bank-payment {
+    padding: 30px;
+    gap: 20px;
+  }
+
+  .bank-payment h3 {
+    font-family: "Roboto", sans-serif;
+    font-size: 1.3rem;
+  }
+
+  .bank-payment h3:after {
+    display: none;
+  }
+
+  .bank-payment .qr-code {
+    width: 100%;
+    height: auto;
+    padding: 10px;
+  }
+
+  .bank-payment .qr-code:hover {
+    transform: none;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  }
+
+  .bank-payment .price-summary {
+    padding: 15px;
+  }
+
+  .bank-payment .price-item {
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+
+  .bank-payment .price-item:last-child {
+    font-size: 1.1rem;
+    padding-top: 15px;
+    margin-top: 5px;
+  }
 }
 
 .bank-payment p {
@@ -827,80 +916,85 @@
 
 .capacity-options-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
 }
 
-.capacity-option-display-thanhtoan {
-  padding: 1rem;
-  border-radius: 8px;
-  border: 2px solid yellowgreen;
+.capacity-option {
+  padding: 1.5rem;
+  border: 2px solid rgba(44, 47, 17, 0.1);
+  border-radius: 12px;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
-.capacity-option-display-thanhtoan:hover {
+.capacity-option:hover {
   border-color: #2c2f11;
   transform: translateY(-2px);
   box-shadow: 0 4px 12px rgba(44, 47, 17, 0.1);
 }
 
-.capacity-option-display-thanhtoan.active {
-  border-color: #fff;
-  background-color: #2c2f11;
+.capacity-option.selected {
+  border-color: #2c2f11;
+  background-color: rgba(44, 47, 17, 0.05);
   box-shadow: 0 4px 12px rgba(44, 47, 17, 0.15);
 }
 
-.capacity-option-display-thanhtoan.active .capacity-info {
-  color: #fff;
-}
-
-.capacity-option-display-thanhtoan.active .capacity-info svg {
-  color: #fff;
-}
-
-.capacity-option-display-thanhtoan.active .capacity-price {
-  color: #fff;
-}
-
-.capacity-option-display-thanhtoan.active .capacity-description {
-  color: #dbd9d9;
-}
-
-
 .capacity-info {
   display: flex;
-  flex-direction: column;
   align-items: center;
-  margin-bottom: 1rem;
+  gap: 8px;
+  margin-bottom: 12px;
 }
 
 .capacity-number {
-  font-size: 2rem;
-  font-weight: 700;
-  color: inherit;
-  font-family: "Meholrax", serif;
+  font-size: 1.4em;
+  font-weight: 600;
+  color: #2c2f11;
 }
 
 .capacity-label {
-  font-size: 1rem;
-  color: inherit;
-  opacity: 0.8;
+  color: #666;
+  font-size: 1em;
 }
 
 .capacity-price {
-  font-size: 1.25rem;
-  font-weight: 700;
-  color: inherit;
-  margin-bottom: 0.5rem;
-  font-family: "Meholrax", serif;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 8px;
+}
+
+.original-price {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 0.9em;
+  margin-bottom: 4px;
+}
+
+.original-price-value {
+  font-weight: 500;
+}
+
+.discount-badge {
+  background-color: #ff4d4f;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  margin-left: 8px;
+}
+
+.final-price {
+  color: #1890ff;
+  font-weight: 600;
+  font-size: 1.1em;
 }
 
 .capacity-description {
-  font-size: 0.9rem;
-  color: inherit;
-  opacity: 0.8;
-  line-height: 1.4;
+  color: #666;
+  font-size: 0.9em;
+  margin-top: 8px;
 }
 
 @media (max-width: 768px) {
@@ -917,6 +1011,6 @@
   }
 
   .capacity-number {
-    font-size: 1.5rem;
+    font-size: 1.2em;
   }
 }

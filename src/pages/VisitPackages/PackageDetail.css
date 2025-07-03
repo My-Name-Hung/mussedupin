@@ -234,20 +234,29 @@
 .package-details-list {
   list-style: none;
   padding: 0;
-  color: #000;
-  margin-bottom: 3rem;
+  margin: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
 }
 
 .package-details-list li {
-  font-size: 1.1rem;
-  line-height: 1.8;
-  margin-bottom: 1.5rem;
-  padding-left: 1.5rem;
   position: relative;
+  padding-left: 24px;
+  margin-bottom: 12px;
+  font-size: 16px;
+  color: #333;
+  display: flex;
+  align-items: center;
+  line-height: 1.5;
 }
 
 .package-details-list li::before {
-  content: " ";
+  content: "•";
+  position: absolute;
+  left: 0;
+  color: #1890ff;
+  font-size: 20px;
 }
 
 .package-details-list li::marker {
@@ -433,6 +442,21 @@
     padding: 40px 20px;
   }
 
+  .package-details-list {
+    gap: 10px;
+    padding: 0 5px;
+  }
+
+  .package-details-list li {
+    font-size: 14px;
+    padding-left: 20px;
+    margin-bottom: 6px;
+  }
+
+  .package-details-list li::before {
+    font-size: 16px;
+  }
+
   .play-button-overlay {
     width: 60px;
     height: 60px;
@@ -499,6 +523,30 @@
   box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
   background: #3d4016;
 }
+
+/* Book-price Now Button */
+.book-now-price-button {
+  position: relative;
+  padding: 15px 30px;
+  width: 100%;
+  background: #2c2f11;
+  color: white;
+  border: none;
+  border-radius: 30px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+
+.book-now-price-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  background: #3d4016;
+}
+
 
 /* Booking Modal Styles */
 .booking-modal {
@@ -1282,8 +1330,6 @@
   padding: 2rem;
   border-radius: 8px;
   margin: 2rem 0;
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .capacity-selection h3 {
@@ -1312,8 +1358,7 @@
 }
 
 .capacity-option.selected {
-  border-color: #4a90e2;
-  background-color: #f5f9ff;
+  border-color: #2c2f11;
 }
 
 .capacity-icon {
@@ -1329,15 +1374,53 @@
 }
 
 .capacity-price {
-  font-size: 1.25rem;
-  font-weight: 600;
-  color: #333;
-  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-top: 8px;
 }
 
-.capacity-description {
-  font-size: 0.9rem;
+.original-price {
+  text-decoration: line-through;
+  color: #999;
+  font-size: 0.9em;
+  margin-bottom: 4px;
+}
+
+.original-price-value {
+  font-weight: 500;
+}
+
+.discount-badge {
+  background-color: #ff4d4f;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 0.8em;
+  margin-left: 8px;
+}
+
+.final-price {
+  color: #2c2f11;
+  font-weight: 600;
+  font-size: 1.1em;
+}
+
+.capacity-info {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.capacity-number {
+  font-size: 1.2em;
+  font-weight: 600;
+  color: #333;
+}
+
+.capacity-label {
   color: #666;
+  font-size: 0.9em;
 }
 
 .capacity-options-display {
@@ -1397,8 +1480,6 @@
   color: #dbd9d9;
 }
 
-
-
 .capacity-info {
   display: flex;
   align-items: center;
@@ -1418,12 +1499,12 @@
   font-weight: 700;
   color: #2c2f11;
   margin-bottom: 0.5rem;
-  font-family: "Meholrax", serif;
+  font-family: "Roboto", sans-serif;
 }
 
 .capacity-description {
   font-size: 0.9rem;
-  color: #666;
+  color: gray;
   line-height: 1.4;
 }
 
@@ -1488,7 +1569,7 @@
   font-size: 1rem;
   font-weight: 700;
   color: #2c2f11;
-  font-family: "Meholrax", serif;
+  font-family: "Roboto", sans-serif;
 }
 
 @media (max-width: 768px) {

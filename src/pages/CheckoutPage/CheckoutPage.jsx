@@ -333,11 +333,18 @@ const CheckoutPage = () => {
         image:
           "https://ik.imagekit.io/8u8lkoqkkm/Tu%E1%BB%95i%20%E1%BA%A5u%20th%C6%A1-%20The%20Childhood/z6735013755648_e134fda3141c25a0a9fc67efa73d00de.jpg?updatedAt=1751274451818",
         capacityOptions: [
-          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
-          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
-          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+          {
+            capacity: 4,
+            originalPrice: 8494603,
+            discountPercentage: 78,
+            price: 1846709,
+            description: {
+              vi: "Phù hợp cho 4 người",
+              en: "Suitable for 4 people",
+            },
+          },
         ],
-        price: 3000000,
+        price: 1846709,
         details: [
           "Phòng nghỉ thoải mái",
           "Trang trí truyền thống",
@@ -354,11 +361,18 @@ const CheckoutPage = () => {
         image:
           "https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng-%20Bauhinia/z6735015913658_0a13ac137c59ccacc8e376f1d7f63ce8.jpg?updatedAt=1751274467967",
         capacityOptions: [
-          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
-          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
-          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+          {
+            capacity: 3,
+            originalPrice: 4589810,
+            discountPercentage: 79,
+            price: 976893,
+            description: {
+              vi: "Phù hợp cho 3 người",
+              en: "Suitable for 3 people",
+            },
+          },
         ],
-        price: 3000000,
+        price: 976893,
         details: [
           "Thiết kế hiện đại",
           "Đầy đủ tiện nghi",
@@ -375,11 +389,18 @@ const CheckoutPage = () => {
         image:
           "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20I-%20The%20Chill%20I/z6735017008335_1f53d54c8c667e714237c694c6fb2bf0.jpg?updatedAt=1751274193309",
         capacityOptions: [
-          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
-          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
-          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+          {
+            capacity: 2,
+            originalPrice: 5450363,
+            discountPercentage: 80,
+            price: 1078784,
+            description: {
+              vi: "Phù hợp cho 2 người",
+              en: "Suitable for 2 people",
+            },
+          },
         ],
-        price: 3000000,
+        price: 1078784,
         details: [
           "Biệt thự riêng biệt",
           "Vườn riêng",
@@ -396,11 +417,18 @@ const CheckoutPage = () => {
         image:
           "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20II-%20The%20Chill%20II/z6735017019144_2e97325679ec2dbf6248ee217d2c005e.jpg?updatedAt=1751274217344",
         capacityOptions: [
-          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
-          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
-          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+          {
+            capacity: 2,
+            originalPrice: 5450363,
+            discountPercentage: 80,
+            price: 1078784,
+            description: {
+              vi: "Phù hợp cho 2 người",
+              en: "Suitable for 2 people",
+            },
+          },
         ],
-        price: 3000000,
+        price: 1078784,
         details: [
           "Phòng riêng thoải mái",
           "Giá cả hợp lý",
@@ -416,11 +444,18 @@ const CheckoutPage = () => {
         image:
           "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0i%20Ni%E1%BB%87m-%20The%20Memory/z6735016111786_26063d0dd74c1796f25a106e4e7e48cb.jpg?updatedAt=1751274468488",
         capacityOptions: [
-          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
-          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
-          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+          {
+            capacity: 4,
+            originalPrice: 6117901,
+            discountPercentage: 78,
+            price: 1316295,
+            description: {
+              vi: "Phù hợp cho 4 người",
+              en: "Suitable for 4 people",
+            },
+          },
         ],
-        price: 3000000,
+        price: 1316295,
         details: [
           "Thiết kế hoài cổ",
           "Không gian yên tĩnh",
@@ -437,11 +472,18 @@ const CheckoutPage = () => {
         image:
           "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0ng%20h%C3%B4n-%20The%20Sunset/z6735016357613_e2751dcece85c553aaa0c8e54f9e5d11.jpg?updatedAt=1751274470184",
         capacityOptions: [
-          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
-          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
-          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+          {
+            capacity: 4,
+            originalPrice: 6117901,
+            discountPercentage: 78,
+            price: 1316295,
+            description: {
+              vi: "Phù hợp cho 4 người",
+              en: "Suitable for 4 people",
+            },
+          },
         ],
-        price: 3000000,
+        price: 1316295,
         details: [
           "View hoàng hôn tuyệt đẹp",
           "Ban công riêng",
@@ -458,11 +500,18 @@ const CheckoutPage = () => {
         image:
           "https://ik.imagekit.io/8u8lkoqkkm/Toa%20t%C3%A0u-%20The%20Train/z6735013970930_367d839a1762df6694ba9fde11f52475.jpg?updatedAt=1751274451540",
         capacityOptions: [
-          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
-          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
-          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+          {
+            capacity: 5,
+            originalPrice: 11892444,
+            discountPercentage: 78,
+            price: 2585393,
+            description: {
+              vi: "Phù hợp cho 5 người",
+              en: "Suitable for 5 people",
+            },
+          },
         ],
-        price: 3000000,
+        price: 2585393,
         details: [
           "Thiết kế độc đáo",
           "Trải nghiệm mới lạ",
@@ -479,11 +528,18 @@ const CheckoutPage = () => {
         image:
           "https://ik.imagekit.io/8u8lkoqkkm/%C4%90%E1%BB%93i%20Th%C3%B4ng-%20The%20Pine%20Hill/z6735015682281_4f24f3571385b7a2b97d36acd8ba8113.jpg?updatedAt=1751274459265",
         capacityOptions: [
-          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
-          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
-          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+          {
+            capacity: 5,
+            originalPrice: 11892444,
+            discountPercentage: 78,
+            price: 2585393,
+            description: {
+              vi: "Phù hợp cho 5 người",
+              en: "Suitable for 5 people",
+            },
+          },
         ],
-        price: 3000000,
+        price: 2585393,
         details: [
           "View đồi thông",
           "Không gian yên bình",
@@ -500,11 +556,18 @@ const CheckoutPage = () => {
         image:
           "https://ik.imagekit.io/8u8lkoqkkm/Th%C3%A1c%20%C4%91%E1%BB%95-%20The%20Fall/z6735013550592_06292038d263699476dd8144aa005946.jpg?updatedAt=1751274451608",
         capacityOptions: [
-          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
-          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
-          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+          {
+            capacity: 6,
+            originalPrice: 3535364,
+            discountPercentage: 0,
+            price: 3535364,
+            description: {
+              vi: "Phù hợp cho 6 người",
+              en: "Suitable for 6 people",
+            },
+          },
         ],
-        price: 3000000,
+        price: 3535364,
         details: [
           "Thiết kế độc đáo",
           "Không gian thư giãn",
@@ -521,11 +584,18 @@ const CheckoutPage = () => {
         image:
           "https://ik.imagekit.io/8u8lkoqkkm/C%C3%A1nh%20di%E1%BB%81u-%20The%20Kite/404%20-%201.png?updatedAt=1751274406678",
         capacityOptions: [
-          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
-          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
-          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+          {
+            capacity: 3,
+            originalPrice: 5439064,
+            discountPercentage: 79,
+            price: 1163099,
+            description: {
+              vi: "Phù hợp cho 3 người",
+              en: "Suitable for 3 people",
+            },
+          },
         ],
-        price: 3000000,
+        price: 1163099,
         details: [
           "View panorama",
           "Không gian thoáng đãng",
@@ -542,11 +612,18 @@ const CheckoutPage = () => {
         image:
           "https://ik.imagekit.io/8u8lkoqkkm/D%C3%A2u%20t%C3%A2y-%20Strawberry/z6735068946993_6566743fb95325c53d9b69e966e2ae4a.jpg?updatedAt=1751274423030",
         capacityOptions: [
-          { capacity: 3, price: 3000000, description: "Phù hợp cho 3 người" },
-          { capacity: 4, price: 3500000, description: "Phù hợp cho 4 người" },
-          { capacity: 5, price: 4000000, description: "Phù hợp cho 5 người" },
+          {
+            capacity: 2,
+            originalPrice: 6805644,
+            discountPercentage: 79,
+            price: 1403037,
+            description: {
+              vi: "Phù hợp cho 2 người lớn và 1 trẻ em",
+              en: "Suitable for 2 adults and 1 child",
+            },
+          },
         ],
-        price: 3000000,
+        price: 1403037,
         details: [
           "Thiết kế dễ thương",
           "Không gian ấm cúng",
@@ -784,20 +861,8 @@ const CheckoutPage = () => {
   };
 
   const calculateTotal = () => {
-    if (!packageData) return 0;
-
-    if (packageData.capacityOptions && selectedCapacity) {
-      // For room packages with capacity selection
-      return selectedCapacity.price;
-    } else if (tickets.some((t) => t.isContactOnly)) {
-      // For contact-only packages
-      return 0;
-    } else {
-      // For regular packages
-      return tickets.reduce((total, ticket) => {
-        return total + ticket.price * ticket.quantity;
-      }, 0);
-    }
+    if (!selectedCapacity) return 0;
+    return selectedCapacity.price;
   };
 
   const handleLoginSuccess = () => {
@@ -821,6 +886,11 @@ const CheckoutPage = () => {
 
   const handlePaymentMethodSelect = (method) => {
     setPaymentMethod(method);
+  };
+
+  const handleCapacitySelect = (option) => {
+    setSelectedCapacity(option);
+    handleQuantityChange(0, option.capacity);
   };
 
   return (
@@ -853,30 +923,35 @@ const CheckoutPage = () => {
               <div className="capacity-selection-section">
                 <h3>Chọn số lượng người</h3>
                 <div className="capacity-options-grid">
-                  {packageData.capacityOptions.map((option, index) => (
+                  {packageData.capacityOptions.map((option) => (
                     <div
-                      key={index}
-                      className={`capacity-option-display-thanhtoan ${
+                      key={option.capacity}
+                      className={`capacity-option ${
                         selectedCapacity?.capacity === option.capacity
-                          ? "active"
+                          ? "selected"
                           : ""
                       }`}
-                      onClick={() => handleQuantityChange(0, option.capacity)}
+                      onClick={() => handleCapacitySelect(option)}
                     >
                       <div className="capacity-info">
-                        <span className="capacity-number">
-                          {option.capacity}
-                        </span>
-                        <span className="capacity-label">người</span>
+                        <div className="capacity-number">{option.capacity}</div>
+                        <div className="capacity-label">người</div>
                       </div>
                       <div className="capacity-price">
-                        {new Intl.NumberFormat("vi-VN", {
-                          style: "currency",
-                          currency: "VND",
-                        }).format(option.price)}
+                        <div className="original-price">
+                          <span className="original-price-value">
+                            {option.originalPrice.toLocaleString()}đ
+                          </span>
+                        </div>
+                        <div className="final-price">
+                          {option.price.toLocaleString()}đ
+                          <span className="discount-badge">
+                            -{option.discountPercentage}%
+                          </span>
+                        </div>
                       </div>
                       <div className="capacity-description">
-                        {option.description}
+                        {option.description.vi}
                       </div>
                     </div>
                   ))}
@@ -942,144 +1017,85 @@ const CheckoutPage = () => {
                     <Tr>
                       <Th>Vé</Th>
                       <Th>Số lượng</Th>
-                      {!packageData?.capacityOptions && (
-                        <Th>Người tham quan</Th>
-                      )}
                       <Th>Thời gian</Th>
                       <Th>Tổng tiền</Th>
                     </Tr>
                   </Thead>
                   <Tbody>
-                    {tickets.map(
-                      (ticket, index) =>
-                        ticket.quantity > 0 && (
-                          <Tr key={index}>
-                            <Td>{ticket.title}</Td>
-                            <Td>{ticket.quantity}</Td>
-                            {!packageData?.capacityOptions && (
-                              <Td>
-                                {ticket.visitors.map((v) => v.name).join(", ")}
-                              </Td>
-                            )}
-                            <Td>
-                              {new Date(selectedDate).toLocaleDateString(
-                                "vi-VN"
-                              )}
-                              <br />
-                              {selectedTime}
-                            </Td>
-                            <Td>
-                              {ticket.isContactOnly ? (
-                                <a
-                                  href={`tel:${ticket.contactNumber}`}
-                                  style={{
-                                    color: "#2c2f11",
-                                    textDecoration: "none",
-                                  }}
-                                >
-                                  Liên hệ: {ticket.contactNumber}
-                                </a>
-                              ) : (
-                                `${(
-                                  ticket.price * ticket.quantity
-                                ).toLocaleString()}đ`
-                              )}
-                            </Td>
-                          </Tr>
-                        )
-                    )}
+                    <Tr>
+                      <Td>{packageData.title}</Td>
+                      <Td>{selectedCapacity?.capacity} người</Td>
+                      <Td>
+                        {new Date(selectedDate).toLocaleDateString("vi-VN")}
+                        <br />
+                        {selectedTime}
+                      </Td>
+                      <Td>{selectedCapacity?.price.toLocaleString()}đ</Td>
+                    </Tr>
                   </Tbody>
                 </Table>
               </div>
 
-              {!tickets.some((t) => t.isContactOnly) && (
-                <>
-                  <div className="payment-methods-section">
-                    <h3>Phương thức thanh toán</h3>
-                    <div className="payment-options">
-                      <div
-                        className={`payment-option ${
-                          paymentMethod === "bank" ? "selected" : ""
-                        }`}
-                        onClick={() => handlePaymentMethodSelect("bank")}
-                      >
-                        <input
-                          type="radio"
-                          name="paymentMethod"
-                          checked={paymentMethod === "bank"}
-                          onChange={() => {}}
-                        />
-                        <div className="payment-option-content">
-                          <div className="payment-details">
-                            <h4>Thanh toán qua ngân hàng</h4>
-                          </div>
-                        </div>
-                      </div>
-
-                      <div
-                        className={`payment-option ${
-                          paymentMethod === "cash" ? "selected" : ""
-                        }`}
-                        onClick={() => handlePaymentMethodSelect("cash")}
-                      >
-                        <input
-                          type="radio"
-                          name="paymentMethod"
-                          checked={paymentMethod === "cash"}
-                          onChange={() => {}}
-                        />
-                        <div className="payment-option-content">
-                          <div className="payment-details">
-                            <h4>Thanh toán tiền mặt</h4>
-                            <p>Thanh toán trực tiếp tại quầy vé</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="order-summary-footer">
-                    <div className="summary-total">
-                      <span>Tổng cộng:</span>
-                      <span className="total-amount">
-                        {calculateTotal().toLocaleString()}đ
-                      </span>
-                    </div>
-                    <p className="summary-note">
-                      * Vui lòng kiểm tra kỹ thông tin đơn hàng trước khi tiến
-                      hành thanh toán
-                    </p>
-                  </div>
-                </>
-              )}
-
-              {tickets.some((t) => t.isContactOnly) && (
-                <div className="contact-info-section">
-                  <h3>Thông tin liên hệ</h3>
-                  <p>Để biết thêm chi tiết và đặt vé, vui lòng liên hệ:</p>
-                  {tickets.map(
-                    (ticket, index) =>
-                      ticket.isContactOnly && (
-                        <a
-                          key={index}
-                          href={`tel:${ticket.contactNumber}`}
-                          className="contact-button"
-                          style={{
-                            display: "inline-block",
-                            padding: "10px 20px",
-                            background: "#2c2f11",
-                            color: "white",
-                            textDecoration: "none",
-                            borderRadius: "5px",
-                            marginTop: "10px",
-                          }}
-                        >
-                          Gọi ngay: {ticket.contactNumber}
-                        </a>
-                      )
-                  )}
+              <div className="price-summary">
+                <div className="price-item">
+                  <span>Giá gốc:</span>
+                  <span>
+                    {selectedCapacity?.originalPrice.toLocaleString()}đ
+                  </span>
                 </div>
-              )}
+                <div className="price-item">
+                  <span>Giảm giá:</span>
+                  <span>-{selectedCapacity?.discountPercentage}%</span>
+                </div>
+                <div className="price-item">
+                  <span>Tổng cộng:</span>
+                  <span>{calculateTotal().toLocaleString()}đ</span>
+                </div>
+              </div>
+
+              <div className="payment-methods-section">
+                <h3>Phương thức thanh toán</h3>
+                <div className="payment-options">
+                  <div
+                    className={`payment-option ${
+                      paymentMethod === "bank" ? "selected" : ""
+                    }`}
+                    onClick={() => handlePaymentMethodSelect("bank")}
+                  >
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      checked={paymentMethod === "bank"}
+                      onChange={() => {}}
+                    />
+                    <div className="payment-option-content">
+                      <div className="payment-details">
+                        <h4>Thanh toán qua ngân hàng</h4>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div
+                    className={`payment-option ${
+                      paymentMethod === "cash" ? "selected" : ""
+                    }`}
+                    onClick={() => handlePaymentMethodSelect("cash")}
+                  >
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      checked={paymentMethod === "cash"}
+                      onChange={() => {}}
+                    />
+                    <div className="payment-option-content">
+                      <div className="payment-details">
+                        <h4>Thanh toán tiền mặt</h4>
+                        <p>Thanh toán trực tiếp tại quầy vé</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
         )}
@@ -1093,12 +1109,42 @@ const CheckoutPage = () => {
                 {qrCode && (
                   <img src={qrCode} alt="QR Code" className="qr-code" />
                 )}
-                <p>Số tiền: {calculateTotal().toLocaleString()}đ</p>
+                <div className="price-summary">
+                  <div className="price-item">
+                    <span>Giá gốc:</span>
+                    <span>
+                      {selectedCapacity?.originalPrice.toLocaleString()}đ
+                    </span>
+                  </div>
+                  <div className="price-item">
+                    <span>Giảm giá:</span>
+                    <span>-{selectedCapacity?.discountPercentage}%</span>
+                  </div>
+                  <div className="price-item">
+                    <span>Tổng cộng:</span>
+                    <span>{calculateTotal().toLocaleString()}đ</span>
+                  </div>
+                </div>
               </div>
             ) : (
               <div className="payment-summary">
-                <p>Tổng tiền: {calculateTotal().toLocaleString()}đ</p>
-                <p>
+                <div className="price-summary">
+                  <div className="price-item">
+                    <span>Giá gốc:</span>
+                    <span>
+                      {selectedCapacity?.originalPrice.toLocaleString()}đ
+                    </span>
+                  </div>
+                  <div className="price-item">
+                    <span>Giảm giá:</span>
+                    <span>-{selectedCapacity?.discountPercentage}%</span>
+                  </div>
+                  <div className="price-item">
+                    <span>Tổng cộng:</span>
+                    <span>{calculateTotal().toLocaleString()}đ</span>
+                  </div>
+                </div>
+                <p className="payment-note">
                   Vui lòng kiểm tra lại thông tin đặt vé trước khi hoàn tất. Bạn
                   sẽ thanh toán trực tiếp tại quầy vé.
                 </p>

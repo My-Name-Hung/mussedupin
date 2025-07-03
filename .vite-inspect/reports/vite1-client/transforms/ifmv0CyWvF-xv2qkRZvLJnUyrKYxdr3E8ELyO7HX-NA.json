@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "var __assign = (this && this.__assign) || function () {\n    __assign = Object.assign || function(t) {\n        for (var s, i = 1, n = arguments.length; i < n; i++) {\n            s = arguments[i];\n            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))\n                t[p] = s[p];\n        }\n        return t;\n    };\n    return __assign.apply(this, arguments);\n};\nimport React from 'react';\nimport allowed from '../utils/allowed';\nfunction Tbody(props) {\n    return React.createElement(\"tbody\", __assign({ \"data-testid\": \"tbody\" }, allowed(props)));\n}\nexport default Tbody;\n",
-      "start": 1751267816887,
-      "end": 1751267820838,
+      "start": 1751338502475,
+      "end": 1751338502740,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751267820838,
-      "end": 1751267820838,
+      "start": 1751338502740,
+      "end": 1751338502740,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751267820838,
-      "end": 1751267820838,
+      "start": 1751338502740,
+      "end": 1751338502740,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751267820838,
-      "end": 1751267820838,
+      "start": 1751338502740,
+      "end": 1751338502740,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751267820838,
-      "end": 1751267820838,
+      "start": 1751338502740,
+      "end": 1751338502740,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751267820838,
-      "end": 1751267820838,
+      "start": 1751338502740,
+      "end": 1751338502740,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751267820838,
-      "end": 1751267820838,
+      "start": 1751338502740,
+      "end": 1751338502740,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751267820838,
-      "end": 1751267820838,
+      "start": 1751338502740,
+      "end": 1751338502740,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751267820839,
-      "end": 1751267820839,
+      "start": 1751338502741,
+      "end": 1751338502741,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751267820839,
-      "end": 1751267820839,
+      "start": 1751338502741,
+      "end": 1751338502741,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751267820839,
-      "end": 1751267820839,
+      "start": 1751338502741,
+      "end": 1751338502741,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751267820839,
-      "end": 1751267821056,
+      "start": 1751338502741,
+      "end": 1751338502741,
       "order": "normal"
     }
   ]

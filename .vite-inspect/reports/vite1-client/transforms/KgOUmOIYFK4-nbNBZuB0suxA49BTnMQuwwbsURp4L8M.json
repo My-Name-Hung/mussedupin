@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\nimport \"./TicketSelection.css\";\n\nconst TicketSelection = ({\n  tickets,\n  onQuantityChange,\n  onVisitorNameChange,\n  packageData,\n}) => {\n  return (\n    <div className=\"ticket-selection-containers\">\n      <h2>Chọn vé của bạn</h2>\n\n      {packageData && (\n        <div className=\"package-infos\">\n          <div className=\"package-detailss\">\n            <h3>Chi tiết gói trải nghiệm</h3>\n            <ul>\n              {packageData.details.map((detail, index) => (\n                <li key={index}>{detail}</li>\n              ))}\n            </ul>\n          </div>\n          {packageData.note && (\n            <div className=\"package-notes\">\n              <strong>Lưu ý:</strong> {packageData.note}\n            </div>\n          )}\n          {packageData.time && (\n            <div className=\"package-times\">\n              <strong>Thời gian:</strong> {packageData.time}\n            </div>\n          )}\n        </div>\n      )}\n\n      <div className=\"tickets-lists\">\n        {tickets.map((ticket, index) => (\n          <div key={index} className=\"ticket-items\">\n            <div className=\"ticket-headers\">\n              <h3>{ticket.title}</h3>\n              <p className=\"price\">{ticket.price.toLocaleString()}đ</p>\n            </div>\n            <div className=\"quantity-controls\">\n              <button\n                onClick={() =>\n                  onQuantityChange(index, Math.max(0, ticket.quantity - 1))\n                }\n                disabled={ticket.quantity === 0}\n              >\n                -\n              </button>\n              <input\n                type=\"number\"\n                value={ticket.quantity}\n                onChange={(e) =>\n                  onQuantityChange(index, parseInt(e.target.value) || 0)\n                }\n                min=\"0\"\n                max=\"10\"\n              />\n              <button\n                onClick={() => onQuantityChange(index, ticket.quantity + 1)}\n                disabled={ticket.quantity >= 10}\n              >\n                +\n              </button>\n            </div>\n            {ticket.quantity > 0 && (\n              <div className=\"visitor-namess\">\n                {Array.from({ length: ticket.quantity }).map(\n                  (_, visitorIndex) => (\n                    <div key={visitorIndex} className=\"visitor-inputs\">\n                      <label>\n                        Họ và tên người tham quan {visitorIndex + 1}\n                      </label>\n                      <input\n                        type=\"text\"\n                        value={ticket.visitors[visitorIndex]?.name || \"\"}\n                        onChange={(e) =>\n                          onVisitorNameChange(\n                            index,\n                            visitorIndex,\n                            e.target.value\n                          )\n                        }\n                        placeholder=\"Nhập họ và tên\"\n                      />\n                    </div>\n                  )\n                )}\n              </div>\n            )}\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n};\n\nexport default TicketSelection;\n",
-      "start": 1751267814613,
-      "end": 1751267816646,
+      "start": 1751338502097,
+      "end": 1751338502466,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751267816646,
-      "end": 1751267816646,
+      "start": 1751338502466,
+      "end": 1751338502467,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport \"./TicketSelection.css\";\nconst TicketSelection = ({\n  tickets,\n  onQuantityChange,\n  onVisitorNameChange,\n  packageData\n}) => {\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"ticket-selection-containers\", children: [\n    /* @__PURE__ */ jsx(\"h2\", { children: \"Chọn vé của bạn\" }),\n    packageData && /* @__PURE__ */ jsxs(\"div\", { className: \"package-infos\", children: [\n      /* @__PURE__ */ jsxs(\"div\", { className: \"package-detailss\", children: [\n        /* @__PURE__ */ jsx(\"h3\", { children: \"Chi tiết gói trải nghiệm\" }),\n        /* @__PURE__ */ jsx(\"ul\", { children: packageData.details.map((detail, index) => /* @__PURE__ */ jsx(\"li\", { children: detail }, index)) })\n      ] }),\n      packageData.note && /* @__PURE__ */ jsxs(\"div\", { className: \"package-notes\", children: [\n        /* @__PURE__ */ jsx(\"strong\", { children: \"Lưu ý:\" }),\n        \" \",\n        packageData.note\n      ] }),\n      packageData.time && /* @__PURE__ */ jsxs(\"div\", { className: \"package-times\", children: [\n        /* @__PURE__ */ jsx(\"strong\", { children: \"Thời gian:\" }),\n        \" \",\n        packageData.time\n      ] })\n    ] }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"tickets-lists\", children: tickets.map((ticket, index) => /* @__PURE__ */ jsxs(\"div\", { className: \"ticket-items\", children: [\n      /* @__PURE__ */ jsxs(\"div\", { className: \"ticket-headers\", children: [\n        /* @__PURE__ */ jsx(\"h3\", { children: ticket.title }),\n        /* @__PURE__ */ jsxs(\"p\", { className: \"price\", children: [\n          ticket.price.toLocaleString(),\n          \"đ\"\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"quantity-controls\", children: [\n        /* @__PURE__ */ jsx(\n          \"button\",\n          {\n            onClick: () => onQuantityChange(index, Math.max(0, ticket.quantity - 1)),\n            disabled: ticket.quantity === 0,\n            children: \"-\"\n          }\n        ),\n        /* @__PURE__ */ jsx(\n          \"input\",\n          {\n            type: \"number\",\n            value: ticket.quantity,\n            onChange: (e) => onQuantityChange(index, parseInt(e.target.value) || 0),\n            min: \"0\",\n            max: \"10\"\n          }\n        ),\n        /* @__PURE__ */ jsx(\n          \"button\",\n          {\n            onClick: () => onQuantityChange(index, ticket.quantity + 1),\n            disabled: ticket.quantity >= 10,\n            children: \"+\"\n          }\n        )\n      ] }),\n      ticket.quantity > 0 && /* @__PURE__ */ jsx(\"div\", { className: \"visitor-namess\", children: Array.from({ length: ticket.quantity }).map(\n        (_, visitorIndex) => /* @__PURE__ */ jsxs(\"div\", { className: \"visitor-inputs\", children: [\n          /* @__PURE__ */ jsxs(\"label\", { children: [\n            \"Họ và tên người tham quan \",\n            visitorIndex + 1\n          ] }),\n          /* @__PURE__ */ jsx(\n            \"input\",\n            {\n              type: \"text\",\n              value: ticket.visitors[visitorIndex]?.name || \"\",\n              onChange: (e) => onVisitorNameChange(\n                index,\n                visitorIndex,\n                e.target.value\n              ),\n              placeholder: \"Nhập họ và tên\"\n            }\n          )\n        ] }, visitorIndex)\n      ) })\n    ] }, index)) })\n  ] });\n};\nexport default TicketSelection;\n",
-      "start": 1751267816646,
-      "end": 1751267818998,
+      "start": 1751338502467,
+      "end": 1751338502602,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751267818998,
-      "end": 1751267818998,
+      "start": 1751338502602,
+      "end": 1751338502602,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751267818999,
-      "end": 1751267818999,
+      "start": 1751338502602,
+      "end": 1751338502602,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751267818999,
-      "end": 1751267818999,
+      "start": 1751338502602,
+      "end": 1751338502602,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751267818999,
-      "end": 1751267818999,
+      "start": 1751338502603,
+      "end": 1751338502603,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751267818999,
-      "end": 1751267818999,
+      "start": 1751338502603,
+      "end": 1751338502603,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751267818999,
-      "end": 1751267818999,
+      "start": 1751338502604,
+      "end": 1751338502604,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751267818999,
-      "end": 1751267818999,
+      "start": 1751338502605,
+      "end": 1751338502605,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751267818999,
-      "end": 1751267818999,
+      "start": 1751338502605,
+      "end": 1751338502605,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751267819029,
-      "end": 1751267819029,
+      "start": 1751338502605,
+      "end": 1751338502605,
       "order": "normal"
     }
   ]

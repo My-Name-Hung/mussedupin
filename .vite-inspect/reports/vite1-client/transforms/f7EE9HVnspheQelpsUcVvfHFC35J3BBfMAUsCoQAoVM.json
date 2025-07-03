@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\nimport Calendar from \"react-calendar\";\nimport \"react-calendar/dist/Calendar.css\";\nimport \"./DateSelection.css\";\n\nconst DateSelection = ({ selectedDate, onDateChange }) => {\n  const minDate = new Date();\n  const maxDate = new Date();\n  maxDate.setMonth(maxDate.getMonth() + 3); // Allow booking up to 3 months in advance\n\n  const tileDisabled = ({ date }) => {\n    // Disable past dates\n    if (date < new Date().setHours(0, 0, 0, 0)) {\n      return true;\n    }\n    // Optionally disable specific dates or conditions\n    return false;\n  };\n\n  const formatShortWeekday = (locale, date) => {\n    const days = [\"CN\", \"T2\", \"T3\", \"T4\", \"T5\", \"T6\", \"T7\"];\n    return days[date.getDay()];\n  };\n\n  return (\n    <div className=\"date-selection-container\">\n      <h2>Chọn ngày</h2>\n      <Calendar\n        onChange={onDateChange}\n        value={selectedDate}\n        minDate={minDate}\n        maxDate={maxDate}\n        locale=\"vi-VN\"\n        calendarType=\"gregory\"\n        formatShortWeekday={formatShortWeekday}\n        tileDisabled={tileDisabled}\n        showNeighboringMonth={false}\n        next2Label={null}\n        prev2Label={null}\n        navigationLabel={({ date }) => {\n          const months = [\n            \"Tháng 1\",\n            \"Tháng 2\",\n            \"Tháng 3\",\n            \"Tháng 4\",\n            \"Tháng 5\",\n            \"Tháng 6\",\n            \"Tháng 7\",\n            \"Tháng 8\",\n            \"Tháng 9\",\n            \"Tháng 10\",\n            \"Tháng 11\",\n            \"Tháng 12\",\n          ];\n          return `${months[date.getMonth()]} ${date.getFullYear()}`;\n        }}\n      />\n    </div>\n  );\n};\n\nexport default DateSelection;\n",
-      "start": 1751267814558,
-      "end": 1751267816530,
+      "start": 1751338502084,
+      "end": 1751338502339,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751267816530,
-      "end": 1751267816530,
+      "start": 1751338502339,
+      "end": 1751338502339,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport Calendar from \"react-calendar\";\nimport \"react-calendar/dist/Calendar.css\";\nimport \"./DateSelection.css\";\nconst DateSelection = ({ selectedDate, onDateChange }) => {\n  const minDate = /* @__PURE__ */ new Date();\n  const maxDate = /* @__PURE__ */ new Date();\n  maxDate.setMonth(maxDate.getMonth() + 3);\n  const tileDisabled = ({ date }) => {\n    if (date < (/* @__PURE__ */ new Date()).setHours(0, 0, 0, 0)) {\n      return true;\n    }\n    return false;\n  };\n  const formatShortWeekday = (locale, date) => {\n    const days = [\"CN\", \"T2\", \"T3\", \"T4\", \"T5\", \"T6\", \"T7\"];\n    return days[date.getDay()];\n  };\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"date-selection-container\", children: [\n    /* @__PURE__ */ jsx(\"h2\", { children: \"Chọn ngày\" }),\n    /* @__PURE__ */ jsx(\n      Calendar,\n      {\n        onChange: onDateChange,\n        value: selectedDate,\n        minDate,\n        maxDate,\n        locale: \"vi-VN\",\n        calendarType: \"gregory\",\n        formatShortWeekday,\n        tileDisabled,\n        showNeighboringMonth: false,\n        next2Label: null,\n        prev2Label: null,\n        navigationLabel: ({ date }) => {\n          const months = [\n            \"Tháng 1\",\n            \"Tháng 2\",\n            \"Tháng 3\",\n            \"Tháng 4\",\n            \"Tháng 5\",\n            \"Tháng 6\",\n            \"Tháng 7\",\n            \"Tháng 8\",\n            \"Tháng 9\",\n            \"Tháng 10\",\n            \"Tháng 11\",\n            \"Tháng 12\"\n          ];\n          return `${months[date.getMonth()]} ${date.getFullYear()}`;\n        }\n      }\n    )\n  ] });\n};\nexport default DateSelection;\n",
-      "start": 1751267816530,
-      "end": 1751267817263,
+      "start": 1751338502339,
+      "end": 1751338502569,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751267817263,
-      "end": 1751267817263,
+      "start": 1751338502569,
+      "end": 1751338502569,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751267817263,
-      "end": 1751267817263,
+      "start": 1751338502569,
+      "end": 1751338502569,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751267817263,
-      "end": 1751267817263,
+      "start": 1751338502569,
+      "end": 1751338502569,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751267817263,
-      "end": 1751267817263,
+      "start": 1751338502569,
+      "end": 1751338502569,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751267817263,
-      "end": 1751267817263,
+      "start": 1751338502569,
+      "end": 1751338502569,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751267817266,
-      "end": 1751267817266,
+      "start": 1751338502569,
+      "end": 1751338502569,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751267817266,
-      "end": 1751267817266,
+      "start": 1751338502569,
+      "end": 1751338502569,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751267817266,
-      "end": 1751267817266,
+      "start": 1751338502569,
+      "end": 1751338502570,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751267817266,
-      "end": 1751267817266,
+      "start": 1751338502570,
+      "end": 1751338502570,
       "order": "normal"
     }
   ]

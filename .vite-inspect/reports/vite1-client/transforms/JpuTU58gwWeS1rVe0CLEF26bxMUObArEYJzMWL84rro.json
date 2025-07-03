@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": ".date-selection-container {\n  width: 100%;\n}\n\n.date-selection-container h2 {\n  margin-bottom: 1.5rem;\n  font-size: 1.5rem;\n  color: #2c2f11;\n}\n\n/* Override react-calendar styles */\n.react-calendar {\n  width: 100%;\n  max-width: 100%;\n  margin: 0 auto;\n  border: none;\n  font-family: inherit;\n  background: transparent;\n}\n\n.react-calendar__navigation {\n  margin-bottom: 20px;\n}\n\n.react-calendar__navigation button {\n  min-width: 44px;\n  background: none;\n  font-size: 1.4rem;\n  padding: 8px;\n  color: #2c2f11;\n  border-radius: 8px;\n  transition: all 0.3s ease;\n}\n\n.react-calendar__navigation button:enabled:hover,\n.react-calendar__navigation button:enabled:focus {\n  background-color: rgba(44, 47, 17, 0.1);\n}\n\n.react-calendar__navigation button[disabled] {\n  opacity: 0.5;\n  background: none;\n}\n\n.react-calendar__month-view__weekdays {\n  text-align: center;\n  text-transform: uppercase;\n  font-weight: bold;\n  font-size: 0.9em;\n  color: #2c2f11;\n  margin-bottom: 8px;\n  abbr {\n    text-decoration: none;\n    border: none;\n  }\n}\n\n.react-calendar__month-view__days__day--weekend {\n  color: #d10000;\n}\n\n.react-calendar__tile {\n  padding: 1.2em 0.5em;\n  background: none;\n  text-align: center;\n  line-height: 16px;\n  font-size: 0.9em;\n  color: #2c2f11;\n  border-radius: 8px;\n  transition: all 0.3s ease;\n}\n\n.react-calendar__tile:enabled:hover,\n.react-calendar__tile:enabled:focus {\n  background-color: rgba(44, 47, 17, 0.1);\n}\n\n.react-calendar__tile--now {\n  background: rgba(44, 47, 17, 0.05);\n  font-weight: bold;\n}\n\n.react-calendar__tile--now:enabled:hover,\n.react-calendar__tile--now:enabled:focus {\n  background: rgba(44, 47, 17, 0.15);\n}\n\n.react-calendar__tile--active {\n  background: #2c2f11 !important;\n  color: yellowgreen !important;\n  font-weight: bold;\n}\n\n.react-calendar__tile--active:enabled:hover,\n.react-calendar__tile--active:enabled:focus {\n  background: #2c2f11;\n}\n\n.react-calendar__tile--disabled {\n  background: none;\n  color: #ccc;\n}\n\n.react-calendar__month-view__days__day--neighboringMonth {\n  color: #969696;\n}\n\n/* Custom styles for better visibility */\n.react-calendar__tile--hasActive {\n  background: #2c2f11;\n}\n\n.react-calendar__tile--range {\n  background: rgba(44, 47, 17, 0.1);\n  color: #2c2f11;\n}\n\n/* Responsive adjustments */\n@media (max-width: 768px) {\n  .react-calendar {\n    max-width: 100%;\n  }\n\n  .react-calendar__tile {\n    padding: 0.8em 0.3em;\n    font-size: 0.85em;\n  }\n}\n",
-      "start": 1751267820526,
-      "end": 1751267822686,
+      "start": 1751338502674,
+      "end": 1751338503253,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751267822686,
-      "end": 1751267822686,
+      "start": 1751338503253,
+      "end": 1751338503253,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751267822686,
-      "end": 1751267822686,
+      "start": 1751338503253,
+      "end": 1751338503253,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751267822686,
-      "end": 1751267822686,
+      "start": 1751338503253,
+      "end": 1751338503253,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751267822686,
-      "end": 1751267822686,
+      "start": 1751338503253,
+      "end": 1751338503253,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751267822686,
-      "end": 1751267822686,
+      "start": 1751338503253,
+      "end": 1751338503253,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751267822686,
-      "end": 1751267822686,
+      "start": 1751338503253,
+      "end": 1751338503253,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751267822686,
-      "end": 1751267822686,
+      "start": 1751338503253,
+      "end": 1751338503253,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751267822686,
-      "end": 1751267822686,
+      "start": 1751338503253,
+      "end": 1751338503253,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751267822686,
-      "end": 1751267822686,
+      "start": 1751338503253,
+      "end": 1751338503253,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751267822686,
-      "end": 1751267822686,
+      "start": 1751338503253,
+      "end": 1751338503253,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751267822686,
-      "end": 1751267822686,
+      "start": 1751338503253,
+      "end": 1751338503253,
       "order": "normal"
     }
   ]

@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "var __assign = (this && this.__assign) || function () {\n    __assign = Object.assign || function(t) {\n        for (var s, i = 1, n = arguments.length; i < n; i++) {\n            s = arguments[i];\n            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p))\n                t[p] = s[p];\n        }\n        return t;\n    };\n    return __assign.apply(this, arguments);\n};\nvar __rest = (this && this.__rest) || function (s, e) {\n    var t = {};\n    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)\n        t[p] = s[p];\n    if (s != null && typeof Object.getOwnPropertySymbols === \"function\")\n        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {\n            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))\n                t[p[i]] = s[p[i]];\n        }\n    return t;\n};\nimport { jsx as _jsx } from \"react/jsx-runtime\";\nimport { getDayStart, getDayEnd } from '@wojtekmaj/date-utils';\nimport Tile from '../Tile.js';\nimport { isWeekend } from '../shared/dates.js';\nimport { formatDay as defaultFormatDay, formatLongDate as defaultFormatLongDate, } from '../shared/dateFormatter.js';\nvar className = 'react-calendar__month-view__days__day';\nexport default function Day(_a) {\n    var calendarType = _a.calendarType, _b = _a.classes, classes = _b === void 0 ? [] : _b, currentMonthIndex = _a.currentMonthIndex, _c = _a.formatDay, formatDay = _c === void 0 ? defaultFormatDay : _c, _d = _a.formatLongDate, formatLongDate = _d === void 0 ? defaultFormatLongDate : _d, otherProps = __rest(_a, [\"calendarType\", \"classes\", \"currentMonthIndex\", \"formatDay\", \"formatLongDate\"]);\n    var date = otherProps.date, locale = otherProps.locale;\n    var classesProps = [];\n    if (classes) {\n        classesProps.push.apply(classesProps, classes);\n    }\n    if (className) {\n        classesProps.push(className);\n    }\n    if (isWeekend(date, calendarType)) {\n        classesProps.push(\"\".concat(className, \"--weekend\"));\n    }\n    if (date.getMonth() !== currentMonthIndex) {\n        classesProps.push(\"\".concat(className, \"--neighboringMonth\"));\n    }\n    return (_jsx(Tile, __assign({}, otherProps, { classes: classesProps, formatAbbr: formatLongDate, maxDateTransform: getDayEnd, minDateTransform: getDayStart, view: \"month\", children: formatDay(locale, date) })));\n}\n",
-      "start": 1751267824918,
-      "end": 1751267825282,
+      "start": 1751338504318,
+      "end": 1751338504471,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751267825282,
-      "end": 1751267825282,
+      "start": 1751338504471,
+      "end": 1751338504471,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751267825282,
-      "end": 1751267825282,
+      "start": 1751338504471,
+      "end": 1751338504471,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751267825282,
-      "end": 1751267825282,
+      "start": 1751338504471,
+      "end": 1751338504471,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751267825282,
-      "end": 1751267825282,
+      "start": 1751338504471,
+      "end": 1751338504471,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751267825282,
-      "end": 1751267825282,
+      "start": 1751338504471,
+      "end": 1751338504471,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751267825282,
-      "end": 1751267825282,
+      "start": 1751338504471,
+      "end": 1751338504471,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751267825282,
-      "end": 1751267825282,
+      "start": 1751338504471,
+      "end": 1751338504471,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751267825293,
-      "end": 1751267825293,
+      "start": 1751338504472,
+      "end": 1751338504472,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751267825293,
-      "end": 1751267825293,
+      "start": 1751338504472,
+      "end": 1751338504472,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751267825293,
-      "end": 1751267825293,
+      "start": 1751338504472,
+      "end": 1751338504472,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751267825293,
-      "end": 1751267825293,
+      "start": 1751338504472,
+      "end": 1751338504472,
       "order": "normal"
     }
   ]

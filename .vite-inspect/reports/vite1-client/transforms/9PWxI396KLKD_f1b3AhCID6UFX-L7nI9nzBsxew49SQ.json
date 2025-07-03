@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": ".site-footer {\n  background-color: #2c2f11;\n  color: #fff;\n  padding: 5rem 0 3rem;\n  position: relative;\n  overflow: hidden;\n}\n\n.site-footer::before {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  height: 1px;\n  background: linear-gradient(\n    90deg,\n    transparent,\n    rgba(255, 255, 255, 0.3),\n    transparent\n  );\n}\n\n.footer-content {\n  max-width: 1440px;\n  margin: 0 auto;\n  padding: 0 2rem;\n  position: relative;\n}\n\n/* Footer sections layout */\n.footer-sections {\n  display: grid;\n  grid-template-columns: repeat(4, 1fr);\n  gap: 3rem;\n  margin-bottom: 5rem;\n}\n\n.footer-section h3 {\n  position: relative;\n  display: inline-block;\n}\n\n.footer-section h3::after {\n  content: \"\";\n  position: absolute;\n  bottom: -8px;\n  left: 0;\n  width: 2rem;\n  height: 1px;\n  background-color: rgba(255, 255, 255, 0.4);\n  transition: width 0.3s ease;\n}\n\n.footer-section:hover h3::after {\n  width: 100%;\n}\n\n.footer-heading {\n  font-size: 1.1rem;\n  margin-left: 0.6rem !important;\n  font-weight: 500;\n  letter-spacing: 0.1em;\n  margin-bottom: 1.5rem;\n  font-family: \"Mythical-Prince\", \"LouvreSerif\", Georgia, \"Times New Roman\",\n    serif;\n}\n\n.footer-links {\n  list-style: none;\n  padding: 0;\n  margin: 0;\n}\n\n.footer-links li {\n  margin-bottom: 0.8rem;\n}\n\n.footer-links a {\n  color: rgba(255, 255, 255, 0.8);\n  text-decoration: none;\n  font-size: 0.95rem;\n  font-weight: 300;\n  transition: all 0.3s ease;\n  position: relative;\n  padding-bottom: 2px;\n}\n\n.footer-links a::after {\n  content: \"\";\n  position: absolute;\n  bottom: 0;\n  left: 0;\n  width: 0;\n  height: 1px;\n  background-color: #fff;\n  transition: width 0.3s ease;\n}\n\n.footer-links a:hover {\n  color: #fff;\n}\n\n.footer-links a:hover::after {\n  width: 100%;\n}\n\n/* Social Media Section */\n.social-section {\n  padding-right: 0;\n}\n\n.social-icons {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 1.2rem;\n}\n\n.social-icons a {\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  width: 42px;\n  height: 42px;\n  border-radius: 50%;\n  background-color: rgba(255, 255, 255, 0.1);\n  color: rgba(255, 255, 255, 0.8);\n  transition: all 0.3s ease;\n  border: 1px solid rgba(255, 255, 255, 0.1);\n}\n\n.social-icons a:hover {\n  background-color: rgba(255, 255, 255, 0.2);\n  color: #fff;\n  transform: translateY(-3px);\n}\n\n/* Legal Section */\n.footer-legal {\n  margin-bottom: 3rem;\n  padding-top: 2rem;\n  border-top: 1px solid rgba(255, 255, 255, 0.1);\n}\n\n.legal-links {\n  display: flex;\n  flex-wrap: wrap;\n  gap: 2rem;\n  justify-content: center;\n}\n\n.legal-links a {\n  color: rgba(255, 255, 255, 0.6);\n  text-decoration: none;\n  font-size: 0.85rem;\n  transition: color 0.3s ease;\n}\n\n.legal-links a:hover {\n  color: #fff;\n}\n\n/* Logo Section */\n.footer-logo {\n  display: flex;\n  justify-content: center;\n  margin-top: 3rem;\n}\n\n.footer-logo img {\n  height: 80px;\n  opacity: 0.8;\n  transition: opacity 0.3s ease, transform 0.3s ease;\n  filter: grayscale(0.3);\n}\n\n.footer-logo img:hover {\n  opacity: 1;\n  transform: scale(1.05);\n  filter: grayscale(0);\n}\n\n/* Light animated gradient overlay */\n.site-footer::after {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  background: radial-gradient(\n      circle at 20% 30%,\n      rgba(60, 40, 100, 0.1),\n      transparent 70%\n    ),\n    radial-gradient(circle at 80% 70%, rgba(100, 40, 60, 0.1), transparent 70%);\n  opacity: 0.3;\n  pointer-events: none;\n}\n\n/* Enhanced Mobile Responsiveness */\n@media (max-width: 1024px) {\n  .footer-sections {\n    grid-template-columns: repeat(2, 1fr);\n    gap: 2.5rem;\n  }\n\n  .site-footer {\n    padding: 4rem 0 2.5rem;\n  }\n\n  .site-footer::before {\n    background: linear-gradient(\n      90deg,\n      transparent,\n      rgba(255, 255, 255, 0.4),\n      transparent\n    );\n    height: 2px;\n  }\n\n  .footer-section h3::after {\n    background: linear-gradient(90deg, rgba(255, 255, 255, 0.4), transparent);\n    height: 2px;\n    transition: width 0.5s ease, background 0.5s ease;\n  }\n\n  .footer-section:hover h3::after {\n    background: linear-gradient(90deg, rgba(255, 255, 255, 0.8), transparent);\n  }\n}\n\n@media (max-width: 768px) {\n  .site-footer {\n    padding: 4rem 0 3rem;\n  }\n\n  .site-footer::after {\n    content: \"\";\n    position: absolute;\n    top: 0;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    background: radial-gradient(\n        circle at 20% 30%,\n        rgba(60, 40, 100, 0.15),\n        transparent 70%\n      ),\n      radial-gradient(\n        circle at 80% 70%,\n        rgba(100, 40, 60, 0.15),\n        transparent 70%\n      );\n    opacity: 0.4;\n    pointer-events: none;\n    animation: gradientShift 10s infinite alternate ease-in-out;\n  }\n\n  @keyframes gradientShift {\n    0% {\n      background-position: 0% 0%;\n    }\n    100% {\n      background-position: 100% 100%;\n    }\n  }\n\n  .footer-sections {\n    grid-template-columns: 1fr;\n    gap: 0;\n  }\n\n  .footer-section {\n    padding: 1rem 0;\n    border-bottom: 1px solid rgba(255, 255, 255, 0.1);\n  }\n\n  .footer-heading {\n    cursor: pointer;\n    display: flex;\n    align-items: center;\n    margin: 0;\n    padding: 0.5rem 0;\n    position: relative;\n  }\n\n  .footer-heading::before {\n    content: \"↓\";\n    margin-right: 0.5rem;\n    font-size: 1rem;\n    opacity: 0.7;\n    transition: transform 0.3s ease;\n    display: inline-block;\n  }\n\n  .footer-section.open .footer-heading::before {\n    content: \"↑\";\n    opacity: 0.9;\n  }\n\n  .footer-links {\n    max-height: 0;\n    overflow: hidden;\n    transition: max-height 0.3s ease-out;\n    margin: 0;\n    padding: 0;\n  }\n\n  .footer-section.open .footer-links {\n    max-height: 500px;\n    transition: max-height 0.5s ease-in;\n    padding-top: 1rem;\n  }\n\n  .footer-section:not(.open) .footer-links {\n    max-height: 0;\n    padding-top: 0;\n  }\n\n  .footer-links li {\n    opacity: 0;\n    transform: translateY(-10px);\n    transition: opacity 0.3s ease, transform 0.3s ease;\n    margin-bottom: 0.8rem;\n  }\n\n  .footer-section.open .footer-links li {\n    opacity: 1;\n    transform: translateY(0);\n  }\n\n  .footer-section.open .footer-links li:nth-child(1) {\n    transition-delay: 0.1s;\n  }\n  .footer-section.open .footer-links li:nth-child(2) {\n    transition-delay: 0.2s;\n  }\n  .footer-section.open .footer-links li:nth-child(3) {\n    transition-delay: 0.3s;\n  }\n  .footer-section.open .footer-links li:nth-child(4) {\n    transition-delay: 0.4s;\n  }\n\n  .social-section .social-icons {\n    max-height: 0;\n    overflow: hidden;\n    transition: max-height 0.3s ease-out;\n    margin: 0;\n  }\n\n  .social-section.open .social-icons {\n    max-height: 500px;\n    transition: max-height 0.5s ease-in;\n    margin-top: 1rem;\n  }\n\n  .footer-section:not(:last-child) {\n    margin-bottom: 0;\n  }\n\n  .footer-section.open:not(:last-child) {\n    margin-bottom: 1rem;\n  }\n\n  .footer-section .footer-heading::after {\n    display: none;\n  }\n\n  .footer-section:last-child {\n    border-bottom: none;\n  }\n\n  .footer-heading {\n    font-size: 1.3rem;\n    display: flex;\n    align-items: center;\n  }\n\n  .footer-heading::before {\n    content: \"↓\";\n    margin-right: 0.5rem;\n    font-size: 1rem;\n    opacity: 0.7;\n    transition: transform 0.3s ease;\n  }\n\n  .footer-section:hover .footer-heading::before {\n    transform: translateY(3px);\n  }\n\n  .legal-links {\n    flex-direction: row;\n    flex-wrap: wrap;\n    justify-content: center;\n    align-items: center;\n    gap: 1.5rem;\n  }\n\n  .legal-links a {\n    position: relative;\n    padding: 0.5rem 0;\n  }\n\n  .legal-links a::after {\n    content: \"\";\n    position: absolute;\n    bottom: 0;\n    left: 50%;\n    width: 0;\n    height: 1px;\n    background: rgba(255, 255, 255, 0.4);\n    transition: width 0.3s ease, left 0.3s ease;\n  }\n\n  .legal-links a:hover::after {\n    width: 100%;\n    left: 0;\n  }\n\n  /* Social icons enhancement */\n  .social-icons {\n    display: flex;\n    justify-content: center;\n    gap: 1.5rem;\n    margin-top: 0.5rem;\n  }\n\n  .social-icons a {\n    width: 45px;\n    height: 45px;\n    background: rgba(255, 255, 255, 0.08);\n    backdrop-filter: blur(5px);\n    -webkit-backdrop-filter: blur(5px);\n    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);\n  }\n\n  .social-icons a:hover {\n    transform: translateY(-5px) scale(1.1);\n    background: rgba(255, 255, 255, 0.15);\n    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);\n  }\n\n  /* Footer logo animation */\n  .footer-logo {\n    margin-top: 2.5rem;\n    position: relative;\n  }\n\n  .footer-logo::before {\n    content: \"\";\n    position: absolute;\n    top: -30px;\n    left: 50%;\n    transform: translateX(-50%);\n    width: 40px;\n    height: 1px;\n    background: linear-gradient(\n      90deg,\n      transparent,\n      rgba(255, 255, 255, 0.3),\n      transparent\n    );\n  }\n\n  .footer-logo img {\n    transform-origin: bottom center;\n    animation: logoFloat 3s infinite alternate ease-in-out;\n  }\n\n  @keyframes logoFloat {\n    0% {\n      transform: translateY(0) scale(1);\n    }\n    100% {\n      transform: translateY(-5px) scale(1.05);\n    }\n  }\n}\n\n@media (max-width: 480px) {\n  .site-footer {\n    padding: 3rem 0 2rem;\n  }\n\n  .footer-content {\n    padding: 0 1.5rem;\n  }\n\n  .footer-heading {\n    font-size: 1.2rem;\n  }\n\n  .footer-links a {\n    font-size: 0.9rem;\n  }\n\n  .footer-section {\n    padding-bottom: 1.2rem;\n    margin-bottom: 1.2rem;\n  }\n\n  .social-icons {\n    gap: 0.8rem;\n    flex-wrap: wrap;\n    justify-content: center;\n  }\n\n  .social-icons a {\n    width: 40px;\n    height: 40px;\n    border-radius: 10px;\n    transform: rotate(0deg);\n    transition: all 0.3s ease;\n  }\n\n  .social-icons a:hover {\n    transform: rotate(10deg) scale(1.1);\n    border-radius: 5px;\n  }\n\n  .legal-links {\n    gap: 1rem;\n  }\n\n  .legal-links a {\n    font-size: 0.8rem;\n    padding: 0.3rem 0.5rem;\n    border-radius: 4px;\n    background: rgba(255, 255, 255, 0.05);\n    transition: all 0.3s ease;\n  }\n\n  .legal-links a:hover {\n    background: rgba(255, 255, 255, 0.1);\n  }\n\n  .footer-logo img {\n    height: 60px;\n    opacity: 0.9;\n    filter: brightness(1.1) contrast(1.1);\n  }\n\n  /* Creative mobile scrolling effect */\n  .footer-sections {\n    position: relative;\n    overflow-x: hidden;\n  }\n\n  .footer-section {\n    transform: translateX(-10px);\n    transition: transform 0.4s ease;\n  }\n\n  .footer-section:hover {\n    transform: translateX(0);\n  }\n  ul li::before {\n    content: \"\" !important;\n  }\n}\n",
-      "start": 1751267814346,
-      "end": 1751267814802,
+      "start": 1751338501438,
+      "end": 1751338501918,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751267814802,
-      "end": 1751267814802,
+      "start": 1751338501918,
+      "end": 1751338501918,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751267814804,
-      "end": 1751267814804,
+      "start": 1751338501918,
+      "end": 1751338501918,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751267814804,
-      "end": 1751267814804,
+      "start": 1751338501918,
+      "end": 1751338501918,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751267814804,
-      "end": 1751267814804,
+      "start": 1751338501918,
+      "end": 1751338501918,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751267814804,
-      "end": 1751267814804,
+      "start": 1751338501919,
+      "end": 1751338501919,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751267814804,
-      "end": 1751267814804,
+      "start": 1751338501919,
+      "end": 1751338501919,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751267814804,
-      "end": 1751267814804,
+      "start": 1751338501919,
+      "end": 1751338501919,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751267814804,
-      "end": 1751267814804,
+      "start": 1751338501920,
+      "end": 1751338501920,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751267814804,
-      "end": 1751267814804,
+      "start": 1751338501920,
+      "end": 1751338501920,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751267814804,
-      "end": 1751267814804,
+      "start": 1751338501920,
+      "end": 1751338501920,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751267814804,
-      "end": 1751267814821,
+      "start": 1751338501920,
+      "end": 1751338501920,
       "order": "normal"
     }
   ]

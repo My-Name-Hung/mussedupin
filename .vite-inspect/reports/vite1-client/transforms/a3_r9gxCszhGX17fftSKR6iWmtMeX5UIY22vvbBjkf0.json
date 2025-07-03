@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\r\nimport { Link, useLocation } from \"react-router-dom\";\r\nimport \"../styles/NotFound.css\";\r\n\r\nconst NotFound = () => {\r\n  const location = useLocation();\r\n  const query = new URLSearchParams(location.search).get(\"q\") || \"\";\r\n\r\n  return (\r\n    <div className=\"not-found-page\">\r\n      <div className=\"not-found-container\">\r\n        <div className=\"breadcrumb\">\r\n          <Link to=\"/\">\r\n            <img\r\n              src=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.webp\"\r\n              alt=\"Logo\"\r\n              className=\"breadcrumb-logo\"\r\n            />\r\n          </Link>\r\n          <span className=\"breadcrumb-separator\">›</span>\r\n          <span className=\"breadcrumb-label\">Kết quả tìm kiếm</span>\r\n        </div>\r\n\r\n        <div className=\"not-found-content\">\r\n          <h1 className=\"not-found-title\">Không tìm thấy kết quả</h1>\r\n\r\n          <p className=\"not-found-message\">\r\n            Chúng tôi không thể tìm thấy kết quả nào cho tìm kiếm của bạn: «{\" \"}\r\n            {query} »\r\n          </p>\r\n\r\n          <div className=\"not-found-suggestions\">\r\n            <h2>Gợi ý:</h2>\r\n            <ul>\r\n              <li>Kiểm tra chính tả của từ khóa tìm kiếm</li>\r\n              <li>Thử sử dụng từ khóa chung hơn</li>\r\n              <li>Thử sử dụng từ khóa khác</li>\r\n              <li>Duyệt bộ sưu tập của chúng tôi theo danh mục</li>\r\n            </ul>\r\n          </div>\r\n\r\n          <div className=\"search-again-container\">\r\n            <h3 className=\"search-again-title\">Thử tìm kiếm khác</h3>\r\n\r\n            <div className=\"search-bar\">\r\n              <input\r\n                type=\"text\"\r\n                defaultValue={query}\r\n                onChange={(e) => {\r\n                  if (e.key === \"Enter\") {\r\n                    window.location.href = `/search-results?q=${encodeURIComponent(\r\n                      e.target.value\r\n                    )}`;\r\n                  }\r\n                }}\r\n                onKeyDown={(e) => {\r\n                  if (e.key === \"Enter\") {\r\n                    window.location.href = `/search-results?q=${encodeURIComponent(\r\n                      e.target.value\r\n                    )}`;\r\n                  }\r\n                }}\r\n                className=\"search-input\"\r\n                placeholder=\"Tìm kiếm\"\r\n              />\r\n              <button\r\n                type=\"button\"\r\n                className=\"search-button\"\r\n                onClick={(e) => {\r\n                  const input = e.target\r\n                    .closest(\".search-bar\")\r\n                    .querySelector(\"input\");\r\n                  window.location.href = `/search-results?q=${encodeURIComponent(\r\n                    input.value\r\n                  )}`;\r\n                }}\r\n              >\r\n                <svg viewBox=\"0 0 24 24\" width=\"24\" height=\"24\">\r\n                  <path\r\n                    d=\"M5 12h14M12 5l7 7-7 7\"\r\n                    stroke=\"currentColor\"\r\n                    fill=\"none\"\r\n                    strokeWidth=\"2\"\r\n                    strokeLinecap=\"round\"\r\n                    strokeLinejoin=\"round\"\r\n                  />\r\n                </svg>\r\n              </button>\r\n            </div>\r\n          </div>\r\n\r\n          <div className=\"back-to-home\">\r\n            <Link to=\"/\" className=\"home-link\">\r\n              Quay lại trang chủ\r\n            </Link>\r\n          </div>\r\n        </div>\r\n      </div>\r\n    </div>\r\n  );\r\n};\r\n\r\nexport default NotFound;\r\n",
-      "start": 1751267811416,
-      "end": 1751267811801,
+      "start": 1751338501351,
+      "end": 1751338501371,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751267811801,
-      "end": 1751267811801,
+      "start": 1751338501371,
+      "end": 1751338501371,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { Link, useLocation } from \"react-router-dom\";\nimport \"../styles/NotFound.css\";\nconst NotFound = () => {\n  const location = useLocation();\n  const query = new URLSearchParams(location.search).get(\"q\") || \"\";\n  return /* @__PURE__ */ jsx(\"div\", { className: \"not-found-page\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"not-found-container\", children: [\n    /* @__PURE__ */ jsxs(\"div\", { className: \"breadcrumb\", children: [\n      /* @__PURE__ */ jsx(Link, { to: \"/\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.webp\",\n          alt: \"Logo\",\n          className: \"breadcrumb-logo\"\n        }\n      ) }),\n      /* @__PURE__ */ jsx(\"span\", { className: \"breadcrumb-separator\", children: \"›\" }),\n      /* @__PURE__ */ jsx(\"span\", { className: \"breadcrumb-label\", children: \"Kết quả tìm kiếm\" })\n    ] }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"not-found-content\", children: [\n      /* @__PURE__ */ jsx(\"h1\", { className: \"not-found-title\", children: \"Không tìm thấy kết quả\" }),\n      /* @__PURE__ */ jsxs(\"p\", { className: \"not-found-message\", children: [\n        \"Chúng tôi không thể tìm thấy kết quả nào cho tìm kiếm của bạn: «\",\n        \" \",\n        query,\n        \" »\"\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"not-found-suggestions\", children: [\n        /* @__PURE__ */ jsx(\"h2\", { children: \"Gợi ý:\" }),\n        /* @__PURE__ */ jsxs(\"ul\", { children: [\n          /* @__PURE__ */ jsx(\"li\", { children: \"Kiểm tra chính tả của từ khóa tìm kiếm\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Thử sử dụng từ khóa chung hơn\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Thử sử dụng từ khóa khác\" }),\n          /* @__PURE__ */ jsx(\"li\", { children: \"Duyệt bộ sưu tập của chúng tôi theo danh mục\" })\n        ] })\n      ] }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"search-again-container\", children: [\n        /* @__PURE__ */ jsx(\"h3\", { className: \"search-again-title\", children: \"Thử tìm kiếm khác\" }),\n        /* @__PURE__ */ jsxs(\"div\", { className: \"search-bar\", children: [\n          /* @__PURE__ */ jsx(\n            \"input\",\n            {\n              type: \"text\",\n              defaultValue: query,\n              onChange: (e) => {\n                if (e.key === \"Enter\") {\n                  window.location.href = `/search-results?q=${encodeURIComponent(\n                    e.target.value\n                  )}`;\n                }\n              },\n              onKeyDown: (e) => {\n                if (e.key === \"Enter\") {\n                  window.location.href = `/search-results?q=${encodeURIComponent(\n                    e.target.value\n                  )}`;\n                }\n              },\n              className: \"search-input\",\n              placeholder: \"Tìm kiếm\"\n            }\n          ),\n          /* @__PURE__ */ jsx(\n            \"button\",\n            {\n              type: \"button\",\n              className: \"search-button\",\n              onClick: (e) => {\n                const input = e.target.closest(\".search-bar\").querySelector(\"input\");\n                window.location.href = `/search-results?q=${encodeURIComponent(\n                  input.value\n                )}`;\n              },\n              children: /* @__PURE__ */ jsx(\"svg\", { viewBox: \"0 0 24 24\", width: \"24\", height: \"24\", children: /* @__PURE__ */ jsx(\n                \"path\",\n                {\n                  d: \"M5 12h14M12 5l7 7-7 7\",\n                  stroke: \"currentColor\",\n                  fill: \"none\",\n                  strokeWidth: \"2\",\n                  strokeLinecap: \"round\",\n                  strokeLinejoin: \"round\"\n                }\n              ) })\n            }\n          )\n        ] })\n      ] }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"back-to-home\", children: /* @__PURE__ */ jsx(Link, { to: \"/\", className: \"home-link\", children: \"Quay lại trang chủ\" }) })\n    ] })\n  ] }) });\n};\nexport default NotFound;\n",
-      "start": 1751267811801,
-      "end": 1751267813669,
+      "start": 1751338501371,
+      "end": 1751338501543,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751267813669,
-      "end": 1751267813669,
+      "start": 1751338501543,
+      "end": 1751338501543,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751267813669,
-      "end": 1751267813669,
+      "start": 1751338501543,
+      "end": 1751338501543,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751267813669,
-      "end": 1751267813669,
+      "start": 1751338501543,
+      "end": 1751338501543,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751267813669,
-      "end": 1751267813669,
+      "start": 1751338501543,
+      "end": 1751338501543,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751267813669,
-      "end": 1751267813671,
+      "start": 1751338501543,
+      "end": 1751338501543,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751267813671,
-      "end": 1751267813671,
+      "start": 1751338501543,
+      "end": 1751338501543,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751267813671,
-      "end": 1751267813671,
+      "start": 1751338501543,
+      "end": 1751338501543,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751267813671,
-      "end": 1751267813672,
+      "start": 1751338501543,
+      "end": 1751338501544,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751267813672,
-      "end": 1751267813672,
+      "start": 1751338501544,
+      "end": 1751338501544,
       "order": "normal"
     }
   ]

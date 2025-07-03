@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { jsx as _jsx } from \"react/jsx-runtime\";\nimport clsx from 'clsx';\nimport { getYear, getMonth, getMonthStart } from '@wojtekmaj/date-utils';\nimport Flex from '../Flex.js';\nimport { getDayOfWeek, isCurrentDayOfWeek, isWeekend } from '../shared/dates.js';\nimport { formatShortWeekday as defaultFormatShortWeekday, formatWeekday as defaultFormatWeekday, } from '../shared/dateFormatter.js';\nvar className = 'react-calendar__month-view__weekdays';\nvar weekdayClassName = \"\".concat(className, \"__weekday\");\nexport default function Weekdays(props) {\n    var calendarType = props.calendarType, _a = props.formatShortWeekday, formatShortWeekday = _a === void 0 ? defaultFormatShortWeekday : _a, _b = props.formatWeekday, formatWeekday = _b === void 0 ? defaultFormatWeekday : _b, locale = props.locale, onMouseLeave = props.onMouseLeave;\n    var anyDate = new Date();\n    var beginOfMonth = getMonthStart(anyDate);\n    var year = getYear(beginOfMonth);\n    var monthIndex = getMonth(beginOfMonth);\n    var weekdays = [];\n    for (var weekday = 1; weekday <= 7; weekday += 1) {\n        var weekdayDate = new Date(year, monthIndex, weekday - getDayOfWeek(beginOfMonth, calendarType));\n        var abbr = formatWeekday(locale, weekdayDate);\n        weekdays.push(_jsx(\"div\", { className: clsx(weekdayClassName, isCurrentDayOfWeek(weekdayDate) && \"\".concat(weekdayClassName, \"--current\"), isWeekend(weekdayDate, calendarType) && \"\".concat(weekdayClassName, \"--weekend\")), children: _jsx(\"abbr\", { \"aria-label\": abbr, title: abbr, children: formatShortWeekday(locale, weekdayDate).replace('.', '') }) }, weekday));\n    }\n    return (_jsx(Flex, { className: className, count: 7, onFocus: onMouseLeave, onMouseOver: onMouseLeave, children: weekdays }));\n}\n",
-      "start": 1751267824280,
-      "end": 1751267824529,
+      "start": 1751338504018,
+      "end": 1751338504190,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751267824529,
-      "end": 1751267824529,
+      "start": 1751338504190,
+      "end": 1751338504190,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751267824529,
-      "end": 1751267824529,
+      "start": 1751338504190,
+      "end": 1751338504190,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751267824529,
-      "end": 1751267824529,
+      "start": 1751338504190,
+      "end": 1751338504190,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751267824529,
-      "end": 1751267824529,
+      "start": 1751338504190,
+      "end": 1751338504190,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751267824529,
-      "end": 1751267824529,
+      "start": 1751338504191,
+      "end": 1751338504191,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751267824529,
-      "end": 1751267824529,
+      "start": 1751338504191,
+      "end": 1751338504191,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751267824529,
-      "end": 1751267824529,
+      "start": 1751338504191,
+      "end": 1751338504191,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751267824529,
-      "end": 1751267824529,
+      "start": 1751338504191,
+      "end": 1751338504191,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751267824529,
-      "end": 1751267824529,
+      "start": 1751338504193,
+      "end": 1751338504193,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751267824529,
-      "end": 1751267824529,
+      "start": 1751338504193,
+      "end": 1751338504193,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751267824529,
-      "end": 1751267824529,
+      "start": 1751338504193,
+      "end": 1751338504193,
       "order": "normal"
     }
   ]

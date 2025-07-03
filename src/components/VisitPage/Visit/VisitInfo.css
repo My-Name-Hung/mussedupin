@@ -4387,3 +4387,36 @@
     grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   }
 }
+
+.capacity-price {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.original-price {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.original-price-value {
+  font-size: 14px;
+  color: #666;
+  text-decoration: line-through;
+}
+
+.discount-badge {
+  background-color: #ff4d4f;
+  color: white;
+  padding: 2px 6px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+.final-price {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ff4d4f;
+}

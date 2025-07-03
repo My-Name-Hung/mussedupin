@@ -4,7 +4,7 @@ import { useTranslation } from "../../../contexts/TranslationContext";
 import { getImageUrls } from "../../../utils/cloudinary";
 import "./VisitInfo.css";
 
-import { FaBaby, FaCar, FaSearch, FaUser } from "react-icons/fa";
+import { FaBaby, FaCar, FaSearch } from "react-icons/fa";
 
 const VisitInfo = () => {
   const { currentLang } = useTranslation();
@@ -595,7 +595,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 2,
-          price: 3500000,
+          originalPrice: 5450363,
+          discountPercentage: 80,
+          price: 1078784,
           description: {
             vi: "Phù hợp cho 2 người",
             en: "Suitable for 2 people",
@@ -603,7 +605,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 3500000, // Default price
+      price: 1078784, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Bình yên", "Phục vụ bữa sáng"],
@@ -714,7 +716,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 2,
-          price: 3500000,
+          originalPrice: 5450363,
+          discountPercentage: 80,
+          price: 1078784,
           description: {
             vi: "Phù hợp cho 2 người",
             en: "Suitable for 2 people",
@@ -722,7 +726,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 3500000, // Default price
+      price: 1078784, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Bình yên", "Phục vụ bữa sáng"],
@@ -833,7 +837,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 3,
-          price: 3500000,
+          originalPrice: 5439064,
+          discountPercentage: 79,
+          price: 1163099,
           description: {
             vi: "Phù hợp cho 3 người",
             en: "Suitable for 3 people",
@@ -841,7 +847,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 3500000, // Default price
+      price: 1163099, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Phục vụ bữa sáng"],
@@ -952,7 +958,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 2,
-          price: 3500000,
+          originalPrice: 6805644,
+          discountPercentage: 79,
+          price: 1403037,
           description: {
             vi: "Phù hợp cho 2 người lớn và 1 trẻ em",
             en: "Suitable for 2 adults and 1 child",
@@ -960,7 +968,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 3500000, // Default price
+      price: 1403037, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Phổ biến", "Phục vụ bữa sáng"],
@@ -1069,7 +1077,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 4,
-          price: 3500000,
+          originalPrice: 8494603,
+          discountPercentage: 78,
+          price: 1846709,
           description: {
             vi: "Phù hợp cho 4 người",
             en: "Suitable for 4 people",
@@ -1077,7 +1087,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 3500000, // Default price
+      price: 1846709, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Phổ biến", "Ưa thích", "Phục vụ bữa sáng"],
@@ -1188,7 +1198,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 5,
-          price: 3500000,
+          originalPrice: 11892444,
+          discountPercentage: 78,
+          price: 2585393,
           description: {
             vi: "Phù hợp cho 5 người",
             en: "Suitable for 5 people",
@@ -1196,7 +1208,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 3500000, // Default price
+      price: 2585393, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
@@ -1308,7 +1320,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 6,
-          price: 4000000,
+          originalPrice: 3535364,
+          discountPercentage: 0,
+          price: 3535364,
           description: {
             vi: "Phù hợp cho 6 người",
             en: "Suitable for 6 people",
@@ -1316,7 +1330,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 3500000, // Default price
+      price: 3535364, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
@@ -1425,7 +1439,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 5,
-          price: 4000000,
+          originalPrice: 11892444,
+          discountPercentage: 78,
+          price: 2585393,
           description: {
             vi: "Phù hợp cho 5 người",
             en: "Suitable for 5 people",
@@ -1433,7 +1449,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 3500000, // Default price
+      price: 2585393, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
@@ -1544,7 +1560,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 3,
-          price: 3500000,
+          originalPrice: 4589810,
+          discountPercentage: 79,
+          price: 976893,
           description: {
             vi: "Phù hợp cho 3 người",
             en: "Suitable for 3 people",
@@ -1552,7 +1570,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 3500000, // Default price
+      price: 976893, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Mới sửa sang"],
@@ -1663,7 +1681,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 4,
-          price: 3500000,
+          originalPrice: 6117901,
+          discountPercentage: 78,
+          price: 1316295,
           description: {
             vi: "Phù hợp cho 4 người",
             en: "Suitable for 4 people",
@@ -1671,7 +1691,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 3500000, // Default price
+      price: 1316295, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
@@ -1782,7 +1802,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 4,
-          price: 3500000,
+          originalPrice: 6117901,
+          discountPercentage: 78,
+          price: 1316295,
           description: {
             vi: "Phù hợp cho 4 người",
             en: "Suitable for 4 people",
@@ -1790,7 +1812,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 3500000, // Default price
+      price: 1316295, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
@@ -2442,14 +2464,31 @@ const VisitInfo = () => {
                 onClick={() => handleCapacityChange(homestay.id, index)}
               >
                 <div className="capacity-icon">
-                  <FaUser />
-                  <span>x{option.capacity}</span>
+                  <i className="fas fa-user-friends"></i>
+                </div>
+                <div className="capacity-description">
+                  {option.description[currentLang]}
                 </div>
                 <div className="capacity-price">
-                  {formatPrice(option.price)}
-                </div>
-                <div className="capacity-description notranslate">
-                  {getLocalizedContent(option.description)}
+                  {option.originalPrice && option.discountPercentage ? (
+                    <>
+                      <div className="original-price">
+                        <span className="original-price-value">
+                          {formatPrice(option.originalPrice)}
+                        </span>
+                        <span className="discount-badge">
+                          -{option.discountPercentage}%
+                        </span>
+                      </div>
+                      <div className="final-price">
+                        {formatPrice(option.price)}
+                      </div>
+                    </>
+                  ) : (
+                    <div className="final-price">
+                      {formatPrice(option.price)}
+                    </div>
+                  )}
                 </div>
               </div>
             ))}
@@ -2458,12 +2497,42 @@ const VisitInfo = () => {
 
         <div className="homestay-card-footer">
           <div className="homestay-card-price">
-            <span className="price-value">
-              {formatPrice(
-                selectedCapacity[homestay.id]?.price || homestay.price
-              )}
-            </span>
-            <span className="price-unit">mỗi đêm</span>
+            {homestay.capacityOptions[homestay.selectedCapacityIndex]
+              .originalPrice &&
+            homestay.capacityOptions[homestay.selectedCapacityIndex]
+              .discountPercentage ? (
+              <>
+                <div className="original-price">
+                  <span className="original-price-value">
+                    {formatPrice(
+                      homestay.capacityOptions[homestay.selectedCapacityIndex]
+                        .originalPrice
+                    )}
+                  </span>
+                  <span className="discount-badge">
+                    -
+                    {
+                      homestay.capacityOptions[homestay.selectedCapacityIndex]
+                        .discountPercentage
+                    }
+                    %
+                  </span>
+                </div>
+                <div className="final-price">
+                  {formatPrice(
+                    homestay.capacityOptions[homestay.selectedCapacityIndex]
+                      .price
+                  )}
+                </div>
+              </>
+            ) : (
+              <div className="final-price">
+                {formatPrice(
+                  homestay.capacityOptions[homestay.selectedCapacityIndex].price
+                )}
+              </div>
+            )}
+            <span className="price-unit">/ đêm</span>
           </div>
           <div className="homestay-card-actions">
             <button
@@ -2767,14 +2836,31 @@ const VisitInfo = () => {
                     }
                   >
                     <div className="capacity-icon">
-                      <FaUser />
-                      <span>x{option.capacity}</span>
-                    </div>
-                    <div className="capacity-price">
-                      {formatPrice(option.price)}
+                      <i className="fas fa-user-friends"></i>
                     </div>
                     <div className="capacity-description">
-                      {getLocalizedContent(option.description)}
+                      {option.description[currentLang]}
+                    </div>
+                    <div className="capacity-price">
+                      {option.originalPrice && option.discountPercentage ? (
+                        <>
+                          <div className="original-price">
+                            <span className="original-price-value">
+                              {formatPrice(option.originalPrice)}
+                            </span>
+                            <span className="discount-badge">
+                              -{option.discountPercentage}%
+                            </span>
+                          </div>
+                          <div className="final-price">
+                            {formatPrice(option.price)}
+                          </div>
+                        </>
+                      ) : (
+                        <div className="final-price">
+                          {formatPrice(option.price)}
+                        </div>
+                      )}
                     </div>
                   </div>
                 ))}

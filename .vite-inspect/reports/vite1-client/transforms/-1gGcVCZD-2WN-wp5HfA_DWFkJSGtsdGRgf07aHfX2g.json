@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../CategoryDetail/CategoryDetail\";\nimport \"./Collaborate.css\";\n\nconst Collaborate = () => {\n  // Get all products from all categories and group them by brand\n  const allProducts = Object.values(sampleProducts).flat();\n\n  const brandProducts = {\n    \"Harry Nuriev\": allProducts.filter((p) =>\n      [1, 2, 3].includes(Number(p.id.split(\"-\")[1]))\n    ),\n    \"Philippe Apeloig\": allProducts.filter((p) =>\n      [4, 5, 6].includes(Number(p.id.split(\"-\")[1]))\n    ),\n    Barbapapa: allProducts.filter((p) =>\n      [7, 8].includes(Number(p.id.split(\"-\")[1]))\n    ),\n    \"Jean-Michel Othoniel\": allProducts.filter(\n      (p) => Number(p.id.split(\"-\")[1]) === 9\n    ),\n  };\n\n  return (\n    <div className=\"collaborate-page\">\n      <h1 className=\"collaborate-page-title\">Nhãn hàng hợp tác</h1>\n      <section className=\"card-image-collaborate\">\n        <div className=\"card-grid-collaborate\">\n          {Object.entries(brandProducts).map(([brand, products]) => (\n            <div key={brand} className=\"card-item-collaborate\">\n              <Link to={`/collaborate/${encodeURIComponent(brand)}`}>\n                <img\n                  src={products[0]?.image}\n                  alt={brand}\n                  className=\"card-image\"\n                />\n                <div className=\"card-content-collaborate\">\n                  <h3 className=\"card-title\">{brand}</h3>\n                  <p className=\"card-product-count\">\n                    {products.length} sản phẩm\n                  </p>\n                </div>\n              </Link>\n            </div>\n          ))}\n        </div>\n      </section>\n    </div>\n  );\n};\n\nexport default Collaborate;\n",
-      "start": 1751254461626,
-      "end": 1751254461809,
+      "start": 1751302170742,
+      "end": 1751302170912,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751254461809,
-      "end": 1751254461809,
+      "start": 1751302170912,
+      "end": 1751302170912,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { Link } from \"react-router-dom\";\nimport { sampleProducts } from \"../CategoryDetail/CategoryDetail\";\nimport \"./Collaborate.css\";\nconst Collaborate = () => {\n  const allProducts = Object.values(sampleProducts).flat();\n  const brandProducts = {\n    \"Harry Nuriev\": allProducts.filter(\n      (p) => [1, 2, 3].includes(Number(p.id.split(\"-\")[1]))\n    ),\n    \"Philippe Apeloig\": allProducts.filter(\n      (p) => [4, 5, 6].includes(Number(p.id.split(\"-\")[1]))\n    ),\n    Barbapapa: allProducts.filter(\n      (p) => [7, 8].includes(Number(p.id.split(\"-\")[1]))\n    ),\n    \"Jean-Michel Othoniel\": allProducts.filter(\n      (p) => Number(p.id.split(\"-\")[1]) === 9\n    )\n  };\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"collaborate-page\", children: [\n    /* @__PURE__ */ jsx(\"h1\", { className: \"collaborate-page-title\", children: \"Nhãn hàng hợp tác\" }),\n    /* @__PURE__ */ jsx(\"section\", { className: \"card-image-collaborate\", children: /* @__PURE__ */ jsx(\"div\", { className: \"card-grid-collaborate\", children: Object.entries(brandProducts).map(([brand, products]) => /* @__PURE__ */ jsx(\"div\", { className: \"card-item-collaborate\", children: /* @__PURE__ */ jsxs(Link, { to: `/collaborate/${encodeURIComponent(brand)}`, children: [\n      /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: products[0]?.image,\n          alt: brand,\n          className: \"card-image\"\n        }\n      ),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"card-content-collaborate\", children: [\n        /* @__PURE__ */ jsx(\"h3\", { className: \"card-title\", children: brand }),\n        /* @__PURE__ */ jsxs(\"p\", { className: \"card-product-count\", children: [\n          products.length,\n          \" sản phẩm\"\n        ] })\n      ] })\n    ] }) }, brand)) }) })\n  ] });\n};\nexport default Collaborate;\n",
-      "start": 1751254461809,
-      "end": 1751254461861,
+      "start": 1751302170912,
+      "end": 1751302170977,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751254461862,
-      "end": 1751254461862,
+      "start": 1751302170978,
+      "end": 1751302170978,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751254461862,
-      "end": 1751254461862,
+      "start": 1751302170978,
+      "end": 1751302170978,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751254461862,
-      "end": 1751254461862,
+      "start": 1751302170978,
+      "end": 1751302170978,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751254461862,
-      "end": 1751254461862,
+      "start": 1751302170978,
+      "end": 1751302170978,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751254461862,
-      "end": 1751254461862,
+      "start": 1751302170978,
+      "end": 1751302170978,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751254461862,
-      "end": 1751254461862,
+      "start": 1751302170978,
+      "end": 1751302170978,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751254461862,
-      "end": 1751254461862,
+      "start": 1751302170978,
+      "end": 1751302170978,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751254461862,
-      "end": 1751254461864,
+      "start": 1751302170978,
+      "end": 1751302170979,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751254461864,
-      "end": 1751254461864,
+      "start": 1751302170979,
+      "end": 1751302170979,
       "order": "normal"
     }
   ]

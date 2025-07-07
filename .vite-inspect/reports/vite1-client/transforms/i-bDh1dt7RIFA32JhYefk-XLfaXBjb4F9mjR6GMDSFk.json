@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import { useEffect, useState } from \"react\";\nimport { FaPause, FaPlay } from \"react-icons/fa\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport { Link } from \"react-router-dom\";\nimport Slider from \"react-slick\";\nimport \"slick-carousel/slick/slick-theme.css\";\nimport \"slick-carousel/slick/slick.css\";\nimport \"./Hero.css\";\n\nconst slides = [\n  {\n    image:\n      \"https://res.cloudinary.com/dco63bsah/image/upload/v1750392404/Khuyentai/MDP-1140241.webp\",\n    title: \"Trang sức\",\n    subtitle: \"Khám phá bộ sưu tập trang sức độc đáo\",\n    categoryLink: \"/category/khuyentai\",\n  },\n  {\n    image:\n      \"https://res.cloudinary.com/dco63bsah/image/upload/v1750655956/Anpham/dautay.png\",\n    title: \"Ấn phẩm\",\n    subtitle: \"Ấn phẩm nghệ thuật, mở ra một trang mới\",\n    categoryLink: \"/category/anpham\",\n  },\n  {\n    image:\n      \"https://res.cloudinary.com/dco63bsah/image/upload/v1750658293/hoithaonghethuat/hoithaonghethuat.jpg\",\n    title: \"Hội thảo nghệ thuật\",\n    subtitle: \"Khám phá và trải nghiệm nghệ thuật\",\n    categoryLink: \"/category/hoi-thao-nghe-thuat\",\n  },\n  {\n    image:\n      \"https://res.cloudinary.com/dco63bsah/image/upload/v1750731839/inyeucau/BTT01529-HDR.webp\",\n    title: \"In theo yêu cầu\",\n    subtitle: \"Biến ý tưởng của bạn thành hiện thực\",\n    categoryLink: \"/category/in-theo-yeu-cau\",\n  },\n  {\n    image:\n      \"https://res.cloudinary.com/dco63bsah/image/upload/v1750733148/thoitrang/aophongbackground.jpg\",\n    title: \"Thời trang và phụ kiện\",\n    subtitle: \"Phong cách thời thượng kết hợp nghệ thuật\",\n    categoryLink: \"/category/thoi-trang-va-phu-kien\",\n  },\n  {\n    image:\n      \"https://res.cloudinary.com/dco63bsah/image/upload/v1750736923/thocam/V%C3%A1y%20ng%E1%BA%AFn%20m%C3%A3%2005.webp\",\n    title: \"Thổ cẩm\",\n    subtitle: \"Sản phẩm Thổ cẩm mang đậm sắc đồng bào K'ho\",\n    categoryLink: \"/category/thocam\",\n  },\n  {\n    image:\n      \"https://res.cloudinary.com/dco63bsah/image/upload/v1750739198/sanphamtuthong/Tranh%20A4%2004.jpg\",\n    title: \"Sản phẩm từ thông\",\n    subtitle: \"Sản phẩm được thiết kế từ Thông, nét đặc trưng thiên nhiên\",\n    categoryLink: \"/category/sanphamtuthong\",\n  },\n];\n\nconst Hero = () => {\n  const [isPlaying, setIsPlaying] = useState(true);\n  const [currentSlide, setCurrentSlide] = useState(0);\n  const [randomSlides, setRandomSlides] = useState([]);\n  const [sliderRef, setSliderRef] = useState(null);\n\n  useEffect(() => {\n    // Shuffle and select 5 random slides\n    const shuffled = [...slides].sort(() => 0.5 - Math.random());\n    setRandomSlides(shuffled.slice(0, 5));\n  }, []);\n\n  const settings = {\n    dots: false,\n    infinite: true,\n    speed: 1000,\n    slidesToShow: 1,\n    slidesToScroll: 1,\n    autoplay: isPlaying,\n    autoplaySpeed: 5000,\n    pauseOnHover: false,\n    fade: true,\n    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex),\n  };\n\n  const togglePlayPause = () => {\n    if (sliderRef) {\n      if (isPlaying) {\n        sliderRef.slickPause();\n      } else {\n        sliderRef.slickPlay();\n      }\n    }\n    setIsPlaying(!isPlaying);\n  };\n\n  const goToSlide = (index) => {\n    if (sliderRef) {\n      sliderRef.slickGoTo(index);\n    }\n  };\n\n  return (\n    <section className=\"hero-container-home\">\n      <div className=\"hero-slider-container\">\n        <Slider ref={(slider) => setSliderRef(slider)} {...settings}>\n          {randomSlides.map((slide, index) => (\n            <div key={index} className=\"slide\">\n              <div className=\"slide-image-container-hero\">\n                <img\n                  src={slide.image}\n                  alt={slide.title}\n                  className=\"slide-images\"\n                />\n                <div className=\"slide-content\">\n                  <h1 className=\"slide-title-hero\">{slide.title}</h1>\n                  <Link to={slide.categoryLink} className=\"slide-subtitle\">\n                    {slide.subtitle} <IoIosArrowRoundForward />\n                  </Link>\n                </div>\n              </div>\n            </div>\n          ))}\n        </Slider>\n        <div className=\"slick-nav\">\n          {randomSlides.map((_, index) => (\n            <div\n              key={index}\n              className={`nav-item-hero ${\n                index === currentSlide ? \"active\" : \"\"\n              } ${index === currentSlide && isPlaying ? \"playing\" : \"\"}`}\n              onClick={() => goToSlide(index)}\n            />\n          ))}\n        </div>\n        <button\n          className=\"play-pause-button\"\n          onClick={togglePlayPause}\n          aria-label={isPlaying ? \"Pause slideshow\" : \"Play slideshow\"}\n        >\n          {isPlaying ? <FaPause /> : <FaPlay />}\n        </button>\n      </div>\n    </section>\n  );\n};\n\nexport default Hero;\n",
-      "start": 1751254461896,
-      "end": 1751254462176,
+      "start": 1751302170976,
+      "end": 1751302171285,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751254462177,
-      "end": 1751254462177,
+      "start": 1751302171285,
+      "end": 1751302171285,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport { useEffect, useState } from \"react\";\nimport { FaPause, FaPlay } from \"react-icons/fa\";\nimport { IoIosArrowRoundForward } from \"react-icons/io\";\nimport { Link } from \"react-router-dom\";\nimport Slider from \"react-slick\";\nimport \"slick-carousel/slick/slick-theme.css\";\nimport \"slick-carousel/slick/slick.css\";\nimport \"./Hero.css\";\nconst slides = [\n  {\n    image: \"https://res.cloudinary.com/dco63bsah/image/upload/v1750392404/Khuyentai/MDP-1140241.webp\",\n    title: \"Trang sức\",\n    subtitle: \"Khám phá bộ sưu tập trang sức độc đáo\",\n    categoryLink: \"/category/khuyentai\"\n  },\n  {\n    image: \"https://res.cloudinary.com/dco63bsah/image/upload/v1750655956/Anpham/dautay.png\",\n    title: \"Ấn phẩm\",\n    subtitle: \"Ấn phẩm nghệ thuật, mở ra một trang mới\",\n    categoryLink: \"/category/anpham\"\n  },\n  {\n    image: \"https://res.cloudinary.com/dco63bsah/image/upload/v1750658293/hoithaonghethuat/hoithaonghethuat.jpg\",\n    title: \"Hội thảo nghệ thuật\",\n    subtitle: \"Khám phá và trải nghiệm nghệ thuật\",\n    categoryLink: \"/category/hoi-thao-nghe-thuat\"\n  },\n  {\n    image: \"https://res.cloudinary.com/dco63bsah/image/upload/v1750731839/inyeucau/BTT01529-HDR.webp\",\n    title: \"In theo yêu cầu\",\n    subtitle: \"Biến ý tưởng của bạn thành hiện thực\",\n    categoryLink: \"/category/in-theo-yeu-cau\"\n  },\n  {\n    image: \"https://res.cloudinary.com/dco63bsah/image/upload/v1750733148/thoitrang/aophongbackground.jpg\",\n    title: \"Thời trang và phụ kiện\",\n    subtitle: \"Phong cách thời thượng kết hợp nghệ thuật\",\n    categoryLink: \"/category/thoi-trang-va-phu-kien\"\n  },\n  {\n    image: \"https://res.cloudinary.com/dco63bsah/image/upload/v1750736923/thocam/V%C3%A1y%20ng%E1%BA%AFn%20m%C3%A3%2005.webp\",\n    title: \"Thổ cẩm\",\n    subtitle: \"Sản phẩm Thổ cẩm mang đậm sắc đồng bào K'ho\",\n    categoryLink: \"/category/thocam\"\n  },\n  {\n    image: \"https://res.cloudinary.com/dco63bsah/image/upload/v1750739198/sanphamtuthong/Tranh%20A4%2004.jpg\",\n    title: \"Sản phẩm từ thông\",\n    subtitle: \"Sản phẩm được thiết kế từ Thông, nét đặc trưng thiên nhiên\",\n    categoryLink: \"/category/sanphamtuthong\"\n  }\n];\nconst Hero = () => {\n  const [isPlaying, setIsPlaying] = useState(true);\n  const [currentSlide, setCurrentSlide] = useState(0);\n  const [randomSlides, setRandomSlides] = useState([]);\n  const [sliderRef, setSliderRef] = useState(null);\n  useEffect(() => {\n    const shuffled = [...slides].sort(() => 0.5 - Math.random());\n    setRandomSlides(shuffled.slice(0, 5));\n  }, []);\n  const settings = {\n    dots: false,\n    infinite: true,\n    speed: 1e3,\n    slidesToShow: 1,\n    slidesToScroll: 1,\n    autoplay: isPlaying,\n    autoplaySpeed: 5e3,\n    pauseOnHover: false,\n    fade: true,\n    beforeChange: (oldIndex, newIndex) => setCurrentSlide(newIndex)\n  };\n  const togglePlayPause = () => {\n    if (sliderRef) {\n      if (isPlaying) {\n        sliderRef.slickPause();\n      } else {\n        sliderRef.slickPlay();\n      }\n    }\n    setIsPlaying(!isPlaying);\n  };\n  const goToSlide = (index) => {\n    if (sliderRef) {\n      sliderRef.slickGoTo(index);\n    }\n  };\n  return /* @__PURE__ */ jsx(\"section\", { className: \"hero-container-home\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"hero-slider-container\", children: [\n    /* @__PURE__ */ jsx(Slider, { ref: (slider) => setSliderRef(slider), ...settings, children: randomSlides.map((slide, index) => /* @__PURE__ */ jsx(\"div\", { className: \"slide\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"slide-image-container-hero\", children: [\n      /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: slide.image,\n          alt: slide.title,\n          className: \"slide-images\"\n        }\n      ),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"slide-content\", children: [\n        /* @__PURE__ */ jsx(\"h1\", { className: \"slide-title-hero\", children: slide.title }),\n        /* @__PURE__ */ jsxs(Link, { to: slide.categoryLink, className: \"slide-subtitle\", children: [\n          slide.subtitle,\n          \" \",\n          /* @__PURE__ */ jsx(IoIosArrowRoundForward, {})\n        ] })\n      ] })\n    ] }) }, index)) }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"slick-nav\", children: randomSlides.map((_, index) => /* @__PURE__ */ jsx(\n      \"div\",\n      {\n        className: `nav-item-hero ${index === currentSlide ? \"active\" : \"\"} ${index === currentSlide && isPlaying ? \"playing\" : \"\"}`,\n        onClick: () => goToSlide(index)\n      },\n      index\n    )) }),\n    /* @__PURE__ */ jsx(\n      \"button\",\n      {\n        className: \"play-pause-button\",\n        onClick: togglePlayPause,\n        \"aria-label\": isPlaying ? \"Pause slideshow\" : \"Play slideshow\",\n        children: isPlaying ? /* @__PURE__ */ jsx(FaPause, {}) : /* @__PURE__ */ jsx(FaPlay, {})\n      }\n    )\n  ] }) });\n};\nexport default Hero;\n",
-      "start": 1751254462177,
-      "end": 1751254462227,
+      "start": 1751302171285,
+      "end": 1751302171675,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751254462227,
-      "end": 1751254462227,
+      "start": 1751302171675,
+      "end": 1751302171675,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751254462227,
-      "end": 1751254462228,
+      "start": 1751302171676,
+      "end": 1751302171676,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751254462228,
-      "end": 1751254462228,
+      "start": 1751302171676,
+      "end": 1751302171676,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751254462228,
-      "end": 1751254462228,
+      "start": 1751302171676,
+      "end": 1751302171676,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751254462228,
-      "end": 1751254462228,
+      "start": 1751302171676,
+      "end": 1751302171676,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751254462228,
-      "end": 1751254462228,
+      "start": 1751302171676,
+      "end": 1751302171676,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751254462228,
-      "end": 1751254462228,
+      "start": 1751302171676,
+      "end": 1751302171676,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751254462228,
-      "end": 1751254462229,
+      "start": 1751302171676,
+      "end": 1751302171677,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751254462229,
-      "end": 1751254462229,
+      "start": 1751302171682,
+      "end": 1751302171682,
       "order": "normal"
     }
   ]

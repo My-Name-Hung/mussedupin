@@ -6,7 +6,18 @@ import AddressModal from "../../components/AddressModal/AddressModal";
 import LoginModal from "../../components/Auth/LoginModal";
 import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 import OrderSteps from "../../components/OrderSteps/OrderSteps";
+import PayPalModal from "../../components/PayPalModal/PayPalModal";
 import SuccessModal from "../../components/SuccessModal/SuccessModal";
+import {
+  getAnPhamImageUrl,
+  getDoTrangSucImageUrl,
+  getHoiThaoNgheThuatImageUrl,
+  getInTheoYeuCauImageUrl,
+  getKhuyenTaiImageUrl,
+  getSanPhamTuThongImageUrl,
+  getThoCamImageUrl,
+  getThoiTrangImageUrl,
+} from "../../utils/cloudinary";
 import "./CheckoutPage.css";
 
 const CheckoutPage = () => {
@@ -22,6 +33,7 @@ const CheckoutPage = () => {
   const [qrCode, setQrCode] = useState("");
   const [discountInfo, setDiscountInfo] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
+  const [showPayPalModal, setShowPayPalModal] = useState(false);
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -81,6 +93,9 @@ const CheckoutPage = () => {
 
   const handlePaymentMethodSelect = (method) => {
     setPaymentMethod(method);
+    if (method === "paypal") {
+      setShowPayPalModal(true);
+    }
   };
 
   const calculateSubtotal = () => {
@@ -188,6 +203,47 @@ const CheckoutPage = () => {
     }
   };
 
+  const handlePayPalSuccess = async (order) => {
+    try {
+      // Create order in your system
+      const response = await fetch(
+        "https://mussedupin.onrender.com/api/orders",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            userId: userInfo.id,
+            items: cartItems,
+            totalAmount: calculateTotal(),
+            shippingAddress: userInfo.address,
+            paymentMethod: "paypal",
+            discountInfo: discountInfo,
+            paypalOrderId: order.id,
+            status: "Paid",
+          }),
+        }
+      );
+
+      const data = await response.json();
+      if (data.success) {
+        setOrderCode(data.orderCode);
+        setShowSuccessModal(true);
+        localStorage.removeItem("cart");
+        localStorage.removeItem("cartDiscount");
+      }
+    } catch (error) {
+      console.error("Error creating order:", error);
+    }
+  };
+
+  const handlePayPalError = (error) => {
+    console.error("PayPal error:", error);
+    alert("Có lỗi xảy ra trong quá trình thanh toán. Vui lòng thử lại.");
+  };
+
   const handleNextStep = async () => {
     if (currentStep === 1) {
       if (!paymentMethod) {
@@ -262,6 +318,44 @@ const CheckoutPage = () => {
     setCurrentStep(stepNumber);
   };
 
+  const getImageUrl = (category, filename) => {
+    // Xử lý category name để match với function name
+    const categoryMap = {
+      "khuyen-tai": "khuyentai",
+      "an-pham": "anpham",
+      "in-theo-yeu-cau": "intheoyeucau",
+      "hoi-thao-nghe-thuat": "hoithaonghethuat",
+      "thoi-trang": "thoitrang",
+      "do-trang-suc": "dotrangsuc",
+      "tho-cam": "thocam",
+      "san-pham-tu-thong": "sanphamtuthong",
+    };
+
+    // Chuyển đổi category name
+    const normalizedCategory = categoryMap[category] || category;
+
+    switch (normalizedCategory) {
+      case "khuyentai":
+        return getKhuyenTaiImageUrl(filename);
+      case "anpham":
+        return getAnPhamImageUrl(filename);
+      case "intheoyeucau":
+        return getInTheoYeuCauImageUrl(filename);
+      case "hoithaonghethuat":
+        return getHoiThaoNgheThuatImageUrl(filename);
+      case "thoitrang":
+        return getThoiTrangImageUrl(filename);
+      case "dotrangsuc":
+        return getDoTrangSucImageUrl(filename);
+      case "thocam":
+        return getThoCamImageUrl(filename);
+      case "sanphamtuthong":
+        return getSanPhamTuThongImageUrl(filename);
+      default:
+        return filename;
+    }
+  };
+
   return (
     <div className="checkout-page">
       {showLoginModal && (
@@ -288,6 +382,14 @@ const CheckoutPage = () => {
           message={`Mã đơn hàng ${orderCode} đã được đặt thành công, chúng tôi sẽ sớm liên hệ bạn!`}
         />
       )}
+
+      <PayPalModal
+        isOpen={showPayPalModal}
+        onClose={() => setShowPayPalModal(false)}
+        amount={calculateTotal() / 23000}
+        onSuccess={handlePayPalSuccess}
+        onError={handlePayPalError}
+      />
 
       <OrderSteps currentStep={currentStep} onStepClick={handleStepChange} />
 
@@ -339,9 +441,18 @@ const CheckoutPage = () => {
                 <h2>Sản phẩm đã chọn</h2>
                 {cartItems.map((item) => (
                   <div key={item.id} className="cart-item-checkout">
-                    <img src={item.image} alt={item.name} />
+                    <img
+                      src={getImageUrl(item.category, item.image)}
+                      alt={item.title || item.name}
+                      loading="lazy"
+                      onError={(e) => {
+                        e.target.onerror = null;
+                        e.target.src =
+                          "https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784840/logo/logo-icon.webp";
+                      }}
+                    />
                     <div className="item-details-checkout">
-                      <h3>{item.name}</h3>
+                      <h3>{item.title || item.name}</h3>
                       <p>Số lượng: {item.quantity}</p>
                       <p className="price">
                         {(item.price * item.quantity).toLocaleString()}đ
@@ -378,19 +489,25 @@ const CheckoutPage = () => {
 
               <section className="payment-methods">
                 <h2>Phương thức thanh toán</h2>
-                {/* <div
+                <div
                   className={`payment-option ${
-                    paymentMethod === "vnpay" ? "selected" : ""
+                    paymentMethod === "paypal" ? "selected" : ""
                   }`}
-                  onClick={() => handlePaymentMethodSelect("vnpay")}
+                  onClick={() => handlePaymentMethodSelect("paypal")}
                 >
                   <input
                     type="radio"
-                    checked={paymentMethod === "vnpay"}
+                    checked={paymentMethod === "paypal"}
                     onChange={() => {}}
                   />
-                  <span>Thanh toán qua VNPAY</span>
-                </div> */}
+                  <div className="payment-option-content">
+                    <span>Thanh toán qua thẻ ngân hàng</span>
+                    <span className="payment-description">
+                      Thanh toán qua Paypal
+                    </span>
+                  </div>
+                </div>
+
                 <div
                   className={`payment-option ${
                     paymentMethod === "bank" ? "selected" : ""
@@ -402,7 +519,7 @@ const CheckoutPage = () => {
                     checked={paymentMethod === "bank"}
                     onChange={() => {}}
                   />
-                  <span>Thanh toán qua ngân hàng</span>
+                  <span>Thanh toán qua mã QR</span>
                 </div>
                 <div
                   className={`payment-option ${

@@ -358,3 +358,21 @@
   cursor: not-allowed;
   transform: none;
 }
+
+.payment-option-content {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.payment-description {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 4px;
+}
+
+.paypal-button-container {
+  margin: 20px auto;
+  max-width: 500px;
+  transition: all 0.3s ease;
+}

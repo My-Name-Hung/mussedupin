@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "/**\n * @license lucide-react v0.510.0 - ISC\n *\n * This source code is licensed under the ISC license.\n * See the LICENSE file in the root directory of this source tree.\n */\n\nimport createLucideIcon from '../createLucideIcon.js';\n\nconst __iconNode = [\n  [\"path\", { d: \"M16 2v4\", key: \"4m81vk\" }],\n  [\"path\", { d: \"M21 11.75V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h7.25\", key: \"1jrsq6\" }],\n  [\"path\", { d: \"m22 22-1.875-1.875\", key: \"13zax7\" }],\n  [\"path\", { d: \"M3 10h18\", key: \"8toen8\" }],\n  [\"path\", { d: \"M8 2v4\", key: \"1cmpym\" }],\n  [\"circle\", { cx: \"18\", cy: \"18\", r: \"3\", key: \"1xkwt0\" }]\n];\nconst CalendarSearch = createLucideIcon(\"calendar-search\", __iconNode);\n\nexport { __iconNode, CalendarSearch as default };\n//# sourceMappingURL=calendar-search.js.map\n",
-      "start": 1751254469382,
-      "end": 1751254469407,
+      "start": 1751302181229,
+      "end": 1751302181255,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751254469407,
-      "end": 1751254469407,
+      "start": 1751302181255,
+      "end": 1751302181255,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751254469407,
-      "end": 1751254469407,
+      "start": 1751302181255,
+      "end": 1751302181255,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751254469407,
-      "end": 1751254469407,
+      "start": 1751302181255,
+      "end": 1751302181255,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751254469407,
-      "end": 1751254469407,
+      "start": 1751302181255,
+      "end": 1751302181255,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751254469407,
-      "end": 1751254469407,
+      "start": 1751302181255,
+      "end": 1751302181255,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751254469407,
-      "end": 1751254469407,
+      "start": 1751302181255,
+      "end": 1751302181255,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751254469407,
-      "end": 1751254469407,
+      "start": 1751302181255,
+      "end": 1751302181255,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751254469407,
-      "end": 1751254469407,
+      "start": 1751302181255,
+      "end": 1751302181255,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751254469407,
-      "end": 1751254469407,
+      "start": 1751302181255,
+      "end": 1751302181255,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751254469407,
-      "end": 1751254469407,
+      "start": 1751302181255,
+      "end": 1751302181255,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751254469407,
-      "end": 1751254469407,
+      "start": 1751302181255,
+      "end": 1751302181255,
       "order": "normal"
     }
   ]

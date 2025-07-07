@@ -227,193 +227,103 @@ const sendFeedbackConfirmation = (feedbackData) => {
 
 // Send experience booking confirmation email to customer
 const sendExperienceBookingEmail = async (bookingData) => {
-  const {
-    userInfo,
-    tickets,
-    selectedDate,
-    selectedTime,
-    bookingId,
-    paymentMethod,
-  } = bookingData;
+  const paymentMethodText = {
+    bank: "Chuyển khoản ngân hàng",
+    cash: "Tiền mặt",
+    paypal: "PayPal (Đã thanh toán)",
+  };
 
-  // Calculate total amount from tickets
-  const totalAmount = tickets.reduce(
-    (total, ticket) => total + ticket.price * ticket.quantity,
-    0
-  );
-
-  const ticketList = tickets
-    .filter((ticket) => ticket.quantity > 0)
-    .map(
-      (ticket) => `
-      <tr>
-        <td style="padding: 10px; border-bottom: 1px solid #eee;">${
-          ticket.title
-        }</td>
-        <td style="padding: 10px; border-bottom: 1px solid #eee;">${
-          ticket.quantity
-        }</td>
-        <td style="padding: 10px; border-bottom: 1px solid #eee;">${ticket.visitors
-          .map((v) => v.name)
-          .join(", ")}</td>
-        <td style="padding: 10px; border-bottom: 1px solid #eee;">${(
-          ticket.price * ticket.quantity
-        ).toLocaleString()}đ</td>
-      </tr>
-    `
-    )
-    .join("");
-
-  const paymentInstructions =
-    paymentMethod === "bank"
-      ? `
-      <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
-              <p>Mã đơn hàng: ${bookingId}</p>  
-      <h3 style="margin-bottom: 10px;">Thanh toán chuyển khoản</h3>
-        <p>Số tiền: ${totalAmount.toLocaleString()}đ</p>
-        </div>
-    `
-      : `
-      <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
-        <h3 style="margin-bottom: 10px;">Thanh toán tại quầy</h3>
-        <p>Vui lòng thanh toán số tiền ${totalAmount.toLocaleString()}đ tại quầy vé khi đến tham quan.</p>
-      </div>
-    `;
+  const paymentStatusText =
+    bookingData.paymentStatus === "paid" ? "Đã thanh toán" : "Chưa thanh toán";
 
   const emailContent = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-      <h2 style="color: #2c2f11;">Xác nhận đặt vé thành công</h2>
-      <p>Xin chào ${userInfo.fullName},</p>
-      <p>Cảm ơn bạn đã đặt vé tại Musée Du Pin. Dưới đây là thông tin chi tiết đơn hàng của bạn:</p>
-      
-      <div style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
-        <p><strong>Mã đơn hàng:</strong> ${bookingId}</p>
-        <p><strong>Họ tên:</strong> ${userInfo.fullName}</p>
-        <p><strong>Email:</strong> ${userInfo.email}</p>
-        <p><strong>Số điện thoại:</strong> ${userInfo.phone}</p>
-            <p><strong>Ngày tham quan:</strong> ${new Date(
-              selectedDate
-            ).toLocaleDateString("vi-VN")}</p>
-        <p><strong>Giờ tham quan:</strong> ${selectedTime}</p>
-          </div>
-          
-      <h3 style="color: #2c2f11;">Chi tiết vé</h3>
-      <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-        <thead>
-          <tr style="background-color: #f8f9fa;">
-            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Vé</th>
-            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Số lượng</th>
-            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Người tham quan</th>
-            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Thành tiền</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${ticketList}
-        </tbody>
-      </table>
-
-      ${paymentInstructions}
-
-      <div style="margin-top: 20px;">
-        <p>Nếu bạn có bất kỳ thắc mắc nào, vui lòng liên hệ với chúng tôi qua:</p>
-        <p>Email: info@museedupin.com</p>
-        <p>Hotline: +84 86 235 6368</p>
-        </div>
-        </div>
+    <h2>Xác nhận đặt vé tại Musée Du Pin</h2>
+    <p>Cảm ơn bạn đã đặt vé tại Musée Du Pin. Dưới đây là chi tiết đơn hàng của bạn:</p>
+    
+    <h3>Thông tin đơn hàng</h3>
+    <p>Mã đơn hàng: ${bookingData.bookingId}</p>
+    <p>Gói trải nghiệm: ${bookingData.packageData.title}</p>
+    <p>Ngày: ${new Date(bookingData.selectedDate).toLocaleDateString(
+      "vi-VN"
+    )}</p>
+    <p>Thời gian: ${bookingData.selectedTime}</p>
+    <p>Số lượng: ${bookingData.tickets.reduce(
+      (total, ticket) => total + ticket.quantity,
+      0
+    )} người</p>
+    <p>Tổng tiền: ${bookingData.totalAmount.toLocaleString()}đ</p>
+    <p>Phương thức thanh toán: ${
+      paymentMethodText[bookingData.paymentMethod]
+    }</p>
+    <p>Trạng thái thanh toán: ${paymentStatusText}</p>
+    ${
+      bookingData.paypalOrderId
+        ? `<p>Mã giao dịch PayPal: ${bookingData.paypalOrderId}</p>`
+        : ""
+    }
+    
+    <h3>Thông tin liên hệ</h3>
+    <p>Họ tên: ${bookingData.userInfo.fullName}</p>
+    <p>Số điện thoại: ${bookingData.userInfo.phone}</p>
+    <p>Email: ${bookingData.userInfo.email}</p>
+    
+    <p>Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi qua số điện thoại: +84 86 235 6368</p>
   `;
 
   await sendEmail({
-    to: userInfo.email,
-    subject: "Xác nhận đặt vé thành công - Musée Du Pin",
+    to: bookingData.userInfo.email,
+    subject: `Xác nhận đặt vé - ${bookingData.bookingId}`,
     html: emailContent,
   });
 };
 
 // Send experience booking notification to admin
 const sendExperienceBookingAdminEmail = async (bookingData) => {
-  const {
-    userInfo,
-    tickets,
-    selectedDate,
-    selectedTime,
-    bookingId,
-    paymentMethod,
-  } = bookingData;
+  const paymentMethodText = {
+    bank: "Chuyển khoản ngân hàng",
+    cash: "Tiền mặt",
+    paypal: "PayPal (Đã thanh toán)",
+  };
 
-  // Calculate total amount from tickets
-  const totalAmount = tickets.reduce(
-    (total, ticket) => total + ticket.price * ticket.quantity,
-    0
-  );
-
-  const ticketList = tickets
-    .filter((ticket) => ticket.quantity > 0)
-    .map(
-      (ticket) => `
-      <tr>
-        <td style="padding: 10px; border-bottom: 1px solid #eee;">${
-          ticket.title
-        }</td>
-        <td style="padding: 10px; border-bottom: 1px solid #eee;">${
-          ticket.quantity
-        }</td>
-        <td style="padding: 10px; border-bottom: 1px solid #eee;">${ticket.visitors
-          .map((v) => v.name)
-          .join(", ")}</td>
-        <td style="padding: 10px; border-bottom: 1px solid #eee;">${(
-          ticket.price * ticket.quantity
-        ).toLocaleString()}đ</td>
-      </tr>
-    `
-    )
-    .join("");
+  const paymentStatusText =
+    bookingData.paymentStatus === "paid" ? "Đã thanh toán" : "Chưa thanh toán";
 
   const emailContent = `
-    <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-      <h2 style="color: #2c2f11;">Đơn đặt vé mới</h2>
-      
-      <div style="margin: 20px 0; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
-        <p><strong>Mã đơn hàng:</strong> ${bookingId}</p>
-        <p><strong>Họ tên:</strong> ${userInfo.fullName}</p>
-        <p><strong>Email:</strong> ${userInfo.email}</p>
-        <p><strong>Số điện thoại:</strong> ${userInfo.phone}</p>
-            <p><strong>Ngày tham quan:</strong> ${new Date(
-              selectedDate
-            ).toLocaleDateString("vi-VN")}</p>
-        <p><strong>Giờ tham quan:</strong> ${selectedTime}</p>
-        <p><strong>Phương thức thanh toán:</strong> ${
-          paymentMethod === "bank" ? "Chuyển khoản ngân hàng" : "Tiền mặt"
-        }</p>
-          </div>
-
-      <h3 style="color: #2c2f11;">Chi tiết vé</h3>
-      <table style="width: 100%; border-collapse: collapse; margin-top: 10px;">
-        <thead>
-          <tr style="background-color: #f8f9fa;">
-            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Vé</th>
-            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Số lượng</th>
-            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Người tham quan</th>
-            <th style="padding: 10px; text-align: left; border-bottom: 2px solid #eee;">Thành tiền</th>
-          </tr>
-        </thead>
-        <tbody>
-          ${ticketList}
-        </tbody>
-      </table>
-
-      <div style="margin-top: 20px; padding: 15px; background-color: #f8f9fa; border-radius: 5px;">
-        <h3 style="margin-bottom: 10px;">Thông tin thanh toán</h3>
-        <p><strong>Tổng tiền:</strong> ${totalAmount.toLocaleString()}đ</p>
-        <p><strong>Phương thức thanh toán:</strong> ${
-          paymentMethod === "bank" ? "Chuyển khoản ngân hàng" : "Tiền mặt"
-        }</p>
-        </div>
-      </div>
+    <h2>Đơn đặt vé mới tại Musée Du Pin</h2>
+    
+    <h3>Thông tin đơn hàng</h3>
+    <p>Mã đơn hàng: ${bookingData.bookingId}</p>
+    <p>Gói trải nghiệm: ${bookingData.packageData.title}</p>
+    <p>Ngày: ${new Date(bookingData.selectedDate).toLocaleDateString(
+      "vi-VN"
+    )}</p>
+    <p>Thời gian: ${bookingData.selectedTime}</p>
+    <p>Số lượng: ${bookingData.tickets.reduce(
+      (total, ticket) => total + ticket.quantity,
+      0
+    )} người</p>
+    <p>Tổng tiền: ${bookingData.totalAmount.toLocaleString()}đ</p>
+    <p>Phương thức thanh toán: ${
+      paymentMethodText[bookingData.paymentMethod]
+    }</p>
+    <p>Trạng thái thanh toán: ${paymentStatusText}</p>
+    ${
+      bookingData.paypalOrderId
+        ? `<p>Mã giao dịch PayPal: ${bookingData.paypalOrderId}</p>`
+        : ""
+    }
+    
+    <h3>Thông tin khách hàng</h3>
+    <p>Họ tên: ${bookingData.userInfo.fullName}</p>
+    <p>Số điện thoại: ${bookingData.userInfo.phone}</p>
+    <p>Email: ${bookingData.userInfo.email}</p>
+    
+    <p>Vui lòng kiểm tra và xác nhận đơn hàng trong hệ thống quản lý.</p>
   `;
 
   await sendEmail({
-    to: "admin@museedupin.com",
-    subject: `Đơn đặt vé mới - ${bookingId}`,
+    to: process.env.ADMIN_EMAIL,
+    subject: `Đơn đặt vé mới - ${bookingData.bookingId}`,
     html: emailContent,
   });
 };

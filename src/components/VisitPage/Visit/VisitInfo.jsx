@@ -4,8 +4,9 @@ import { useTranslation } from "../../../contexts/TranslationContext";
 import { getImageUrls } from "../../../utils/cloudinary";
 import "./VisitInfo.css";
 
-import { FaBaby, FaCar, FaSearch } from "react-icons/fa";
-
+import { FaCar, FaSearch } from "react-icons/fa";
+import { PiMotorcycleBold } from "react-icons/pi";
+import { FaShop } from "react-icons/fa6";
 const VisitInfo = () => {
   const { currentLang } = useTranslation();
   const location = useLocation();
@@ -443,91 +444,72 @@ const VisitInfo = () => {
       id: "information-desk",
       title: "Quầy thông tin",
       description:
-        "Hai quầy thông tin, nơi du khách có thể hỏi đáp với nhân viên và nhận bản đồ bảo tàng. Tài liệu hướng dẫn bằng 8 ngôn ngữ có sẵn dưới Tháp.",
+        "Offline: Là nơi du khách có thể hỏi đáp các thắc mắc và nhận hướng dẫn. Tại đây nhân viên có thể giao tiếp bằng 2 ngôn ngữ: Anh- Việt trực từ 8h-23h hàng ngày\n\nOnline: Du khách có thể kết bạn zalo, line, viber để nhận thông tin và được tư vấn 24/7",
       image: "room1.jpg",
       icon: "info",
-      details: "Nhân viên đa ngôn ngữ làm việc từ 9:00 đến 19:00 hàng ngày.",
+      details: "Hỗ trợ đa ngôn ngữ: Anh - Việt",
     },
     {
       id: "cloakroom",
-      title: "Phòng gửi đồ",
+      title: "Khu vực gửi đồ",
       description:
-        "Tủ khóa tự phục vụ miễn phí dưới Tháp. Khách tham quan nên sử dụng tủ khóa tại lối vào. Tất cả các vật dụng gửi trong tủ khóa phải được lấy lại trong cùng ngày.",
+        "Nằm phía sau khu vực Khánh Tiết. Nhân viên sẽ hướng dẫn và nhận/trả đồ gửi.",
       image: "room2.jpg",
       icon: "hanger",
-      details:
-        "Gửi miễn phí cho túi có kích thước tối đa 55×35×20 cm. Không nhận vật dụng lớn hơn.",
+      details: "Dịch vụ gửi đồ có nhân viên hỗ trợ",
     },
     {
-      id: "equipment",
-      title: "Cho mượn thiết bị",
-      description:
-        "Gậy chống, ghế xếp, xe đẩy trẻ em, địu em bé, ghế đa năng có bánh xe và xe lăn được cung cấp miễn phí tại khu vực tiếp đón khách dưới Tháp.",
-      image: "room3.jpg",
+      id: "vehicle-rental",
+      title: "Cho thuê oto xe máy",
+      description: "Bảo Tàng Thông có sẵn xe máy và oto cho khách thuê.",
+      image: "vehicle.jpg",
       icon: "stroller",
-      details: "Liên hệ quầy hỗ trợ để biết thêm thông tin",
+      details: "Dịch vụ cho thuê phương tiện di chuyển",
     },
     {
       id: "wifi",
-      title: "Wi-Fi Miễn phí",
+      title: "Wifi miễn phí",
       description:
-        "Mạng 'Musée Du Pin' có sẵn dưới Tháp và trong các phòng trưng bày. Kết nối Wi-Fi miễn phí có giới hạn một giờ và có thể được gia hạn nhiều lần theo nhu cầu.",
-      image: "room4.jpg",
+        "Mạng wifi tốc độ cao phủ khắp Bảo Tàng. Tốc độ kết nối 50Mbps",
+      image: "wifi.jpg",
       icon: "wifi",
-      details: "Tốc độ kết nối: 50 Mbps",
+      details: "Kết nối internet tốc độ cao",
     },
     {
-      id: "toilets",
+      id: "restroom",
       title: "Nhà vệ sinh",
       description:
-        "Nhà vệ sinh có thể được tìm thấy tại khu vực đón tiếp dưới Tháp và khắp bảo tàng. Có bàn thay tã cho em bé.",
-      image: "room5.jpg",
+        "Nhà vệ sinh có thể được tìm thấy tại khu vực Trưng bày tổng hợp ở sảnh tầng 1. Nhà vệ sinh có thể tiếp cận được cho người khuyết tật",
+      image: "restroom.jpg",
       icon: "toilet",
-      details: "Tất cả nhà vệ sinh đều tiếp cận được cho người khuyết tật",
+      details: "Tiện nghi vệ sinh phù hợp cho mọi đối tượng",
     },
     {
-      id: "car-park",
+      id: "parking",
       title: "Bãi đậu xe",
       description:
-        "Bãi đậu xe ngầm nằm tại số 1 Đại lộ Général Lemonnier, từ đó bạn có thể vào bảo tàng qua lối vào Carrousel. Mở cửa 7 ngày một tuần từ 7:00 đến 23:00.",
-      image: "room6.jpg",
+        "Bãi đậu xe nằm ngay trong khuôn viên của Bảo Tàng. Chú ý theo sát sự hướng dẫn của nhân viên Bảo Tàng",
+      image: "parking.jpg",
       icon: "parking",
-      details:
-        "Khách tham quan khuyết tật được hưởng giá đậu xe ưu đãi. Giá này có thể được thương lượng tại quầy thanh toán trước khi trả tiền.",
+      details: "Bãi đỗ xe trong khuôn viên",
     },
     {
       id: "lost-found",
-      title: {
-        vi: "Đồ thất lạc",
-        en: "Lost and Found",
-      },
-      description: {
-        vi: "Bị mất đồ? Nếu bạn vẫn còn trong bảo tàng, hãy đến Quầy Hỗ trợ dưới Tháp và nhân viên sẽ giúp bạn.",
-        en: "Lost something? If you're still in the museum, visit the Support Desk under the Tower and our staff will assist you.",
-      },
-      image: "room7.jpg",
+      title: "Đồ thất lạc",
+      description:
+        "Nếu bạn vẫn còn trong Bảo tàng, hãy đến Quầy tiếp đón tại sảnh Khánh Tiết. Nếu bạn đã rời khỏi Bảo Tàng, hãy liên hệ cho hotline của bảo tàng để hỗ trợ tìm kiếm và quý khách có thể quay lại nhận trong 30 ngày.",
+      image: "lost-found.jpg",
       icon: "help",
-      details: {
-        vi: "Đối với đồ vật tìm thấy sau chuyến thăm, hãy điền vào mẫu báo cáo trên trang web của chúng tôi",
-        en: "For items found after your visit, please fill out the report form on our website",
-      },
+      details: "Dịch vụ tìm đồ thất lạc",
     },
     {
-      id: "baby-space",
-      title: {
-        vi: "Khu vực cho em bé",
-        en: "Baby Area",
-      },
-      description: {
-        vi: "Studio – khu vực đặc biệt được thiết kế dành cho gia đình",
-        en: "Studio – a special area designed for families",
-      },
-      image: "room8.jpg",
-      icon: "baby",
-      details: {
-        vi: "Mọi thứ bạn cần cho sự thoải mái và chăm sóc em bé",
-        en: "Everything you need for baby comfort and care",
-      },
+      id: "souvenir",
+      title: "Hàng lưu niệm",
+      description:
+        "Quý khách có thể tìm kiếm trên mục Cửa hàng Lưu niệm để đặt mua online rất nhiều sản phẩm đặc biệt của Bảo Tàng Thông và sẽ được giao ship tận nơi cho quý khách.",
+      image: "souvenir.jpg",
+      icon: "store",
+      details: "Cửa hàng lưu niệm online với giao hàng tận nơi",
     },
   ];
 
@@ -3262,17 +3244,9 @@ const VisitInfo = () => {
         );
       case "stroller":
         return (
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            {...commonAttributes}
-          >
-            <circle cx="8" cy="18" r="2"></circle>
-            <circle cx="16" cy="18" r="2"></circle>
-            <path d="M8 18h8l4-12H8"></path>
-            <path d="M6 10h12"></path>
-          </svg>
+          <PiMotorcycleBold size={isMobile ? 28 : 32} color="currentColor" />
         );
+
       case "wifi":
         return (
           <svg
@@ -3303,8 +3277,8 @@ const VisitInfo = () => {
         return <FaCar size={isMobile ? 28 : 32} color="currentColor" />;
       case "help":
         return <FaSearch size={isMobile ? 28 : 32} color="currentColor" />;
-      case "baby":
-        return <FaBaby size={isMobile ? 28 : 32} color="currentColor" />;
+      case "store":
+        return <FaShop size={isMobile ? 28 : 32} color="currentColor" />;
       case "amenities":
         return (
           <svg

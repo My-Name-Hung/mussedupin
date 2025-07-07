@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useEffect } from \"react\";\nimport { MdArrowBack } from \"react-icons/md\";\nimport { useNavigate } from \"react-router-dom\";\nimport { useTranslation } from \"../../contexts/TranslationContext\";\nimport \"./VisitPackages.css\";\n\nconst translations = {\n  \"dem-huyen-thoai\": {\n    vi: {\n      title: \"TOUR ĐÊM HUYỀN THOẠI LANGBIANG\",\n      description:\n        \"Mini-show tương tác đưa khách vào vai nhân vật khám phá bí ẩn văn hóa\",\n      details: [\n        \"Tham quan có hướng dẫn viên các không gian bảo tàng\",\n        \"Trải nghiệm sân khấu tương tác điện ảnh với câu chuyện K'Ho\",\n        \"01 thức uống + 01 snack\",\n        \"Thước phim điện ảnh\",\n      ],\n    },\n    en: {\n      title: \"LANGBIANG LEGENDARY NIGHT TOUR\",\n      description:\n        \"Interactive mini-show where visitors become characters exploring cultural mysteries\",\n      details: [\n        \"Guided museum space tours\",\n        \"Interactive cinematic stage experience with K'Ho story\",\n        \"01 drink + 01 snack\",\n        \"Cinematic film strip\",\n      ],\n    },\n  },\n  \"giai-dieu-dai-ngan\": {\n    vi: {\n      title: \"GIAI ĐIỆU ĐẠI NGÀN - LẮNG NGHE THÔNG HÁT\",\n      description: \"Hòa nhạc acoustic với chủ đề thay đổi hàng tháng\",\n      details: [\"Rượu vang\", \"Thức ăn nhẹ\", \"Âm nhạc theo chủ đề\"],\n    },\n    en: {\n      title: \"GREAT FOREST MELODIES - PINE RUSTLING\",\n      description: \"Monthly themed acoustic concerts\",\n      details: [\"Wine\", \"Light refreshments\", \"Themed music\"],\n    },\n  },\n  \"uom-mam-sang-tao\": {\n    vi: {\n      title: \"ƯƠM MẦM SÁNG TẠO\",\n      description: \"Các gói trải nghiệm cho bé\",\n      details: [\n        \"Workshop: Tay nặn tay vẽ hoặc chế tác đồ thủ công từ thông\",\n        \"Chụp ảnh nghệ thuật tại bảo tàng\",\n        \"01 thức uống + 01 snack\",\n      ],\n    },\n    en: {\n      title: \"CREATIVE SEEDLINGS\",\n      description: \"Experience packages for children\",\n      details: [\n        \"Workshop: Hand molding, drawing or pine crafting\",\n        \"Artistic photography at the museum\",\n        \"01 drink + 01 snack\",\n      ],\n    },\n  },\n};\n\nconst RegularPackages = () => {\n  const navigate = useNavigate();\n  const { currentLang, registerTranslations } = useTranslation();\n\n  // Register translations on mount\n  useEffect(() => {\n    registerTranslations(\"regularPackages\", translations);\n  }, [registerTranslations]);\n\n  const packages = [\n    {\n      id: \"dem-huyen-thoai\",\n      title: translations[\"dem-huyen-thoai\"][currentLang].title,\n      image:\n        \"https://ik.imagekit.io/8u8lkoqkkm/Tourdemhuyenthoai_Ngoai.jpg?updatedAt=1749312109824\",\n      orientation: \"landscape\",\n      description: translations[\"dem-huyen-thoai\"][currentLang].description,\n      price: \"499.000\",\n      time: \"19:00 - 21:00\",\n      schedule: currentLang === \"en\" ? \"Tue-Thu weekly\" : \"T3-T5 hàng tuần\",\n      details: translations[\"dem-huyen-thoai\"][currentLang].details,\n    },\n    {\n      id: \"giai-dieu-dai-ngan\",\n      title: translations[\"giai-dieu-dai-ngan\"][currentLang].title,\n      image:\n        \"https://ik.imagekit.io/8u8lkoqkkm/Giaidieudaingan_Ngoai.jpg?updatedAt=1749312109958\",\n      orientation: \"landscape\",\n      description: translations[\"giai-dieu-dai-ngan\"][currentLang].description,\n      price: \"799.000\",\n      time: \"19:00 - 22:30\",\n      schedule: currentLang === \"en\" ? \"Fri-Sat-Sun\" : \"Thứ 6-T7-CN\",\n      details: translations[\"giai-dieu-dai-ngan\"][currentLang].details,\n    },\n    {\n      id: \"uom-mam-sang-tao\",\n      title: translations[\"uom-mam-sang-tao\"][currentLang].title,\n      image:\n        \"https://ik.imagekit.io/8u8lkoqkkm/uommamsangtao_Ngoai.jpg?updatedAt=1749311934281\",\n      orientation: \"landscape\",\n      description: translations[\"uom-mam-sang-tao\"][currentLang].description,\n      price: \"299.000\",\n      time:\n        currentLang === \"en\"\n          ? \"Morning: 8am - 12pm, Afternoon: 2pm - 6pm\"\n          : \"Sáng: 8h - 12h, Chiều: 14h - 18h\",\n      details: translations[\"uom-mam-sang-tao\"][currentLang].details,\n    },\n  ];\n\n  return (\n    <div className=\"packages-container\">\n      <div className=\"packages-hero\">\n        <button className=\"back-button1\" onClick={() => navigate(\"/visit\")}>\n          <MdArrowBack />\n        </button>\n        <div className=\"hero-image-container\">\n          <img\n            src=\"https://ik.imagekit.io/8u8lkoqkkm/Chuongtrinhdinhky_Trong.jpg?updatedAt=1749268863163\"\n            alt={\n              currentLang === \"en\" ? \"Regular Programs\" : \"Chương trình định kỳ\"\n            }\n            className=\"hero-image portrait\"\n          />\n        </div>\n        <div className=\"packages-hero-content\">\n          <h1 className=\"packages-title\">\n            {currentLang === \"en\" ? \"REGULAR PROGRAMS\" : \"CHƯƠNG TRÌNH ĐỊNH KỲ\"}\n          </h1>\n        </div>\n      </div>\n\n      <div className=\"packages-content\">\n        <div className=\"packages-grid\">\n          {packages.map((pkg) => (\n            <div\n              key={pkg.id}\n              className=\"visit-cardss\"\n              onClick={() => navigate(`/visit/package/${pkg.id}`)}\n            >\n              <div className=\"visit-cards-img-wrap\">\n                <img\n                  src={pkg.image}\n                  alt={pkg.title}\n                  className={`visit-cards-img ${pkg.orientation}`}\n                />\n                <div className=\"visit-cards-overlay\" />\n                <div className=\"visit-card-content\">\n                  <h2>{pkg.title}</h2>\n                </div>\n              </div>\n            </div>\n          ))}\n        </div>\n      </div>\n    </div>\n  );\n};\n\nexport default RegularPackages;\n",
-      "start": 1751470574250,
-      "end": 1751470574817,
+      "start": 1751851850801,
+      "end": 1751851851051,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751470574817,
-      "end": 1751470574817,
+      "start": 1751851851051,
+      "end": 1751851851051,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect } from \"react\";\nimport { MdArrowBack } from \"react-icons/md\";\nimport { useNavigate } from \"react-router-dom\";\nimport { useTranslation } from \"../../contexts/TranslationContext\";\nimport \"./VisitPackages.css\";\nconst translations = {\n  \"dem-huyen-thoai\": {\n    vi: {\n      title: \"TOUR ĐÊM HUYỀN THOẠI LANGBIANG\",\n      description: \"Mini-show tương tác đưa khách vào vai nhân vật khám phá bí ẩn văn hóa\",\n      details: [\n        \"Tham quan có hướng dẫn viên các không gian bảo tàng\",\n        \"Trải nghiệm sân khấu tương tác điện ảnh với câu chuyện K'Ho\",\n        \"01 thức uống + 01 snack\",\n        \"Thước phim điện ảnh\"\n      ]\n    },\n    en: {\n      title: \"LANGBIANG LEGENDARY NIGHT TOUR\",\n      description: \"Interactive mini-show where visitors become characters exploring cultural mysteries\",\n      details: [\n        \"Guided museum space tours\",\n        \"Interactive cinematic stage experience with K'Ho story\",\n        \"01 drink + 01 snack\",\n        \"Cinematic film strip\"\n      ]\n    }\n  },\n  \"giai-dieu-dai-ngan\": {\n    vi: {\n      title: \"GIAI ĐIỆU ĐẠI NGÀN - LẮNG NGHE THÔNG HÁT\",\n      description: \"Hòa nhạc acoustic với chủ đề thay đổi hàng tháng\",\n      details: [\"Rượu vang\", \"Thức ăn nhẹ\", \"Âm nhạc theo chủ đề\"]\n    },\n    en: {\n      title: \"GREAT FOREST MELODIES - PINE RUSTLING\",\n      description: \"Monthly themed acoustic concerts\",\n      details: [\"Wine\", \"Light refreshments\", \"Themed music\"]\n    }\n  },\n  \"uom-mam-sang-tao\": {\n    vi: {\n      title: \"ƯƠM MẦM SÁNG TẠO\",\n      description: \"Các gói trải nghiệm cho bé\",\n      details: [\n        \"Workshop: Tay nặn tay vẽ hoặc chế tác đồ thủ công từ thông\",\n        \"Chụp ảnh nghệ thuật tại bảo tàng\",\n        \"01 thức uống + 01 snack\"\n      ]\n    },\n    en: {\n      title: \"CREATIVE SEEDLINGS\",\n      description: \"Experience packages for children\",\n      details: [\n        \"Workshop: Hand molding, drawing or pine crafting\",\n        \"Artistic photography at the museum\",\n        \"01 drink + 01 snack\"\n      ]\n    }\n  }\n};\nconst RegularPackages = () => {\n  const navigate = useNavigate();\n  const { currentLang, registerTranslations } = useTranslation();\n  useEffect(() => {\n    registerTranslations(\"regularPackages\", translations);\n  }, [registerTranslations]);\n  const packages = [\n    {\n      id: \"dem-huyen-thoai\",\n      title: translations[\"dem-huyen-thoai\"][currentLang].title,\n      image: \"https://ik.imagekit.io/8u8lkoqkkm/Tourdemhuyenthoai_Ngoai.jpg?updatedAt=1749312109824\",\n      orientation: \"landscape\",\n      description: translations[\"dem-huyen-thoai\"][currentLang].description,\n      price: \"499.000\",\n      time: \"19:00 - 21:00\",\n      schedule: currentLang === \"en\" ? \"Tue-Thu weekly\" : \"T3-T5 hàng tuần\",\n      details: translations[\"dem-huyen-thoai\"][currentLang].details\n    },\n    {\n      id: \"giai-dieu-dai-ngan\",\n      title: translations[\"giai-dieu-dai-ngan\"][currentLang].title,\n      image: \"https://ik.imagekit.io/8u8lkoqkkm/Giaidieudaingan_Ngoai.jpg?updatedAt=1749312109958\",\n      orientation: \"landscape\",\n      description: translations[\"giai-dieu-dai-ngan\"][currentLang].description,\n      price: \"799.000\",\n      time: \"19:00 - 22:30\",\n      schedule: currentLang === \"en\" ? \"Fri-Sat-Sun\" : \"Thứ 6-T7-CN\",\n      details: translations[\"giai-dieu-dai-ngan\"][currentLang].details\n    },\n    {\n      id: \"uom-mam-sang-tao\",\n      title: translations[\"uom-mam-sang-tao\"][currentLang].title,\n      image: \"https://ik.imagekit.io/8u8lkoqkkm/uommamsangtao_Ngoai.jpg?updatedAt=1749311934281\",\n      orientation: \"landscape\",\n      description: translations[\"uom-mam-sang-tao\"][currentLang].description,\n      price: \"299.000\",\n      time: currentLang === \"en\" ? \"Morning: 8am - 12pm, Afternoon: 2pm - 6pm\" : \"Sáng: 8h - 12h, Chiều: 14h - 18h\",\n      details: translations[\"uom-mam-sang-tao\"][currentLang].details\n    }\n  ];\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"packages-container\", children: [\n    /* @__PURE__ */ jsxs(\"div\", { className: \"packages-hero\", children: [\n      /* @__PURE__ */ jsx(\"button\", { className: \"back-button1\", onClick: () => navigate(\"/visit\"), children: /* @__PURE__ */ jsx(MdArrowBack, {}) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"hero-image-container\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: \"https://ik.imagekit.io/8u8lkoqkkm/Chuongtrinhdinhky_Trong.jpg?updatedAt=1749268863163\",\n          alt: currentLang === \"en\" ? \"Regular Programs\" : \"Chương trình định kỳ\",\n          className: \"hero-image portrait\"\n        }\n      ) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"packages-hero-content\", children: /* @__PURE__ */ jsx(\"h1\", { className: \"packages-title\", children: currentLang === \"en\" ? \"REGULAR PROGRAMS\" : \"CHƯƠNG TRÌNH ĐỊNH KỲ\" }) })\n    ] }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"packages-content\", children: /* @__PURE__ */ jsx(\"div\", { className: \"packages-grid\", children: packages.map((pkg) => /* @__PURE__ */ jsx(\n      \"div\",\n      {\n        className: \"visit-cardss\",\n        onClick: () => navigate(`/visit/package/${pkg.id}`),\n        children: /* @__PURE__ */ jsxs(\"div\", { className: \"visit-cards-img-wrap\", children: [\n          /* @__PURE__ */ jsx(\n            \"img\",\n            {\n              src: pkg.image,\n              alt: pkg.title,\n              className: `visit-cards-img ${pkg.orientation}`\n            }\n          ),\n          /* @__PURE__ */ jsx(\"div\", { className: \"visit-cards-overlay\" }),\n          /* @__PURE__ */ jsx(\"div\", { className: \"visit-card-content\", children: /* @__PURE__ */ jsx(\"h2\", { children: pkg.title }) })\n        ] })\n      },\n      pkg.id\n    )) }) })\n  ] });\n};\nexport default RegularPackages;\n",
-      "start": 1751470574817,
-      "end": 1751470578582,
+      "start": 1751851851051,
+      "end": 1751851852917,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751470578582,
-      "end": 1751470578582,
+      "start": 1751851852917,
+      "end": 1751851852917,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751470578582,
-      "end": 1751470578582,
+      "start": 1751851852917,
+      "end": 1751851852917,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751470578582,
-      "end": 1751470578582,
+      "start": 1751851852917,
+      "end": 1751851852917,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751470578582,
-      "end": 1751470578582,
+      "start": 1751851852917,
+      "end": 1751851852917,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751470578582,
-      "end": 1751470578582,
+      "start": 1751851852917,
+      "end": 1751851852917,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751470578582,
-      "end": 1751470578582,
+      "start": 1751851852917,
+      "end": 1751851852917,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751470578582,
-      "end": 1751470578582,
+      "start": 1751851852917,
+      "end": 1751851852917,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751470578582,
-      "end": 1751470578583,
+      "start": 1751851852917,
+      "end": 1751851852918,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751470578583,
-      "end": 1751470578583,
+      "start": 1751851852918,
+      "end": 1751851852918,
       "order": "normal"
     }
   ]

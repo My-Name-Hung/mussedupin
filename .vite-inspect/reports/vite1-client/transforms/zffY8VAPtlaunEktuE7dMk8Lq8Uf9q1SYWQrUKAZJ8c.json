@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React, { useEffect, useRef, useState } from \"react\";\n\nconst OptimizedImage = ({\n  src,\n  alt,\n  className = \"\",\n  width,\n  height,\n  priority = false,\n  sizes = \"100vw\",\n  loading = \"lazy\",\n  onLoad,\n  onError,\n  style = {},\n  ...props\n}) => {\n  const [isLoaded, setIsLoaded] = useState(false);\n  const [isError, setIsError] = useState(false);\n  const [isInView, setIsInView] = useState(priority);\n  const imgRef = useRef(null);\n  const placeholderRef = useRef(null);\n\n  // Intersection Observer for lazy loading\n  useEffect(() => {\n    if (priority || isInView) return;\n\n    const observer = new IntersectionObserver(\n      (entries) => {\n        const [entry] = entries;\n        if (entry.isIntersecting) {\n          setIsInView(true);\n          observer.disconnect();\n        }\n      },\n      {\n        threshold: 0.1,\n        rootMargin: \"50px 0px\",\n      }\n    );\n\n    if (placeholderRef.current) {\n      observer.observe(placeholderRef.current);\n    }\n\n    return () => observer.disconnect();\n  }, [priority, isInView]);\n\n  const handleLoad = () => {\n    setIsLoaded(true);\n    onLoad?.();\n  };\n\n  const handleError = () => {\n    setIsError(true);\n    onError?.();\n  };\n\n  return (\n    <div\n      ref={placeholderRef}\n      className={`optimized-image-container ${className}`}\n      style={{\n        position: \"relative\",\n        overflow: \"hidden\",\n        backgroundColor: \"#f0f0f0\",\n        ...style,\n        ...(width && height && { aspectRatio: `${width} / ${height}` }),\n      }}\n      {...props}\n    >\n      {/* Main image */}\n      {(priority || isInView) && (\n        <picture>\n          {/* WebP source */}\n          <source srcSet={src} sizes={sizes} type=\"image/webp\" />\n\n          {/* Fallback source */}\n          <source srcSet={src} sizes={sizes} type=\"image/jpeg\" />\n\n          <img\n            ref={imgRef}\n            src={src}\n            alt={alt}\n            width={width}\n            height={height}\n            loading={priority ? \"eager\" : loading}\n            decoding=\"async\"\n            onLoad={handleLoad}\n            onError={handleError}\n            style={{\n              position: \"absolute\",\n              top: 0,\n              left: 0,\n              width: \"100%\",\n              height: \"100%\",\n              objectFit: \"cover\",\n              transition: \"opacity 0.3s ease\",\n              opacity: isLoaded ? 1 : 0,\n              transform: \"translateZ(0)\", // Force hardware acceleration\n            }}\n          />\n        </picture>\n      )}\n\n      {/* Loading indicator */}\n      {!isLoaded && !isError && (priority || isInView) && (\n        <div\n          className=\"image-loading\"\n          style={{\n            position: \"absolute\",\n            top: \"50%\",\n            left: \"50%\",\n            transform: \"translate(-50%, -50%)\",\n            width: \"40px\",\n            height: \"40px\",\n            border: \"3px solid #f3f3f3\",\n            borderTop: \"3px solid #b38741\",\n            borderRadius: \"50%\",\n            animation: \"spin 1s linear infinite\",\n          }}\n        />\n      )}\n\n      {/* Error state */}\n      {isError && (\n        <div\n          className=\"image-error\"\n          style={{\n            position: \"absolute\",\n            top: \"50%\",\n            left: \"50%\",\n            transform: \"translate(-50%, -50%)\",\n            textAlign: \"center\",\n            color: \"#666\",\n            fontSize: \"14px\",\n          }}\n        >\n          ⚠️ Failed to load image\n        </div>\n      )}\n\n      <style>{`\n        @keyframes spin {\n          0% {\n            transform: translate(-50%, -50%) rotate(0deg);\n          }\n          100% {\n            transform: translate(-50%, -50%) rotate(360deg);\n          }\n        }\n      `}</style>\n    </div>\n  );\n};\n\nexport default OptimizedImage;\n",
-      "start": 1751470578581,
-      "end": 1751470579897,
+      "start": 1751851854161,
+      "end": 1751851855830,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751470579897,
-      "end": 1751470579897,
+      "start": 1751851855830,
+      "end": 1751851855830,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect, useRef, useState } from \"react\";\nconst OptimizedImage = ({\n  src,\n  alt,\n  className = \"\",\n  width,\n  height,\n  priority = false,\n  sizes = \"100vw\",\n  loading = \"lazy\",\n  onLoad,\n  onError,\n  style = {},\n  ...props\n}) => {\n  const [isLoaded, setIsLoaded] = useState(false);\n  const [isError, setIsError] = useState(false);\n  const [isInView, setIsInView] = useState(priority);\n  const imgRef = useRef(null);\n  const placeholderRef = useRef(null);\n  useEffect(() => {\n    if (priority || isInView) return;\n    const observer = new IntersectionObserver(\n      (entries) => {\n        const [entry] = entries;\n        if (entry.isIntersecting) {\n          setIsInView(true);\n          observer.disconnect();\n        }\n      },\n      {\n        threshold: 0.1,\n        rootMargin: \"50px 0px\"\n      }\n    );\n    if (placeholderRef.current) {\n      observer.observe(placeholderRef.current);\n    }\n    return () => observer.disconnect();\n  }, [priority, isInView]);\n  const handleLoad = () => {\n    setIsLoaded(true);\n    onLoad?.();\n  };\n  const handleError = () => {\n    setIsError(true);\n    onError?.();\n  };\n  return /* @__PURE__ */ jsxs(\n    \"div\",\n    {\n      ref: placeholderRef,\n      className: `optimized-image-container ${className}`,\n      style: {\n        position: \"relative\",\n        overflow: \"hidden\",\n        backgroundColor: \"#f0f0f0\",\n        ...style,\n        ...width && height && { aspectRatio: `${width} / ${height}` }\n      },\n      ...props,\n      children: [\n        (priority || isInView) && /* @__PURE__ */ jsxs(\"picture\", { children: [\n          /* @__PURE__ */ jsx(\"source\", { srcSet: src, sizes, type: \"image/webp\" }),\n          /* @__PURE__ */ jsx(\"source\", { srcSet: src, sizes, type: \"image/jpeg\" }),\n          /* @__PURE__ */ jsx(\n            \"img\",\n            {\n              ref: imgRef,\n              src,\n              alt,\n              width,\n              height,\n              loading: priority ? \"eager\" : loading,\n              decoding: \"async\",\n              onLoad: handleLoad,\n              onError: handleError,\n              style: {\n                position: \"absolute\",\n                top: 0,\n                left: 0,\n                width: \"100%\",\n                height: \"100%\",\n                objectFit: \"cover\",\n                transition: \"opacity 0.3s ease\",\n                opacity: isLoaded ? 1 : 0,\n                transform: \"translateZ(0)\"\n                // Force hardware acceleration\n              }\n            }\n          )\n        ] }),\n        !isLoaded && !isError && (priority || isInView) && /* @__PURE__ */ jsx(\n          \"div\",\n          {\n            className: \"image-loading\",\n            style: {\n              position: \"absolute\",\n              top: \"50%\",\n              left: \"50%\",\n              transform: \"translate(-50%, -50%)\",\n              width: \"40px\",\n              height: \"40px\",\n              border: \"3px solid #f3f3f3\",\n              borderTop: \"3px solid #b38741\",\n              borderRadius: \"50%\",\n              animation: \"spin 1s linear infinite\"\n            }\n          }\n        ),\n        isError && /* @__PURE__ */ jsx(\n          \"div\",\n          {\n            className: \"image-error\",\n            style: {\n              position: \"absolute\",\n              top: \"50%\",\n              left: \"50%\",\n              transform: \"translate(-50%, -50%)\",\n              textAlign: \"center\",\n              color: \"#666\",\n              fontSize: \"14px\"\n            },\n            children: \"⚠️ Failed to load image\"\n          }\n        ),\n        /* @__PURE__ */ jsx(\"style\", { children: `\n        @keyframes spin {\n          0% {\n            transform: translate(-50%, -50%) rotate(0deg);\n          }\n          100% {\n            transform: translate(-50%, -50%) rotate(360deg);\n          }\n        }\n      ` })\n      ]\n    }\n  );\n};\nexport default OptimizedImage;\n",
-      "start": 1751470579897,
-      "end": 1751470580028,
+      "start": 1751851855830,
+      "end": 1751851856016,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751470580029,
-      "end": 1751470580029,
+      "start": 1751851856016,
+      "end": 1751851856016,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751470580029,
-      "end": 1751470580029,
+      "start": 1751851856016,
+      "end": 1751851856016,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751470580029,
-      "end": 1751470580029,
+      "start": 1751851856016,
+      "end": 1751851856016,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751470580030,
-      "end": 1751470580030,
+      "start": 1751851856016,
+      "end": 1751851856016,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751470580030,
-      "end": 1751470580030,
+      "start": 1751851856016,
+      "end": 1751851856016,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751470580031,
-      "end": 1751470580031,
+      "start": 1751851856017,
+      "end": 1751851856017,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751470580031,
-      "end": 1751470580031,
+      "start": 1751851856017,
+      "end": 1751851856017,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751470580031,
-      "end": 1751470580031,
+      "start": 1751851856017,
+      "end": 1751851856017,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751470580031,
-      "end": 1751470580031,
+      "start": 1751851856017,
+      "end": 1751851856017,
       "order": "normal"
     }
   ]

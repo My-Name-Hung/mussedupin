@@ -266,7 +266,7 @@ const collectionData = {
       artworks: [
         {
           id: "phuctang-1",
-          title: "Thông 2",
+          title: "Phức tầng",
           artist: "Musée Du Pin",
           year: "2024",
           image: "Thông 2.webp",
@@ -996,10 +996,6 @@ const CategoryPage = () => {
             {/* Info section with white background */}
             {allModalImages[currentImageIndex] && (
               <div className="modal-info-section">
-                <div className="modal-title-main">
-                  {allModalImages[currentImageIndex].title}
-                </div>
-
                 <div className="modal-metadata-grid">
                   <div className="modal-meta-item">
                     <div className="modal-meta-label">TÁC GIẢ</div>

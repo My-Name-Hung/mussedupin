@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\nimport \"./Loading.css\";\n\nconst Loading = ({ progress, priorityDone, children }) => {\n  return (\n    <div className={`loading-screen ${priorityDone ? \"priority-loaded\" : \"\"}`}>\n      <div className=\"loading-content\">\n        <div className=\"logo-container\">\n          <img\n            src=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784841/logo/icon.png\"\n            alt=\"Musée Du Pin Logo\"\n            className=\"loading-logo\"\n            fetchPriority=\"high\"\n            onError={(e) => {\n              console.error(\"Error loading logo:\", e);\n              e.target.style.display = \"none\";\n            }}\n          />\n        </div>\n        <h1 className=\"loading-title\">Musée Du Pin</h1>\n        <div className=\"loading-bar-container\">\n          <div\n            className=\"loading-bar\"\n            style={{\n              width: `${progress}%`,\n              transition: priorityDone ? \"width 0.3s ease-out\" : \"none\",\n            }}\n          ></div>\n        </div>\n        <div className=\"loading-text\">\n          {priorityDone ? (\n            <span>Đang tải nội dung bổ sung ({progress}%)</span>\n          ) : (\n            <span>Đang tải nội dung chính ({progress}%)</span>\n          )}\n        </div>\n      </div>\n\n      {/* Render children in background when priority content is loaded */}\n      <div\n        className={`loading-background-content ${\n          priorityDone ? \"visible\" : \"\"\n        }`}\n      >\n        {priorityDone && children}\n      </div>\n    </div>\n  );\n};\n\nexport default Loading;\n",
-      "start": 1751470574359,
-      "end": 1751470574998,
+      "start": 1751851850865,
+      "end": 1751851851292,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751470574998,
-      "end": 1751470574998,
+      "start": 1751851851292,
+      "end": 1751851851292,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport \"./Loading.css\";\nconst Loading = ({ progress, priorityDone, children }) => {\n  return /* @__PURE__ */ jsxs(\"div\", { className: `loading-screen ${priorityDone ? \"priority-loaded\" : \"\"}`, children: [\n    /* @__PURE__ */ jsxs(\"div\", { className: \"loading-content\", children: [\n      /* @__PURE__ */ jsx(\"div\", { className: \"logo-container\", children: /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784841/logo/icon.png\",\n          alt: \"Musée Du Pin Logo\",\n          className: \"loading-logo\",\n          fetchPriority: \"high\",\n          onError: (e) => {\n            console.error(\"Error loading logo:\", e);\n            e.target.style.display = \"none\";\n          }\n        }\n      ) }),\n      /* @__PURE__ */ jsx(\"h1\", { className: \"loading-title\", children: \"Musée Du Pin\" }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"loading-bar-container\", children: /* @__PURE__ */ jsx(\n        \"div\",\n        {\n          className: \"loading-bar\",\n          style: {\n            width: `${progress}%`,\n            transition: priorityDone ? \"width 0.3s ease-out\" : \"none\"\n          }\n        }\n      ) }),\n      /* @__PURE__ */ jsx(\"div\", { className: \"loading-text\", children: priorityDone ? /* @__PURE__ */ jsxs(\"span\", { children: [\n        \"Đang tải nội dung bổ sung (\",\n        progress,\n        \"%)\"\n      ] }) : /* @__PURE__ */ jsxs(\"span\", { children: [\n        \"Đang tải nội dung chính (\",\n        progress,\n        \"%)\"\n      ] }) })\n    ] }),\n    /* @__PURE__ */ jsx(\n      \"div\",\n      {\n        className: `loading-background-content ${priorityDone ? \"visible\" : \"\"}`,\n        children: priorityDone && children\n      }\n    )\n  ] });\n};\nexport default Loading;\n",
-      "start": 1751470574998,
-      "end": 1751470578591,
+      "start": 1751851851292,
+      "end": 1751851853114,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751470578592,
-      "end": 1751470578592,
+      "start": 1751851853114,
+      "end": 1751851853114,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751470578592,
-      "end": 1751470578592,
+      "start": 1751851853114,
+      "end": 1751851853114,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751470578592,
-      "end": 1751470578592,
+      "start": 1751851853114,
+      "end": 1751851853114,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751470578592,
-      "end": 1751470578592,
+      "start": 1751851853115,
+      "end": 1751851853115,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751470578592,
-      "end": 1751470578592,
+      "start": 1751851853115,
+      "end": 1751851853115,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751470578592,
-      "end": 1751470578592,
+      "start": 1751851853118,
+      "end": 1751851853118,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751470578592,
-      "end": 1751470578592,
+      "start": 1751851853119,
+      "end": 1751851853119,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751470578593,
-      "end": 1751470578595,
+      "start": 1751851853119,
+      "end": 1751851853119,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751470578595,
-      "end": 1751470578595,
+      "start": 1751851853119,
+      "end": 1751851853119,
       "order": "normal"
     }
   ]

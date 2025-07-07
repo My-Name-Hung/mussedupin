@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\nimport { useNavigate } from \"react-router-dom\";\nimport \"./TheAcoustic.css\";\n\nconst cards = [\n  {\n    id: \"pind-amour\",\n    title: \"Khán phòng Pin d'amour\",\n    description: \"Khi âm thanh trở thành một tác phẩm nghệ thuật.\",\n    image:\n      \"https://ik.imagekit.io/8u8lkoqkkm/PinD'amour6.jpg?updatedAt=1750001274965\",\n  },\n  {\n    id: \"high-end\",\n    title: \"Phòng nghe High-end\",\n    description:\n      \"Nơi âm thanh được tái hiện với độ trung thực đến mức khiến bạn có cảm giác mình đang ngồi ngay trên sân khấu, đối diện với ca sĩ thật.\",\n    image:\n      \"https://ik.imagekit.io/8u8lkoqkkm/hi-end3.jpg?updatedAt=1750989597877\",\n  },\n];\n\nconst TheAcoustic = () => {\n  const navigate = useNavigate();\n\n  const handleCardClick = (cardId) => {\n    navigate(`/the-acoustic/${cardId}`);\n  };\n\n  return (\n    <div className=\"theacoustic-container\">\n      <div className=\"theacoustic-hero\">\n        <img\n          src=\"https://ik.imagekit.io/8u8lkoqkkm/af7c0677fb7d4f23166c.jpg?updatedAt=1749174581167\"\n          alt=\"Khuôn viên bảo tàng\"\n          className=\"theacoustic-hero-img\"\n        />\n        <div className=\"theacoustic-hero-overlay\" />\n        <div className=\"theacoustic-hero-content\">\n          <h1>ÂM THANH ĐẸP</h1>\n          <p></p>\n        </div>\n      </div>\n      <div className=\"theacoustic-cards\">\n        {cards.map((card, idx) => (\n          <div\n            className=\"theacoustic-card\"\n            key={idx}\n            onClick={() => handleCardClick(card.id)}\n          >\n            <div className=\"theacoustic-card-img-wrap\">\n              <img\n                src={card.image}\n                alt={card.title}\n                className=\"thetaste-card-img\"\n              />\n              <div className=\"theacoustic-card-overlay\" />\n              <div className=\"theacoustic-card-content\">\n                <h2>{card.title}</h2>\n                <p>{card.description}</p>\n              </div>\n            </div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n};\n\nexport default TheAcoustic;\n",
-      "start": 1751470574158,
-      "end": 1751470574358,
+      "start": 1751851850586,
+      "end": 1751851850830,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751470574358,
-      "end": 1751470574358,
+      "start": 1751851850830,
+      "end": 1751851850830,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { useNavigate } from \"react-router-dom\";\nimport \"./TheAcoustic.css\";\nconst cards = [\n  {\n    id: \"pind-amour\",\n    title: \"Khán phòng Pin d'amour\",\n    description: \"Khi âm thanh trở thành một tác phẩm nghệ thuật.\",\n    image: \"https://ik.imagekit.io/8u8lkoqkkm/PinD'amour6.jpg?updatedAt=1750001274965\"\n  },\n  {\n    id: \"high-end\",\n    title: \"Phòng nghe High-end\",\n    description: \"Nơi âm thanh được tái hiện với độ trung thực đến mức khiến bạn có cảm giác mình đang ngồi ngay trên sân khấu, đối diện với ca sĩ thật.\",\n    image: \"https://ik.imagekit.io/8u8lkoqkkm/hi-end3.jpg?updatedAt=1750989597877\"\n  }\n];\nconst TheAcoustic = () => {\n  const navigate = useNavigate();\n  const handleCardClick = (cardId) => {\n    navigate(`/the-acoustic/${cardId}`);\n  };\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"theacoustic-container\", children: [\n    /* @__PURE__ */ jsxs(\"div\", { className: \"theacoustic-hero\", children: [\n      /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: \"https://ik.imagekit.io/8u8lkoqkkm/af7c0677fb7d4f23166c.jpg?updatedAt=1749174581167\",\n          alt: \"Khuôn viên bảo tàng\",\n          className: \"theacoustic-hero-img\"\n        }\n      ),\n      /* @__PURE__ */ jsx(\"div\", { className: \"theacoustic-hero-overlay\" }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"theacoustic-hero-content\", children: [\n        /* @__PURE__ */ jsx(\"h1\", { children: \"ÂM THANH ĐẸP\" }),\n        /* @__PURE__ */ jsx(\"p\", {})\n      ] })\n    ] }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"theacoustic-cards\", children: cards.map((card, idx) => /* @__PURE__ */ jsx(\n      \"div\",\n      {\n        className: \"theacoustic-card\",\n        onClick: () => handleCardClick(card.id),\n        children: /* @__PURE__ */ jsxs(\"div\", { className: \"theacoustic-card-img-wrap\", children: [\n          /* @__PURE__ */ jsx(\n            \"img\",\n            {\n              src: card.image,\n              alt: card.title,\n              className: \"thetaste-card-img\"\n            }\n          ),\n          /* @__PURE__ */ jsx(\"div\", { className: \"theacoustic-card-overlay\" }),\n          /* @__PURE__ */ jsxs(\"div\", { className: \"theacoustic-card-content\", children: [\n            /* @__PURE__ */ jsx(\"h2\", { children: card.title }),\n            /* @__PURE__ */ jsx(\"p\", { children: card.description })\n          ] })\n        ] })\n      },\n      idx\n    )) })\n  ] });\n};\nexport default TheAcoustic;\n",
-      "start": 1751470574358,
-      "end": 1751470576106,
+      "start": 1751851850830,
+      "end": 1751851852395,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751470576107,
-      "end": 1751470576107,
+      "start": 1751851852395,
+      "end": 1751851852395,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751470576107,
-      "end": 1751470576107,
+      "start": 1751851852395,
+      "end": 1751851852395,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751470576107,
-      "end": 1751470576107,
+      "start": 1751851852395,
+      "end": 1751851852395,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751470576107,
-      "end": 1751470576107,
+      "start": 1751851852395,
+      "end": 1751851852396,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751470576107,
-      "end": 1751470576107,
+      "start": 1751851852396,
+      "end": 1751851852396,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751470576107,
-      "end": 1751470576107,
+      "start": 1751851852396,
+      "end": 1751851852396,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751470576107,
-      "end": 1751470576107,
+      "start": 1751851852396,
+      "end": 1751851852396,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751470576107,
-      "end": 1751470576108,
+      "start": 1751851852396,
+      "end": 1751851852396,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751470576108,
-      "end": 1751470576108,
+      "start": 1751851852397,
+      "end": 1751851852410,
       "order": "normal"
     }
   ]

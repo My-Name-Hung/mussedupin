@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "/* Remove Google Fonts imports and use local fonts */\n/* Hero Container Styles */\n.hero-container-home {\n  width: 100%;\n  position: relative;\n  overflow: hidden;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.hero-image-container-home {\n  width: 100vw;\n  height: 100vh;\n  position: relative;\n  overflow: hidden;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n}\n\n.hero-video-home {\n  width: 100%;\n  height: 100%;\n  object-fit: cover;\n  object-position: center;\n  display: block;\n  background: #000;\n  opacity: 1;\n  transition: opacity 1.5s ease;\n  position: absolute;\n  top: 0;\n  left: 0;\n}\n\n.hero-video-home.loaded {\n  opacity: 1;\n}\n\n/* Hero Content Styles */\n.hero-content-home {\n  position: absolute;\n  top: 50%;\n  left: 50%;\n  transform: translate(-50%, -50%);\n  z-index: 3;\n  color: #fff;\n  text-align: center;\n  width: 100%;\n  max-width: 900px;\n}\n\n/* Custom font loading */\n@font-face {\n  font-family: \"LouvreSerif\";\n  src: url(\"../../assets/fonts/louvreserif/400/latin.woff2\") format(\"woff2\");\n  font-weight: 400;\n  font-style: normal;\n  font-display: swap;\n}\n\n@font-face {\n  font-family: \"Montserrat\";\n  src: url(\"../../assets/fonts/montserrat/600/latin.woff2\") format(\"woff2\");\n  font-weight: 600;\n  font-style: normal;\n  font-display: swap;\n}\n\n@font-face {\n  font-family: \"Roboto\";\n  src: url(\"../../assets/fonts/roboto/400/latin.woff2\") format(\"woff2\");\n  font-weight: 400;\n  font-style: normal;\n  font-display: swap;\n}\n\n@font-face {\n  font-family: \"Roboto\";\n  src: url(\"../../assets/fonts/roboto/500/latin.woff2\") format(\"woff2\");\n  font-weight: 500;\n  font-style: normal;\n  font-display: swap;\n}\n\n@font-face {\n  font-family: \"Mythical-Prince\";\n  src: url(\"../../../assets/museedupin/1FTV-VIP-Mythical-Prince.otf\")\n    format(\"opentype\");\n  font-weight: 400;\n  font-style: normal;\n  font-display: swap;\n}\n\n.hero-title-home {\n  font-family: \"Mythical-Prince\", \"LouvreSerif\", Georgia, \"Times New Roman\",\n    serif;\n  font-size: 5rem;\n  font-weight: 600;\n  line-height: 1.1;\n  margin-bottom: 0.5rem;\n  max-width: 850px;\n  z-index: 2;\n  position: relative;\n  color: #ffffff;\n}\n\n/* Apply Vietnamese font when in Vietnamese language */\n\n/* Mobile controller for prepare your visit */\n.mobile-hero-controller {\n  display: none;\n  position: fixed;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  background-color: #000;\n  color: white;\n  z-index: 100;\n  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);\n}\n\n.mobile-prepare-visit {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 18px 20px;\n  font-family: \"Montserrat\", Arial, sans-serif;\n  font-weight: 600;\n  font-size: 14px;\n  background-color: #2c2f11;\n  cursor: pointer;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n}\n\n.prepare-visit-arrow {\n  transition: transform 0.3s ease;\n}\n\n/* Info Panel Styles */\n.hero-info-panel {\n  position: absolute;\n  width: 55%;\n  bottom: -20px;\n  right: 0;\n  background-color: #2c2f11;\n  color: white;\n  padding: 0;\n  z-index: 10;\n  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);\n  margin: 0;\n}\n\n.info-panel-content {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  max-width: 1280px;\n  margin: 0 auto;\n  background-color: #2c2f11;\n  padding: 20px;\n}\n\n.info-panel-left {\n  flex: 1;\n}\n\n.info-panel-titles {\n  font-family: \"Montserrat\", Arial, sans-serif;\n  font-size: 18px;\n  color: #fff;\n  font-weight: 600;\n  margin: 0 0 10px 0;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n}\n\n.info-panel-status {\n  font-family: \"Roboto\", Arial, sans-serif;\n  font-size: 14px;\n  font-weight: 400;\n  margin: 0 0 5px 0;\n  color: rgba(255, 255, 255, 0.8);\n}\n\n.info-panel-hours {\n  font-family: \"Montserrat\", Arial, sans-serif;\n  font-size: 16px;\n  font-weight: 600;\n  margin: 0;\n  display: flex;\n  align-items: center;\n}\n\n.hours-arrow {\n  margin: 0 8px;\n  display: flex;\n  align-items: center;\n}\n\n.info-panel-separator {\n  width: 1px;\n  height: 100px;\n  background-color: rgba(255, 255, 255, 0.2);\n  margin: 0 30px;\n}\n\n.info-panel-right {\n  display: flex;\n  flex-direction: column;\n  gap: 15px;\n}\n\n.info-panel-button {\n  padding: 12px 25px;\n  border-radius: 30px;\n  font-family: \"Roboto\", Arial, sans-serif;\n  font-size: 14px;\n  font-weight: 500;\n  text-align: center;\n  transition: all 0.3s ease;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n  width: 200px;\n}\n.info-panel-button:hover {\n  text-decoration: underline;\n}\n\n.btn-primary {\n  background-color: #00695c;\n  color: white;\n  border: none;\n}\n\n.btn-primary:hover {\n  background-color: #00897b;\n}\n\n.btn-secondary {\n  background-color: #ffffff;\n  color: #000000;\n  border: 1px solid rgba(255, 255, 255, 0.7);\n}\n\n.button-icon {\n  margin-right: 10px;\n}\n\n/* Media Queries for Responsiveness */\n@media (max-width: 1200px) {\n  .hero-content {\n    width: 60%;\n  }\n}\n\n@media (max-width: 992px) {\n  .hero-content {\n    width: 70%;\n    bottom: 35%;\n  }\n\n  .hero-title {\n    font-size: 40px;\n    line-height: 48px;\n  }\n}\n\n@media (min-width: 769px) {\n  .hero-container-home {\n    height: 80vh;\n  }\n  .hero-info-panel {\n    position: absolute;\n    width: 55%;\n    display: block;\n    bottom: calc(835vh + 45px);\n    left: 570px;\n    background-color: #2c2f11;\n    color: white;\n    padding: 0;\n    z-index: 10;\n    box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);\n    margin: 0;\n  }\n\n  .info-panel-content {\n    display: flex;\n    justify-content: space-between;\n    align-items: center;\n    max-width: 1280px;\n    margin: 0 auto;\n    background-color: #2c2f11;\n    padding: 20px;\n  }\n\n  .info-panel-left {\n    flex: 1;\n  }\n\n  .info-panel-titles {\n    font-family: \"Montserrat\", Arial, sans-serif;\n    font-size: 18px;\n    color: #fff;\n    font-weight: 600;\n    margin: 0 0 10px 0;\n    text-transform: uppercase;\n    letter-spacing: 1px;\n  }\n\n  .info-panel-status {\n    font-family: \"Roboto\", Arial, sans-serif;\n    font-size: 14px;\n    font-weight: 400;\n    margin: 0 0 5px 0;\n    color: rgba(255, 255, 255, 0.8);\n  }\n\n  .info-panel-hours {\n    font-family: \"Montserrat\", Arial, sans-serif;\n    font-size: 16px;\n    font-weight: 600;\n    margin: 0;\n    display: flex;\n    align-items: center;\n  }\n\n  .hours-arrow {\n    margin: 0 8px;\n    display: flex;\n    align-items: center;\n  }\n\n  .info-panel-separator {\n    width: 1px;\n    height: 100px;\n    background-color: rgba(255, 255, 255, 0.2);\n    margin: 0 30px;\n  }\n\n  .info-panel-right {\n    display: flex;\n    flex-direction: column;\n    gap: 15px;\n  }\n\n  .info-panel-button {\n    padding: 12px 25px;\n    border-radius: 30px;\n    font-family: \"Roboto\", Arial, sans-serif;\n    font-size: 14px;\n    font-weight: 500;\n    text-align: center;\n    transition: all 0.3s ease;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    cursor: pointer;\n    width: 200px;\n  }\n  .info-panel-button:hover {\n    text-decoration: underline;\n  }\n}\n\n@media (max-width: 768px) {\n  .hero-content {\n    left: 5%;\n    width: 90%;\n    bottom: 40%;\n  }\n  .hero-container-home {\n    height: 30vh;\n  }\n  .hero-title {\n    font-size: 30px;\n    line-height: 38px;\n  }\n\n  /* Show mobile controller and adjust panel */\n  .mobile-hero-controller {\n    display: block;\n  }\n\n  .hero-info-panel {\n    position: fixed;\n    width: 100%;\n    height: auto;\n    bottom: 56px; /* Higher than mobile-hero-controller */\n    right: 0;\n    left: 0;\n    background-color: #1a1a1a;\n    transform: translateY(100%);\n    transition: transform 0.3s ease;\n    z-index: 99;\n  }\n\n  .hero-info-panel.open {\n    transform: translateY(0);\n  }\n\n  .info-panel-content {\n    flex-direction: column;\n    align-items: flex-start;\n    padding: 20px;\n  }\n\n  .info-panel-separator {\n    width: 100%;\n    height: 1px;\n    margin: 20px 0;\n  }\n\n  .info-panel-right {\n    margin-top: 20px;\n    width: 100%;\n  }\n\n  .info-panel-button {\n    width: 100%;\n  }\n}\n\n@media (max-width: 576px) {\n  .hero-content {\n    bottom: 30%;\n  }\n\n  .hero-title {\n    font-size: 2.7rem;\n    line-height: 40px;\n    letter-spacing: 1px;\n  }\n\n  .info-panel-titles {\n    font-size: 16px;\n  }\n\n  .info-panel-status {\n    font-size: 13px;\n  }\n\n  .info-panel-hours {\n    font-size: 14px;\n  }\n\n  .info-panel-button {\n    padding: 10px 20px;\n    font-size: 13px;\n  }\n}\n\n/* Extra small devices */\n@media (max-width: 375px) {\n  .hero-title {\n    font-size: 22px;\n    line-height: 28px;\n  }\n\n  .info-panel-content {\n    padding: 15px;\n  }\n\n  .info-panel-separator {\n    margin: 15px 0;\n  }\n\n  .info-panel-button {\n    padding: 8px 16px;\n  }\n}\n\n/* End of Hero CSS */\n",
-      "start": 1751470578380,
-      "end": 1751470579821,
+      "start": 1751851853791,
+      "end": 1751851855766,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751470579821,
-      "end": 1751470579821,
+      "start": 1751851855766,
+      "end": 1751851855766,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751470579836,
-      "end": 1751470579836,
+      "start": 1751851855823,
+      "end": 1751851855823,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751470579836,
-      "end": 1751470579836,
+      "start": 1751851855823,
+      "end": 1751851855823,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751470579836,
-      "end": 1751470579836,
+      "start": 1751851855823,
+      "end": 1751851855823,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751470579836,
-      "end": 1751470579836,
+      "start": 1751851855824,
+      "end": 1751851855824,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751470579836,
-      "end": 1751470579836,
+      "start": 1751851855824,
+      "end": 1751851855824,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751470579836,
-      "end": 1751470579836,
+      "start": 1751851855824,
+      "end": 1751851855824,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751470579836,
-      "end": 1751470579836,
+      "start": 1751851855824,
+      "end": 1751851855824,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751470579836,
-      "end": 1751470579836,
+      "start": 1751851855824,
+      "end": 1751851855824,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751470579836,
-      "end": 1751470579837,
+      "start": 1751851855824,
+      "end": 1751851855824,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751470579837,
-      "end": 1751470579837,
+      "start": 1751851855824,
+      "end": 1751851855824,
       "order": "normal"
     }
   ]

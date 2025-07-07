@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { useMemo } from \"react\";\nimport useImageCache from \"./useImageCache\";\n\n// Hook to get cached asset URL or fallback to original\nexport default function useCachedAsset(assetUrl) {\n  const { getCachedUrl, isLoaded } = useImageCache();\n\n  const cachedUrl = useMemo(() => {\n    if (!assetUrl) return \"\";\n\n    // Return cached URL if available, otherwise return original\n    return getCachedUrl(assetUrl);\n  }, [assetUrl, getCachedUrl]);\n\n  const isAssetLoaded = useMemo(() => {\n    return isLoaded(assetUrl);\n  }, [assetUrl, isLoaded]);\n\n  return {\n    url: cachedUrl,\n    isLoaded: isAssetLoaded,\n    originalUrl: assetUrl,\n  };\n}\n",
-      "start": 1751470578705,
-      "end": 1751470579933,
+      "start": 1751851855027,
+      "end": 1751851855860,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751470579933,
-      "end": 1751470579933,
+      "start": 1751851855860,
+      "end": 1751851855860,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751470579933,
-      "end": 1751470579933,
+      "start": 1751851855860,
+      "end": 1751851855860,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751470579933,
-      "end": 1751470579933,
+      "start": 1751851855860,
+      "end": 1751851855860,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751470579933,
-      "end": 1751470579933,
+      "start": 1751851855860,
+      "end": 1751851855860,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751470579933,
-      "end": 1751470579933,
+      "start": 1751851855860,
+      "end": 1751851855860,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751470579933,
-      "end": 1751470579933,
+      "start": 1751851855860,
+      "end": 1751851855860,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751470579933,
-      "end": 1751470579933,
+      "start": 1751851855860,
+      "end": 1751851855860,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751470579933,
-      "end": 1751470579933,
+      "start": 1751851855860,
+      "end": 1751851855860,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751470579933,
-      "end": 1751470579933,
+      "start": 1751851855860,
+      "end": 1751851855860,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751470579933,
-      "end": 1751470579933,
+      "start": 1751851855860,
+      "end": 1751851855860,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751470579933,
-      "end": 1751470579933,
+      "start": 1751851855860,
+      "end": 1751851855860,
       "order": "normal"
     }
   ]

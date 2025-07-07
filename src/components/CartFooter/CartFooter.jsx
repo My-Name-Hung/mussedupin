@@ -33,7 +33,7 @@ const CartFooter = ({
 
   return (
     <>
-      <div className="cart-footer">
+      <div className="cart-footers">
         <div className="cart-footer-content">
           <div className="cart-footer-left">
             <div className="selected-datetime">
@@ -46,7 +46,9 @@ const CartFooter = ({
             </div>
             <div className="total-amounts">
               <span>Tổng cộng:</span>
-              <span className="amount">{totalAmount?.toLocaleString()}đ</span>
+              <span className="amount">
+                {(totalAmount || 0).toLocaleString()}đ
+              </span>
             </div>
           </div>
 

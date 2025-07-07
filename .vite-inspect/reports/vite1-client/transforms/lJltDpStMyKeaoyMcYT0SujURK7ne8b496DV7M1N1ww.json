@@ -1,0 +1,80 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/node_modules/.vite/deps/prop-types.js",
+  "transforms": [
+    {
+      "name": "vite:optimized-deps",
+      "result": "import {\n  require_prop_types\n} from \"./chunk-I75CAUM2.js\";\nimport \"./chunk-GTTWYQZT.js\";\nimport \"./chunk-PLDDJCW6.js\";\nexport default require_prop_types();\n",
+      "start": 1751856185707,
+      "end": 1751856185708,
+      "sourcemaps": null
+    },
+    {
+      "name": "vite:react-babel",
+      "start": 1751856185708,
+      "end": 1751856185708,
+      "order": "pre"
+    },
+    {
+      "name": "vite:esbuild",
+      "start": 1751856185708,
+      "end": 1751856185708,
+      "order": "normal"
+    },
+    {
+      "name": "vite:worker",
+      "start": 1751856185708,
+      "end": 1751856185708,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1751856185708,
+      "end": 1751856185708,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1751856185708,
+      "end": 1751856185708,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1751856185708,
+      "end": 1751856185708,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1751856185708,
+      "end": 1751856185708,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1751856185708,
+      "end": 1751856185708,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:client-inject",
+      "start": 1751856185708,
+      "end": 1751856185708,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-analysis",
+      "start": 1751856185708,
+      "end": 1751856185708,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-analysis",
+      "result": "import {\n  require_prop_types\n} from \"/node_modules/.vite/deps/chunk-I75CAUM2.js?v=a4b2f9ae\";\nimport \"/node_modules/.vite/deps/chunk-GTTWYQZT.js?v=a4b2f9ae\";\nimport \"/node_modules/.vite/deps/chunk-PLDDJCW6.js?v=a4b2f9ae\";\nexport default require_prop_types();\n",
+      "start": 1751856185708,
+      "end": 1751856185709,
+      "order": "normal",
+      "sourcemaps": null
+    }
+  ]
+}

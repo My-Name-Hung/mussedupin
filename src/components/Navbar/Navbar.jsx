@@ -739,7 +739,7 @@ const Navbar = () => {
       return (
         <div className="user-dropdown" ref={userDropdownRef}>
           <button
-            className="btn btn-outline user-btn"
+            className="btn btn-filled user-btn"
             onClick={() => setShowUserDropdown(!showUserDropdown)}
           >
             <FaUser size={16} />

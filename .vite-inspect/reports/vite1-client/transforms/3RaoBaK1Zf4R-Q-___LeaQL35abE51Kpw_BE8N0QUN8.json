@@ -2,77 +2,78 @@
   "resolvedId": "C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.css",
   "transforms": [
     {
-      "name": "vite:load-fallback",
+      "name": "__load__",
       "result": ".time-selection-container {\n  margin-top: 1rem;\n}\n\n.time-selection-container h2 {\n  margin-bottom: 1.5rem;\n  font-size: 1.5rem;\n  color: #333;\n}\n\n.time-tabs {\n  display: flex;\n  gap: 1rem;\n  margin-bottom: 2rem;\n}\n\n.tab {\n  padding: 0.8rem 1.5rem;\n  border: none;\n  background: #f0f0f0;\n  border: 1px solid #000;\n  border-radius: 6px;\n  color: #2c2f11;\n  cursor: pointer;\n  font-size: 0.9rem;\n  transition: all 0.2s;\n}\n\n.tab.active {\n  background: #2c2f11;\n  color: yellowgreen;\n}\n\n.time-slots {\n  display: grid;\n  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));\n  gap: 1rem;\n}\n\n.time-slot {\n  display: flex;\n  align-items: center;\n  gap: 0.5rem;\n  cursor: pointer;\n}\n\n.time-slot input[type=\"radio\"] {\n  display: none;\n}\n\n.time-slot span {\n  padding: 0.5rem 1rem;\n  border: 1px solid #000;\n  border-radius: 4px;\n  font-size: 0.9rem;\n  transition: all 0.2s;\n  color: #2c2f11;\n  width: 100%;\n  text-align: center;\n}\n\n.time-slot input[type=\"radio\"]:checked + span {\n  background: #2c2f11;\n  color: white;\n  border-color: white;\n}\n\n.time-slot:hover span {\n  background: #f8d7dc;\n  border-color: #e4002b;\n}\n",
-      "start": 1751338502742,
-      "end": 1751338503296,
-      "sourcemaps": null
+      "start": 1751856128954,
+      "end": 1751856128954
     },
     {
       "name": "vite:react-babel",
-      "start": 1751338503296,
-      "end": 1751338503296,
+      "start": 1751856128954,
+      "end": 1751856128954,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751338503296,
-      "end": 1751338503296,
+      "start": 1751856128955,
+      "end": 1751856128955,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751338503296,
-      "end": 1751338503296,
+      "start": 1751856128955,
+      "end": 1751856128955,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751338503296,
-      "end": 1751338503296,
-      "order": "normal-normal"
-    },
-    {
-      "name": "vite:build-html",
-      "start": 1751338503296,
-      "end": 1751338503296,
+      "start": 1751856128955,
+      "end": 1751856128955,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751338503296,
-      "end": 1751338503296,
+      "start": 1751856128955,
+      "end": 1751856128955,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751338503296,
-      "end": 1751338503296,
+      "start": 1751856128955,
+      "end": 1751856128955,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751338503296,
-      "end": 1751338503296,
+      "start": 1751856128955,
+      "end": 1751856128955,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751338503296,
-      "end": 1751338503296,
+      "start": 1751856128955,
+      "end": 1751856128955,
       "order": "normal-normal"
     },
     {
-      "name": "vite:build-import-analysis",
-      "start": 1751338503296,
-      "end": 1751338503296,
-      "order": "normal-normal"
-    },
-    {
-      "name": "vite:reporter",
-      "start": 1751338503296,
-      "end": 1751338503296,
+      "name": "vite:client-inject",
+      "start": 1751856128955,
+      "end": 1751856128955,
       "order": "normal"
+    },
+    {
+      "name": "vite:css-analysis",
+      "start": 1751856128955,
+      "end": 1751856128955,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-analysis",
+      "result": "import { createHotContext as __vite__createHotContext } from \"/@vite/client\";import.meta.hot = __vite__createHotContext(\"/src/components/TimeSelection/TimeSelection.css\");import { updateStyle as __vite__updateStyle, removeStyle as __vite__removeStyle } from \"/@vite/client\"\nconst __vite__id = \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.css\"\nconst __vite__css = \".time-selection-container {\\n  margin-top: 1rem;\\n}\\n\\n.time-selection-container h2 {\\n  margin-bottom: 1.5rem;\\n  font-size: 1.5rem;\\n  color: #333;\\n}\\n\\n.time-tabs {\\n  display: flex;\\n  gap: 1rem;\\n  margin-bottom: 2rem;\\n}\\n\\n.tab {\\n  padding: 0.8rem 1.5rem;\\n  border: none;\\n  background: #f0f0f0;\\n  border: 1px solid #000;\\n  border-radius: 6px;\\n  color: #2c2f11;\\n  cursor: pointer;\\n  font-size: 0.9rem;\\n  transition: all 0.2s;\\n}\\n\\n.tab.active {\\n  background: #2c2f11;\\n  color: yellowgreen;\\n}\\n\\n.time-slots {\\n  display: grid;\\n  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));\\n  gap: 1rem;\\n}\\n\\n.time-slot {\\n  display: flex;\\n  align-items: center;\\n  gap: 0.5rem;\\n  cursor: pointer;\\n}\\n\\n.time-slot input[type=\\\"radio\\\"] {\\n  display: none;\\n}\\n\\n.time-slot span {\\n  padding: 0.5rem 1rem;\\n  border: 1px solid #000;\\n  border-radius: 4px;\\n  font-size: 0.9rem;\\n  transition: all 0.2s;\\n  color: #2c2f11;\\n  width: 100%;\\n  text-align: center;\\n}\\n\\n.time-slot input[type=\\\"radio\\\"]:checked + span {\\n  background: #2c2f11;\\n  color: white;\\n  border-color: white;\\n}\\n\\n.time-slot:hover span {\\n  background: #f8d7dc;\\n  border-color: #e4002b;\\n}\\n\"\n__vite__updateStyle(__vite__id, __vite__css)\nimport.meta.hot.accept()\nimport.meta.hot.prune(() => __vite__removeStyle(__vite__id))",
+      "start": 1751856128955,
+      "end": 1751856128955,
+      "order": "normal",
+      "sourcemaps": null
     }
   ]
 }

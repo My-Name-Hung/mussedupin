@@ -1,0 +1,11 @@
+{
+  "name": "image-background-remover",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Batch remove background from images using remove.bg API",
+  "main": "remove-background.js",
+  "dependencies": {
+    "cloudinary": "^2.7.0",
+    "sharp": "^0.33.2"
+  }
+}

@@ -2,77 +2,78 @@
   "resolvedId": "C:/Users/.Freelancer/TICKET/src/components/Home/Hero/Hero.css",
   "transforms": [
     {
-      "name": "vite:load-fallback",
+      "name": "__load__",
       "result": "/* Remove Google Fonts imports and use local fonts */\n/* Hero Container Styles */\n.hero-container-home {\n  width: 100%;\n  height: 100vh;\n  position: relative;\n  overflow: hidden;\n}\n\n.hero-background {\n  width: 100%;\n  height: 100%;\n  background-size: cover;\n  background-position: center;\n  background-repeat: no-repeat;\n  position: relative;\n}\n\n.hero-background::after {\n  content: \"\";\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  background: linear-gradient(\n    to bottom,\n    rgba(0, 0, 0, 0.5),\n    rgba(0, 0, 0, 0.7)\n  );\n}\n\n.hero-content {\n  position: absolute;\n  margin: auto;\n  bottom: 30%;\n  right: 5%;\n  text-align: center;\n  z-index: 2;\n  width: 100%;\n}\n\n.hero-titles {\n  font-family: \"Mythical-Prince\", \"LouvreSerif\", Georgia, \"Times New Roman\",\n    serif;\n  font-size: 4rem;\n  color: #ffffff;\n  margin-bottom: 2rem;\n  margin-left: 2rem;\n  line-height: 1.2;\n  text-transform: uppercase;\n  letter-spacing: 2px;\n}\n.hero-titles-sub {\n  font-family: \"Meholrax\", serif;\n  font-size: 1.7rem;\n  color: #ffffff;\n}\n\n.book-ticket-button {\n  background: #2c2f11;\n  color: yellowgreen;\n  border: none;\n  padding: 1rem 3rem;\n  font-family: \"Roboto\", sans-serif;\n  border: 1px solid #ffffff;\n  font-size: 1.2rem;\n  border-radius: 10px;\n  width: 200px;\n  margin-left: 2rem;\n  cursor: pointer;\n  transition: all 0.3s ease;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n}\n\n.book-ticket-button:hover {\n  background: #3a3d1e;\n  transform: translateY(-2px);\n}\n\n/* Responsive styles */\n@media (max-width: 1200px) {\n  .hero-titles {\n    font-size: 3.5rem;\n  }\n}\n\n@media (max-width: 768px) {\n  .hero-titles {\n    font-size: 2.5rem;\n    margin-bottom: 1.5rem;\n  }\n\n  .book-ticket-button {\n    padding: 0.8rem 2rem;\n    font-size: 1rem;\n  }\n}\n\n@media (max-width: 480px) {\n  .hero-titles {\n    font-size: 2.5rem;\n    margin-bottom: 1rem;\n  }\n\n  .book-ticket-button {\n    padding: 0.7rem 1.8rem;\n    font-size: 0.9rem;\n  }\n}\n\n/* Custom font loading */\n@font-face {\n  font-family: \"Mythical-Prince\";\n  src: url(\"../../../assets/museedupin/1FTV-VIP-Mythical-Prince.otf\")\n    format(\"opentype\");\n  font-weight: 400;\n  font-style: normal;\n  font-display: swap;\n}\n\n@font-face {\n  font-family: \"LouvreSerif\";\n  src: url(\"../../assets/fonts/louvreserif/400/latin.woff2\") format(\"woff2\");\n  font-weight: 400;\n  font-style: normal;\n  font-display: swap;\n}\n\n@font-face {\n  font-family: \"Roboto\";\n  src: url(\"../../assets/fonts/roboto/400/latin.woff2\") format(\"woff2\");\n  font-weight: 400;\n  font-style: normal;\n  font-display: swap;\n}\n\n/* Mobile controller for prepare your visit */\n.mobile-hero-controller {\n  display: none;\n  position: fixed;\n  bottom: 0;\n  left: 0;\n  width: 100%;\n  background-color: #000;\n  color: white;\n  z-index: 100;\n  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);\n}\n\n.mobile-prepare-visit {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  padding: 18px 20px;\n  font-family: \"Montserrat\", Arial, sans-serif;\n  font-weight: 600;\n  font-size: 14px;\n  background-color: #2c2f11;\n  cursor: pointer;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n}\n\n.prepare-visit-arrow {\n  transition: transform 0.3s ease;\n}\n\n/* Info Panel Styles */\n.hero-info-panel {\n  position: absolute;\n  width: 55%;\n  bottom: -20px;\n  right: 0;\n  background-color: #2c2f11;\n  color: white;\n  padding: 0;\n  z-index: 10;\n  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);\n  margin: 0;\n}\n\n.info-panel-content {\n  display: flex;\n  justify-content: space-between;\n  align-items: center;\n  max-width: 1280px;\n  margin: 0 auto;\n  background-color: #2c2f11;\n  padding: 20px;\n}\n\n.info-panel-left {\n  flex: 1;\n}\n\n.info-panel-titles {\n  font-family: \"Montserrat\", Arial, sans-serif;\n  font-size: 18px;\n  color: #fff;\n  font-weight: 600;\n  margin: 0 0 10px 0;\n  text-transform: uppercase;\n  letter-spacing: 1px;\n}\n\n.info-panel-status {\n  font-family: \"Roboto\", Arial, sans-serif;\n  font-size: 14px;\n  font-weight: 400;\n  margin: 0 0 5px 0;\n  color: rgba(255, 255, 255, 0.8);\n}\n\n.info-panel-hours {\n  font-family: \"Montserrat\", Arial, sans-serif;\n  font-size: 16px;\n  font-weight: 600;\n  margin: 0;\n  display: flex;\n  align-items: center;\n}\n\n.hours-arrow {\n  margin: 0 8px;\n  display: flex;\n  align-items: center;\n}\n\n.info-panel-separator {\n  width: 1px;\n  height: 100px;\n  background-color: rgba(255, 255, 255, 0.2);\n  margin: 0 30px;\n}\n\n.info-panel-right {\n  display: flex;\n  flex-direction: column;\n  gap: 15px;\n}\n\n.info-panel-button {\n  padding: 12px 25px;\n  border-radius: 30px;\n  font-family: \"Roboto\", Arial, sans-serif;\n  font-size: 14px;\n  font-weight: 500;\n  text-align: center;\n  transition: all 0.3s ease;\n  display: flex;\n  align-items: center;\n  justify-content: center;\n  cursor: pointer;\n  width: 200px;\n}\n.info-panel-button:hover {\n  text-decoration: underline;\n}\n\n.btn-primary {\n  background-color: #00695c;\n  color: white;\n  border: none;\n}\n\n.btn-primary:hover {\n  background-color: #00897b;\n}\n\n.btn-secondary {\n  background-color: #ffffff;\n  color: #000000;\n  border: 1px solid rgba(255, 255, 255, 0.7);\n}\n\n.button-icon {\n  margin-right: 10px;\n}\n\n@media (max-width: 992px) {\n  .hero-titles {\n    font-size: 40px;\n    line-height: 48px;\n  }\n}\n\n@media (max-width: 768px) {\n  .hero-titles {\n    font-size: 30px;\n    line-height: 38px;\n  }\n\n  /* Show mobile controller and adjust panel */\n  .mobile-hero-controller {\n    display: block;\n  }\n\n  .hero-info-panel {\n    position: fixed;\n    width: 100%;\n    height: auto;\n    bottom: 56px; /* Higher than mobile-hero-controller */\n    right: 0;\n    left: 0;\n    background-color: #1a1a1a;\n    transform: translateY(100%);\n    transition: transform 0.3s ease;\n    z-index: 99;\n  }\n\n  .hero-info-panel.open {\n    transform: translateY(0);\n  }\n\n  .info-panel-content {\n    flex-direction: column;\n    align-items: flex-start;\n    padding: 20px;\n  }\n\n  .info-panel-separator {\n    width: 100%;\n    height: 1px;\n    margin: 20px 0;\n  }\n\n  .info-panel-right {\n    margin-top: 20px;\n    width: 100%;\n  }\n\n  .info-panel-button {\n    width: 100%;\n  }\n}\n\n@media (max-width: 576px) {\n  .hero-titles {\n    font-size: 3.2rem;\n    line-height: 68px;\n    letter-spacing: 1px;\n  }\n\n  .info-panel-titles {\n    font-size: 16px;\n  }\n\n  .info-panel-status {\n    font-size: 13px;\n  }\n\n  .info-panel-hours {\n    font-size: 14px;\n  }\n\n  .info-panel-button {\n    padding: 10px 20px;\n    font-size: 13px;\n  }\n}\n\n/* Extra small devices */\n@media (max-width: 375px) {\n  .hero-titles {\n    font-size: 22px;\n    line-height: 28px;\n  }\n\n  .info-panel-content {\n    padding: 15px;\n  }\n\n  .info-panel-separator {\n    margin: 15px 0;\n  }\n\n  .info-panel-button {\n    padding: 8px 16px;\n  }\n}\n\n/* End of Hero CSS */\n",
-      "start": 1751338502186,
-      "end": 1751338502630,
-      "sourcemaps": null
+      "start": 1751856128641,
+      "end": 1751856128641
     },
     {
       "name": "vite:react-babel",
-      "start": 1751338502630,
-      "end": 1751338502630,
+      "start": 1751856128641,
+      "end": 1751856128641,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751338502634,
-      "end": 1751338502634,
+      "start": 1751856128648,
+      "end": 1751856128648,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751338502634,
-      "end": 1751338502634,
+      "start": 1751856128648,
+      "end": 1751856128648,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751338502634,
-      "end": 1751338502634,
-      "order": "normal-normal"
-    },
-    {
-      "name": "vite:build-html",
-      "start": 1751338502634,
-      "end": 1751338502634,
+      "start": 1751856128648,
+      "end": 1751856128648,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751338502634,
-      "end": 1751338502634,
+      "start": 1751856128649,
+      "end": 1751856128649,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751338502634,
-      "end": 1751338502634,
+      "start": 1751856128649,
+      "end": 1751856128649,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751338502634,
-      "end": 1751338502634,
+      "start": 1751856128649,
+      "end": 1751856128649,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751338502634,
-      "end": 1751338502634,
+      "start": 1751856128649,
+      "end": 1751856128649,
       "order": "normal-normal"
     },
     {
-      "name": "vite:build-import-analysis",
-      "start": 1751338502634,
-      "end": 1751338502634,
-      "order": "normal-normal"
-    },
-    {
-      "name": "vite:reporter",
-      "start": 1751338502634,
-      "end": 1751338502634,
+      "name": "vite:client-inject",
+      "start": 1751856128649,
+      "end": 1751856128649,
       "order": "normal"
+    },
+    {
+      "name": "vite:css-analysis",
+      "start": 1751856128649,
+      "end": 1751856128649,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-analysis",
+      "result": "import { createHotContext as __vite__createHotContext } from \"/@vite/client\";import.meta.hot = __vite__createHotContext(\"/src/components/Home/Hero/Hero.css\");import { updateStyle as __vite__updateStyle, removeStyle as __vite__removeStyle } from \"/@vite/client\"\nconst __vite__id = \"C:/Users/.Freelancer/TICKET/src/components/Home/Hero/Hero.css\"\nconst __vite__css = \"/* Remove Google Fonts imports and use local fonts */\\n/* Hero Container Styles */\\n.hero-container-home {\\n  width: 100%;\\n  height: 100vh;\\n  position: relative;\\n  overflow: hidden;\\n}\\n\\n.hero-background {\\n  width: 100%;\\n  height: 100%;\\n  background-size: cover;\\n  background-position: center;\\n  background-repeat: no-repeat;\\n  position: relative;\\n}\\n\\n.hero-background::after {\\n  content: \\\"\\\";\\n  position: absolute;\\n  top: 0;\\n  left: 0;\\n  width: 100%;\\n  height: 100%;\\n  background: linear-gradient(\\n    to bottom,\\n    rgba(0, 0, 0, 0.5),\\n    rgba(0, 0, 0, 0.7)\\n  );\\n}\\n\\n.hero-content {\\n  position: absolute;\\n  margin: auto;\\n  bottom: 30%;\\n  right: 5%;\\n  text-align: center;\\n  z-index: 2;\\n  width: 100%;\\n}\\n\\n.hero-titles {\\n  font-family: \\\"Mythical-Prince\\\", \\\"LouvreSerif\\\", Georgia, \\\"Times New Roman\\\",\\n    serif;\\n  font-size: 4rem;\\n  color: #ffffff;\\n  margin-bottom: 2rem;\\n  margin-left: 2rem;\\n  line-height: 1.2;\\n  text-transform: uppercase;\\n  letter-spacing: 2px;\\n}\\n.hero-titles-sub {\\n  font-family: \\\"Meholrax\\\", serif;\\n  font-size: 1.7rem;\\n  color: #ffffff;\\n}\\n\\n.book-ticket-button {\\n  background: #2c2f11;\\n  color: yellowgreen;\\n  border: none;\\n  padding: 1rem 3rem;\\n  font-family: \\\"Roboto\\\", sans-serif;\\n  border: 1px solid #ffffff;\\n  font-size: 1.2rem;\\n  border-radius: 10px;\\n  width: 200px;\\n  margin-left: 2rem;\\n  cursor: pointer;\\n  transition: all 0.3s ease;\\n  text-transform: uppercase;\\n  letter-spacing: 1px;\\n}\\n\\n.book-ticket-button:hover {\\n  background: #3a3d1e;\\n  transform: translateY(-2px);\\n}\\n\\n/* Responsive styles */\\n@media (max-width: 1200px) {\\n  .hero-titles {\\n    font-size: 3.5rem;\\n  }\\n}\\n\\n@media (max-width: 768px) {\\n  .hero-titles {\\n    font-size: 2.5rem;\\n    margin-bottom: 1.5rem;\\n  }\\n\\n  .book-ticket-button {\\n    padding: 0.8rem 2rem;\\n    font-size: 1rem;\\n  }\\n}\\n\\n@media (max-width: 480px) {\\n  .hero-titles {\\n    font-size: 2.5rem;\\n    margin-bottom: 1rem;\\n  }\\n\\n  .book-ticket-button {\\n    padding: 0.7rem 1.8rem;\\n    font-size: 0.9rem;\\n  }\\n}\\n\\n/* Custom font loading */\\n@font-face {\\n  font-family: \\\"Mythical-Prince\\\";\\n  src: url(\\\"../../../assets/museedupin/1FTV-VIP-Mythical-Prince.otf\\\")\\n    format(\\\"opentype\\\");\\n  font-weight: 400;\\n  font-style: normal;\\n  font-display: swap;\\n}\\n\\n@font-face {\\n  font-family: \\\"LouvreSerif\\\";\\n  src: url(\\\"../../assets/fonts/louvreserif/400/latin.woff2\\\") format(\\\"woff2\\\");\\n  font-weight: 400;\\n  font-style: normal;\\n  font-display: swap;\\n}\\n\\n@font-face {\\n  font-family: \\\"Roboto\\\";\\n  src: url(\\\"../../assets/fonts/roboto/400/latin.woff2\\\") format(\\\"woff2\\\");\\n  font-weight: 400;\\n  font-style: normal;\\n  font-display: swap;\\n}\\n\\n/* Mobile controller for prepare your visit */\\n.mobile-hero-controller {\\n  display: none;\\n  position: fixed;\\n  bottom: 0;\\n  left: 0;\\n  width: 100%;\\n  background-color: #000;\\n  color: white;\\n  z-index: 100;\\n  box-shadow: 0 -2px 8px rgba(0, 0, 0, 0.15);\\n}\\n\\n.mobile-prepare-visit {\\n  display: flex;\\n  justify-content: space-between;\\n  align-items: center;\\n  padding: 18px 20px;\\n  font-family: \\\"Montserrat\\\", Arial, sans-serif;\\n  font-weight: 600;\\n  font-size: 14px;\\n  background-color: #2c2f11;\\n  cursor: pointer;\\n  text-transform: uppercase;\\n  letter-spacing: 1px;\\n}\\n\\n.prepare-visit-arrow {\\n  transition: transform 0.3s ease;\\n}\\n\\n/* Info Panel Styles */\\n.hero-info-panel {\\n  position: absolute;\\n  width: 55%;\\n  bottom: -20px;\\n  right: 0;\\n  background-color: #2c2f11;\\n  color: white;\\n  padding: 0;\\n  z-index: 10;\\n  box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.2);\\n  margin: 0;\\n}\\n\\n.info-panel-content {\\n  display: flex;\\n  justify-content: space-between;\\n  align-items: center;\\n  max-width: 1280px;\\n  margin: 0 auto;\\n  background-color: #2c2f11;\\n  padding: 20px;\\n}\\n\\n.info-panel-left {\\n  flex: 1;\\n}\\n\\n.info-panel-titles {\\n  font-family: \\\"Montserrat\\\", Arial, sans-serif;\\n  font-size: 18px;\\n  color: #fff;\\n  font-weight: 600;\\n  margin: 0 0 10px 0;\\n  text-transform: uppercase;\\n  letter-spacing: 1px;\\n}\\n\\n.info-panel-status {\\n  font-family: \\\"Roboto\\\", Arial, sans-serif;\\n  font-size: 14px;\\n  font-weight: 400;\\n  margin: 0 0 5px 0;\\n  color: rgba(255, 255, 255, 0.8);\\n}\\n\\n.info-panel-hours {\\n  font-family: \\\"Montserrat\\\", Arial, sans-serif;\\n  font-size: 16px;\\n  font-weight: 600;\\n  margin: 0;\\n  display: flex;\\n  align-items: center;\\n}\\n\\n.hours-arrow {\\n  margin: 0 8px;\\n  display: flex;\\n  align-items: center;\\n}\\n\\n.info-panel-separator {\\n  width: 1px;\\n  height: 100px;\\n  background-color: rgba(255, 255, 255, 0.2);\\n  margin: 0 30px;\\n}\\n\\n.info-panel-right {\\n  display: flex;\\n  flex-direction: column;\\n  gap: 15px;\\n}\\n\\n.info-panel-button {\\n  padding: 12px 25px;\\n  border-radius: 30px;\\n  font-family: \\\"Roboto\\\", Arial, sans-serif;\\n  font-size: 14px;\\n  font-weight: 500;\\n  text-align: center;\\n  transition: all 0.3s ease;\\n  display: flex;\\n  align-items: center;\\n  justify-content: center;\\n  cursor: pointer;\\n  width: 200px;\\n}\\n.info-panel-button:hover {\\n  text-decoration: underline;\\n}\\n\\n.btn-primary {\\n  background-color: #00695c;\\n  color: white;\\n  border: none;\\n}\\n\\n.btn-primary:hover {\\n  background-color: #00897b;\\n}\\n\\n.btn-secondary {\\n  background-color: #ffffff;\\n  color: #000000;\\n  border: 1px solid rgba(255, 255, 255, 0.7);\\n}\\n\\n.button-icon {\\n  margin-right: 10px;\\n}\\n\\n@media (max-width: 992px) {\\n  .hero-titles {\\n    font-size: 40px;\\n    line-height: 48px;\\n  }\\n}\\n\\n@media (max-width: 768px) {\\n  .hero-titles {\\n    font-size: 30px;\\n    line-height: 38px;\\n  }\\n\\n  /* Show mobile controller and adjust panel */\\n  .mobile-hero-controller {\\n    display: block;\\n  }\\n\\n  .hero-info-panel {\\n    position: fixed;\\n    width: 100%;\\n    height: auto;\\n    bottom: 56px; /* Higher than mobile-hero-controller */\\n    right: 0;\\n    left: 0;\\n    background-color: #1a1a1a;\\n    transform: translateY(100%);\\n    transition: transform 0.3s ease;\\n    z-index: 99;\\n  }\\n\\n  .hero-info-panel.open {\\n    transform: translateY(0);\\n  }\\n\\n  .info-panel-content {\\n    flex-direction: column;\\n    align-items: flex-start;\\n    padding: 20px;\\n  }\\n\\n  .info-panel-separator {\\n    width: 100%;\\n    height: 1px;\\n    margin: 20px 0;\\n  }\\n\\n  .info-panel-right {\\n    margin-top: 20px;\\n    width: 100%;\\n  }\\n\\n  .info-panel-button {\\n    width: 100%;\\n  }\\n}\\n\\n@media (max-width: 576px) {\\n  .hero-titles {\\n    font-size: 3.2rem;\\n    line-height: 68px;\\n    letter-spacing: 1px;\\n  }\\n\\n  .info-panel-titles {\\n    font-size: 16px;\\n  }\\n\\n  .info-panel-status {\\n    font-size: 13px;\\n  }\\n\\n  .info-panel-hours {\\n    font-size: 14px;\\n  }\\n\\n  .info-panel-button {\\n    padding: 10px 20px;\\n    font-size: 13px;\\n  }\\n}\\n\\n/* Extra small devices */\\n@media (max-width: 375px) {\\n  .hero-titles {\\n    font-size: 22px;\\n    line-height: 28px;\\n  }\\n\\n  .info-panel-content {\\n    padding: 15px;\\n  }\\n\\n  .info-panel-separator {\\n    margin: 15px 0;\\n  }\\n\\n  .info-panel-button {\\n    padding: 8px 16px;\\n  }\\n}\\n\\n/* End of Hero CSS */\\n\"\n__vite__updateStyle(__vite__id, __vite__css)\nimport.meta.hot.accept()\nimport.meta.hot.prune(() => __vite__removeStyle(__vite__id))",
+      "start": 1751856128649,
+      "end": 1751856128649,
+      "order": "normal",
+      "sourcemaps": null
     }
   ]
 }

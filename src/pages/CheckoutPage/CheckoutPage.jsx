@@ -8,6 +8,7 @@ import LoginModal from "../../components/Auth/LoginModal";
 import CartFooter from "../../components/CartFooter/CartFooter";
 import DateSelection from "../../components/DateSelection/DateSelection";
 import OrderSteps from "../../components/OrderSteps/OrderSteps";
+import PayPalButton from "../../components/PayPalButton/PayPalButton";
 import SuccessModal from "../../components/SuccessModal/SuccessModal";
 import TicketSelection from "../../components/TicketSelection/TicketSelection";
 import TimeSelection from "../../components/TimeSelection/TimeSelection";
@@ -31,6 +32,7 @@ const CheckoutPage = () => {
   const [qrCode, setQrCode] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [selectedCapacity, setSelectedCapacity] = useState(null);
+  const [showPayPalModal, setShowPayPalModal] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -801,15 +803,13 @@ const CheckoutPage = () => {
         alert("Vui lòng chọn phương thức thanh toán");
         return;
       }
-      try {
-        if (paymentMethod === "bank") {
-          await generateQRCode();
-        }
-        setCurrentStep(4);
-      } catch (error) {
-        console.error("Error in payment process:", error);
-        alert("Có lỗi xảy ra trong quá trình thanh toán. Vui lòng thử lại.");
+      if (paymentMethod === "bank") {
+        await generateQRCode();
+      } else if (paymentMethod === "paypal") {
+        setShowPayPalModal(true);
+        return;
       }
+      setCurrentStep(4);
       return;
     }
 
@@ -861,8 +861,15 @@ const CheckoutPage = () => {
   };
 
   const calculateTotal = () => {
-    if (!selectedCapacity) return 0;
-    return selectedCapacity.price;
+    if (packageData?.capacityOptions) {
+      // For room packages
+      return selectedCapacity?.price || 0;
+    } else {
+      // For regular packages
+      return tickets.reduce((total, ticket) => {
+        return total + (ticket.price || 0) * (ticket.quantity || 0);
+      }, 0);
+    }
   };
 
   const handleLoginSuccess = () => {
@@ -891,6 +898,51 @@ const CheckoutPage = () => {
   const handleCapacitySelect = (option) => {
     setSelectedCapacity(option);
     handleQuantityChange(0, option.capacity);
+  };
+
+  const handlePayPalSuccess = async (order) => {
+    setIsLoading(true);
+    try {
+      const generatedBookingId = `MDP${Date.now()}`;
+      setBookingId(generatedBookingId);
+
+      const response = await fetch(
+        "https://mussedupin.onrender.com/api/experience-bookings",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("token")}`,
+          },
+          body: JSON.stringify({
+            packageId,
+            selectedDate,
+            selectedTime,
+            tickets,
+            selectedCapacity,
+            userId: userInfo.id,
+            userInfo,
+            paymentMethod: "paypal",
+            paypalOrderId: order.id,
+            bookingId: generatedBookingId,
+            paymentStatus: "paid",
+          }),
+        }
+      );
+
+      const data = await response.json();
+      if (data.success) {
+        setShowSuccessModal(true);
+      } else {
+        throw new Error(data.message);
+      }
+    } catch (error) {
+      console.error("Error creating booking:", error);
+      alert("Có lỗi xảy ra khi đặt vé. Vui lòng thử lại.");
+    } finally {
+      setIsLoading(false);
+      setShowPayPalModal(false);
+    }
   };
 
   return (
@@ -1018,41 +1070,34 @@ const CheckoutPage = () => {
                       <Th>Vé</Th>
                       <Th>Số lượng</Th>
                       <Th>Thời gian</Th>
+                      <Th>Giảm giá</Th>
                       <Th>Tổng tiền</Th>
                     </Tr>
                   </Thead>
                   <Tbody>
                     <Tr>
-                      <Td>{packageData.title}</Td>
-                      <Td>{selectedCapacity?.capacity} người</Td>
+                      <Td>{packageData?.title || ""}</Td>
                       <Td>
-                        {new Date(selectedDate).toLocaleDateString("vi-VN")}
-                        <br />
-                        {selectedTime}
+                        {packageData?.capacityOptions
+                          ? `${selectedCapacity?.capacity || 0} người`
+                          : tickets.reduce(
+                              (total, ticket) => total + (ticket.quantity || 0),
+                              0
+                            ) + " người"}
                       </Td>
-                      <Td>{selectedCapacity?.price.toLocaleString()}đ</Td>
+                      <Td>
+                        {selectedDate
+                          ? new Date(selectedDate).toLocaleDateString("vi-VN")
+                          : ""}
+                        <br />
+                        {selectedTime || ""}
+                      </Td>
+                      <Td>-{selectedCapacity?.discountPercentage || 0}%</Td>
+                      <Td>{calculateTotal().toLocaleString()}đ</Td>
                     </Tr>
                   </Tbody>
                 </Table>
               </div>
-
-              <div className="price-summary">
-                <div className="price-item">
-                  <span>Giá gốc:</span>
-                  <span>
-                    {selectedCapacity?.originalPrice.toLocaleString()}đ
-                  </span>
-                </div>
-                <div className="price-item">
-                  <span>Giảm giá:</span>
-                  <span>-{selectedCapacity?.discountPercentage}%</span>
-                </div>
-                <div className="price-item">
-                  <span>Tổng cộng:</span>
-                  <span>{calculateTotal().toLocaleString()}đ</span>
-                </div>
-              </div>
-
               <div className="payment-methods-section">
                 <h3>Phương thức thanh toán</h3>
                 <div className="payment-options">
@@ -1070,7 +1115,8 @@ const CheckoutPage = () => {
                     />
                     <div className="payment-option-content">
                       <div className="payment-details">
-                        <h4>Thanh toán qua ngân hàng</h4>
+                        <h4>Thanh toán qua mã QR</h4>
+                        <p>Thanh toán thông qua quét mã QR trên màn hình</p>
                       </div>
                     </div>
                   </div>
@@ -1094,6 +1140,26 @@ const CheckoutPage = () => {
                       </div>
                     </div>
                   </div>
+
+                  <div
+                    className={`payment-option ${
+                      paymentMethod === "paypal" ? "selected" : ""
+                    }`}
+                    onClick={() => handlePaymentMethodSelect("paypal")}
+                  >
+                    <input
+                      type="radio"
+                      name="paymentMethod"
+                      checked={paymentMethod === "paypal"}
+                      onChange={() => {}}
+                    />
+                    <div className="payment-option-content">
+                      <div className="payment-details">
+                        <h4>Thanh toán qua PayPal</h4>
+                        <p>Thanh toán qua thẻ ngân hàng quốc tế</p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1109,40 +1175,82 @@ const CheckoutPage = () => {
                 {qrCode && (
                   <img src={qrCode} alt="QR Code" className="qr-code" />
                 )}
-                <div className="price-summary">
-                  <div className="price-item">
-                    <span>Giá gốc:</span>
-                    <span>
-                      {selectedCapacity?.originalPrice.toLocaleString()}đ
-                    </span>
-                  </div>
-                  <div className="price-item">
-                    <span>Giảm giá:</span>
-                    <span>-{selectedCapacity?.discountPercentage}%</span>
-                  </div>
-                  <div className="price-item">
-                    <span>Tổng cộng:</span>
-                    <span>{calculateTotal().toLocaleString()}đ</span>
-                  </div>
+                <div className="order-details-section">
+                  <h3>Chi tiết đơn hàng</h3>
+                  <Table className="order-details">
+                    <Thead>
+                      <Tr>
+                        <Th>Vé</Th>
+                        <Th>Số lượng</Th>
+                        <Th>Thời gian</Th>
+                        <Th>Giảm giá</Th>
+                        <Th>Tổng tiền</Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      <Tr>
+                        <Td>{packageData?.title || ""}</Td>
+                        <Td>
+                          {packageData?.capacityOptions
+                            ? `${selectedCapacity?.capacity || 0} người`
+                            : tickets.reduce(
+                                (total, ticket) =>
+                                  total + (ticket.quantity || 0),
+                                0
+                              ) + " người"}
+                        </Td>
+                        <Td>
+                          {selectedDate
+                            ? new Date(selectedDate).toLocaleDateString("vi-VN")
+                            : ""}
+                          <br />
+                          {selectedTime || ""}
+                        </Td>
+                        <Td>-{selectedCapacity?.discountPercentage || 0}%</Td>
+                        <Td>{calculateTotal().toLocaleString()}đ</Td>
+                      </Tr>
+                    </Tbody>
+                  </Table>
                 </div>
               </div>
             ) : (
               <div className="payment-summary">
-                <div className="price-summary">
-                  <div className="price-item">
-                    <span>Giá gốc:</span>
-                    <span>
-                      {selectedCapacity?.originalPrice.toLocaleString()}đ
-                    </span>
-                  </div>
-                  <div className="price-item">
-                    <span>Giảm giá:</span>
-                    <span>-{selectedCapacity?.discountPercentage}%</span>
-                  </div>
-                  <div className="price-item">
-                    <span>Tổng cộng:</span>
-                    <span>{calculateTotal().toLocaleString()}đ</span>
-                  </div>
+                <div className="order-details-section">
+                  <h3>Chi tiết đơn hàng</h3>
+                  <Table className="order-details">
+                    <Thead>
+                      <Tr>
+                        <Th>Vé</Th>
+                        <Th>Số lượng</Th>
+                        <Th>Thời gian</Th>
+                        <Th>Giảm giá</Th>
+                        <Th>Tổng tiền</Th>
+                      </Tr>
+                    </Thead>
+                    <Tbody>
+                      <Tr>
+                        <Td>{packageData?.title || ""}</Td>
+                        <Td>
+                          {packageData?.capacityOptions
+                            ? `${selectedCapacity?.capacity || 0} người`
+                            : tickets.reduce(
+                                (total, ticket) =>
+                                  total + (ticket.quantity || 0),
+                                0
+                              ) + " người"}
+                        </Td>
+                        <Td>
+                          {selectedDate
+                            ? new Date(selectedDate).toLocaleDateString("vi-VN")
+                            : ""}
+                          <br />
+                          {selectedTime || ""}
+                        </Td>
+                        <Td>-{selectedCapacity?.discountPercentage || 0}%</Td>
+                        <Td>{calculateTotal().toLocaleString()}đ</Td>
+                      </Tr>
+                    </Tbody>
+                  </Table>
                 </div>
                 <p className="payment-note">
                   Vui lòng kiểm tra lại thông tin đặt vé trước khi hoàn tất. Bạn
@@ -1188,6 +1296,29 @@ const CheckoutPage = () => {
           onClose={() => navigate("/")}
           message={`Đặt vé thành công! Mã đơn hàng của bạn là ${bookingId}`}
         />
+      )}
+
+      {showPayPalModal && (
+        <div className="paypal-modal">
+          <div className="paypal-modal-content">
+            <h2>Thanh toán qua PayPal</h2>
+            <PayPalButton
+              amount={calculateTotal()}
+              onSuccess={handlePayPalSuccess}
+              onError={(error) => {
+                console.error("PayPal Error:", error);
+                alert(
+                  "Có lỗi xảy ra trong quá trình thanh toán. Vui lòng thử lại."
+                );
+                setShowPayPalModal(false);
+              }}
+              onCancel={() => {
+                setShowPayPalModal(false);
+              }}
+              onClose={() => setShowPayPalModal(false)}
+            />
+          </div>
+        </div>
       )}
     </div>
   );

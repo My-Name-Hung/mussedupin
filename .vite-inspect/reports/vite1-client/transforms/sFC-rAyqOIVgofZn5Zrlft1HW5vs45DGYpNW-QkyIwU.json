@@ -2,23 +2,73 @@
   "resolvedId": "C:/Users/.Freelancer/TICKET/src/components/ScrollToTop.jsx",
   "transforms": [
     {
-      "name": "vite:load-fallback",
+      "name": "__load__",
       "result": "import { useEffect } from \"react\";\nimport { useLocation } from \"react-router-dom\";\n\n// This component will scroll to the top of the page\n// whenever the URL/route changes\nfunction ScrollToTop() {\n  const { pathname } = useLocation();\n\n  useEffect(() => {\n    // Scroll to top with a slight delay to ensure DOM is ready\n    setTimeout(() => {\n      window.scrollTo({\n        top: 0,\n        behavior: \"instant\", // Use \"instant\" for immediate scroll without animation\n      });\n    }, 0);\n  }, [pathname]); // Re-run when pathname changes\n\n  return null; // This component doesn't render anything\n}\n\nexport default ScrollToTop;\n",
-      "start": 1751338501351,
-      "end": 1751338501368,
-      "sourcemaps": null
+      "start": 1751856127716,
+      "end": 1751856127716,
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "useEffect",
+          "useLocation",
+          "ScrollToTop",
+          "_s",
+          "pathname",
+          "setTimeout",
+          "window",
+          "scrollTo",
+          "top",
+          "behavior",
+          "_c",
+          "$RefreshReg$"
+        ],
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/components/ScrollToTop.jsx"
+        ],
+        "sourcesContent": [
+          "import { useEffect } from \"react\";\nimport { useLocation } from \"react-router-dom\";\n\n// This component will scroll to the top of the page\n// whenever the URL/route changes\nfunction ScrollToTop() {\n  const { pathname } = useLocation();\n\n  useEffect(() => {\n    // Scroll to top with a slight delay to ensure DOM is ready\n    setTimeout(() => {\n      window.scrollTo({\n        top: 0,\n        behavior: \"instant\", // Use \"instant\" for immediate scroll without animation\n      });\n    }, 0);\n  }, [pathname]); // Re-run when pathname changes\n\n  return null; // This component doesn't render anything\n}\n\nexport default ScrollToTop;\n"
+        ],
+        "mappings": ";;;;;;;;;;;;;;;;;;;wBAAA,SAASA,SAAS,QAAQ,OAAO;AACjC,SAASC,WAAW,QAAQ,kBAAkB;;AAE9C;AACA;AACA,SAASC,WAAWA,CAAA,EAAG,CAAAC,EAAA;EACrB,MAAM,EAAEC,QAAQ,CAAC,CAAC,GAAGH,WAAW,CAAC,CAAC;;EAElCD,SAAS,CAAC,MAAM;IACd;IACAK,UAAU,CAAC,MAAM;MACfC,MAAM,CAACC,QAAQ,CAAC;QACdC,GAAG,EAAE,CAAC;QACNC,QAAQ,EAAE,SAAS,CAAE;MACvB,CAAC,CAAC;IACJ,CAAC,EAAE,CAAC,CAAC;EACP,CAAC,EAAE,CAACL,QAAQ,CAAC,CAAC,CAAC,CAAC;;EAEhB,OAAO,IAAI,CAAC,CAAC;AACf,CAACD,EAAA,CAdQD,WAAW,8DACGD,WAAW,KAAAS,EAAA,GADzBR,WAAW;;AAgBpB,eAAeA,WAAW,CAAC,IAAAQ,EAAA,CAAAC,YAAA,CAAAD,EAAA",
+        "ignoreList": []
+      }
     },
     {
       "name": "vite:react-babel",
-      "start": 1751338501369,
-      "end": 1751338501369,
-      "order": "pre"
+      "result": "import * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;\n\nlet prevRefreshReg;\nlet prevRefreshSig;\n\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/ScrollToTop.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\n\nvar _s = $RefreshSig$();import { useEffect } from \"react\";\nimport { useLocation } from \"react-router-dom\";\n\n// This component will scroll to the top of the page\n// whenever the URL/route changes\nfunction ScrollToTop() {_s();\n  const { pathname } = useLocation();\n\n  useEffect(() => {\n    // Scroll to top with a slight delay to ensure DOM is ready\n    setTimeout(() => {\n      window.scrollTo({\n        top: 0,\n        behavior: \"instant\" // Use \"instant\" for immediate scroll without animation\n      });\n    }, 0);\n  }, [pathname]); // Re-run when pathname changes\n\n  return null; // This component doesn't render anything\n}_s(ScrollToTop, \"+8VPq4+XDMjo/kjL3WLkbwU2Amg=\", false, function () {return [useLocation];});_c = ScrollToTop;\n\nexport default ScrollToTop;var _c;$RefreshReg$(_c, \"ScrollToTop\");\n\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\n\n\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/ScrollToTop.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/ScrollToTop.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n",
+      "start": 1751856127716,
+      "end": 1751856127720,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "useEffect",
+          "useLocation",
+          "ScrollToTop",
+          "_s",
+          "pathname",
+          "setTimeout",
+          "window",
+          "scrollTo",
+          "top",
+          "behavior",
+          "_c",
+          "$RefreshReg$"
+        ],
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/components/ScrollToTop.jsx"
+        ],
+        "sourcesContent": [
+          "import { useEffect } from \"react\";\nimport { useLocation } from \"react-router-dom\";\n\n// This component will scroll to the top of the page\n// whenever the URL/route changes\nfunction ScrollToTop() {\n  const { pathname } = useLocation();\n\n  useEffect(() => {\n    // Scroll to top with a slight delay to ensure DOM is ready\n    setTimeout(() => {\n      window.scrollTo({\n        top: 0,\n        behavior: \"instant\", // Use \"instant\" for immediate scroll without animation\n      });\n    }, 0);\n  }, [pathname]); // Re-run when pathname changes\n\n  return null; // This component doesn't render anything\n}\n\nexport default ScrollToTop;\n"
+        ],
+        "mappings": ";;;;;;;;;;;;;;;;;;;wBAAA,SAASA,SAAS,QAAQ,OAAO;AACjC,SAASC,WAAW,QAAQ,kBAAkB;;AAE9C;AACA;AACA,SAASC,WAAWA,CAAA,EAAG,CAAAC,EAAA;EACrB,MAAM,EAAEC,QAAQ,CAAC,CAAC,GAAGH,WAAW,CAAC,CAAC;;EAElCD,SAAS,CAAC,MAAM;IACd;IACAK,UAAU,CAAC,MAAM;MACfC,MAAM,CAACC,QAAQ,CAAC;QACdC,GAAG,EAAE,CAAC;QACNC,QAAQ,EAAE,SAAS,CAAE;MACvB,CAAC,CAAC;IACJ,CAAC,EAAE,CAAC,CAAC;EACP,CAAC,EAAE,CAACL,QAAQ,CAAC,CAAC,CAAC,CAAC;;EAEhB,OAAO,IAAI,CAAC,CAAC;AACf,CAACD,EAAA,CAdQD,WAAW,8DACGD,WAAW,KAAAS,EAAA,GADzBR,WAAW;;AAgBpB,eAAeA,WAAW,CAAC,IAAAQ,EAAA,CAAAC,YAAA,CAAAD,EAAA",
+        "ignoreList": []
+      }
     },
     {
       "name": "vite:esbuild",
-      "result": "import { useEffect } from \"react\";\nimport { useLocation } from \"react-router-dom\";\nfunction ScrollToTop() {\n  const { pathname } = useLocation();\n  useEffect(() => {\n    setTimeout(() => {\n      window.scrollTo({\n        top: 0,\n        behavior: \"instant\"\n        // Use \"instant\" for immediate scroll without animation\n      });\n    }, 0);\n  }, [pathname]);\n  return null;\n}\nexport default ScrollToTop;\n",
-      "start": 1751338501369,
-      "end": 1751338501548,
+      "result": "import * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== \"undefined\" && self instanceof WorkerGlobalScope;\nlet prevRefreshReg;\nlet prevRefreshSig;\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/ScrollToTop.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\nvar _s = $RefreshSig$();\nimport { useEffect } from \"react\";\nimport { useLocation } from \"react-router-dom\";\nfunction ScrollToTop() {\n  _s();\n  const { pathname } = useLocation();\n  useEffect(() => {\n    setTimeout(() => {\n      window.scrollTo({\n        top: 0,\n        behavior: \"instant\"\n        // Use \"instant\" for immediate scroll without animation\n      });\n    }, 0);\n  }, [pathname]);\n  return null;\n}\n_s(ScrollToTop, \"+8VPq4+XDMjo/kjL3WLkbwU2Amg=\", false, function() {\n  return [useLocation];\n});\n_c = ScrollToTop;\nexport default ScrollToTop;\nvar _c;\n$RefreshReg$(_c, \"ScrollToTop\");\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/ScrollToTop.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/ScrollToTop.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n",
+      "start": 1751856127720,
+      "end": 1751856128088,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -26,65 +76,67 @@
           "C:/Users/.Freelancer/TICKET/src/components/ScrollToTop.jsx"
         ],
         "sourcesContent": [
-          "import { useEffect } from \"react\";\nimport { useLocation } from \"react-router-dom\";\n\n// This component will scroll to the top of the page\n// whenever the URL/route changes\nfunction ScrollToTop() {\n  const { pathname } = useLocation();\n\n  useEffect(() => {\n    // Scroll to top with a slight delay to ensure DOM is ready\n    setTimeout(() => {\n      window.scrollTo({\n        top: 0,\n        behavior: \"instant\", // Use \"instant\" for immediate scroll without animation\n      });\n    }, 0);\n  }, [pathname]); // Re-run when pathname changes\n\n  return null; // This component doesn't render anything\n}\n\nexport default ScrollToTop;\n"
+          "import * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;\n\nlet prevRefreshReg;\nlet prevRefreshSig;\n\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/ScrollToTop.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\n\nvar _s = $RefreshSig$();import { useEffect } from \"react\";\nimport { useLocation } from \"react-router-dom\";\n\n// This component will scroll to the top of the page\n// whenever the URL/route changes\nfunction ScrollToTop() {_s();\n  const { pathname } = useLocation();\n\n  useEffect(() => {\n    // Scroll to top with a slight delay to ensure DOM is ready\n    setTimeout(() => {\n      window.scrollTo({\n        top: 0,\n        behavior: \"instant\" // Use \"instant\" for immediate scroll without animation\n      });\n    }, 0);\n  }, [pathname]); // Re-run when pathname changes\n\n  return null; // This component doesn't render anything\n}_s(ScrollToTop, \"+8VPq4+XDMjo/kjL3WLkbwU2Amg=\", false, function () {return [useLocation];});_c = ScrollToTop;\n\nexport default ScrollToTop;var _c;$RefreshReg$(_c, \"ScrollToTop\");\n\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\n\n\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/ScrollToTop.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/ScrollToTop.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n"
         ],
-        "mappings": "AAAA,SAAS,iBAAiB;AAC1B,SAAS,mBAAmB;AAI5B,SAAS,cAAc;AACrB,QAAM,EAAE,SAAS,IAAI,YAAY;AAEjC,YAAU,MAAM;AAEd,eAAW,MAAM;AACf,aAAO,SAAS;AAAA,QACd,KAAK;AAAA,QACL,UAAU;AAAA;AAAA,MACZ,CAAC;AAAA,IACH,GAAG,CAAC;AAAA,EACN,GAAG,CAAC,QAAQ,CAAC;AAEb,SAAO;AACT;AAEA,eAAe;",
+        "mappings": "AAAA,YAAY,oBAAoB;AAChC,MAAM,cAAc,OAAO,sBAAsB,eAAe,gBAAgB;AAEhF,IAAI;AACJ,IAAI;AAEJ,IAAI,YAAY,OAAO,CAAC,aAAa;AACnC,MAAI,CAAC,OAAO,cAAc;AACxB,UAAM,IAAI;AAAA,MACR;AAAA,IACF;AAAA,EACF;AAEA,mBAAiB,OAAO;AACxB,mBAAiB,OAAO;AACxB,SAAO,eAAe,eAAe,cAAc,4DAA4D;AAC/G,SAAO,eAAe,eAAe;AACvC;AAEA,IAAI,KAAK,aAAa;AAAE,SAAS,iBAAiB;AAClD,SAAS,mBAAmB;AAI5B,SAAS,cAAc;AAAC,KAAG;AACzB,QAAM,EAAE,SAAS,IAAI,YAAY;AAEjC,YAAU,MAAM;AAEd,eAAW,MAAM;AACf,aAAO,SAAS;AAAA,QACd,KAAK;AAAA,QACL,UAAU;AAAA;AAAA,MACZ,CAAC;AAAA,IACH,GAAG,CAAC;AAAA,EACN,GAAG,CAAC,QAAQ,CAAC;AAEb,SAAO;AACT;AAAC,GAAG,aAAa,gCAAgC,OAAO,WAAY;AAAC,SAAO,CAAC,WAAW;AAAE,CAAC;AAAE,KAAK;AAElG,eAAe;AAAY,IAAI;AAAG,aAAa,IAAI,aAAa;AAEhE,IAAI,YAAY,OAAO,CAAC,aAAa;AACnC,SAAO,eAAe;AACtB,SAAO,eAAe;AACxB;AAGA,IAAI,YAAY,OAAO,CAAC,aAAa;AACnC,iBAAe,aAAa,YAAY,GAAG,EAAE,KAAK,CAAC,mBAAmB;AACpE,mBAAe,+BAA+B,8DAA8D,cAAc;AAC1H,gBAAY,IAAI,OAAO,CAAC,gBAAgB;AACtC,UAAI,CAAC,YAAa;AAClB,YAAM,oBAAoB,eAAe,wCAAwC,8DAA8D,gBAAgB,WAAW;AAC1K,UAAI,kBAAmB,aAAY,IAAI,WAAW,iBAAiB;AAAA,IACrE,CAAC;AAAA,EACH,CAAC;AACH;",
         "names": []
       }
     },
     {
       "name": "vite:worker",
-      "start": 1751338501548,
-      "end": 1751338501548,
+      "start": 1751856128088,
+      "end": 1751856128088,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751338501548,
-      "end": 1751338501548,
-      "order": "normal-normal"
-    },
-    {
-      "name": "vite:build-html",
-      "start": 1751338501548,
-      "end": 1751338501548,
+      "start": 1751856128088,
+      "end": 1751856128088,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751338501549,
-      "end": 1751338501549,
+      "start": 1751856128088,
+      "end": 1751856128088,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751338501549,
-      "end": 1751338501549,
+      "start": 1751856128088,
+      "end": 1751856128088,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751338501549,
-      "end": 1751338501549,
+      "start": 1751856128088,
+      "end": 1751856128088,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751338501549,
-      "end": 1751338501549,
+      "start": 1751856128088,
+      "end": 1751856128088,
       "order": "normal-normal"
     },
     {
-      "name": "vite:build-import-analysis",
-      "start": 1751338501549,
-      "end": 1751338501549,
-      "order": "normal-normal"
-    },
-    {
-      "name": "vite:reporter",
-      "start": 1751338501549,
-      "end": 1751338501549,
+      "name": "vite:client-inject",
+      "start": 1751856128088,
+      "end": 1751856128088,
       "order": "normal"
+    },
+    {
+      "name": "vite:css-analysis",
+      "start": 1751856128088,
+      "end": 1751856128088,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-analysis",
+      "result": "import { createHotContext as __vite__createHotContext } from \"/@vite/client\";import.meta.hot = __vite__createHotContext(\"/src/components/ScrollToTop.jsx\");import * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== \"undefined\" && self instanceof WorkerGlobalScope;\nlet prevRefreshReg;\nlet prevRefreshSig;\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/ScrollToTop.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\nvar _s = $RefreshSig$();\nimport __vite__cjsImport2_react from \"/node_modules/.vite/deps/react.js?v=a4b2f9ae\"; const useEffect = __vite__cjsImport2_react[\"useEffect\"];\nimport { useLocation } from \"/node_modules/.vite/deps/react-router-dom.js?v=a4b2f9ae\";\nfunction ScrollToTop() {\n  _s();\n  const { pathname } = useLocation();\n  useEffect(() => {\n    setTimeout(() => {\n      window.scrollTo({\n        top: 0,\n        behavior: \"instant\"\n        // Use \"instant\" for immediate scroll without animation\n      });\n    }, 0);\n  }, [pathname]);\n  return null;\n}\n_s(ScrollToTop, \"+8VPq4+XDMjo/kjL3WLkbwU2Amg=\", false, function() {\n  return [useLocation];\n});\n_c = ScrollToTop;\nexport default ScrollToTop;\nvar _c;\n$RefreshReg$(_c, \"ScrollToTop\");\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/ScrollToTop.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/ScrollToTop.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n",
+      "start": 1751856128088,
+      "end": 1751856128091,
+      "order": "normal",
+      "sourcemaps": null
     }
   ]
 }

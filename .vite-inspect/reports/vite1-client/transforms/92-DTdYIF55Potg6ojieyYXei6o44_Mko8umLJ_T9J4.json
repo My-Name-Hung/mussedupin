@@ -2,77 +2,78 @@
   "resolvedId": "C:/Users/.Freelancer/TICKET/src/components/Home/Home.css",
   "transforms": [
     {
-      "name": "vite:load-fallback",
+      "name": "__load__",
       "result": ".prepare-visit-left {\n  font-family: \"Mythical-Prince\", \"LouvreSerif\", Georgia, \"Times New Roman\",\n    serif;\n}\n",
-      "start": 1751338501482,
-      "end": 1751338502062,
-      "sourcemaps": null
+      "start": 1751856128301,
+      "end": 1751856128301
     },
     {
       "name": "vite:react-babel",
-      "start": 1751338502062,
-      "end": 1751338502062,
+      "start": 1751856128301,
+      "end": 1751856128301,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751338502062,
-      "end": 1751338502062,
+      "start": 1751856128301,
+      "end": 1751856128301,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751338502062,
-      "end": 1751338502062,
+      "start": 1751856128301,
+      "end": 1751856128301,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751338502062,
-      "end": 1751338502062,
-      "order": "normal-normal"
-    },
-    {
-      "name": "vite:build-html",
-      "start": 1751338502063,
-      "end": 1751338502063,
+      "start": 1751856128301,
+      "end": 1751856128301,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751338502063,
-      "end": 1751338502063,
+      "start": 1751856128301,
+      "end": 1751856128301,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751338502063,
-      "end": 1751338502063,
+      "start": 1751856128301,
+      "end": 1751856128301,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751338502063,
-      "end": 1751338502063,
+      "start": 1751856128301,
+      "end": 1751856128301,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751338502063,
-      "end": 1751338502063,
+      "start": 1751856128301,
+      "end": 1751856128301,
       "order": "normal-normal"
     },
     {
-      "name": "vite:build-import-analysis",
-      "start": 1751338502063,
-      "end": 1751338502063,
-      "order": "normal-normal"
-    },
-    {
-      "name": "vite:reporter",
-      "start": 1751338502063,
-      "end": 1751338502063,
+      "name": "vite:client-inject",
+      "start": 1751856128301,
+      "end": 1751856128301,
       "order": "normal"
+    },
+    {
+      "name": "vite:css-analysis",
+      "start": 1751856128301,
+      "end": 1751856128301,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-analysis",
+      "result": "import { createHotContext as __vite__createHotContext } from \"/@vite/client\";import.meta.hot = __vite__createHotContext(\"/src/components/Home/Home.css\");import { updateStyle as __vite__updateStyle, removeStyle as __vite__removeStyle } from \"/@vite/client\"\nconst __vite__id = \"C:/Users/.Freelancer/TICKET/src/components/Home/Home.css\"\nconst __vite__css = \".prepare-visit-left {\\n  font-family: \\\"Mythical-Prince\\\", \\\"LouvreSerif\\\", Georgia, \\\"Times New Roman\\\",\\n    serif;\\n}\\n\"\n__vite__updateStyle(__vite__id, __vite__css)\nimport.meta.hot.accept()\nimport.meta.hot.prune(() => __vite__removeStyle(__vite__id))",
+      "start": 1751856128301,
+      "end": 1751856128301,
+      "order": "normal",
+      "sourcemaps": null
     }
   ]
 }

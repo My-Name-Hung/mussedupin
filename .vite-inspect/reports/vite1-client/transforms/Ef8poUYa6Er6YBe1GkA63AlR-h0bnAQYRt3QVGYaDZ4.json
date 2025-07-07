@@ -2,23 +2,81 @@
   "resolvedId": "C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx",
   "transforms": [
     {
-      "name": "vite:load-fallback",
+      "name": "__load__",
       "result": "import React from \"react\";\nimport { FaCheck } from \"react-icons/fa\";\nimport \"./OrderSteps.css\";\n\nconst OrderSteps = ({ currentStep, onStepClick }) => {\n  const steps = [\n    { number: 1, title: \"Đặt chỗ của bạn\" },\n    { number: 2, title: \"Thông tin tài khoản\" },\n    { number: 3, title: \"Thanh toán đơn hàng\" },\n    { number: 4, title: \"Hoàn tất\" },\n  ];\n\n  const handleStepClick = (stepNumber) => {\n    // Only allow clicking on previous steps\n    if (stepNumber < currentStep) {\n      onStepClick(stepNumber);\n    }\n  };\n\n  return (\n    <div className=\"order-steps\">\n      {steps.map((step, index) => (\n        <div\n          key={step.number}\n          className={`step ${currentStep === step.number ? \"active\" : \"\"} ${\n            currentStep > step.number ? \"completed clickable\" : \"\"\n          }`}\n          onClick={() => handleStepClick(step.number)}\n        >\n          <div className=\"step-indicator\">\n            {currentStep > step.number ? (\n              <FaCheck className=\"check-icon\" />\n            ) : (\n              <span>{step.number}</span>\n            )}\n          </div>\n          <span className=\"step-title\">{step.title}</span>\n          {index < steps.length - 1 && <div className=\"step-line\" />}\n        </div>\n      ))}\n    </div>\n  );\n};\n\nexport default OrderSteps;\n",
-      "start": 1751338502086,
-      "end": 1751338502465,
-      "sourcemaps": null
+      "start": 1751856128440,
+      "end": 1751856128440,
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "React",
+          "FaCheck",
+          "OrderSteps",
+          "currentStep",
+          "onStepClick",
+          "steps",
+          "number",
+          "title",
+          "handleStepClick",
+          "stepNumber",
+          "map",
+          "step",
+          "index",
+          "length",
+          "_c",
+          "$RefreshReg$"
+        ],
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx"
+        ],
+        "sourcesContent": [
+          "import React from \"react\";\nimport { FaCheck } from \"react-icons/fa\";\nimport \"./OrderSteps.css\";\n\nconst OrderSteps = ({ currentStep, onStepClick }) => {\n  const steps = [\n    { number: 1, title: \"Đặt chỗ của bạn\" },\n    { number: 2, title: \"Thông tin tài khoản\" },\n    { number: 3, title: \"Thanh toán đơn hàng\" },\n    { number: 4, title: \"Hoàn tất\" },\n  ];\n\n  const handleStepClick = (stepNumber) => {\n    // Only allow clicking on previous steps\n    if (stepNumber < currentStep) {\n      onStepClick(stepNumber);\n    }\n  };\n\n  return (\n    <div className=\"order-steps\">\n      {steps.map((step, index) => (\n        <div\n          key={step.number}\n          className={`step ${currentStep === step.number ? \"active\" : \"\"} ${\n            currentStep > step.number ? \"completed clickable\" : \"\"\n          }`}\n          onClick={() => handleStepClick(step.number)}\n        >\n          <div className=\"step-indicator\">\n            {currentStep > step.number ? (\n              <FaCheck className=\"check-icon\" />\n            ) : (\n              <span>{step.number}</span>\n            )}\n          </div>\n          <span className=\"step-title\">{step.title}</span>\n          {index < steps.length - 1 && <div className=\"step-line\" />}\n        </div>\n      ))}\n    </div>\n  );\n};\n\nexport default OrderSteps;\n"
+        ],
+        "mappings": ";;;;;;;;;;;;;;;;;;;AAAA,OAAOA,KAAK,MAAM,OAAO;AACzB,SAASC,OAAO,QAAQ,gBAAgB;AACxC,OAAO,kBAAkB;;AAEzB,MAAMC,UAAU,GAAGA,CAAC,EAAEC,WAAW,EAAEC,WAAW,CAAC,CAAC,KAAK;EACnD,MAAMC,KAAK,GAAG;EACZ,EAAEC,MAAM,EAAE,CAAC,EAAEC,KAAK,EAAE,iBAAiB,CAAC,CAAC;EACvC,EAAED,MAAM,EAAE,CAAC,EAAEC,KAAK,EAAE,qBAAqB,CAAC,CAAC;EAC3C,EAAED,MAAM,EAAE,CAAC,EAAEC,KAAK,EAAE,qBAAqB,CAAC,CAAC;EAC3C,EAAED,MAAM,EAAE,CAAC,EAAEC,KAAK,EAAE,UAAU,CAAC,CAAC,CACjC;;;EAED,MAAMC,eAAe,GAAGA,CAACC,UAAU,KAAK;IACtC;IACA,IAAIA,UAAU,GAAGN,WAAW,EAAE;MAC5BC,WAAW,CAACK,UAAU,CAAC;IACzB;EACF,CAAC;;EAED;IACE,CAAC,GAAG,CAAC,SAAS,CAAC,aAAa;AAChC,MAAM,CAACJ,KAAK,CAACK,GAAG,CAAC,CAACC,IAAI,EAAEC,KAAK;MACrB,CAAC;QACC,GAAG,CAAC,CAACD,IAAI,CAACL,MAAM;QAChB,SAAS,CAAC,CAAC,QAAQH,WAAW,KAAKQ,IAAI,CAACL,MAAM,GAAG,QAAQ,GAAG,EAAE;QAC5DH,WAAW,GAAGQ,IAAI,CAACL,MAAM,GAAG,qBAAqB,GAAG,EAAE;QACtD;QACF,OAAO,CAAC,CAAC,MAAME,eAAe,CAACG,IAAI,CAACL,MAAM,CAAC,CAAC;;AAEtD,UAAU,CAAC,GAAG,CAAC,SAAS,CAAC,gBAAgB;AACzC,YAAY,CAACH,WAAW,GAAGQ,IAAI,CAACL,MAAM;UACxB,CAAC,OAAO,CAAC,SAAS,CAAC,YAAY,GAAG;;UAElC,CAAC,IAAI,CAAC,CAACK,IAAI,CAACL,MAAM,CAAC,EAAE,IAAI;UAC1B;AACb,UAAU,EAAE,GAAG;AACf,UAAU,CAAC,IAAI,CAAC,SAAS,CAAC,YAAY,CAAC,CAACK,IAAI,CAACJ,KAAK,CAAC,EAAE,IAAI;AACzD,UAAU,CAACK,KAAK,GAAGP,KAAK,CAACQ,MAAM,GAAG,CAAC,IAAI,CAAC,GAAG,CAAC,SAAS,CAAC,WAAW,GAAG;AACpE,QAAQ,EAAE,GAAG;MACN,CAAC;AACR,IAAI,EAAE,GAAG,CAAC;;AAEV,CAAC,CAACC,EAAA,GAtCIZ,UAAU;;AAwChB,eAAeA,UAAU,CAAC,IAAAY,EAAA,CAAAC,YAAA,CAAAD,EAAA",
+        "ignoreList": []
+      }
     },
     {
       "name": "vite:react-babel",
-      "start": 1751338502465,
-      "end": 1751338502465,
-      "order": "pre"
+      "result": "import * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;\n\nlet prevRefreshReg;\nlet prevRefreshSig;\n\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\n\nimport React from \"react\";\nimport { FaCheck } from \"react-icons/fa\";\nimport \"./OrderSteps.css\";\n\nconst OrderSteps = ({ currentStep, onStepClick }) => {\n  const steps = [\n  { number: 1, title: \"Đặt chỗ của bạn\" },\n  { number: 2, title: \"Thông tin tài khoản\" },\n  { number: 3, title: \"Thanh toán đơn hàng\" },\n  { number: 4, title: \"Hoàn tất\" }];\n\n\n  const handleStepClick = (stepNumber) => {\n    // Only allow clicking on previous steps\n    if (stepNumber < currentStep) {\n      onStepClick(stepNumber);\n    }\n  };\n\n  return (\n    <div className=\"order-steps\">\n      {steps.map((step, index) =>\n      <div\n        key={step.number}\n        className={`step ${currentStep === step.number ? \"active\" : \"\"} ${\n        currentStep > step.number ? \"completed clickable\" : \"\"}`\n        }\n        onClick={() => handleStepClick(step.number)}>\n\n          <div className=\"step-indicator\">\n            {currentStep > step.number ?\n          <FaCheck className=\"check-icon\" /> :\n\n          <span>{step.number}</span>\n          }\n          </div>\n          <span className=\"step-title\">{step.title}</span>\n          {index < steps.length - 1 && <div className=\"step-line\" />}\n        </div>\n      )}\n    </div>);\n\n};_c = OrderSteps;\n\nexport default OrderSteps;var _c;$RefreshReg$(_c, \"OrderSteps\");\n\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\n\n\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n",
+      "start": 1751856128440,
+      "end": 1751856128445,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "React",
+          "FaCheck",
+          "OrderSteps",
+          "currentStep",
+          "onStepClick",
+          "steps",
+          "number",
+          "title",
+          "handleStepClick",
+          "stepNumber",
+          "map",
+          "step",
+          "index",
+          "length",
+          "_c",
+          "$RefreshReg$"
+        ],
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx"
+        ],
+        "sourcesContent": [
+          "import React from \"react\";\nimport { FaCheck } from \"react-icons/fa\";\nimport \"./OrderSteps.css\";\n\nconst OrderSteps = ({ currentStep, onStepClick }) => {\n  const steps = [\n    { number: 1, title: \"Đặt chỗ của bạn\" },\n    { number: 2, title: \"Thông tin tài khoản\" },\n    { number: 3, title: \"Thanh toán đơn hàng\" },\n    { number: 4, title: \"Hoàn tất\" },\n  ];\n\n  const handleStepClick = (stepNumber) => {\n    // Only allow clicking on previous steps\n    if (stepNumber < currentStep) {\n      onStepClick(stepNumber);\n    }\n  };\n\n  return (\n    <div className=\"order-steps\">\n      {steps.map((step, index) => (\n        <div\n          key={step.number}\n          className={`step ${currentStep === step.number ? \"active\" : \"\"} ${\n            currentStep > step.number ? \"completed clickable\" : \"\"\n          }`}\n          onClick={() => handleStepClick(step.number)}\n        >\n          <div className=\"step-indicator\">\n            {currentStep > step.number ? (\n              <FaCheck className=\"check-icon\" />\n            ) : (\n              <span>{step.number}</span>\n            )}\n          </div>\n          <span className=\"step-title\">{step.title}</span>\n          {index < steps.length - 1 && <div className=\"step-line\" />}\n        </div>\n      ))}\n    </div>\n  );\n};\n\nexport default OrderSteps;\n"
+        ],
+        "mappings": ";;;;;;;;;;;;;;;;;;;AAAA,OAAOA,KAAK,MAAM,OAAO;AACzB,SAASC,OAAO,QAAQ,gBAAgB;AACxC,OAAO,kBAAkB;;AAEzB,MAAMC,UAAU,GAAGA,CAAC,EAAEC,WAAW,EAAEC,WAAW,CAAC,CAAC,KAAK;EACnD,MAAMC,KAAK,GAAG;EACZ,EAAEC,MAAM,EAAE,CAAC,EAAEC,KAAK,EAAE,iBAAiB,CAAC,CAAC;EACvC,EAAED,MAAM,EAAE,CAAC,EAAEC,KAAK,EAAE,qBAAqB,CAAC,CAAC;EAC3C,EAAED,MAAM,EAAE,CAAC,EAAEC,KAAK,EAAE,qBAAqB,CAAC,CAAC;EAC3C,EAAED,MAAM,EAAE,CAAC,EAAEC,KAAK,EAAE,UAAU,CAAC,CAAC,CACjC;;;EAED,MAAMC,eAAe,GAAGA,CAACC,UAAU,KAAK;IACtC;IACA,IAAIA,UAAU,GAAGN,WAAW,EAAE;MAC5BC,WAAW,CAACK,UAAU,CAAC;IACzB;EACF,CAAC;;EAED;IACE,CAAC,GAAG,CAAC,SAAS,CAAC,aAAa;AAChC,MAAM,CAACJ,KAAK,CAACK,GAAG,CAAC,CAACC,IAAI,EAAEC,KAAK;MACrB,CAAC;QACC,GAAG,CAAC,CAACD,IAAI,CAACL,MAAM;QAChB,SAAS,CAAC,CAAC,QAAQH,WAAW,KAAKQ,IAAI,CAACL,MAAM,GAAG,QAAQ,GAAG,EAAE;QAC5DH,WAAW,GAAGQ,IAAI,CAACL,MAAM,GAAG,qBAAqB,GAAG,EAAE;QACtD;QACF,OAAO,CAAC,CAAC,MAAME,eAAe,CAACG,IAAI,CAACL,MAAM,CAAC,CAAC;;AAEtD,UAAU,CAAC,GAAG,CAAC,SAAS,CAAC,gBAAgB;AACzC,YAAY,CAACH,WAAW,GAAGQ,IAAI,CAACL,MAAM;UACxB,CAAC,OAAO,CAAC,SAAS,CAAC,YAAY,GAAG;;UAElC,CAAC,IAAI,CAAC,CAACK,IAAI,CAACL,MAAM,CAAC,EAAE,IAAI;UAC1B;AACb,UAAU,EAAE,GAAG;AACf,UAAU,CAAC,IAAI,CAAC,SAAS,CAAC,YAAY,CAAC,CAACK,IAAI,CAACJ,KAAK,CAAC,EAAE,IAAI;AACzD,UAAU,CAACK,KAAK,GAAGP,KAAK,CAACQ,MAAM,GAAG,CAAC,IAAI,CAAC,GAAG,CAAC,SAAS,CAAC,WAAW,GAAG;AACpE,QAAQ,EAAE,GAAG;MACN,CAAC;AACR,IAAI,EAAE,GAAG,CAAC;;AAEV,CAAC,CAACC,EAAA,GAtCIZ,UAAU;;AAwChB,eAAeA,UAAU,CAAC,IAAAY,EAAA,CAAAC,YAAA,CAAAD,EAAA",
+        "ignoreList": []
+      }
     },
     {
       "name": "vite:esbuild",
-      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { FaCheck } from \"react-icons/fa\";\nimport \"./OrderSteps.css\";\nconst OrderSteps = ({ currentStep, onStepClick }) => {\n  const steps = [\n    { number: 1, title: \"Đặt chỗ của bạn\" },\n    { number: 2, title: \"Thông tin tài khoản\" },\n    { number: 3, title: \"Thanh toán đơn hàng\" },\n    { number: 4, title: \"Hoàn tất\" }\n  ];\n  const handleStepClick = (stepNumber) => {\n    if (stepNumber < currentStep) {\n      onStepClick(stepNumber);\n    }\n  };\n  return /* @__PURE__ */ jsx(\"div\", { className: \"order-steps\", children: steps.map((step, index) => /* @__PURE__ */ jsxs(\n    \"div\",\n    {\n      className: `step ${currentStep === step.number ? \"active\" : \"\"} ${currentStep > step.number ? \"completed clickable\" : \"\"}`,\n      onClick: () => handleStepClick(step.number),\n      children: [\n        /* @__PURE__ */ jsx(\"div\", { className: \"step-indicator\", children: currentStep > step.number ? /* @__PURE__ */ jsx(FaCheck, { className: \"check-icon\" }) : /* @__PURE__ */ jsx(\"span\", { children: step.number }) }),\n        /* @__PURE__ */ jsx(\"span\", { className: \"step-title\", children: step.title }),\n        index < steps.length - 1 && /* @__PURE__ */ jsx(\"div\", { className: \"step-line\" })\n      ]\n    },\n    step.number\n  )) });\n};\nexport default OrderSteps;\n",
-      "start": 1751338502465,
-      "end": 1751338502602,
+      "result": "import { jsxDEV } from \"react/jsx-dev-runtime\";\nimport * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== \"undefined\" && self instanceof WorkerGlobalScope;\nlet prevRefreshReg;\nlet prevRefreshSig;\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\nimport React from \"react\";\nimport { FaCheck } from \"react-icons/fa\";\nimport \"./OrderSteps.css\";\nconst OrderSteps = ({ currentStep, onStepClick }) => {\n  const steps = [\n    { number: 1, title: \"Đặt chỗ của bạn\" },\n    { number: 2, title: \"Thông tin tài khoản\" },\n    { number: 3, title: \"Thanh toán đơn hàng\" },\n    { number: 4, title: \"Hoàn tất\" }\n  ];\n  const handleStepClick = (stepNumber) => {\n    if (stepNumber < currentStep) {\n      onStepClick(stepNumber);\n    }\n  };\n  return /* @__PURE__ */ jsxDEV(\"div\", { className: \"order-steps\", children: steps.map(\n    (step, index) => /* @__PURE__ */ jsxDEV(\n      \"div\",\n      {\n        className: `step ${currentStep === step.number ? \"active\" : \"\"} ${currentStep > step.number ? \"completed clickable\" : \"\"}`,\n        onClick: () => handleStepClick(step.number),\n        children: [\n          /* @__PURE__ */ jsxDEV(\"div\", { className: \"step-indicator\", children: currentStep > step.number ? /* @__PURE__ */ jsxDEV(FaCheck, { className: \"check-icon\" }, void 0, false, {\n            fileName: \"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\",\n            lineNumber: 51,\n            columnNumber: 11\n          }, this) : /* @__PURE__ */ jsxDEV(\"span\", { children: step.number }, void 0, false, {\n            fileName: \"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\",\n            lineNumber: 53,\n            columnNumber: 11\n          }, this) }, void 0, false, {\n            fileName: \"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\",\n            lineNumber: 49,\n            columnNumber: 11\n          }, this),\n          /* @__PURE__ */ jsxDEV(\"span\", { className: \"step-title\", children: step.title }, void 0, false, {\n            fileName: \"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\",\n            lineNumber: 56,\n            columnNumber: 11\n          }, this),\n          index < steps.length - 1 && /* @__PURE__ */ jsxDEV(\"div\", { className: \"step-line\" }, void 0, false, {\n            fileName: \"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\",\n            lineNumber: 57,\n            columnNumber: 40\n          }, this)\n        ]\n      },\n      step.number,\n      true,\n      {\n        fileName: \"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\",\n        lineNumber: 42,\n        columnNumber: 7\n      },\n      this\n    )\n  ) }, void 0, false, {\n    fileName: \"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\",\n    lineNumber: 40,\n    columnNumber: 5\n  }, this);\n};\n_c = OrderSteps;\nexport default OrderSteps;\nvar _c;\n$RefreshReg$(_c, \"OrderSteps\");\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n",
+      "start": 1751856128445,
+      "end": 1751856128651,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -26,65 +84,67 @@
           "C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx"
         ],
         "sourcesContent": [
-          "import React from \"react\";\nimport { FaCheck } from \"react-icons/fa\";\nimport \"./OrderSteps.css\";\n\nconst OrderSteps = ({ currentStep, onStepClick }) => {\n  const steps = [\n    { number: 1, title: \"Đặt chỗ của bạn\" },\n    { number: 2, title: \"Thông tin tài khoản\" },\n    { number: 3, title: \"Thanh toán đơn hàng\" },\n    { number: 4, title: \"Hoàn tất\" },\n  ];\n\n  const handleStepClick = (stepNumber) => {\n    // Only allow clicking on previous steps\n    if (stepNumber < currentStep) {\n      onStepClick(stepNumber);\n    }\n  };\n\n  return (\n    <div className=\"order-steps\">\n      {steps.map((step, index) => (\n        <div\n          key={step.number}\n          className={`step ${currentStep === step.number ? \"active\" : \"\"} ${\n            currentStep > step.number ? \"completed clickable\" : \"\"\n          }`}\n          onClick={() => handleStepClick(step.number)}\n        >\n          <div className=\"step-indicator\">\n            {currentStep > step.number ? (\n              <FaCheck className=\"check-icon\" />\n            ) : (\n              <span>{step.number}</span>\n            )}\n          </div>\n          <span className=\"step-title\">{step.title}</span>\n          {index < steps.length - 1 && <div className=\"step-line\" />}\n        </div>\n      ))}\n    </div>\n  );\n};\n\nexport default OrderSteps;\n"
+          "import * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;\n\nlet prevRefreshReg;\nlet prevRefreshSig;\n\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\n\nimport React from \"react\";\nimport { FaCheck } from \"react-icons/fa\";\nimport \"./OrderSteps.css\";\n\nconst OrderSteps = ({ currentStep, onStepClick }) => {\n  const steps = [\n  { number: 1, title: \"Đặt chỗ của bạn\" },\n  { number: 2, title: \"Thông tin tài khoản\" },\n  { number: 3, title: \"Thanh toán đơn hàng\" },\n  { number: 4, title: \"Hoàn tất\" }];\n\n\n  const handleStepClick = (stepNumber) => {\n    // Only allow clicking on previous steps\n    if (stepNumber < currentStep) {\n      onStepClick(stepNumber);\n    }\n  };\n\n  return (\n    <div className=\"order-steps\">\n      {steps.map((step, index) =>\n      <div\n        key={step.number}\n        className={`step ${currentStep === step.number ? \"active\" : \"\"} ${\n        currentStep > step.number ? \"completed clickable\" : \"\"}`\n        }\n        onClick={() => handleStepClick(step.number)}>\n\n          <div className=\"step-indicator\">\n            {currentStep > step.number ?\n          <FaCheck className=\"check-icon\" /> :\n\n          <span>{step.number}</span>\n          }\n          </div>\n          <span className=\"step-title\">{step.title}</span>\n          {index < steps.length - 1 && <div className=\"step-line\" />}\n        </div>\n      )}\n    </div>);\n\n};_c = OrderSteps;\n\nexport default OrderSteps;var _c;$RefreshReg$(_c, \"OrderSteps\");\n\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\n\n\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n"
         ],
-        "mappings": "AAsBQ,SASM,KATN;AAtBR,OAAO,WAAW;AAClB,SAAS,eAAe;AACxB,OAAO;AAEP,MAAM,aAAa,CAAC,EAAE,aAAa,YAAY,MAAM;AACnD,QAAM,QAAQ;AAAA,IACZ,EAAE,QAAQ,GAAG,OAAO,kBAAkB;AAAA,IACtC,EAAE,QAAQ,GAAG,OAAO,sBAAsB;AAAA,IAC1C,EAAE,QAAQ,GAAG,OAAO,sBAAsB;AAAA,IAC1C,EAAE,QAAQ,GAAG,OAAO,WAAW;AAAA,EACjC;AAEA,QAAM,kBAAkB,CAAC,eAAe;AAEtC,QAAI,aAAa,aAAa;AAC5B,kBAAY,UAAU;AAAA,IACxB;AAAA,EACF;AAEA,SACE,oBAAC,SAAI,WAAU,eACZ,gBAAM,IAAI,CAAC,MAAM,UAChB;AAAA,IAAC;AAAA;AAAA,MAEC,WAAW,QAAQ,gBAAgB,KAAK,SAAS,WAAW,EAAE,IAC5D,cAAc,KAAK,SAAS,wBAAwB,EACtD;AAAA,MACA,SAAS,MAAM,gBAAgB,KAAK,MAAM;AAAA,MAE1C;AAAA,4BAAC,SAAI,WAAU,kBACZ,wBAAc,KAAK,SAClB,oBAAC,WAAQ,WAAU,cAAa,IAEhC,oBAAC,UAAM,eAAK,QAAO,GAEvB;AAAA,QACA,oBAAC,UAAK,WAAU,cAAc,eAAK,OAAM;AAAA,QACxC,QAAQ,MAAM,SAAS,KAAK,oBAAC,SAAI,WAAU,aAAY;AAAA;AAAA;AAAA,IAdnD,KAAK;AAAA,EAeZ,CACD,GACH;AAEJ;AAEA,eAAe;",
+        "mappings": "AAkDU;AAlDV,YAAY,oBAAoB;AAChC,MAAM,cAAc,OAAO,sBAAsB,eAAe,gBAAgB;AAEhF,IAAI;AACJ,IAAI;AAEJ,IAAI,YAAY,OAAO,CAAC,aAAa;AACnC,MAAI,CAAC,OAAO,cAAc;AACxB,UAAM,IAAI;AAAA,MACR;AAAA,IACF;AAAA,EACF;AAEA,mBAAiB,OAAO;AACxB,mBAAiB,OAAO;AACxB,SAAO,eAAe,eAAe,cAAc,sEAAsE;AACzH,SAAO,eAAe,eAAe;AACvC;AAEA,OAAO,WAAW;AAClB,SAAS,eAAe;AACxB,OAAO;AAEP,MAAM,aAAa,CAAC,EAAE,aAAa,YAAY,MAAM;AACnD,QAAM,QAAQ;AAAA,IACd,EAAE,QAAQ,GAAG,OAAO,kBAAkB;AAAA,IACtC,EAAE,QAAQ,GAAG,OAAO,sBAAsB;AAAA,IAC1C,EAAE,QAAQ,GAAG,OAAO,sBAAsB;AAAA,IAC1C,EAAE,QAAQ,GAAG,OAAO,WAAW;AAAA,EAAC;AAGhC,QAAM,kBAAkB,CAAC,eAAe;AAEtC,QAAI,aAAa,aAAa;AAC5B,kBAAY,UAAU;AAAA,IACxB;AAAA,EACF;AAEA,SACE,uBAAC,SAAI,WAAU,eACZ,gBAAM;AAAA,IAAI,CAAC,MAAM,UAClB;AAAA,MAAC;AAAA;AAAA,QAEC,WAAW,QAAQ,gBAAgB,KAAK,SAAS,WAAW,EAAE,IAC9D,cAAc,KAAK,SAAS,wBAAwB,EAAE;AAAA,QAEtD,SAAS,MAAM,gBAAgB,KAAK,MAAM;AAAA,QAExC;AAAA,iCAAC,SAAI,WAAU,kBACZ,wBAAc,KAAK,SACtB,uBAAC,WAAQ,WAAU,gBAAnB;AAAA;AAAA;AAAA;AAAA,iBAAgC,IAEhC,uBAAC,UAAM,eAAK,UAAZ;AAAA;AAAA;AAAA;AAAA,iBAAmB,KAJnB;AAAA;AAAA;AAAA;AAAA,iBAMA;AAAA,UACA,uBAAC,UAAK,WAAU,cAAc,eAAK,SAAnC;AAAA;AAAA;AAAA;AAAA,iBAAyC;AAAA,UACxC,QAAQ,MAAM,SAAS,KAAK,uBAAC,SAAI,WAAU,eAAf;AAAA;AAAA;AAAA;AAAA,iBAA2B;AAAA;AAAA;AAAA,MAdrD,KAAK;AAAA,MADZ;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA;AAAA,IAgBE;AAAA,EACF,KAnBF;AAAA;AAAA;AAAA;AAAA,SAoBA;AAEJ;AAAE,KAAK;AAEP,eAAe;AAAW,IAAI;AAAG,aAAa,IAAI,YAAY;AAE9D,IAAI,YAAY,OAAO,CAAC,aAAa;AACnC,SAAO,eAAe;AACtB,SAAO,eAAe;AACxB;AAGA,IAAI,YAAY,OAAO,CAAC,aAAa;AACnC,iBAAe,aAAa,YAAY,GAAG,EAAE,KAAK,CAAC,mBAAmB;AACpE,mBAAe,+BAA+B,wEAAwE,cAAc;AACpI,gBAAY,IAAI,OAAO,CAAC,gBAAgB;AACtC,UAAI,CAAC,YAAa;AAClB,YAAM,oBAAoB,eAAe,wCAAwC,wEAAwE,gBAAgB,WAAW;AACpL,UAAI,kBAAmB,aAAY,IAAI,WAAW,iBAAiB;AAAA,IACrE,CAAC;AAAA,EACH,CAAC;AACH;",
         "names": []
       }
     },
     {
       "name": "vite:worker",
-      "start": 1751338502602,
-      "end": 1751338502602,
+      "start": 1751856128651,
+      "end": 1751856128651,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751338502602,
-      "end": 1751338502602,
-      "order": "normal-normal"
-    },
-    {
-      "name": "vite:build-html",
-      "start": 1751338502602,
-      "end": 1751338502602,
+      "start": 1751856128651,
+      "end": 1751856128651,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751338502603,
-      "end": 1751338502603,
+      "start": 1751856128651,
+      "end": 1751856128651,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751338502603,
-      "end": 1751338502603,
+      "start": 1751856128651,
+      "end": 1751856128651,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751338502604,
-      "end": 1751338502604,
+      "start": 1751856128651,
+      "end": 1751856128651,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751338502605,
-      "end": 1751338502605,
+      "start": 1751856128651,
+      "end": 1751856128652,
       "order": "normal-normal"
     },
     {
-      "name": "vite:build-import-analysis",
-      "start": 1751338502605,
-      "end": 1751338502605,
-      "order": "normal-normal"
-    },
-    {
-      "name": "vite:reporter",
-      "start": 1751338502605,
-      "end": 1751338502605,
+      "name": "vite:client-inject",
+      "start": 1751856128652,
+      "end": 1751856128652,
       "order": "normal"
+    },
+    {
+      "name": "vite:css-analysis",
+      "start": 1751856128652,
+      "end": 1751856128652,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-analysis",
+      "result": "import { createHotContext as __vite__createHotContext } from \"/@vite/client\";import.meta.hot = __vite__createHotContext(\"/src/components/OrderSteps/OrderSteps.jsx\");import __vite__cjsImport0_react_jsxDevRuntime from \"/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=a4b2f9ae\"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime[\"jsxDEV\"];\nimport * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== \"undefined\" && self instanceof WorkerGlobalScope;\nlet prevRefreshReg;\nlet prevRefreshSig;\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\nimport __vite__cjsImport3_react from \"/node_modules/.vite/deps/react.js?v=a4b2f9ae\"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react;\nimport { FaCheck } from \"/node_modules/.vite/deps/react-icons_fa.js?v=a4b2f9ae\";\nimport \"/src/components/OrderSteps/OrderSteps.css\";\nconst OrderSteps = ({ currentStep, onStepClick }) => {\n  const steps = [\n    { number: 1, title: \"Đặt chỗ của bạn\" },\n    { number: 2, title: \"Thông tin tài khoản\" },\n    { number: 3, title: \"Thanh toán đơn hàng\" },\n    { number: 4, title: \"Hoàn tất\" }\n  ];\n  const handleStepClick = (stepNumber) => {\n    if (stepNumber < currentStep) {\n      onStepClick(stepNumber);\n    }\n  };\n  return /* @__PURE__ */ jsxDEV(\"div\", { className: \"order-steps\", children: steps.map(\n    (step, index) => /* @__PURE__ */ jsxDEV(\n      \"div\",\n      {\n        className: `step ${currentStep === step.number ? \"active\" : \"\"} ${currentStep > step.number ? \"completed clickable\" : \"\"}`,\n        onClick: () => handleStepClick(step.number),\n        children: [\n          /* @__PURE__ */ jsxDEV(\"div\", { className: \"step-indicator\", children: currentStep > step.number ? /* @__PURE__ */ jsxDEV(FaCheck, { className: \"check-icon\" }, void 0, false, {\n            fileName: \"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\",\n            lineNumber: 51,\n            columnNumber: 11\n          }, this) : /* @__PURE__ */ jsxDEV(\"span\", { children: step.number }, void 0, false, {\n            fileName: \"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\",\n            lineNumber: 53,\n            columnNumber: 11\n          }, this) }, void 0, false, {\n            fileName: \"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\",\n            lineNumber: 49,\n            columnNumber: 11\n          }, this),\n          /* @__PURE__ */ jsxDEV(\"span\", { className: \"step-title\", children: step.title }, void 0, false, {\n            fileName: \"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\",\n            lineNumber: 56,\n            columnNumber: 11\n          }, this),\n          index < steps.length - 1 && /* @__PURE__ */ jsxDEV(\"div\", { className: \"step-line\" }, void 0, false, {\n            fileName: \"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\",\n            lineNumber: 57,\n            columnNumber: 40\n          }, this)\n        ]\n      },\n      step.number,\n      true,\n      {\n        fileName: \"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\",\n        lineNumber: 42,\n        columnNumber: 7\n      },\n      this\n    )\n  ) }, void 0, false, {\n    fileName: \"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\",\n    lineNumber: 40,\n    columnNumber: 5\n  }, this);\n};\n_c = OrderSteps;\nexport default OrderSteps;\nvar _c;\n$RefreshReg$(_c, \"OrderSteps\");\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/OrderSteps/OrderSteps.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n",
+      "start": 1751856128652,
+      "end": 1751856128661,
+      "order": "normal",
+      "sourcemaps": null
     }
   ]
 }

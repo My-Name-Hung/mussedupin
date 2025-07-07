@@ -2,23 +2,77 @@
   "resolvedId": "C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx",
   "transforms": [
     {
-      "name": "vite:load-fallback",
+      "name": "__load__",
       "result": "import React, { useEffect } from \"react\";\nimport { FaCheckCircle } from \"react-icons/fa\";\nimport \"./SuccessModal.css\";\n\nconst SuccessModal = ({ isOpen, message, onClose, title }) => {\n  useEffect(() => {\n    if (isOpen) {\n      // Tự động đóng modal sau 2.5s\n      const timer = setTimeout(() => {\n        onClose();\n      }, 2500);\n\n      return () => clearTimeout(timer);\n    }\n  }, [isOpen, onClose]);\n\n  if (!isOpen) return null;\n\n  return (\n    <div className=\"success-modal-overlay\">\n      <div className=\"success-modal-container\">\n        <div className=\"success-icon\">\n          <FaCheckCircle />\n        </div>\n        <h2 className=\"success-title\">{title || \"Thành công!\"}</h2>\n        <p className=\"success-message\">{message}</p>\n      </div>\n    </div>\n  );\n};\n\nexport default SuccessModal;\n",
-      "start": 1751338502629,
-      "end": 1751338503201,
-      "sourcemaps": null
+      "start": 1751856128992,
+      "end": 1751856128992,
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "React",
+          "useEffect",
+          "FaCheckCircle",
+          "SuccessModal",
+          "isOpen",
+          "message",
+          "onClose",
+          "title",
+          "_s",
+          "timer",
+          "setTimeout",
+          "clearTimeout",
+          "_c",
+          "$RefreshReg$"
+        ],
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx"
+        ],
+        "sourcesContent": [
+          "import React, { useEffect } from \"react\";\nimport { FaCheckCircle } from \"react-icons/fa\";\nimport \"./SuccessModal.css\";\n\nconst SuccessModal = ({ isOpen, message, onClose, title }) => {\n  useEffect(() => {\n    if (isOpen) {\n      // Tự động đóng modal sau 2.5s\n      const timer = setTimeout(() => {\n        onClose();\n      }, 2500);\n\n      return () => clearTimeout(timer);\n    }\n  }, [isOpen, onClose]);\n\n  if (!isOpen) return null;\n\n  return (\n    <div className=\"success-modal-overlay\">\n      <div className=\"success-modal-container\">\n        <div className=\"success-icon\">\n          <FaCheckCircle />\n        </div>\n        <h2 className=\"success-title\">{title || \"Thành công!\"}</h2>\n        <p className=\"success-message\">{message}</p>\n      </div>\n    </div>\n  );\n};\n\nexport default SuccessModal;\n"
+        ],
+        "mappings": ";;;;;;;;;;;;;;;;;;;wBAAA,OAAOA,KAAK,IAAIC,SAAS,QAAQ,OAAO;AACxC,SAASC,aAAa,QAAQ,gBAAgB;AAC9C,OAAO,oBAAoB;;AAE3B,MAAMC,YAAY,GAAGA,CAAC,EAAEC,MAAM,EAAEC,OAAO,EAAEC,OAAO,EAAEC,KAAK,CAAC,CAAC,KAAK,CAAAC,EAAA;EAC5DP,SAAS,CAAC,MAAM;IACd,IAAIG,MAAM,EAAE;MACV;MACA,MAAMK,KAAK,GAAGC,UAAU,CAAC,MAAM;QAC7BJ,OAAO,CAAC,CAAC;MACX,CAAC,EAAE,IAAI,CAAC;;MAER,OAAO,MAAMK,YAAY,CAACF,KAAK,CAAC;IAClC;EACF,CAAC,EAAE,CAACL,MAAM,EAAEE,OAAO,CAAC,CAAC;;EAErB,IAAI,CAACF,MAAM,EAAE,OAAO,IAAI;;EAExB;IACE,CAAC,GAAG,CAAC,SAAS,CAAC,uBAAuB;AAC1C,MAAM,CAAC,GAAG,CAAC,SAAS,CAAC,yBAAyB;AAC9C,QAAQ,CAAC,GAAG,CAAC,SAAS,CAAC,cAAc;AACrC,UAAU,CAAC,aAAa;AACxB,QAAQ,EAAE,GAAG;AACb,QAAQ,CAAC,EAAE,CAAC,SAAS,CAAC,eAAe,CAAC,CAACG,KAAK,IAAI,aAAa,CAAC,EAAE,EAAE;AAClE,QAAQ,CAAC,CAAC,CAAC,SAAS,CAAC,iBAAiB,CAAC,CAACF,OAAO,CAAC,EAAE,CAAC;AACnD,MAAM,EAAE,GAAG;AACX,IAAI,EAAE,GAAG,CAAC;;AAEV,CAAC,CAACG,EAAA,CAzBIL,YAAY,kCAAAS,EAAA,GAAZT,YAAY;;AA2BlB,eAAeA,YAAY,CAAC,IAAAS,EAAA,CAAAC,YAAA,CAAAD,EAAA",
+        "ignoreList": []
+      }
     },
     {
       "name": "vite:react-babel",
-      "start": 1751338503201,
-      "end": 1751338503202,
-      "order": "pre"
+      "result": "import * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;\n\nlet prevRefreshReg;\nlet prevRefreshSig;\n\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\n\nvar _s = $RefreshSig$();import React, { useEffect } from \"react\";\nimport { FaCheckCircle } from \"react-icons/fa\";\nimport \"./SuccessModal.css\";\n\nconst SuccessModal = ({ isOpen, message, onClose, title }) => {_s();\n  useEffect(() => {\n    if (isOpen) {\n      // Tự động đóng modal sau 2.5s\n      const timer = setTimeout(() => {\n        onClose();\n      }, 2500);\n\n      return () => clearTimeout(timer);\n    }\n  }, [isOpen, onClose]);\n\n  if (!isOpen) return null;\n\n  return (\n    <div className=\"success-modal-overlay\">\n      <div className=\"success-modal-container\">\n        <div className=\"success-icon\">\n          <FaCheckCircle />\n        </div>\n        <h2 className=\"success-title\">{title || \"Thành công!\"}</h2>\n        <p className=\"success-message\">{message}</p>\n      </div>\n    </div>);\n\n};_s(SuccessModal, \"OD7bBpZva5O2jO+Puf00hKivP7c=\");_c = SuccessModal;\n\nexport default SuccessModal;var _c;$RefreshReg$(_c, \"SuccessModal\");\n\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\n\n\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n",
+      "start": 1751856128992,
+      "end": 1751856128999,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "React",
+          "useEffect",
+          "FaCheckCircle",
+          "SuccessModal",
+          "isOpen",
+          "message",
+          "onClose",
+          "title",
+          "_s",
+          "timer",
+          "setTimeout",
+          "clearTimeout",
+          "_c",
+          "$RefreshReg$"
+        ],
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx"
+        ],
+        "sourcesContent": [
+          "import React, { useEffect } from \"react\";\nimport { FaCheckCircle } from \"react-icons/fa\";\nimport \"./SuccessModal.css\";\n\nconst SuccessModal = ({ isOpen, message, onClose, title }) => {\n  useEffect(() => {\n    if (isOpen) {\n      // Tự động đóng modal sau 2.5s\n      const timer = setTimeout(() => {\n        onClose();\n      }, 2500);\n\n      return () => clearTimeout(timer);\n    }\n  }, [isOpen, onClose]);\n\n  if (!isOpen) return null;\n\n  return (\n    <div className=\"success-modal-overlay\">\n      <div className=\"success-modal-container\">\n        <div className=\"success-icon\">\n          <FaCheckCircle />\n        </div>\n        <h2 className=\"success-title\">{title || \"Thành công!\"}</h2>\n        <p className=\"success-message\">{message}</p>\n      </div>\n    </div>\n  );\n};\n\nexport default SuccessModal;\n"
+        ],
+        "mappings": ";;;;;;;;;;;;;;;;;;;wBAAA,OAAOA,KAAK,IAAIC,SAAS,QAAQ,OAAO;AACxC,SAASC,aAAa,QAAQ,gBAAgB;AAC9C,OAAO,oBAAoB;;AAE3B,MAAMC,YAAY,GAAGA,CAAC,EAAEC,MAAM,EAAEC,OAAO,EAAEC,OAAO,EAAEC,KAAK,CAAC,CAAC,KAAK,CAAAC,EAAA;EAC5DP,SAAS,CAAC,MAAM;IACd,IAAIG,MAAM,EAAE;MACV;MACA,MAAMK,KAAK,GAAGC,UAAU,CAAC,MAAM;QAC7BJ,OAAO,CAAC,CAAC;MACX,CAAC,EAAE,IAAI,CAAC;;MAER,OAAO,MAAMK,YAAY,CAACF,KAAK,CAAC;IAClC;EACF,CAAC,EAAE,CAACL,MAAM,EAAEE,OAAO,CAAC,CAAC;;EAErB,IAAI,CAACF,MAAM,EAAE,OAAO,IAAI;;EAExB;IACE,CAAC,GAAG,CAAC,SAAS,CAAC,uBAAuB;AAC1C,MAAM,CAAC,GAAG,CAAC,SAAS,CAAC,yBAAyB;AAC9C,QAAQ,CAAC,GAAG,CAAC,SAAS,CAAC,cAAc;AACrC,UAAU,CAAC,aAAa;AACxB,QAAQ,EAAE,GAAG;AACb,QAAQ,CAAC,EAAE,CAAC,SAAS,CAAC,eAAe,CAAC,CAACG,KAAK,IAAI,aAAa,CAAC,EAAE,EAAE;AAClE,QAAQ,CAAC,CAAC,CAAC,SAAS,CAAC,iBAAiB,CAAC,CAACF,OAAO,CAAC,EAAE,CAAC;AACnD,MAAM,EAAE,GAAG;AACX,IAAI,EAAE,GAAG,CAAC;;AAEV,CAAC,CAACG,EAAA,CAzBIL,YAAY,kCAAAS,EAAA,GAAZT,YAAY;;AA2BlB,eAAeA,YAAY,CAAC,IAAAS,EAAA,CAAAC,YAAA,CAAAD,EAAA",
+        "ignoreList": []
+      }
     },
     {
       "name": "vite:esbuild",
-      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useEffect } from \"react\";\nimport { FaCheckCircle } from \"react-icons/fa\";\nimport \"./SuccessModal.css\";\nconst SuccessModal = ({ isOpen, message, onClose, title }) => {\n  useEffect(() => {\n    if (isOpen) {\n      const timer = setTimeout(() => {\n        onClose();\n      }, 2500);\n      return () => clearTimeout(timer);\n    }\n  }, [isOpen, onClose]);\n  if (!isOpen) return null;\n  return /* @__PURE__ */ jsx(\"div\", { className: \"success-modal-overlay\", children: /* @__PURE__ */ jsxs(\"div\", { className: \"success-modal-container\", children: [\n    /* @__PURE__ */ jsx(\"div\", { className: \"success-icon\", children: /* @__PURE__ */ jsx(FaCheckCircle, {}) }),\n    /* @__PURE__ */ jsx(\"h2\", { className: \"success-title\", children: title || \"Thành công!\" }),\n    /* @__PURE__ */ jsx(\"p\", { className: \"success-message\", children: message })\n  ] }) });\n};\nexport default SuccessModal;\n",
-      "start": 1751338503202,
-      "end": 1751338503314,
+      "result": "import { jsxDEV } from \"react/jsx-dev-runtime\";\nimport * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== \"undefined\" && self instanceof WorkerGlobalScope;\nlet prevRefreshReg;\nlet prevRefreshSig;\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\nvar _s = $RefreshSig$();\nimport React, { useEffect } from \"react\";\nimport { FaCheckCircle } from \"react-icons/fa\";\nimport \"./SuccessModal.css\";\nconst SuccessModal = ({ isOpen, message, onClose, title }) => {\n  _s();\n  useEffect(() => {\n    if (isOpen) {\n      const timer = setTimeout(() => {\n        onClose();\n      }, 2500);\n      return () => clearTimeout(timer);\n    }\n  }, [isOpen, onClose]);\n  if (!isOpen) return null;\n  return /* @__PURE__ */ jsxDEV(\"div\", { className: \"success-modal-overlay\", children: /* @__PURE__ */ jsxDEV(\"div\", { className: \"success-modal-container\", children: [\n    /* @__PURE__ */ jsxDEV(\"div\", { className: \"success-icon\", children: /* @__PURE__ */ jsxDEV(FaCheckCircle, {}, void 0, false, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\",\n      lineNumber: 42,\n      columnNumber: 11\n    }, this) }, void 0, false, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\",\n      lineNumber: 41,\n      columnNumber: 9\n    }, this),\n    /* @__PURE__ */ jsxDEV(\"h2\", { className: \"success-title\", children: title || \"Thành công!\" }, void 0, false, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\",\n      lineNumber: 44,\n      columnNumber: 9\n    }, this),\n    /* @__PURE__ */ jsxDEV(\"p\", { className: \"success-message\", children: message }, void 0, false, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\",\n      lineNumber: 45,\n      columnNumber: 9\n    }, this)\n  ] }, void 0, true, {\n    fileName: \"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\",\n    lineNumber: 40,\n    columnNumber: 7\n  }, this) }, void 0, false, {\n    fileName: \"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\",\n    lineNumber: 39,\n    columnNumber: 5\n  }, this);\n};\n_s(SuccessModal, \"OD7bBpZva5O2jO+Puf00hKivP7c=\");\n_c = SuccessModal;\nexport default SuccessModal;\nvar _c;\n$RefreshReg$(_c, \"SuccessModal\");\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n",
+      "start": 1751856128999,
+      "end": 1751856129059,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -26,65 +80,67 @@
           "C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx"
         ],
         "sourcesContent": [
-          "import React, { useEffect } from \"react\";\nimport { FaCheckCircle } from \"react-icons/fa\";\nimport \"./SuccessModal.css\";\n\nconst SuccessModal = ({ isOpen, message, onClose, title }) => {\n  useEffect(() => {\n    if (isOpen) {\n      // Tự động đóng modal sau 2.5s\n      const timer = setTimeout(() => {\n        onClose();\n      }, 2500);\n\n      return () => clearTimeout(timer);\n    }\n  }, [isOpen, onClose]);\n\n  if (!isOpen) return null;\n\n  return (\n    <div className=\"success-modal-overlay\">\n      <div className=\"success-modal-container\">\n        <div className=\"success-icon\">\n          <FaCheckCircle />\n        </div>\n        <h2 className=\"success-title\">{title || \"Thành công!\"}</h2>\n        <p className=\"success-message\">{message}</p>\n      </div>\n    </div>\n  );\n};\n\nexport default SuccessModal;\n"
+          "import * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;\n\nlet prevRefreshReg;\nlet prevRefreshSig;\n\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\n\nvar _s = $RefreshSig$();import React, { useEffect } from \"react\";\nimport { FaCheckCircle } from \"react-icons/fa\";\nimport \"./SuccessModal.css\";\n\nconst SuccessModal = ({ isOpen, message, onClose, title }) => {_s();\n  useEffect(() => {\n    if (isOpen) {\n      // Tự động đóng modal sau 2.5s\n      const timer = setTimeout(() => {\n        onClose();\n      }, 2500);\n\n      return () => clearTimeout(timer);\n    }\n  }, [isOpen, onClose]);\n\n  if (!isOpen) return null;\n\n  return (\n    <div className=\"success-modal-overlay\">\n      <div className=\"success-modal-container\">\n        <div className=\"success-icon\">\n          <FaCheckCircle />\n        </div>\n        <h2 className=\"success-title\">{title || \"Thành công!\"}</h2>\n        <p className=\"success-message\">{message}</p>\n      </div>\n    </div>);\n\n};_s(SuccessModal, \"OD7bBpZva5O2jO+Puf00hKivP7c=\");_c = SuccessModal;\n\nexport default SuccessModal;var _c;$RefreshReg$(_c, \"SuccessModal\");\n\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\n\n\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n"
         ],
-        "mappings": "AAoBM,SAEI,KAFJ;AApBN,OAAO,SAAS,iBAAiB;AACjC,SAAS,qBAAqB;AAC9B,OAAO;AAEP,MAAM,eAAe,CAAC,EAAE,QAAQ,SAAS,SAAS,MAAM,MAAM;AAC5D,YAAU,MAAM;AACd,QAAI,QAAQ;AAEV,YAAM,QAAQ,WAAW,MAAM;AAC7B,gBAAQ;AAAA,MACV,GAAG,IAAI;AAEP,aAAO,MAAM,aAAa,KAAK;AAAA,IACjC;AAAA,EACF,GAAG,CAAC,QAAQ,OAAO,CAAC;AAEpB,MAAI,CAAC,OAAQ,QAAO;AAEpB,SACE,oBAAC,SAAI,WAAU,yBACb,+BAAC,SAAI,WAAU,2BACb;AAAA,wBAAC,SAAI,WAAU,gBACb,8BAAC,iBAAc,GACjB;AAAA,IACA,oBAAC,QAAG,WAAU,iBAAiB,mBAAS,eAAc;AAAA,IACtD,oBAAC,OAAE,WAAU,mBAAmB,mBAAQ;AAAA,KAC1C,GACF;AAEJ;AAEA,eAAe;",
+        "mappings": "AAyCU;AAzCV,YAAY,oBAAoB;AAChC,MAAM,cAAc,OAAO,sBAAsB,eAAe,gBAAgB;AAEhF,IAAI;AACJ,IAAI;AAEJ,IAAI,YAAY,OAAO,CAAC,aAAa;AACnC,MAAI,CAAC,OAAO,cAAc;AACxB,UAAM,IAAI;AAAA,MACR;AAAA,IACF;AAAA,EACF;AAEA,mBAAiB,OAAO;AACxB,mBAAiB,OAAO;AACxB,SAAO,eAAe,eAAe,cAAc,kEAAkE;AACrH,SAAO,eAAe,eAAe;AACvC;AAEA,IAAI,KAAK,aAAa;AAAE,OAAO,SAAS,iBAAiB;AACzD,SAAS,qBAAqB;AAC9B,OAAO;AAEP,MAAM,eAAe,CAAC,EAAE,QAAQ,SAAS,SAAS,MAAM,MAAM;AAAC,KAAG;AAChE,YAAU,MAAM;AACd,QAAI,QAAQ;AAEV,YAAM,QAAQ,WAAW,MAAM;AAC7B,gBAAQ;AAAA,MACV,GAAG,IAAI;AAEP,aAAO,MAAM,aAAa,KAAK;AAAA,IACjC;AAAA,EACF,GAAG,CAAC,QAAQ,OAAO,CAAC;AAEpB,MAAI,CAAC,OAAQ,QAAO;AAEpB,SACE,uBAAC,SAAI,WAAU,yBACb,iCAAC,SAAI,WAAU,2BACb;AAAA,2BAAC,SAAI,WAAU,gBACb,iCAAC,mBAAD;AAAA;AAAA;AAAA;AAAA,WAAe,KADjB;AAAA;AAAA;AAAA;AAAA,WAEA;AAAA,IACA,uBAAC,QAAG,WAAU,iBAAiB,mBAAS,iBAAxC;AAAA;AAAA;AAAA;AAAA,WAAsD;AAAA,IACtD,uBAAC,OAAE,WAAU,mBAAmB,qBAAhC;AAAA;AAAA;AAAA;AAAA,WAAwC;AAAA,OAL1C;AAAA;AAAA;AAAA;AAAA,SAMA,KAPF;AAAA;AAAA;AAAA;AAAA,SAQA;AAEJ;AAAE,GAAG,cAAc,8BAA8B;AAAE,KAAK;AAExD,eAAe;AAAa,IAAI;AAAG,aAAa,IAAI,cAAc;AAElE,IAAI,YAAY,OAAO,CAAC,aAAa;AACnC,SAAO,eAAe;AACtB,SAAO,eAAe;AACxB;AAGA,IAAI,YAAY,OAAO,CAAC,aAAa;AACnC,iBAAe,aAAa,YAAY,GAAG,EAAE,KAAK,CAAC,mBAAmB;AACpE,mBAAe,+BAA+B,oEAAoE,cAAc;AAChI,gBAAY,IAAI,OAAO,CAAC,gBAAgB;AACtC,UAAI,CAAC,YAAa;AAClB,YAAM,oBAAoB,eAAe,wCAAwC,oEAAoE,gBAAgB,WAAW;AAChL,UAAI,kBAAmB,aAAY,IAAI,WAAW,iBAAiB;AAAA,IACrE,CAAC;AAAA,EACH,CAAC;AACH;",
         "names": []
       }
     },
     {
       "name": "vite:worker",
-      "start": 1751338503315,
-      "end": 1751338503315,
+      "start": 1751856129059,
+      "end": 1751856129059,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751338503315,
-      "end": 1751338503315,
-      "order": "normal-normal"
-    },
-    {
-      "name": "vite:build-html",
-      "start": 1751338503315,
-      "end": 1751338503315,
+      "start": 1751856129059,
+      "end": 1751856129059,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751338503315,
-      "end": 1751338503315,
+      "start": 1751856129059,
+      "end": 1751856129059,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751338503315,
-      "end": 1751338503315,
+      "start": 1751856129059,
+      "end": 1751856129059,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751338503315,
-      "end": 1751338503315,
+      "start": 1751856129059,
+      "end": 1751856129059,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751338503315,
-      "end": 1751338503315,
+      "start": 1751856129059,
+      "end": 1751856129060,
       "order": "normal-normal"
     },
     {
-      "name": "vite:build-import-analysis",
-      "start": 1751338503315,
-      "end": 1751338503317,
-      "order": "normal-normal"
-    },
-    {
-      "name": "vite:reporter",
-      "start": 1751338503317,
-      "end": 1751338503317,
+      "name": "vite:client-inject",
+      "start": 1751856129060,
+      "end": 1751856129060,
       "order": "normal"
+    },
+    {
+      "name": "vite:css-analysis",
+      "start": 1751856129060,
+      "end": 1751856129060,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-analysis",
+      "result": "import { createHotContext as __vite__createHotContext } from \"/@vite/client\";import.meta.hot = __vite__createHotContext(\"/src/components/Auth/SuccessModal.jsx\");import __vite__cjsImport0_react_jsxDevRuntime from \"/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=a4b2f9ae\"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime[\"jsxDEV\"];\nimport * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== \"undefined\" && self instanceof WorkerGlobalScope;\nlet prevRefreshReg;\nlet prevRefreshSig;\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\nvar _s = $RefreshSig$();\nimport __vite__cjsImport3_react from \"/node_modules/.vite/deps/react.js?v=a4b2f9ae\"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react; const useEffect = __vite__cjsImport3_react[\"useEffect\"];\nimport { FaCheckCircle } from \"/node_modules/.vite/deps/react-icons_fa.js?v=a4b2f9ae\";\nimport \"/src/components/Auth/SuccessModal.css\";\nconst SuccessModal = ({ isOpen, message, onClose, title }) => {\n  _s();\n  useEffect(() => {\n    if (isOpen) {\n      const timer = setTimeout(() => {\n        onClose();\n      }, 2500);\n      return () => clearTimeout(timer);\n    }\n  }, [isOpen, onClose]);\n  if (!isOpen) return null;\n  return /* @__PURE__ */ jsxDEV(\"div\", { className: \"success-modal-overlay\", children: /* @__PURE__ */ jsxDEV(\"div\", { className: \"success-modal-container\", children: [\n    /* @__PURE__ */ jsxDEV(\"div\", { className: \"success-icon\", children: /* @__PURE__ */ jsxDEV(FaCheckCircle, {}, void 0, false, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\",\n      lineNumber: 42,\n      columnNumber: 11\n    }, this) }, void 0, false, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\",\n      lineNumber: 41,\n      columnNumber: 9\n    }, this),\n    /* @__PURE__ */ jsxDEV(\"h2\", { className: \"success-title\", children: title || \"Thành công!\" }, void 0, false, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\",\n      lineNumber: 44,\n      columnNumber: 9\n    }, this),\n    /* @__PURE__ */ jsxDEV(\"p\", { className: \"success-message\", children: message }, void 0, false, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\",\n      lineNumber: 45,\n      columnNumber: 9\n    }, this)\n  ] }, void 0, true, {\n    fileName: \"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\",\n    lineNumber: 40,\n    columnNumber: 7\n  }, this) }, void 0, false, {\n    fileName: \"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\",\n    lineNumber: 39,\n    columnNumber: 5\n  }, this);\n};\n_s(SuccessModal, \"OD7bBpZva5O2jO+Puf00hKivP7c=\");\n_c = SuccessModal;\nexport default SuccessModal;\nvar _c;\n$RefreshReg$(_c, \"SuccessModal\");\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/Auth/SuccessModal.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n",
+      "start": 1751856129060,
+      "end": 1751856129069,
+      "order": "normal",
+      "sourcemaps": null
     }
   ]
 }

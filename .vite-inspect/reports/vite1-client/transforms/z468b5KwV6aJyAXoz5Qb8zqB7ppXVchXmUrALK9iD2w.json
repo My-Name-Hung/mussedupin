@@ -1,0 +1,208 @@
+{
+  "resolvedId": "C:/Users/.Freelancer/TICKET/src/components/PayPalButton/PayPalButton.jsx",
+  "transforms": [
+    {
+      "name": "__load__",
+      "result": "import React, { useEffect, useRef } from 'react';\nimport PropTypes from 'prop-types';\n\nconst PayPalButton = ({ amount, onSuccess, onError, onCancel }) => {\n  const paypalRef = useRef();\n\n  useEffect(() => {\n    const script = document.createElement('script');\n    script.src = `https://www.paypal.com/sdk/js?client-id=${process.env.REACT_APP_PAYPAL_CLIENT_ID}&currency=VND`;\n    script.async = true;\n\n    script.onload = () => {\n      window.paypal\n        .Buttons({\n          createOrder: (data, actions) => {\n            return actions.order.create({\n              purchase_units: [\n                {\n                  amount: {\n                    value: (amount / 23000).toFixed(2), // Convert VND to USD\n                  },\n                },\n              ],\n            });\n          },\n          onApprove: async (data, actions) => {\n            const order = await actions.order.capture();\n            onSuccess(order);\n          },\n          onError: (err) => {\n            onError(err);\n          },\n          onCancel: () => {\n            onCancel();\n          },\n        })\n        .render(paypalRef.current);\n    };\n\n    document.body.appendChild(script);\n\n    return () => {\n      document.body.removeChild(script);\n    };\n  }, [amount, onSuccess, onError, onCancel]);\n\n  return <div ref={paypalRef}></div>;\n};\n\nPayPalButton.propTypes = {\n  amount: PropTypes.number.isRequired,\n  onSuccess: PropTypes.func.isRequired,\n  onError: PropTypes.func.isRequired,\n  onCancel: PropTypes.func.isRequired,\n};\n\nexport default PayPalButton; ",
+      "start": 1751856273328,
+      "end": 1751856273328,
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "React",
+          "useEffect",
+          "useRef",
+          "PropTypes",
+          "PayPalButton",
+          "amount",
+          "onSuccess",
+          "onError",
+          "onCancel",
+          "_s",
+          "paypalRef",
+          "script",
+          "document",
+          "createElement",
+          "src",
+          "process",
+          "env",
+          "REACT_APP_PAYPAL_CLIENT_ID",
+          "async",
+          "onload",
+          "window",
+          "paypal",
+          "Buttons",
+          "createOrder",
+          "data",
+          "actions",
+          "order",
+          "create",
+          "purchase_units",
+          "value",
+          "toFixed",
+          "onApprove",
+          "capture",
+          "err",
+          "render",
+          "current",
+          "body",
+          "appendChild",
+          "removeChild",
+          "_c",
+          "propTypes",
+          "number",
+          "isRequired",
+          "func",
+          "$RefreshReg$"
+        ],
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/components/PayPalButton/PayPalButton.jsx"
+        ],
+        "sourcesContent": [
+          "import React, { useEffect, useRef } from 'react';\nimport PropTypes from 'prop-types';\n\nconst PayPalButton = ({ amount, onSuccess, onError, onCancel }) => {\n  const paypalRef = useRef();\n\n  useEffect(() => {\n    const script = document.createElement('script');\n    script.src = `https://www.paypal.com/sdk/js?client-id=${process.env.REACT_APP_PAYPAL_CLIENT_ID}&currency=VND`;\n    script.async = true;\n\n    script.onload = () => {\n      window.paypal\n        .Buttons({\n          createOrder: (data, actions) => {\n            return actions.order.create({\n              purchase_units: [\n                {\n                  amount: {\n                    value: (amount / 23000).toFixed(2), // Convert VND to USD\n                  },\n                },\n              ],\n            });\n          },\n          onApprove: async (data, actions) => {\n            const order = await actions.order.capture();\n            onSuccess(order);\n          },\n          onError: (err) => {\n            onError(err);\n          },\n          onCancel: () => {\n            onCancel();\n          },\n        })\n        .render(paypalRef.current);\n    };\n\n    document.body.appendChild(script);\n\n    return () => {\n      document.body.removeChild(script);\n    };\n  }, [amount, onSuccess, onError, onCancel]);\n\n  return <div ref={paypalRef}></div>;\n};\n\nPayPalButton.propTypes = {\n  amount: PropTypes.number.isRequired,\n  onSuccess: PropTypes.func.isRequired,\n  onError: PropTypes.func.isRequired,\n  onCancel: PropTypes.func.isRequired,\n};\n\nexport default PayPalButton; "
+        ],
+        "mappings": ";;;;;;;;;;;;;;;;;;;wBAAA,OAAOA,KAAK,IAAIC,SAAS,EAAEC,MAAM,QAAQ,OAAO;AAChD,OAAOC,SAAS,MAAM,YAAY;;AAElC,MAAMC,YAAY,GAAGA,CAAC,EAAEC,MAAM,EAAEC,SAAS,EAAEC,OAAO,EAAEC,QAAQ,CAAC,CAAC,KAAK,CAAAC,EAAA;EACjE,MAAMC,SAAS,GAAGR,MAAM,CAAC,CAAC;;EAE1BD,SAAS,CAAC,MAAM;IACd,MAAMU,MAAM,GAAGC,QAAQ,CAACC,aAAa,CAAC,QAAQ,CAAC;IAC/CF,MAAM,CAACG,GAAG,GAAG,2CAA2CC,OAAO,CAACC,GAAG,CAACC,0BAA0B,eAAe;IAC7GN,MAAM,CAACO,KAAK,GAAG,IAAI;;IAEnBP,MAAM,CAACQ,MAAM,GAAG,MAAM;MACpBC,MAAM,CAACC,MAAM;MACVC,OAAO,CAAC;QACPC,WAAW,EAAEA,CAACC,IAAI,EAAEC,OAAO,KAAK;UAC9B,OAAOA,OAAO,CAACC,KAAK,CAACC,MAAM,CAAC;YAC1BC,cAAc,EAAE;YACd;cACEvB,MAAM,EAAE;gBACNwB,KAAK,EAAE,CAACxB,MAAM,GAAG,KAAK,EAAEyB,OAAO,CAAC,CAAC,CAAC,CAAE;cACtC;YACF,CAAC;;UAEL,CAAC,CAAC;QACJ,CAAC;QACDC,SAAS,EAAE,MAAAA,CAAOP,IAAI,EAAEC,OAAO,KAAK;UAClC,MAAMC,KAAK,GAAG,MAAMD,OAAO,CAACC,KAAK,CAACM,OAAO,CAAC,CAAC;UAC3C1B,SAAS,CAACoB,KAAK,CAAC;QAClB,CAAC;QACDnB,OAAO,EAAEA,CAAC0B,GAAG,KAAK;UAChB1B,OAAO,CAAC0B,GAAG,CAAC;QACd,CAAC;QACDzB,QAAQ,EAAEA,CAAA,KAAM;UACdA,QAAQ,CAAC,CAAC;QACZ;MACF,CAAC,CAAC;MACD0B,MAAM,CAACxB,SAAS,CAACyB,OAAO,CAAC;IAC9B,CAAC;;IAEDvB,QAAQ,CAACwB,IAAI,CAACC,WAAW,CAAC1B,MAAM,CAAC;;IAEjC,OAAO,MAAM;MACXC,QAAQ,CAACwB,IAAI,CAACE,WAAW,CAAC3B,MAAM,CAAC;IACnC,CAAC;EACH,CAAC,EAAE,CAACN,MAAM,EAAEC,SAAS,EAAEC,OAAO,EAAEC,QAAQ,CAAC,CAAC;;EAE1C,OAAO,CAAC,GAAG,CAAC,GAAG,CAAC,CAACE,SAAS,CAAC,CAAC,EAAE,GAAG,CAAC;AACpC,CAAC,CAACD,EAAA,CA5CIL,YAAY,kCAAAmC,EAAA,GAAZnC,YAAY;;AA8ClBA,YAAY,CAACoC,SAAS,GAAG;EACvBnC,MAAM,EAAEF,SAAS,CAACsC,MAAM,CAACC,UAAU;EACnCpC,SAAS,EAAEH,SAAS,CAACwC,IAAI,CAACD,UAAU;EACpCnC,OAAO,EAAEJ,SAAS,CAACwC,IAAI,CAACD,UAAU;EAClClC,QAAQ,EAAEL,SAAS,CAACwC,IAAI,CAACD;AAC3B,CAAC;;AAED,eAAetC,YAAY,CAAC,IAAAmC,EAAA,CAAAK,YAAA,CAAAL,EAAA",
+        "ignoreList": []
+      }
+    },
+    {
+      "name": "vite:react-babel",
+      "result": "import * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;\n\nlet prevRefreshReg;\nlet prevRefreshSig;\n\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/PayPalButton/PayPalButton.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\n\nvar _s = $RefreshSig$();import React, { useEffect, useRef } from 'react';\nimport PropTypes from 'prop-types';\n\nconst PayPalButton = ({ amount, onSuccess, onError, onCancel }) => {_s();\n  const paypalRef = useRef();\n\n  useEffect(() => {\n    const script = document.createElement('script');\n    script.src = `https://www.paypal.com/sdk/js?client-id=${process.env.REACT_APP_PAYPAL_CLIENT_ID}&currency=VND`;\n    script.async = true;\n\n    script.onload = () => {\n      window.paypal.\n      Buttons({\n        createOrder: (data, actions) => {\n          return actions.order.create({\n            purchase_units: [\n            {\n              amount: {\n                value: (amount / 23000).toFixed(2) // Convert VND to USD\n              }\n            }]\n\n          });\n        },\n        onApprove: async (data, actions) => {\n          const order = await actions.order.capture();\n          onSuccess(order);\n        },\n        onError: (err) => {\n          onError(err);\n        },\n        onCancel: () => {\n          onCancel();\n        }\n      }).\n      render(paypalRef.current);\n    };\n\n    document.body.appendChild(script);\n\n    return () => {\n      document.body.removeChild(script);\n    };\n  }, [amount, onSuccess, onError, onCancel]);\n\n  return <div ref={paypalRef}></div>;\n};_s(PayPalButton, \"yBN5KBCdTe8zZEkzhfh0Y7CrYMA=\");_c = PayPalButton;\n\nPayPalButton.propTypes = {\n  amount: PropTypes.number.isRequired,\n  onSuccess: PropTypes.func.isRequired,\n  onError: PropTypes.func.isRequired,\n  onCancel: PropTypes.func.isRequired\n};\n\nexport default PayPalButton;var _c;$RefreshReg$(_c, \"PayPalButton\");\n\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\n\n\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/PayPalButton/PayPalButton.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/PayPalButton/PayPalButton.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n",
+      "start": 1751856273328,
+      "end": 1751856273338,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "React",
+          "useEffect",
+          "useRef",
+          "PropTypes",
+          "PayPalButton",
+          "amount",
+          "onSuccess",
+          "onError",
+          "onCancel",
+          "_s",
+          "paypalRef",
+          "script",
+          "document",
+          "createElement",
+          "src",
+          "process",
+          "env",
+          "REACT_APP_PAYPAL_CLIENT_ID",
+          "async",
+          "onload",
+          "window",
+          "paypal",
+          "Buttons",
+          "createOrder",
+          "data",
+          "actions",
+          "order",
+          "create",
+          "purchase_units",
+          "value",
+          "toFixed",
+          "onApprove",
+          "capture",
+          "err",
+          "render",
+          "current",
+          "body",
+          "appendChild",
+          "removeChild",
+          "_c",
+          "propTypes",
+          "number",
+          "isRequired",
+          "func",
+          "$RefreshReg$"
+        ],
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/components/PayPalButton/PayPalButton.jsx"
+        ],
+        "sourcesContent": [
+          "import React, { useEffect, useRef } from 'react';\nimport PropTypes from 'prop-types';\n\nconst PayPalButton = ({ amount, onSuccess, onError, onCancel }) => {\n  const paypalRef = useRef();\n\n  useEffect(() => {\n    const script = document.createElement('script');\n    script.src = `https://www.paypal.com/sdk/js?client-id=${process.env.REACT_APP_PAYPAL_CLIENT_ID}&currency=VND`;\n    script.async = true;\n\n    script.onload = () => {\n      window.paypal\n        .Buttons({\n          createOrder: (data, actions) => {\n            return actions.order.create({\n              purchase_units: [\n                {\n                  amount: {\n                    value: (amount / 23000).toFixed(2), // Convert VND to USD\n                  },\n                },\n              ],\n            });\n          },\n          onApprove: async (data, actions) => {\n            const order = await actions.order.capture();\n            onSuccess(order);\n          },\n          onError: (err) => {\n            onError(err);\n          },\n          onCancel: () => {\n            onCancel();\n          },\n        })\n        .render(paypalRef.current);\n    };\n\n    document.body.appendChild(script);\n\n    return () => {\n      document.body.removeChild(script);\n    };\n  }, [amount, onSuccess, onError, onCancel]);\n\n  return <div ref={paypalRef}></div>;\n};\n\nPayPalButton.propTypes = {\n  amount: PropTypes.number.isRequired,\n  onSuccess: PropTypes.func.isRequired,\n  onError: PropTypes.func.isRequired,\n  onCancel: PropTypes.func.isRequired,\n};\n\nexport default PayPalButton; "
+        ],
+        "mappings": ";;;;;;;;;;;;;;;;;;;wBAAA,OAAOA,KAAK,IAAIC,SAAS,EAAEC,MAAM,QAAQ,OAAO;AAChD,OAAOC,SAAS,MAAM,YAAY;;AAElC,MAAMC,YAAY,GAAGA,CAAC,EAAEC,MAAM,EAAEC,SAAS,EAAEC,OAAO,EAAEC,QAAQ,CAAC,CAAC,KAAK,CAAAC,EAAA;EACjE,MAAMC,SAAS,GAAGR,MAAM,CAAC,CAAC;;EAE1BD,SAAS,CAAC,MAAM;IACd,MAAMU,MAAM,GAAGC,QAAQ,CAACC,aAAa,CAAC,QAAQ,CAAC;IAC/CF,MAAM,CAACG,GAAG,GAAG,2CAA2CC,OAAO,CAACC,GAAG,CAACC,0BAA0B,eAAe;IAC7GN,MAAM,CAACO,KAAK,GAAG,IAAI;;IAEnBP,MAAM,CAACQ,MAAM,GAAG,MAAM;MACpBC,MAAM,CAACC,MAAM;MACVC,OAAO,CAAC;QACPC,WAAW,EAAEA,CAACC,IAAI,EAAEC,OAAO,KAAK;UAC9B,OAAOA,OAAO,CAACC,KAAK,CAACC,MAAM,CAAC;YAC1BC,cAAc,EAAE;YACd;cACEvB,MAAM,EAAE;gBACNwB,KAAK,EAAE,CAACxB,MAAM,GAAG,KAAK,EAAEyB,OAAO,CAAC,CAAC,CAAC,CAAE;cACtC;YACF,CAAC;;UAEL,CAAC,CAAC;QACJ,CAAC;QACDC,SAAS,EAAE,MAAAA,CAAOP,IAAI,EAAEC,OAAO,KAAK;UAClC,MAAMC,KAAK,GAAG,MAAMD,OAAO,CAACC,KAAK,CAACM,OAAO,CAAC,CAAC;UAC3C1B,SAAS,CAACoB,KAAK,CAAC;QAClB,CAAC;QACDnB,OAAO,EAAEA,CAAC0B,GAAG,KAAK;UAChB1B,OAAO,CAAC0B,GAAG,CAAC;QACd,CAAC;QACDzB,QAAQ,EAAEA,CAAA,KAAM;UACdA,QAAQ,CAAC,CAAC;QACZ;MACF,CAAC,CAAC;MACD0B,MAAM,CAACxB,SAAS,CAACyB,OAAO,CAAC;IAC9B,CAAC;;IAEDvB,QAAQ,CAACwB,IAAI,CAACC,WAAW,CAAC1B,MAAM,CAAC;;IAEjC,OAAO,MAAM;MACXC,QAAQ,CAACwB,IAAI,CAACE,WAAW,CAAC3B,MAAM,CAAC;IACnC,CAAC;EACH,CAAC,EAAE,CAACN,MAAM,EAAEC,SAAS,EAAEC,OAAO,EAAEC,QAAQ,CAAC,CAAC;;EAE1C,OAAO,CAAC,GAAG,CAAC,GAAG,CAAC,CAACE,SAAS,CAAC,CAAC,EAAE,GAAG,CAAC;AACpC,CAAC,CAACD,EAAA,CA5CIL,YAAY,kCAAAmC,EAAA,GAAZnC,YAAY;;AA8ClBA,YAAY,CAACoC,SAAS,GAAG;EACvBnC,MAAM,EAAEF,SAAS,CAACsC,MAAM,CAACC,UAAU;EACnCpC,SAAS,EAAEH,SAAS,CAACwC,IAAI,CAACD,UAAU;EACpCnC,OAAO,EAAEJ,SAAS,CAACwC,IAAI,CAACD,UAAU;EAClClC,QAAQ,EAAEL,SAAS,CAACwC,IAAI,CAACD;AAC3B,CAAC;;AAED,eAAetC,YAAY,CAAC,IAAAmC,EAAA,CAAAK,YAAA,CAAAL,EAAA",
+        "ignoreList": []
+      }
+    },
+    {
+      "name": "vite:esbuild",
+      "result": "import { jsxDEV } from \"react/jsx-dev-runtime\";\nimport * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== \"undefined\" && self instanceof WorkerGlobalScope;\nlet prevRefreshReg;\nlet prevRefreshSig;\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/PayPalButton/PayPalButton.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\nvar _s = $RefreshSig$();\nimport React, { useEffect, useRef } from \"react\";\nimport PropTypes from \"prop-types\";\nconst PayPalButton = ({ amount, onSuccess, onError, onCancel }) => {\n  _s();\n  const paypalRef = useRef();\n  useEffect(() => {\n    const script = document.createElement(\"script\");\n    script.src = `https://www.paypal.com/sdk/js?client-id=${process.env.REACT_APP_PAYPAL_CLIENT_ID}&currency=VND`;\n    script.async = true;\n    script.onload = () => {\n      window.paypal.Buttons({\n        createOrder: (data, actions) => {\n          return actions.order.create({\n            purchase_units: [\n              {\n                amount: {\n                  value: (amount / 23e3).toFixed(2)\n                  // Convert VND to USD\n                }\n              }\n            ]\n          });\n        },\n        onApprove: async (data, actions) => {\n          const order = await actions.order.capture();\n          onSuccess(order);\n        },\n        onError: (err) => {\n          onError(err);\n        },\n        onCancel: () => {\n          onCancel();\n        }\n      }).render(paypalRef.current);\n    };\n    document.body.appendChild(script);\n    return () => {\n      document.body.removeChild(script);\n    };\n  }, [amount, onSuccess, onError, onCancel]);\n  return /* @__PURE__ */ jsxDEV(\"div\", { ref: paypalRef }, void 0, false, {\n    fileName: \"C:/Users/.Freelancer/TICKET/src/components/PayPalButton/PayPalButton.jsx\",\n    lineNumber: 66,\n    columnNumber: 10\n  }, this);\n};\n_s(PayPalButton, \"yBN5KBCdTe8zZEkzhfh0Y7CrYMA=\");\n_c = PayPalButton;\nPayPalButton.propTypes = {\n  amount: PropTypes.number.isRequired,\n  onSuccess: PropTypes.func.isRequired,\n  onError: PropTypes.func.isRequired,\n  onCancel: PropTypes.func.isRequired\n};\nexport default PayPalButton;\nvar _c;\n$RefreshReg$(_c, \"PayPalButton\");\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/PayPalButton/PayPalButton.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/PayPalButton/PayPalButton.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n",
+      "start": 1751856273338,
+      "end": 1751856273342,
+      "order": "normal",
+      "sourcemaps": {
+        "version": 3,
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/components/PayPalButton/PayPalButton.jsx"
+        ],
+        "sourcesContent": [
+          "import * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;\n\nlet prevRefreshReg;\nlet prevRefreshSig;\n\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/PayPalButton/PayPalButton.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\n\nvar _s = $RefreshSig$();import React, { useEffect, useRef } from 'react';\nimport PropTypes from 'prop-types';\n\nconst PayPalButton = ({ amount, onSuccess, onError, onCancel }) => {_s();\n  const paypalRef = useRef();\n\n  useEffect(() => {\n    const script = document.createElement('script');\n    script.src = `https://www.paypal.com/sdk/js?client-id=${process.env.REACT_APP_PAYPAL_CLIENT_ID}&currency=VND`;\n    script.async = true;\n\n    script.onload = () => {\n      window.paypal.\n      Buttons({\n        createOrder: (data, actions) => {\n          return actions.order.create({\n            purchase_units: [\n            {\n              amount: {\n                value: (amount / 23000).toFixed(2) // Convert VND to USD\n              }\n            }]\n\n          });\n        },\n        onApprove: async (data, actions) => {\n          const order = await actions.order.capture();\n          onSuccess(order);\n        },\n        onError: (err) => {\n          onError(err);\n        },\n        onCancel: () => {\n          onCancel();\n        }\n      }).\n      render(paypalRef.current);\n    };\n\n    document.body.appendChild(script);\n\n    return () => {\n      document.body.removeChild(script);\n    };\n  }, [amount, onSuccess, onError, onCancel]);\n\n  return <div ref={paypalRef}></div>;\n};_s(PayPalButton, \"yBN5KBCdTe8zZEkzhfh0Y7CrYMA=\");_c = PayPalButton;\n\nPayPalButton.propTypes = {\n  amount: PropTypes.number.isRequired,\n  onSuccess: PropTypes.func.isRequired,\n  onError: PropTypes.func.isRequired,\n  onCancel: PropTypes.func.isRequired\n};\n\nexport default PayPalButton;var _c;$RefreshReg$(_c, \"PayPalButton\");\n\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\n\n\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/PayPalButton/PayPalButton.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/PayPalButton/PayPalButton.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n"
+        ],
+        "mappings": "AAiES;AAjET,YAAY,oBAAoB;AAChC,MAAM,cAAc,OAAO,sBAAsB,eAAe,gBAAgB;AAEhF,IAAI;AACJ,IAAI;AAEJ,IAAI,YAAY,OAAO,CAAC,aAAa;AACnC,MAAI,CAAC,OAAO,cAAc;AACxB,UAAM,IAAI;AAAA,MACR;AAAA,IACF;AAAA,EACF;AAEA,mBAAiB,OAAO;AACxB,mBAAiB,OAAO;AACxB,SAAO,eAAe,eAAe,cAAc,0EAA0E;AAC7H,SAAO,eAAe,eAAe;AACvC;AAEA,IAAI,KAAK,aAAa;AAAE,OAAO,SAAS,WAAW,cAAc;AACjE,OAAO,eAAe;AAEtB,MAAM,eAAe,CAAC,EAAE,QAAQ,WAAW,SAAS,SAAS,MAAM;AAAC,KAAG;AACrE,QAAM,YAAY,OAAO;AAEzB,YAAU,MAAM;AACd,UAAM,SAAS,SAAS,cAAc,QAAQ;AAC9C,WAAO,MAAM,2CAA2C,QAAQ,IAAI,0BAA0B;AAC9F,WAAO,QAAQ;AAEf,WAAO,SAAS,MAAM;AACpB,aAAO,OACP,QAAQ;AAAA,QACN,aAAa,CAAC,MAAM,YAAY;AAC9B,iBAAO,QAAQ,MAAM,OAAO;AAAA,YAC1B,gBAAgB;AAAA,cAChB;AAAA,gBACE,QAAQ;AAAA,kBACN,QAAQ,SAAS,MAAO,QAAQ,CAAC;AAAA;AAAA,gBACnC;AAAA,cACF;AAAA,YAAC;AAAA,UAEH,CAAC;AAAA,QACH;AAAA,QACA,WAAW,OAAO,MAAM,YAAY;AAClC,gBAAM,QAAQ,MAAM,QAAQ,MAAM,QAAQ;AAC1C,oBAAU,KAAK;AAAA,QACjB;AAAA,QACA,SAAS,CAAC,QAAQ;AAChB,kBAAQ,GAAG;AAAA,QACb;AAAA,QACA,UAAU,MAAM;AACd,mBAAS;AAAA,QACX;AAAA,MACF,CAAC,EACD,OAAO,UAAU,OAAO;AAAA,IAC1B;AAEA,aAAS,KAAK,YAAY,MAAM;AAEhC,WAAO,MAAM;AACX,eAAS,KAAK,YAAY,MAAM;AAAA,IAClC;AAAA,EACF,GAAG,CAAC,QAAQ,WAAW,SAAS,QAAQ,CAAC;AAEzC,SAAO,uBAAC,SAAI,KAAK,aAAV;AAAA;AAAA;AAAA;AAAA,SAAqB;AAC9B;AAAE,GAAG,cAAc,8BAA8B;AAAE,KAAK;AAExD,aAAa,YAAY;AAAA,EACvB,QAAQ,UAAU,OAAO;AAAA,EACzB,WAAW,UAAU,KAAK;AAAA,EAC1B,SAAS,UAAU,KAAK;AAAA,EACxB,UAAU,UAAU,KAAK;AAC3B;AAEA,eAAe;AAAa,IAAI;AAAG,aAAa,IAAI,cAAc;AAElE,IAAI,YAAY,OAAO,CAAC,aAAa;AACnC,SAAO,eAAe;AACtB,SAAO,eAAe;AACxB;AAGA,IAAI,YAAY,OAAO,CAAC,aAAa;AACnC,iBAAe,aAAa,YAAY,GAAG,EAAE,KAAK,CAAC,mBAAmB;AACpE,mBAAe,+BAA+B,4EAA4E,cAAc;AACxI,gBAAY,IAAI,OAAO,CAAC,gBAAgB;AACtC,UAAI,CAAC,YAAa;AAClB,YAAM,oBAAoB,eAAe,wCAAwC,4EAA4E,gBAAgB,WAAW;AACxL,UAAI,kBAAmB,aAAY,IAAI,WAAW,iBAAiB;AAAA,IACrE,CAAC;AAAA,EACH,CAAC;AACH;",
+        "names": []
+      }
+    },
+    {
+      "name": "vite:worker",
+      "start": 1751856273342,
+      "end": 1751856273342,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:define",
+      "start": 1751856273342,
+      "end": 1751856273342,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:worker-import-meta-url",
+      "start": 1751856273342,
+      "end": 1751856273342,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:asset-import-meta-url",
+      "start": 1751856273342,
+      "end": 1751856273342,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:dynamic-import-vars",
+      "start": 1751856273342,
+      "end": 1751856273342,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-glob",
+      "start": 1751856273342,
+      "end": 1751856273342,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:client-inject",
+      "start": 1751856273342,
+      "end": 1751856273342,
+      "order": "normal"
+    },
+    {
+      "name": "vite:css-analysis",
+      "start": 1751856273342,
+      "end": 1751856273342,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-analysis",
+      "result": "import { createHotContext as __vite__createHotContext } from \"/@vite/client\";import.meta.hot = __vite__createHotContext(\"/src/components/PayPalButton/PayPalButton.jsx\");import __vite__cjsImport0_react_jsxDevRuntime from \"/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=a4b2f9ae\"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime[\"jsxDEV\"];\nimport * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== \"undefined\" && self instanceof WorkerGlobalScope;\nlet prevRefreshReg;\nlet prevRefreshSig;\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/PayPalButton/PayPalButton.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\nvar _s = $RefreshSig$();\nimport __vite__cjsImport3_react from \"/node_modules/.vite/deps/react.js?v=a4b2f9ae\"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react; const useEffect = __vite__cjsImport3_react[\"useEffect\"]; const useRef = __vite__cjsImport3_react[\"useRef\"];\nimport __vite__cjsImport4_propTypes from \"/node_modules/.vite/deps/prop-types.js?v=a4b2f9ae\"; const PropTypes = __vite__cjsImport4_propTypes.__esModule ? __vite__cjsImport4_propTypes.default : __vite__cjsImport4_propTypes;\nconst PayPalButton = ({ amount, onSuccess, onError, onCancel }) => {\n  _s();\n  const paypalRef = useRef();\n  useEffect(() => {\n    const script = document.createElement(\"script\");\n    script.src = `https://www.paypal.com/sdk/js?client-id=${process.env.REACT_APP_PAYPAL_CLIENT_ID}&currency=VND`;\n    script.async = true;\n    script.onload = () => {\n      window.paypal.Buttons({\n        createOrder: (data, actions) => {\n          return actions.order.create({\n            purchase_units: [\n              {\n                amount: {\n                  value: (amount / 23e3).toFixed(2)\n                  // Convert VND to USD\n                }\n              }\n            ]\n          });\n        },\n        onApprove: async (data, actions) => {\n          const order = await actions.order.capture();\n          onSuccess(order);\n        },\n        onError: (err) => {\n          onError(err);\n        },\n        onCancel: () => {\n          onCancel();\n        }\n      }).render(paypalRef.current);\n    };\n    document.body.appendChild(script);\n    return () => {\n      document.body.removeChild(script);\n    };\n  }, [amount, onSuccess, onError, onCancel]);\n  return /* @__PURE__ */ jsxDEV(\"div\", { ref: paypalRef }, void 0, false, {\n    fileName: \"C:/Users/.Freelancer/TICKET/src/components/PayPalButton/PayPalButton.jsx\",\n    lineNumber: 66,\n    columnNumber: 10\n  }, this);\n};\n_s(PayPalButton, \"yBN5KBCdTe8zZEkzhfh0Y7CrYMA=\");\n_c = PayPalButton;\nPayPalButton.propTypes = {\n  amount: PropTypes.number.isRequired,\n  onSuccess: PropTypes.func.isRequired,\n  onError: PropTypes.func.isRequired,\n  onCancel: PropTypes.func.isRequired\n};\nexport default PayPalButton;\nvar _c;\n$RefreshReg$(_c, \"PayPalButton\");\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/PayPalButton/PayPalButton.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/PayPalButton/PayPalButton.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n",
+      "start": 1751856273342,
+      "end": 1751856273343,
+      "order": "normal",
+      "sourcemaps": null
+    }
+  ]
+}

@@ -2,23 +2,107 @@
   "resolvedId": "C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx",
   "transforms": [
     {
-      "name": "vite:load-fallback",
+      "name": "__load__",
       "result": "import React, { useState } from \"react\";\nimport \"./TimeSelection.css\";\n\nconst TimeSelection = ({ selectedTime, onTimeChange }) => {\n  const [activeTab, setActiveTab] = useState(\"morning\");\n\n  const generateTimeSlots = (start, end) => {\n    const slots = [];\n    let current = start;\n    while (current <= end) {\n      const hour = Math.floor(current);\n      const minute = (current % 1) * 60;\n      slots.push(\n        `${hour.toString().padStart(2, \"0\")}:${minute\n          .toString()\n          .padStart(2, \"0\")}`\n      );\n      current += 0.5; // 30 minute intervals\n    }\n    return slots;\n  };\n\n  const morningSlots = generateTimeSlots(8, 13.5); // 8:00 to 13:30\n  const afternoonSlots = generateTimeSlots(14, 23); // 14:00 to 23:00\n\n  return (\n    <div className=\"time-selection-container\">\n      <h2>Chọn thời gian</h2>\n      <div className=\"time-tabs\">\n        <button\n          className={`tab ${activeTab === \"morning\" ? \"active\" : \"\"}`}\n          onClick={() => setActiveTab(\"morning\")}\n        >\n          Buổi sáng & trưa\n        </button>\n        <button\n          className={`tab ${activeTab === \"afternoon\" ? \"active\" : \"\"}`}\n          onClick={() => setActiveTab(\"afternoon\")}\n        >\n          Buổi chiều\n        </button>\n      </div>\n      <div className=\"time-slots\">\n        {(activeTab === \"morning\" ? morningSlots : afternoonSlots).map(\n          (time) => (\n            <label key={time} className=\"time-slot\">\n              <input\n                type=\"radio\"\n                name=\"time\"\n                value={time}\n                checked={selectedTime === time}\n                onChange={(e) => onTimeChange(e.target.value)}\n              />\n              <span>{time}</span>\n            </label>\n          )\n        )}\n      </div>\n    </div>\n  );\n};\n\nexport default TimeSelection;\n",
-      "start": 1751338502104,
-      "end": 1751338502467,
-      "sourcemaps": null
+      "start": 1751856128455,
+      "end": 1751856128455,
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "React",
+          "useState",
+          "TimeSelection",
+          "selectedTime",
+          "onTimeChange",
+          "_s",
+          "activeTab",
+          "setActiveTab",
+          "generateTimeSlots",
+          "start",
+          "end",
+          "slots",
+          "current",
+          "hour",
+          "Math",
+          "floor",
+          "minute",
+          "push",
+          "toString",
+          "padStart",
+          "morningSlots",
+          "afternoonSlots",
+          "map",
+          "time",
+          "e",
+          "target",
+          "value",
+          "_c",
+          "$RefreshReg$"
+        ],
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx"
+        ],
+        "sourcesContent": [
+          "import React, { useState } from \"react\";\nimport \"./TimeSelection.css\";\n\nconst TimeSelection = ({ selectedTime, onTimeChange }) => {\n  const [activeTab, setActiveTab] = useState(\"morning\");\n\n  const generateTimeSlots = (start, end) => {\n    const slots = [];\n    let current = start;\n    while (current <= end) {\n      const hour = Math.floor(current);\n      const minute = (current % 1) * 60;\n      slots.push(\n        `${hour.toString().padStart(2, \"0\")}:${minute\n          .toString()\n          .padStart(2, \"0\")}`\n      );\n      current += 0.5; // 30 minute intervals\n    }\n    return slots;\n  };\n\n  const morningSlots = generateTimeSlots(8, 13.5); // 8:00 to 13:30\n  const afternoonSlots = generateTimeSlots(14, 23); // 14:00 to 23:00\n\n  return (\n    <div className=\"time-selection-container\">\n      <h2>Chọn thời gian</h2>\n      <div className=\"time-tabs\">\n        <button\n          className={`tab ${activeTab === \"morning\" ? \"active\" : \"\"}`}\n          onClick={() => setActiveTab(\"morning\")}\n        >\n          Buổi sáng & trưa\n        </button>\n        <button\n          className={`tab ${activeTab === \"afternoon\" ? \"active\" : \"\"}`}\n          onClick={() => setActiveTab(\"afternoon\")}\n        >\n          Buổi chiều\n        </button>\n      </div>\n      <div className=\"time-slots\">\n        {(activeTab === \"morning\" ? morningSlots : afternoonSlots).map(\n          (time) => (\n            <label key={time} className=\"time-slot\">\n              <input\n                type=\"radio\"\n                name=\"time\"\n                value={time}\n                checked={selectedTime === time}\n                onChange={(e) => onTimeChange(e.target.value)}\n              />\n              <span>{time}</span>\n            </label>\n          )\n        )}\n      </div>\n    </div>\n  );\n};\n\nexport default TimeSelection;\n"
+        ],
+        "mappings": ";;;;;;;;;;;;;;;;;;;wBAAA,OAAOA,KAAK,IAAIC,QAAQ,QAAQ,OAAO;AACvC,OAAO,qBAAqB;;AAE5B,MAAMC,aAAa,GAAGA,CAAC,EAAEC,YAAY,EAAEC,YAAY,CAAC,CAAC,KAAK,CAAAC,EAAA;EACxD,MAAM,CAACC,SAAS,EAAEC,YAAY,CAAC,GAAGN,QAAQ,CAAC,SAAS,CAAC;;EAErD,MAAMO,iBAAiB,GAAGA,CAACC,KAAK,EAAEC,GAAG,KAAK;IACxC,MAAMC,KAAK,GAAG,EAAE;IAChB,IAAIC,OAAO,GAAGH,KAAK;IACnB,OAAOG,OAAO,IAAIF,GAAG,EAAE;MACrB,MAAMG,IAAI,GAAGC,IAAI,CAACC,KAAK,CAACH,OAAO,CAAC;MAChC,MAAMI,MAAM,GAAIJ,OAAO,GAAG,CAAC,GAAI,EAAE;MACjCD,KAAK,CAACM,IAAI;QACR,GAAGJ,IAAI,CAACK,QAAQ,CAAC,CAAC,CAACC,QAAQ,CAAC,CAAC,EAAE,GAAG,CAAC,IAAIH,MAAM;QAC1CE,QAAQ,CAAC,CAAC;QACVC,QAAQ,CAAC,CAAC,EAAE,GAAG,CAAC;MACrB,CAAC;MACDP,OAAO,IAAI,GAAG,CAAC,CAAC;IAClB;IACA,OAAOD,KAAK;EACd,CAAC;;EAED,MAAMS,YAAY,GAAGZ,iBAAiB,CAAC,CAAC,EAAE,IAAI,CAAC,CAAC,CAAC;EACjD,MAAMa,cAAc,GAAGb,iBAAiB,CAAC,EAAE,EAAE,EAAE,CAAC,CAAC,CAAC;;EAElD;IACE,CAAC,GAAG,CAAC,SAAS,CAAC,0BAA0B;AAC7C,MAAM,CAAC,EAAE,CAAC,cAAc,EAAE,EAAE;AAC5B,MAAM,CAAC,GAAG,CAAC,SAAS,CAAC,WAAW;AAChC,QAAQ,CAAC;UACC,SAAS,CAAC,CAAC,OAAOF,SAAS,KAAK,SAAS,GAAG,QAAQ,GAAG,EAAE,EAAE;UAC3D,OAAO,CAAC,CAAC,MAAMC,YAAY,CAAC,SAAS,CAAC,CAAC;;AAEjD;AACA,QAAQ,EAAE,MAAM;AAChB,QAAQ,CAAC;UACC,SAAS,CAAC,CAAC,OAAOD,SAAS,KAAK,WAAW,GAAG,QAAQ,GAAG,EAAE,EAAE;UAC7D,OAAO,CAAC,CAAC,MAAMC,YAAY,CAAC,WAAW,CAAC,CAAC;;AAEnD;AACA,QAAQ,EAAE,MAAM;AAChB,MAAM,EAAE,GAAG;AACX,MAAM,CAAC,GAAG,CAAC,SAAS,CAAC,YAAY;AACjC,QAAQ,CAAC,CAACD,SAAS,KAAK,SAAS,GAAGc,YAAY,GAAGC,cAAc,EAAEC,GAAG;UAC5D,CAACC,IAAI;UACH,CAAC,KAAK,CAAC,GAAG,CAAC,CAACA,IAAI,CAAC,CAAC,SAAS,CAAC,WAAW;AACnD,cAAc,CAAC;cACC,IAAI,CAAC;cACL,IAAI,CAAC;cACL,KAAK,CAAC,CAACA,IAAI;cACX,OAAO,CAAC,CAACpB,YAAY,KAAKoB,IAAI;cAC9B,QAAQ,CAAC,CAAC,CAACC,CAAC,KAAKpB,YAAY,CAACoB,CAAC,CAACC,MAAM,CAACC,KAAK,CAAC,CAAC;;AAE9D,cAAc,CAAC,IAAI,CAAC,CAACH,IAAI,CAAC,EAAE,IAAI;AAChC,YAAY,EAAE,KAAK;;QAEX,CAAC;AACT,MAAM,EAAE,GAAG;AACX,IAAI,EAAE,GAAG,CAAC;;AAEV,CAAC,CAAClB,EAAA,CAzDIH,aAAa,kCAAAyB,EAAA,GAAbzB,aAAa;;AA2DnB,eAAeA,aAAa,CAAC,IAAAyB,EAAA,CAAAC,YAAA,CAAAD,EAAA",
+        "ignoreList": []
+      }
     },
     {
       "name": "vite:react-babel",
-      "start": 1751338502467,
-      "end": 1751338502467,
-      "order": "pre"
+      "result": "import * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;\n\nlet prevRefreshReg;\nlet prevRefreshSig;\n\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\n\nvar _s = $RefreshSig$();import React, { useState } from \"react\";\nimport \"./TimeSelection.css\";\n\nconst TimeSelection = ({ selectedTime, onTimeChange }) => {_s();\n  const [activeTab, setActiveTab] = useState(\"morning\");\n\n  const generateTimeSlots = (start, end) => {\n    const slots = [];\n    let current = start;\n    while (current <= end) {\n      const hour = Math.floor(current);\n      const minute = current % 1 * 60;\n      slots.push(\n        `${hour.toString().padStart(2, \"0\")}:${minute.\n        toString().\n        padStart(2, \"0\")}`\n      );\n      current += 0.5; // 30 minute intervals\n    }\n    return slots;\n  };\n\n  const morningSlots = generateTimeSlots(8, 13.5); // 8:00 to 13:30\n  const afternoonSlots = generateTimeSlots(14, 23); // 14:00 to 23:00\n\n  return (\n    <div className=\"time-selection-container\">\n      <h2>Chọn thời gian</h2>\n      <div className=\"time-tabs\">\n        <button\n          className={`tab ${activeTab === \"morning\" ? \"active\" : \"\"}`}\n          onClick={() => setActiveTab(\"morning\")}>\n\n          Buổi sáng & trưa\n        </button>\n        <button\n          className={`tab ${activeTab === \"afternoon\" ? \"active\" : \"\"}`}\n          onClick={() => setActiveTab(\"afternoon\")}>\n\n          Buổi chiều\n        </button>\n      </div>\n      <div className=\"time-slots\">\n        {(activeTab === \"morning\" ? morningSlots : afternoonSlots).map(\n          (time) =>\n          <label key={time} className=\"time-slot\">\n              <input\n              type=\"radio\"\n              name=\"time\"\n              value={time}\n              checked={selectedTime === time}\n              onChange={(e) => onTimeChange(e.target.value)} />\n\n              <span>{time}</span>\n            </label>\n\n        )}\n      </div>\n    </div>);\n\n};_s(TimeSelection, \"YsefaR5Takj12nZHB8CcW2JamBA=\");_c = TimeSelection;\n\nexport default TimeSelection;var _c;$RefreshReg$(_c, \"TimeSelection\");\n\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\n\n\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n",
+      "start": 1751856128455,
+      "end": 1751856128461,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "React",
+          "useState",
+          "TimeSelection",
+          "selectedTime",
+          "onTimeChange",
+          "_s",
+          "activeTab",
+          "setActiveTab",
+          "generateTimeSlots",
+          "start",
+          "end",
+          "slots",
+          "current",
+          "hour",
+          "Math",
+          "floor",
+          "minute",
+          "push",
+          "toString",
+          "padStart",
+          "morningSlots",
+          "afternoonSlots",
+          "map",
+          "time",
+          "e",
+          "target",
+          "value",
+          "_c",
+          "$RefreshReg$"
+        ],
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx"
+        ],
+        "sourcesContent": [
+          "import React, { useState } from \"react\";\nimport \"./TimeSelection.css\";\n\nconst TimeSelection = ({ selectedTime, onTimeChange }) => {\n  const [activeTab, setActiveTab] = useState(\"morning\");\n\n  const generateTimeSlots = (start, end) => {\n    const slots = [];\n    let current = start;\n    while (current <= end) {\n      const hour = Math.floor(current);\n      const minute = (current % 1) * 60;\n      slots.push(\n        `${hour.toString().padStart(2, \"0\")}:${minute\n          .toString()\n          .padStart(2, \"0\")}`\n      );\n      current += 0.5; // 30 minute intervals\n    }\n    return slots;\n  };\n\n  const morningSlots = generateTimeSlots(8, 13.5); // 8:00 to 13:30\n  const afternoonSlots = generateTimeSlots(14, 23); // 14:00 to 23:00\n\n  return (\n    <div className=\"time-selection-container\">\n      <h2>Chọn thời gian</h2>\n      <div className=\"time-tabs\">\n        <button\n          className={`tab ${activeTab === \"morning\" ? \"active\" : \"\"}`}\n          onClick={() => setActiveTab(\"morning\")}\n        >\n          Buổi sáng & trưa\n        </button>\n        <button\n          className={`tab ${activeTab === \"afternoon\" ? \"active\" : \"\"}`}\n          onClick={() => setActiveTab(\"afternoon\")}\n        >\n          Buổi chiều\n        </button>\n      </div>\n      <div className=\"time-slots\">\n        {(activeTab === \"morning\" ? morningSlots : afternoonSlots).map(\n          (time) => (\n            <label key={time} className=\"time-slot\">\n              <input\n                type=\"radio\"\n                name=\"time\"\n                value={time}\n                checked={selectedTime === time}\n                onChange={(e) => onTimeChange(e.target.value)}\n              />\n              <span>{time}</span>\n            </label>\n          )\n        )}\n      </div>\n    </div>\n  );\n};\n\nexport default TimeSelection;\n"
+        ],
+        "mappings": ";;;;;;;;;;;;;;;;;;;wBAAA,OAAOA,KAAK,IAAIC,QAAQ,QAAQ,OAAO;AACvC,OAAO,qBAAqB;;AAE5B,MAAMC,aAAa,GAAGA,CAAC,EAAEC,YAAY,EAAEC,YAAY,CAAC,CAAC,KAAK,CAAAC,EAAA;EACxD,MAAM,CAACC,SAAS,EAAEC,YAAY,CAAC,GAAGN,QAAQ,CAAC,SAAS,CAAC;;EAErD,MAAMO,iBAAiB,GAAGA,CAACC,KAAK,EAAEC,GAAG,KAAK;IACxC,MAAMC,KAAK,GAAG,EAAE;IAChB,IAAIC,OAAO,GAAGH,KAAK;IACnB,OAAOG,OAAO,IAAIF,GAAG,EAAE;MACrB,MAAMG,IAAI,GAAGC,IAAI,CAACC,KAAK,CAACH,OAAO,CAAC;MAChC,MAAMI,MAAM,GAAIJ,OAAO,GAAG,CAAC,GAAI,EAAE;MACjCD,KAAK,CAACM,IAAI;QACR,GAAGJ,IAAI,CAACK,QAAQ,CAAC,CAAC,CAACC,QAAQ,CAAC,CAAC,EAAE,GAAG,CAAC,IAAIH,MAAM;QAC1CE,QAAQ,CAAC,CAAC;QACVC,QAAQ,CAAC,CAAC,EAAE,GAAG,CAAC;MACrB,CAAC;MACDP,OAAO,IAAI,GAAG,CAAC,CAAC;IAClB;IACA,OAAOD,KAAK;EACd,CAAC;;EAED,MAAMS,YAAY,GAAGZ,iBAAiB,CAAC,CAAC,EAAE,IAAI,CAAC,CAAC,CAAC;EACjD,MAAMa,cAAc,GAAGb,iBAAiB,CAAC,EAAE,EAAE,EAAE,CAAC,CAAC,CAAC;;EAElD;IACE,CAAC,GAAG,CAAC,SAAS,CAAC,0BAA0B;AAC7C,MAAM,CAAC,EAAE,CAAC,cAAc,EAAE,EAAE;AAC5B,MAAM,CAAC,GAAG,CAAC,SAAS,CAAC,WAAW;AAChC,QAAQ,CAAC;UACC,SAAS,CAAC,CAAC,OAAOF,SAAS,KAAK,SAAS,GAAG,QAAQ,GAAG,EAAE,EAAE;UAC3D,OAAO,CAAC,CAAC,MAAMC,YAAY,CAAC,SAAS,CAAC,CAAC;;AAEjD;AACA,QAAQ,EAAE,MAAM;AAChB,QAAQ,CAAC;UACC,SAAS,CAAC,CAAC,OAAOD,SAAS,KAAK,WAAW,GAAG,QAAQ,GAAG,EAAE,EAAE;UAC7D,OAAO,CAAC,CAAC,MAAMC,YAAY,CAAC,WAAW,CAAC,CAAC;;AAEnD;AACA,QAAQ,EAAE,MAAM;AAChB,MAAM,EAAE,GAAG;AACX,MAAM,CAAC,GAAG,CAAC,SAAS,CAAC,YAAY;AACjC,QAAQ,CAAC,CAACD,SAAS,KAAK,SAAS,GAAGc,YAAY,GAAGC,cAAc,EAAEC,GAAG;UAC5D,CAACC,IAAI;UACH,CAAC,KAAK,CAAC,GAAG,CAAC,CAACA,IAAI,CAAC,CAAC,SAAS,CAAC,WAAW;AACnD,cAAc,CAAC;cACC,IAAI,CAAC;cACL,IAAI,CAAC;cACL,KAAK,CAAC,CAACA,IAAI;cACX,OAAO,CAAC,CAACpB,YAAY,KAAKoB,IAAI;cAC9B,QAAQ,CAAC,CAAC,CAACC,CAAC,KAAKpB,YAAY,CAACoB,CAAC,CAACC,MAAM,CAACC,KAAK,CAAC,CAAC;;AAE9D,cAAc,CAAC,IAAI,CAAC,CAACH,IAAI,CAAC,EAAE,IAAI;AAChC,YAAY,EAAE,KAAK;;QAEX,CAAC;AACT,MAAM,EAAE,GAAG;AACX,IAAI,EAAE,GAAG,CAAC;;AAEV,CAAC,CAAClB,EAAA,CAzDIH,aAAa,kCAAAyB,EAAA,GAAbzB,aAAa;;AA2DnB,eAAeA,aAAa,CAAC,IAAAyB,EAAA,CAAAC,YAAA,CAAAD,EAAA",
+        "ignoreList": []
+      }
     },
     {
       "name": "vite:esbuild",
-      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React, { useState } from \"react\";\nimport \"./TimeSelection.css\";\nconst TimeSelection = ({ selectedTime, onTimeChange }) => {\n  const [activeTab, setActiveTab] = useState(\"morning\");\n  const generateTimeSlots = (start, end) => {\n    const slots = [];\n    let current = start;\n    while (current <= end) {\n      const hour = Math.floor(current);\n      const minute = current % 1 * 60;\n      slots.push(\n        `${hour.toString().padStart(2, \"0\")}:${minute.toString().padStart(2, \"0\")}`\n      );\n      current += 0.5;\n    }\n    return slots;\n  };\n  const morningSlots = generateTimeSlots(8, 13.5);\n  const afternoonSlots = generateTimeSlots(14, 23);\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"time-selection-container\", children: [\n    /* @__PURE__ */ jsx(\"h2\", { children: \"Chọn thời gian\" }),\n    /* @__PURE__ */ jsxs(\"div\", { className: \"time-tabs\", children: [\n      /* @__PURE__ */ jsx(\n        \"button\",\n        {\n          className: `tab ${activeTab === \"morning\" ? \"active\" : \"\"}`,\n          onClick: () => setActiveTab(\"morning\"),\n          children: \"Buổi sáng & trưa\"\n        }\n      ),\n      /* @__PURE__ */ jsx(\n        \"button\",\n        {\n          className: `tab ${activeTab === \"afternoon\" ? \"active\" : \"\"}`,\n          onClick: () => setActiveTab(\"afternoon\"),\n          children: \"Buổi chiều\"\n        }\n      )\n    ] }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"time-slots\", children: (activeTab === \"morning\" ? morningSlots : afternoonSlots).map(\n      (time) => /* @__PURE__ */ jsxs(\"label\", { className: \"time-slot\", children: [\n        /* @__PURE__ */ jsx(\n          \"input\",\n          {\n            type: \"radio\",\n            name: \"time\",\n            value: time,\n            checked: selectedTime === time,\n            onChange: (e) => onTimeChange(e.target.value)\n          }\n        ),\n        /* @__PURE__ */ jsx(\"span\", { children: time })\n      ] }, time)\n    ) })\n  ] });\n};\nexport default TimeSelection;\n",
-      "start": 1751338502467,
-      "end": 1751338502602,
+      "result": "import { jsxDEV } from \"react/jsx-dev-runtime\";\nimport * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== \"undefined\" && self instanceof WorkerGlobalScope;\nlet prevRefreshReg;\nlet prevRefreshSig;\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\nvar _s = $RefreshSig$();\nimport React, { useState } from \"react\";\nimport \"./TimeSelection.css\";\nconst TimeSelection = ({ selectedTime, onTimeChange }) => {\n  _s();\n  const [activeTab, setActiveTab] = useState(\"morning\");\n  const generateTimeSlots = (start, end) => {\n    const slots = [];\n    let current = start;\n    while (current <= end) {\n      const hour = Math.floor(current);\n      const minute = current % 1 * 60;\n      slots.push(\n        `${hour.toString().padStart(2, \"0\")}:${minute.toString().padStart(2, \"0\")}`\n      );\n      current += 0.5;\n    }\n    return slots;\n  };\n  const morningSlots = generateTimeSlots(8, 13.5);\n  const afternoonSlots = generateTimeSlots(14, 23);\n  return /* @__PURE__ */ jsxDEV(\"div\", { className: \"time-selection-container\", children: [\n    /* @__PURE__ */ jsxDEV(\"h2\", { children: \"Chọn thời gian\" }, void 0, false, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\",\n      lineNumber: 47,\n      columnNumber: 7\n    }, this),\n    /* @__PURE__ */ jsxDEV(\"div\", { className: \"time-tabs\", children: [\n      /* @__PURE__ */ jsxDEV(\n        \"button\",\n        {\n          className: `tab ${activeTab === \"morning\" ? \"active\" : \"\"}`,\n          onClick: () => setActiveTab(\"morning\"),\n          children: \"Buổi sáng & trưa\"\n        },\n        void 0,\n        false,\n        {\n          fileName: \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\",\n          lineNumber: 49,\n          columnNumber: 9\n        },\n        this\n      ),\n      /* @__PURE__ */ jsxDEV(\n        \"button\",\n        {\n          className: `tab ${activeTab === \"afternoon\" ? \"active\" : \"\"}`,\n          onClick: () => setActiveTab(\"afternoon\"),\n          children: \"Buổi chiều\"\n        },\n        void 0,\n        false,\n        {\n          fileName: \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\",\n          lineNumber: 55,\n          columnNumber: 9\n        },\n        this\n      )\n    ] }, void 0, true, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\",\n      lineNumber: 48,\n      columnNumber: 7\n    }, this),\n    /* @__PURE__ */ jsxDEV(\"div\", { className: \"time-slots\", children: (activeTab === \"morning\" ? morningSlots : afternoonSlots).map(\n      (time) => /* @__PURE__ */ jsxDEV(\"label\", { className: \"time-slot\", children: [\n        /* @__PURE__ */ jsxDEV(\n          \"input\",\n          {\n            type: \"radio\",\n            name: \"time\",\n            value: time,\n            checked: selectedTime === time,\n            onChange: (e) => onTimeChange(e.target.value)\n          },\n          void 0,\n          false,\n          {\n            fileName: \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\",\n            lineNumber: 66,\n            columnNumber: 15\n          },\n          this\n        ),\n        /* @__PURE__ */ jsxDEV(\"span\", { children: time }, void 0, false, {\n          fileName: \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\",\n          lineNumber: 73,\n          columnNumber: 15\n        }, this)\n      ] }, time, true, {\n        fileName: \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\",\n        lineNumber: 65,\n        columnNumber: 11\n      }, this)\n    ) }, void 0, false, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\",\n      lineNumber: 62,\n      columnNumber: 7\n    }, this)\n  ] }, void 0, true, {\n    fileName: \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\",\n    lineNumber: 46,\n    columnNumber: 5\n  }, this);\n};\n_s(TimeSelection, \"YsefaR5Takj12nZHB8CcW2JamBA=\");\n_c = TimeSelection;\nexport default TimeSelection;\nvar _c;\n$RefreshReg$(_c, \"TimeSelection\");\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n",
+      "start": 1751856128461,
+      "end": 1751856128842,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -26,65 +110,67 @@
           "C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx"
         ],
         "sourcesContent": [
-          "import React, { useState } from \"react\";\nimport \"./TimeSelection.css\";\n\nconst TimeSelection = ({ selectedTime, onTimeChange }) => {\n  const [activeTab, setActiveTab] = useState(\"morning\");\n\n  const generateTimeSlots = (start, end) => {\n    const slots = [];\n    let current = start;\n    while (current <= end) {\n      const hour = Math.floor(current);\n      const minute = (current % 1) * 60;\n      slots.push(\n        `${hour.toString().padStart(2, \"0\")}:${minute\n          .toString()\n          .padStart(2, \"0\")}`\n      );\n      current += 0.5; // 30 minute intervals\n    }\n    return slots;\n  };\n\n  const morningSlots = generateTimeSlots(8, 13.5); // 8:00 to 13:30\n  const afternoonSlots = generateTimeSlots(14, 23); // 14:00 to 23:00\n\n  return (\n    <div className=\"time-selection-container\">\n      <h2>Chọn thời gian</h2>\n      <div className=\"time-tabs\">\n        <button\n          className={`tab ${activeTab === \"morning\" ? \"active\" : \"\"}`}\n          onClick={() => setActiveTab(\"morning\")}\n        >\n          Buổi sáng & trưa\n        </button>\n        <button\n          className={`tab ${activeTab === \"afternoon\" ? \"active\" : \"\"}`}\n          onClick={() => setActiveTab(\"afternoon\")}\n        >\n          Buổi chiều\n        </button>\n      </div>\n      <div className=\"time-slots\">\n        {(activeTab === \"morning\" ? morningSlots : afternoonSlots).map(\n          (time) => (\n            <label key={time} className=\"time-slot\">\n              <input\n                type=\"radio\"\n                name=\"time\"\n                value={time}\n                checked={selectedTime === time}\n                onChange={(e) => onTimeChange(e.target.value)}\n              />\n              <span>{time}</span>\n            </label>\n          )\n        )}\n      </div>\n    </div>\n  );\n};\n\nexport default TimeSelection;\n"
+          "import * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;\n\nlet prevRefreshReg;\nlet prevRefreshSig;\n\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\n\nvar _s = $RefreshSig$();import React, { useState } from \"react\";\nimport \"./TimeSelection.css\";\n\nconst TimeSelection = ({ selectedTime, onTimeChange }) => {_s();\n  const [activeTab, setActiveTab] = useState(\"morning\");\n\n  const generateTimeSlots = (start, end) => {\n    const slots = [];\n    let current = start;\n    while (current <= end) {\n      const hour = Math.floor(current);\n      const minute = current % 1 * 60;\n      slots.push(\n        `${hour.toString().padStart(2, \"0\")}:${minute.\n        toString().\n        padStart(2, \"0\")}`\n      );\n      current += 0.5; // 30 minute intervals\n    }\n    return slots;\n  };\n\n  const morningSlots = generateTimeSlots(8, 13.5); // 8:00 to 13:30\n  const afternoonSlots = generateTimeSlots(14, 23); // 14:00 to 23:00\n\n  return (\n    <div className=\"time-selection-container\">\n      <h2>Chọn thời gian</h2>\n      <div className=\"time-tabs\">\n        <button\n          className={`tab ${activeTab === \"morning\" ? \"active\" : \"\"}`}\n          onClick={() => setActiveTab(\"morning\")}>\n\n          Buổi sáng & trưa\n        </button>\n        <button\n          className={`tab ${activeTab === \"afternoon\" ? \"active\" : \"\"}`}\n          onClick={() => setActiveTab(\"afternoon\")}>\n\n          Buổi chiều\n        </button>\n      </div>\n      <div className=\"time-slots\">\n        {(activeTab === \"morning\" ? morningSlots : afternoonSlots).map(\n          (time) =>\n          <label key={time} className=\"time-slot\">\n              <input\n              type=\"radio\"\n              name=\"time\"\n              value={time}\n              checked={selectedTime === time}\n              onChange={(e) => onTimeChange(e.target.value)} />\n\n              <span>{time}</span>\n            </label>\n\n        )}\n      </div>\n    </div>);\n\n};_s(TimeSelection, \"YsefaR5Takj12nZHB8CcW2JamBA=\");_c = TimeSelection;\n\nexport default TimeSelection;var _c;$RefreshReg$(_c, \"TimeSelection\");\n\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\n\n\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n"
         ],
-        "mappings": "AA2BM,cACA,YADA;AA3BN,OAAO,SAAS,gBAAgB;AAChC,OAAO;AAEP,MAAM,gBAAgB,CAAC,EAAE,cAAc,aAAa,MAAM;AACxD,QAAM,CAAC,WAAW,YAAY,IAAI,SAAS,SAAS;AAEpD,QAAM,oBAAoB,CAAC,OAAO,QAAQ;AACxC,UAAM,QAAQ,CAAC;AACf,QAAI,UAAU;AACd,WAAO,WAAW,KAAK;AACrB,YAAM,OAAO,KAAK,MAAM,OAAO;AAC/B,YAAM,SAAU,UAAU,IAAK;AAC/B,YAAM;AAAA,QACJ,GAAG,KAAK,SAAS,EAAE,SAAS,GAAG,GAAG,CAAC,IAAI,OACpC,SAAS,EACT,SAAS,GAAG,GAAG,CAAC;AAAA,MACrB;AACA,iBAAW;AAAA,IACb;AACA,WAAO;AAAA,EACT;AAEA,QAAM,eAAe,kBAAkB,GAAG,IAAI;AAC9C,QAAM,iBAAiB,kBAAkB,IAAI,EAAE;AAE/C,SACE,qBAAC,SAAI,WAAU,4BACb;AAAA,wBAAC,QAAG,4BAAc;AAAA,IAClB,qBAAC,SAAI,WAAU,aACb;AAAA;AAAA,QAAC;AAAA;AAAA,UACC,WAAW,OAAO,cAAc,YAAY,WAAW,EAAE;AAAA,UACzD,SAAS,MAAM,aAAa,SAAS;AAAA,UACtC;AAAA;AAAA,MAED;AAAA,MACA;AAAA,QAAC;AAAA;AAAA,UACC,WAAW,OAAO,cAAc,cAAc,WAAW,EAAE;AAAA,UAC3D,SAAS,MAAM,aAAa,WAAW;AAAA,UACxC;AAAA;AAAA,MAED;AAAA,OACF;AAAA,IACA,oBAAC,SAAI,WAAU,cACX,yBAAc,YAAY,eAAe,gBAAgB;AAAA,MACzD,CAAC,SACC,qBAAC,WAAiB,WAAU,aAC1B;AAAA;AAAA,UAAC;AAAA;AAAA,YACC,MAAK;AAAA,YACL,MAAK;AAAA,YACL,OAAO;AAAA,YACP,SAAS,iBAAiB;AAAA,YAC1B,UAAU,CAAC,MAAM,aAAa,EAAE,OAAO,KAAK;AAAA;AAAA,QAC9C;AAAA,QACA,oBAAC,UAAM,gBAAK;AAAA,WARF,IASZ;AAAA,IAEJ,GACF;AAAA,KACF;AAEJ;AAEA,eAAe;",
+        "mappings": "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",
         "names": []
       }
     },
     {
       "name": "vite:worker",
-      "start": 1751338502602,
-      "end": 1751338502602,
+      "start": 1751856128842,
+      "end": 1751856128842,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751338502602,
-      "end": 1751338502602,
-      "order": "normal-normal"
-    },
-    {
-      "name": "vite:build-html",
-      "start": 1751338502602,
-      "end": 1751338502602,
+      "start": 1751856128842,
+      "end": 1751856128842,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751338502603,
-      "end": 1751338502603,
+      "start": 1751856128842,
+      "end": 1751856128850,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751338502603,
-      "end": 1751338502603,
+      "start": 1751856128850,
+      "end": 1751856128850,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751338502604,
-      "end": 1751338502604,
+      "start": 1751856128850,
+      "end": 1751856128850,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751338502605,
-      "end": 1751338502605,
+      "start": 1751856128850,
+      "end": 1751856128850,
       "order": "normal-normal"
     },
     {
-      "name": "vite:build-import-analysis",
-      "start": 1751338502605,
-      "end": 1751338502605,
-      "order": "normal-normal"
-    },
-    {
-      "name": "vite:reporter",
-      "start": 1751338502605,
-      "end": 1751338502605,
+      "name": "vite:client-inject",
+      "start": 1751856128850,
+      "end": 1751856128850,
       "order": "normal"
+    },
+    {
+      "name": "vite:css-analysis",
+      "start": 1751856128850,
+      "end": 1751856128851,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-analysis",
+      "result": "import { createHotContext as __vite__createHotContext } from \"/@vite/client\";import.meta.hot = __vite__createHotContext(\"/src/components/TimeSelection/TimeSelection.jsx\");import __vite__cjsImport0_react_jsxDevRuntime from \"/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=a4b2f9ae\"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime[\"jsxDEV\"];\nimport * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== \"undefined\" && self instanceof WorkerGlobalScope;\nlet prevRefreshReg;\nlet prevRefreshSig;\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\nvar _s = $RefreshSig$();\nimport __vite__cjsImport3_react from \"/node_modules/.vite/deps/react.js?v=a4b2f9ae\"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react; const useState = __vite__cjsImport3_react[\"useState\"];\nimport \"/src/components/TimeSelection/TimeSelection.css\";\nconst TimeSelection = ({ selectedTime, onTimeChange }) => {\n  _s();\n  const [activeTab, setActiveTab] = useState(\"morning\");\n  const generateTimeSlots = (start, end) => {\n    const slots = [];\n    let current = start;\n    while (current <= end) {\n      const hour = Math.floor(current);\n      const minute = current % 1 * 60;\n      slots.push(\n        `${hour.toString().padStart(2, \"0\")}:${minute.toString().padStart(2, \"0\")}`\n      );\n      current += 0.5;\n    }\n    return slots;\n  };\n  const morningSlots = generateTimeSlots(8, 13.5);\n  const afternoonSlots = generateTimeSlots(14, 23);\n  return /* @__PURE__ */ jsxDEV(\"div\", { className: \"time-selection-container\", children: [\n    /* @__PURE__ */ jsxDEV(\"h2\", { children: \"Chọn thời gian\" }, void 0, false, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\",\n      lineNumber: 47,\n      columnNumber: 7\n    }, this),\n    /* @__PURE__ */ jsxDEV(\"div\", { className: \"time-tabs\", children: [\n      /* @__PURE__ */ jsxDEV(\n        \"button\",\n        {\n          className: `tab ${activeTab === \"morning\" ? \"active\" : \"\"}`,\n          onClick: () => setActiveTab(\"morning\"),\n          children: \"Buổi sáng & trưa\"\n        },\n        void 0,\n        false,\n        {\n          fileName: \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\",\n          lineNumber: 49,\n          columnNumber: 9\n        },\n        this\n      ),\n      /* @__PURE__ */ jsxDEV(\n        \"button\",\n        {\n          className: `tab ${activeTab === \"afternoon\" ? \"active\" : \"\"}`,\n          onClick: () => setActiveTab(\"afternoon\"),\n          children: \"Buổi chiều\"\n        },\n        void 0,\n        false,\n        {\n          fileName: \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\",\n          lineNumber: 55,\n          columnNumber: 9\n        },\n        this\n      )\n    ] }, void 0, true, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\",\n      lineNumber: 48,\n      columnNumber: 7\n    }, this),\n    /* @__PURE__ */ jsxDEV(\"div\", { className: \"time-slots\", children: (activeTab === \"morning\" ? morningSlots : afternoonSlots).map(\n      (time) => /* @__PURE__ */ jsxDEV(\"label\", { className: \"time-slot\", children: [\n        /* @__PURE__ */ jsxDEV(\n          \"input\",\n          {\n            type: \"radio\",\n            name: \"time\",\n            value: time,\n            checked: selectedTime === time,\n            onChange: (e) => onTimeChange(e.target.value)\n          },\n          void 0,\n          false,\n          {\n            fileName: \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\",\n            lineNumber: 66,\n            columnNumber: 15\n          },\n          this\n        ),\n        /* @__PURE__ */ jsxDEV(\"span\", { children: time }, void 0, false, {\n          fileName: \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\",\n          lineNumber: 73,\n          columnNumber: 15\n        }, this)\n      ] }, time, true, {\n        fileName: \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\",\n        lineNumber: 65,\n        columnNumber: 11\n      }, this)\n    ) }, void 0, false, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\",\n      lineNumber: 62,\n      columnNumber: 7\n    }, this)\n  ] }, void 0, true, {\n    fileName: \"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\",\n    lineNumber: 46,\n    columnNumber: 5\n  }, this);\n};\n_s(TimeSelection, \"YsefaR5Takj12nZHB8CcW2JamBA=\");\n_c = TimeSelection;\nexport default TimeSelection;\nvar _c;\n$RefreshReg$(_c, \"TimeSelection\");\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/TimeSelection/TimeSelection.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n",
+      "start": 1751856128851,
+      "end": 1751856128859,
+      "order": "normal",
+      "sourcemaps": null
     }
   ]
 }

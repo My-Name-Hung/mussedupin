@@ -2,23 +2,67 @@
   "resolvedId": "C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx",
   "transforms": [
     {
-      "name": "vite:load-fallback",
+      "name": "__load__",
       "result": "import React from \"react\";\r\nimport { useNavigate } from \"react-router-dom\";\r\n\r\nimport Hero from \"./Hero/Hero\";\r\nimport \"./Home.css\";\r\nimport Visit from \"../Visit/Visit\";\r\n\r\nfunction Home() {\r\n  const navigate = useNavigate();\r\n\r\n  return (\r\n    <div className=\"home-container\">\r\n      <div className=\"home-content\">\r\n        <Hero />\r\n      </div>\r\n      <Visit />\r\n\r\n     \r\n    </div>\r\n  );\r\n}\r\n\r\nexport default Home;\r\n",
-      "start": 1751338501350,
-      "end": 1751338501367,
-      "sourcemaps": null
+      "start": 1751856127711,
+      "end": 1751856127711,
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "React",
+          "useNavigate",
+          "Hero",
+          "Visit",
+          "Home",
+          "_s",
+          "navigate",
+          "_c",
+          "$RefreshReg$"
+        ],
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx"
+        ],
+        "sourcesContent": [
+          "import React from \"react\";\r\nimport { useNavigate } from \"react-router-dom\";\r\n\r\nimport Hero from \"./Hero/Hero\";\r\nimport \"./Home.css\";\r\nimport Visit from \"../Visit/Visit\";\r\n\r\nfunction Home() {\r\n  const navigate = useNavigate();\r\n\r\n  return (\r\n    <div className=\"home-container\">\r\n      <div className=\"home-content\">\r\n        <Hero />\r\n      </div>\r\n      <Visit />\r\n\r\n     \r\n    </div>\r\n  );\r\n}\r\n\r\nexport default Home;\r\n"
+        ],
+        "mappings": ";;;;;;;;;;;;;;;;;;;wBAAA,OAAOA,KAAK,MAAM,OAAO;AACzB,SAASC,WAAW,QAAQ,kBAAkB;;AAE9C,OAAOC,IAAI,MAAM,aAAa;AAC9B,OAAO,YAAY;AACnB,OAAOC,KAAK,MAAM,gBAAgB;;AAElC,SAASC,IAAIA,CAAA,EAAG,CAAAC,EAAA;EACd,MAAMC,QAAQ,GAAGL,WAAW,CAAC,CAAC;;EAE9B;IACE,CAAC,GAAG,CAAC,SAAS,CAAC,gBAAgB,CAAC;AACpC,MAAM,CAAC,GAAG,CAAC,SAAS,CAAC,cAAc,CAAC;AACpC,QAAQ,CAAC,IAAI,GAAG;AAChB,MAAM,EAAE,GAAG,CAAC;AACZ,MAAM,CAAC,KAAK,GAAG;AACf;AACA;AACA,IAAI,EAAE,GAAG,CAAC;;AAEV,CAACI,EAAA,CAbQD,IAAI,8DACMH,WAAW,KAAAM,EAAA,GADrBH,IAAI;;AAeb,eAAeA,IAAI,CAAC,IAAAG,EAAA,CAAAC,YAAA,CAAAD,EAAA",
+        "ignoreList": []
+      }
     },
     {
       "name": "vite:react-babel",
-      "start": 1751338501368,
-      "end": 1751338501368,
-      "order": "pre"
+      "result": "import * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;\n\nlet prevRefreshReg;\nlet prevRefreshSig;\n\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\n\nvar _s = $RefreshSig$();import React from \"react\";\nimport { useNavigate } from \"react-router-dom\";\n\nimport Hero from \"./Hero/Hero\";\nimport \"./Home.css\";\nimport Visit from \"../Visit/Visit\";\n\nfunction Home() {_s();\n  const navigate = useNavigate();\n\n  return (\n    <div className=\"home-container\">\r\n      <div className=\"home-content\">\r\n        <Hero />\r\n      </div>\r\n      <Visit />\r\n\r\n     \r\n    </div>);\n\n}_s(Home, \"CzcTeTziyjMsSrAVmHuCCb6+Bfg=\", false, function () {return [useNavigate];});_c = Home;\n\nexport default Home;var _c;$RefreshReg$(_c, \"Home\");\n\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\n\n\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n",
+      "start": 1751856127711,
+      "end": 1751856127715,
+      "order": "pre",
+      "sourcemaps": {
+        "version": 3,
+        "names": [
+          "React",
+          "useNavigate",
+          "Hero",
+          "Visit",
+          "Home",
+          "_s",
+          "navigate",
+          "_c",
+          "$RefreshReg$"
+        ],
+        "sources": [
+          "C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx"
+        ],
+        "sourcesContent": [
+          "import React from \"react\";\r\nimport { useNavigate } from \"react-router-dom\";\r\n\r\nimport Hero from \"./Hero/Hero\";\r\nimport \"./Home.css\";\r\nimport Visit from \"../Visit/Visit\";\r\n\r\nfunction Home() {\r\n  const navigate = useNavigate();\r\n\r\n  return (\r\n    <div className=\"home-container\">\r\n      <div className=\"home-content\">\r\n        <Hero />\r\n      </div>\r\n      <Visit />\r\n\r\n     \r\n    </div>\r\n  );\r\n}\r\n\r\nexport default Home;\r\n"
+        ],
+        "mappings": ";;;;;;;;;;;;;;;;;;;wBAAA,OAAOA,KAAK,MAAM,OAAO;AACzB,SAASC,WAAW,QAAQ,kBAAkB;;AAE9C,OAAOC,IAAI,MAAM,aAAa;AAC9B,OAAO,YAAY;AACnB,OAAOC,KAAK,MAAM,gBAAgB;;AAElC,SAASC,IAAIA,CAAA,EAAG,CAAAC,EAAA;EACd,MAAMC,QAAQ,GAAGL,WAAW,CAAC,CAAC;;EAE9B;IACE,CAAC,GAAG,CAAC,SAAS,CAAC,gBAAgB,CAAC;AACpC,MAAM,CAAC,GAAG,CAAC,SAAS,CAAC,cAAc,CAAC;AACpC,QAAQ,CAAC,IAAI,GAAG;AAChB,MAAM,EAAE,GAAG,CAAC;AACZ,MAAM,CAAC,KAAK,GAAG;AACf;AACA;AACA,IAAI,EAAE,GAAG,CAAC;;AAEV,CAACI,EAAA,CAbQD,IAAI,8DACMH,WAAW,KAAAM,EAAA,GADrBH,IAAI;;AAeb,eAAeA,IAAI,CAAC,IAAAG,EAAA,CAAAC,YAAA,CAAAD,EAAA",
+        "ignoreList": []
+      }
     },
     {
       "name": "vite:esbuild",
-      "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { useNavigate } from \"react-router-dom\";\nimport Hero from \"./Hero/Hero\";\nimport \"./Home.css\";\nimport Visit from \"../Visit/Visit\";\nfunction Home() {\n  const navigate = useNavigate();\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"home-container\", children: [\n    /* @__PURE__ */ jsx(\"div\", { className: \"home-content\", children: /* @__PURE__ */ jsx(Hero, {}) }),\n    /* @__PURE__ */ jsx(Visit, {})\n  ] });\n}\nexport default Home;\n",
-      "start": 1751338501368,
-      "end": 1751338501395,
+      "result": "import { jsxDEV } from \"react/jsx-dev-runtime\";\nimport * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== \"undefined\" && self instanceof WorkerGlobalScope;\nlet prevRefreshReg;\nlet prevRefreshSig;\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\nvar _s = $RefreshSig$();\nimport React from \"react\";\nimport { useNavigate } from \"react-router-dom\";\nimport Hero from \"./Hero/Hero\";\nimport \"./Home.css\";\nimport Visit from \"../Visit/Visit\";\nfunction Home() {\n  _s();\n  const navigate = useNavigate();\n  return /* @__PURE__ */ jsxDEV(\"div\", { className: \"home-container\", children: [\n    /* @__PURE__ */ jsxDEV(\"div\", { className: \"home-content\", children: /* @__PURE__ */ jsxDEV(Hero, {}, void 0, false, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\",\n      lineNumber: 33,\n      columnNumber: 9\n    }, this) }, void 0, false, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\",\n      lineNumber: 32,\n      columnNumber: 7\n    }, this),\n    /* @__PURE__ */ jsxDEV(Visit, {}, void 0, false, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\",\n      lineNumber: 35,\n      columnNumber: 7\n    }, this)\n  ] }, void 0, true, {\n    fileName: \"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\",\n    lineNumber: 31,\n    columnNumber: 5\n  }, this);\n}\n_s(Home, \"CzcTeTziyjMsSrAVmHuCCb6+Bfg=\", false, function() {\n  return [useNavigate];\n});\n_c = Home;\nexport default Home;\nvar _c;\n$RefreshReg$(_c, \"Home\");\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n",
+      "start": 1751856127715,
+      "end": 1751856128037,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -26,65 +70,67 @@
           "C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx"
         ],
         "sourcesContent": [
-          "import React from \"react\";\r\nimport { useNavigate } from \"react-router-dom\";\r\n\r\nimport Hero from \"./Hero/Hero\";\r\nimport \"./Home.css\";\r\nimport Visit from \"../Visit/Visit\";\r\n\r\nfunction Home() {\r\n  const navigate = useNavigate();\r\n\r\n  return (\r\n    <div className=\"home-container\">\r\n      <div className=\"home-content\">\r\n        <Hero />\r\n      </div>\r\n      <Visit />\r\n\r\n     \r\n    </div>\r\n  );\r\n}\r\n\r\nexport default Home;\r\n"
+          "import * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== 'undefined' && self instanceof WorkerGlobalScope;\n\nlet prevRefreshReg;\nlet prevRefreshSig;\n\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\n\nvar _s = $RefreshSig$();import React from \"react\";\nimport { useNavigate } from \"react-router-dom\";\n\nimport Hero from \"./Hero/Hero\";\nimport \"./Home.css\";\nimport Visit from \"../Visit/Visit\";\n\nfunction Home() {_s();\n  const navigate = useNavigate();\n\n  return (\n    <div className=\"home-container\">\r\n      <div className=\"home-content\">\r\n        <Hero />\r\n      </div>\r\n      <Visit />\r\n\r\n     \r\n    </div>);\n\n}_s(Home, \"CzcTeTziyjMsSrAVmHuCCb6+Bfg=\", false, function () {return [useNavigate];});_c = Home;\n\nexport default Home;var _c;$RefreshReg$(_c, \"Home\");\n\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\n\n\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n"
         ],
-        "mappings": "AAWI,SAEI,KAFJ;AAXJ,OAAO,WAAW;AAClB,SAAS,mBAAmB;AAE5B,OAAO,UAAU;AACjB,OAAO;AACP,OAAO,WAAW;AAElB,SAAS,OAAO;AACd,QAAM,WAAW,YAAY;AAE7B,SACE,qBAAC,SAAI,WAAU,kBACb;AAAA,wBAAC,SAAI,WAAU,gBACb,8BAAC,QAAK,GACR;AAAA,IACA,oBAAC,SAAM;AAAA,KAGT;AAEJ;AAEA,eAAe;",
+        "mappings": "AAgCQ;AAhCR,YAAY,oBAAoB;AAChC,MAAM,cAAc,OAAO,sBAAsB,eAAe,gBAAgB;AAEhF,IAAI;AACJ,IAAI;AAEJ,IAAI,YAAY,OAAO,CAAC,aAAa;AACnC,MAAI,CAAC,OAAO,cAAc;AACxB,UAAM,IAAI;AAAA,MACR;AAAA,IACF;AAAA,EACF;AAEA,mBAAiB,OAAO;AACxB,mBAAiB,OAAO;AACxB,SAAO,eAAe,eAAe,cAAc,0DAA0D;AAC7G,SAAO,eAAe,eAAe;AACvC;AAEA,IAAI,KAAK,aAAa;AAAE,OAAO,WAAW;AAC1C,SAAS,mBAAmB;AAE5B,OAAO,UAAU;AACjB,OAAO;AACP,OAAO,WAAW;AAElB,SAAS,OAAO;AAAC,KAAG;AAClB,QAAM,WAAW,YAAY;AAE7B,SACE,uBAAC,SAAI,WAAU,kBACb;AAAA,2BAAC,SAAI,WAAU,gBACb,iCAAC,UAAD;AAAA;AAAA;AAAA;AAAA,WAAM,KADR;AAAA;AAAA;AAAA;AAAA,WAEA;AAAA,IACA,uBAAC,WAAD;AAAA;AAAA;AAAA;AAAA,WAAO;AAAA,OAJT;AAAA;AAAA;AAAA;AAAA,SAOA;AAEJ;AAAC,GAAG,MAAM,gCAAgC,OAAO,WAAY;AAAC,SAAO,CAAC,WAAW;AAAE,CAAC;AAAE,KAAK;AAE3F,eAAe;AAAK,IAAI;AAAG,aAAa,IAAI,MAAM;AAElD,IAAI,YAAY,OAAO,CAAC,aAAa;AACnC,SAAO,eAAe;AACtB,SAAO,eAAe;AACxB;AAGA,IAAI,YAAY,OAAO,CAAC,aAAa;AACnC,iBAAe,aAAa,YAAY,GAAG,EAAE,KAAK,CAAC,mBAAmB;AACpE,mBAAe,+BAA+B,4DAA4D,cAAc;AACxH,gBAAY,IAAI,OAAO,CAAC,gBAAgB;AACtC,UAAI,CAAC,YAAa;AAClB,YAAM,oBAAoB,eAAe,wCAAwC,4DAA4D,gBAAgB,WAAW;AACxK,UAAI,kBAAmB,aAAY,IAAI,WAAW,iBAAiB;AAAA,IACrE,CAAC;AAAA,EACH,CAAC;AACH;",
         "names": []
       }
     },
     {
       "name": "vite:worker",
-      "start": 1751338501395,
-      "end": 1751338501395,
+      "start": 1751856128038,
+      "end": 1751856128038,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751338501395,
-      "end": 1751338501395,
-      "order": "normal-normal"
-    },
-    {
-      "name": "vite:build-html",
-      "start": 1751338501395,
-      "end": 1751338501395,
+      "start": 1751856128038,
+      "end": 1751856128038,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751338501395,
-      "end": 1751338501395,
+      "start": 1751856128038,
+      "end": 1751856128038,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751338501395,
-      "end": 1751338501395,
+      "start": 1751856128038,
+      "end": 1751856128038,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751338501396,
-      "end": 1751338501396,
+      "start": 1751856128038,
+      "end": 1751856128038,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751338501396,
-      "end": 1751338501396,
+      "start": 1751856128038,
+      "end": 1751856128038,
       "order": "normal-normal"
     },
     {
-      "name": "vite:build-import-analysis",
-      "start": 1751338501396,
-      "end": 1751338501396,
-      "order": "normal-normal"
-    },
-    {
-      "name": "vite:reporter",
-      "start": 1751338501397,
-      "end": 1751338501397,
+      "name": "vite:client-inject",
+      "start": 1751856128038,
+      "end": 1751856128038,
       "order": "normal"
+    },
+    {
+      "name": "vite:css-analysis",
+      "start": 1751856128038,
+      "end": 1751856128038,
+      "order": "normal-normal"
+    },
+    {
+      "name": "vite:import-analysis",
+      "result": "import { createHotContext as __vite__createHotContext } from \"/@vite/client\";import.meta.hot = __vite__createHotContext(\"/src/components/Home/Home.jsx\");import __vite__cjsImport0_react_jsxDevRuntime from \"/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=a4b2f9ae\"; const jsxDEV = __vite__cjsImport0_react_jsxDevRuntime[\"jsxDEV\"];\nimport * as RefreshRuntime from \"/@react-refresh\";\nconst inWebWorker = typeof WorkerGlobalScope !== \"undefined\" && self instanceof WorkerGlobalScope;\nlet prevRefreshReg;\nlet prevRefreshSig;\nif (import.meta.hot && !inWebWorker) {\n  if (!window.$RefreshReg$) {\n    throw new Error(\n      \"@vitejs/plugin-react can't detect preamble. Something is wrong.\"\n    );\n  }\n  prevRefreshReg = window.$RefreshReg$;\n  prevRefreshSig = window.$RefreshSig$;\n  window.$RefreshReg$ = RefreshRuntime.getRefreshReg(\"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\");\n  window.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;\n}\nvar _s = $RefreshSig$();\nimport __vite__cjsImport3_react from \"/node_modules/.vite/deps/react.js?v=a4b2f9ae\"; const React = __vite__cjsImport3_react.__esModule ? __vite__cjsImport3_react.default : __vite__cjsImport3_react;\nimport { useNavigate } from \"/node_modules/.vite/deps/react-router-dom.js?v=a4b2f9ae\";\nimport Hero from \"/src/components/Home/Hero/Hero.jsx\";\nimport \"/src/components/Home/Home.css\";\nimport Visit from \"/src/components/Visit/Visit.jsx\";\nfunction Home() {\n  _s();\n  const navigate = useNavigate();\n  return /* @__PURE__ */ jsxDEV(\"div\", { className: \"home-container\", children: [\n    /* @__PURE__ */ jsxDEV(\"div\", { className: \"home-content\", children: /* @__PURE__ */ jsxDEV(Hero, {}, void 0, false, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\",\n      lineNumber: 33,\n      columnNumber: 9\n    }, this) }, void 0, false, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\",\n      lineNumber: 32,\n      columnNumber: 7\n    }, this),\n    /* @__PURE__ */ jsxDEV(Visit, {}, void 0, false, {\n      fileName: \"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\",\n      lineNumber: 35,\n      columnNumber: 7\n    }, this)\n  ] }, void 0, true, {\n    fileName: \"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\",\n    lineNumber: 31,\n    columnNumber: 5\n  }, this);\n}\n_s(Home, \"CzcTeTziyjMsSrAVmHuCCb6+Bfg=\", false, function() {\n  return [useNavigate];\n});\n_c = Home;\nexport default Home;\nvar _c;\n$RefreshReg$(_c, \"Home\");\nif (import.meta.hot && !inWebWorker) {\n  window.$RefreshReg$ = prevRefreshReg;\n  window.$RefreshSig$ = prevRefreshSig;\n}\nif (import.meta.hot && !inWebWorker) {\n  RefreshRuntime.__hmr_import(import.meta.url).then((currentExports) => {\n    RefreshRuntime.registerExportsForReactRefresh(\"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\", currentExports);\n    import.meta.hot.accept((nextExports) => {\n      if (!nextExports) return;\n      const invalidateMessage = RefreshRuntime.validateRefreshBoundaryAndEnqueueUpdate(\"C:/Users/.Freelancer/TICKET/src/components/Home/Home.jsx\", currentExports, nextExports);\n      if (invalidateMessage) import.meta.hot.invalidate(invalidateMessage);\n    });\n  });\n}\n",
+      "start": 1751856128038,
+      "end": 1751856128042,
+      "order": "normal",
+      "sourcemaps": null
     }
   ]
 }

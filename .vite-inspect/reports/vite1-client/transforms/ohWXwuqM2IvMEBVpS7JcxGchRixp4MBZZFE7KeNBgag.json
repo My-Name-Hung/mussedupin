@@ -4,21 +4,21 @@
     {
       "name": "vite:load-fallback",
       "result": "import React from \"react\";\nimport { useNavigate } from \"react-router-dom\";\nimport \"./ThePlace.css\";\n\nconst cards = [\n  {\n    id: \"langbiang\",\n    title: \"Không gian nghệ thuật Langbiang\",\n    description: \"Văn hóa và nghệ thuật của vùng đất Đà Lạt.\",\n    image:\n      \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784839/about/khonggian.jpg\",\n  },\n  {\n    id: \"exhibition\",\n    title: \"Phòng triển lãm chủ đề\",\n    description:\n      \"16 phòng trưng bày với các chủ đề đa dạng, từ thiên nhiên, lịch sử đến nghệ thuật.\",\n    image:\n      \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784839/about/khonggian.jpg\",\n  },\n];\n\nconst ThePlace = () => {\n  const navigate = useNavigate();\n\n  const handleCardClick = (cardId) => {\n    navigate(`/the-place/${cardId}`);\n  };\n\n  return (\n    <div className=\"theplace-container\">\n      <div className=\"theplace-hero\">\n        <img\n          src=\"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784839/collections/louvre-sunset.jpg\"\n          alt=\"Không gian bảo tàng Thông\"\n          className=\"theplace-hero-img\"\n        />\n        <div className=\"theplace-hero-overlay\" />\n        <div className=\"theplace-hero-content\">\n          <h1>KHÔNG GIAN NGHỆ THUẬT VÀ VƯỜN TRONG BẢO TÀNG</h1>\n          <p>\n            Khám phá không gian nghệ thuật độc đáo, nơi giao thoa giữa thiên\n            nhiên, văn hóa và sáng tạo.\n          </p>\n        </div>\n      </div>\n      <div className=\"theplace-cards\">\n        {cards.map((card, idx) => (\n          <div\n            className=\"theplace-card\"\n            key={idx}\n            onClick={() => handleCardClick(card.id)}\n          >\n            <div className=\"theplace-card-img-wrap\">\n              <img\n                src={card.image}\n                alt={card.title}\n                className=\"theplace-card-img\"\n              />\n              <div className=\"theplace-card-overlay\" />\n              <div className=\"theplace-card-content\">\n                <h2>{card.title}</h2>\n                <p>{card.description}</p>\n              </div>\n            </div>\n          </div>\n        ))}\n      </div>\n    </div>\n  );\n};\n\nexport default ThePlace;\n",
-      "start": 1751851850595,
-      "end": 1751851850840,
+      "start": 1751956259812,
+      "end": 1751956260736,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751851850840,
-      "end": 1751851850840,
+      "start": 1751956260736,
+      "end": 1751956260736,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
       "result": "import { jsx, jsxs } from \"react/jsx-runtime\";\nimport React from \"react\";\nimport { useNavigate } from \"react-router-dom\";\nimport \"./ThePlace.css\";\nconst cards = [\n  {\n    id: \"langbiang\",\n    title: \"Không gian nghệ thuật Langbiang\",\n    description: \"Văn hóa và nghệ thuật của vùng đất Đà Lạt.\",\n    image: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784839/about/khonggian.jpg\"\n  },\n  {\n    id: \"exhibition\",\n    title: \"Phòng triển lãm chủ đề\",\n    description: \"16 phòng trưng bày với các chủ đề đa dạng, từ thiên nhiên, lịch sử đến nghệ thuật.\",\n    image: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784839/about/khonggian.jpg\"\n  }\n];\nconst ThePlace = () => {\n  const navigate = useNavigate();\n  const handleCardClick = (cardId) => {\n    navigate(`/the-place/${cardId}`);\n  };\n  return /* @__PURE__ */ jsxs(\"div\", { className: \"theplace-container\", children: [\n    /* @__PURE__ */ jsxs(\"div\", { className: \"theplace-hero\", children: [\n      /* @__PURE__ */ jsx(\n        \"img\",\n        {\n          src: \"https://res.cloudinary.com/dn0br7hj0/image/upload/v1748784839/collections/louvre-sunset.jpg\",\n          alt: \"Không gian bảo tàng Thông\",\n          className: \"theplace-hero-img\"\n        }\n      ),\n      /* @__PURE__ */ jsx(\"div\", { className: \"theplace-hero-overlay\" }),\n      /* @__PURE__ */ jsxs(\"div\", { className: \"theplace-hero-content\", children: [\n        /* @__PURE__ */ jsx(\"h1\", { children: \"KHÔNG GIAN NGHỆ THUẬT VÀ VƯỜN TRONG BẢO TÀNG\" }),\n        /* @__PURE__ */ jsx(\"p\", { children: \"Khám phá không gian nghệ thuật độc đáo, nơi giao thoa giữa thiên nhiên, văn hóa và sáng tạo.\" })\n      ] })\n    ] }),\n    /* @__PURE__ */ jsx(\"div\", { className: \"theplace-cards\", children: cards.map((card, idx) => /* @__PURE__ */ jsx(\n      \"div\",\n      {\n        className: \"theplace-card\",\n        onClick: () => handleCardClick(card.id),\n        children: /* @__PURE__ */ jsxs(\"div\", { className: \"theplace-card-img-wrap\", children: [\n          /* @__PURE__ */ jsx(\n            \"img\",\n            {\n              src: card.image,\n              alt: card.title,\n              className: \"theplace-card-img\"\n            }\n          ),\n          /* @__PURE__ */ jsx(\"div\", { className: \"theplace-card-overlay\" }),\n          /* @__PURE__ */ jsxs(\"div\", { className: \"theplace-card-content\", children: [\n            /* @__PURE__ */ jsx(\"h2\", { children: card.title }),\n            /* @__PURE__ */ jsx(\"p\", { children: card.description })\n          ] })\n        ] })\n      },\n      idx\n    )) })\n  ] });\n};\nexport default ThePlace;\n",
-      "start": 1751851850841,
-      "end": 1751851852395,
+      "start": 1751956260736,
+      "end": 1751956264705,
       "order": "normal",
       "sourcemaps": {
         "version": 3,
@@ -34,56 +34,56 @@
     },
     {
       "name": "vite:worker",
-      "start": 1751851852395,
-      "end": 1751851852395,
+      "start": 1751956264705,
+      "end": 1751956264705,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751851852395,
-      "end": 1751851852395,
+      "start": 1751956264705,
+      "end": 1751956264705,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751851852395,
-      "end": 1751851852395,
+      "start": 1751956264705,
+      "end": 1751956264705,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751851852395,
-      "end": 1751851852396,
+      "start": 1751956264705,
+      "end": 1751956264705,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751851852396,
-      "end": 1751851852396,
+      "start": 1751956264705,
+      "end": 1751956264705,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751851852396,
-      "end": 1751851852396,
+      "start": 1751956264705,
+      "end": 1751956264705,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751851852396,
-      "end": 1751851852396,
+      "start": 1751956264705,
+      "end": 1751956264705,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751851852396,
-      "end": 1751851852397,
+      "start": 1751956264705,
+      "end": 1751956264706,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751851852410,
-      "end": 1751851852410,
+      "start": 1751956264706,
+      "end": 1751956264827,
       "order": "normal"
     }
   ]

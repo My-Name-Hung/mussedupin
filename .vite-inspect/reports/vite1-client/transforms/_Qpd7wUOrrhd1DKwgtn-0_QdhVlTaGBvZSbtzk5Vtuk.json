@@ -4,74 +4,74 @@
     {
       "name": "vite:load-fallback",
       "result": "import { createElementObject, createPathComponent, extendContext, updateCircle } from '@react-leaflet/core';\nimport { Circle as LeafletCircle } from 'leaflet';\nexport const Circle = createPathComponent(function createCircle({ center, children: _c, ...options }, ctx) {\n    const circle = new LeafletCircle(center, options);\n    return createElementObject(circle, extendContext(ctx, {\n        overlayContainer: circle\n    }));\n}, updateCircle);\n",
-      "start": 1751851864879,
-      "end": 1751851865451,
+      "start": 1751956286938,
+      "end": 1751956291285,
       "sourcemaps": null
     },
     {
       "name": "vite:react-babel",
-      "start": 1751851865451,
-      "end": 1751851865451,
+      "start": 1751956291285,
+      "end": 1751956291285,
       "order": "pre"
     },
     {
       "name": "vite:esbuild",
-      "start": 1751851865451,
-      "end": 1751851865451,
+      "start": 1751956291285,
+      "end": 1751956291285,
       "order": "normal"
     },
     {
       "name": "vite:worker",
-      "start": 1751851865451,
-      "end": 1751851865451,
+      "start": 1751956291285,
+      "end": 1751956291285,
       "order": "normal-normal"
     },
     {
       "name": "vite:define",
-      "start": 1751851865451,
-      "end": 1751851865451,
+      "start": 1751956291285,
+      "end": 1751956291285,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-html",
-      "start": 1751851865451,
-      "end": 1751851865451,
+      "start": 1751956291285,
+      "end": 1751956291285,
       "order": "normal-normal"
     },
     {
       "name": "vite:worker-import-meta-url",
-      "start": 1751851865451,
-      "end": 1751851865451,
+      "start": 1751956291285,
+      "end": 1751956291285,
       "order": "normal-normal"
     },
     {
       "name": "vite:asset-import-meta-url",
-      "start": 1751851865451,
-      "end": 1751851865451,
+      "start": 1751956291285,
+      "end": 1751956291285,
       "order": "normal-normal"
     },
     {
       "name": "vite:dynamic-import-vars",
-      "start": 1751851865451,
-      "end": 1751851865451,
+      "start": 1751956291286,
+      "end": 1751956291286,
       "order": "normal-normal"
     },
     {
       "name": "vite:import-glob",
-      "start": 1751851865463,
-      "end": 1751851865463,
+      "start": 1751956291286,
+      "end": 1751956291286,
       "order": "normal-normal"
     },
     {
       "name": "vite:build-import-analysis",
-      "start": 1751851865463,
-      "end": 1751851865463,
+      "start": 1751956291286,
+      "end": 1751956291286,
       "order": "normal-normal"
     },
     {
       "name": "vite:reporter",
-      "start": 1751851865463,
-      "end": 1751851865463,
+      "start": 1751956291286,
+      "end": 1751956291286,
       "order": "normal"
     }
   ]

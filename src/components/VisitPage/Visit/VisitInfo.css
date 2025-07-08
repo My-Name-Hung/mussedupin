@@ -305,7 +305,7 @@
   left: 0;
   width: 0;
   height: 3px;
-  background: linear-gradient(90deg, #1e3a8a, #2563eb);
+  background: linear-gradient(90deg, #1e3a8a, #2c2f11);
   transition: all 0.3s ease;
   border-radius: 3px;
 }
@@ -779,7 +779,7 @@
 
 .homestay-card.modern .homestay-card-actions {
   display: flex;
-  gap: 12px;
+  gap: 36px;
 }
 
 .homestay-card.modern .btn-view,
@@ -897,7 +897,7 @@
 }
 
 .booking-homestay-info.modern .booking-homestay-location svg {
-  color: #2563eb;
+  color: #2c2f11;
 }
 
 .booking-homestay-info.modern .booking-homestay-price {
@@ -951,7 +951,7 @@
 
 .booking-form.modern input:focus,
 .booking-form.modern textarea:focus {
-  border-color: #2563eb;
+  border-color: #2c2f11;
   box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1), 0 5px 15px rgba(0, 0, 0, 0.05);
   transform: translateY(-2px);
   outline: none;
@@ -1209,7 +1209,7 @@
 }
 
 .calendar-day.selected {
-  background: #2563eb;
+  background: #2c2f11;
   color: white;
   font-weight: 600;
 }
@@ -1291,9 +1291,9 @@
 }
 
 .time-slot.selected {
-  background: #2563eb;
+  background: #2c2f11;
   color: white;
-  border-color: #2563eb;
+  border-color: #2c2f11;
   font-weight: 600;
   box-shadow: 0 5px 15px rgba(37, 99, 235, 0.3);
 }
@@ -1331,7 +1331,7 @@
 .edit-btn {
   background: transparent;
   border: none;
-  color: #2563eb;
+  color: #2c2f11;
   font-size: 0.9rem;
   cursor: pointer;
   text-decoration: underline;
@@ -1382,8 +1382,8 @@
   }
 
   .homestay-card.modern .homestay-card-actions {
-    flex-direction: column;
-    gap: 10px;
+    flex-direction: row;
+    gap: 60px;
   }
 
   .homestay-card.modern .btn-view,
@@ -1689,7 +1689,7 @@
   left: 0;
   width: 60px;
   height: 3px;
-  background: linear-gradient(90deg, #2563eb, rgba(37, 99, 235, 0.3));
+  background: linear-gradient(90deg, #2c2f11, rgba(37, 99, 235, 0.3));
   border-radius: 2px;
 }
 
@@ -1712,7 +1712,7 @@
   color: #64748b;
   padding: 12px 15px;
   border-radius: 10px;
-  border-left: 3px solid #2563eb;
+  border-left: 3px solid #2c2f11;
   transition: all 0.3s ease;
 }
 
@@ -1726,7 +1726,7 @@
 .homestay-details-location svg,
 .homestay-details-host svg,
 .homestay-details-beds svg {
-  color: #2563eb;
+  color: #2c2f11;
   flex-shrink: 0;
 }
 
@@ -1741,7 +1741,7 @@
   font-family: "Roboto", sans-serif;
   font-size: 1.4rem;
   font-weight: 600;
-  color: #1e3a8a;
+  color: #2c2f11;
   margin: 0 0 20px;
   display: inline-block;
   position: relative;
@@ -1759,11 +1759,12 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 0.95rem;
-  color: #64748b;
-  padding: 10px 12px;
-  border-radius: 8px;
-  transition: all 0.3s ease;
+  margin-bottom: 8px;
+}
+
+.amenity-icon {
+  color: #666;
+  flex-shrink: 0;
 }
 
 .amenities-list li::before {
@@ -1781,7 +1782,7 @@
 }
 
 .amenities-list li svg {
-  color: #2563eb;
+  color: #2c2f11;
 }
 
 .rules-list {
@@ -1812,7 +1813,7 @@
   transform: translateY(-50%);
   width: 18px;
   height: 18px;
-  background: linear-gradient(135deg, #2563eb, #1e3a8a);
+  background: linear-gradient(135deg, #2c2f11, #1e3a8a);
   border-radius: 50%;
 }
 
@@ -1875,7 +1876,7 @@
   font-weight: 600;
   padding: 14px 30px;
   border: none;
-  border-radius: 30px;
+  border-radius: 10px;
   cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 6px 15px rgba(37, 99, 235, 0.2);
@@ -2284,7 +2285,7 @@
   transform: translateY(-50%);
   width: 4px;
   height: 0;
-  background: linear-gradient(to bottom, #2563eb, #1e3a8a);
+  background: linear-gradient(to bottom, #2c2f11, #1e3a8a);
   border-radius: 2px;
   transition: height 0.3s ease;
 }
@@ -2343,7 +2344,7 @@
 }
 
 .faq-answer a {
-  color: #2563eb;
+  color: #2c2f11;
   text-decoration: none;
   font-weight: 500;
   transition: all 0.2s ease;
@@ -2389,12 +2390,12 @@
 .faq-category-tab:hover {
   transform: translateY(-3px);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-  color: #2563eb;
+  color: #2c2f11;
   border-color: #e0e7ff;
 }
 
 .faq-category-tab.active {
-  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  background: linear-gradient(135deg, #1e3a8a, #2c2f11);
   color: white;
   border: none;
   box-shadow: 0 5px 15px rgba(37, 99, 235, 0.2);
@@ -2739,7 +2740,7 @@
 
 .mobile-scroll-top {
   animation: bounce 2s infinite;
-  background: linear-gradient(135deg, #1e3a8a, #2563eb);
+  background: linear-gradient(135deg, #1e3a8a, #2c2f11);
   color: white;
   border-radius: 50%;
   width: 50px;
@@ -2820,7 +2821,7 @@
 
   .amenity-icon {
     margin-bottom: 10px !important;
-    height: 40px !important;
+    height: 20px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
@@ -3058,8 +3059,8 @@
 }
 
 .amenity-icon {
-  width: 54px;
-  height: 54px;
+  width: 18px;
+  height: 18px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -4008,7 +4009,7 @@
 
 .success-detail-item svg {
   margin-right: 10px;
-  color: #2563eb;
+  color: #2c2f11;
 }
 
 .btn-close-success {
@@ -4420,4 +4421,33 @@
   font-size: 18px;
   font-weight: 600;
   color: #ff4d4f;
+}
+
+.homestay-highlights .highlight-icon {
+  width: auto;
+  height: auto;
+  margin-right: 8px;
+  color: #2c2f11;
+  display: flex;
+  align-items: center;
+}
+
+.homestay-highlights .highlight-item {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  padding: 8px 12px;
+  background: rgba(44, 47, 17, 0.05);
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+
+.homestay-highlights .highlight-item:hover {
+  background: rgba(44, 47, 17, 0.1);
+  transform: translateY(-1px);
+}
+
+.homestay-highlights .highlight-text {
+  color: #2c2f11;
+  font-size: 0.9rem;
 }

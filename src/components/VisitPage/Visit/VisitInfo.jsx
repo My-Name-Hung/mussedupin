@@ -4,9 +4,13 @@ import { useTranslation } from "../../../contexts/TranslationContext";
 import { getImageUrls } from "../../../utils/cloudinary";
 import "./VisitInfo.css";
 
-import { FaCar, FaSearch } from "react-icons/fa";
+import { FaCar, FaMountain, FaSearch } from "react-icons/fa";
+import { FaMattressPillow, FaShop } from "react-icons/fa6";
+import { IoBed } from "react-icons/io5";
+import { MdOutlineSquareFoot } from "react-icons/md";
 import { PiMotorcycleBold } from "react-icons/pi";
-import { FaShop } from "react-icons/fa6";
+import { TbToolsKitchen2 } from "react-icons/tb";
+
 const VisitInfo = () => {
   const { currentLang } = useTranslation();
   const location = useLocation();
@@ -523,7 +527,7 @@ const VisitInfo = () => {
         en: "The Chill I",
       },
       description: {
-        vi: "Căn phòng mang hơi thở của sự bình yên thuần khiết.",
+        vi: "Căn phòng được thiết kế như 1 nơi trú ẩn yên bình để tận hưởng Đà Lạt",
         en: "A quiet space where the soul finds healing.",
       },
       image:
@@ -577,9 +581,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 2,
-          originalPrice: 5450363,
-          discountPercentage: 80,
-          price: 1078784,
+          originalPrice: 1800000,
+          discountPercentage: 0,
+          price: 1800000,
           description: {
             vi: "Phù hợp cho 2 người",
             en: "Suitable for 2 people",
@@ -587,7 +591,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 1078784, // Default price updated to match capacityOptions
+      price: 1800000, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Bình yên", "Phục vụ bữa sáng"],
@@ -602,24 +606,48 @@ const VisitInfo = () => {
       ],
       amenities: {
         vi: [
-          "Wi-Fi miễn phí",
-          "Spa",
-          "Quán bar",
-          "Đưa đón sân bay",
-          "Đỗ xe miễn phí",
-          "Bàn tiếp tân [24 giờ]",
-          "Mát-xa",
-          "Phòng gia đình",
+          {
+            icon: IoBed,
+            text: "1 giường kings size",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Nệm mềm",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Diện tích: 35m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: ban công view đồi",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Nước nóng ấm",
+          },
         ],
         en: [
-          "Free Wi-Fi",
-          "Spa",
-          "Bar",
-          "Airport transfer",
-          "Free parking",
-          "24-hour front desk",
-          "Massage",
-          "Family rooms",
+          {
+            icon: IoBed,
+            text: "1 king size bed",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Soft mattress",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Area: 35m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: balcony facing hill",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Warm water",
+          },
         ],
       },
       rules: {
@@ -644,8 +672,8 @@ const VisitInfo = () => {
         en: "The Chill II",
       },
       description: {
-        vi: "Bình yên II – nơi bạn được là chính mình trong sự nhẹ nhàng.",
-        en: "The Chill II – a place where you can be yourself in the gentle.",
+        vi: "Căn phòng gợi nhắc về những tháng ngày tuổi trẻ nhiều ước mơ và hoài bão.",
+        en: "The room reminds of youthful days filled with dreams and aspirations.",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/B%C3%ACnh%20y%C3%AAn%20II-%20The%20Chill%20II/z6735017019144_2e97325679ec2dbf6248ee217d2c005e.jpg?updatedAt=1751274217344",
@@ -698,9 +726,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 2,
-          originalPrice: 5450363,
-          discountPercentage: 80,
-          price: 1078784,
+          originalPrice: 1600000,
+          discountPercentage: 0,
+          price: 1600000,
           description: {
             vi: "Phù hợp cho 2 người",
             en: "Suitable for 2 people",
@@ -708,7 +736,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 1078784, // Default price updated to match capacityOptions
+      price: 1600000, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Bình yên", "Phục vụ bữa sáng"],
@@ -723,24 +751,48 @@ const VisitInfo = () => {
       ],
       amenities: {
         vi: [
-          "Wi-Fi miễn phí",
-          "Spa",
-          "Quán bar",
-          "Đưa đón sân bay",
-          "Đỗ xe miễn phí",
-          "Bàn tiếp tân [24 giờ]",
-          "Mát-xa",
-          "Phòng gia đình",
+          {
+            icon: IoBed,
+            text: "1 giường kings size",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Nệm mềm",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Diện tích: 30m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: ban công view đồi và vườn dâu",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Nước nóng ấm",
+          },
         ],
         en: [
-          "Free Wi-Fi",
-          "Spa",
-          "Bar",
-          "Airport transfer",
-          "Free parking",
-          "24-hour front desk",
-          "Massage",
-          "Family rooms",
+          {
+            icon: IoBed,
+            text: "1 king size bed",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Soft mattress",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Area: 30m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: balcony facing hill and strawberry garden",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Warm water",
+          },
         ],
       },
       rules: {
@@ -765,8 +817,8 @@ const VisitInfo = () => {
         en: "The Kite",
       },
       description: {
-        vi: "Căn phòng thổi hồn tự do như cánh diều bay giữa trời cao.",
-        en: "A room that breathes freedom, like a kite soaring in the sky.",
+        vi: "Căn phòng được thiết kế với ý tưởng như 1 cánh diều cưỡi gió bay trên bầu trời Đà Lạt.",
+        en: "The room is designed with inspiration from a kite soaring in the sky of Đà Lạt.",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/C%C3%A1nh%20di%E1%BB%81u-%20The%20Kite/404%20-%201.png?updatedAt=1751274406678",
@@ -819,9 +871,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 3,
-          originalPrice: 5439064,
-          discountPercentage: 79,
-          price: 1163099,
+          originalPrice: 1600000,
+          discountPercentage: 0,
+          price: 1600000,
           description: {
             vi: "Phù hợp cho 3 người",
             en: "Suitable for 3 people",
@@ -829,7 +881,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 1163099, // Default price updated to match capacityOptions
+      price: 1600000, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Phục vụ bữa sáng"],
@@ -844,24 +896,48 @@ const VisitInfo = () => {
       ],
       amenities: {
         vi: [
-          "Wi-Fi miễn phí",
-          "Spa",
-          "Quán bar",
-          "Đưa đón sân bay",
-          "Đỗ xe miễn phí",
-          "Bàn tiếp tân [24 giờ]",
-          "Mát-xa",
-          "Phòng gia đình",
+          {
+            icon: IoBed,
+            text: "2 giường queen size",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Nệm mềm",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Diện tích: 30m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: thung lũng",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Nước nóng ấm",
+          },
         ],
         en: [
-          "Free Wi-Fi",
-          "Spa",
-          "Bar",
-          "Airport transfer",
-          "Free parking",
-          "24-hour front desk",
-          "Massage",
-          "Family rooms",
+          {
+            icon: IoBed,
+            text: "2 queen size beds",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Soft mattress",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Area: 30m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: valley",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Warm water",
+          },
         ],
       },
       rules: {
@@ -886,8 +962,8 @@ const VisitInfo = () => {
         en: "Strawberry",
       },
       description: {
-        vi: "Dâu Tây – một góc nhỏ ngọt ngào cho tâm hồn tươi trẻ.",
-        en: "Strawberry – a little sweet corner for a youthful soul.",
+        vi: "Căn phòng được thiết kế lấy cảm hứng từ quả dâu tây Đà Lạt.",
+        en: "The room is designed with inspiration from the strawberry of Đà Lạt.",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/D%C3%A2u%20t%C3%A2y-%20Strawberry/z6735068946993_6566743fb95325c53d9b69e966e2ae4a.jpg?updatedAt=1751274423030",
@@ -940,9 +1016,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 2,
-          originalPrice: 6805644,
-          discountPercentage: 79,
-          price: 1403037,
+          originalPrice: 2000000,
+          discountPercentage: 0,
+          price: 2000000,
           description: {
             vi: "Phù hợp cho 2 người lớn và 1 trẻ em",
             en: "Suitable for 2 adults and 1 child",
@@ -950,7 +1026,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 1403037, // Default price updated to match capacityOptions
+      price: 2000000, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Phổ biến", "Phục vụ bữa sáng"],
@@ -965,24 +1041,48 @@ const VisitInfo = () => {
       ],
       amenities: {
         vi: [
-          "Wi-Fi miễn phí",
-          "Spa",
-          "Quán bar",
-          "Đưa đón sân bay",
-          "Đỗ xe miễn phí",
-          "Bàn tiếp tân [24 giờ]",
-          "Mát-xa",
-          "Phòng gia đình",
+          {
+            icon: IoBed,
+            text: "1 giường queen size",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Nệm cứng",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Diện tích: 35m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: balcony hướng đồi thông, vườn dâu",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Nước nóng già",
+          },
         ],
         en: [
-          "Free Wi-Fi",
-          "Spa",
-          "Bar",
-          "Airport transfer",
-          "Free parking",
-          "24-hour front desk",
-          "Massage",
-          "Family rooms",
+          {
+            icon: IoBed,
+            text: "1 queen size bed",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Firm mattress",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Area: 35m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: balcony facing pine hill and strawberry garden",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Hot water",
+          },
         ],
       },
       rules: {
@@ -1005,8 +1105,8 @@ const VisitInfo = () => {
         en: "The Childhood",
       },
       description: {
-        vi: "Tuổi ấu thơ – nơi những ký ức đẹp nhất được đánh thức.",
-        en: "The Childhood – where the most beautiful memories come alive.",
+        vi: "Căn phòng được thiết kế để lưu giữ những kỉ niệm thời thơ ấu",
+        en: "The room is designed to preserve childhood memories",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/Tu%E1%BB%95i%20%E1%BA%A5u%20th%C6%A1-%20The%20Childhood/z6735013755648_e134fda3141c25a0a9fc67efa73d00de.jpg?updatedAt=1751274451818",
@@ -1059,17 +1159,27 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 4,
-          originalPrice: 8494603,
-          discountPercentage: 78,
-          price: 1846709,
+          originalPrice: 2500000,
+          discountPercentage: 0,
+          price: 2500000,
           description: {
-            vi: "Phù hợp cho 4 người",
-            en: "Suitable for 4 people",
+            vi: "Phù hợp cho 4 người 2 giường",
+            en: "Suitable for 4 people 2 beds",
+          },
+        },
+        {
+          capacity: 5,
+          originalPrice: 3000000,
+          discountPercentage: 0,
+          price: 3000000,
+          description: {
+            vi: "Phù hợp cho 5 người 3 giường",
+            en: "Suitable for 5 people 3 beds",
           },
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 1846709, // Default price updated to match capacityOptions
+      price: 2500000, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Phổ biến", "Ưa thích", "Phục vụ bữa sáng"],
@@ -1084,24 +1194,48 @@ const VisitInfo = () => {
       ],
       amenities: {
         vi: [
-          "Wi-Fi miễn phí",
-          "Spa",
-          "Quán bar",
-          "Đưa đón sân bay",
-          "Đỗ xe miễn phí",
-          "Bàn tiếp tân [24 giờ]",
-          "Mát-xa",
-          "Phòng gia đình",
+          {
+            icon: IoBed,
+            text: "2 giường queen size và 1 giường twin",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Nệm mềm kết hợp cứng",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Diện tích: 30m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: thung lũng",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Nước nóng già",
+          },
         ],
         en: [
-          "Free Wi-Fi",
-          "Spa",
-          "Bar",
-          "Airport transfer",
-          "Free parking",
-          "24-hour front desk",
-          "Massage",
-          "Family rooms",
+          {
+            icon: IoBed,
+            text: "2 queen size beds and 1 twin bed",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Soft and firm mattress",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Area: 30m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: valley",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Hot water",
+          },
         ],
       },
       rules: {
@@ -1126,8 +1260,8 @@ const VisitInfo = () => {
         en: "The Train",
       },
       description: {
-        vi: "Toa tàu – không gian của những cuộc phiêu lưu và suy tư nhẹ nhàng.",
-        en: "The Train – a space for quiet adventures and gentle reflections.",
+        vi: "Căn phòng được thiết kế lấy cảm hứng từ toa xe lửa cổ Đà Lạt",
+        en: "The room is designed with inspiration from the old train carriage of Đà Lạt",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/Toa%20t%C3%A0u-%20The%20Train/z6735013970930_367d839a1762df6694ba9fde11f52475.jpg?updatedAt=1751274451540",
@@ -1179,18 +1313,28 @@ const VisitInfo = () => {
       },
       capacityOptions: [
         {
-          capacity: 5,
-          originalPrice: 11892444,
-          discountPercentage: 78,
-          price: 2585393,
+          capacity: 4,
+          originalPrice: 2600000,
+          discountPercentage: 0,
+          price: 2600000,
           description: {
-            vi: "Phù hợp cho 5 người",
-            en: "Suitable for 5 people",
+            vi: "Phù hợp cho 4 người 2 giường",
+            en: "Suitable for 4 people 2 beds",
+          },
+        },
+        {
+          capacity: 5,
+          originalPrice: 3200000,
+          discountPercentage: 0,
+          price: 3200000,
+          description: {
+            vi: "Phù hợp cho 5 người 3 giường",
+            en: "Suitable for 5 people 3 beds",
           },
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 2585393, // Default price updated to match capacityOptions
+      price: 2600000, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
@@ -1205,24 +1349,48 @@ const VisitInfo = () => {
       ],
       amenities: {
         vi: [
-          "Wi-Fi miễn phí",
-          "Spa",
-          "Quán bar",
-          "Đưa đón sân bay",
-          "Đỗ xe miễn phí",
-          "Bàn tiếp tân [24 giờ]",
-          "Mát-xa",
-          "Phòng gia đình",
+          {
+            icon: IoBed,
+            text: "3 giường queen size",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Nệm cứng",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Diện tích: 35m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: ban công hướng đồi",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Nước nóng già",
+          },
         ],
         en: [
-          "Free Wi-Fi",
-          "Spa",
-          "Bar",
-          "Airport transfer",
-          "Free parking",
-          "24-hour front desk",
-          "Massage",
-          "Family rooms",
+          {
+            icon: IoBed,
+            text: "3 queen size beds",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Firm mattress",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Area: 35m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: balcony facing hill",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Hot water",
+          },
         ],
       },
       rules: {
@@ -1247,8 +1415,8 @@ const VisitInfo = () => {
         en: "The Fall",
       },
       description: {
-        vi: "Thác đổ – biểu tượng cho sức sống mãnh liệt và sự giải phóng tinh thần.",
-        en: "The Fall – a symbol of vitality and mental release.",
+        vi: "Căn phòng được thiết kế lấy cảm hứng từ hình ảnh thác nước hùng vĩ",
+        en: "The room is designed with inspiration from majestic waterfall imagery",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/Th%C3%A1c%20%C4%91%E1%BB%95-%20The%20Fall/z6735013550592_06292038d263699476dd8144aa005946.jpg?updatedAt=1751274451608",
@@ -1302,9 +1470,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 6,
-          originalPrice: 3535364,
+          originalPrice: 3000000,
           discountPercentage: 0,
-          price: 3535364,
+          price: 3000000,
           description: {
             vi: "Phù hợp cho 6 người",
             en: "Suitable for 6 people",
@@ -1312,7 +1480,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 3535364, // Default price updated to match capacityOptions
+      price: 3000000, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
@@ -1327,24 +1495,48 @@ const VisitInfo = () => {
       ],
       amenities: {
         vi: [
-          "Wi-Fi miễn phí",
-          "Spa",
-          "Quán bar",
-          "Đưa đón sân bay",
-          "Đỗ xe miễn phí",
-          "Bàn tiếp tân [24 giờ]",
-          "Mát-xa",
-          "Phòng gia đình",
+          {
+            icon: IoBed,
+            text: "3 giường queen size",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Nệm cứng kết hợp mềm",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Diện tích: 33m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: ban công hướng đồi và vườn dâu",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Nước nóng già",
+          },
         ],
         en: [
-          "Free Wi-Fi",
-          "Spa",
-          "Bar",
-          "Airport transfer",
-          "Free parking",
-          "24-hour front desk",
-          "Massage",
-          "Family rooms",
+          {
+            icon: IoBed,
+            text: "3 queen size beds",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Firm and soft mattress",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Area: 33m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: balcony facing hill and strawberry garden",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Hot water",
+          },
         ],
       },
       rules: {
@@ -1367,8 +1559,8 @@ const VisitInfo = () => {
         en: "The Pine Hill",
       },
       description: {
-        vi: "Đồi thông – nơi sự bình yên lan tỏa trong từng hơi thở.",
-        en: "The Pine Hill – where peace lingers in every breath.",
+        vi: "Căn phòng được thiết kế lấy cảm hứng từ những đồi thông xanh ngát Đà Lạt",
+        en: "The room is designed with inspiration from the pine hills of Đà Lạt",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/%C4%90%E1%BB%93i%20Th%C3%B4ng-%20The%20Pine%20Hill/z6735015682281_4f24f3571385b7a2b97d36acd8ba8113.jpg?updatedAt=1751274459265",
@@ -1420,18 +1612,28 @@ const VisitInfo = () => {
       },
       capacityOptions: [
         {
-          capacity: 5,
-          originalPrice: 11892444,
-          discountPercentage: 78,
-          price: 2585393,
+          capacity: 4,
+          originalPrice: 2500000,
+          discountPercentage: 0,
+          price: 2500000,
           description: {
-            vi: "Phù hợp cho 5 người",
-            en: "Suitable for 5 people",
+            vi: "Phù hợp cho 4 người 2 giường",
+            en: "Suitable for 4 people 2 beds",
+          },
+        },
+        {
+          capacity: 5,
+          originalPrice: 3000000,
+          discountPercentage: 0,
+          price: 3000000,
+          description: {
+            vi: "Phù hợp cho 5 người 3 giường",
+            en: "Suitable for 5 people 3 beds",
           },
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 2585393, // Default price updated to match capacityOptions
+      price: 2500000, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
@@ -1446,24 +1648,48 @@ const VisitInfo = () => {
       ],
       amenities: {
         vi: [
-          "Wi-Fi miễn phí",
-          "Spa",
-          "Quán bar",
-          "Đưa đón sân bay",
-          "Đỗ xe miễn phí",
-          "Bàn tiếp tân [24 giờ]",
-          "Mát-xa",
-          "Phòng gia đình",
+          {
+            icon: IoBed,
+            text: "3 giường queen size",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Nệm cứng kết hợp mềm",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Diện tích: 33m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: ban công hướng đồi và vườn dâu",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Nước nóng già",
+          },
         ],
         en: [
-          "Free Wi-Fi",
-          "Spa",
-          "Bar",
-          "Airport transfer",
-          "Free parking",
-          "24-hour front desk",
-          "Massage",
-          "Family rooms",
+          {
+            icon: IoBed,
+            text: "3 queen size beds",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Firm and soft mattress",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Area: 33m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: balcony facing hill and strawberry garden",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Hot water",
+          },
         ],
       },
       rules: {
@@ -1488,8 +1714,8 @@ const VisitInfo = () => {
         en: "White Bauhinia",
       },
       description: {
-        vi: "Không gian mang dấu ấn tinh khôi của hoa ban trắng.",
-        en: "A space infused with the pure essence of white Bauhinia.",
+        vi: "Căn phòng được thiết kế lấy cảm hứng từ loài hoa Ban Trắng",
+        en: "The room is designed with inspiration from the white Bauhinia flower.",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/Hoa%20Ban%20Tr%E1%BA%AFng-%20Bauhinia/z6735015913658_0a13ac137c59ccacc8e376f1d7f63ce8.jpg?updatedAt=1751274467967",
@@ -1542,9 +1768,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 3,
-          originalPrice: 4589810,
-          discountPercentage: 79,
-          price: 976893,
+          originalPrice: 1600000,
+          discountPercentage: 0,
+          price: 1600000,
           description: {
             vi: "Phù hợp cho 3 người",
             en: "Suitable for 3 people",
@@ -1552,7 +1778,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 976893, // Default price updated to match capacityOptions
+      price: 1600000, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Mới sửa sang"],
@@ -1567,24 +1793,48 @@ const VisitInfo = () => {
       ],
       amenities: {
         vi: [
-          "Wi-Fi miễn phí",
-          "Spa",
-          "Quán bar",
-          "Đưa đón sân bay",
-          "Đỗ xe miễn phí",
-          "Bàn tiếp tân [24 giờ]",
-          "Mát-xa",
-          "Phòng gia đình",
+          {
+            icon: IoBed,
+            text: "2 giường queen size",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Nệm mềm",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Diện tích: 30m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: panorama nhìn thung lũng",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Nước nóng già",
+          },
         ],
         en: [
-          "Free Wi-Fi",
-          "Spa",
-          "Bar",
-          "Airport transfer",
-          "Free parking",
-          "24-hour front desk",
-          "Massage",
-          "Family rooms",
+          {
+            icon: IoBed,
+            text: "2 queen size beds",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Soft mattress",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Area: 30m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: panoramic valley view",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Hot water",
+          },
         ],
       },
       rules: {
@@ -1609,8 +1859,8 @@ const VisitInfo = () => {
         en: "The Memory",
       },
       description: {
-        vi: "Hoài Niệm – nơi quá khứ vẫn thổn thức trong từng chi tiết nhỏ.",
-        en: "The Memory – where the past lingers in every little detail.",
+        vi: "Căn phòng được thiết kế với ý tưởng gợi nhắc về những ký ức Đà Lạt xưa",
+        en: "The room is designed with inspiration from the memories of Đà Lạt past.",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0i%20Ni%E1%BB%87m-%20The%20Memory/z6735016111786_26063d0dd74c1796f25a106e4e7e48cb.jpg?updatedAt=1751274468488",
@@ -1663,9 +1913,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 4,
-          originalPrice: 6117901,
-          discountPercentage: 78,
-          price: 1316295,
+          originalPrice: 1800000,
+          discountPercentage: 0,
+          price: 1800000,
           description: {
             vi: "Phù hợp cho 4 người",
             en: "Suitable for 4 people",
@@ -1673,7 +1923,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 1316295, // Default price updated to match capacityOptions
+      price: 1800000, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
@@ -1688,24 +1938,48 @@ const VisitInfo = () => {
       ],
       amenities: {
         vi: [
-          "Wi-Fi miễn phí",
-          "Spa",
-          "Quán bar",
-          "Đưa đón sân bay",
-          "Đỗ xe miễn phí",
-          "Bàn tiếp tân [24 giờ]",
-          "Mát-xa",
-          "Phòng gia đình",
+          {
+            icon: IoBed,
+            text: "2 giường queen size",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Nệm mềm",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Diện tích: 33m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: Ban công view đồi và vườn dâu",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Nước nóng ấm",
+          },
         ],
         en: [
-          "Free Wi-Fi",
-          "Spa",
-          "Bar",
-          "Airport transfer",
-          "Free parking",
-          "24-hour front desk",
-          "Massage",
-          "Family rooms",
+          {
+            icon: IoBed,
+            text: "2 queen size beds",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Soft mattress",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Area: 33m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: Balcony facing hill and strawberry garden",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Warm water",
+          },
         ],
       },
       rules: {
@@ -1726,12 +2000,12 @@ const VisitInfo = () => {
     {
       id: "room11",
       title: {
-        vi: "Hoàng hôn",
+        vi: "Hoàng hôn Đà Lạt",
         en: "The Sunset",
       },
       description: {
-        vi: "Hoàng hôn – khoảnh khắc chạm vào những xúc cảm sâu lắng nhất trong tâm hồn.",
-        en: "The Sunset – a moment that touches the deepest corners of the soul.",
+        vi: "Căn phòng được thiết kế lấy cảm hứng từ bầu trời hoàng hôn rực đỏ Đà Lạt.",
+        en: "The room is designed with inspiration from the sunset of Đà Lạt.",
       },
       image:
         "https://ik.imagekit.io/8u8lkoqkkm/Ho%C3%A0ng%20h%C3%B4n-%20The%20Sunset/z6735016357613_e2751dcece85c553aaa0c8e54f9e5d11.jpg?updatedAt=1751274470184",
@@ -1784,9 +2058,9 @@ const VisitInfo = () => {
       capacityOptions: [
         {
           capacity: 4,
-          originalPrice: 6117901,
-          discountPercentage: 78,
-          price: 1316295,
+          originalPrice: 1800000,
+          discountPercentage: 0,
+          price: 1800000,
           description: {
             vi: "Phù hợp cho 4 người",
             en: "Suitable for 4 people",
@@ -1794,7 +2068,7 @@ const VisitInfo = () => {
         },
       ],
       selectedCapacityIndex: 0, // Default to first option
-      price: 1316295, // Default price updated to match capacityOptions
+      price: 1800000, // Default price updated to match capacityOptions
       rating: 4.8,
       tags: {
         vi: ["Đề xuất", "Truyền thống", "Bao gồm bữa sáng"],
@@ -1809,24 +2083,48 @@ const VisitInfo = () => {
       ],
       amenities: {
         vi: [
-          "Wi-Fi miễn phí",
-          "Spa",
-          "Quán bar",
-          "Đưa đón sân bay",
-          "Đỗ xe miễn phí",
-          "Bàn tiếp tân [24 giờ]",
-          "Mát-xa",
-          "Phòng gia đình",
+          {
+            icon: IoBed,
+            text: "2 giường queen size",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Nệm mềm",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Diện tích: 30m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: hoàng hôn thung lũng",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Nước nóng ấm",
+          },
         ],
         en: [
-          "Free Wi-Fi",
-          "Spa",
-          "Bar",
-          "Airport transfer",
-          "Free parking",
-          "24-hour front desk",
-          "Massage",
-          "Family rooms",
+          {
+            icon: IoBed,
+            text: "2 queen size beds",
+          },
+          {
+            icon: FaMattressPillow,
+            text: "Soft mattress",
+          },
+          {
+            icon: MdOutlineSquareFoot,
+            text: "Area: 30m2",
+          },
+          {
+            icon: FaMountain,
+            text: "View: valley sunset",
+          },
+          {
+            icon: TbToolsKitchen2,
+            text: "Warm water",
+          },
         ],
       },
       rules: {
@@ -2413,22 +2711,19 @@ const VisitInfo = () => {
         </p>
 
         {/* Add highlights */}
-        {homestay.highlights && (
+        {homestay.amenities && (
           <div className="homestay-highlights">
-            {getLocalizedContent(homestay.highlights).map(
-              (highlight, index) => (
-                <div key={index} className="highlight-item">
-                  <img
-                    src={highlight.icon}
-                    alt={highlight.text}
-                    className="highlight-icon"
-                  />
-                  <span className="highlight-text notranslate">
-                    {highlight.text}
-                  </span>
-                </div>
-              )
-            )}
+            {getLocalizedContent(homestay.amenities).map((amenities, index) => (
+              <div key={index} className="highlight-item">
+                {React.createElement(amenities.icon, {
+                  size: 20,
+                  className: "highlight-icon",
+                })}
+                <span className="highlight-text notranslate">
+                  {amenities.text}
+                </span>
+              </div>
+            ))}
           </div>
         )}
 
@@ -2464,11 +2759,13 @@ const VisitInfo = () => {
                       </div>
                       <div className="final-price">
                         {formatPrice(option.price)}
+                        <span className="price-unit">/ đêm</span>
                       </div>
                     </>
                   ) : (
                     <div className="final-price">
                       {formatPrice(option.price)}
+                      <span className="price-unit">/ đêm</span>
                     </div>
                   )}
                 </div>
@@ -2478,7 +2775,7 @@ const VisitInfo = () => {
         )}
 
         <div className="homestay-card-footer">
-          <div className="homestay-card-price">
+          {/* <div className="homestay-card-price">
             {homestay.capacityOptions[homestay.selectedCapacityIndex]
               .originalPrice &&
             homestay.capacityOptions[homestay.selectedCapacityIndex]
@@ -2515,7 +2812,7 @@ const VisitInfo = () => {
               </div>
             )}
             <span className="price-unit">/ đêm</span>
-          </div>
+          </div> */}
           <div className="homestay-card-actions">
             <button
               className="btn-view"
@@ -2857,13 +3154,11 @@ const VisitInfo = () => {
                   : getLocalizedContent(selectedHomestay.amenities)
                 ).map((amenity, index) => (
                   <li key={index}>
-                    <svg viewBox="0 0 24 24" width="16" height="16">
-                      <path
-                        d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"
-                        fill="currentColor"
-                      />
-                    </svg>
-                    {amenity}
+                    {React.createElement(amenity.icon, {
+                      size: 14,
+                      className: "amenity-icon",
+                    })}
+                    {amenity.text}
                   </li>
                 ))}
               </ul>

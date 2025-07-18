@@ -242,18 +242,18 @@ const sendExperienceBookingEmail = async (bookingData) => {
     
     <h3>Thông tin đơn hàng</h3>
     <p>Mã đơn hàng: ${bookingData.bookingId}</p>
-    <p>Gói trải nghiệm: ${bookingData.packageData.title}</p>
+    <p>Gói trải nghiệm: ${bookingData.packageId || "Không xác định"}</p>
     <p>Ngày: ${new Date(bookingData.selectedDate).toLocaleDateString(
       "vi-VN"
     )}</p>
     <p>Thời gian: ${bookingData.selectedTime}</p>
     <p>Số lượng: ${bookingData.tickets.reduce(
-      (total, ticket) => total + ticket.quantity,
+      (total, ticket) => total + (ticket.quantity || 0),
       0
     )} người</p>
-    <p>Tổng tiền: ${bookingData.totalAmount.toLocaleString()}đ</p>
+    <p>Tổng tiền: ${bookingData.totalAmount?.toLocaleString() || 0}đ</p>
     <p>Phương thức thanh toán: ${
-      paymentMethodText[bookingData.paymentMethod]
+      paymentMethodText[bookingData.paymentMethod] || "Không xác định"
     }</p>
     <p>Trạng thái thanh toán: ${paymentStatusText}</p>
     ${
@@ -263,15 +263,15 @@ const sendExperienceBookingEmail = async (bookingData) => {
     }
     
     <h3>Thông tin liên hệ</h3>
-    <p>Họ tên: ${bookingData.userInfo.fullName}</p>
-    <p>Số điện thoại: ${bookingData.userInfo.phone}</p>
-    <p>Email: ${bookingData.userInfo.email}</p>
+    <p>Họ tên: ${bookingData.userInfo?.fullName || "Không xác định"}</p>
+    <p>Số điện thoại: ${bookingData.userInfo?.phone || "Không xác định"}</p>
+    <p>Email: ${bookingData.userInfo?.email || "Không xác định"}</p>
     
     <p>Nếu bạn có bất kỳ câu hỏi nào, vui lòng liên hệ với chúng tôi qua số điện thoại: +84 86 235 6368</p>
   `;
 
   await sendEmail({
-    to: bookingData.userInfo.email,
+    to: bookingData.userInfo?.email,
     subject: `Xác nhận đặt vé - ${bookingData.bookingId}`,
     html: emailContent,
   });

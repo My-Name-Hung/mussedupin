@@ -1477,21 +1477,8 @@ cron.schedule("*/5 * * * *", () => {
 });
 
 const sendEmail = async ({ to, subject, html }) => {
-  const mailOptions = {
-    from: process.env.EMAIL_USER,
-    to,
-    subject,
-    html,
-  };
+  const mailOptions = { from: process.env.EMAIL_USER, to, subject, html };
   return transporter.sendMail(mailOptions);
-};
-
-const generateBookingId = () => {
-  return (
-    "BK" +
-    Date.now().toString(36).toUpperCase() +
-    Math.random().toString(36).substring(2, 7).toUpperCase()
-  );
 };
 
 const saveBooking = async (booking) => {
@@ -1505,7 +1492,7 @@ const saveBooking = async (booking) => {
     booking.userInfo.fullName,
     booking.userInfo.email,
     booking.userInfo.phone,
-    booking.status,
+    booking.status || "pending",
     new Date().toISOString(),
   ];
 

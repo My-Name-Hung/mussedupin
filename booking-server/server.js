@@ -234,14 +234,14 @@ const sendExperienceBookingEmail = async (bookingData) => {
   };
 
   const paymentStatusText =
-    bookingData.paymentStatus === "paid" ? "Đã thanh toán" : "Chưa thanh toán";
+    bookingData.status === "paid" ? "Đã thanh toán" : "Chưa thanh toán";
 
   const emailContent = `
     <h2>Xác nhận đặt vé tại Musée Du Pin</h2>
     <p>Cảm ơn bạn đã đặt vé tại Musée Du Pin. Dưới đây là chi tiết đơn hàng của bạn:</p>
     
     <h3>Thông tin đơn hàng</h3>
-    <p>Mã đơn hàng: ${bookingData.bookingId}</p>
+    <p>Mã đơn hàng: ${bookingData.id}</p>
     <p>Gói trải nghiệm: ${bookingData.packageId || "Không xác định"}</p>
     <p>Ngày: ${new Date(bookingData.selectedDate).toLocaleDateString(
       "vi-VN"
@@ -272,7 +272,7 @@ const sendExperienceBookingEmail = async (bookingData) => {
 
   await sendEmail({
     to: bookingData.userInfo?.email,
-    subject: `Xác nhận đặt vé - ${bookingData.bookingId}`,
+    subject: `Xác nhận đặt vé - ${bookingData.id}`,
     html: emailContent,
   });
 };
@@ -286,13 +286,13 @@ const sendExperienceBookingAdminEmail = async (bookingData) => {
   };
 
   const paymentStatusText =
-    bookingData.paymentStatus === "paid" ? "Đã thanh toán" : "Chưa thanh toán";
+    bookingData.status === "paid" ? "Đã thanh toán" : "Chưa thanh toán";
 
   const emailContent = `
     <h2>Đơn đặt vé mới tại Musée Du Pin</h2>
     
     <h3>Thông tin đơn hàng</h3>
-    <p>Mã đơn hàng: ${bookingData.bookingId}</p>
+    <p>Mã đơn hàng: ${bookingData.id}</p>
     <p>Gói trải nghiệm: ${bookingData.packageData.title}</p>
     <p>Ngày: ${new Date(bookingData.selectedDate).toLocaleDateString(
       "vi-VN"
@@ -323,7 +323,7 @@ const sendExperienceBookingAdminEmail = async (bookingData) => {
 
   await sendEmail({
     to: process.env.ADMIN_EMAIL,
-    subject: `Đơn đặt vé mới - ${bookingData.bookingId}`,
+    subject: `Đơn đặt vé mới - ${bookingData.id}`,
     html: emailContent,
   });
 };
@@ -591,7 +591,7 @@ app.post("/api/experience-bookings", async (req, res) => {
     const bookingData = req.body;
 
     // Validate bookingId
-    if (!bookingData.bookingId) {
+    if (!bookingData.id) {
       throw new Error("Missing booking ID");
     }
 
@@ -607,7 +607,7 @@ app.post("/api/experience-bookings", async (req, res) => {
     res.status(200).json({
       success: true,
       message: "Booking created successfully",
-      bookingId: bookingData.bookingId,
+      bookingId: bookingData.id,
     });
   } catch (error) {
     console.error("Error creating booking:", error);

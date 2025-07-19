@@ -66,7 +66,7 @@ const transporter = nodemailer.createTransport({
 });
 
 const SERVER_URL =
-  process.env.SERVER_URL3 || "https://mussedupin-fxg9.onrender.com";
+  process.env.SERVER_URL || "https://mussedupin-fxg9.onrender.com";
 
 // Send email to customer
 const sendCustomerEmail = (bookingData) => {

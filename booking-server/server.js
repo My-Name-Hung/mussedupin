@@ -18,18 +18,24 @@ dotenv.config();
 
 // MongoDB Connection
 mongoose
-  .connect(
-    "mongodb+srv://hung1111:Hung20021@museumassets.0rx4ai2.mongodb.net/?retryWrites=true&w=majority&appName=museumassets"
-  )
+  .connect("mongodb+srv://hung1111:Hung20021@museumassets.0rx4ai2.mongodb.net/?retryWrites=true&w=majority&appName=museumassets")
   .then(() => {
     console.log("Connected to MongoDB");
+
     // Initialize GridFS
     const bucket = new GridFSBucket(mongoose.connection.db, {
       bucketName: "assets",
     });
     global.bucket = bucket;
+
+    // CHỈ CHẠY SERVER SAU KHI KẾT NỐI MONGODB
+    const PORT = process.env.PORT || 5000;
+    app.listen(PORT, () => {
+      console.log(`Server running on port ${PORT}`);
+    });
   })
   .catch((err) => console.error("MongoDB connection error:", err));
+
 
 const app = express();
 app.use(bodyParser.json());

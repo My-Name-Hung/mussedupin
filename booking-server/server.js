@@ -1460,11 +1460,6 @@ app.get("/", (req, res) => {
   res.send("Booking Server is running!");
 });
 
-const PORT = process.env.PORT || 5000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
-});
-
 // Cron job to ping server every 5 minutes (để giữ server không bị ngủ nếu host trên Render hoặc Heroku)
 cron.schedule("*/5 * * * *", () => {
   const serverUrl = process.env.SERVER_URL || "http://localhost:5000";
